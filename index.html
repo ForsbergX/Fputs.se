@@ -13,7 +13,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preload" as="image" href="images/hero-start.jpg" />
+  <link rel="preload" as="image" href="images/hero-bil-parkerad.jpg" />
   <title>Fönsterputs Jönköping – Fast pris med RUT | Forsbergs Fönsterputs</title>
   <link rel="canonical" href="https://fputs.se/" />
   <link rel="icon" href="favicon.ico" sizes="any" />
@@ -123,53 +123,41 @@
       html, body { overflow-x: hidden; }
     }
     nav:not(.breadcrumb-nav) {
-      position: fixed; top: 16px; left: 16px; right: 16px; z-index: 160;
-      margin: 0 auto;
+      position: sticky; top: 0; z-index: 160;
       display: flex; align-items: center; justify-content: space-between;
       gap: 28px;
-      width: auto;
-      max-width: 1320px;
+      width: 100%;
+      max-width: none;
       touch-action: manipulation;
-      padding: 12px 10px 12px 22px;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 999px;
-      box-shadow: 0 10px 40px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
-      /* top, inte transform: transform på nav gör att den fasta hamburgermenyn
-         slutar vara låst mot skärmen och läcker ut / flaxar på mobilen. */
-      transition: top 0.3s ease;
+      padding: 10px 28px;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(20,24,27,0.08);
     }
-    nav.nav-hidden { top: -90px; }
-    nav:not(.breadcrumb-nav)::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: rgba(14,14,14,0.98);
-      border-radius: inherit;
-      z-index: -1;
-    }
+
     .nav-logo { display: inline-flex; align-items: center; transition: transform 0.2s; }
     .nav-logo:hover { transform: scale(1.04); }
-    .nav-logo img { height: 50px; width: auto; display: block; }
+    .nav-logo img { height: 68px; width: auto; display: block; }
     .nav-links { display: flex; gap: 22px; list-style: none; align-items: center; }
-    .nav-links a { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.72); text-decoration: none; display: inline-block; transition: color 0.2s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1), text-shadow 0.3s; -webkit-tap-highlight-color: transparent; }
-    .nav-links a:hover { color: var(--white); transform: scale(1.14); }
-    .nav-links a.active { color: var(--white); }
+    .nav-links a { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; display: inline-block; transition: color 0.2s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1); -webkit-tap-highlight-color: transparent; }
+    .nav-links a:hover { color: var(--accent); transform: scale(1.14); }
+    .nav-links a.active { color: var(--accent); }
     .nav-dropdown { position: relative; }
     .nav-dropdown-caret { display: none; }
     .nav-dropdown-menu {
       position: absolute; top: 100%; left: 50%; margin-top: 0;
       transform: translateX(-50%) translateY(6px);
-      background: rgba(10,10,10,0.97); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px;
+      background: #ffffff; border: 1px solid rgba(20,24,27,0.1); border-radius: 14px;
       padding: 8px; min-width: 150px; list-style: none;
       opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease;
-      z-index: 200; box-shadow: 0 20px 60px -16px rgba(0,0,0,0.7);
+      z-index: 200; box-shadow: 0 20px 60px -16px rgba(20,24,27,0.25);
     }
     .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown-menu:hover, .nav-dropdown:focus-within .nav-dropdown-menu {
       opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0);
     }
     .nav-dropdown-menu li { list-style: none; width: 100%; }
     .nav-dropdown-menu a { display: block; padding: 9px 16px; font-size: 10.5px; white-space: nowrap; text-align: left; }
-    .nav-dropdown-menu a:hover { transform: none; color: var(--white); }
-    .nav-cta { background: var(--cta) !important; color: var(--white) !important; padding: 9px 20px; border-radius: 999px; transition: background 0.15s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s; }
+    .nav-dropdown-menu a:hover { transform: none; color: var(--accent); }
+    .nav-cta { background: var(--cta) !important; color: var(--white) !important; padding: 9px 20px; border-radius: 999px; white-space: nowrap; transition: background 0.15s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s; }
     .nav-cta:hover { background: var(--cta-bright) !important; transform: scale(1.08) !important; box-shadow: 0 8px 20px -8px rgba(9,105,218,0.9); }
     .nav-cta:active { transform: scale(0.96) !important; }
     .nav-cta-mob { display: none !important; }
@@ -195,34 +183,37 @@
     }
     .nav-toggle:hover, .nav-toggle:active {
       transform: scale(1.18);
-      background: rgba(255,255,255,0.12);
+      background: rgba(20,24,27,0.08);
     }
     .nav-toggle span {
       display: block;
       width: 24px; height: 2px;
-      background: var(--white);
+      background: var(--ink);
       border-radius: 2px;
       transition: transform 0.25s ease, opacity 0.25s ease, background 0.25s, box-shadow 0.25s;
     }
     .nav-toggle:hover span, .nav-toggle:active span {
-      background: var(--white);
+      background: var(--ink);
     }
     .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-toggle.open span:nth-child(2) { opacity: 0; }
     .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     #hero {
       min-height: 0; display: block; text-align: left;
-      padding: 118px 28px 48px; position: relative; overflow: visible;
+      padding: 0 28px 48px; position: relative; overflow: visible;
       background: #fff;
     }
     .hero-shell { max-width: 1120px; margin: 0 auto; }
     .hero-photo-wrap {
-      max-width: 680px; margin: 0 auto;
-      border-radius: 28px; overflow: hidden;
+      max-width: none; width: 100vw; margin: 0 calc(50% - 50vw) 0;
+      border-radius: 0; overflow: hidden;
     }
     .hero-photo {
-      display: block; width: 100%; height: auto;
+      display: block; width: 100%; height: min(78vh, 720px); object-fit: cover;
       vertical-align: middle;
+    }
+    @media (max-width: 720px) {
+      .hero-photo { height: min(55vh, 460px); }
     }
     .hero-process {
       text-align: center; padding: 48px 8px 8px;
@@ -299,7 +290,7 @@
       .hero-offer-actions .btn-primary { flex: 1 1 100%; }
       .hero-offer-price-block { text-align: left; }
       .hero-offer-tiers { grid-template-columns: 1fr; }
-      .hero-photo-wrap { border-radius: 22px; max-width: none; }
+      .hero-photo-wrap { max-width: none; }
       .hero-process { padding: 36px 0 4px; }
       .hero-below { flex-direction: column; align-items: flex-start; }
     }
@@ -799,10 +790,15 @@
     .footer-social-link:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); }
     .mobile-cta-bar { display: none; }
     @media (max-width: 768px) {
-      nav:not(.breadcrumb-nav) { top: 12px; left: 12px; right: 12px; width: auto; padding: 8px 8px 8px 18px; gap: 12px; }
-      nav.nav-hidden { top: -90px; }
-      body.nav-open nav:not(.breadcrumb-nav),
-      body.nav-open nav.nav-hidden { top: 12px; }
+      nav:not(.breadcrumb-nav) { padding: 10px 16px; gap: 12px; position: relative; justify-content: flex-end; }
+      .nav-logo {
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin: 0 !important;
+      }
+      .nav-logo:hover { transform: translate(-50%, -50%) scale(1.04) !important; }
       .nav-toggle { display: flex; }
       .nav-toggle:hover, .nav-toggle:active { transform: none; }
       .nav-dropdown-menu {
@@ -813,8 +809,8 @@
         transition: max-height 0.3s ease;
       }
       .nav-dropdown.open .nav-dropdown-menu { max-height: 200px; padding: 4px 0 10px; }
-      .nav-dropdown-menu a { font-size: 11px; color: var(--white); text-align: left; padding: 8px 0 8px 14px; letter-spacing: 0.08em; }
-      .nav-dropdown-menu a:hover, .nav-dropdown-menu a:active { color: var(--white) !important; }
+      .nav-dropdown-menu a { font-size: 11px; color: var(--ink); text-align: left; padding: 8px 0 8px 14px; letter-spacing: 0.08em; }
+      .nav-dropdown-menu a:hover, .nav-dropdown-menu a:active { color: var(--accent) !important; }
       .nav-links > li.nav-dropdown > a {
         position: relative;
         padding-right: 26px;
@@ -824,8 +820,8 @@
         position: absolute;
         right: 4px; top: 50%;
         width: 8px; height: 8px;
-        border-right: 2px solid rgba(255,255,255,0.5);
-        border-bottom: 2px solid rgba(255,255,255,0.5);
+        border-right: 2px solid rgba(20,24,27,0.55);
+        border-bottom: 2px solid rgba(20,24,27,0.55);
         transform: translateY(-70%) rotate(45deg);
         transition: transform 0.25s ease;
       }
@@ -849,8 +845,8 @@
       .nav-dropdown-caret::after {
         content: '';
         width: 8px; height: 8px;
-        border-right: 2px solid rgba(255,255,255,0.5);
-        border-bottom: 2px solid rgba(255,255,255,0.5);
+        border-right: 2px solid rgba(20,24,27,0.55);
+        border-bottom: 2px solid rgba(20,24,27,0.55);
         transform: rotate(45deg);
         transition: transform 0.25s ease;
       }
@@ -901,8 +897,8 @@
         width: min(78vw, 300px);
         margin: 0;
         padding: 110px 28px 40px;
-        background: #0d0d0d;
-        border-left: 1px solid rgba(255,255,255,0.08);
+        background: #ffffff;
+        border-left: 1px solid rgba(20,24,27,0.08);
         -webkit-transform: translate3d(calc(100% + 24px), 0, 0);
         transform: translate3d(calc(100% + 24px), 0, 0);
         visibility: hidden;
@@ -923,13 +919,14 @@
         pointer-events: auto;
       }
       .nav-links a { transform: none; }
-      .nav-links a { font-size: 14px; }
-      .nav-links a:hover, .nav-links a:active { color: var(--white); }
+      .nav-links a { font-size: 14px; color: var(--ink); }
+      .nav-links a:hover, .nav-links a:active { color: var(--accent); }
+      .nav-links a.active { color: var(--accent); }
       .nav-links > li {
         list-style: none;
         width: 100%;
         text-align: left;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
+        border-bottom: 1px solid rgba(20,24,27,0.08);
       }
       .nav-links > li > a { display: block; padding: 16px 0; }
       .nav-links > li:has(> .nav-cta) { border-bottom: none; margin-top: 12px; }
@@ -947,10 +944,10 @@
       }
       .nav-overlay.open { opacity: 1; pointer-events: auto; }
       body.nav-open { overflow: hidden; overscroll-behavior: none; }
-      #hero { padding: 96px 16px 36px; }
+      #hero { padding: 0 16px 36px; }
       section { padding: 72px 20px; }
       .om-layout { grid-template-columns: 1fr; gap: 40px; }
-      .nav-logo img { height: 36px; }
+      .nav-logo img { height: 44px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .footer-links { flex-wrap: wrap; gap: 16px; }
     }
@@ -976,10 +973,10 @@
 <body>
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="index.html"><img src="images/logo-nav.png" alt="Forsbergs Fönsterputs" width="59" height="44" /></a>
+  <a class="nav-logo" href="index.html"><img src="images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="1109" height="260" /></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li>
-    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Boka mig</a><a href="sms:0793463964" class="nav-cta nav-cta-mob">Kontakta mig</a></li>
+    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Boka fönsterputs</a><a href="tel:0793463964" class="nav-cta nav-cta-mob">Kontakta mig</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Meny" type="button" onclick="toggleMobileMenu(this)">
     <span></span><span></span><span></span>
@@ -989,7 +986,7 @@
 <section id="hero">
   <div class="hero-shell">
     <div class="hero-photo-wrap">
-      <img class="hero-photo" src="images/hero-start.jpg" alt="Tommy putsar fönster i Jönköping" width="1024" height="807" />
+      <img class="hero-photo" src="images/hero-bil-parkerad.jpg" alt="Forsbergs Fönsterputs servicebil vid kväll med utsikt över Jönköping" width="1672" height="941" />
     </div>
     <div class="hero-process" id="hela-fonstret">
       <h2 class="section-title" style="text-transform:none;">Fönsterputs i Jönköping, så går det till</h2>
@@ -1297,7 +1294,7 @@
   })();
 </script>
 <div class="mobile-cta-bar">
-  <a href="sms:0793463964" class="mobile-cta-book"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg> Kontakta mig</a>
+  <a href="tel:0793463964" class="mobile-cta-book"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg> Boka fönsterputs</a>
 </div>
 
 <script>

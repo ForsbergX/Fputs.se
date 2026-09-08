@@ -12,8 +12,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preload" as="image" href="images/hero-bg-mobile.jpg" media="(max-width: 640px)" />
-  <link rel="preload" as="image" href="images/hero-bg-desktop.jpg" media="(min-width: 641px)" />
+  <link rel="preload" as="image" href="images/hero-bil-baklucka.jpg" />
   <title>Priskalkylator – Räkna ut fönsterputs | Forsbergs Fönsterputs</title>
   <link rel="canonical" href="https://fputs.se/priskalkylator.html" />
   <link rel="icon" href="favicon.ico" sizes="any" />
@@ -294,10 +293,10 @@
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="index.html"><img src="images/logo-nav.png" alt="Forsbergs Fönsterputs" width="59" height="44" /></a>
+  <a class="nav-logo" href="index.html"><img src="images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="1109" height="260" /></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li>
-    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Boka mig</a><a href="sms:0793463964" class="nav-cta nav-cta-mob">Kontakta mig</a></li>
+    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Boka fönsterputs</a><a href="tel:0793463964" class="nav-cta nav-cta-mob">Kontakta mig</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Meny" type="button" onclick="toggleMobileMenu(this)">
     <span></span><span></span><span></span>
@@ -305,12 +304,13 @@
 </nav>
 <div class="nav-overlay" id="navOverlay"></div>
 <section id="hero" style="min-height:auto;padding:110px 24px 40px;">
-  <div class="hero-bg-img"></div>
+  <div class="hero-bg-img" style="background-image:url('images/hero-bil-baklucka.jpg');background-size:cover;background-position:center;"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="section-label" style="justify-content:center;display:flex;">Priskalkylator</div>
     <h1 class="hero-title">Räkna ut ditt pris</h1>
     <p class="hero-sub">Fyll i dina fönster. Tryck sen Beräkna uppskattat pris. Då ser du vad hela huset kostar efter RUT.</p>
+    <p class="hero-sub" style="margin-top:8px;">Vill du hellre bara ringa? Ring <a href="tel:0793463964" style="color:inherit;text-decoration:underline;white-space:nowrap;">079‑346 39 64</a> så bokar vi direkt.</p>
   </div>
 </section>
 
@@ -596,6 +596,7 @@
               <button type="submit" class="btn-primary panel-cta" id="offertSubmitBtn">Skicka offertförfrågan</button>
               <button type="button" class="btn-outline panel-cta" id="offertSmsBtn">Skicka som SMS</button>
               <p id="offertSmsHint" style="font-size:12px;line-height:1.5;margin:-8px 0 0;color:var(--muted);">Öppnar ditt vanliga SMS med antal fönster och uppskattat pris ifyllt. Du trycker bara skicka.</p>
+              <p style="font-size:13px;line-height:1.5;margin:8px 0 0;color:var(--muted);text-align:center;">Eller ring mig direkt: <a href="tel:0793463964" style="color:inherit;text-decoration:underline;white-space:nowrap;">079‑346 39 64</a></p>
               <p id="offertFormError" style="display:none;color:#b42318;font-size:13px;margin-top:12px;">Något gick fel. Prova igen, eller ring mig direkt på <a href="tel:0793463964" style="color:inherit;text-decoration:underline;">079-346 39 64</a>.</p>
             </form>
             <div id="offertFormSuccess" style="display:none;text-align:center;padding:30px 10px;">
