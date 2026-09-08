@@ -1,0 +1,52 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d0d0d"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#14532d"/>
+      <stop offset="100%" stop-color="#052e16"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="1300" cy="220" r="130" fill="#22c55e" opacity="0.18"/>
+  <circle cx="1300" cy="220" r="80" fill="#22c55e" opacity="0.35"/>
+  <!-- distant tree line -->
+  <g fill="#052e16">
+    <polygon points="0,560 60,470 120,560"/>
+    <polygon points="90,560 150,460 210,560"/>
+    <polygon points="1450,560 1510,460 1570,560"/>
+    <polygon points="1520,560 1580,470 1640,560"/>
+  </g>
+  <!-- city skyline silhouette -->
+  <g fill="#0a0a0a">
+    <rect x="180" y="440" width="90" height="200"/>
+    <rect x="280" y="380" width="70" height="260"/>
+    <rect x="360" y="470" width="110" height="170"/>
+    <rect x="700" y="350" width="80" height="290"/>
+    <rect x="790" y="420" width="60" height="220"/>
+    <rect x="1000" y="460" width="100" height="180"/>
+    <rect x="1110" y="400" width="70" height="240"/>
+    <rect x="1190" y="480" width="90" height="160"/>
+  </g>
+  <!-- Jönköpings kyrka - cathedral with spire -->
+  <g fill="#000000">
+    <rect x="470" y="300" width="150" height="340"/>
+    <polygon points="470,300 545,180 620,300"/>
+    <rect x="530" y="140" width="30" height="70"/>
+    <polygon points="522,140 545,105 568,140"/>
+    <rect x="500" y="470" width="30" height="60" fill="#0d0d0d"/>
+    <rect x="560" y="470" width="30" height="60" fill="#0d0d0d"/>
+    <circle cx="545" cy="380" r="26" fill="#22c55e" opacity="0.7"/>
+  </g>
+  <!-- Vättern lake -->
+  <rect x="0" y="640" width="1600" height="260" fill="url(#water)"/>
+  <g stroke="#22c55e" stroke-width="3" opacity="0.35" fill="none">
+    <path d="M0,700 Q400,680 800,700 T1600,700"/>
+    <path d="M0,760 Q400,745 800,760 T1600,760"/>
+    <path d="M0,820 Q400,805 800,820 T1600,820"/>
+  </g>
+  <!-- reflection of spire -->
+  <polygon points="470,640 545,760 620,640" fill="#000000" opacity="0.4"/>
+</svg>

@@ -1,0 +1,54 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d0d0d"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg3)"/>
+
+  <!-- floating question marks background -->
+  <g fill="#22c55e" opacity="0.12" font-family="Montserrat, sans-serif" font-weight="900">
+    <text x="180" y="220" font-size="90">?</text>
+    <text x="1360" y="180" font-size="130">?</text>
+    <text x="1250" y="700" font-size="100">?</text>
+    <text x="1150" y="220" font-size="70">?</text>
+    <text x="1300" y="450" font-size="60">?</text>
+  </g>
+
+  <!-- bot body, moved to left side, scaled down -->
+  <g transform="translate(-330,120) scale(0.62)">
+    <!-- antenna -->
+    <line x1="800" y1="270" x2="800" y2="220" stroke="#22c55e" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="800" cy="205" r="18" fill="#22c55e"/>
+
+    <!-- head -->
+    <rect x="620" y="270" width="360" height="300" rx="60" fill="#0a0a0a" stroke="#22c55e" stroke-width="8"/>
+
+    <!-- eyes -->
+    <circle cx="720" cy="400" r="34" fill="#22c55e"/>
+    <circle cx="880" cy="400" r="34" fill="#22c55e"/>
+    <circle cx="730" cy="390" r="8" fill="#0a0a0a"/>
+    <circle cx="890" cy="390" r="8" fill="#0a0a0a"/>
+
+    <!-- smile -->
+    <path d="M700,470 Q800,540 900,470" stroke="#22c55e" stroke-width="12" fill="none" stroke-linecap="round"/>
+
+    <!-- cheeks -->
+    <circle cx="660" cy="460" r="16" fill="#22c55e" opacity="0.4"/>
+    <circle cx="940" cy="460" r="16" fill="#22c55e" opacity="0.4"/>
+
+    <!-- body -->
+    <rect x="670" y="570" width="260" height="180" rx="40" fill="#0a0a0a" stroke="#22c55e" stroke-width="8"/>
+    <!-- chest question mark -->
+    <text x="800" y="695" font-size="110" font-weight="900" fill="#22c55e" font-family="Montserrat, sans-serif" text-anchor="middle">?</text>
+
+    <!-- left arm (resting) -->
+    <rect x="590" y="590" width="80" height="26" rx="13" fill="#0a0a0a" stroke="#22c55e" stroke-width="6"/>
+
+    <!-- right arm (waving) -->
+    <g transform="rotate(-115 935 600)">
+      <rect x="935" y="588" width="95" height="26" rx="13" fill="#0a0a0a" stroke="#22c55e" stroke-width="6"/>
+    </g>
+  </g>
+</svg>
