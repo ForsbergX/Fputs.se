@@ -65,25 +65,26 @@
       --muted: #4A5259;
       /* Den här sidan har egen CSS och missade den blå paletten. Namnen behålls så att
          befintliga regler fungerar, men värdena är nu samma blå som resten av sajten. */
-      --accent: #0969DA;
-      --accent-hover: #0757B0;
+      --accent: #0B3D6E;
+      --accent-hover: #082C50;
       --green: var(--accent);
       --green-text: var(--accent-hover);
       /* Ljusare blå som knapparna tänds upp med när musen är över dem. */
-      --cta-bright: #2D82E8;
+      --cta-bright: #1D5C99;
       --border: rgba(20,24,27,0.09);
     }
     html {
-      scroll-behavior: smooth; overflow-x: hidden; max-width: 100%;
+      scroll-behavior: smooth; max-width: 100%;
       /* Stoppar den horisontella studsen som gör att sidan känns skakig på mobil */
       overscroll-behavior-x: none;
     }
     body {
       font-family: 'Montserrat', sans-serif; background: var(--bg-a); color: var(--ink);
-      overflow-x: hidden; max-width: 100%;
+      max-width: 100%;
       position: relative;
       -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
     }
+    .page-wrap { overflow-x: hidden; max-width: 100%; }
     nav:not(.breadcrumb-nav) {
       position: sticky; top: 0; z-index: 160;
       display: flex; align-items: center; justify-content: space-between;
@@ -128,8 +129,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      width: 40px; height: 40px;
+      gap: 7px;
+      width: 52px; height: 52px;
       background: transparent;
       border: none;
       border-radius: 50%;
@@ -146,7 +147,7 @@
     }
     .nav-toggle span {
       display: block;
-      width: 24px; height: 2px;
+      width: 30px; height: 3px;
       background: var(--ink);
       border-radius: 2px;
       transition: transform 0.25s ease, opacity 0.25s ease, background 0.25s, box-shadow 0.25s;
@@ -155,9 +156,9 @@
       background: var(--ink);
       
     }
-    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
     .nav-toggle.open span:nth-child(2) { opacity: 0; }
-    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
     #hero {
       min-height: min(100vh, 820px); display: flex; align-items: center; justify-content: center;
       text-align: center; padding: 110px 24px 80px; position: relative; overflow: hidden;
@@ -180,7 +181,7 @@
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
     }
     .hero-content { position: relative; z-index: 1; max-width: 800px; width: 100%; min-width: 0; }
-    .hero-title { font-size: clamp(32px, 6vw, 72px); font-weight: 900; line-height: 1.03; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 24px; color: var(--white); text-shadow: 0 2px 10px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.55); }
+    .hero-title { font-size: clamp(32px, 6vw, 72px); font-weight: 900; line-height: 1.03; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 24px; color: var(--white); text-shadow: 0 2px 10px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.55); overflow-wrap: break-word; word-break: break-word; }
     .hero-sub { font-size: 16.5px; font-weight: 500; color: var(--white); line-height: 1.8; max-width: 560px; margin: 0 auto 48px; letter-spacing: 0.02em; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
     .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .hero-phone {
@@ -499,7 +500,7 @@
     .footer-social-link:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); }
     .mobile-cta-bar { display: none; }
     @media (max-width: 768px) {
-      nav:not(.breadcrumb-nav) { padding: 10px 16px; gap: 12px; position: relative; justify-content: flex-end; }
+      nav:not(.breadcrumb-nav) { padding: 10px 16px; gap: 12px; position: sticky; top: 0; justify-content: flex-end; }
       .nav-logo {
         position: absolute !important;
         left: 50% !important;
@@ -683,6 +684,56 @@
       .media-caption h2 { font-size: 12.5px; }
       .media-caption p { display: none; }
     }
+.sms-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13,15,17,0.55);
+  z-index: 400;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+}
+.sms-modal-overlay.open { display: flex; }
+.sms-modal {
+  position: relative;
+  background: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 20px 20px 0 0;
+  padding: 28px 24px 24px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  box-shadow: 0 -12px 40px -10px rgba(0,0,0,0.35);
+  animation: smsModalUp 0.22s ease-out;
+}
+@media (min-width: 561px) {
+  .sms-modal-overlay { align-items: center; }
+  .sms-modal { border-radius: 18px; }
+}
+@keyframes smsModalUp {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.sms-modal h3 { font-size: 19px; font-weight: 800; margin: 0 0 12px; color: var(--ink); }
+.sms-modal p { font-size: 14px; color: var(--muted); margin: 0 0 10px; line-height: 1.5; }
+.sms-modal ul { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.sms-modal ul li { font-size: 14.5px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.sms-modal-open-btn {
+  display: block; width: 100%; text-align: center;
+  background: var(--cta); color: var(--white) !important; border: none;
+  padding: 15px; border-radius: 10px; font-size: 14px; font-weight: 700;
+  letter-spacing: 0.02em; text-transform: uppercase; text-decoration: none;
+  cursor: pointer;
+}
+.sms-modal-open-btn:active { background: var(--cta-hover); }
+.sms-modal-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: none; background: var(--dark); color: var(--ink);
+  font-size: 20px; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+
   </style>
   <style>#nl-badge-frame{display:none !important;}</style>
 </head>
@@ -691,13 +742,14 @@
 <nav>
   <a class="nav-logo" href="index.html"><img src="images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="1109" height="260" /></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li>
-    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Boka fönsterputs</a><a href="tel:0793463964" class="nav-cta nav-cta-mob">Kontakta mig</a></li>
+    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta mig</a></li>
+    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Få prisförslag</a><a href="tel:0793463964" class="nav-cta nav-cta-mob">Ring mig</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Meny" type="button" onclick="toggleMobileMenu(this)">
     <span></span><span></span><span></span>
   </button>
 </nav>
+<div class="page-wrap">
 <div class="nav-overlay" id="navOverlay"></div>
 <section id="hero" style="min-height:auto;padding:110px 24px 40px;">
   <div class="hero-bg-img"></div>
@@ -765,6 +817,7 @@
         <li><a href="om-oss.html">Om mig</a></li>
         <li><a href="omraden.html">Områden</a></li>
         <li><a href="faq.html">FAQ</a></li>
+        <li><a href="kontakta-mig.html">Kontakta mig</a></li>
         <li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li>
         <li><a href="media.html">Media</a></li>
       </ul>
@@ -823,7 +876,22 @@
   })();
 </script>
 <div class="mobile-cta-bar">
-  <a href="tel:0793463964" class="mobile-cta-book"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg> Boka fönsterputs</a>
+  <a href="#" class="mobile-cta-book" onclick="event.preventDefault(); document.getElementById('smsInfoModal').classList.add('open');"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C6.48 3 2 6.94 2 11.5c0 2.34 1.17 4.44 3.06 5.94L4.5 21l3.9-1.56c1.15.36 2.38.56 3.6.56 5.52 0 10-3.94 10-8.5S17.52 3 12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg> Skriv, så ringer jag</a>
+</div>
+
+<div class="sms-modal-overlay" id="smsInfoModal" onclick="if(event.target===this) this.classList.remove('open');">
+  <div class="sms-modal">
+    <button type="button" class="sms-modal-close" aria-label="Stäng" onclick="document.getElementById('smsInfoModal').classList.remove('open');">&times;</button>
+    <h3>Få ett pris snabbt</h3>
+    <p>Skicka gärna:</p>
+    <ul>
+      <li>📷 Bilder på fönstren</li>
+      <li>📍 Din adress</li>
+      <li>🏠 Kort info om bostaden</li>
+    </ul>
+    <p>Då kan jag snabbt räkna ut ett pris och ringa upp dig.</p>
+    <a class="sms-modal-open-btn" href="sms:0793463964">Öppna SMS</a>
+  </div>
 </div>
 
 <script>
@@ -948,5 +1016,6 @@
     });
   });
 </script>
+</div>
 </body>
 </html>

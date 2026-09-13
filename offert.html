@@ -57,13 +57,14 @@
 <nav>
   <a class="nav-logo" href="index.html"><img src="images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="1109" height="260" /></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li>
-    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Boka fönsterputs</a><a href="tel:0793463964" class="nav-cta nav-cta-mob">Kontakta mig</a></li>
+    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta mig</a></li>
+    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Få prisförslag</a><a href="tel:0793463964" class="nav-cta nav-cta-mob">Ring mig</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Meny" type="button" onclick="toggleMobileMenu(this)">
     <span></span><span></span><span></span>
   </button>
 </nav>
+<div class="page-wrap">
 <div class="nav-overlay" id="navOverlay"></div>
 <section id="hero" style="min-height:auto;padding:110px 24px 40px;">
   <div class="hero-bg-img" style="background-image:url('images/hero-bil-parkerad.jpg');background-size:cover;background-position:center;"></div>
@@ -80,7 +81,7 @@
       <h2 class="section-title">Snabbast är ett SMS</h2>
       <p class="section-sub">Skicka adressen så får du fast pris samma dag. Formuläret funkar lika bra om du vill skriva i lugn och ro. Vill du räkna ut ett ungefärligt pris först? Använd <a href="priskalkylator.html" style="color:var(--accent);text-decoration:underline;">priskalkylatorn</a>.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px;">
-        <a href="sms:0793463964?&amp;body=Hej!%20Jag%20vill%20g%C3%A4rna%20ha%20ett%20fast%20pris%20p%C3%A5%20f%C3%B6nsterputs%20%F0%9F%98%8A%0AAdress%3A%0AVilla%2Fl%C3%A4genhet%3A%0A%C3%96nskat%20datum%201%3A%0A%C3%96nskat%20datum%202%3A%0A%2F%20%5BNamn%5D" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px;font-size:16px;padding:16px 28px;">SMS:a mig</a>
+        <a href="sms:0793463964" class="btn-primary" style="display:inline-flex;align-items:center;gap:10px;font-size:16px;padding:16px 28px;">SMS:a mig</a>
         <a href="tel:0793463964" class="btn-outline" style="display:inline-flex;align-items:center;gap:10px;font-size:16px;padding:16px 28px;">Ring 079-346 39 64</a>
       </div>
       <div class="contact-items">
@@ -95,7 +96,7 @@
         <div class="panel-content">
           <h2 class="panel-title panel-title-green">Skicka offertförfrågan</h2>
           <p class="panel-lead">Samma uppgifter som i SMS:et – så kan jag sätta ett fast pris samma dag.<br><span style="color:rgba(255,255,255,0.6);font-size:13px;">Du betalar bara halva arbetskostnaden med RUT. Inga lockpriser.</span></p>
-          <form class="book-form" id="offertForm" action="https://formspree.io/f/xppaqzyr" method="POST">
+          <form class="book-form" id="offertForm" action="/.netlify/functions/send-email" method="POST">
             <div class="form-group"><label for="namn">Namn</label><input type="text" id="namn" name="namn" autocomplete="name" placeholder="Ditt namn" required /></div>
             <div class="form-group"><label for="telefon">Telefonnummer</label><input type="tel" id="telefon" name="telefon" autocomplete="tel" placeholder="07X-XXX XX XX" required /></div>
             <div class="form-group"><label for="adress">Adress</label><input type="text" id="adress" name="adress" autocomplete="street-address" placeholder="Gata och ort, t.ex. Storgatan 12, Jönköping" required /></div>
@@ -183,8 +184,8 @@
                 btn.textContent = 'Skickar...';
                 fetch(form.action, {
                   method: 'POST',
-                  body: new FormData(form),
-                  headers: { 'Accept': 'application/json' }
+                  body: JSON.stringify(Object.fromEntries(new FormData(form))),
+                  headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
                 }).then(function (response) {
                   if (response.ok) {
                     form.style.display = 'none';
@@ -252,6 +253,7 @@
         <li><a href="om-oss.html">Om mig</a></li>
         <li><a href="omraden.html">Områden</a></li>
         <li><a href="faq.html">FAQ</a></li>
+        <li><a href="kontakta-mig.html">Kontakta mig</a></li>
         <li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li>
         <li><a href="media.html">Media</a></li>
       </ul>
@@ -311,7 +313,22 @@
   })();
 </script>
 <div class="mobile-cta-bar">
-  <a href="tel:0793463964" class="mobile-cta-book"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg> Boka fönsterputs</a>
+  <a href="#" class="mobile-cta-book" onclick="event.preventDefault(); document.getElementById('smsInfoModal').classList.add('open');"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C6.48 3 2 6.94 2 11.5c0 2.34 1.17 4.44 3.06 5.94L4.5 21l3.9-1.56c1.15.36 2.38.56 3.6.56 5.52 0 10-3.94 10-8.5S17.52 3 12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg> Skriv, så ringer jag</a>
+</div>
+
+<div class="sms-modal-overlay" id="smsInfoModal" onclick="if(event.target===this) this.classList.remove('open');">
+  <div class="sms-modal">
+    <button type="button" class="sms-modal-close" aria-label="Stäng" onclick="document.getElementById('smsInfoModal').classList.remove('open');">&times;</button>
+    <h3>Få ett pris snabbt</h3>
+    <p>Skicka gärna:</p>
+    <ul>
+      <li>📷 Bilder på fönstren</li>
+      <li>📍 Din adress</li>
+      <li>🏠 Kort info om bostaden</li>
+    </ul>
+    <p>Då kan jag snabbt räkna ut ett pris och ringa upp dig.</p>
+    <a class="sms-modal-open-btn" href="sms:0793463964">Öppna SMS</a>
+  </div>
 </div>
 
 <script>
@@ -436,5 +453,6 @@
     });
   });
 </script>
+</div>
 </body>
 </html>

@@ -92,6 +92,14 @@
         "@type": "Answer",
         "text": "Jag putsar alltid alla sidor av fönstret – in, ut och emellan glasen – till ett bra pris, till skillnad från många andra som bara säljer abonnemang på utsidan. Och det är alltid jag personligen som kommer hem till dig, aldrig en anonym person du inte träffat förut."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Försvinner kalkfläckar när ni putsar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vanliga kalkfläckar från regn och vattendroppar går oftast bort vid en vanlig fönsterputs. Är kalken däremot inbränd och har suttit länge går den tyvärr inte att putsa bort – det blir en permanent skada i glaset, och det ingår inte i fönsterputsen. Just därför är regelbunden putsning viktig: ju oftare fönstren putsas, desto mindre risk att kalken hinner bränna fast i solen och skada glaset."
+      }
     }
   ]
 }
@@ -141,6 +149,8 @@
     /* Hela sidan: dubbeltryck zoomar aldrig. Scroll och nyp-zoom fungerar som vanligt. */
     html, body { touch-action: manipulation; }
     .apt-stepper button, .apt-stepper input, .apt-size-btn { touch-action: manipulation; }
+    .apt-step-row.is-locked { opacity: 0.45; pointer-events: none; }
+    .apt-calc-hint { font-size: 12.5px; color: var(--muted); margin: -6px 0 14px; font-weight: 600; }
     .apt-stepper button, .apt-size-btn {
       -webkit-user-select: none; user-select: none;
       -webkit-tap-highlight-color: transparent;
@@ -173,13 +183,14 @@
 <nav>
   <a class="nav-logo" href="index.html"><img src="images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="1109" height="260" /></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li>
-    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Boka fönsterputs</a><a href="tel:0793463964" class="nav-cta nav-cta-mob">Kontakta mig</a></li>
+    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta mig</a></li>
+    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Få prisförslag</a><a href="tel:0793463964" class="nav-cta nav-cta-mob">Ring mig</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Meny" type="button" onclick="toggleMobileMenu(this)">
     <span></span><span></span><span></span>
   </button>
 </nav>
+<div class="page-wrap">
 <div class="nav-overlay" id="navOverlay"></div>
 <section id="hero" style="min-height:auto;padding:110px 24px 40px;">
   <div class="hero-bg-img" style="background-image:url('images/hero-villa.jpg');background-size:cover;background-position:center;"></div>
@@ -241,20 +252,21 @@
     <button type="button" class="apt-size-btn" data-apt="5:a" data-price="525">5:a · 525 kr</button>
   </div>
   <div class="apt-calc-label">Inglasad balkong</div>
-  <div class="apt-step-row">
+  <p class="apt-calc-hint" id="balkongHint">Välj lägenhetsstorlek ovan för att lägga till balkong.</p>
+  <div class="apt-step-row is-locked" id="balkongGolvRow">
     <div><strong>Golv till tak</strong><span>40 kr / ruta efter RUT</span></div>
     <div class="apt-stepper">
-      <button type="button" data-target="balkongGolv" data-step="-1" aria-label="Minska golv till tak">−</button>
-      <input type="number" id="balkongGolv" min="0" max="80" value="0" inputmode="numeric" />
-      <button type="button" data-target="balkongGolv" data-step="1" aria-label="Öka golv till tak">+</button>
+      <button type="button" data-target="balkongGolv" data-step="-1" aria-label="Minska golv till tak" disabled>−</button>
+      <input type="number" id="balkongGolv" min="0" max="80" value="0" inputmode="numeric" disabled />
+      <button type="button" data-target="balkongGolv" data-step="1" aria-label="Öka golv till tak" disabled>+</button>
     </div>
   </div>
-  <div class="apt-step-row">
+  <div class="apt-step-row is-locked" id="balkongTakRow">
     <div><strong>Räcke till tak</strong><span>20 kr / ruta efter RUT</span></div>
     <div class="apt-stepper">
-      <button type="button" data-target="balkongTak" data-step="-1" aria-label="Minska räcke till tak">−</button>
-      <input type="number" id="balkongTak" min="0" max="80" value="0" inputmode="numeric" />
-      <button type="button" data-target="balkongTak" data-step="1" aria-label="Öka räcke till tak">+</button>
+      <button type="button" data-target="balkongTak" data-step="-1" aria-label="Minska räcke till tak" disabled>−</button>
+      <input type="number" id="balkongTak" min="0" max="80" value="0" inputmode="numeric" disabled />
+      <button type="button" data-target="balkongTak" data-step="1" aria-label="Öka räcke till tak" disabled>+</button>
     </div>
   </div>
   <div class="apt-total">
@@ -267,7 +279,7 @@
     <div class="panel-content" id="formular" style="scroll-margin-top:100px;">
       <h2 class="panel-title panel-title-green">Skicka offertförfrågan</h2>
       <p class="panel-lead">Samma uppgifter som i SMS:et – så kan jag sätta ett fast pris samma dag.<br><span style="color:var(--muted);font-size:13px;">Du betalar bara halva arbetskostnaden med RUT. Inga lockpriser.</span></p>
-      <form class="book-form" id="offertForm" action="https://formspree.io/f/xppaqzyr" method="POST">
+      <form class="book-form" id="offertForm" action="/.netlify/functions/send-email" method="POST">
         <input type="hidden" name="_subject" value="Lägenhetskalkylator från fputs.se" />
         <input type="hidden" name="uppskattat_pris" id="hiddenAptPrice" value="" />
         <input type="hidden" name="pris_fore_rut" id="hiddenAptPriceBefore" value="" />
@@ -367,8 +379,8 @@
         btn.textContent = 'Skickar...';
         fetch(form.action, {
           method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
         }).then(function (response) {
           if (response.ok) {
             form.style.display = 'none';
@@ -425,7 +437,8 @@
 </section><section id="faq"><div class="container"><div class="faq-header"><div class="section-label">Vanliga frågor</div><h2 class="section-title">Lägenhet & fönsterputs</h2></div>
 <div class="faq-list"><div class="faq-item"><div class="faq-question"><h2>Putsar ni balkongglas också?</h2><div class="faq-toggle"></div></div><div class="faq-answer-wrap"><p class="faq-answer">Ja. Räkna ut balkongpriset här på sidan – golv till tak 40 kr per ruta och räcke till tak 20 kr per ruta efter RUT.</p></div></div>
 <div class="faq-item"><div class="faq-question"><h2>Behöver bostadsrättsföreningen godkänna besöket?</h2><div class="faq-toggle"></div></div><div class="faq-answer-wrap"><p class="faq-answer">Nej, för putsning av dina egna fönster behövs inget godkännande från föreningen. Vid tveksamhet kring gemensamma fasadpartier hör jag av mig i förväg.</p></div></div>
-<div class="faq-item"><div class="faq-question"><h2>Ingår bara utsidan, eller putsar ni allt?</h2><div class="faq-toggle"></div></div><div class="faq-answer-wrap"><p class="faq-answer">Jag putsar alltid alla sidor av fönstret – in, ut och emellan glasen – till ett bra pris, till skillnad från många andra som bara säljer abonnemang på utsidan. Och det är alltid jag personligen som kommer hem till dig, aldrig en anonym person du inte träffat förut.</p></div></div></div></div></section><section style="padding:20px 24px 60px;">
+<div class="faq-item"><div class="faq-question"><h2>Ingår bara utsidan, eller putsar ni allt?</h2><div class="faq-toggle"></div></div><div class="faq-answer-wrap"><p class="faq-answer">Jag putsar alltid alla sidor av fönstret – in, ut och emellan glasen – till ett bra pris, till skillnad från många andra som bara säljer abonnemang på utsidan. Och det är alltid jag personligen som kommer hem till dig, aldrig en anonym person du inte träffat förut.</p></div></div>
+<div class="faq-item"><div class="faq-question"><h2>Försvinner kalkfläckar när ni putsar?</h2><div class="faq-toggle"></div></div><div class="faq-answer-wrap"><p class="faq-answer">Vanliga kalkfläckar från regn och vattendroppar går oftast bort vid en vanlig fönsterputs. Är kalken däremot inbränd och har suttit länge går den tyvärr inte att putsa bort – det blir en permanent skada i glaset, och det ingår inte i fönsterputsen. Just därför är regelbunden putsning viktig: ju oftare fönstren putsas, desto mindre risk att kalken hinner bränna fast i solen och skada glaset.</p></div></div></div></div></section><section style="padding:20px 24px 60px;">
   <div class="container" style="max-width:800px;">
     <div class="section-label">Andra tjänster</div>
     <div style="display:flex;flex-wrap:wrap;gap:10px;"><a href="priskalkylator.html" class="btn-outline" style="font-size:11px;padding:10px 18px;">Villa</a></div>
@@ -450,6 +463,7 @@
         <li><a href="om-oss.html">Om mig</a></li>
         <li><a href="omraden.html">Områden</a></li>
         <li><a href="faq.html">FAQ</a></li>
+        <li><a href="kontakta-mig.html">Kontakta mig</a></li>
         <li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li>
         <li><a href="media.html">Media</a></li>
       </ul>
@@ -508,7 +522,22 @@
   })();
 </script>
 <div class="mobile-cta-bar">
-  <a href="tel:0793463964" class="mobile-cta-book"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg> Boka fönsterputs</a>
+  <a href="#" class="mobile-cta-book" onclick="event.preventDefault(); document.getElementById('smsInfoModal').classList.add('open');"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C6.48 3 2 6.94 2 11.5c0 2.34 1.17 4.44 3.06 5.94L4.5 21l3.9-1.56c1.15.36 2.38.56 3.6.56 5.52 0 10-3.94 10-8.5S17.52 3 12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg> Skriv, så ringer jag</a>
+</div>
+
+<div class="sms-modal-overlay" id="smsInfoModal" onclick="if(event.target===this) this.classList.remove('open');">
+  <div class="sms-modal">
+    <button type="button" class="sms-modal-close" aria-label="Stäng" onclick="document.getElementById('smsInfoModal').classList.remove('open');">&times;</button>
+    <h3>Få ett pris snabbt</h3>
+    <p>Skicka gärna:</p>
+    <ul>
+      <li>📷 Bilder på fönstren</li>
+      <li>📍 Din adress</li>
+      <li>🏠 Kort info om bostaden</li>
+    </ul>
+    <p>Då kan jag snabbt räkna ut ett pris och ringa upp dig.</p>
+    <a class="sms-modal-open-btn" href="sms:0793463964">Öppna SMS</a>
+  </div>
 </div>
 
 <script>
@@ -611,8 +640,17 @@
     var aptName = '';
     var golv = document.getElementById('balkongGolv');
     var tak = document.getElementById('balkongTak');
+    var golvRow = document.getElementById('balkongGolvRow');
+    var takRow = document.getElementById('balkongTakRow');
+    var balkongHint = document.getElementById('balkongHint');
     var totalEl = document.getElementById('aptTotal');
     var beforeEl = document.getElementById('aptTotalBefore');
+    function unlockBalkong() {
+      [golvRow, takRow].forEach(function (row) { row.classList.remove('is-locked'); });
+      [golv, tak].forEach(function (input) { input.disabled = false; });
+      document.querySelectorAll('.apt-stepper button').forEach(function (btn) { btn.disabled = false; });
+      if (balkongHint) balkongHint.style.display = 'none';
+    }
     function clamp(n) {
       n = parseInt(n, 10);
       if (isNaN(n) || n < 0) return 0;
@@ -637,18 +675,11 @@
       document.getElementById('hiddenAptKalkyl').value = poster.join(' | ');
       var smsSpec = document.getElementById('hiddenSmsSpec');
       if (smsSpec) smsSpec.value = poster.join('\n');
-      if (!aptName && extra === 0) {
+      if (!aptName) {
         totalEl.textContent = '–';
         beforeEl.textContent = '';
         document.getElementById('hiddenAptPrice').value = '';
         document.getElementById('hiddenAptPriceBefore').value = '';
-        return;
-      }
-      if (!aptName) {
-        totalEl.textContent = extra + ' kr';
-        beforeEl.textContent = (extra * 2) + ' kr före RUT · bara balkong';
-        document.getElementById('hiddenAptPrice').value = extra + ' kr efter RUT (bara balkong)';
-        document.getElementById('hiddenAptPriceBefore').value = (extra * 2) + ' kr före RUT (bara balkong)';
         return;
       }
       totalEl.textContent = total + ' kr';
@@ -663,6 +694,7 @@
         });
         aptName = btn.getAttribute('data-apt');
         aptPrice = parseInt(btn.getAttribute('data-price'), 10);
+        unlockBalkong();
         update();
       });
     });
@@ -706,5 +738,6 @@
     });
   });
 </script>
+</div>
 </body>
 </html>

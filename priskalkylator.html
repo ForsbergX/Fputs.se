@@ -199,13 +199,21 @@
     .calc-form { margin-top: 8px; }
     .calc-form .btn-primary { width: 100%; text-align: center; }
     .calc-result-title { font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 18px; }
-    .calc-summary { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px; }
+    .calc-receipt { background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 20px 20px 6px; margin: 20px 0 4px; }
+    .calc-receipt-title { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .calc-summary { list-style: none; display: flex; flex-direction: column; margin-bottom: 0; }
     .calc-summary li {
-      display: flex; justify-content: space-between; gap: 12px;
-      font-size: 14px; color: var(--muted); padding-bottom: 12px;
-      border-bottom: 1px solid rgba(20,24,27,0.08);
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14px; color: var(--muted); padding: 14px 0;
+      border-bottom: 1px solid var(--border);
     }
+    .calc-summary li:last-child { border-bottom: none; }
+    .calc-summary li.is-empty { display: none; }
+    .calc-receipt-icon { width: 32px; height: 32px; background: var(--dark-2); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--muted); }
+    .calc-summary .calc-receipt-label { flex: 1; }
     .calc-summary strong { color: var(--ink); font-weight: 700; text-align: right; }
+    .calc-receipt-empty-hint { display: none; font-size: 13px; color: var(--muted); padding: 6px 0 14px; }
+    .calc-receipt-empty-hint.is-visible { display: block; }
     .calc-total-label { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
     .calc-total-value {
       font-size: clamp(28px, 4vw, 36px); font-weight: 900; color: var(--accent);
@@ -239,7 +247,6 @@
       .calc-window-grid, .calc-extra-grid, .calc-choice-grid { grid-template-columns: 1fr; }
       .calc-sprojs-types { grid-template-columns: 1fr; }
     }
-    .calc-inline-result .calc-summary { margin-top: 24px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-group select {
       background: rgba(20,24,27,0.02); border: 1px solid var(--border); border-radius: 6px;
@@ -295,16 +302,17 @@
 <nav>
   <a class="nav-logo" href="index.html"><img src="images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="1109" height="260" /></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li>
-    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Boka fönsterputs</a><a href="tel:0793463964" class="nav-cta nav-cta-mob">Kontakta mig</a></li>
+    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta mig</a></li>
+    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Få prisförslag</a><a href="tel:0793463964" class="nav-cta nav-cta-mob">Ring mig</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Meny" type="button" onclick="toggleMobileMenu(this)">
     <span></span><span></span><span></span>
   </button>
 </nav>
+<div class="page-wrap">
 <div class="nav-overlay" id="navOverlay"></div>
 <section id="hero" style="min-height:auto;padding:110px 24px 40px;">
-  <div class="hero-bg-img" style="background-image:url('images/hero-bil-baklucka.jpg');background-size:cover;background-position:center;"></div>
+  <div class="hero-bg-img" style="background-image:url('images/hero-villa.jpg');background-size:cover;background-position:center;"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="section-label" style="justify-content:center;display:flex;">Priskalkylator</div>
@@ -320,7 +328,7 @@
       <h2 class="calc-heading">Fyll i hur många fönster du har. När du är klar trycker du Beräkna uppskattat pris. Du behöver inte lämna några uppgifter för att se priset.</h2>
 
       <h3 class="calc-step-title">1. Hur är åtkomsten?</h3>
-      <div class="calc-choice-grid">
+      <div class="calc-choice-grid" style="grid-template-columns:1fr 1fr 1fr;">
         <button type="button" class="calc-card calc-card-choice is-active" data-hustyp="Vanlig villa" id="cardEnplan">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <h3>Vanlig villa</h3>
@@ -331,8 +339,26 @@
           <h3>Avancerad villa</h3>
           <p>Höga fasta fönster, stora glaspartier, flera våningar eller fönster som kräver stege/skaft.</p>
         </button>
+        <button type="button" class="calc-card calc-card-choice" data-hustyp="Villa med spröjs" id="cardSprojsVilla">
+          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <h3>Villa med spröjs</h3>
+          <p>Spröjs varierar mycket. Skicka bilder på fönstren så räknar jag ut ett fast pris åt dig.</p>
+        </button>
       </div>
 
+      <div id="calcSprojsVillaFlow" style="display:none;margin-top:28px;">
+        <div class="price-panel price-panel-featured" style="margin-top:0;">
+          <div class="panel-glow"></div>
+          <div class="panel-content">
+            <h2 class="panel-title panel-title-green">Skicka bilder & få fast pris</h2>
+            <p class="panel-lead">Spröjs finns i så många olika utföranden att det blir svårt att räkna ut ett rättvist pris i förväg. Skicka gärna bilder på dina fönster och lite information om glasen, så räknar jag ut ett fast pris åt dig – oftast samma dag.</p>
+            <a href="sms:0793463964" class="btn-primary panel-cta" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;">Skicka bilder & få fast pris</a>
+            <p style="font-size:12px;line-height:1.5;margin:10px 0 0;color:var(--muted);">Öppnar ditt vanliga SMS – bifoga bilderna innan du trycker skicka. Vill du hellre ringa? <a href="tel:0793463964" style="color:var(--accent);text-decoration:underline;">079-346 39 64</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="calcNormalFlow">
       <h3 class="calc-step-title">2. Antal fönster</h3>
       <div class="calc-window-grid">
         <div class="calc-card" id="card2" data-card="2">
@@ -341,10 +367,10 @@
             <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="34" y="22" width="52" height="76" rx="3" stroke="#1a1a1a" stroke-width="2.4"/>
               <path d="M60 22v76" stroke="#1a1a1a" stroke-width="2"/>
-              <path d="M18 60h12" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M24 54l-8 6 8 6" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M90 60h12" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M96 54l8 6-8 6" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18 60h12" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M24 54l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M90 60h12" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M96 54l8 6-8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <h3>Standardfönster</h3>
@@ -364,14 +390,14 @@
               <rect x="22" y="22" width="34" height="76" rx="3" stroke="#1a1a1a" stroke-width="2.4"/>
               <path d="M56 28l34 10v54l-34 10V28z" stroke="#1a1a1a" stroke-width="2.4"/>
               <path d="M39 22v76" stroke="#1a1a1a" stroke-width="1.6"/>
-              <path d="M8 60h10" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M12 54l-8 6 8 6" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M102 50h10" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M108 44l8 6-8 6" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M64 18v10" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M58 24l6-8 6 8" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M64 92v10" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M58 96l6 8 6-8" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 60h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M12 54l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M102 50h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M108 44l8 6-8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M64 18v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M58 24l6-8 6 8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M64 92v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M58 96l6 8 6-8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <h3>Öppningsbara fönster</h3>
@@ -391,14 +417,14 @@
               <rect x="22" y="22" width="36" height="76" rx="3" stroke="#1a1a1a" stroke-width="2.4"/>
               <path d="M58 30l36-12v84L58 90V30z" stroke="#1a1a1a" stroke-width="2.4"/>
               <path d="M40 22v76" stroke="#1a1a1a" stroke-width="1.6"/>
-              <path d="M8 60h10" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M12 54l-8 6 8 6" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M102 46h10" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M108 40l8 6-8 6" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M78 14v10" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M72 20l6-8 6 8" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M78 96v10" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M72 100l6 8 6-8" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8 60h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M12 54l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M102 46h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M108 40l8 6-8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M78 14v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M72 20l6-8 6 8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M78 96v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M72 100l6 8 6-8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <h3>Utåtgående fönster</h3>
@@ -418,7 +444,7 @@
         <div class="calc-card calc-card-tall" id="cardUterum">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div class="calc-card-art">
-            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><rect x="14" y="18" width="92" height="58" rx="3" stroke="#1a1a1a" stroke-width="2.2"/><path d="M14 38h92M45 18v58M75 18v58" stroke="#1a1a1a" stroke-width="1.6"/><path d="M60 8v8" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/><path d="M54 12l6-8 6 8" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><rect x="14" y="18" width="92" height="58" rx="3" stroke="#1a1a1a" stroke-width="2.2"/><path d="M14 38h92M45 18v58M75 18v58" stroke="#1a1a1a" stroke-width="1.6"/><path d="M60 8v8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/><path d="M54 12l6-8 6 8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <h3>Uterum</h3>
           <p>Glaspartier i uterum</p>
@@ -445,7 +471,7 @@
         <div class="calc-card calc-card-tall" id="cardBalkong">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div class="calc-card-art">
-            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><rect x="28" y="10" width="64" height="52" rx="3" stroke="#1a1a1a" stroke-width="2.2"/><path d="M60 10v52M28 36h64" stroke="#1a1a1a" stroke-width="1.6"/><path d="M20 64h80" stroke="#1a1a1a" stroke-width="2.2"/><path d="M24 64v14M96 64v14M20 78h80" stroke="#1a1a1a" stroke-width="2"/><path d="M14 36h10" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/><path d="M18 30l-8 6 8 6" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><rect x="28" y="10" width="64" height="52" rx="3" stroke="#1a1a1a" stroke-width="2.2"/><path d="M60 10v52M28 36h64" stroke="#1a1a1a" stroke-width="1.6"/><path d="M20 64h80" stroke="#1a1a1a" stroke-width="2.2"/><path d="M24 64v14M96 64v14M20 78h80" stroke="#1a1a1a" stroke-width="2"/><path d="M14 36h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/><path d="M18 30l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <h3>Balkong</h3>
           <p>Balkongdörr och fönster</p>
@@ -472,7 +498,7 @@
         <div class="calc-card calc-card-tall" id="cardAltan">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div class="calc-card-art">
-            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><path d="M16 70V36l44-20 44 20v34" stroke="#1a1a1a" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 36h88M60 16v54" stroke="#1a1a1a" stroke-width="1.6"/><path d="M28 70h64" stroke="#1a1a1a" stroke-width="2"/><path d="M60 78v8" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round"/><path d="M54 80l6 8 6-8" stroke="#0969DA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><path d="M16 70V36l44-20 44 20v34" stroke="#1a1a1a" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 36h88M60 16v54" stroke="#1a1a1a" stroke-width="1.6"/><path d="M28 70h64" stroke="#1a1a1a" stroke-width="2"/><path d="M60 78v8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/><path d="M54 80l6 8 6-8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <h3>Altan</h3>
           <p>Altanfönster och skjutpartier</p>
@@ -502,7 +528,7 @@
         <input type="checkbox" id="sprojs" />
         <div class="calc-toggle-copy">
           <strong>Fasta spröjs</strong>
-          <span>+20 kr per fönster efter RUT. Vid mer än 10 fönster med 4- eller 6-sidiga spröjs räknar jag på plats.</span>
+          <span>Pris för spröjs sätts separat – ingår inte i uppskattningen. Vid mer än 10 fönster med 4- eller 6-sidiga spröjs räknar jag alltid på plats.</span>
         </div>
         <span class="calc-switch" aria-hidden="true"></span>
       </label>
@@ -545,6 +571,24 @@
         <div class="calc-total-value" id="sumPrice">–</div>
         <p class="calc-min-note" id="minNote"></p>
 
+        <div class="calc-receipt" id="calcReceipt" style="display:none;">
+          <div class="calc-receipt-title">Din beställning</div>
+          <ul class="calc-summary">
+            <li id="rowHustyp"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 11.5L12 4l8 7.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="calc-receipt-label">Åtkomst</span><strong id="sumHustyp">Vanlig villa</strong></li>
+            <li id="rowSum2"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 4v16" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="calc-receipt-label">Standardfönster</span><strong id="sum2">0 st</strong></li>
+            <li id="rowSum4"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 4v16" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="calc-receipt-label">Öppningsbara fönster</span><strong id="sum4">0 st</strong></li>
+            <li id="rowSumUtat"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 4v16" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="calc-receipt-label">Utåtgående fönster</span><strong id="sumUtat">0 st</strong></li>
+            <li id="rowSumUterum"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20V9l8-5 8 5v11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="calc-receipt-label">Uterum</span><strong id="sumUterum">0 st</strong></li>
+            <li id="rowSumBalkong"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20V9l8-5 8 5v11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="calc-receipt-label">Balkong</span><strong id="sumBalkong">0 st</strong></li>
+            <li id="rowSumAltan"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20V9l8-5 8 5v11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="calc-receipt-label">Altan</span><strong id="sumAltan">0 st</strong></li>
+            <li id="rowSumSprojs"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="calc-receipt-label">Fasta spröjs</span><strong id="sumSprojs">Nej</strong></li>
+            <li id="rowSumDatum"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="calc-receipt-label">Önskat datum 1</span><strong id="sumDatum">Ej valt</strong></li>
+            <li id="rowSumDatum2"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="calc-receipt-label">Önskat datum 2</span><strong id="sumDatum2">Ej valt</strong></li>
+            <li id="rowSumRaw" style="display:none;"><span class="calc-receipt-label">Uträknat</span><strong id="sumRaw">0 kr</strong></li>
+          </ul>
+          <p class="calc-receipt-empty-hint" id="calcReceiptEmptyHint">Fyll i dina fönster ovan så visas din beställning här.</p>
+        </div>
+
         <input type="hidden" id="hiddenJobbhelg" value="Nej" />
         <p class="calc-tid-note" id="tidNote">Denna helg tar jag bara emot kortare jobb efter kl 17:00 (1–3 timmar).</p>
         <div class="form-group calc-photo-group" id="photoGroup">
@@ -556,7 +600,7 @@
           <div class="panel-content" id="formular" style="scroll-margin-top:100px;">
             <h2 class="panel-title panel-title-green">Skicka offertförfrågan</h2>
             <p class="panel-lead">Samma uppgifter som i SMS:et – så kan jag sätta ett fast pris samma dag.<br><span style="color:var(--muted);font-size:13px;">Du betalar bara halva arbetskostnaden med RUT. Inga lockpriser.</span></p>
-            <form class="book-form" id="offertForm" action="https://formspree.io/f/xppaqzyr" method="POST">
+            <form class="book-form" id="offertForm" action="/.netlify/functions/send-email" method="POST">
               <input type="hidden" name="_subject" value="Priskalkylator från fputs.se" />
               <input type="hidden" name="uppskattat_pris" id="hiddenPrice" value="" />
               <input type="hidden" name="pris_fore_rut" id="hiddenPriceBefore" value="" />
@@ -596,7 +640,6 @@
               <button type="submit" class="btn-primary panel-cta" id="offertSubmitBtn">Skicka offertförfrågan</button>
               <button type="button" class="btn-outline panel-cta" id="offertSmsBtn">Skicka som SMS</button>
               <p id="offertSmsHint" style="font-size:12px;line-height:1.5;margin:-8px 0 0;color:var(--muted);">Öppnar ditt vanliga SMS med antal fönster och uppskattat pris ifyllt. Du trycker bara skicka.</p>
-              <p style="font-size:13px;line-height:1.5;margin:8px 0 0;color:var(--muted);text-align:center;">Eller ring mig direkt: <a href="tel:0793463964" style="color:inherit;text-decoration:underline;white-space:nowrap;">079‑346 39 64</a></p>
               <p id="offertFormError" style="display:none;color:#b42318;font-size:13px;margin-top:12px;">Något gick fel. Prova igen, eller ring mig direkt på <a href="tel:0793463964" style="color:inherit;text-decoration:underline;">079-346 39 64</a>.</p>
             </form>
             <div id="offertFormSuccess" style="display:none;text-align:center;padding:30px 10px;">
@@ -661,8 +704,8 @@
               btn.textContent = 'Skickar...';
               fetch(form.action, {
                 method: 'POST',
-                body: new FormData(form),
-                headers: { 'Accept': 'application/json' }
+                body: JSON.stringify(Object.fromEntries(new FormData(form))),
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
               }).then(function (response) {
                 if (response.ok) {
                   form.style.display = 'none';
@@ -713,20 +756,8 @@
             }
           })();
         </script>
-        <ul class="calc-summary">
-          <li><span>Åtkomst</span><strong id="sumHustyp">Vanlig villa</strong></li>
-          <li><span>Standardfönster (2-sidor)</span><strong id="sum2">0 st</strong></li>
-          <li><span>Öppningsbara (4-sidor inåt)</span><strong id="sum4">0 st</strong></li>
-          <li><span>Utåtgående (4-sidor)</span><strong id="sumUtat">0 st</strong></li>
-          <li><span>Uterum</span><strong id="sumUterum">0 st</strong></li>
-          <li><span>Balkong</span><strong id="sumBalkong">0 st</strong></li>
-          <li><span>Altan</span><strong id="sumAltan">0 st</strong></li>
-          <li><span>Fasta spröjs</span><strong id="sumSprojs">Nej</strong></li>
-          <li><span>Önskat datum 1</span><strong id="sumDatum">Ej valt</strong></li>
-          <li><span>Önskat datum 2</span><strong id="sumDatum2">Ej valt</strong></li>
-          <li><span>Uträknat</span><strong id="sumRaw">0 kr</strong></li>
-        </ul>
         <p class="calc-disclaimer">*Observera: Priset är en uppskattning baserat på dina angivna uppgifter. Skulle antalet fönster eller fönstertyp avvika på plats, justeras priset enligt vår gällande prislista. Vid mer än 10 fönster med 4- eller 6-sidiga spröjs kommer jag ut och räknar på jobbet. Har du ingen gratis parkering står du som kund för parkeringsavgiften. Ingen reseavgift inom Jönköping med närområde. Vid längre resväg än cirka 20 minuter från Jönköping kan en extra avgift tillkomma – du får alltid veta det innan bokningen bekräftas.</p>
+      </div>
       </div>
     </div>
   </div>
@@ -751,6 +782,7 @@
         <li><a href="om-oss.html">Om mig</a></li>
         <li><a href="omraden.html">Områden</a></li>
         <li><a href="faq.html">FAQ</a></li>
+        <li><a href="kontakta-mig.html">Kontakta mig</a></li>
         <li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li>
         <li><a href="media.html">Media</a></li>
       </ul>
@@ -882,7 +914,7 @@
     var PRICE_UTAT = 100;
     var PRICE_GOLV = 40;
     var PRICE_TAK = 20;
-    var PRICE_SPROJS = 20;
+    var PRICE_SPROJS_TBD = null; // Spröjspris ej bestämt ännu – sätts separat tills Tommy ger exakta priser
     var MIN_ENPLAN = 600;
     var MIN_SOUTERRANG = 900;
     var SPROJS_QUOTE_LIMIT = 10;
@@ -1038,9 +1070,7 @@
       var houseRaw = (n2 * PRICE_2) + (n4 * PRICE_4) + (nUtat * PRICE_UTAT);
       var extraRaw = (extraGolv * PRICE_GOLV) + (extraTak * PRICE_TAK);
       var sprojsRaw = 0;
-      if (hasSprojs && nSprojs > 0 && !siteVisit) {
-        sprojsRaw = nSprojs * PRICE_SPROJS;
-      }
+      var sprojsPending = hasSprojs && nSprojs > 0 && !siteVisit;
 
       var raw = houseRaw + extraRaw + sprojsRaw;
       var hasWindows = allWindows > 0;
@@ -1071,7 +1101,7 @@
       document.getElementById('sumAltan').textContent = extraLabel(ag, at);
       var sprojsLabel = 'Nej';
       if (hasSprojs) {
-        sprojsLabel = nSprojs + ' st, ' + sprojsTyp + (siteVisit ? ' (räknas på plats)' : ' (+20 kr/st)');
+        sprojsLabel = nSprojs + ' st, ' + sprojsTyp + (siteVisit ? ' (räknas på plats)' : ' (pris sätts separat)');
       }
       document.getElementById('sumSprojs').textContent = sprojsLabel;
       document.getElementById('hiddenSprojs').value = hasSprojs ? 'Ja' : 'Nej';
@@ -1082,9 +1112,31 @@
       document.getElementById('sumDatum2').textContent = formatSvDate(datum2.value);
       document.getElementById('sumRaw').textContent = siteVisit ? 'Räknas på plats' : (raw + ' kr');
 
+      function setRowEmpty(id, isEmpty) {
+        var row = document.getElementById(id);
+        if (row) row.classList.toggle('is-empty', isEmpty);
+      }
+      setRowEmpty('rowSum2', n2 === 0);
+      setRowEmpty('rowSum4', n4 === 0);
+      setRowEmpty('rowSumUtat', nUtat === 0);
+      setRowEmpty('rowSumUterum', (ug + ut) === 0);
+      setRowEmpty('rowSumBalkong', (bg + bt) === 0);
+      setRowEmpty('rowSumAltan', (ag + at) === 0);
+      setRowEmpty('rowSumSprojs', !hasSprojs);
+      setRowEmpty('rowSumDatum', !datum1.value);
+      setRowEmpty('rowSumDatum2', !datum2.value);
+      var receiptEmptyHint = document.getElementById('calcReceiptEmptyHint');
+      if (receiptEmptyHint) receiptEmptyHint.classList.toggle('is-visible', !hasWindows);
+      var calcReceipt = document.getElementById('calcReceipt');
+      if (calcReceipt) calcReceipt.style.display = priceRevealed ? '' : 'none';
+
       var priceEl = document.getElementById('sumPrice');
       var minNote = document.getElementById('minNote');
-      if (siteVisit) {
+      if (!priceRevealed) {
+        priceEl.innerHTML = '–';
+        setBarPrice('–');
+        minNote.style.display = 'none';
+      } else if (siteVisit) {
         priceEl.innerHTML = 'Räknas på plats';
         setBarPrice('På plats');
         document.getElementById('hiddenPrice').value = 'Räknas på plats';
@@ -1106,12 +1158,15 @@
       } else {
         priceEl.innerHTML = pricePairHtml(total);
         setBarPrice(pricePairText(total));
-        document.getElementById('hiddenPrice').value = total + ' kr efter RUT';
+        document.getElementById('hiddenPrice').value = total + ' kr efter RUT' + (sprojsPending ? ' (exkl. spröjs, pris sätts separat)' : '');
         document.getElementById('hiddenPriceBefore').value = (total * 2) + ' kr före RUT';
         document.getElementById('hiddenBase').value = houseRaw + ' kr';
         document.getElementById('hiddenExtra').value = extraRaw + ' kr';
         document.getElementById('hiddenRaw').value = raw + ' kr';
-        if (usedMin) {
+        if (sprojsPending) {
+          minNote.style.display = 'block';
+          minNote.textContent = 'Priset ovan är exklusive spröjs (' + nSprojs + ' st). Spröjs prissätts separat – skicka gärna en bild på SMS så får du exakt pris.';
+        } else if (usedMin) {
           minNote.style.display = 'block';
           minNote.textContent = 'Minimipris ' + minPrice + ' kr efter RUT (' + (minPrice * 2) + ' kr före). Du kan lägga till fler fönster utan att priset höjs förrän du passerar ' + minPrice + ' kr.';
         } else {
@@ -1138,12 +1193,17 @@
     }
     window.fputsUpdateCalc = update;
 
+    var normalFlow = document.getElementById('calcNormalFlow');
+    var sprojsVillaFlow = document.getElementById('calcSprojsVillaFlow');
     document.querySelectorAll('[data-hustyp]').forEach(function (card) {
       card.addEventListener('click', function () {
         document.querySelectorAll('[data-hustyp]').forEach(function (other) {
           other.classList.toggle('is-active', other === card);
         });
         hustypInput.value = card.getAttribute('data-hustyp');
+        var isSprojsVilla = hustypInput.value === 'Villa med spröjs';
+        if (normalFlow) normalFlow.style.display = isSprojsVilla ? 'none' : '';
+        if (sprojsVillaFlow) sprojsVillaFlow.style.display = isSprojsVilla ? 'block' : 'none';
         update();
       });
     });
@@ -1220,5 +1280,6 @@
     });
   });
 </script>
+</div>
 </body>
 </html>
