@@ -9,6 +9,7 @@
     gtag('js', new Date());
 
     gtag('config', 'AW-18225187055');
+    gtag('config', 'G-DX43GW5J1M');
   </script>
 
   <meta charset="UTF-8" />
@@ -221,26 +222,112 @@
     </ul>
   </div>
 </footer>
-<div class="cookie-banner" id="cookieBanner">
-  <div class="cookie-banner-inner">
-    <p class="cookie-banner-text">Den här webbplatsen använder cookies för statistik och Google Ads, så att jag kan se vilka annonser som fungerar. Läs mer i min <a href="integritetspolicy.html">integritetspolicy</a>.</p>
-    <div class="cookie-banner-actions">
-      <button type="button" class="cookie-btn-necessary" onclick="window.cookieConsent('necessary')">Endast nödvändiga</button>
-      <button type="button" class="cookie-btn-accept" onclick="window.cookieConsent('all')">Acceptera</button>
+<div class="cookie-modal-overlay" id="cookieModalOverlay">
+  <div class="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="cookieModalTitle">
+    <div class="cookie-modal-scroll">
+      <div class="cookie-modal-header">
+        <img src="images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" class="cookie-modal-logo" />
+      </div>
+      <h2 id="cookieModalTitle" class="cookie-modal-title">Hemsidan använder cookies</h2>
+      <p class="cookie-modal-text">Forsbergs Fönsterputs och våra samarbetspartners använder cookies för att sajten ska fungera korrekt, för att föra statistik över hur sajten används, och för att visa relevant marknadsföring. Klicka på &quot;Acceptera alla&quot; för att godkänna samtliga, eller välj själv vilka kategorier du vill tillåta under &quot;Visa detaljer&quot;.</p>
+      <div class="cookie-modal-links">
+        <a href="integritetspolicy.html">Om cookies</a>
+        <a href="integritetspolicy.html">Integritetspolicy</a>
+      </div>
+      <div class="cookie-modal-actions">
+        <button type="button" class="cookie-btn-outline" onclick="window.cookieConsent('necessary')">Endast nödvändiga</button>
+        <button type="button" class="cookie-btn-solid" onclick="window.cookieConsent('all')">Acceptera alla</button>
+      </div>
+      <button type="button" class="cookie-details-toggle" id="cookieDetailsToggle" aria-expanded="false" aria-controls="cookieCategories">Visa detaljer</button>
+      <div class="cookie-categories" id="cookieCategories" hidden>
+        <div class="cookie-category">
+          <div class="cookie-category-head">
+            <div class="cookie-category-heading">
+              <span class="cookie-category-title">Nödvändiga</span>
+              <span class="cookie-category-badge">Alltid aktiva</span>
+            </div>
+            <label class="cookie-switch cookie-switch-disabled">
+              <input type="checkbox" checked disabled />
+              <span class="cookie-switch-track"><span class="cookie-switch-thumb"></span></span>
+            </label>
+          </div>
+          <p class="cookie-category-text">Krävs för att sajten ska fungera — t.ex. att komma ihåg ditt cookie-val. Kan inte stängas av.</p>
+        </div>
+        <div class="cookie-category">
+          <div class="cookie-category-head">
+            <span class="cookie-category-title">Funktionella</span>
+            <label class="cookie-switch">
+              <input type="checkbox" data-cookie-cat="functional" checked />
+              <span class="cookie-switch-track"><span class="cookie-switch-thumb"></span></span>
+            </label>
+          </div>
+          <p class="cookie-category-text">Gör att sajten kan komma ihåg dina val för en bättre upplevelse vid återbesök.</p>
+        </div>
+        <div class="cookie-category">
+          <div class="cookie-category-head">
+            <span class="cookie-category-title">Statistiska</span>
+            <label class="cookie-switch">
+              <input type="checkbox" data-cookie-cat="statistics" checked />
+              <span class="cookie-switch-track"><span class="cookie-switch-thumb"></span></span>
+            </label>
+          </div>
+          <p class="cookie-category-text">Hjälper oss förstå hur besökare använder sajten för att kunna förbättra den.</p>
+        </div>
+        <div class="cookie-category">
+          <div class="cookie-category-head">
+            <span class="cookie-category-title">Marknadsföring &amp; anpassat innehåll</span>
+            <label class="cookie-switch">
+              <input type="checkbox" data-cookie-cat="marketing" checked />
+              <span class="cookie-switch-track"><span class="cookie-switch-thumb"></span></span>
+            </label>
+          </div>
+          <p class="cookie-category-text">Används för att visa relevanta erbjudanden och mäta vår marknadsföring, t.ex. Google Ads.</p>
+        </div>
+        <div class="cookie-modal-actions cookie-modal-actions-detail">
+          <button type="button" class="cookie-btn-outline" onclick="window.cookieConsent('all')">Acceptera alla</button>
+          <button type="button" class="cookie-btn-solid" onclick="window.cookieConsent('custom')">Spara mina val</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 <script>
   (function() {
-    var banner = document.getElementById('cookieBanner');
+    var overlay = document.getElementById('cookieModalOverlay');
+    var detailsToggle = document.getElementById('cookieDetailsToggle');
+    var categories = document.getElementById('cookieCategories');
     var STORAGE_KEY = 'fputs-cookie-consent';
-    function show() { if (banner) banner.classList.add('show'); }
-    function hide() { if (banner) banner.classList.remove('show'); }
+
+    function show() { if (overlay) { overlay.classList.add('show'); document.body.classList.add('cookie-modal-open'); } }
+    function hide() { if (overlay) { overlay.classList.remove('show'); document.body.classList.remove('cookie-modal-open'); } }
+
+    if (detailsToggle && categories) {
+      detailsToggle.addEventListener('click', function() {
+        var isOpen = !categories.hidden;
+        categories.hidden = isOpen;
+        detailsToggle.setAttribute('aria-expanded', String(!isOpen));
+        detailsToggle.textContent = isOpen ? 'Visa detaljer' : 'Dölj detaljer';
+      });
+    }
+
     window.cookieConsent = function(choice) {
-      try { localStorage.setItem(STORAGE_KEY, choice); } catch (e) {}
+      var value = choice;
+      if (choice === 'custom') {
+        var chosen = ['necessary'];
+        categories.querySelectorAll('input[data-cookie-cat]').forEach(function(input) {
+          if (input.checked) chosen.push(input.getAttribute('data-cookie-cat'));
+        });
+        value = chosen.join(',');
+      } else if (choice === 'all') {
+        value = 'necessary,functional,statistics,marketing';
+      } else if (choice === 'necessary') {
+        categories.querySelectorAll('input[data-cookie-cat]').forEach(function(input) { input.checked = false; });
+      }
+      try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
       hide();
     };
     window.openCookieBanner = function() { show(); };
+
     try {
       if (!localStorage.getItem(STORAGE_KEY)) { show(); }
     } catch (e) { show(); }
