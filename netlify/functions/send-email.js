@@ -1,54 +1,27 @@
-// Netlify Function: tar emot offertformuläret och skickar mailet via Resend.
-// Ingen npm-dependency behövs (fetch finns inbyggt i Netlify Functions Node 18+ runtime),
-// vilket gör den kompatibel med zip-deploy utan node_modules.
+// Netlify Function: offertformuläret → Resend → kontakt@fputs.se
+// Ingen npm-dependency (fetch finns inbyggt i Netlify Functions Node 18+).
 
-const TEMPLATE = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="ltr" lang="sv"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/><meta name="x-apple-disable-message-reformatting"/></head><body style="background-color:#f4f4f5;margin:0;padding:0"><div style="display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0" data-skip-in-text="true">Ny offertförfrågan från %%NAMN%%</div><table border="0" width="100%" cellPadding="0" cellSpacing="0" role="presentation" align="center"><tbody><tr><td style="background-color:#f4f4f5;font-family:Montserrat, Arial, sans-serif;margin:0;padding:24px 0"><table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="max-width:560px;background-color:#ffffff;border-radius:12px;padding:32px"><tbody><tr style="width:100%"><td><img src="https://fputs.se/images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="170" height="40" style="display:block;margin:0 auto 20px;border:0;outline:none;text-decoration:none;height:40px;width:auto;max-width:200px"/><table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="border-bottom:3px solid #16a34a;padding-bottom:16px;margin-bottom:20px"><tbody><tr><td><h1 style="font-size:20px;margin:0;color:#111827">Ny offertförfrågan</h1><p style="font-size:13px;line-height:24px;margin:4px 0 0;color:#6b7280">Forsbergs Fönsterputs – fputs.se</p></td></tr></tbody></table>%%BANNER%%%%ROWS%%<hr style="width:100%;border:none;border-top:1px solid #eaeaea;margin:24px 0;border-color:#e5e7eb"/><p style="font-size:12px;line-height:24px;color:#9ca3af;margin:0">Skickat automatiskt från offertformuläret på <a href="https://fputs.se" style="color:#16a34a;text-decoration-line:none" target="_blank">fputs.se</a></p></td></tr></tbody></table></td></tr></tbody></table></body></html>`;
+const {
+  escapeHtml,
+  htmlRow,
+  filledRows,
+  customerContactBanner,
+  buildText,
+  sendToKontakt,
+} = require("../lib/resend-mail");
 
-const ROW = (label, value) =>
-  `<p style="font-size:14px;line-height:1.5;margin:0 0 10px;color:#1a1a1a"><span style="color:#6b7280;font-weight:600">${label}: </span>${value}</p>`;
+const TEMPLATE = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="ltr" lang="sv"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/><meta name="x-apple-disable-message-reformatting"/></head><body style="background-color:#f4f4f5;margin:0;padding:0"><div style="display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0" data-skip-in-text="true">Ny offertförfrågan från %%NAMN%%</div><table border="0" width="100%" cellPadding="0" cellSpacing="0" role="presentation" align="center"><tbody><tr><td style="background-color:#f4f4f5;font-family:Montserrat, Arial, sans-serif;margin:0;padding:24px 0"><table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="max-width:560px;background-color:#ffffff;border-radius:12px;padding:32px"><tbody><tr style="width:100%"><td><img src="https://fputs.se/images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="170" height="40" style="display:block;margin:0 auto 20px;border:0;outline:none;text-decoration:none;height:40px;width:auto;max-width:200px"/><table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="border-bottom:3px solid #16a34a;padding-bottom:16px;margin-bottom:20px"><tbody><tr><td><h1 style="font-size:20px;margin:0;color:#111827">Ny offertförfrågan</h1><p style="font-size:13px;line-height:24px;margin:4px 0 0;color:#6b7280">Forsbergs Fönsterputs – fputs.se</p></td></tr></tbody></table>%%BANNER%%%%ROWS%%<hr style="width:100%;border:none;border-top:1px solid #eaeaea;margin:24px 0;border-color:#e5e7eb"/><p style="font-size:12px;line-height:24px;color:#9ca3af;margin:0">Skickat automatiskt från offertformuläret på <a href="https://fputs.se" style="color:#16a34a;text-decoration-line:none" target="_blank">fputs.se</a> till kontakt@fputs.se</p></td></tr></tbody></table></td></tr></tbody></table></body></html>`;
 
-function escapeHtml(str) {
-  return String(str || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function isValidEmail(value) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim());
-}
-
-function pickReplyTo(customerEmail, fallback) {
-  const email = String(customerEmail || "").trim();
-  return isValidEmail(email) ? email : fallback;
-}
-
-function customerReplyBanner(email, telefon) {
-  if (isValidEmail(email)) {
-    const safeEmail = escapeHtml(email.trim());
-    const tel = String(telefon || "").trim();
-    const telBit = tel
-      ? ` · <a href="tel:${escapeHtml(tel)}" style="color:#16a34a;text-decoration:none">${escapeHtml(tel)}</a>`
-      : "";
-    return `<p style="font-size:14px;line-height:1.5;margin:0 0 20px;padding:12px 14px;background-color:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;color:#14532d"><strong>Svara kunden:</strong> tryck Svara i din e-post, eller skriv till <a href="mailto:${safeEmail}" style="color:#16a34a;text-decoration:none">${safeEmail}</a>${telBit}.</p>`;
-  }
-  const tel = String(telefon || "").trim();
-  const telBit = tel
-    ? ` Ring eller SMS:a <a href="tel:${escapeHtml(tel)}" style="color:#9a3412;text-decoration:none">${escapeHtml(tel)}</a>.`
-    : " Ring eller SMS:a kunden.";
-  return `<p style="font-size:14px;line-height:1.5;margin:0 0 20px;padding:12px 14px;background-color:#fff7ed;border:1px solid #fed7aa;border-radius:8px;color:#9a3412"><strong>Ingen e-post angiven.</strong>${telBit} Tryck inte Svara i mailet – då går svaret till formuläradressen.</p>`;
-}
-
-function buildHtml(fields) {
-  const rows = [
-    ["Källa", fields._subject],
+function fieldPairs(fields) {
+  return [
+    ["Källa", fields.kalla],
     ["Namn", fields.namn],
     ["Telefon", fields.telefon],
     ["Adress", fields.adress],
     ["Typ", fields.bostadstyp],
+    ["Lägenhetsstorlek", fields.lagenhetsstorlek],
     ["Antal fönster", fields.antal_fonster],
+    ["Balkongrutor", fields.antal_balkongrutor],
     ["Beställning", fields.kalkyl],
     ["Spröjs", fields.sprojs],
     ["Spröjs-typ", fields.sprojs_typ],
@@ -61,13 +34,16 @@ function buildHtml(fields) {
     ["Helgjobb", fields.jobbhelg],
     ["E-post", fields.email],
     ["Meddelande", fields.meddelande],
-  ]
-    .filter(([, v]) => v && String(v).trim() && String(v).trim() !== "0")
-    .map(([label, v]) => ROW(label, escapeHtml(v)))
+  ];
+}
+
+function buildHtml(fields) {
+  const rows = filledRows(fieldPairs(fields))
+    .map(([label, v]) => htmlRow(label, escapeHtml(v)))
     .join("");
 
   return TEMPLATE.replace("%%NAMN%%", escapeHtml(fields.namn))
-    .replace("%%BANNER%%", customerReplyBanner(fields.email, fields.telefon))
+    .replace("%%BANNER%%", customerContactBanner(fields.email, fields.telefon))
     .replace("%%ROWS%%", rows);
 }
 
@@ -102,42 +78,23 @@ exports.handler = async function (event) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: "Serverfel" }) };
   }
 
-  const TO_EMAIL = process.env.LEAD_TO_EMAIL || "kontakt@fputs.se";
-  const FROM_EMAIL = process.env.LEAD_FROM_EMAIL || "Fputs.se <formular@fputs.se>";
-  const source = String(fields._subject || "").trim();
+  const source = String(fields.kalla || "").trim();
   const subject = source
     ? `${source} – ${fields.namn}`
     : `Ny offertförfrågan – ${fields.namn}`;
 
   try {
-    const resendRes = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: [TO_EMAIL],
-        // Reply-To måste vara en adress som Loopia kan leverera till.
-        // formular@fputs.se är bara Resend-avsändare och finns inte som brevlåda
-        // (SMTP 550 "User unknown in relay recipient table" om man trycker Svara).
-        // Kundens e-post används när den finns; annars kontakt@ så svaret inte studsar.
-        reply_to: pickReplyTo(fields.email, TO_EMAIL),
-        subject,
-        html: buildHtml(fields),
-      }),
+    // Ingen Reply-To mot kundens Gmail/Hotmail: Loopias filter
+    // (FREEMAIL_FORGED_REPLYTO) kan då lägga mailet i skräppost eller fördröja det.
+    // Kundens adress ligger i mailet så den går att klicka.
+    await sendToKontakt(apiKey, {
+      subject,
+      html: buildHtml(fields),
+      text: buildText("Ny offertförfrågan", fieldPairs(fields), fields.email, fields.telefon),
     });
-
-    if (!resendRes.ok) {
-      const errText = await resendRes.text();
-      console.error("Resend error:", resendRes.status, errText);
-      return { statusCode: 502, headers, body: JSON.stringify({ error: "Kunde inte skicka mail" }) };
-    }
-
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
   } catch (err) {
     console.error("send-email exception:", err);
-    return { statusCode: 500, headers, body: JSON.stringify({ error: "Serverfel" }) };
+    return { statusCode: 502, headers, body: JSON.stringify({ error: "Kunde inte skicka mail" }) };
   }
 };
