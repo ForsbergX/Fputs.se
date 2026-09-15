@@ -602,7 +602,7 @@
             <h2 class="panel-title panel-title-green">Skicka offertförfrågan</h2>
             <p class="panel-lead">Samma uppgifter som i SMS:et – så kan jag sätta ett fast pris samma dag.<br><span style="color:var(--muted);font-size:13px;">Du betalar bara halva arbetskostnaden med RUT. Inga lockpriser.</span></p>
             <form class="book-form" id="offertForm" action="/.netlify/functions/send-email" method="POST">
-              <input type="hidden" name="_subject" value="Priskalkylator från fputs.se" />
+              <input type="hidden" name="kalla" value="Priskalkylator från fputs.se" />
               <input type="hidden" name="uppskattat_pris" id="hiddenPrice" value="" />
               <input type="hidden" name="pris_fore_rut" id="hiddenPriceBefore" value="" />
               <input type="hidden" name="antal_fonster" id="hiddenAntal" value="0" />
@@ -721,7 +721,7 @@
                     });
                   }
                 } else {
-                  throw new Error('Formspree error');
+                  throw new Error('send-email error');
                 }
               }).catch(function () {
                 errorMsg.style.display = 'block';
@@ -1054,7 +1054,7 @@
     })();
     var btn = document.getElementById('offertSubmitBtn');
     var photoGroup = document.getElementById('photoGroup');
-    var subjectField = document.querySelector('#offertForm input[name="_subject"]');
+    var subjectField = document.querySelector('#offertForm input[name="kalla"]');
     var barPrice = document.getElementById('barPrice');
     var priceRevealed = false;
     var priceBtn = document.getElementById('calcPriceBtn');
