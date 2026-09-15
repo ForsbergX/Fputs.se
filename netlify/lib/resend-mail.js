@@ -1,5 +1,4 @@
-// Gemensam Resend-hjälp för formulärmail. Allt går till kontakt@fputs.se —
-// den enda brevlådan. Inget Formspree, ingen formular@-adress.
+// Gemensam Resend-hjälp för formulärmail. Allt går till kontakt@fputs.se.
 
 const CONTACT_EMAIL = "kontakt@fputs.se";
 const FROM_EMAIL = "Forsbergs Fönsterputs <kontakt@fputs.se>";

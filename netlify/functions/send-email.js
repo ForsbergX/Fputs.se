@@ -84,9 +84,6 @@ exports.handler = async function (event) {
     : `Ny offertförfrågan – ${fields.namn}`;
 
   try {
-    // Ingen Reply-To mot kundens Gmail/Hotmail: Loopias filter
-    // (FREEMAIL_FORGED_REPLYTO) kan då lägga mailet i skräppost eller fördröja det.
-    // Kundens adress ligger i mailet så den går att klicka.
     await sendToKontakt(apiKey, {
       subject,
       html: buildHtml(fields),
