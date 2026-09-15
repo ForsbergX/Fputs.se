@@ -1,4 +1,7 @@
-// Gemensam Resend-hjälp för formulärmail. Allt går till kontakt@fputs.se.
+// ÄNDRA MAIL HÄR. Båda formulären (offert + kontakt) använder den här filen.
+// Underscore-namnet gör att Netlify inte kör den som en egen funktion.
+//
+// Allt formulärmail går till kontakt@fputs.se via Resend.
 
 const CONTACT_EMAIL = "kontakt@fputs.se";
 const FROM_EMAIL = "Forsbergs Fönsterputs <kontakt@fputs.se>";
