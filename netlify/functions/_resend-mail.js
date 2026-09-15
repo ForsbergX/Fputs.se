@@ -1,10 +1,12 @@
 // ÄNDRA MAIL HÄR. Båda formulären (offert + kontakt) använder den här filen.
 // Underscore-namnet gör att Netlify inte kör den som en egen funktion.
 //
-// Allt formulärmail går till kontakt@fputs.se via Resend.
+// To: kontakt@fputs.se (din inkorg)
+// From: noreply@fputs.se (inte samma som To — annars går Svara till dig själv)
+// Reply-To: kundens e-post när den finns
 
 const CONTACT_EMAIL = "kontakt@fputs.se";
-const FROM_EMAIL = "Forsbergs Fönsterputs <kontakt@fputs.se>";
+const FROM_EMAIL = "Forsbergs Fönsterputs <noreply@fputs.se>";
 
 function escapeHtml(str) {
   return String(str || "")
@@ -32,11 +34,13 @@ function filledRows(pairs) {
 
 function customerContactBanner(email, telefon) {
   const bits = [];
+  let replyBtn = "";
   if (isValidEmail(email)) {
     const safe = escapeHtml(email.trim());
     bits.push(
       `E-post: <a href="mailto:${safe}" style="color:#16a34a;text-decoration:none">${safe}</a>`
     );
+    replyBtn = `<p style="margin:12px 0 0"><a href="mailto:${safe}" style="display:inline-block;background-color:#16a34a;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;padding:10px 16px;border-radius:8px">Svara kunden</a></p>`;
   }
   const tel = String(telefon || "").trim();
   if (tel) {
@@ -45,12 +49,12 @@ function customerContactBanner(email, telefon) {
     );
   }
   if (!bits.length) return "";
-  return `<p style="font-size:14px;line-height:1.5;margin:0 0 20px;padding:12px 14px;background-color:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;color:#14532d"><strong>Kundens kontakt:</strong> ${bits.join(" · ")}</p>`;
+  return `<div style="margin:0 0 20px;padding:12px 14px;background-color:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;color:#14532d"><p style="font-size:14px;line-height:1.5;margin:0"><strong>Kundens kontakt:</strong> ${bits.join(" · ")}</p>${replyBtn}</div>`;
 }
 
 function buildText(title, pairs, email, telefon) {
   const lines = [title, ""];
-  if (isValidEmail(email)) lines.push("E-post: " + email.trim());
+  if (isValidEmail(email)) lines.push("Svara till: " + email.trim());
   if (telefon && String(telefon).trim()) lines.push("Telefon: " + String(telefon).trim());
   if (lines.length > 2) lines.push("");
   filledRows(pairs).forEach(([label, value]) => {
@@ -60,7 +64,7 @@ function buildText(title, pairs, email, telefon) {
   return lines.join("\n");
 }
 
-async function sendToKontakt(apiKey, { subject, html, text }) {
+async function sendToKontakt(apiKey, { subject, html, text, replyTo }) {
   const payload = {
     from: FROM_EMAIL,
     to: [CONTACT_EMAIL],
@@ -68,6 +72,9 @@ async function sendToKontakt(apiKey, { subject, html, text }) {
     html,
     text,
   };
+  if (isValidEmail(replyTo)) {
+    payload.reply_to = replyTo.trim();
+  }
 
   let lastStatus = 0;
   let lastText = "";

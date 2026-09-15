@@ -68,6 +68,7 @@ exports.handler = async function (event) {
       subject: `Nytt meddelande – ${fields.namn}`,
       html: buildHtml(fields),
       text: buildText("Nytt meddelande", fieldPairs(fields), fields.epost, fields.telefon),
+      replyTo: fields.epost,
     });
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
   } catch (err) {

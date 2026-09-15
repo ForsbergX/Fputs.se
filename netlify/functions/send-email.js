@@ -89,6 +89,7 @@ exports.handler = async function (event) {
       subject,
       html: buildHtml(fields),
       text: buildText("Ny offertförfrågan", fieldPairs(fields), fields.email, fields.telefon),
+      replyTo: fields.email,
     });
     return { statusCode: 200, headers, body: JSON.stringify({ ok: true }) };
   } catch (err) {
