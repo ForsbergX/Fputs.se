@@ -1,7 +1,7 @@
 # BUILD-PLAN — Forsbergs Fönsterputs
 ### Master Build Plan & kreativ brief för ny startsida (fputs.se)
 
-> **Status:** Förslag, väntar på godkännande. Inget byggs innan godkännande.
+> **Status:** Godkänd och byggd på branchen `claude/cool-cori-bpcdzr`. Väntar på godkännande innan publicering.
 > **Omfattning:** Ny startsida (`index.html`) för fputs.se. Övriga sidor (priskalkylator, offert, områdessidor m.fl.) behålls och länkas som idag.
 > **Primär CTA:** Priskalkylatorn → `priskalkylator.html`
 
@@ -256,7 +256,7 @@ Där fick jag arbeta med några av branschens absolut främsta — bland andra m
 
 Idag bygger jag Forsbergs Fönsterputs i Jönköping. Jag utför varje jobb själv. Målet är enkelt: marknadens bästa service — och en dag högst upp på prispallen i Svenska Mästerskapen.
 
-**Signatur:** *Tommy Forsberg* (handskriven känsla, SVG-streck som ritas vid scroll)
+**Signatur:** *Tommy Forsberg* (handskrivet typsnitt som avslöjas från vänster vid scroll)
 **Länk:** Mer om mig → `om-oss.html`
 
 **Bild:** `images/hero-om-mig-ny.jpg` (desktop) / `images/hero-om-mig-ny-crop.jpg` (mobil)
@@ -359,7 +359,7 @@ Ett gigantiskt ordmärke **FORSBERGS** i grafit, delvis utanför bild, som bakgr
 - **Brödtext:** `Inter` 400–500.
 - **Etiketter/siffror:** `JetBrains Mono` 400 — små versaler för tekniska detaljer (t.ex. `01 — HEM`).
 
-Ladda med `display=swap` och `preconnect`. Förladda endast de vikter som används.
+~~Ladda med `display=swap` och `preconnect`.~~ **Ändrat vid bygget:** typsnitten ligger lokalt i `assets/fonts/` (latin-subset, SIL OFL 1.1, licens i `assets/fonts/LICENSE.txt`) och de fyra som syns först förladdas. Mätning visade att Google Fonts åtta separata filer gav en omräkning av hela sidan per fil (≈ 1 s blockeringstid på mobil). Vikter: Inter Tight 700/800, Inter 400/600, JetBrains Mono 400 samt Mrs Saint Delafield (signaturen).
 
 **Skala (flytande med `clamp`):**
 
