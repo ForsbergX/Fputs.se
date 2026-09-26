@@ -1,0 +1,12 @@
+{
+  "name": "fputs.se",
+  "private": true,
+  "description": "Forsbergs Fönsterputs – statisk sajt med Netlify Functions",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "npx --yes netlify-cli@latest dev",
+    "check": "node --check netlify/functions/send-email.js && node --check netlify/functions/send-contact.js && node --check netlify/functions/_resend-mail.js"
+  }
+}
