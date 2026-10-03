@@ -163,7 +163,7 @@
         <li>Antal paneler och några bilder på anläggningen</li>
       </ul>
       <div class="rut-badge">✓ Priser efter ROT-avdrag</div>
-      <a href="offert.html#formular" class="btn-primary panel-cta">Boka mig</a>
+      <a href="offert.html#formular" class="btn-primary panel-cta">Få prisförslag</a>
     </div>
   </div>
 </div>
@@ -203,8 +203,9 @@
       <div class="footer-col-title">Information</div>
       <ul>
         <li><a href="faq.html">FAQ</a></li>
+        <li><a href="priskalkylator.html">Priskalkylator</a></li>
         <li><a href="integritetspolicy.html">Integritetspolicy</a></li>
-        <li><a href="allmanna-villkor.html">Allmänna villkor</a></li>
+        <li><a href="villkor.html">Allmänna villkor</a></li>
         <li><a href="#" onclick="if(window.openCookieBanner){window.openCookieBanner();}return false;">Cookieinställningar</a></li>
       </ul>
     </div>
@@ -344,25 +345,6 @@
     } catch (e) { show(); }
   })();
 </script>
-<div class="mobile-cta-bar">
-  <a href="#" class="mobile-cta-book" onclick="event.preventDefault(); document.getElementById('smsInfoModal').classList.add('open');"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C6.48 3 2 6.94 2 11.5c0 2.34 1.17 4.44 3.06 5.94L4.5 21l3.9-1.56c1.15.36 2.38.56 3.6.56 5.52 0 10-3.94 10-8.5S17.52 3 12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg> Skriv, så ringer jag</a>
-</div>
-
-<div class="sms-modal-overlay" id="smsInfoModal" onclick="if(event.target===this) this.classList.remove('open');">
-  <div class="sms-modal">
-    <button type="button" class="sms-modal-close" aria-label="Stäng" onclick="document.getElementById('smsInfoModal').classList.remove('open');">&times;</button>
-    <h3>Få ett pris snabbt</h3>
-    <p>Skicka gärna:</p>
-    <ul>
-      <li>📷 Bilder på fönstren</li>
-      <li>📍 Din adress</li>
-      <li>🏠 Kort info om bostaden</li>
-    </ul>
-    <p>Då kan jag snabbt räkna ut ett pris och ringa upp dig.</p>
-    <a class="sms-modal-open-btn" href="sms:0793463964">Öppna SMS</a>
-  </div>
-</div>
-
 <script>
   // Säkerställ att sidan hoppar till rätt sektion även om webbläsaren/förhandsvisningen
   // inte hanterar URL-ankaret automatiskt vid sidladdning.

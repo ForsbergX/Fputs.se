@@ -313,10 +313,16 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fputs.se/allmanna-villkor.html</loc>
-    <lastmod>2026-09-06</lastmod>
+    <loc>https://fputs.se/villkor.html</loc>
+    <lastmod>2026-10-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://fputs.se/kontakta-mig.html</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://fputs.se/integritetspolicy.html</loc>

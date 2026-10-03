@@ -281,15 +281,7 @@ body.tema .sms-modal ul li { color: var(--card-ink); }
   body.tema .section-label::before { width: 36px; height: 5px; }
   body.tema section { padding-left: 16px; padding-right: 16px; }
   body.tema .price-panel, body.tema .price-panel-featured { padding: 26px 18px 22px; }
-  body.tema footer { padding: 56px 16px calc(28px + 76px); }
+  body.tema footer { padding: 56px 16px 28px; }
   body.tema .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   body.tema { padding-bottom: 0; }
-  body.tema .mobile-cta-bar {
-    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 145; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-    background: rgba(18,20,23,.94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,.1); box-shadow: none;
-  }
-  body.tema .mobile-cta-bar a {
-    flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 16px; border-radius: 8px;
-    background: var(--red); color: var(--white); font-size: 15px; font-weight: 700; letter-spacing: 0; text-transform: none; text-decoration: none;
-  }
 }

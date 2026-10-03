@@ -157,10 +157,10 @@
       --wrap-w: min(var(--wrap), 100vw - 2 * var(--gutter));
       /* Minst så stort att fotot når sidans överkant (kortets topp / 0,761 i höjd). */
       --photo-w: max(var(--wrap-w) * .967, var(--card-top, 565px) * 2.335);
-      position: absolute; display: block; height: auto; aspect-ratio: 1672 / 941;
+      position: absolute; display: block; height: auto; aspect-ratio: 1024 / 576;
       width: var(--photo-w);
-      /* Registreringsskylten (14 % in i fotot) hamnar 51 % in i innehållet, som i referensen. */
-      left: calc((100vw - var(--wrap-w)) / 2 + var(--wrap-w) * .5087 - var(--photo-w) * .1407);
+      /* Bilden dras åt vänster så att både bilen och Vättern syns till höger om texten. */
+      left: calc((100vw - var(--wrap-w)) / 2 + var(--wrap-w) * .5087 - var(--photo-w) * .42);
       top: calc(var(--card-top, 565px) - var(--photo-w) * .4283);
       -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%), linear-gradient(180deg, #000 80%, transparent 100%);
       -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0, #000 9%), linear-gradient(180deg, #000 80%, transparent 100%);
@@ -180,6 +180,7 @@
     .hero-eyebrow::before { content: ''; width: 60px; height: 6px; border-radius: 3px; background: var(--red); }
     .hero-h1 { font-size: clamp(48px, 5.95vw, 92px); font-weight: 800; line-height: .94; letter-spacing: -.035em; margin-bottom: 16px; }
     .hero-sub { font-size: clamp(19px, 1.85vw, 28px); font-weight: 400; letter-spacing: -.01em; margin-bottom: 34px; }
+    .hero-pay { font-size: clamp(17px, 1.55vw, 24px); font-weight: 500; letter-spacing: -.01em; margin: -2px 0 22px; }
     .hero-usps { display: flex; flex-wrap: wrap; gap: 18px 34px; list-style: none; margin-bottom: 30px; }
     .hero-usps li { display: flex; align-items: center; gap: 14px; }
     .hero-usps svg { width: 30px; height: 30px; flex-shrink: 0; }
@@ -218,8 +219,6 @@
     .footer-legal-links { display: flex; gap: 22px; list-style: none; flex-wrap: wrap; }
     .footer-legal-links a { font-size: 12.5px; color: rgba(255,255,255,.62); text-decoration: none; }
     .footer-legal-links a:hover { color: var(--white); }
-
-    .mobile-cta-bar { display: none; }
 
     /* ===== MOBIL ===== */
     @media (max-width: 1180px) {
@@ -264,25 +263,31 @@
   .footer-grid > .footer-col:first-child { grid-column: 1 / -1; }
     }
     @media (max-width: 768px) {
-      #hero { padding: 104px 16px 40px; min-height: 0; }
-      .hero-bg img { top: 0; left: 0; width: 100%; height: 100%; min-width: 0; aspect-ratio: auto; object-fit: cover; object-position: 38% 50%; -webkit-mask-image: none; mask-image: none; }
-      .hero-bg::after { background: linear-gradient(180deg, rgba(10,11,13,.7) 0%, rgba(10,11,13,.45) 40%, rgba(10,11,13,.82) 100%); }
+      #hero { padding: 88px 16px 0; min-height: 100dvh; overflow: hidden; }
+      .hero-bg {
+        position: absolute; top: 0; left: 0; right: 0; z-index: -2;
+        width: 100%; height: 100dvh; min-height: 0; max-height: none;
+        margin: 0; overflow: hidden; clip-path: none;
+      }
+      .hero-bg img {
+        position: absolute; top: 0; left: 0; width: 100%; max-width: none; height: 100%; min-width: 0;
+        aspect-ratio: auto; object-fit: cover; object-position: center center;
+        -webkit-mask-image: none; mask-image: none;
+      }
+      .hero-bg::after {
+        display: block;
+        background: linear-gradient(180deg, rgba(18,20,23,.62) 0%, rgba(18,20,23,.28) 22%, rgba(18,20,23,.08) 46%, rgba(18,20,23,0) 68%);
+      }
+      .hero-inner { position: relative; z-index: 1; width: auto; }
+      .hero-h1 { font-size: 42px; max-width: none; line-height: .96; }
+      .calc-card { margin-top: 36px; }
       .hero-eyebrow { font-size: 11px; letter-spacing: .16em; gap: 12px; }
       .hero-eyebrow::before { width: 36px; height: 5px; }
       .hero-sub { margin-bottom: 28px; }
       .hero-usps { display: grid; gap: 16px; margin-bottom: 28px; }
-      .calc-card { margin-top: 28px; }
-      footer { padding: 56px 16px calc(28px + 76px); }
+      .calc-card { margin-top: 22px; }
+      footer { padding: 56px 16px 28px; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-      body { padding-bottom: 0; }
-      .mobile-cta-bar {
-        display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 145; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-        background: rgba(255,255,255,.96); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-top: 1px solid var(--line);
-      }
-      .mobile-cta-bar a {
-        flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 16px; border-radius: 8px;
-        background: var(--red); color: var(--white); font-size: 15px; font-weight: 700; text-decoration: none;
-      }
     }
     @media (prefers-reduced-motion: no-preference) {
       .hero-inner > * { animation: heroIn .9s cubic-bezier(.16,1,.3,1) both; }
@@ -446,11 +451,15 @@
 
 <section id="hero">
   <div class="hero-bg" aria-hidden="true">
-    <img src="images/hero-bil-parkerad.jpg" alt="" width="1672" height="941" fetchpriority="high" />
+    <picture>
+      <source media="(max-width: 768px)" srcset="images/hero-bil-mobil.jpg" />
+      <img src="images/hero-bil-parkerad.jpg" alt="" width="1024" height="576" fetchpriority="high" />
+    </picture>
   </div>
   <div class="hero-inner">
     <p class="hero-eyebrow">Kristallklara fönster – året runt</p>
     <h1 class="hero-h1">Fönsterputs<br />i Jönköping</h1>
+    <p class="hero-pay">Betala enkelt med Swish när jobbet är klart och du är nöjd.</p>
     <p class="hero-sub">Fast pris i förväg. Betala när jobbet är klart.</p>
     <ul class="hero-usps">
       <li><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M244.52,100.05l-56-64A6,6,0,0,0,184,34H72a6,6,0,0,0-4.52,2l-56,64a6,6,0,0,0,.13,8l112,120a6,6,0,0,0,8.78,0l112-120A6,6,0,0,0,244.52,100.05ZM75.94,110l34.6,86.49L29.81,110Zm91.2,0L128,207.84,88.86,110ZM92,98l36-48,36,48Zm88.06,12h46.13l-80.73,86.49Zm46.72-12H179L140,46h41.28ZM74.72,46H116L77,98H29.22Z"/></svg><div><strong>Skinande resultat</strong><span>Varje gång</span></div></li>
@@ -510,7 +519,7 @@
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="priskalkylator.html">Priskalkylator</a></li>
         <li><a href="integritetspolicy.html">Integritetspolicy</a></li>
-        <li><a href="allmanna-villkor.html">Allmänna villkor</a></li>
+        <li><a href="villkor.html">Allmänna villkor</a></li>
         <li><a href="#" onclick="if(window.openCookieBanner){window.openCookieBanner();}return false;">Cookieinställningar</a></li>
       </ul>
     </div>
@@ -650,25 +659,6 @@
     } catch (e) { show(); }
   })();
 </script>
-<div class="mobile-cta-bar">
-  <a href="#" class="mobile-cta-book" onclick="event.preventDefault(); document.getElementById('smsInfoModal').classList.add('open');"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C6.48 3 2 6.94 2 11.5c0 2.34 1.17 4.44 3.06 5.94L4.5 21l3.9-1.56c1.15.36 2.38.56 3.6.56 5.52 0 10-3.94 10-8.5S17.52 3 12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg> Skriv, så ringer jag</a>
-</div>
-
-<div class="sms-modal-overlay" id="smsInfoModal" onclick="if(event.target===this) this.classList.remove('open');">
-  <div class="sms-modal">
-    <button type="button" class="sms-modal-close" aria-label="Stäng" onclick="document.getElementById('smsInfoModal').classList.remove('open');">&times;</button>
-    <h3>Få ett pris snabbt</h3>
-    <p>Skicka gärna:</p>
-    <ul>
-      <li>📷 Bilder på fönstren</li>
-      <li>📍 Din adress</li>
-      <li>🏠 Kort info om bostaden</li>
-    </ul>
-    <p>Då kan jag snabbt räkna ut ett pris och ringa upp dig.</p>
-    <a class="sms-modal-open-btn" href="sms:0793463964">Öppna SMS</a>
-  </div>
-</div>
-
 <script>
   // Säkerställ att sidan hoppar till rätt sektion även om webbläsaren/förhandsvisningen
   // inte hanterar URL-ankaret automatiskt vid sidladdning.

@@ -572,7 +572,6 @@
       transition: border-color 0.2s, background 0.2s;
     }
     .footer-social-link:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); }
-    .mobile-cta-bar { display: none; }
     @media (max-width: 768px) {
       nav:not(.breadcrumb-nav) { padding: 10px 16px; gap: 12px; position: sticky; top: 0; justify-content: flex-end; }
       .nav-logo {
@@ -586,7 +585,7 @@
       .nav-logo img { height: 44px; }
       .nav-toggle { display: flex; }
       .nav-toggle:hover, .nav-toggle:active { transform: none; }
-      body { padding-bottom: 118px; }
+      body { padding-bottom: 0; }
       .hero-actions { display: none; }
       .nav-dropdown-menu {
         position: static; opacity: 1; pointer-events: auto; transform: none;
@@ -646,31 +645,6 @@
         transform: none !important;
         opacity: 1 !important;
       }
-      .mobile-cta-bar {
-        display: flex;
-        position: fixed;
-        left: 0; right: 0; bottom: 0; z-index: 145;
-        gap: 10px;
-        padding: 10px 14px;
-        background: rgba(255,255,255,0.96);
-        -webkit-backdrop-filter: blur(8px) saturate(140%);
-        backdrop-filter: blur(8px) saturate(140%);
-        border-top: 1px solid var(--border);
-        box-shadow: 0 -8px 24px -12px rgba(20,24,27,0.12);
-      }
-      .mobile-cta-bar a {
-        flex: 1;
-        display: flex; align-items: center; justify-content: center; gap: 5px;
-        padding: 13px 2px;
-        border-radius: 8px;
-        font-size: 12px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase;
-        text-decoration: none; white-space: nowrap;
-      }
-      /* SMS är huvudkanalen och därför den enda blå knappen i listen */
-      .mobile-cta-sms { background: var(--cta); color: var(--white); border: none; }
-      .mobile-cta-sms:active { background: var(--cta-hover); }
-      .mobile-cta-ring, .mobile-cta-book { background: var(--white); color: var(--ink); border: 1px solid var(--border); }
-      .mobile-cta-ring:active, .mobile-cta-book:active { background: var(--bg-b); }
       .book-layout { grid-template-columns: 1fr; gap: 40px; }
       .nav-links {
         display: flex;
