@@ -10,6 +10,8 @@ const {
   buildText,
   sendToKontakt,
 } = require("./_resend-mail");
+// Samma regel för spärrade arbetshelger som kalendern i webbläsaren använder.
+const { arSparrad } = require("../../js/arbetshelger.js");
 
 const FREQUENCY = { engang: "En gång", 2: "2 ggr/år", 3: "3 ggr/år", 4: "4 ggr/år" };
 const TIME = {
@@ -89,6 +91,10 @@ exports.handler = async function (event) {
   const c = b.contact || {};
   if (!c.namn || !c.telefon || !c.adress) {
     return reply(400, { ok: false, error: "Obligatoriska fält saknas" });
+  }
+
+  if ([c.datum1, c.datum2].some((d) => d && arSparrad(d))) {
+    return reply(409, { ok: false, error: "Det valda datumet är inte tillgängligt. Välj en annan dag." });
   }
 
   const apiKey = process.env.RESEND_API_KEY;

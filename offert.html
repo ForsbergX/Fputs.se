@@ -53,6 +53,7 @@
   <link rel="stylesheet" href="styles.css">
   <style>#nl-badge-frame{display:none !important;}</style>
   <link rel="stylesheet" href="css/tema.css" />
+  <script src="js/arbetshelger.js"></script>
 </head>
 <body class="tema">
 <!-- NAV -->
@@ -61,7 +62,7 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Hem</a></li>
     <li class="nav-dropdown"><a href="tjanster.html">Tjänster <svg class="nav-chevron" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li>
-    <li><a href="om-oss.html">Om mig</a></li>
+    <li><a href="om-oss.html">Om Forsbergs</a></li>
     <li><a href="omraden.html">Områden</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="kontakta-mig.html">Kontakta mig</a></li>
@@ -122,7 +123,7 @@
               <div class="form-group"><label for="datum1">Önskat datum 1</label><input type="date" id="datum1" name="onskat_datum_1" /></div>
               <div class="form-group"><label for="datum2">Önskat datum 2</label><input type="date" id="datum2" name="onskat_datum_2" /></div>
             </div>
-            <p id="datumHelgNote" style="display:none;font-size:13px;font-weight:600;line-height:1.5;margin:0;color:#fff;">Denna helg tar jag bara emot kortare jobb efter kl 17:00 (1–3 timmar).</p>
+            <p id="datumHelgNote" style="display:none;font-size:13px;font-weight:600;line-height:1.5;margin:0;color:#fff;">Ej tillgänglig – jag arbetar den helgen. Välj en annan dag.</p>
             <input type="hidden" name="jobbhelg" id="offertJobbhelg" value="Nej" />
             <div class="form-group"><label for="email">E-post <span style="text-transform:none;letter-spacing:0;font-weight:500;">(valfritt)</span></label><input type="email" id="email" name="email" autocomplete="email" placeholder="din@epost.se" /></div>
             <div class="form-group"><label for="meddelande">Meddelande <span style="text-transform:none;letter-spacing:0;font-weight:500;">(valfritt)</span></label><textarea id="meddelande" name="meddelande" placeholder="Tider som passar, kodlås, eller annat jag behöver veta..."></textarea></div>
@@ -151,22 +152,8 @@
               var datum2 = document.getElementById('datum2');
               var datumNote = document.getElementById('datumHelgNote');
               var jobbhelgField = document.getElementById('offertJobbhelg');
-              var WORK_WEEKENDS = (function () {
-                var set = {};
-                function key(d) {
-                  var m = d.getMonth() + 1;
-                  var day = d.getDate();
-                  return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (day < 10 ? '0' : '') + day;
-                }
-                var start = new Date(2026, 9, 3);
-                for (var i = 0; i < 60; i++) {
-                  var sat = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i * 42);
-                  var sun = new Date(sat.getFullYear(), sat.getMonth(), sat.getDate() + 1);
-                  set[key(sat)] = true;
-                  set[key(sun)] = true;
-                }
-                return set;
-              })();
+              // Spärrade arbetshelger: samma regel som kalkylatorn (js/arbetshelger.js).
+              var arSparrad = window.FPUTS_ARBETSHELGER ? window.FPUTS_ARBETSHELGER.arSparrad : function () { return false; };
               (function setMinDate() {
                 var n = new Date();
                 var m = n.getMonth() + 1;
@@ -176,9 +163,14 @@
                 datum2.min = min;
               })();
               function syncHelg() {
-                var work = !!(WORK_WEEKENDS[datum1.value] || WORK_WEEKENDS[datum2.value]);
-                datumNote.style.display = work ? 'block' : 'none';
-                jobbhelgField.value = work ? 'Ja – efter 17:00, 1–3 timmar' : 'Nej';
+                var sparrad = false;
+                [datum1, datum2].forEach(function (f) {
+                  var av = !!f.value && arSparrad(f.value);
+                  f.setCustomValidity(av ? 'Ej tillgänglig – välj en annan dag.' : '');
+                  if (av) sparrad = true;
+                });
+                datumNote.style.display = sparrad ? 'block' : 'none';
+                jobbhelgField.value = 'Nej';
               }
               datum1.addEventListener('change', syncHelg);
               datum2.addEventListener('change', syncHelg);
@@ -186,6 +178,8 @@
               datum2.addEventListener('input', syncHelg);
               form.addEventListener('submit', function (e) {
                 e.preventDefault();
+                syncHelg();
+                if (!form.checkValidity()) { form.reportValidity(); return; }
                 errorMsg.style.display = 'none';
                 btn.disabled = true;
                 btn.textContent = 'Skickar...';
@@ -257,7 +251,7 @@
       <div class="footer-col-title">Företaget</div>
       <ul>
         <li><a href="index.html">Hem</a></li>
-        <li><a href="om-oss.html">Om mig</a></li>
+        <li><a href="om-oss.html">Om Forsbergs</a></li>
         <li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li>
         <li><a href="omraden.html">Områden</a></li>
         <li><a href="media.html">Media</a></li>

@@ -146,3 +146,11 @@
   .calc-card .zr { padding: 18px 16px; }
   .fp-opt { font-size: 15px; gap: 10px; padding: 0 12px; }
 }
+
+/* Spärrade arbetshelger (js/arbetshelger.js): grå, ej valbara, med texten "Ej tillgänglig" */
+.calc-card .fp-day-off, .calc-card .fp-day-off:disabled {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  background: #ECECEE; border-color: #ECECEE; color: #9A9AA0; text-decoration: none; cursor: not-allowed; line-height: 1.1;
+}
+.calc-card .fp-day-off small { font-size: 8.5px; font-weight: 600; letter-spacing: 0; color: #8A8A90; text-align: center; white-space: normal; }
+@media (max-width: 767px) { .calc-card .fp-day-off small { font-size: 7px; } }
