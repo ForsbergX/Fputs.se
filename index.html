@@ -110,14 +110,16 @@
       display: flex; align-items: center; justify-content: space-between; gap: 32px;
       padding: 26px var(--gutter) 0; max-width: calc(var(--wrap) + 2 * var(--gutter)); margin: 0 auto;
     }
-    .nav-logo { display: inline-flex; flex-shrink: 0; }
+    .nav-logo { display: inline-flex; flex-shrink: 0; transition: transform .25s cubic-bezier(.34,1.56,.64,1); }
+    .nav-logo:hover { transform: scale(1.06); }
     .nav-logo img { height: 50px; width: auto; display: block; }
     .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
     .nav-links a {
       color: var(--white); text-decoration: none; font-size: 16px; font-weight: 500;
-      white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; transition: color .2s;
+      white-space: nowrap; display: inline-flex; align-items: center; gap: 8px;
+      transition: color .2s, transform .3s cubic-bezier(.34,1.56,.64,1);
     }
-    .nav-links > li > a:not(.nav-cta):hover { color: #FFD7DA; }
+    .nav-links > li > a:not(.nav-cta):hover { color: #FFD7DA; transform: scale(1.12); }
     .nav-chevron { width: 14px; height: 14px; transition: transform .2s; }
     .nav-dropdown { position: relative; }
     .nav-dropdown:hover .nav-chevron, .nav-dropdown:focus-within .nav-chevron { transform: rotate(180deg); }
@@ -134,7 +136,7 @@
       background: var(--red); color: var(--white) !important; font-weight: 600 !important;
       padding: 11px 22px; border-radius: 999px; transition: background .2s, transform .2s;
     }
-    .nav-cta:hover { background: var(--red-hot); transform: translateY(-1px); }
+    .nav-cta:hover { background: var(--red-hot); transform: translateY(-1px) scale(1.06); }
     .nav-cta:active { transform: scale(.98); }
     .nav-cta-mob { display: none !important; }
     .nav-toggle { display: none; }
@@ -173,19 +175,8 @@
         linear-gradient(180deg, rgba(10,11,13,.55) 0%, rgba(10,11,13,0) 18%, rgba(10,11,13,0) 52%, rgba(10,11,13,.55) 100%);
     }
     .hero-inner { max-width: var(--wrap); margin: 0 auto; }
-    .hero-eyebrow {
-      display: flex; align-items: center; gap: 16px; margin-bottom: 18px;
-      font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
-    }
-    .hero-eyebrow::before { content: ''; width: 60px; height: 6px; border-radius: 3px; background: var(--red); }
     .hero-h1 { font-size: clamp(48px, 5.95vw, 92px); font-weight: 800; line-height: .94; letter-spacing: -.035em; margin-bottom: 16px; }
-    .hero-sub { font-size: clamp(19px, 1.85vw, 28px); font-weight: 400; letter-spacing: -.01em; margin-bottom: 34px; }
-    .hero-pay { font-size: clamp(17px, 1.55vw, 24px); font-weight: 500; letter-spacing: -.01em; margin: -2px 0 22px; }
-    .hero-usps { display: flex; flex-wrap: wrap; gap: 18px 34px; list-style: none; margin-bottom: 30px; }
-    .hero-usps li { display: flex; align-items: center; gap: 14px; }
-    .hero-usps svg { width: 30px; height: 30px; flex-shrink: 0; }
-    .hero-usps strong { display: block; font-size: 14.5px; font-weight: 600; }
-    .hero-usps span { display: block; font-size: 12.5px; color: rgba(255,255,255,.85); margin-top: 3px; }
+    .hero-sub { font-size: clamp(19px, 1.85vw, 28px); font-weight: 400; letter-spacing: -.01em; margin-bottom: 22px; }
     .hero-google { display: inline-flex; align-items: center; gap: 16px; color: var(--white); text-decoration: none; }
     .hero-google > svg { width: 42px; height: 42px; flex-shrink: 0; }
     .hero-google-top { display: flex; align-items: center; gap: 12px; font-size: 19px; font-weight: 600; }
@@ -204,12 +195,12 @@
     .footer-brand-text { font-size: 13.5px; line-height: 1.7; max-width: 320px; margin-top: 18px; }
     .footer-col-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 18px; }
     .footer-col ul { list-style: none; display: grid; gap: 11px; }
-    .footer-col a { color: rgba(255,255,255,.62); text-decoration: none; font-size: 14px; transition: color .2s; }
-    .footer-col a:hover { color: var(--white); }
+    .footer-col a { color: rgba(255,255,255,.62); text-decoration: none; font-size: 14px; display: inline-block; transition: color .2s, transform .3s cubic-bezier(.34,1.56,.64,1); }
+    .footer-col a:hover { color: var(--white); transform: scale(1.08); }
     .footer-hours { display: block; color: rgba(255,255,255,.62); font-size: 14px; line-height: 1.6; }
     .footer-socials { display: flex; gap: 10px; }
-    .footer-social-link { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; transition: background .2s; }
-    .footer-social-link:hover { background: rgba(255,255,255,.14); }
+    .footer-social-link { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; transition: background .2s, transform .3s cubic-bezier(.34,1.56,.64,1); }
+    .footer-social-link:hover { background: rgba(255,255,255,.14); transform: scale(1.12); }
     .footer-areas-row { max-width: var(--wrap); margin: 0 auto 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,.1); font-size: 12.5px; line-height: 2.1; }
     .footer-areas-row a { color: rgba(255,255,255,.55); text-decoration: none; }
     .footer-areas-row a:hover { color: var(--white); text-decoration: underline; }
@@ -231,8 +222,12 @@
       .nav-toggle {
         display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px;
         width: 48px; height: 48px; border: 0; border-radius: 50%; background: rgba(255,255,255,.12);
-        cursor: pointer; z-index: 200; -webkit-tap-highlight-color: transparent;
+        cursor: pointer; position: fixed; top: 14px; right: 14px; z-index: 220;
+        background: rgba(18,20,23,.78); box-shadow: 0 6px 18px rgba(0,0,0,.28);
+        -webkit-tap-highlight-color: transparent;
+        transition: transform .3s cubic-bezier(.34,1.56,.64,1), background .25s;
       }
+      .nav-toggle:hover { transform: scale(1.14); background: rgba(18,20,23,.92); }
       .nav-toggle span { display: block; width: 22px; height: 2px; border-radius: 2px; background: var(--white); transition: transform .25s, opacity .25s, background .25s; }
       .nav-toggle.open { background: var(--soft); }
       .nav-toggle.open span { background: var(--ink); }
@@ -281,10 +276,7 @@
       .hero-inner { position: relative; z-index: 1; width: auto; }
       .hero-h1 { font-size: 42px; max-width: none; line-height: .96; }
       .calc-card { margin-top: 36px; }
-      .hero-eyebrow { font-size: 11px; letter-spacing: .16em; gap: 12px; }
-      .hero-eyebrow::before { width: 36px; height: 5px; }
-      .hero-sub { margin-bottom: 28px; }
-      .hero-usps { display: grid; gap: 16px; margin-bottom: 28px; }
+      .hero-sub { margin-bottom: 18px; }
       .calc-card { margin-top: 22px; }
       footer { padding: 56px 16px 28px; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -457,15 +449,8 @@
     </picture>
   </div>
   <div class="hero-inner">
-    <p class="hero-eyebrow">Kristallklara fönster – året runt</p>
     <h1 class="hero-h1">Fönsterputs<br />i Jönköping</h1>
-    <p class="hero-pay">Betala enkelt med Swish när jobbet är klart och du är nöjd.</p>
-    <p class="hero-sub">Fast pris i förväg. Betala när jobbet är klart.</p>
-    <ul class="hero-usps">
-      <li><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M244.52,100.05l-56-64A6,6,0,0,0,184,34H72a6,6,0,0,0-4.52,2l-56,64a6,6,0,0,0,.13,8l112,120a6,6,0,0,0,8.78,0l112-120A6,6,0,0,0,244.52,100.05ZM75.94,110l34.6,86.49L29.81,110Zm91.2,0L128,207.84,88.86,110ZM92,98l36-48,36,48Zm88.06,12h46.13l-80.73,86.49Zm46.72-12H179L140,46h41.28ZM74.72,46H116L77,98H29.22Z"/></svg><div><strong>Skinande resultat</strong><span>Varje gång</span></div></li>
-      <li><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,34H182V24a6,6,0,0,0-12,0V34H86V24a6,6,0,0,0-12,0V34H48A14,14,0,0,0,34,48V208a14,14,0,0,0,14,14H208a14,14,0,0,0,14-14V48A14,14,0,0,0,208,34ZM48,46H74V56a6,6,0,0,0,12,0V46h84V56a6,6,0,0,0,12,0V46h26a2,2,0,0,1,2,2V82H46V48A2,2,0,0,1,48,46ZM208,210H48a2,2,0,0,1-2-2V94H210V208A2,2,0,0,1,208,210Zm-39.76-86.24a6,6,0,0,1,0,8.48l-48,48a6,6,0,0,1-8.48,0l-24-24a6,6,0,0,1,8.48-8.48L116,167.51l43.76-43.75A6,6,0,0,1,168.24,123.76Z"/></svg><div><strong>Ingen bindningstid</strong><span>Pausa eller avsluta när du vill</span></div></li>
-      <li><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,42H48A14,14,0,0,0,34,56v56c0,51.94,25.12,83.4,46.2,100.64,22.73,18.6,45.27,24.89,46.22,25.15a6,6,0,0,0,3.16,0c.95-.26,23.49-6.55,46.22-25.15C196.88,195.4,222,163.94,222,112V56A14,14,0,0,0,208,42Zm2,70c0,37.76-13.94,68.39-41.44,91.06A131.17,131.17,0,0,1,128,225.72a130.94,130.94,0,0,1-40.56-22.66C59.94,180.39,46,149.76,46,112V56a2,2,0,0,1,2-2H208a2,2,0,0,1,2,2ZM172.24,99.76a6,6,0,0,1,0,8.48l-56,56a6,6,0,0,1-8.48,0l-24-24a6,6,0,0,1,8.48-8.48L112,151.51l51.76-51.75A6,6,0,0,1,172.24,99.76Z"/></svg><div><strong>Tryggt &amp; enkelt</strong><span>Fast pris och smidig bokning</span></div></li>
-    </ul>
+    <p class="hero-sub">Betala enkelt med Swish när fönsterputsningen är klar.</p>
     <a class="hero-google" href="https://search.google.com/local/reviews?placeid=ChIJWwcHOKwBUkYR2G6hIAXnwls" target="_blank" rel="noopener">
       <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.970 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.180v-5.7H4.34A21.94 21.94 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.960 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
       <span>
@@ -517,7 +502,6 @@
       <div class="footer-col-title">Information</div>
       <ul>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="priskalkylator.html">Priskalkylator</a></li>
         <li><a href="integritetspolicy.html">Integritetspolicy</a></li>
         <li><a href="villkor.html">Allmänna villkor</a></li>
         <li><a href="#" onclick="if(window.openCookieBanner){window.openCookieBanner();}return false;">Cookieinställningar</a></li>
