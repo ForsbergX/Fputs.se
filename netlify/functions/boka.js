@@ -47,6 +47,7 @@ function fieldPairs(b, ref) {
     ["Beställning", lines],
     ["Intervall", FREQUENCY[b.frequency] || b.frequency],
     ["Pris efter RUT", kr(q.total)],
+    ["Framkörningsavgift", Number(q.fee) > 0 ? kr(q.fee) + " (ingår i priset, ger inte RUT-avdrag)" : ""],
     ["Pris före RUT", kr(q.totalBeforeRut)],
     ["Önskat datum 1", c.datum1],
     ["Önskat datum 2", c.datum2],
