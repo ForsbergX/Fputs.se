@@ -201,7 +201,7 @@ body.tema .book-form .btn-outline:hover { color: var(--red); border-color: var(-
 
 /* ===== SIDFOT (samma som startsidan) ===== */
 body.tema footer { background: var(--night); color: rgba(255,255,255,.62); padding: 72px var(--gutter) 32px; border-top: 4px solid var(--red); }
-body.tema .footer-grid { max-width: var(--wrap); margin: 0 auto 28px; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.1); }
+body.tema .footer-grid { max-width: var(--wrap); margin: 0 auto 28px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.1); }
 body.tema .footer-logo { display: inline-flex; }
 body.tema .footer-logo img { height: 40px; width: auto; display: block; }
 body.tema .footer-brand-text { font-size: 13.5px; line-height: 1.7; max-width: 320px; margin-top: 18px; color: rgba(255,255,255,.62); }
@@ -272,6 +272,7 @@ body.tema .sms-modal ul li { color: var(--card-ink); }
   body.tema .nav-overlay { display: block; position: fixed; inset: 0; z-index: 140; background: rgba(0,0,0,.55); opacity: 0; pointer-events: none; transition: opacity .3s; }
   body.tema .nav-overlay.open { opacity: 1; pointer-events: auto; }
   body.tema .footer-grid { grid-template-columns: 1fr 1fr; }
+  body.tema .footer-grid > .footer-col:first-child { grid-column: 1 / -1; }
 }
 @media (max-width: 768px) {
   body.tema #hero { padding: 108px 16px 44px !important; }
