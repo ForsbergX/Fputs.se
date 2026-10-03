@@ -52,7 +52,7 @@
   "priceRange": "$$",
   "address": {"@type": "PostalAddress", "addressLocality": "Jönköping", "addressRegion": "Jönköpings län", "addressCountry": "SE"},
   "areaServed": ["Jönköping", "Bymarken", "Huskvarna", "Habo", "Bankeryd", "Gränna", "Lekeryd", "Tenhult", "Norrahammar", "Taberg", "Barnarp", "Kaxholmen", "Bottnaryd", "Skärstad", "Ölmstad", "Hovslätt", "Mariebo", "Torpa", "Ekhagen", "Vättersnäs", "Trånghalla", "Egna Hem", "Månsarp", "Öggestorp", "Furusjö", "Kortebo", "Torsvik", "Ljungarum", "Öxnehaga", "Österäng", "Liljeholmen", "Råslätt", "Gräshagen", "Dalvik", "Sanna", "Bränninge", "Dunkehalla", "Örserum", "Hedenstorp", "Rosenlund", "Kungsängen"],
-  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "30"},
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "40"},
   "sameAs": ["https://www.instagram.com/fputs.se", "https://www.facebook.com/share/1RTGS9y9D1/?mibextid=wwXIfr"]
 }
 </script>
@@ -195,140 +195,9 @@
     /* Kalkylatorkortet ligger kvar ovanpå fotot */
     .calc-card { max-width: var(--wrap); margin: 26px auto 0; position: relative; scroll-margin-top: 20px; }
 
-    /* ===== KALKYLATORN: anpassad till designen ===== */
-    /* Klassnamnen kommer från kalkylatorns byggda CSS-moduler (se js/fputs-kalkylator.js). */
-    .calc-card [data-fputs-kalkylator] {
-      --f-display: 'Montserrat', system-ui, sans-serif; --f-body: 'Montserrat', system-ui, sans-serif;
-      min-height: 380px;
-    }
-    .Nr { --bc-accent: var(--red); --bc-accent-hot: var(--red-hot); --bc-ring: rgba(209,16,31,.12); --bc-text: var(--ink); --bc-muted: var(--muted); --bc-top: 20px; }
-    /* Ett vitt kort: rubrik och steg till vänster, "Din putsning" till höger över hela höjden */
-    .calc-card .ar {
-      background: var(--white); border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,.35);
-      padding: 21px 25px 12px 43px; display: grid; grid-template-columns: minmax(0, 1fr) 336px;
-      column-gap: 70px; row-gap: 0; align-items: start; grid-template-rows: auto 1fr;
-    }
-    .calc-card .ir { display: contents; }
-    .calc-card .tr { margin-top: 10px; grid-column: 1; grid-row: 1; grid-template-columns: auto 1fr; gap: 0 24px; padding: 0; align-items: baseline; }
-    .calc-card .er { font-family: var(--f-display); font-size: clamp(30px, 2.8vw, 42px); font-weight: 800; letter-spacing: -.035em; line-height: 1.1; }
-    .calc-card .Or { display: none; }
-    .calc-card .or { justify-self: end; font-size: 16px; color: var(--muted); white-space: normal; text-align: right; }
-    .calc-card .a { grid-column: 1 / -1; grid-row: 2; margin-top: 22px; position: static; transform: none; width: auto; }
-    .calc-card .a ol { justify-content: space-between; align-items: center; width: 100%; max-width: none; }
-    .calc-card .a li { flex: 1 1 0; max-width: none; display: flex; align-items: center; }
-    .calc-card .a li:last-child { flex: 0 0 auto; }
-    .calc-card .a li + li::before { display: none; }
-    .calc-card .a li:not(:last-child)::after { content: ''; flex: 1; height: 1px; background: #D4D4D8; margin: 0 22px; }
-    .calc-card .a li.H:not(:last-child)::after { background: var(--red); }
-    .calc-card .a li > button, .calc-card .a li > span { display: flex; align-items: center; gap: 18px; width: auto; }
-    .calc-card .v { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: #ECECEE; color: var(--ink); font-size: 13px; font-weight: 700; flex-shrink: 0; }
-    .calc-card .u { font-size: 16px; color: var(--muted); font-weight: 500; white-space: nowrap; }
-    .calc-card .G .v, .calc-card .H .v { background: var(--red); color: var(--white); }
-    .calc-card .G .u { color: var(--red); }
-    .calc-card .nr { grid-column: 1; grid-row: 2; background: none; border: 0; box-shadow: none; padding: 0; margin: 26px 0 13px; gap: 10px; }
-    .calc-card .Qr, .calc-card .cr { gap: 12px; }
-    .calc-card .Rr { display: grid; gap: 4px; }
-    .calc-card .dr { font-size: clamp(22px, 1.9vw, 28px); font-weight: 800; letter-spacing: -.025em; }
-    .calc-card .Tr { font-size: 17px; color: var(--muted); max-width: none; }
-    .calc-card #steg-bostad ~ .sr, .calc-card section[aria-labelledby="steg-bostad"] > .sr { display: none; }
-    /* Valkort */
-    .calc-card .br { gap: 22px; }
-    .calc-card .Wr { border: 2px solid #E2E2E4; border-radius: 6px; background: #F6F6F7; box-shadow: none; }
-    .calc-card .Wr:hover { border-color: #C9C9CE; }
-    .calc-card .I, .calc-card .I:hover { border-color: var(--red); background: #FDF1F2; box-shadow: none; }
-    .calc-card .b { padding: 16px 52px 16px 34px; }
-    .calc-card .br > .b { grid-template-columns: 56px 1fr; column-gap: 34px; row-gap: 4px; align-items: center; min-height: 90px; }
-    .calc-card .br > .b .w { grid-row: 1 / span 2; width: 52px; height: 52px; color: var(--ink); }
-    .calc-card .br > .b.I .w { color: var(--red); }
-    .calc-card .Xr { font-size: 18px; font-weight: 700; align-self: end; }
-    .calc-card .L { font-size: 15.5px; color: var(--muted); align-self: start; }
-    .calc-card .b::after {
-      content: ''; position: absolute; top: 12px; right: 14px; width: 20px; height: 20px; border-radius: 50%;
-      border: 2px solid #8A8A90; background: var(--white); box-sizing: border-box;
-    }
-    .calc-card .b.I::after { border-color: var(--red); background: radial-gradient(circle, var(--red) 0 4px, var(--white) 4.5px); }
-    .calc-card .xr > .b::after, .calc-card .c::after { display: none; }
-    /* Knappar */
-    .calc-card .O { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; padding-top: 0; border-top: 0; }
-    .calc-card .O > .e { grid-column: 2; min-width: 0; }
-    .calc-card .O > span:empty + .e { grid-column: 1 / -1; }
-    .calc-card .O > span:empty { display: none; }
-    .calc-card .e {
-      position: relative; height: 46px; min-height: 0; padding: 0 20px; border-radius: 6px; background: var(--red); color: var(--white);
-      font-size: 18px; font-weight: 700; box-shadow: none; display: flex; align-items: center; justify-content: center; gap: 10px;
-      transition: background .2s, transform .15s;
-    }
-    .calc-card .e:hover { background: var(--red-hot); }
-    .calc-card .e:active { transform: scale(.99); }
-    .calc-card .e[aria-disabled="true"] { opacity: .55; }
-    .calc-card .O > .e > span[aria-hidden] { position: absolute; right: 22px; font-size: 22px; font-weight: 400; }
-    .calc-card .g { height: 46px; padding: 0 18px; border-radius: 6px; border: 1.5px solid #D4D4D8; font-weight: 600; }
-    .calc-card .U { display: none; }
-
-    /* Din putsning */
-    .calc-card .zr {
-      grid-column: 2; grid-row: 1 / span 2; position: relative; top: auto; overflow: visible;
-      background: #F4F4F5; border: 0; border-radius: 10px; box-shadow: none;
-      padding: 18px 20px 6px 24px; display: block;
-    }
-    .calc-card .zr::before { content: ''; position: absolute; left: -36px; top: 10px; bottom: 10px; width: 1px; background: #E2E2E4; }
-    .fp-panel-head { padding-bottom: 10px; border-bottom: 1px solid #DCDCDF; }
-    .fp-panel-title { font-size: 26px; font-weight: 800; letter-spacing: -.03em; line-height: 1.15; color: var(--ink); }
-    .fp-panel-sub { font-size: 15px; color: var(--muted); margin-top: 0; }
-    .fp-panel-block { padding: 12px 0 12px; }
-    .fp-panel-q { font-size: 17px; font-weight: 700; color: var(--ink); }
-    .fp-freq { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 14px; margin-top: 8px; }
-    .fp-opt {
-      display: flex; align-items: center; gap: 14px; height: 47px; padding: 0 14px; border-radius: 6px;
-      background: var(--white); border: 1.5px solid #DCDCDF; font-size: 16px; font-weight: 500; color: var(--ink);
-      transition: border-color .15s, background .15s;
-    }
-    .fp-opt:hover { border-color: #B9B9BF; }
-    .fp-opt-on, .fp-opt-on:hover { border-color: var(--red); background: #FDF1F2; }
-    .fp-radio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #8A8A90; background: var(--white); flex-shrink: 0; }
-    .fp-opt-on .fp-radio { border-color: var(--red); background: radial-gradient(circle, var(--red) 0 4px, var(--white) 4.5px); }
-    .fp-karm { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid #DCDCDF; border-bottom: 1px solid #DCDCDF; }
-    .fp-panel-hint { font-size: 13px; color: var(--muted); margin-top: 2px; }
-    .fp-switch { position: relative; width: 52px; height: 26px; border-radius: 999px; background: #C9C9CE; flex-shrink: 0; transition: background .2s; }
-    .fp-switch span { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .2s; }
-    .fp-switch-on { background: var(--red); }
-    .fp-switch-on span { transform: translateX(26px); }
-    .fp-opt:focus-visible, .fp-switch:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
-    .fp-panel-price { display: grid; gap: 2px; padding: 16px 0; border-bottom: 1px solid #DCDCDF; }
-    .fp-panel-price span { font-size: 14px; color: var(--muted); }
-    .fp-panel-price strong { font-size: 30px; font-weight: 800; letter-spacing: -.03em; color: var(--ink); }
-    .fp-panel-price small { font-size: 13px; color: var(--muted); }
-    .fp-panel-foot { font-size: 13px; color: var(--muted); padding-top: 8px; }
-
-    @media (max-width: 1100px) {
-      .calc-card .ar { grid-template-columns: 1fr; padding: 26px; }
-      .calc-card .tr, .calc-card .nr { grid-column: 1; }
-      .calc-card .zr { grid-column: 1; grid-row: 3; margin-top: 28px; position: static; }
-      .calc-card .zr::before { display: none; }
-      .calc-card .O { display: grid; }
-    }
-    @media (max-width: 767px) {
-      .calc-card .ar { padding: 20px 16px; border-radius: 14px; }
-      .calc-card .tr { grid-template-columns: 1fr; }
-      .calc-card .er, .calc-card .or { display: block; }
-      .calc-card .or { justify-self: start; text-align: left; font-size: 14.5px; margin-top: 4px; }
-      .calc-card .a { margin-top: 20px; }
-      .calc-card .a li > button, .calc-card .a li > span { flex-direction: column; gap: 6px; }
-      .calc-card .a li:not(:last-child)::after { margin: 0 6px 22px; }
-      .calc-card .u { font-size: 11.5px; }
-      .calc-card .v { width: 26px; height: 26px; }
-      .calc-card .nr { margin-top: 24px; padding: 0; }
-      .calc-card .br { grid-template-columns: 1fr; gap: 12px; }
-      .calc-card .b { padding: 16px 44px 16px 18px; }
-      .calc-card .br > .b { grid-template-columns: 44px 1fr; column-gap: 16px; min-height: 0; }
-      .calc-card .br > .b .w { width: 40px; height: 40px; }
-      .calc-card .zr { padding: 18px 16px; }
-      .fp-opt { font-size: 15px; gap: 10px; padding: 0 12px; }
-    }
-
     /* ===== SIDFOT ===== */
     footer { background: var(--night); color: rgba(255,255,255,.62); padding: 72px var(--gutter) 32px; border-top: 4px solid var(--red); }
-    .footer-grid { max-width: var(--wrap); margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.1); margin-bottom: 28px; }
+    .footer-grid { max-width: var(--wrap); margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.1); margin-bottom: 28px; }
     .footer-logo { display: inline-flex; }
     .footer-logo img { height: 40px; width: auto; display: block; }
     .footer-brand-text { font-size: 13.5px; line-height: 1.7; max-width: 320px; margin-top: 18px; }
@@ -336,6 +205,7 @@
     .footer-col ul { list-style: none; display: grid; gap: 11px; }
     .footer-col a { color: rgba(255,255,255,.62); text-decoration: none; font-size: 14px; transition: color .2s; }
     .footer-col a:hover { color: var(--white); }
+    .footer-hours { display: block; color: rgba(255,255,255,.62); font-size: 14px; line-height: 1.6; }
     .footer-socials { display: flex; gap: 10px; }
     .footer-social-link { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; transition: background .2s; }
     .footer-social-link:hover { background: rgba(255,255,255,.14); }
@@ -391,6 +261,7 @@
       .nav-overlay.open { opacity: 1; pointer-events: auto; }
       body.nav-open { overflow: hidden; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > .footer-col:first-child { grid-column: 1 / -1; }
     }
     @media (max-width: 768px) {
       #hero { padding: 104px 16px 40px; min-height: 0; }
@@ -549,6 +420,7 @@
 
   </style>
   <style>#nl-badge-frame{display:none !important;}</style>
+  <link rel="stylesheet" href="css/kalkylator.css" />
   <script src="js/fputs-kalkylator.js" defer></script>
 </head>
 <body>
@@ -578,17 +450,17 @@
   <div class="hero-inner">
     <p class="hero-eyebrow">Kristallklara fönster – året runt</p>
     <h1 class="hero-h1">Fönsterputs<br />i Jönköping</h1>
-    <p class="hero-sub">Fast pris i förväg. Samma person varje gång.</p>
+    <p class="hero-sub">Fast pris i förväg. Betala när jobbet är klart.</p>
     <ul class="hero-usps">
       <li><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M244.52,100.05l-56-64A6,6,0,0,0,184,34H72a6,6,0,0,0-4.52,2l-56,64a6,6,0,0,0,.13,8l112,120a6,6,0,0,0,8.78,0l112-120A6,6,0,0,0,244.52,100.05ZM75.94,110l34.6,86.49L29.81,110Zm91.2,0L128,207.84,88.86,110ZM92,98l36-48,36,48Zm88.06,12h46.13l-80.73,86.49Zm46.72-12H179L140,46h41.28ZM74.72,46H116L77,98H29.22Z"/></svg><div><strong>Skinande resultat</strong><span>Varje gång</span></div></li>
-      <li><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M229.19,213c-15.81-27.32-40.63-46.49-69.47-54.62a70,70,0,1,0-63.44,0C67.44,166.5,42.62,185.67,26.81,213a6,6,0,1,0,10.38,6C56.4,185.81,90.34,166,128,166s71.6,19.81,90.81,53a6,6,0,1,0,10.38-6ZM70,96a58,58,0,1,1,58,58A58.07,58.07,0,0,1,70,96Z"/></svg><div><strong>Samma person</strong><span>Du får din fönsterputsare</span></div></li>
+      <li><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,34H182V24a6,6,0,0,0-12,0V34H86V24a6,6,0,0,0-12,0V34H48A14,14,0,0,0,34,48V208a14,14,0,0,0,14,14H208a14,14,0,0,0,14-14V48A14,14,0,0,0,208,34ZM48,46H74V56a6,6,0,0,0,12,0V46h84V56a6,6,0,0,0,12,0V46h26a2,2,0,0,1,2,2V82H46V48A2,2,0,0,1,48,46ZM208,210H48a2,2,0,0,1-2-2V94H210V208A2,2,0,0,1,208,210Zm-39.76-86.24a6,6,0,0,1,0,8.48l-48,48a6,6,0,0,1-8.48,0l-24-24a6,6,0,0,1,8.48-8.48L116,167.51l43.76-43.75A6,6,0,0,1,168.24,123.76Z"/></svg><div><strong>Ingen bindningstid</strong><span>Pausa eller avsluta när du vill</span></div></li>
       <li><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,42H48A14,14,0,0,0,34,56v56c0,51.94,25.12,83.4,46.2,100.64,22.73,18.6,45.27,24.89,46.22,25.15a6,6,0,0,0,3.16,0c.95-.26,23.49-6.55,46.22-25.15C196.88,195.4,222,163.94,222,112V56A14,14,0,0,0,208,42Zm2,70c0,37.76-13.94,68.39-41.44,91.06A131.17,131.17,0,0,1,128,225.72a130.94,130.94,0,0,1-40.56-22.66C59.94,180.39,46,149.76,46,112V56a2,2,0,0,1,2-2H208a2,2,0,0,1,2,2ZM172.24,99.76a6,6,0,0,1,0,8.48l-56,56a6,6,0,0,1-8.48,0l-24-24a6,6,0,0,1,8.48-8.48L112,151.51l51.76-51.75A6,6,0,0,1,172.24,99.76Z"/></svg><div><strong>Tryggt &amp; enkelt</strong><span>Fast pris och smidig bokning</span></div></li>
     </ul>
     <a class="hero-google" href="https://search.google.com/local/reviews?placeid=ChIJWwcHOKwBUkYR2G6hIAXnwls" target="_blank" rel="noopener">
       <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.970 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.180v-5.7H4.34A21.94 21.94 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.960 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
       <span>
         <span class="hero-google-top"><span>5,0 på Google</span><span class="hero-google-stars" aria-label="5 av 5 stjärnor">★★★★★</span></span>
-        <span class="hero-google-sub">Baserat på riktiga kundomdömen</span>
+        <span class="hero-google-sub">Baserat på 40 riktiga kundomdömen</span>
       </span>
     </a>
   </div>
@@ -613,40 +485,49 @@
   <div class="footer-grid">
     <div class="footer-col">
       <a class="footer-logo" href="index.html"><img src="images/logo-horisontell.png" alt="Forsbergs Fönsterputs" width="702" height="124" loading="lazy" /></a>
-      <p class="footer-brand-text">Forsbergs Fönsterputs — professionell fönsterputs för villa och lägenhet i Jönköping, Huskvarna och omnejd. Fast pris, RUT-avdrag, samma putsare varje gång.</p>
-      <div class="footer-socials" style="margin-top:20px;">
+      <p class="footer-brand-text">Forsbergs Fönsterputs — professionell fönsterputs för villa och lägenhet i Jönköping, Huskvarna och omnejd. Fast pris, RUT-avdrag, ingen bindningstid.</p>
+      <div class="footer-col-title" style="margin:26px 0 12px;">Sociala medier</div>
+      <div class="footer-socials">
         <a href="https://search.google.com/local/reviews?placeid=ChIJWwcHOKwBUkYR2G6hIAXnwls" target="_blank" rel="noopener" class="footer-social-link" aria-label="Google recensioner"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.94 21.94 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></a>
         <a href="https://www.instagram.com/fputs.se" target="_blank" class="footer-social-link" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig2" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#f09433"/><stop offset="25%" stop-color="#e6683c"/><stop offset="50%" stop-color="#dc2743"/><stop offset="75%" stop-color="#cc2366"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#ig2)" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="url(#ig2)" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="url(#ig2)"/></svg></a>
         <a href="https://www.facebook.com/share/1RTGS9y9D1/?mibextid=wwXIfr" target="_blank" class="footer-social-link" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#1877F2" stroke-width="1.8"/><path d="M13 21V13h2.5l.5-3H13V8c0-.8.4-1.5 1.5-1.5H16V4s-1-.2-2-.2c-2 0-3.3 1.3-3.3 3.5V10H8v3h2.7v8H13z" fill="#1877F2"/></svg></a>
       </div>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Sidor</div>
+      <div class="footer-col-title">Företaget</div>
       <ul>
         <li><a href="index.html">Hem</a></li>
-        <li><a href="tjanster.html">Tjänster</a></li>
         <li><a href="om-oss.html">Om mig</a></li>
-        <li><a href="omraden.html">Områden</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="kontakta-mig.html">Kontakta mig</a></li>
         <li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li>
+        <li><a href="omraden.html">Områden</a></li>
         <li><a href="media.html">Media</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Information</div>
+      <ul>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="priskalkylator.html">Priskalkylator</a></li>
+        <li><a href="integritetspolicy.html">Integritetspolicy</a></li>
+        <li><a href="allmanna-villkor.html">Allmänna villkor</a></li>
+        <li><a href="#" onclick="if(window.openCookieBanner){window.openCookieBanner();}return false;">Cookieinställningar</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Tjänster</div>
       <ul>
+        <li><a href="tjanster.html">Alla tjänster</a></li>
         <li><a href="fonsterputs.html">Fönsterputs</a></li>
         <li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li>
-        <li><a href="priskalkylator.html">Priskalkylator</a></li>
-        <li><a href="offert.html#formular">Boka mig</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Kontakt</div>
       <ul>
+        <li><a href="kontakta-mig.html">Kontakta mig</a></li>
         <li><a href="tel:0793463964">079-346 39 64</a></li>
         <li><a href="mailto:kontakt@fputs.se">kontakt@fputs.se</a></li>
+        <li><span class="footer-hours">Öppettider 09:00-21:00</span></li>
       </ul>
     </div>
   </div>
@@ -655,11 +536,6 @@
   </div>
   <div class="footer-inner">
     <p class="footer-copy">© <span class="footer-year">2025</span> Forsbergs Fönsterputs · Jönköping med omnejd</p>
-    <ul class="footer-legal-links">
-      <li><a href="integritetspolicy.html">Integritetspolicy</a></li>
-      <li><a href="allmanna-villkor.html">Allmänna villkor</a></li>
-      <li><a href="#" onclick="if(window.openCookieBanner){window.openCookieBanner();}return false;">Cookieinställningar</a></li>
-    </ul>
   </div>
 </footer>
 <div class="cookie-modal-overlay" id="cookieModalOverlay">

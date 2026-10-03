@@ -1,0 +1,295 @@
+/* Fputs.se – nytt tema för undersidorna, med startsidan som mall.
+   Gäller bara sidor med <body class="tema"> och läggs efter styles.css.
+   Mörk bakgrund, Montserrat, röda huvudknappar, ljusa formulärkort som i kalkylatorn.
+   Samma meny och sidfot som startsidan, innehållsbredd 1382 px. */
+
+body.tema {
+  --red: #D1101F; --red-hot: #B00D19; --red-soft: #FDF1F2;
+  --night: #121417; --night-2: #1A1D21; --night-3: #22262B;
+  --card-ink: #18181B; --card-muted: #6A6A70; --white: #FFFFFF; --soft: #F4F4F5; --line: #E4E4E0;
+  /* styles.css använder --ink och --muted för brödtext: ljus text på mörk botten */
+  --ink: #FFFFFF; --muted: rgba(255,255,255,.66);
+  --gutter: clamp(16px, 5vw, 77px); --wrap: 1382px;
+  /* De gamla blå accenterna blir röda överallt där styles.css använder variablerna */
+  --accent: var(--red); --accent-hover: var(--red-hot);
+  --cta: var(--red); --cta-hover: var(--red-hot); --cta-bright: #E0202F;
+  --bg-a: var(--night); --bg-b: var(--night-2);
+  --dark: var(--night-2); --dark-2: var(--night-3); --dark-3: #2A2F35;
+  --card-bg: var(--night-2); --card-border: rgba(255,255,255,.08); --border: rgba(255,255,255,.1);
+  background: var(--night); color: var(--white);
+}
+body.tema [hidden] { display: none !important; }
+
+/* Ljusa ytor behåller mörk text */
+body.tema .cookie-modal, body.tema .sms-modal, body.tema .price-panel, body.tema .price-panel-featured,
+body.tema .nav-dropdown-menu { --ink: var(--card-ink); --muted: var(--card-muted); --border: rgba(20,24,27,.1); --dark: #F1F3F4; }
+@media (max-width: 1024px) { body.tema .nav-links { --ink: var(--card-ink); --muted: var(--card-muted); } }
+
+
+/* ===== MENY (samma som startsidan, ligger över den mörka hero-ytan) ===== */
+body.tema > nav {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 160;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  padding: 26px var(--gutter) 0; max-width: calc(var(--wrap) + 2 * var(--gutter)); margin: 0 auto;
+  background: none; border: 0;
+}
+body.tema .nav-logo { display: inline-flex; flex-shrink: 0; }
+body.tema .nav-logo:hover { transform: none; }
+body.tema .nav-logo img { height: 50px; width: auto; display: block; }
+body.tema .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+body.tema .nav-links a {
+  color: var(--white); text-decoration: none; font-size: 16px; font-weight: 500; letter-spacing: 0; text-transform: none;
+  white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; transition: color .2s;
+}
+body.tema .nav-links a:hover { transform: none; }
+body.tema .nav-links > li > a:not(.nav-cta):hover { color: #FFD7DA; }
+body.tema .nav-chevron { width: 14px; height: 14px; transition: transform .2s; }
+body.tema .nav-dropdown { position: relative; }
+body.tema .nav-dropdown:hover .nav-chevron, body.tema .nav-dropdown:focus-within .nav-chevron { transform: rotate(180deg); }
+body.tema .nav-dropdown-menu {
+  position: absolute; top: calc(100% + 12px); left: -16px; min-width: 190px; list-style: none; border: 0;
+  background: var(--white); border-radius: 12px; padding: 8px; box-shadow: 0 24px 60px -20px rgba(0,0,0,.45);
+  opacity: 0; pointer-events: none; transform: translateY(6px); transition: opacity .2s, transform .2s;
+}
+body.tema .nav-dropdown-menu::before { content: ''; position: absolute; left: 0; right: 0; top: -14px; height: 14px; }
+body.tema .nav-dropdown:hover .nav-dropdown-menu, body.tema .nav-dropdown:focus-within .nav-dropdown-menu { opacity: 1; pointer-events: auto; transform: none; }
+body.tema .nav-dropdown-menu a { display: block; color: var(--card-ink); padding: 10px 14px; border-radius: 8px; font-size: 15px; }
+body.tema .nav-dropdown-menu a:hover { background: var(--soft); color: var(--red); }
+body.tema .nav-cta {
+  background: var(--red) !important; color: var(--white) !important; font-weight: 600 !important; font-size: 16px;
+  padding: 11px 22px; border-radius: 999px; box-shadow: none; transition: background .2s, transform .2s;
+}
+body.tema .nav-cta:hover { background: var(--red-hot) !important; transform: translateY(-1px) !important; box-shadow: none; }
+body.tema .nav-cta-mob { display: none !important; }
+body.tema .nav-toggle { display: none; }
+body.tema .nav-overlay { display: none; }
+
+/* ===== HERO: foto med mörk toning, vänsterställd text som på startsidan ===== */
+body.tema #hero {
+  position: relative; isolation: isolate; display: block; text-align: left; overflow: hidden;
+  min-height: 0 !important; padding: 150px var(--gutter) 72px !important; background: var(--night); color: var(--white);
+}
+body.tema #hero .hero-bg-img { position: absolute; inset: 0; z-index: -2; background-position: 60% 40% !important; }
+body.tema #hero .hero-overlay {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(10,11,13,.9) 0%, rgba(10,11,13,.7) 38%, rgba(10,11,13,.25) 70%, rgba(10,11,13,.35) 100%),
+    linear-gradient(180deg, rgba(10,11,13,.55) 0%, rgba(10,11,13,0) 30%, rgba(10,11,13,.2) 70%, var(--night) 100%);
+}
+body.tema #hero .hero-grid { display: none; }
+body.tema #hero .hero-content { max-width: var(--wrap); margin: 0 auto; text-align: left; }
+body.tema #hero .section-label { justify-content: flex-start !important; }
+body.tema .hero-title {
+  font-size: clamp(40px, 5.2vw, 76px); font-weight: 800; line-height: 1; letter-spacing: -.035em; text-transform: none;
+  color: var(--white); text-shadow: none; margin-bottom: 18px; max-width: 16ch;
+}
+body.tema .hero-sub {
+  font-size: clamp(17px, 1.5vw, 22px); font-weight: 400; line-height: 1.55; letter-spacing: -.005em;
+  color: rgba(255,255,255,.9); text-shadow: none; max-width: 46ch; margin: 0 0 6px;
+}
+body.tema .hero-sub a { color: var(--white) !important; }
+
+/* Hero med bilen i fokus (om-oss): fotot förskjuts åt höger så bilen står bredvid texten, lättare toning */
+body.tema #hero.hero-bil .hero-bg-img {
+  --wrap-w: min(var(--wrap), 100vw - 2 * var(--gutter));
+  background-size: max(var(--wrap-w) * 1.15, 1300px) auto !important; background-repeat: no-repeat;
+  background-position: left calc((100vw - var(--wrap-w)) / 2 + var(--wrap-w) * .32) top 68% !important;
+}
+body.tema #hero.hero-bil .hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(10,11,13,.95) 0%, rgba(10,11,13,.85) 30%, rgba(10,11,13,.15) 55%, rgba(10,11,13,0) 75%),
+    linear-gradient(180deg, rgba(10,11,13,.5) 0%, rgba(10,11,13,0) 25%, rgba(10,11,13,0) 75%, var(--night) 100%);
+}
+@media (max-width: 768px) {
+  body.tema #hero.hero-bil .hero-bg-img { background-size: cover !important; background-position: 35% 60% !important; }
+  body.tema #hero.hero-bil .hero-overlay { background: linear-gradient(180deg, rgba(10,11,13,.65) 0%, rgba(10,11,13,.45) 50%, var(--night) 100%); }
+}
+
+/* Rubriketikett: röd linje + spärrad text, som "Kristallklara fönster – året runt" */
+body.tema .section-label {
+  display: flex; align-items: center; gap: 14px; font-size: 13px; font-weight: 600; letter-spacing: .2em;
+  text-transform: uppercase; color: rgba(255,255,255,.85); margin-bottom: 18px;
+}
+body.tema .section-label::before { content: ''; width: 44px; height: 5px; border-radius: 3px; background: var(--red); flex-shrink: 0; }
+
+/* ===== SEKTIONER OCH TYPOGRAFI ===== */
+body.tema section { background: var(--night); color: var(--white); padding-left: var(--gutter); padding-right: var(--gutter); }
+/* Kalkylatorns steg är också <section>, men ska inte få sidans sektionsstil */
+body.tema .calc-card section { background: none; color: inherit; padding: 0; }
+body.tema .container { max-width: var(--wrap); }
+body.tema .section-title {
+  font-size: clamp(32px, 3.6vw, 52px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05;
+  text-transform: none; color: var(--white);
+}
+body.tema .section-sub { color: rgba(255,255,255,.78); font-size: 17px; line-height: 1.75; }
+body.tema .section-sub a { color: var(--white) !important; text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 3px; }
+
+body.tema #hero + section { padding-top: 72px !important; }
+body.tema .book-left .section-sub { margin-bottom: 26px; }
+
+/* ===== KNAPPAR: röd huvudknapp, ljus kontur som sekundär ===== */
+body.tema .btn-primary {
+  background: var(--red); color: var(--white); border: 0; border-radius: 8px; box-shadow: none;
+  font-size: 16px !important; font-weight: 700; letter-spacing: 0; text-transform: none;
+  padding: 15px 26px !important; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+}
+body.tema .btn-primary:hover { background: var(--red-hot); box-shadow: none; transform: translateY(-1px); }
+body.tema .btn-primary:active { background: var(--red-hot); transform: scale(.98); }
+body.tema .btn-outline {
+  background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.4); border-radius: 8px; box-shadow: none;
+  font-size: 16px !important; font-weight: 700; letter-spacing: 0; text-transform: none;
+  padding: 15px 26px !important; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+}
+body.tema .btn-outline:hover { background: rgba(255,255,255,.08); border-color: var(--white); color: var(--white); box-shadow: none; transform: translateY(-1px); }
+
+/* Tjänsteväljaren (tjanster.html) */
+body.tema .chooser-section { min-height: 0; display: block; padding: 170px var(--gutter) 120px; background: var(--night); }
+body.tema .chooser-wrap { max-width: 1100px; }
+body.tema .chooser-section .hero-title, body.tema .chooser-section .hero-sub { max-width: none; }
+body.tema .chooser-grid { margin-top: 40px; }
+body.tema .chooser-card { background: var(--night-2); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; }
+body.tema .chooser-card:hover { background: var(--night-3); border-color: var(--red); box-shadow: none; }
+body.tema .chooser-title { text-transform: none; font-size: 22px; letter-spacing: -.02em; }
+
+/* Centrerade sektionsrubriker: etiketten centreras också */
+body.tema :is(.fordelar-header, .metod-header, .faq-header, .omraden-header, .price-header, .media-header, .ba-header, .omdomen-header, .chooser-wrap) .section-label { justify-content: center; }
+body.tema .chooser-wrap { text-align: center; }
+/* Rubriker med gamla "grön"-klassen på mörk botten */
+body.tema .section-title.panel-title-green { color: var(--white); }
+
+/* Kundkommentarer (recensioner.html): mörka kort som på startsidan */
+body.tema .comment-card { background: var(--night-2); border: 1px solid rgba(255,255,255,.08); border-radius: 14px; box-shadow: none; color: var(--white); }
+body.tema .comment-card strong.name { color: var(--white); }
+body.tema .comment-card p { color: rgba(255,255,255,.8); }
+
+/* ===== KONTAKTRADER PÅ MÖRK BOTTEN ===== */
+body.tema .contact-icon { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; color: var(--white); }
+body.tema .contact-label { color: rgba(255,255,255,.6); }
+body.tema .contact-value { color: var(--white); }
+body.tema .contact-value:hover { color: #FFD7DA; }
+
+/* ===== FORMULÄRKORT: ljust kort som kalkylatorn ===== */
+body.tema .price-panel, body.tema .price-panel-featured {
+  background: var(--white); color: var(--card-ink); border: 0; border-radius: 14px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.35); padding: 36px 36px 32px;
+}
+body.tema .panel-glow { display: none; }
+body.tema .panel-title, body.tema .panel-title-green {
+  font-size: clamp(24px, 2vw, 30px); font-weight: 800; letter-spacing: -.03em; line-height: 1.15;
+  text-transform: none; color: var(--card-ink);
+}
+body.tema .panel-lead { color: var(--card-muted); font-size: 15.5px; line-height: 1.6; }
+body.tema .panel-lead span[style] { color: var(--card-muted) !important; }
+body.tema .panel-lead a { color: var(--red) !important; }
+body.tema .book-form { gap: 16px; }
+body.tema .form-group label {
+  font-size: 14px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--card-ink);
+}
+body.tema .form-group label span { color: var(--card-muted); }
+body.tema .form-group input, body.tema .form-group textarea, body.tema .form-group select {
+  background: #F6F6F7; border: 1.5px solid #E2E2E4; border-radius: 6px; color: var(--card-ink);
+  font-family: 'Montserrat', sans-serif; font-size: 15px; padding: 13px 14px; min-height: 48px;
+}
+body.tema .form-group input::placeholder, body.tema .form-group textarea::placeholder { color: #8A8A90; }
+body.tema .form-group input:focus, body.tema .form-group textarea:focus, body.tema .form-group select:focus {
+  outline: none; border-color: var(--red); background: var(--white); box-shadow: 0 0 0 4px rgba(209,16,31,.12);
+}
+body.tema #datumHelgNote { color: var(--card-ink) !important; background: var(--red-soft); border-radius: 6px; padding: 10px 12px; }
+body.tema .book-form .panel-cta { width: 100%; align-self: stretch; margin-top: 4px; }
+body.tema .book-form .btn-outline { color: var(--card-ink); border-color: #D4D4D8; }
+body.tema .book-form .btn-outline:hover { color: var(--red); border-color: var(--red); background: var(--red-soft); }
+
+/* ===== SIDFOT (samma som startsidan) ===== */
+body.tema footer { background: var(--night); color: rgba(255,255,255,.62); padding: 72px var(--gutter) 32px; border-top: 4px solid var(--red); }
+body.tema .footer-grid { max-width: var(--wrap); margin: 0 auto 28px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.1); }
+body.tema .footer-logo { display: inline-flex; }
+body.tema .footer-logo img { height: 40px; width: auto; display: block; }
+body.tema .footer-brand-text { font-size: 13.5px; line-height: 1.7; max-width: 320px; margin-top: 18px; color: rgba(255,255,255,.62); }
+body.tema .footer-col-title { font-size: 15px; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--white); margin-bottom: 18px; }
+body.tema .footer-col ul { list-style: none; display: grid; gap: 11px; }
+body.tema .footer-col a { color: rgba(255,255,255,.62); text-decoration: none; font-size: 14px; transition: color .2s; }
+body.tema .footer-col a:hover { color: var(--white); }
+body.tema .footer-hours { display: block; color: rgba(255,255,255,.62); font-size: 14px; line-height: 1.6; }
+body.tema .footer-socials { display: flex; gap: 10px; }
+body.tema .footer-social-link { width: 40px; height: 40px; border-radius: 10px; border: 0; background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; transition: background .2s; }
+body.tema .footer-social-link:hover { background: rgba(255,255,255,.14); }
+body.tema .footer-areas-row { max-width: var(--wrap); margin: 0 auto 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,.1); font-size: 12.5px; line-height: 2.1; color: rgba(255,255,255,.55); }
+body.tema .footer-areas-row a { color: rgba(255,255,255,.55); text-decoration: none; }
+body.tema .footer-areas-row a:hover { color: var(--white); text-decoration: underline; }
+body.tema .footer-areas-label { font-weight: 700; color: var(--white); margin-right: 4px; }
+body.tema .footer-inner { max-width: var(--wrap); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+body.tema .footer-copy { font-size: 12.5px; color: rgba(255,255,255,.62); }
+body.tema .footer-legal-links { display: flex; gap: 22px; list-style: none; flex-wrap: wrap; }
+body.tema .footer-legal-links a { font-size: 12.5px; color: rgba(255,255,255,.62); text-decoration: none; letter-spacing: 0; text-transform: none; }
+body.tema .footer-legal-links a:hover { color: var(--white); }
+
+/* Cookie- och sms-rutorna förblir ljusa kort med röda knappar */
+body.tema .cookie-modal, body.tema .sms-modal { background: var(--white); color: var(--card-ink); }
+body.tema .cookie-modal-title, body.tema .sms-modal h3, body.tema .cookie-category-title { color: var(--card-ink); }
+body.tema .cookie-btn-outline { background: var(--white); color: var(--card-ink); border-color: #D4D4D8; }
+body.tema .sms-modal-close { background: var(--soft); color: var(--card-ink); }
+body.tema .sms-modal ul li { color: var(--card-ink); }
+
+/* ===== MOBIL ===== */
+@media (max-width: 1180px) {
+  body.tema .nav-links { gap: 26px; }
+  body.tema .nav-links a { font-size: 15px; }
+}
+@media (max-width: 1024px) {
+  body.tema > nav { padding: 18px var(--gutter) 0; justify-content: space-between; }
+  body.tema .nav-logo { position: static !important; transform: none !important; left: auto !important; top: auto !important; }
+  body.tema .nav-logo img { height: 40px; }
+  body.tema .nav-toggle {
+    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px;
+    width: 48px; height: 48px; border: 0; border-radius: 50%; background: rgba(255,255,255,.12);
+    cursor: pointer; z-index: 200; -webkit-tap-highlight-color: transparent;
+  }
+  body.tema .nav-toggle:hover { transform: none; background: rgba(255,255,255,.18); }
+  body.tema .nav-toggle span { display: block; width: 22px; height: 2px; border-radius: 2px; background: var(--white); box-shadow: none; transition: transform .25s, opacity .25s, background .25s; }
+  body.tema .nav-toggle.open { background: var(--soft); }
+  body.tema .nav-toggle.open span { background: var(--card-ink); }
+  body.tema .nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  body.tema .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  body.tema .nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  body.tema .nav-links {
+    position: fixed; top: 0; right: 0; height: 100dvh; width: min(82vw, 320px);
+    flex-direction: column; align-items: stretch; gap: 0; padding: 96px 26px 32px;
+    background: var(--white); overflow-y: auto; z-index: 150; border-left: 0;
+    transform: translateX(calc(100% + 24px)); visibility: hidden; transition: transform .3s ease, visibility 0s linear .3s;
+  }
+  body.tema .nav-links.open { transform: none; visibility: visible; transition: transform .3s ease, visibility 0s; pointer-events: auto; }
+  body.tema .nav-links > li { border-bottom: 1px solid var(--line); }
+  body.tema .nav-links > li:last-child { border-bottom: 0; margin-top: 18px; display: grid; gap: 10px; }
+  body.tema .nav-links a { color: var(--card-ink); font-size: 16px; padding: 15px 0; display: flex; }
+  body.tema .nav-chevron { display: none; }
+  body.tema .nav-dropdown-menu { position: static; opacity: 1; pointer-events: auto; transform: none; box-shadow: none; padding: 0 0 8px 12px; min-width: 0; max-height: none; }
+  body.tema .nav-dropdown-menu::before { display: none; }
+  body.tema .nav-dropdown-menu a { padding: 9px 0; font-size: 14.5px; color: var(--card-muted); }
+  body.tema .nav-links > li.nav-dropdown > a::after { display: none; }
+  body.tema .nav-cta { justify-content: center; padding: 14px 22px; }
+  body.tema a.nav-cta-desk { display: flex !important; }
+  body.tema a.nav-cta-mob { display: flex !important; background: transparent !important; color: var(--red) !important; border: 1.5px solid var(--red); }
+  body.tema .nav-overlay { display: block; position: fixed; inset: 0; z-index: 140; background: rgba(0,0,0,.55); opacity: 0; pointer-events: none; transition: opacity .3s; }
+  body.tema .nav-overlay.open { opacity: 1; pointer-events: auto; }
+  body.tema .footer-grid { grid-template-columns: 1fr 1fr; }
+  body.tema .footer-grid > .footer-col:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 768px) {
+  body.tema #hero { padding: 108px 16px 44px !important; }
+  body.tema #hero + section { padding-top: 44px !important; }
+  body.tema .section-label { font-size: 11px; letter-spacing: .16em; gap: 12px; }
+  body.tema .section-label::before { width: 36px; height: 5px; }
+  body.tema section { padding-left: 16px; padding-right: 16px; }
+  body.tema .price-panel, body.tema .price-panel-featured { padding: 26px 18px 22px; }
+  body.tema footer { padding: 56px 16px calc(28px + 76px); }
+  body.tema .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  body.tema { padding-bottom: 0; }
+  body.tema .mobile-cta-bar {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 145; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(18,20,23,.94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-top: 1px solid rgba(255,255,255,.1); box-shadow: none;
+  }
+  body.tema .mobile-cta-bar a {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 16px; border-radius: 8px;
+    background: var(--red); color: var(--white); font-size: 15px; font-weight: 700; letter-spacing: 0; text-transform: none; text-decoration: none;
+  }
+}

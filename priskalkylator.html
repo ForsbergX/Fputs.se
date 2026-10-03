@@ -77,7 +77,6 @@
     .calc-sprojs-panel { display: none; margin-top: 16px; }
     .calc-sprojs-panel.is-open { display: block; }
     .calc-sprojs-types { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 0 0 16px; }
-    .calc-sprojs-types .calc-card { padding: 16px 10px; }
     .calc-sprojs-types h3 { font-size: 14px; margin-bottom: 0; }
     .calc-sprojs-count {
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
@@ -114,30 +113,14 @@
     .calc-size-row .calc-stepper input { width: 36px; font-size: 16px; }
     .calc-size-row strong { display: block; font-size: 12px; font-weight: 800; }
     .calc-size-row span { display: block; font-size: 11px; color: var(--accent); font-weight: 700; }
-    .calc-card.calc-card-tall .calc-card-art { height: 88px; }
-    .calc-card.calc-card-tall p { min-height: 0; margin-bottom: 10px; }
-    .calc-card {
-      position: relative;
-      border: 1.5px solid rgba(20,24,27,0.1);
-      border-radius: 14px; padding: 22px 18px 18px;
-      background: #fff; text-align: center;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .calc-card.is-active {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(9,105,218,0.12);
-    }
     .calc-check {
       position: absolute; top: 12px; right: 12px;
       width: 22px; height: 22px; border-radius: 50%;
       background: var(--accent); color: #fff;
       display: none; align-items: center; justify-content: center;
     }
-    .calc-card.is-active .calc-check { display: flex; }
     .calc-card-art { height: 110px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
     .calc-card-art svg { width: 92px; height: 92px; }
-    .calc-card h3 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
-    .calc-card p { font-size: 12px; color: var(--muted); line-height: 1.45; margin-bottom: 14px; min-height: 34px; }
     .calc-price-hint { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 12px; }
     .calc-stepper {
       display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -298,15 +281,32 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="css/kalkylator.css" />
+  <script src="js/fputs-kalkylator.js" defer></script>
+  <style>
+    .calc-page { padding: 56px 24px 96px; scroll-margin-top: 90px; }
+    .calc-page .calc-card { max-width: 1382px; margin: 0 auto; }
+    .calc-page .calc-card .ar { box-shadow: 0 1px 2px rgba(16,16,20,.05), 0 18px 50px rgba(16,16,20,.12); border: 1px solid #E8E8EA; }
+    @media (max-width: 768px) { .calc-page { padding: 28px 12px 64px; } }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tema.css" />
 </head>
-<body>
+<body class="tema">
 <nav>
-  <a class="nav-logo" href="index.html"><img src="images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="1109" height="260" /></a>
+  <a class="nav-logo" href="index.html"><img src="images/logo-horisontell.png" alt="Forsbergs Fönsterputs" width="702" height="124" /></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta mig</a></li>
+    <li><a href="index.html">Hem</a></li>
+    <li class="nav-dropdown"><a href="tjanster.html">Tjänster <svg class="nav-chevron" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg></a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li>
+    <li><a href="om-oss.html">Om mig</a></li>
+    <li><a href="omraden.html">Områden</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="kontakta-mig.html">Kontakta mig</a></li>
     <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Få prisförslag</a><a href="tel:0793463964" class="nav-cta nav-cta-mob">Ring mig</a></li>
   </ul>
-  <button class="nav-toggle" id="navToggle" aria-label="Meny" type="button" onclick="toggleMobileMenu(this)">
+  <button class="nav-toggle" id="navToggle" aria-label="Meny" aria-expanded="false" type="button" onclick="toggleMobileMenu(this)">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -323,485 +323,60 @@
   </div>
 </section>
 
-<section class="calc-section" id="kalkylator">
-  <div class="calc-shell">
-    <div class="calc-main">
-      <h2 class="calc-heading">Fyll i hur många fönster du har. När du är klar trycker du Beräkna uppskattat pris. Du behöver inte lämna några uppgifter för att se priset.</h2>
-
-      <h3 class="calc-step-title">1. Hur är åtkomsten?</h3>
-      <div class="calc-choice-grid" style="grid-template-columns:1fr 1fr 1fr;">
-        <button type="button" class="calc-card calc-card-choice is-active" data-hustyp="Vanlig villa" id="cardEnplan">
-          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h3>Vanlig villa</h3>
-          <p>Fönster i normal höjd med enkel åtkomst.</p>
-        </button>
-        <button type="button" class="calc-card calc-card-choice" data-hustyp="Avancerad villa" id="cardSouterrang">
-          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h3>Avancerad villa</h3>
-          <p>Höga fasta fönster, stora glaspartier, flera våningar eller fönster som kräver stege/skaft.</p>
-        </button>
-        <button type="button" class="calc-card calc-card-choice" data-hustyp="Villa med spröjs" id="cardSprojsVilla">
-          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h3>Villa med spröjs</h3>
-          <p>Spröjs varierar mycket. Skicka bilder på fönstren så räknar jag ut ett fast pris åt dig.</p>
-        </button>
-      </div>
-
-      <div id="calcSprojsVillaFlow" style="display:none;margin-top:28px;">
-        <div class="price-panel price-panel-featured" style="margin-top:0;">
-          <div class="panel-glow"></div>
-          <div class="panel-content">
-            <h2 class="panel-title panel-title-green">Skicka bilder & få fast pris</h2>
-            <p class="panel-lead">Spröjs finns i så många olika utföranden att det blir svårt att räkna ut ett rättvist pris i förväg. Skicka gärna bilder på dina fönster och lite information om glasen, så räknar jag ut ett fast pris åt dig – oftast samma dag.</p>
-            <a href="sms:0793463964" class="btn-primary panel-cta" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;">Skicka bilder & få fast pris</a>
-            <p style="font-size:12px;line-height:1.5;margin:10px 0 0;color:var(--muted);">Öppnar ditt vanliga SMS – bifoga bilderna innan du trycker skicka. Vill du hellre ringa? <a href="tel:0793463964" style="color:var(--accent);text-decoration:underline;">079-346 39 64</a>.</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="calcNormalFlow">
-      <h3 class="calc-step-title">2. Antal fönster</h3>
-      <div class="calc-window-grid">
-        <div class="calc-card" id="card2" data-card="2">
-          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div class="calc-card-art">
-            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="34" y="22" width="52" height="76" rx="3" stroke="#1a1a1a" stroke-width="2.4"/>
-              <path d="M60 22v76" stroke="#1a1a1a" stroke-width="2"/>
-              <path d="M18 60h12" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M24 54l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M90 60h12" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M96 54l8 6-8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>Standardfönster</h3>
-          <p>2-sidor, in- &amp; utvändigt</p>
-          <div class="calc-price-hint">38 kr / st efter RUT</div>
-          <div class="calc-stepper">
-            <button type="button" data-target="antal2" data-step="-1" aria-label="Minska standardfönster">−</button>
-            <input type="number" id="antal2" name="antal_2_sidor" min="0" max="200" value="0" inputmode="numeric" />
-            <button type="button" data-target="antal2" data-step="1" aria-label="Öka standardfönster">+</button>
-          </div>
-        </div>
-
-        <div class="calc-card" id="card4" data-card="4">
-          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div class="calc-card-art">
-            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="22" y="22" width="34" height="76" rx="3" stroke="#1a1a1a" stroke-width="2.4"/>
-              <path d="M56 28l34 10v54l-34 10V28z" stroke="#1a1a1a" stroke-width="2.4"/>
-              <path d="M39 22v76" stroke="#1a1a1a" stroke-width="1.6"/>
-              <path d="M8 60h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M12 54l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M102 50h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M108 44l8 6-8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M64 18v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M58 24l6-8 6 8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M64 92v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M58 96l6 8 6-8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>Öppningsbara fönster</h3>
-          <p>4-sidor inåt, putsas även emellan</p>
-          <div class="calc-price-hint">75 kr / st efter RUT</div>
-          <div class="calc-stepper">
-            <button type="button" data-target="antal4" data-step="-1" aria-label="Minska öppningsbara fönster">−</button>
-            <input type="number" id="antal4" name="antal_4_sidor" min="0" max="200" value="0" inputmode="numeric" />
-            <button type="button" data-target="antal4" data-step="1" aria-label="Öka öppningsbara fönster">+</button>
-          </div>
-        </div>
-
-        <div class="calc-card" id="cardUtat" data-card="utat">
-          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div class="calc-card-art">
-            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="22" y="22" width="36" height="76" rx="3" stroke="#1a1a1a" stroke-width="2.4"/>
-              <path d="M58 30l36-12v84L58 90V30z" stroke="#1a1a1a" stroke-width="2.4"/>
-              <path d="M40 22v76" stroke="#1a1a1a" stroke-width="1.6"/>
-              <path d="M8 60h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M12 54l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M102 46h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M108 40l8 6-8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M78 14v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M72 20l6-8 6 8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M78 96v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M72 100l6 8 6-8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>Utåtgående fönster</h3>
-          <p>4-sidor utåt – mer tidskrävande</p>
-          <div class="calc-price-hint">100 kr / st efter RUT</div>
-          <div class="calc-stepper">
-            <button type="button" data-target="antalUtat" data-step="-1" aria-label="Minska utåtgående fönster">−</button>
-            <input type="number" id="antalUtat" name="antal_utatgaende" min="0" max="200" value="0" inputmode="numeric" />
-            <button type="button" data-target="antalUtat" data-step="1" aria-label="Öka utåtgående fönster">+</button>
-          </div>
-        </div>
-      </div>
-
-      <h3 class="calc-step-title">3. Uterum, balkong och altan</h3>
-      <p class="calc-lead" style="margin-bottom:16px;">Räknas in i totalsumman. Golv till tak 40 kr / st efter RUT. Räcker till tak 20 kr / st efter RUT.</p>
-      <div class="calc-extra-grid">
-        <div class="calc-card calc-card-tall" id="cardUterum">
-          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div class="calc-card-art">
-            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><rect x="14" y="18" width="92" height="58" rx="3" stroke="#1a1a1a" stroke-width="2.2"/><path d="M14 38h92M45 18v58M75 18v58" stroke="#1a1a1a" stroke-width="1.6"/><path d="M60 8v8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/><path d="M54 12l6-8 6 8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>Uterum</h3>
-          <p>Glaspartier i uterum</p>
-          <div class="calc-size-list">
-            <div class="calc-size-row">
-              <div><strong>Golv till tak</strong><span>40 kr / st</span></div>
-              <div class="calc-stepper">
-                <button type="button" data-target="uterumGolv" data-step="-1" aria-label="Minska uterum golv till tak">−</button>
-                <input type="number" id="uterumGolv" name="uterum_golv_till_tak" min="0" max="200" value="0" inputmode="numeric" />
-                <button type="button" data-target="uterumGolv" data-step="1" aria-label="Öka uterum golv till tak">+</button>
-              </div>
-            </div>
-            <div class="calc-size-row">
-              <div><strong>Räcker till tak</strong><span>20 kr / st</span></div>
-              <div class="calc-stepper">
-                <button type="button" data-target="uterumTak" data-step="-1" aria-label="Minska uterum räcker till tak">−</button>
-                <input type="number" id="uterumTak" name="uterum_racker_till_tak" min="0" max="200" value="0" inputmode="numeric" />
-                <button type="button" data-target="uterumTak" data-step="1" aria-label="Öka uterum räcker till tak">+</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="calc-card calc-card-tall" id="cardBalkong">
-          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div class="calc-card-art">
-            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><rect x="28" y="10" width="64" height="52" rx="3" stroke="#1a1a1a" stroke-width="2.2"/><path d="M60 10v52M28 36h64" stroke="#1a1a1a" stroke-width="1.6"/><path d="M20 64h80" stroke="#1a1a1a" stroke-width="2.2"/><path d="M24 64v14M96 64v14M20 78h80" stroke="#1a1a1a" stroke-width="2"/><path d="M14 36h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/><path d="M18 30l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>Balkong</h3>
-          <p>Balkongdörr och fönster</p>
-          <div class="calc-size-list">
-            <div class="calc-size-row">
-              <div><strong>Golv till tak</strong><span>40 kr / st</span></div>
-              <div class="calc-stepper">
-                <button type="button" data-target="balkongGolv" data-step="-1" aria-label="Minska balkong golv till tak">−</button>
-                <input type="number" id="balkongGolv" name="balkong_golv_till_tak" min="0" max="200" value="0" inputmode="numeric" />
-                <button type="button" data-target="balkongGolv" data-step="1" aria-label="Öka balkong golv till tak">+</button>
-              </div>
-            </div>
-            <div class="calc-size-row">
-              <div><strong>Räcker till tak</strong><span>20 kr / st</span></div>
-              <div class="calc-stepper">
-                <button type="button" data-target="balkongTak" data-step="-1" aria-label="Minska balkong räcker till tak">−</button>
-                <input type="number" id="balkongTak" name="balkong_racker_till_tak" min="0" max="200" value="0" inputmode="numeric" />
-                <button type="button" data-target="balkongTak" data-step="1" aria-label="Öka balkong räcker till tak">+</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="calc-card calc-card-tall" id="cardAltan">
-          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div class="calc-card-art">
-            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><path d="M16 70V36l44-20 44 20v34" stroke="#1a1a1a" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 36h88M60 16v54" stroke="#1a1a1a" stroke-width="1.6"/><path d="M28 70h64" stroke="#1a1a1a" stroke-width="2"/><path d="M60 78v8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/><path d="M54 80l6 8 6-8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>Altan</h3>
-          <p>Altanfönster och skjutpartier</p>
-          <div class="calc-size-list">
-            <div class="calc-size-row">
-              <div><strong>Golv till tak</strong><span>40 kr / st</span></div>
-              <div class="calc-stepper">
-                <button type="button" data-target="altanGolv" data-step="-1" aria-label="Minska altan golv till tak">−</button>
-                <input type="number" id="altanGolv" name="altan_golv_till_tak" min="0" max="200" value="0" inputmode="numeric" />
-                <button type="button" data-target="altanGolv" data-step="1" aria-label="Öka altan golv till tak">+</button>
-              </div>
-            </div>
-            <div class="calc-size-row">
-              <div><strong>Räcker till tak</strong><span>20 kr / st</span></div>
-              <div class="calc-stepper">
-                <button type="button" data-target="altanTak" data-step="-1" aria-label="Minska altan räcker till tak">−</button>
-                <input type="number" id="altanTak" name="altan_racker_till_tak" min="0" max="200" value="0" inputmode="numeric" />
-                <button type="button" data-target="altanTak" data-step="1" aria-label="Öka altan räcker till tak">+</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h3 class="calc-step-title">4. Har fönstren fasta spröjs?</h3>
-      <label class="calc-toggle" id="sprojsToggle">
-        <input type="checkbox" id="sprojs" />
-        <div class="calc-toggle-copy">
-          <strong>Fasta spröjs</strong>
-          <span>Pris för spröjs sätts separat – ingår inte i uppskattningen. Vid mer än 10 fönster med 4- eller 6-sidiga spröjs räknar jag alltid på plats.</span>
-        </div>
-        <span class="calc-switch" aria-hidden="true"></span>
-      </label>
-      <div class="calc-sprojs-panel" id="sprojsPanel">
-        <p class="calc-lead" style="margin:0 0 12px;">Vilken typ av spröjs?</p>
-        <div class="calc-sprojs-types">
-          <button type="button" class="calc-card calc-card-choice is-active" data-sprojs-typ="2-sidor" id="sprojs2">
-            <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <h3>2-sidor</h3>
-          </button>
-          <button type="button" class="calc-card calc-card-choice" data-sprojs-typ="4-sidor" id="sprojs4">
-            <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <h3>4-sidor</h3>
-          </button>
-          <button type="button" class="calc-card calc-card-choice" data-sprojs-typ="6-sidor" id="sprojs6">
-            <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <h3>6-sidor</h3>
-          </button>
-        </div>
-        <div class="calc-sprojs-count">
-          <div>
-            <strong>Antal fönster med spröjs</strong>
-            <span>Räkna bara rutorna som har spröjs</span>
-          </div>
-          <div class="calc-stepper">
-            <button type="button" data-target="antalSprojs" data-step="-1" aria-label="Minska fönster med spröjs">−</button>
-            <input type="number" id="antalSprojs" min="0" max="200" value="0" inputmode="numeric" />
-            <button type="button" data-target="antalSprojs" data-step="1" aria-label="Öka fönster med spröjs">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="calc-compute">
-        <button type="button" class="btn-primary" id="calcPriceBtn">Beräkna uppskattat pris</button>
-        <p class="calc-compute-error" id="calcPriceError"></p>
-      </div>
-      <div class="calc-inline-result" id="prisresultat">
-        <div class="calc-result-title">Ditt uppskattade pris</div>
-        <div class="calc-total-label">Uppskattat pris:</div>
-        <div class="calc-total-value" id="sumPrice">–</div>
-        <p class="calc-min-note" id="minNote"></p>
-
-        <div class="calc-receipt" id="calcReceipt" style="display:none;">
-          <div class="calc-receipt-title">Din beställning</div>
-          <ul class="calc-summary">
-            <li id="rowHustyp"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 11.5L12 4l8 7.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="calc-receipt-label">Åtkomst</span><strong id="sumHustyp">Vanlig villa</strong></li>
-            <li id="rowSum2"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 4v16" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="calc-receipt-label">Standardfönster</span><strong id="sum2">0 st</strong></li>
-            <li id="rowSum4"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 4v16" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="calc-receipt-label">Öppningsbara fönster</span><strong id="sum4">0 st</strong></li>
-            <li id="rowSumUtat"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 4v16" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="calc-receipt-label">Utåtgående fönster</span><strong id="sumUtat">0 st</strong></li>
-            <li id="rowSumUterum"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20V9l8-5 8 5v11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="calc-receipt-label">Uterum</span><strong id="sumUterum">0 st</strong></li>
-            <li id="rowSumBalkong"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20V9l8-5 8 5v11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="calc-receipt-label">Balkong</span><strong id="sumBalkong">0 st</strong></li>
-            <li id="rowSumAltan"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20V9l8-5 8 5v11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="calc-receipt-label">Altan</span><strong id="sumAltan">0 st</strong></li>
-            <li id="rowSumSprojs"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="1.7"/></svg></span><span class="calc-receipt-label">Fasta spröjs</span><strong id="sumSprojs">Nej</strong></li>
-            <li id="rowSumDatum"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="calc-receipt-label">Önskat datum 1</span><strong id="sumDatum">Ej valt</strong></li>
-            <li id="rowSumDatum2"><span class="calc-receipt-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><span class="calc-receipt-label">Önskat datum 2</span><strong id="sumDatum2">Ej valt</strong></li>
-            <li id="rowSumRaw" style="display:none;"><span class="calc-receipt-label">Uträknat</span><strong id="sumRaw">0 kr</strong></li>
-          </ul>
-          <p class="calc-receipt-empty-hint" id="calcReceiptEmptyHint">Fyll i dina fönster ovan så visas din beställning här.</p>
-        </div>
-
-        <input type="hidden" id="hiddenJobbhelg" value="Nej" />
-        <p class="calc-tid-note" id="tidNote">Denna helg tar jag bara emot kortare jobb efter kl 17:00 (1–3 timmar).</p>
-        <div class="form-group calc-photo-group" id="photoGroup">
-          <p class="calc-file-hint">Skicka gärna bilder på spröjsen via SMS till <a href="sms:0793463964" style="color:var(--accent);">079-346 39 64</a> så jag kan räkna på jobbet.</p>
-        </div>
-
-        <div class="price-panel price-panel-featured" id="boka" style="scroll-margin-top:100px;margin-top:24px;">
-          <div class="panel-glow"></div>
-          <div class="panel-content" id="formular" style="scroll-margin-top:100px;">
-            <h2 class="panel-title panel-title-green">Skicka offertförfrågan</h2>
-            <p class="panel-lead">Samma uppgifter som i SMS:et – så kan jag sätta ett fast pris samma dag.<br><span style="color:var(--muted);font-size:13px;">Du betalar bara halva arbetskostnaden med RUT. Inga lockpriser.</span></p>
-            <form class="book-form" id="offertForm" action="/.netlify/functions/send-email" method="POST">
-              <input type="hidden" name="kalla" value="Priskalkylator från fputs.se" />
-              <input type="hidden" name="uppskattat_pris" id="hiddenPrice" value="" />
-              <input type="hidden" name="pris_fore_rut" id="hiddenPriceBefore" value="" />
-              <input type="hidden" name="antal_fonster" id="hiddenAntal" value="0" />
-              <input type="hidden" name="kalkyl" id="hiddenKalkyl" value="" />
-              <input type="hidden" id="hiddenSmsSpec" value="" />
-              <input type="hidden" name="atkomst" id="hustyp" value="Vanlig villa" />
-              <input type="hidden" name="sprojs" id="hiddenSprojs" value="Nej" />
-              <input type="hidden" name="sprojs_typ" id="hiddenSprojsTyp" value="" />
-              <input type="hidden" name="sprojs_antal" id="hiddenSprojsCount" value="0" />
-              <input type="hidden" name="platsbesok" id="hiddenPlatsbesok" value="Nej" />
-              <input type="hidden" name="hus_delsumma" id="hiddenBase" value="" />
-              <input type="hidden" name="uterum_balkong_altan" id="hiddenExtra" value="" />
-              <input type="hidden" name="uraknat_belopp" id="hiddenRaw" value="" />
-              <div class="form-group"><label for="namn">Namn</label><input type="text" id="namn" name="namn" autocomplete="name" placeholder="Ditt namn" required /></div>
-              <div class="form-group"><label for="telefon">Telefonnummer</label><input type="tel" id="telefon" name="telefon" autocomplete="tel" placeholder="07X-XXX XX XX" required /></div>
-              <div class="form-group"><label for="adress">Adress</label><input type="text" id="adress" name="adress" autocomplete="street-address" placeholder="Gata och ort, t.ex. Storgatan 12, Jönköping" required /></div>
-              <div class="form-group">
-                <label for="bostadstyp">Villa eller lägenhet</label>
-                <select id="bostadstyp" name="bostadstyp" required>
-                  <option value="" disabled>Välj bostadstyp</option>
-                  <option value="Villa" selected>Villa</option>
-                  <option value="Lägenhet">Lägenhet</option>
-                  <option value="Företag">Företag</option>
-                  <option value="Solcellstvätt">Solcellstvätt</option>
-                  <option value="Annat">Annat</option>
-                </select>
-              </div>
-              <div class="form-row">
-                <div class="form-group"><label for="datum1">Önskat datum 1</label><input type="date" id="datum1" name="onskat_datum_1" /></div>
-                <div class="form-group"><label for="datum2">Önskat datum 2</label><input type="date" id="datum2" name="onskat_datum_2" /></div>
-              </div>
-              <p id="datumHelgNote" style="display:none;font-size:13px;font-weight:600;line-height:1.5;margin:0;color:var(--ink);">Denna helg tar jag bara emot kortare jobb efter kl 17:00 (1–3 timmar).</p>
-              <input type="hidden" name="jobbhelg" id="offertJobbhelg" value="Nej" />
-              <div class="form-group"><label for="email">E-post <span style="text-transform:none;letter-spacing:0;font-weight:500;">(valfritt)</span></label><input type="email" id="email" name="email" autocomplete="email" placeholder="din@epost.se" /></div>
-              <div class="form-group"><label for="meddelande">Meddelande <span style="text-transform:none;letter-spacing:0;font-weight:500;">(valfritt)</span></label><textarea id="meddelande" name="meddelande" placeholder="Tider som passar, kodlås, eller annat jag behöver veta..."></textarea></div>
-              <button type="submit" class="btn-primary panel-cta" id="offertSubmitBtn">Skicka offertförfrågan</button>
-              <button type="button" class="btn-outline panel-cta" id="offertSmsBtn">Skicka som SMS</button>
-              <p id="offertSmsHint" style="font-size:12px;line-height:1.5;margin:-8px 0 0;color:var(--muted);">Öppnar ditt vanliga SMS med antal fönster och uppskattat pris ifyllt. Du trycker bara skicka.</p>
-              <p id="offertFormError" style="display:none;color:#b42318;font-size:13px;margin-top:12px;">Något gick fel. Prova igen, eller ring mig direkt på <a href="tel:0793463964" style="color:inherit;text-decoration:underline;">079-346 39 64</a>.</p>
-            </form>
-            <div id="offertFormSuccess" style="display:none;text-align:center;padding:30px 10px;">
-              <div style="font-size:40px;margin-bottom:12px;">✅</div>
-              <h2 class="panel-title panel-title-green" style="margin-bottom:10px;">Tack, din förfrågan är skickad!</h2>
-              <p class="panel-lead">Jag återkommer samma dag med pris och ledig tid. Vill du ha svar snabbare kan du alltid ringa direkt på <a href="tel:0793463964" style="color:var(--accent);text-decoration:underline;">079-346 39 64</a>.</p>
-            </div>
-          </div>
-        </div>
-        <script>
-          (function () {
-            var form = document.getElementById('offertForm');
-            if (!form) return;
-            var typ = new URLSearchParams(window.location.search).get('typ');
-            var bostad = document.getElementById('bostadstyp');
-            var typMap = { foretag: 'Företag', villa: 'Villa', lagenhet: 'Lägenhet', solceller: 'Solcellstvätt' };
-            if (bostad && typ && typMap[typ]) bostad.value = typMap[typ];
-            var btn = document.getElementById('offertSubmitBtn');
-            var errorMsg = document.getElementById('offertFormError');
-            var successBox = document.getElementById('offertFormSuccess');
-            var datum1 = document.getElementById('datum1');
-            var datum2 = document.getElementById('datum2');
-            var datumNote = document.getElementById('datumHelgNote');
-            var jobbhelgField = document.getElementById('offertJobbhelg');
-            var WORK_WEEKENDS = (function () {
-              var set = {};
-              function key(d) {
-                var m = d.getMonth() + 1;
-                var day = d.getDate();
-                return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (day < 10 ? '0' : '') + day;
-              }
-              var start = new Date(2026, 9, 3);
-              for (var i = 0; i < 60; i++) {
-                var sat = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i * 42);
-                var sun = new Date(sat.getFullYear(), sat.getMonth(), sat.getDate() + 1);
-                set[key(sat)] = true;
-                set[key(sun)] = true;
-              }
-              return set;
-            })();
-            (function setMinDate() {
-              var n = new Date();
-              var m = n.getMonth() + 1;
-              var d = n.getDate();
-              var min = n.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (d < 10 ? '0' : '') + d;
-              datum1.min = min;
-              datum2.min = min;
-            })();
-            function syncHelg() {
-              var work = !!(WORK_WEEKENDS[datum1.value] || WORK_WEEKENDS[datum2.value]);
-              datumNote.style.display = work ? 'block' : 'none';
-              jobbhelgField.value = work ? 'Ja – efter 17:00, 1–3 timmar' : 'Nej';
-            }
-            datum1.addEventListener('change', syncHelg);
-            datum2.addEventListener('change', syncHelg);
-            datum1.addEventListener('input', syncHelg);
-            datum2.addEventListener('input', syncHelg);
-            form.addEventListener('submit', function (e) {
-              e.preventDefault();
-              errorMsg.style.display = 'none';
-              btn.disabled = true;
-              btn.textContent = 'Skickar...';
-              fetch(form.action, {
-                method: 'POST',
-                body: JSON.stringify(Object.fromEntries(new FormData(form))),
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-              }).then(function (response) {
-                if (response.ok) {
-                  form.style.display = 'none';
-                  successBox.style.display = 'block';
-                  if (typeof gtag === 'function') {
-                    gtag('event', 'generate_lead', {
-                      'event_category': 'contact',
-                      'event_label': 'offertformular'
-                    });
-                    gtag('event', 'conversion', {
-                      'send_to': 'AW-18225187055/j67gCPv6hOscEO-RufJD'
-                    });
-                  }
-                } else {
-                  throw new Error('send-email error');
-                }
-              }).catch(function () {
-                errorMsg.style.display = 'block';
-                btn.disabled = false;
-                btn.textContent = btn.getAttribute('data-label') || 'Skicka offertförfrågan';
-              });
-            });
-            var smsBtn = document.getElementById('offertSmsBtn');
-            if (smsBtn) {
-              smsBtn.addEventListener('click', function () {
-                if (typeof form.reportValidity === 'function' && !form.reportValidity()) return;
-                function f(namn) {
-                  var el = form.querySelector('[name="' + namn + '"]');
-                  return el ? String(el.value).trim() : '';
-                }
-                var rader = ['Offertförfrågan - Villa', ''];
-                var specEl = document.getElementById('hiddenSmsSpec');
-                if (specEl && specEl.value) rader.push(specEl.value, '');
-                var antal = f('antal_fonster');
-                if (antal && antal !== '0 st') rader.push('Totalt: ' + antal);
-                var pris = f('uppskattat_pris');
-                var fore = (f('pris_fore_rut').match(/\d+/) || [''])[0];
-                if (pris) rader.push('Uppskattat pris: ' + pris + (fore ? ' (' + fore + ' kr före)' : ''));
-                if (f('platsbesok') === 'Ja') rader.push('Kräver platsbesök');
-                rader.push('', f('namn'), f('telefon'), f('adress'));
-                var d1 = f('onskat_datum_1');
-                var d2 = f('onskat_datum_2');
-                if (d1 || d2) rader.push('Önskat datum: ' + [d1, d2].filter(Boolean).join(' eller '));
-                if (f('email')) rader.push(f('email'));
-                if (f('meddelande')) rader.push('', f('meddelande'));
-                window.location.href = 'sms:0793463964?&body=' + encodeURIComponent(rader.join('\n'));
-              });
-            }
-          })();
-        </script>
-        <p class="calc-disclaimer">*Observera: Priset är en uppskattning baserat på dina angivna uppgifter. Skulle antalet fönster eller fönstertyp avvika på plats, justeras priset enligt vår gällande prislista. Vid mer än 10 fönster med 4- eller 6-sidiga spröjs kommer jag ut och räknar på jobbet. Har du ingen gratis parkering står du som kund för parkeringsavgiften. Ingen reseavgift inom Jönköping med närområde. Vid längre resväg än cirka 20 minuter från Jönköping kan en extra avgift tillkomma – du får alltid veta det innan bokningen bekräftas.</p>
-      </div>
-      </div>
-    </div>
+<section class="calc-page" id="kalkylator">
+  <div class="calc-card">
+    <div data-fputs-kalkylator data-endpoint="/api/boka" data-typ="villa" data-persist="fputs-boka-v3"></div>
+    <noscript><p style="background:#fff;color:#18181b;padding:24px;border-radius:14px">Kalkylatorn kräver JavaScript. Ring <a href="tel:0793463964">079-346 39 64</a> eller använd <a href="offert.html#formular">offertformuläret</a>.</p></noscript>
   </div>
 </section>
 
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
-      <a class="footer-logo" href="index.html"><img src="images/logo-footer.png" alt="Forsbergs Fönsterputs" width="75" height="56" /></a>
-      <p class="footer-brand-text">Forsbergs Fönsterputs — professionell fönsterputs för villa och lägenhet i Jönköping, Huskvarna och omnejd. Fast pris, RUT-avdrag, samma putsare varje gång.</p>
-      <div class="footer-socials" style="margin-top:20px;">
+      <a class="footer-logo" href="index.html"><img src="images/logo-horisontell.png" alt="Forsbergs Fönsterputs" width="702" height="124" loading="lazy" /></a>
+      <p class="footer-brand-text">Forsbergs Fönsterputs — professionell fönsterputs för villa och lägenhet i Jönköping, Huskvarna och omnejd. Fast pris, RUT-avdrag, ingen bindningstid.</p>
+      <div class="footer-col-title" style="margin:26px 0 12px;">Sociala medier</div>
+      <div class="footer-socials">
         <a href="https://search.google.com/local/reviews?placeid=ChIJWwcHOKwBUkYR2G6hIAXnwls" target="_blank" rel="noopener" class="footer-social-link" aria-label="Google recensioner"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.94 21.94 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg></a>
         <a href="https://www.instagram.com/fputs.se" target="_blank" class="footer-social-link" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ig2" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#f09433"/><stop offset="25%" stop-color="#e6683c"/><stop offset="50%" stop-color="#dc2743"/><stop offset="75%" stop-color="#cc2366"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#ig2)" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="url(#ig2)" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="url(#ig2)"/></svg></a>
         <a href="https://www.facebook.com/share/1RTGS9y9D1/?mibextid=wwXIfr" target="_blank" class="footer-social-link" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#1877F2" stroke-width="1.8"/><path d="M13 21V13h2.5l.5-3H13V8c0-.8.4-1.5 1.5-1.5H16V4s-1-.2-2-.2c-2 0-3.3 1.3-3.3 3.5V10H8v3h2.7v8H13z" fill="#1877F2"/></svg></a>
       </div>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Sidor</div>
+      <div class="footer-col-title">Företaget</div>
       <ul>
         <li><a href="index.html">Hem</a></li>
-        <li><a href="tjanster.html">Tjänster</a></li>
         <li><a href="om-oss.html">Om mig</a></li>
-        <li><a href="omraden.html">Områden</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="kontakta-mig.html">Kontakta mig</a></li>
         <li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li>
+        <li><a href="omraden.html">Områden</a></li>
         <li><a href="media.html">Media</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Information</div>
+      <ul>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="priskalkylator.html">Priskalkylator</a></li>
+        <li><a href="integritetspolicy.html">Integritetspolicy</a></li>
+        <li><a href="allmanna-villkor.html">Allmänna villkor</a></li>
+        <li><a href="#" onclick="if(window.openCookieBanner){window.openCookieBanner();}return false;">Cookieinställningar</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Tjänster</div>
       <ul>
+        <li><a href="tjanster.html">Alla tjänster</a></li>
         <li><a href="fonsterputs.html">Fönsterputs</a></li>
         <li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li>
-        <li><a href="priskalkylator.html">Priskalkylator</a></li>
-        <li><a href="offert.html#formular">Boka mig</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Kontakt</div>
       <ul>
+        <li><a href="kontakta-mig.html">Kontakta mig</a></li>
         <li><a href="tel:0793463964">079-346 39 64</a></li>
         <li><a href="mailto:kontakt@fputs.se">kontakt@fputs.se</a></li>
+        <li><span class="footer-hours">Öppettider 09:00-21:00</span></li>
       </ul>
     </div>
   </div>
@@ -810,11 +385,6 @@
   </div>
   <div class="footer-inner">
     <p class="footer-copy">© <span class="footer-year">2025</span> Forsbergs Fönsterputs · Jönköping med omnejd</p>
-    <ul class="footer-legal-links">
-      <li><a href="integritetspolicy.html">Integritetspolicy</a></li>
-      <li><a href="allmanna-villkor.html">Allmänna villkor</a></li>
-      <li><a href="#" onclick="if(window.openCookieBanner){window.openCookieBanner();}return false;">Cookieinställningar</a></li>
-    </ul>
   </div>
 </footer>
 <div class="cookie-modal-overlay" id="cookieModalOverlay">
@@ -928,13 +498,6 @@
     } catch (e) { show(); }
   })();
 </script>
-<div class="mobile-cta-bar calc-mobile-bar" id="calcMobileBar">
-  <div class="calc-bar-price">
-    <span class="calc-bar-label">Uppskattat pris</span>
-    <strong id="barPrice">–</strong>
-  </div>
-  <a href="#boka" class="mobile-cta-book bar-book-btn">Boka</a>
-</div>
 
 <script>
   function scrollToHashTarget() {
@@ -994,357 +557,6 @@
   window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); });
 </script>
 
-<script>
-  (function () {
-    var PRICE_2 = 38;
-    var PRICE_4 = 75;
-    var PRICE_UTAT = 100;
-    var PRICE_GOLV = 40;
-    var PRICE_TAK = 20;
-    var PRICE_SPROJS_TBD = null; // Spröjspris ej bestämt ännu – sätts separat tills Tommy ger exakta priser
-    var MIN_ENPLAN = 600;
-    var MIN_SOUTERRANG = 900;
-    var SPROJS_QUOTE_LIMIT = 10;
-
-    var countIds = ['antal2', 'antal4', 'antalUtat', 'uterumGolv', 'uterumTak', 'balkongGolv', 'balkongTak', 'altanGolv', 'altanTak', 'antalSprojs'];
-    var windowIds = ['antal2', 'antal4', 'antalUtat', 'uterumGolv', 'uterumTak', 'balkongGolv', 'balkongTak', 'altanGolv', 'altanTak'];
-    var hustypInput = document.getElementById('hustyp');
-    var sprojs = document.getElementById('sprojs');
-    var sprojsTyp = '2-sidor';
-    var datum1 = document.getElementById('datum1');
-    var datum2 = document.getElementById('datum2');
-    var tidNote = document.getElementById('tidNote');
-    var hiddenJobbhelg = document.getElementById('hiddenJobbhelg');
-    var WORK_WEEKENDS = (function () {
-      var set = {};
-      function key(d) {
-        var m = d.getMonth() + 1;
-        var day = d.getDate();
-        return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (day < 10 ? '0' : '') + day;
-      }
-      var start = new Date(2026, 9, 3);
-      for (var i = 0; i < 60; i++) {
-        var sat = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i * 42);
-        var sun = new Date(sat.getFullYear(), sat.getMonth(), sat.getDate() + 1);
-        set[key(sat)] = true;
-        set[key(sun)] = true;
-      }
-      return set;
-    })();
-
-    function formatSvDate(ymd) {
-      if (!ymd) return 'Ej valt';
-      var p = ymd.split('-');
-      return p[2] + '/' + p[1] + '/' + p[0];
-    }
-
-    function syncHelg() {
-      var work = !!(WORK_WEEKENDS[datum1.value] || WORK_WEEKENDS[datum2.value]);
-      if (tidNote) tidNote.classList.toggle('is-on', work);
-      if (hiddenJobbhelg) hiddenJobbhelg.value = work ? 'Ja – efter 17:00, 1–3 timmar' : 'Nej';
-    }
-
-    (function setMinDate() {
-      var n = new Date();
-      var m = n.getMonth() + 1;
-      var d = n.getDate();
-      var min = n.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (d < 10 ? '0' : '') + d;
-      datum1.min = min;
-      datum2.min = min;
-    })();
-    var btn = document.getElementById('offertSubmitBtn');
-    var photoGroup = document.getElementById('photoGroup');
-    var subjectField = document.querySelector('#offertForm input[name="kalla"]');
-    var barPrice = document.getElementById('barPrice');
-    var priceRevealed = false;
-    var priceBtn = document.getElementById('calcPriceBtn');
-    var priceError = document.getElementById('calcPriceError');
-    var priceBox = document.getElementById('prisresultat');
-    var mobileBar = document.getElementById('calcMobileBar');
-
-    function setBarPrice(text) {
-      if (barPrice) barPrice.textContent = text;
-    }
-
-    function clampCount(value) {
-      var n = parseInt(value, 10);
-      if (isNaN(n) || n < 0) return 0;
-      if (n > 200) return 200;
-      return n;
-    }
-
-    function val(id) {
-      return clampCount(document.getElementById(id).value);
-    }
-
-    function pricePairHtml(after) {
-      var before = after * 2;
-      return '<span class="calc-price-before">' + before + '</span><span class="calc-price-slash">/</span>' + after + ' <span class="calc-price-note">kr före / efter RUT</span>';
-    }
-
-    function pricePairText(after) {
-      return (after * 2) + '/' + after + ' kr';
-    }
-
-    function extraLabel(golv, tak) {
-      if (golv + tak === 0) return '0 st';
-      var parts = [];
-      if (golv) parts.push(golv + ' golv–tak');
-      if (tak) parts.push(tak + ' räcker till tak');
-      return parts.join(', ');
-    }
-
-    function needsSiteVisit(hasSprojs, nSprojs) {
-      return hasSprojs && nSprojs > SPROJS_QUOTE_LIMIT && (sprojsTyp === '4-sidor' || sprojsTyp === '6-sidor');
-    }
-
-    function calcError() {
-      var allWindows = windowIds.reduce(function (sum, id) { return sum + val(id); }, 0);
-      var nSprojs = val('antalSprojs');
-      var siteVisit = needsSiteVisit(sprojs.checked, nSprojs);
-      if (allWindows < 1 && nSprojs > 0) {
-        return 'Fyll i hur många fönster som ska putsas (standard, öppningsbara eller utåtgående). Spröjs är ett tillägg ovanpå det.';
-      }
-      if (!siteVisit && allWindows < 1) return 'Fyll i hur många fönster som ska putsas, sen tryck Beräkna uppskattat pris.';
-      if (siteVisit && allWindows < 1 && nSprojs < 1) return 'Fyll i antal fönster och spröjs, så jag vet vad jag ska räkna på.';
-      return '';
-    }
-
-    function revealPrice() {
-      var err = calcError();
-      if (err) {
-        priceError.style.display = 'block';
-        priceError.textContent = err;
-        priceError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return false;
-      }
-      priceError.style.display = 'none';
-      priceRevealed = true;
-      if (mobileBar) mobileBar.classList.add('is-ready');
-      update();
-      window.setTimeout(function () {
-        var target = document.getElementById('sumPrice');
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 50);
-      return true;
-    }
-    window.fputsRevealPrice = revealPrice;
-
-    function update() {
-      countIds.forEach(function (id) {
-        document.getElementById(id).value = val(id);
-      });
-
-      var n2 = val('antal2');
-      var n4 = val('antal4');
-      var nUtat = val('antalUtat');
-      var nSprojs = val('antalSprojs');
-      var ug = val('uterumGolv');
-      var ut = val('uterumTak');
-      var bg = val('balkongGolv');
-      var bt = val('balkongTak');
-      var ag = val('altanGolv');
-      var at = val('altanTak');
-      var extraGolv = ug + bg + ag;
-      var extraTak = ut + bt + at;
-      var extraCount = extraGolv + extraTak;
-      var houseCount = n2 + n4 + nUtat;
-      var allWindows = houseCount + extraCount;
-      var minPrice = hustypInput.value === 'Avancerad villa' ? MIN_SOUTERRANG : MIN_ENPLAN;
-
-      var hasSprojs = sprojs.checked;
-      var siteVisit = needsSiteVisit(hasSprojs, nSprojs);
-      var houseRaw = (n2 * PRICE_2) + (n4 * PRICE_4) + (nUtat * PRICE_UTAT);
-      var extraRaw = (extraGolv * PRICE_GOLV) + (extraTak * PRICE_TAK);
-      var sprojsRaw = 0;
-      var sprojsPending = hasSprojs && nSprojs > 0 && !siteVisit;
-
-      var raw = houseRaw + extraRaw + sprojsRaw;
-      var hasWindows = allWindows > 0;
-      var usedMin = hasWindows && !siteVisit && raw < minPrice;
-      var total = hasWindows ? Math.max(raw, minPrice) : 0;
-
-      document.getElementById('card2').classList.toggle('is-active', n2 > 0);
-      document.getElementById('card4').classList.toggle('is-active', n4 > 0);
-      document.getElementById('cardUtat').classList.toggle('is-active', nUtat > 0);
-      document.getElementById('cardUterum').classList.toggle('is-active', ug + ut > 0);
-      document.getElementById('cardBalkong').classList.toggle('is-active', bg + bt > 0);
-      document.getElementById('cardAltan').classList.toggle('is-active', ag + at > 0);
-      document.getElementById('sprojsToggle').classList.toggle('is-active', hasSprojs);
-      document.getElementById('sprojsPanel').classList.toggle('is-open', hasSprojs);
-      if (photoGroup) photoGroup.style.display = siteVisit ? 'flex' : 'none';
-      if (btn) {
-        btn.setAttribute('data-label', siteVisit ? 'Skicka förfrågan så kommer jag ut' : 'Skicka offertförfrågan');
-        if (!btn.disabled) btn.textContent = btn.getAttribute('data-label');
-      }
-      if (subjectField) subjectField.value = siteVisit ? 'Platsbesök spröjs från fputs.se' : 'Priskalkylator från fputs.se';
-
-      document.getElementById('sumHustyp').textContent = hustypInput.value;
-      document.getElementById('sum2').textContent = n2 + ' st';
-      document.getElementById('sum4').textContent = n4 + ' st';
-      document.getElementById('sumUtat').textContent = nUtat + ' st';
-      document.getElementById('sumUterum').textContent = extraLabel(ug, ut);
-      document.getElementById('sumBalkong').textContent = extraLabel(bg, bt);
-      document.getElementById('sumAltan').textContent = extraLabel(ag, at);
-      var sprojsLabel = 'Nej';
-      if (hasSprojs) {
-        sprojsLabel = nSprojs + ' st, ' + sprojsTyp + (siteVisit ? ' (räknas på plats)' : ' (pris sätts separat)');
-      }
-      document.getElementById('sumSprojs').textContent = sprojsLabel;
-      document.getElementById('hiddenSprojs').value = hasSprojs ? 'Ja' : 'Nej';
-      document.getElementById('hiddenSprojsTyp').value = hasSprojs ? sprojsTyp : '';
-      document.getElementById('hiddenSprojsCount').value = hasSprojs ? String(nSprojs) : '0';
-      document.getElementById('hiddenPlatsbesok').value = siteVisit ? 'Ja' : 'Nej';
-      document.getElementById('sumDatum').textContent = formatSvDate(datum1.value);
-      document.getElementById('sumDatum2').textContent = formatSvDate(datum2.value);
-      document.getElementById('sumRaw').textContent = siteVisit ? 'Räknas på plats' : (raw + ' kr');
-
-      function setRowEmpty(id, isEmpty) {
-        var row = document.getElementById(id);
-        if (row) row.classList.toggle('is-empty', isEmpty);
-      }
-      setRowEmpty('rowSum2', n2 === 0);
-      setRowEmpty('rowSum4', n4 === 0);
-      setRowEmpty('rowSumUtat', nUtat === 0);
-      setRowEmpty('rowSumUterum', (ug + ut) === 0);
-      setRowEmpty('rowSumBalkong', (bg + bt) === 0);
-      setRowEmpty('rowSumAltan', (ag + at) === 0);
-      setRowEmpty('rowSumSprojs', !hasSprojs);
-      setRowEmpty('rowSumDatum', !datum1.value);
-      setRowEmpty('rowSumDatum2', !datum2.value);
-      var receiptEmptyHint = document.getElementById('calcReceiptEmptyHint');
-      if (receiptEmptyHint) receiptEmptyHint.classList.toggle('is-visible', !hasWindows);
-      var calcReceipt = document.getElementById('calcReceipt');
-      if (calcReceipt) calcReceipt.style.display = priceRevealed ? '' : 'none';
-
-      var priceEl = document.getElementById('sumPrice');
-      var minNote = document.getElementById('minNote');
-      if (!priceRevealed) {
-        priceEl.innerHTML = '–';
-        setBarPrice('–');
-        minNote.style.display = 'none';
-      } else if (siteVisit) {
-        priceEl.innerHTML = 'Räknas på plats';
-        setBarPrice('På plats');
-        document.getElementById('hiddenPrice').value = 'Räknas på plats';
-        document.getElementById('hiddenPriceBefore').value = '';
-        document.getElementById('hiddenBase').value = houseRaw + ' kr';
-        document.getElementById('hiddenExtra').value = extraRaw + ' kr';
-        document.getElementById('hiddenRaw').value = 'Platsbesök';
-        minNote.style.display = 'block';
-        minNote.textContent = 'Mer än 10 fönster med 4- eller 6-sidiga spröjs räknar jag på plats. Skicka bilder och adress så kommer jag ut och ger ett fast pris.';
-      } else if (!hasWindows) {
-        priceEl.innerHTML = '–';
-        setBarPrice('–');
-        document.getElementById('hiddenPrice').value = '';
-        document.getElementById('hiddenPriceBefore').value = '';
-        document.getElementById('hiddenBase').value = '';
-        document.getElementById('hiddenExtra').value = '';
-        document.getElementById('hiddenRaw').value = '';
-        minNote.style.display = 'none';
-      } else {
-        priceEl.innerHTML = pricePairHtml(total);
-        setBarPrice(pricePairText(total));
-        document.getElementById('hiddenPrice').value = total + ' kr efter RUT' + (sprojsPending ? ' (exkl. spröjs, pris sätts separat)' : '');
-        document.getElementById('hiddenPriceBefore').value = (total * 2) + ' kr före RUT';
-        document.getElementById('hiddenBase').value = houseRaw + ' kr';
-        document.getElementById('hiddenExtra').value = extraRaw + ' kr';
-        document.getElementById('hiddenRaw').value = raw + ' kr';
-        if (sprojsPending) {
-          minNote.style.display = 'block';
-          minNote.textContent = 'Priset ovan är exklusive spröjs (' + nSprojs + ' st). Spröjs prissätts separat – skicka gärna en bild på SMS så får du exakt pris.';
-        } else if (usedMin) {
-          minNote.style.display = 'block';
-          minNote.textContent = 'Minimipris ' + minPrice + ' kr efter RUT (' + (minPrice * 2) + ' kr före). Du kan lägga till fler fönster utan att priset höjs förrän du passerar ' + minPrice + ' kr.';
-        } else {
-          minNote.style.display = 'none';
-        }
-      }
-      var poster = [];
-      if (n2 > 0) poster.push('Standardfönster (2-sidor): ' + n2 + ' st');
-      if (n4 > 0) poster.push('Öppningsbara (4-sidor): ' + n4 + ' st');
-      if (nUtat > 0) poster.push('Utåtgående (4-sidor): ' + nUtat + ' st');
-      if (ug > 0) poster.push('Uterum golv till tak: ' + ug + ' st');
-      if (ut > 0) poster.push('Uterum räcke till tak: ' + ut + ' st');
-      if (bg > 0) poster.push('Balkong golv till tak: ' + bg + ' st');
-      if (bt > 0) poster.push('Balkong räcke till tak: ' + bt + ' st');
-      if (ag > 0) poster.push('Altan golv till tak: ' + ag + ' st');
-      if (at > 0) poster.push('Altan räcke till tak: ' + at + ' st');
-      if (hasSprojs) poster.push('Spröjs: ' + nSprojs + ' st, ' + sprojsTyp);
-      var kalkyl = document.getElementById('hiddenKalkyl');
-      if (kalkyl) kalkyl.value = poster.length ? hustypInput.value + ' | ' + poster.join(' | ') : hustypInput.value;
-      var smsSpec = document.getElementById('hiddenSmsSpec');
-      if (smsSpec) smsSpec.value = poster.join('\n');
-      var antalField = document.getElementById('hiddenAntal');
-      if (antalField) antalField.value = allWindows + ' st';
-    }
-    window.fputsUpdateCalc = update;
-
-    var normalFlow = document.getElementById('calcNormalFlow');
-    var sprojsVillaFlow = document.getElementById('calcSprojsVillaFlow');
-    document.querySelectorAll('[data-hustyp]').forEach(function (card) {
-      card.addEventListener('click', function () {
-        document.querySelectorAll('[data-hustyp]').forEach(function (other) {
-          other.classList.toggle('is-active', other === card);
-        });
-        hustypInput.value = card.getAttribute('data-hustyp');
-        var isSprojsVilla = hustypInput.value === 'Villa med spröjs';
-        if (normalFlow) normalFlow.style.display = isSprojsVilla ? 'none' : '';
-        if (sprojsVillaFlow) sprojsVillaFlow.style.display = isSprojsVilla ? 'block' : 'none';
-        update();
-      });
-    });
-
-    document.querySelectorAll('[data-sprojs-typ]').forEach(function (card) {
-      card.addEventListener('click', function () {
-        document.querySelectorAll('[data-sprojs-typ]').forEach(function (other) {
-          other.classList.toggle('is-active', other === card);
-        });
-        sprojsTyp = card.getAttribute('data-sprojs-typ');
-        update();
-      });
-    });
-
-    document.querySelectorAll('.calc-stepper button').forEach(function (button) {
-      button.addEventListener('click', function () {
-        var input = document.getElementById(button.getAttribute('data-target'));
-        var next = clampCount(input.value) + parseInt(button.getAttribute('data-step'), 10);
-        input.value = clampCount(next);
-        update();
-      });
-    });
-
-    sprojs.addEventListener('change', function () {
-      if (sprojs.checked && val('antalSprojs') === 0) {
-        var guessed = val('antal2') + val('antal4') + val('antalUtat');
-        if (guessed > 0) document.getElementById('antalSprojs').value = guessed;
-      }
-    });
-
-    countIds.concat(['sprojs']).forEach(function (id) {
-      var el = document.getElementById(id);
-      el.addEventListener('input', update);
-      el.addEventListener('change', update);
-    });
-    datum1.addEventListener('input', function () { syncHelg(); update(); });
-    datum1.addEventListener('change', function () { syncHelg(); update(); });
-    datum2.addEventListener('input', function () { syncHelg(); update(); });
-    datum2.addEventListener('change', function () { syncHelg(); update(); });
-    syncHelg();
-
-    window.fputsRevealPrice = revealPrice;
-    window.fputsUpdateCalc = update;
-
-    if (priceBtn) {
-      priceBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        revealPrice();
-      });
-    }
-
-    update();
-  })();
-</script>
 
 <script>
   document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
