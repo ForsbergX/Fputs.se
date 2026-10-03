@@ -7,6 +7,6 @@
   },
   "scripts": {
     "dev": "npx --yes netlify-cli@latest dev",
-    "check": "node --check netlify/functions/send-email.js && node --check netlify/functions/send-contact.js && node --check netlify/functions/_resend-mail.js"
+    "check": "node --check netlify/functions/send-email.js && node --check netlify/functions/send-contact.js && node --check netlify/functions/_resend-mail.js && node --check netlify/functions/boka.js"
   }
 }
