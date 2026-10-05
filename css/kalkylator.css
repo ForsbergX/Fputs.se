@@ -114,6 +114,12 @@
 .fp-switch-on { background: var(--red); }
 .fp-switch-on span { transform: translateX(26px); }
 .fp-opt:focus-visible, .fp-switch:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.fp-summary { border-bottom: 1px solid #DCDCDF; }
+.fp-sum-list { list-style: none; margin: 8px 0 6px; padding: 0; display: grid; gap: 10px; }
+.fp-sum-list li { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--ink); }
+.fp-sum-list b { display: block; font-weight: 600; line-height: 1.3; }
+.fp-sum-list small { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.35; margin-top: 1px; }
+.fp-sum-list span { white-space: nowrap; font-weight: 600; font-variant-numeric: tabular-nums; }
 .fp-panel-price { display: grid; gap: 2px; padding: 16px 0; border-bottom: 1px solid #DCDCDF; }
 .fp-panel-price span { font-size: 14px; color: var(--muted); }
 .fp-panel-price strong { font-size: 30px; font-weight: 800; letter-spacing: -.03em; color: var(--ink); }

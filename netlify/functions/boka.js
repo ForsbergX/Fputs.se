@@ -34,6 +34,22 @@ function reference() {
   return "FP-" + ymd + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
 }
 
+// Valfria bilder på glasen: max 5 st JPEG (komprimeras i webbläsaren), skickas som bilagor.
+const MAX_BILDER = 5;
+const MAX_BILD_BYTES = 1.5 * 1024 * 1024;
+
+function bilagor(bilder) {
+  if (!Array.isArray(bilder)) return [];
+  return bilder
+    .slice(0, MAX_BILDER)
+    .filter((x) => x && typeof x.data === "string" && /^[A-Za-z0-9+/=]+$/.test(x.data))
+    .filter((x) => x.data.length * 0.75 <= MAX_BILD_BYTES)
+    .map((x, i) => ({
+      filename: `bild-${i + 1}.jpg`,
+      content: x.data,
+    }));
+}
+
 function fieldPairs(b, ref) {
   const c = b.contact || {};
   const q = b.quote || {};
@@ -55,6 +71,7 @@ function fieldPairs(b, ref) {
     ["Önskat datum 2", c.datum2],
     ["Tid", TIME[c.tid] || c.tid],
     ["Meddelande", c.meddelande],
+    ["Bilder", b.antalBilder ? `${b.antalBilder} bifogade` : ""],
   ];
 }
 
@@ -105,12 +122,15 @@ exports.handler = async function (event) {
 
   const ref = reference();
   const q = b.quote || {};
+  const attachments = bilagor(b.bilder);
+  b.antalBilder = attachments.length;
   try {
     await sendToKontakt(apiKey, {
       subject: `${q.manual ? "Prisförfrågan" : "Bokning"} ${ref} – ${c.namn}`,
       html: buildHtml(b, ref),
       text: buildText("Ny bokning från kalkylatorn", fieldPairs(b, ref), c.email, c.telefon),
       replyTo: c.email,
+      attachments,
     });
   } catch (err) {
     console.error("boka exception:", err);
