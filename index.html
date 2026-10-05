@@ -14,7 +14,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preload" as="image" href="images/hero-bil-parkerad.jpg" />
+  <link rel="preload" as="image" href="images/hero-bil-svart.jpg" />
   <title>Fönsterputs Jönköping – Fast pris med RUT | Forsbergs Fönsterputs</title>
   <link rel="canonical" href="https://fputs.se/" />
   <link rel="icon" href="favicon.ico" sizes="any" />
@@ -162,7 +162,7 @@
       position: absolute; display: block; height: auto; aspect-ratio: 1024 / 576;
       width: var(--photo-w);
       /* Bilden dras åt vänster så att både bilen och Vättern syns till höger om texten. */
-      left: calc((100vw - var(--wrap-w)) / 2 + var(--wrap-w) * .5087 - var(--photo-w) * .42);
+      left: calc((100vw - var(--wrap-w)) / 2 + var(--wrap-w) * .5087 - var(--photo-w) * .3);
       top: calc(var(--card-top, 565px) - var(--photo-w) * .4283);
       -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%), linear-gradient(180deg, #000 80%, transparent 100%);
       -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0, #000 9%), linear-gradient(180deg, #000 80%, transparent 100%);
@@ -266,7 +266,7 @@
       }
       .hero-bg img {
         position: absolute; top: 0; left: 0; width: 100%; max-width: none; height: 100%; min-width: 0;
-        aspect-ratio: auto; object-fit: cover; object-position: center center;
+        aspect-ratio: auto; object-fit: cover; object-position: 30% 50%;
         -webkit-mask-image: none; mask-image: none;
       }
       .hero-bg::after {
@@ -444,8 +444,7 @@
 <section id="hero">
   <div class="hero-bg" aria-hidden="true">
     <picture>
-      <source media="(max-width: 768px)" srcset="images/hero-bil-mobil.jpg" />
-      <img src="images/hero-bil-parkerad.jpg" alt="" width="1024" height="576" fetchpriority="high" />
+      <img src="images/hero-bil-svart.jpg" alt="" width="1672" height="941" fetchpriority="high" />
     </picture>
   </div>
   <div class="hero-inner">
