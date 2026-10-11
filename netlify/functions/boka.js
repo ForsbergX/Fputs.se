@@ -13,7 +13,7 @@ const {
 // Samma regel för spärrade arbetshelger som kalendern i webbläsaren använder.
 const { arSparrad } = require("../../js/arbetshelger.js");
 
-const FREQUENCY = { engang: "En gång", 2: "2 ggr/år", 3: "3 ggr/år", 4: "4 ggr/år" };
+const FREQUENCY = { bas: "Bas (alla sidor 2 ggr/år)", plus: "Plus (alla sidor 2 ggr + 2 extra utvändiga/år)", premium: "Premium (alla sidor 2 ggr + 4 extra utvändiga/år)", engang: "Engångsputs" };
 const TIME = {
   morgon: "Morgon / förmiddag (07-10)",
   lunch: "Lunch / mitt på dagen (10-13)",
