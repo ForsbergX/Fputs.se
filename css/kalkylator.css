@@ -1,6 +1,6 @@
 /* Priskalkylatorn (js/fputs-kalkylator.js) i fputs.se-utförande.
    Används av startsidan, priskalkylator.html och fonsterputs-lagenhet.html.
-   Klassnamn som .ar, .tr, .e kommer från kalkylatorns byggda CSS-moduler. */
+   Klassnamnen booking_* kommer från kalkylatorns CSS-moduler (källkod: projektet "Hemsida design"). */
 .calc-card {
   --red: #D1101F; --red-hot: #B00D19; --ink: #18181B; --muted: #6A6A70; --white: #FFFFFF;
   scroll-margin-top: 20px;
@@ -10,88 +10,91 @@
 .calc-card section { padding: 0; background: none; scroll-margin-top: 90px; }
 
 /* Sidornas globala nav-regler (sticky meny) får inte slå igenom på kalkylatorns stegvisare. */
-.calc-card nav.a {
+.calc-card nav.booking_progress {
   position: static; top: auto; z-index: auto; display: block; padding: 0; gap: 0;
   background: none; border: 0; box-shadow: none; max-width: none; justify-content: initial; touch-action: auto;
 }
 
 /* ===== KALKYLATORN: anpassad till designen ===== */
-/* Klassnamnen kommer från kalkylatorns byggda CSS-moduler (se js/fputs-kalkylator.js). */
+/* Klassnamnen booking_* kommer från kalkylatorns CSS-moduler (components/booking/booking.module.css). */
 .calc-card [data-fputs-kalkylator] {
   --f-display: 'Montserrat', system-ui, sans-serif; --f-body: 'Montserrat', system-ui, sans-serif;
   min-height: 380px;
 }
-.Nr { --bc-accent: var(--red); --bc-accent-hot: var(--red-hot); --bc-ring: rgba(209,16,31,.12); --bc-text: var(--ink); --bc-muted: var(--muted); --bc-top: 20px; }
+.booking_root { --bc-accent: var(--red); --bc-accent-hot: var(--red-hot); --bc-ring: rgba(209,16,31,.12); --bc-text: var(--ink); --bc-muted: var(--muted); --bc-top: 20px; }
 /* Ett vitt kort: rubrik och steg till vänster, "Din putsning" till höger över hela höjden */
-.calc-card .ar {
+.calc-card .booking_shell {
   background: var(--white); border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,.35);
   padding: 21px 25px 12px 43px; display: grid; grid-template-columns: minmax(0, 1fr) 336px;
   column-gap: 70px; row-gap: 0; align-items: start; grid-template-rows: auto 1fr;
 }
-.calc-card .ir { display: contents; }
-.calc-card .tr { margin-top: 10px; grid-column: 1; grid-row: 1; grid-template-columns: auto 1fr; gap: 0 24px; padding: 0; align-items: baseline; }
-.calc-card .er { font-family: var(--f-display); font-size: clamp(30px, 2.8vw, 42px); font-weight: 800; letter-spacing: -.035em; line-height: 1.1; }
-.calc-card .Or { display: none; }
-.calc-card .or { justify-self: end; font-size: 16px; color: var(--muted); white-space: normal; text-align: right; }
-.calc-card .a { grid-column: 1 / -1; grid-row: 2; margin-top: 22px; position: static; transform: none; width: auto; }
-.calc-card .a ol { justify-content: space-between; align-items: center; width: 100%; max-width: none; }
-.calc-card .a li { flex: 1 1 0; max-width: none; display: flex; align-items: center; }
-.calc-card .a li:last-child { flex: 0 0 auto; }
-.calc-card .a li + li::before { display: none; }
-.calc-card .a li:not(:last-child)::after { content: ''; flex: 1; height: 1px; background: #D4D4D8; margin: 0 22px; }
-.calc-card .a li.H:not(:last-child)::after { background: var(--red); }
-.calc-card .a li > button, .calc-card .a li > span { display: flex; align-items: center; gap: 18px; width: auto; }
-.calc-card .v { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: #ECECEE; color: var(--ink); font-size: 13px; font-weight: 700; flex-shrink: 0; }
-.calc-card .u { font-size: 16px; color: var(--muted); font-weight: 500; white-space: nowrap; }
-.calc-card .G .v, .calc-card .H .v { background: var(--red); color: var(--white); }
-.calc-card .G .u { color: var(--red); }
-.calc-card .nr { grid-column: 1; grid-row: 2; background: none; border: 0; box-shadow: none; padding: 0; margin: 26px 0 13px; gap: 10px; }
-.calc-card .Qr, .calc-card .cr { gap: 12px; }
-.calc-card .Rr { display: grid; gap: 4px; }
-.calc-card .dr { font-size: clamp(22px, 1.9vw, 28px); font-weight: 800; letter-spacing: -.025em; }
-.calc-card .Tr { font-size: 17px; color: var(--muted); max-width: none; }
-.calc-card #steg-bostad ~ .sr, .calc-card section[aria-labelledby="steg-bostad"] > .sr { display: none; }
+.calc-card .booking_layout { display: contents; }
+.calc-card .booking_appBar { margin-top: 10px; grid-column: 1; grid-row: 1; grid-template-columns: auto 1fr; gap: 0 24px; padding: 0; align-items: baseline; }
+.calc-card .booking_appTitle { font-family: var(--f-display); font-size: clamp(30px, 2.8vw, 42px); font-weight: 800; letter-spacing: -.035em; line-height: 1.1; }
+.calc-card .booking_appDot { display: none; }
+.calc-card .booking_appMeta { justify-self: end; font-size: 16px; color: var(--muted); white-space: normal; text-align: right; }
+.calc-card .booking_progress { grid-column: 1 / -1; grid-row: 2; margin-top: 22px; position: static; transform: none; width: auto; }
+.calc-card .booking_progress ol { justify-content: space-between; align-items: center; width: 100%; max-width: none; }
+.calc-card .booking_progress li { flex: 1 1 0; max-width: none; display: flex; align-items: center; }
+.calc-card .booking_progress li:last-child { flex: 0 0 auto; }
+.calc-card .booking_progress li + li::before { display: none; }
+.calc-card .booking_progress li:not(:last-child)::after { content: ''; flex: 1; height: 1px; background: #D4D4D8; margin: 0 22px; }
+.calc-card .booking_progress li.booking_progressDone:not(:last-child)::after { background: var(--red); }
+.calc-card .booking_progress li > button, .calc-card .booking_progress li > span { display: flex; align-items: center; gap: 18px; width: auto; }
+.calc-card .booking_progressDot { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: #ECECEE; color: var(--ink); font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.calc-card .booking_progressName { font-size: 16px; color: var(--muted); font-weight: 500; white-space: nowrap; }
+.calc-card .booking_progressNow .booking_progressDot, .calc-card .booking_progressDone .booking_progressDot { background: var(--red); color: var(--white); }
+.calc-card .booking_progressNow .booking_progressName { color: var(--red); }
+.calc-card .booking_app { grid-column: 1; grid-row: 2; background: none; border: 0; box-shadow: none; padding: 0; margin: 26px 0 13px; gap: 10px; }
+.calc-card .booking_main, .calc-card .booking_step { gap: 12px; }
+.calc-card .booking_stepHead { display: grid; gap: 4px; }
+.calc-card .booking_stepTitle { font-size: clamp(22px, 1.9vw, 28px); font-weight: 800; letter-spacing: -.025em; }
+.calc-card .booking_stepLead { font-size: 17px; color: var(--muted); max-width: none; }
+.calc-card #steg-bostad ~ .booking_hint, .calc-card section[aria-labelledby="steg-bostad"] > .booking_hint { display: none; }
 /* Valkort */
-.calc-card .br { gap: 22px; }
-.calc-card .Wr { border: 2px solid #E2E2E4; border-radius: 6px; background: #F6F6F7; box-shadow: none; }
-.calc-card .Wr:hover { border-color: #C9C9CE; }
-.calc-card .I, .calc-card .I:hover { border-color: var(--red); background: #FDF1F2; box-shadow: none; }
-.calc-card .b { padding: 16px 52px 16px 34px; }
-.calc-card .br > .b { grid-template-columns: 56px 1fr; column-gap: 34px; row-gap: 4px; align-items: center; min-height: 90px; }
-.calc-card .br > .b .w { grid-row: 1 / span 2; width: 52px; height: 52px; color: var(--ink); }
-.calc-card .br > .b.I .w { color: var(--red); }
-.calc-card .Xr { font-size: 18px; font-weight: 700; align-self: end; }
-.calc-card .L { font-size: 15.5px; color: var(--muted); align-self: start; }
-.calc-card .b::after {
+.calc-card .booking_grid2 { gap: 22px; }
+.calc-card .booking_card { border: 2px solid #E2E2E4; border-radius: 6px; background: #F6F6F7; box-shadow: none; }
+.calc-card .booking_card:hover { border-color: #C9C9CE; }
+.calc-card .booking_cardOn, .calc-card .booking_cardOn:hover { border-color: var(--red); background: #FDF1F2; box-shadow: none; }
+/* Fönsterkort: det valda kortet (antal öppet nedanför) får en tydlig mörk ram */
+.calc-card .booking_winTileSel, .calc-card .booking_winTileSel:hover { border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+.calc-card .booking_winDetail { border: 2px solid var(--ink); border-radius: 6px; }
+.calc-card .booking_choiceCard { padding: 16px 52px 16px 34px; }
+.calc-card .booking_grid2 > .booking_choiceCard { grid-template-columns: 56px 1fr; column-gap: 34px; row-gap: 4px; align-items: center; min-height: 90px; }
+.calc-card .booking_grid2 > .booking_choiceCard .booking_cardIcon { grid-row: 1 / span 2; width: 52px; height: 52px; color: var(--ink); }
+.calc-card .booking_grid2 > .booking_choiceCard.booking_cardOn .booking_cardIcon { color: var(--red); }
+.calc-card .booking_cardTitle { font-size: 18px; font-weight: 700; align-self: end; }
+.calc-card .booking_cardText { font-size: 15.5px; color: var(--muted); align-self: start; }
+.calc-card .booking_choiceCard::after {
   content: ''; position: absolute; top: 12px; right: 14px; width: 20px; height: 20px; border-radius: 50%;
   border: 2px solid #8A8A90; background: var(--white); box-sizing: border-box;
 }
-.calc-card .b.I::after { border-color: var(--red); background: radial-gradient(circle, var(--red) 0 4px, var(--white) 4.5px); }
-.calc-card .xr > .b::after, .calc-card .c::after { display: none; }
+.calc-card .booking_choiceCard.booking_cardOn::after { border-color: var(--red); background: radial-gradient(circle, var(--red) 0 4px, var(--white) 4.5px); }
+.calc-card .booking_grid3 > .booking_choiceCard::after, .calc-card .booking_tile::after { display: none; }
 /* Knappar */
-.calc-card .O { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; padding-top: 0; border-top: 0; }
-.calc-card .O > .e { grid-column: 2; min-width: 0; }
-.calc-card .O > span:empty + .e { grid-column: 1 / -1; }
-.calc-card .O > span:empty { display: none; }
-.calc-card .e {
+.calc-card .booking_stepNav { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; padding-top: 0; border-top: 0; }
+.calc-card .booking_stepNav > .booking_primary { grid-column: 2; min-width: 0; }
+.calc-card .booking_stepNav > span:empty + .booking_primary { grid-column: 1 / -1; }
+.calc-card .booking_stepNav > span:empty { display: none; }
+.calc-card .booking_primary {
   position: relative; height: 46px; min-height: 0; padding: 0 20px; border-radius: 6px; background: var(--red); color: var(--white);
   font-size: 18px; font-weight: 700; box-shadow: none; display: flex; align-items: center; justify-content: center; gap: 10px;
   transition: background .2s, transform .15s;
 }
-.calc-card .e:hover { background: var(--red-hot); }
-.calc-card .e:active { transform: scale(.99); }
-.calc-card .e[aria-disabled="true"] { opacity: .55; }
-.calc-card .O > .e > span[aria-hidden] { position: absolute; right: 22px; font-size: 22px; font-weight: 400; }
-.calc-card .g { height: 46px; padding: 0 18px; border-radius: 6px; border: 1.5px solid #D4D4D8; font-weight: 600; }
-.calc-card .U { display: none; }
+.calc-card .booking_primary:hover { background: var(--red-hot); }
+.calc-card .booking_primary:active { transform: scale(.99); }
+.calc-card .booking_primary[aria-disabled="true"] { opacity: .55; }
+.calc-card .booking_stepNav > .booking_primary > span[aria-hidden] { position: absolute; right: 22px; font-size: 22px; font-weight: 400; }
+.calc-card .booking_backBtn { height: 46px; padding: 0 18px; border-radius: 6px; border: 1.5px solid #D4D4D8; font-weight: 600; }
+.calc-card .booking_panelNav { display: none; }
 
 /* Din putsning */
-.calc-card .zr {
+.calc-card .booking_panel {
   grid-column: 2; grid-row: 1 / span 2; position: relative; top: auto; overflow: visible;
   background: #F4F4F5; border: 0; border-radius: 10px; box-shadow: none;
   padding: 18px 20px 6px 24px; display: block;
 }
-.calc-card .zr::before { content: ''; position: absolute; left: -36px; top: 10px; bottom: 10px; width: 1px; background: #E2E2E4; }
+.calc-card .booking_panel::before { content: ''; position: absolute; left: -36px; top: 10px; bottom: 10px; width: 1px; background: #E2E2E4; }
 .fp-panel-head { padding-bottom: 10px; border-bottom: 1px solid #DCDCDF; }
 .fp-panel-title { font-size: 26px; font-weight: 800; letter-spacing: -.03em; line-height: 1.15; color: var(--ink); }
 .fp-panel-sub { font-size: 15px; color: var(--muted); margin-top: 0; }
@@ -121,6 +124,7 @@
 .fp-radio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #8A8A90; background: var(--white); flex-shrink: 0; }
 .fp-opt-on .fp-radio { border-color: var(--red); background: radial-gradient(circle, var(--red) 0 4px, var(--white) 4.5px); }
 .fp-karm { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid #DCDCDF; border-bottom: 1px solid #DCDCDF; }
+.fp-toggles .fp-karm + .fp-karm { border-top: 0; }
 .fp-panel-hint { font-size: 13px; color: var(--muted); margin-top: 2px; }
 .fp-switch { position: relative; width: 52px; height: 26px; border-radius: 999px; background: #C9C9CE; flex-shrink: 0; transition: background .2s; }
 .fp-switch span { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--white); box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .2s; }
@@ -135,28 +139,28 @@
 .fp-panel-foot { font-size: 13px; color: var(--muted); padding-top: 8px; }
 
 @media (max-width: 1100px) {
-  .calc-card .ar { grid-template-columns: 1fr; padding: 26px; }
-  .calc-card .tr, .calc-card .nr { grid-column: 1; }
-  .calc-card .zr { grid-column: 1; grid-row: 3; margin-top: 28px; position: static; }
-  .calc-card .zr::before { display: none; }
-  .calc-card .O { display: grid; }
+  .calc-card .booking_shell { grid-template-columns: 1fr; padding: 26px; }
+  .calc-card .booking_appBar, .calc-card .booking_app { grid-column: 1; }
+  .calc-card .booking_panel { grid-column: 1; grid-row: 3; margin-top: 28px; position: static; }
+  .calc-card .booking_panel::before { display: none; }
+  .calc-card .booking_stepNav { display: grid; }
 }
 @media (max-width: 767px) {
-  .calc-card .ar { padding: 20px 16px; border-radius: 14px; }
-  .calc-card .tr { grid-template-columns: 1fr; }
-  .calc-card .er, .calc-card .or { display: block; }
-  .calc-card .or { justify-self: start; text-align: left; font-size: 14.5px; margin-top: 4px; }
-  .calc-card .a { margin-top: 20px; }
-  .calc-card .a li > button, .calc-card .a li > span { flex-direction: column; gap: 6px; }
-  .calc-card .a li:not(:last-child)::after { margin: 0 6px 22px; }
-  .calc-card .u { font-size: 11.5px; }
-  .calc-card .v { width: 26px; height: 26px; }
-  .calc-card .nr { margin-top: 24px; padding: 0; }
-  .calc-card .br { grid-template-columns: 1fr; gap: 12px; }
-  .calc-card .b { padding: 16px 44px 16px 18px; }
-  .calc-card .br > .b { grid-template-columns: 44px 1fr; column-gap: 16px; min-height: 0; }
-  .calc-card .br > .b .w { width: 40px; height: 40px; }
-  .calc-card .zr { padding: 18px 16px; }
+  .calc-card .booking_shell { padding: 20px 16px; border-radius: 14px; }
+  .calc-card .booking_appBar { grid-template-columns: 1fr; }
+  .calc-card .booking_appTitle, .calc-card .booking_appMeta { display: block; }
+  .calc-card .booking_appMeta { justify-self: start; text-align: left; font-size: 14.5px; margin-top: 4px; }
+  .calc-card .booking_progress { margin-top: 20px; }
+  .calc-card .booking_progress li > button, .calc-card .booking_progress li > span { flex-direction: column; gap: 6px; }
+  .calc-card .booking_progress li:not(:last-child)::after { margin: 0 6px 22px; }
+  .calc-card .booking_progressName { font-size: 11.5px; }
+  .calc-card .booking_progressDot { width: 26px; height: 26px; }
+  .calc-card .booking_app { margin-top: 24px; padding: 0; }
+  .calc-card .booking_grid2 { grid-template-columns: 1fr; gap: 12px; }
+  .calc-card .booking_choiceCard { padding: 16px 44px 16px 18px; }
+  .calc-card .booking_grid2 > .booking_choiceCard { grid-template-columns: 44px 1fr; column-gap: 16px; min-height: 0; }
+  .calc-card .booking_grid2 > .booking_choiceCard .booking_cardIcon { width: 40px; height: 40px; }
+  .calc-card .booking_panel { padding: 18px 16px; }
   .fp-opt { font-size: 15px; gap: 10px; padding: 12px; }
 }
 
@@ -167,15 +171,3 @@
 }
 .calc-card .fp-day-off small { font-size: 8.5px; font-weight: 600; letter-spacing: 0; color: #8A8A90; text-align: center; white-space: normal; }
 @media (max-width: 767px) { .calc-card .fp-day-off small { font-size: 7px; } }
-
-/* Hjälp: så räknar du fönster (1-, 2-, 3-luft) */
-.fp-count-help { margin: 4px 0 18px; padding: 16px 18px; border: 1.5px solid #DCDCDF; border-radius: 10px; background: #FAFAFA; }
-.fp-count-title { font-size: 16px; font-weight: 700; color: var(--ink); }
-.fp-count-text { font-size: 14px; line-height: 1.5; color: var(--muted); margin-top: 4px; }
-.fp-count-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px 16px; }
-.fp-count-list li { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.fp-count-list svg { flex-shrink: 0; fill: #EAF4FB; stroke: var(--ink); stroke-width: 2; }
-.fp-count-list span { display: grid; gap: 2px; min-width: 0; }
-.fp-count-list b { font-size: 14px; color: var(--ink); }
-.fp-count-list small { font-size: 12.5px; line-height: 1.35; color: var(--muted); }
-@media (max-width: 767px) { .fp-count-list { grid-template-columns: 1fr; } }
