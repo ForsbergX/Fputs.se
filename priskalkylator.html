@@ -173,6 +173,52 @@
       .calc-size-row .calc-stepper button { width: 40px; height: 40px; font-size: 20px; }
       .calc-size-row .calc-stepper input { width: 46px; font-size: 18px; }
     }
+    /* Fönsterkorten: stora fönsterbilder och tydliga −/+ under, lätt att se på mobilen. */
+    .calc-window-grid .calc-card { padding: 14px 14px 16px; }
+    .calc-window-grid .calc-card-art { height: auto; aspect-ratio: 200 / 216; background: #F7F9FB; border-radius: 10px; padding: 10px; margin-bottom: 14px; }
+    .calc-window-grid .calc-card-art svg { width: 100%; height: 100%; }
+    .calc-window-grid .calc-card p { min-height: 0; }
+    .calc-window-grid .calc-stepper { display: grid; grid-template-columns: 52px 1fr 52px; gap: 0; border: 1.5px solid var(--accent); border-radius: 10px; overflow: hidden; }
+    .calc-window-grid .calc-stepper button { width: auto; height: 52px; border: 0; border-radius: 0; background: var(--accent); color: #fff; font-size: 26px; font-weight: 700; }
+    .calc-window-grid .calc-stepper button:hover { background: #0E4E8A; color: #fff; border: 0; }
+    .calc-window-grid .calc-stepper input { width: 100%; height: 52px; font-size: 22px; background: #fff; }
+    @media (max-width: 560px) {
+      .calc-window-grid .calc-card-art { aspect-ratio: auto; height: 240px; }
+    }
+    .calc-window-grid.calc-look-grid { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .calc-look-grid .calc-card { padding: 10px 10px 12px; }
+    .calc-window-grid.calc-look-grid .calc-card-art { padding: 6px; margin-bottom: 10px; }
+    .calc-look-grid h3 { font-size: 14px; margin-bottom: 10px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+    .calc-look-grid .calc-stepper { grid-template-columns: 40px 1fr 40px; }
+    .calc-look-grid .calc-stepper button { height: 44px; font-size: 22px; }
+    .calc-look-grid .calc-stepper input { height: 44px; font-size: 20px; }
+    .calc-typ-grid { grid-template-columns: 1fr 1fr; margin-bottom: 8px; }
+    @media (max-width: 960px) { .calc-window-grid.calc-look-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 560px) {
+      .calc-window-grid.calc-look-grid { grid-template-columns: 1fr 1fr; }
+      .calc-window-grid.calc-look-grid .calc-card-art { aspect-ratio: 200 / 216; height: auto; }
+      .calc-typ-grid { grid-template-columns: 1fr; }
+    }
+    .calc-look-grid .calc-look-note { font-size: 12px; color: var(--accent); font-weight: 600; margin: -6px 0 10px; min-height: 0; }
+    /* Fönsterkorten fyller raderna: hela rader centreras, och i mobilen blir ett udda sista kort lika brett som raden. */
+    .calc-window-grid.calc-look-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .calc-look-grid > .calc-card { flex: 0 0 calc((100% - 36px) / 4); min-width: 0; }
+    @media (max-width: 960px) { .calc-look-grid > .calc-card { flex-basis: calc((100% - 24px) / 3); } }
+    @media (max-width: 560px) {
+      /* Mobil: en lista, ett fönster per rad med bilden till vänster. */
+      .calc-window-grid.calc-look-grid { gap: 10px; }
+      .calc-look-grid > .calc-card { flex-basis: 100%; display: grid; grid-template-columns: 112px 1fr; column-gap: 14px; align-items: center; text-align: left; padding: 10px 12px 10px 10px; }
+      .calc-look-grid > .calc-card { grid-template-rows: 1fr auto auto auto 1fr; }
+      .calc-look-grid > .calc-card .calc-card-art { grid-row: 1 / -1; margin-bottom: 0; }
+      .calc-look-grid > .calc-card h3 { grid-row: 2; }
+      .calc-look-grid > .calc-card .calc-look-note { grid-row: 3; }
+      .calc-look-grid > .calc-card .calc-stepper { grid-row: 4; }
+      .calc-look-grid > .calc-card h3 { justify-content: flex-start; min-height: 0; margin-bottom: 8px; }
+      .calc-look-grid > .calc-card .calc-look-note { margin: -4px 0 8px; }
+      .calc-look-grid > .calc-card .calc-check { top: 8px; right: 8px; }
+    }
+    .calc-tillval { display: grid; gap: 10px; margin-bottom: 8px; }
+    .calc-tillval .calc-toggle { margin: 0; }
     .calc-toggle {
       display: flex; align-items: center; justify-content: space-between; gap: 16px;
       border: 1.5px solid rgba(20,24,27,0.1); border-radius: 14px; padding: 18px 20px;
@@ -328,23 +374,46 @@
     <div class="calc-main">
       <h2 class="calc-heading">Fyll i hur många fönster du har. När du är klar trycker du Beräkna uppskattat pris. Du behöver inte lämna några uppgifter för att se priset.</h2>
 
-      <h3 class="calc-step-title">1. Hur är åtkomsten?</h3>
-      <div class="calc-choice-grid" style="grid-template-columns:1fr 1fr 1fr;">
-        <button type="button" class="calc-card calc-card-choice is-active" data-hustyp="Vanlig villa" id="cardEnplan">
+      <h3 class="calc-step-title">1. Hur många sidor?</h3>
+      <div class="calc-choice-grid calc-typ-grid">
+        <button type="button" class="calc-card calc-card-choice is-active" data-fonstertyp="2">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h3>Vanlig villa</h3>
-          <p>Fönster i normal höjd med enkel åtkomst.</p>
+          <h3>2-sidigt</h3>
+          <p>Ett glas per båge. Putsas in- och utvändigt.</p>
         </button>
-        <button type="button" class="calc-card calc-card-choice" data-hustyp="Avancerad villa" id="cardSouterrang">
+        <button type="button" class="calc-card calc-card-choice" data-fonstertyp="4">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h3>Avancerad villa</h3>
-          <p>Höga fasta fönster, stora glaspartier, flera våningar eller fönster som kräver stege/skaft.</p>
+          <h3>4-sidigt</h3>
+          <p>Två glas som öppnas inåt. Putsas även emellan.</p>
         </button>
-        <button type="button" class="calc-card calc-card-choice" data-hustyp="Villa med spröjs" id="cardSprojsVilla">
-          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <h3>Villa med spröjs</h3>
-          <p>Spröjs varierar mycket. Skicka bilder på fönstren så räknar jag ut ett fast pris åt dig.</p>
-        </button>
+      </div>
+
+      <h3 class="calc-step-title">2. Gäller något av detta?</h3>
+      <div class="calc-tillval">
+        <label class="calc-toggle" id="valUtatToggle">
+          <input type="checkbox" id="valUtat" />
+          <div class="calc-toggle-copy">
+            <strong>Utåtgående fönster</strong>
+            <span>Fönstren öppnas utåt</span>
+          </div>
+          <span class="calc-switch" aria-hidden="true"></span>
+        </label>
+        <label class="calc-toggle" id="valHogaToggle">
+          <input type="checkbox" id="valHoga" />
+          <div class="calc-toggle-copy">
+            <strong>Höga fönster</strong>
+            <span>Stege eller renvatten behövs</span>
+          </div>
+          <span class="calc-switch" aria-hidden="true"></span>
+        </label>
+        <label class="calc-toggle" id="valSprojsFastToggle">
+          <input type="checkbox" id="valSprojsFast" />
+          <div class="calc-toggle-copy">
+            <strong>Fasta spröjs</strong>
+            <span>Spröjsen sitter fast i glaset</span>
+          </div>
+          <span class="calc-switch" aria-hidden="true"></span>
+        </label>
       </div>
 
       <div id="calcSprojsVillaFlow" style="display:none;margin-top:28px;">
@@ -360,86 +429,106 @@
       </div>
 
       <div id="calcNormalFlow">
-      <h3 class="calc-step-title">2. Antal fönster</h3>
-      <div class="calc-window-grid">
-        <div class="calc-card" id="card2" data-card="2">
+      <h3 class="calc-step-title">3. Antal fönster</h3>
+      <div class="calc-window-grid calc-look-grid">
+        <div class="calc-card" id="card-antalL1">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div class="calc-card-art">
-            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="34" y="22" width="52" height="76" rx="3" stroke="#1a1a1a" stroke-width="2.4"/>
-              <path d="M60 22v76" stroke="#1a1a1a" stroke-width="2"/>
-              <path d="M18 60h12" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M24 54l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M90 60h12" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M96 54l8 6-8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>Standardfönster</h3>
-          <p>2-sidor, in- &amp; utvändigt</p>
-          <div class="calc-price-hint">38 kr / st efter RUT</div>
+          <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1F7FC"/><stop offset="1" stop-color="#C7DCEE"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#1F2A33" stroke-width="3"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#1F2A33"/><rect x="40" y="28" width="120" height="160" fill="#fff" stroke="#1F2A33" stroke-width="2"/><rect x="47" y="35" width="106" height="146" rx="1" fill="url(#lg1)" stroke="#1F2A33" stroke-width="1.4"/><path d="M52 86.1L110.6 40h19.08L52 108z" fill="#fff" opacity=".7"/></svg></div>
+          <h3>1-luft</h3>
           <div class="calc-stepper">
-            <button type="button" data-target="antal2" data-step="-1" aria-label="Minska standardfönster">−</button>
-            <input type="number" id="antal2" name="antal_2_sidor" min="0" max="200" value="0" inputmode="numeric" />
-            <button type="button" data-target="antal2" data-step="1" aria-label="Öka standardfönster">+</button>
+            <button type="button" data-target="antalL1" data-step="-1" aria-label="Minska 1-luft">−</button>
+            <input type="number" id="antalL1" min="0" max="200" value="0" inputmode="numeric" aria-label="Antal 1-luft" />
+            <button type="button" data-target="antalL1" data-step="1" aria-label="Öka 1-luft">+</button>
           </div>
         </div>
-
-        <div class="calc-card" id="card4" data-card="4">
+        <div class="calc-card" id="card-antalL2">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div class="calc-card-art">
-            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="22" y="22" width="34" height="76" rx="3" stroke="#1a1a1a" stroke-width="2.4"/>
-              <path d="M56 28l34 10v54l-34 10V28z" stroke="#1a1a1a" stroke-width="2.4"/>
-              <path d="M39 22v76" stroke="#1a1a1a" stroke-width="1.6"/>
-              <path d="M8 60h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M12 54l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M102 50h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M108 44l8 6-8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M64 18v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M58 24l6-8 6 8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M64 92v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M58 96l6 8 6-8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>Öppningsbara fönster</h3>
-          <p>4-sidor inåt, putsas även emellan</p>
-          <div class="calc-price-hint">75 kr / st efter RUT</div>
+          <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1F7FC"/><stop offset="1" stop-color="#C7DCEE"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#1F2A33" stroke-width="3"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#1F2A33"/><rect x="40" y="28" width="60" height="160" fill="#fff" stroke="#1F2A33" stroke-width="2"/><rect x="47" y="35" width="46" height="146" rx="1" fill="url(#lg2)" stroke="#1F2A33" stroke-width="1.4"/><path d="M52 86.1L74.6 40h8.28L52 108z" fill="#fff" opacity=".7"/><rect x="100" y="28" width="60" height="160" fill="#fff" stroke="#1F2A33" stroke-width="2"/><rect x="107" y="35" width="46" height="146" rx="1" fill="url(#lg2)" stroke="#1F2A33" stroke-width="1.4"/><path d="M112 86.1L134.6 40h8.28L112 108z" fill="#fff" opacity=".7"/></svg></div>
+          <h3>2-luft</h3>
           <div class="calc-stepper">
-            <button type="button" data-target="antal4" data-step="-1" aria-label="Minska öppningsbara fönster">−</button>
-            <input type="number" id="antal4" name="antal_4_sidor" min="0" max="200" value="0" inputmode="numeric" />
-            <button type="button" data-target="antal4" data-step="1" aria-label="Öka öppningsbara fönster">+</button>
+            <button type="button" data-target="antalL2" data-step="-1" aria-label="Minska 2-luft">−</button>
+            <input type="number" id="antalL2" min="0" max="200" value="0" inputmode="numeric" aria-label="Antal 2-luft" />
+            <button type="button" data-target="antalL2" data-step="1" aria-label="Öka 2-luft">+</button>
           </div>
         </div>
-
-        <div class="calc-card" id="cardUtat" data-card="utat">
+        <div class="calc-card" id="card-antalS2">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div class="calc-card-art">
-            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="22" y="22" width="36" height="76" rx="3" stroke="#1a1a1a" stroke-width="2.4"/>
-              <path d="M58 30l36-12v84L58 90V30z" stroke="#1a1a1a" stroke-width="2.4"/>
-              <path d="M40 22v76" stroke="#1a1a1a" stroke-width="1.6"/>
-              <path d="M8 60h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M12 54l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M102 46h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M108 40l8 6-8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M78 14v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M72 20l6-8 6 8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M78 96v10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/>
-              <path d="M72 100l6 8 6-8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>Utåtgående fönster</h3>
-          <p>4-sidor utåt – mer tidskrävande</p>
-          <div class="calc-price-hint">100 kr / st efter RUT</div>
+          <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgS2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1F7FC"/><stop offset="1" stop-color="#C7DCEE"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#1F2A33" stroke-width="3"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#1F2A33"/><rect x="40" y="28" width="60" height="160" fill="#fff" stroke="#1F2A33" stroke-width="2"/><rect x="47" y="35" width="46" height="70" rx="1" fill="url(#lgS2)" stroke="#1F2A33" stroke-width="1.4"/><path d="M52 59.5L74.6 40h8.28L52 70z" fill="#fff" opacity=".7"/><rect x="47" y="111" width="46" height="70" rx="1" fill="url(#lgS2)" stroke="#1F2A33" stroke-width="1.4"/><path d="M52 135.5L74.6 116h8.28L52 146z" fill="#fff" opacity=".7"/><rect x="100" y="28" width="60" height="160" fill="#fff" stroke="#1F2A33" stroke-width="2"/><rect x="107" y="35" width="46" height="70" rx="1" fill="url(#lgS2)" stroke="#1F2A33" stroke-width="1.4"/><path d="M112 59.5L134.6 40h8.28L112 70z" fill="#fff" opacity=".7"/><rect x="107" y="111" width="46" height="70" rx="1" fill="url(#lgS2)" stroke="#1F2A33" stroke-width="1.4"/><path d="M112 135.5L134.6 116h8.28L112 146z" fill="#fff" opacity=".7"/></svg></div>
+          <h3>2-luft spröjs, 2 rutor</h3>
           <div class="calc-stepper">
-            <button type="button" data-target="antalUtat" data-step="-1" aria-label="Minska utåtgående fönster">−</button>
-            <input type="number" id="antalUtat" name="antal_utatgaende" min="0" max="200" value="0" inputmode="numeric" />
-            <button type="button" data-target="antalUtat" data-step="1" aria-label="Öka utåtgående fönster">+</button>
+            <button type="button" data-target="antalS2" data-step="-1" aria-label="Minska 2-luft spröjs, 2 rutor">−</button>
+            <input type="number" id="antalS2" min="0" max="200" value="0" inputmode="numeric" aria-label="Antal 2-luft spröjs, 2 rutor" />
+            <button type="button" data-target="antalS2" data-step="1" aria-label="Öka 2-luft spröjs, 2 rutor">+</button>
+          </div>
+        </div>
+        <div class="calc-card" id="card-antalS3">
+          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1F7FC"/><stop offset="1" stop-color="#C7DCEE"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#1F2A33" stroke-width="3"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#1F2A33"/><rect x="40" y="28" width="60" height="160" fill="#fff" stroke="#1F2A33" stroke-width="2"/><rect x="47" y="35" width="46" height="44.666666666666664" rx="1" fill="url(#lg3)" stroke="#1F2A33" stroke-width="1.4"/><path d="M52 50.63333333333333L74.6 40h8.28L52 57.33333333333333z" fill="#fff" opacity=".7"/><rect x="47" y="85.66666666666666" width="46" height="44.666666666666664" rx="1" fill="url(#lg3)" stroke="#1F2A33" stroke-width="1.4"/><path d="M52 101.29999999999998L74.6 90.66666666666666h8.28L52 107.99999999999999z" fill="#fff" opacity=".7"/><rect x="47" y="136.33333333333331" width="46" height="44.666666666666664" rx="1" fill="url(#lg3)" stroke="#1F2A33" stroke-width="1.4"/><path d="M52 151.96666666666664L74.6 141.33333333333331h8.28L52 158.66666666666666z" fill="#fff" opacity=".7"/><rect x="100" y="28" width="60" height="160" fill="#fff" stroke="#1F2A33" stroke-width="2"/><rect x="107" y="35" width="46" height="44.666666666666664" rx="1" fill="url(#lg3)" stroke="#1F2A33" stroke-width="1.4"/><path d="M112 50.63333333333333L134.6 40h8.28L112 57.33333333333333z" fill="#fff" opacity=".7"/><rect x="107" y="85.66666666666666" width="46" height="44.666666666666664" rx="1" fill="url(#lg3)" stroke="#1F2A33" stroke-width="1.4"/><path d="M112 101.29999999999998L134.6 90.66666666666666h8.28L112 107.99999999999999z" fill="#fff" opacity=".7"/><rect x="107" y="136.33333333333331" width="46" height="44.666666666666664" rx="1" fill="url(#lg3)" stroke="#1F2A33" stroke-width="1.4"/><path d="M112 151.96666666666664L134.6 141.33333333333331h8.28L112 158.66666666666666z" fill="#fff" opacity=".7"/></svg></div>
+          <h3>2-luft spröjs, 3 rutor</h3>
+          <div class="calc-stepper">
+            <button type="button" data-target="antalS3" data-step="-1" aria-label="Minska 2-luft spröjs, 3 rutor">−</button>
+            <input type="number" id="antalS3" min="0" max="200" value="0" inputmode="numeric" aria-label="Antal 2-luft spröjs, 3 rutor" />
+            <button type="button" data-target="antalS3" data-step="1" aria-label="Öka 2-luft spröjs, 3 rutor">+</button>
+          </div>
+        </div>
+        <div class="calc-card" id="card-antalS4">
+          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1F7FC"/><stop offset="1" stop-color="#C7DCEE"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#1F2A33" stroke-width="3"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#1F2A33"/><rect x="40" y="28" width="60" height="160" fill="#fff" stroke="#1F2A33" stroke-width="2"/><rect x="47" y="35" width="46" height="32" rx="1" fill="url(#lg4)" stroke="#1F2A33" stroke-width="1.4"/><path d="M52 61L70 40h6.8999999999999995L59 61z" fill="#fff" opacity=".6"/><rect x="47" y="73" width="46" height="32" rx="1" fill="url(#lg4)" stroke="#1F2A33" stroke-width="1.4"/><path d="M52 99L70 78h6.8999999999999995L59 99z" fill="#fff" opacity=".6"/><rect x="47" y="111" width="46" height="32" rx="1" fill="url(#lg4)" stroke="#1F2A33" stroke-width="1.4"/><path d="M52 137L70 116h6.8999999999999995L59 137z" fill="#fff" opacity=".6"/><rect x="47" y="149" width="46" height="32" rx="1" fill="url(#lg4)" stroke="#1F2A33" stroke-width="1.4"/><path d="M52 175L70 154h6.8999999999999995L59 175z" fill="#fff" opacity=".6"/><rect x="100" y="28" width="60" height="160" fill="#fff" stroke="#1F2A33" stroke-width="2"/><rect x="107" y="35" width="46" height="32" rx="1" fill="url(#lg4)" stroke="#1F2A33" stroke-width="1.4"/><path d="M112 61L130 40h6.8999999999999995L119 61z" fill="#fff" opacity=".6"/><rect x="107" y="73" width="46" height="32" rx="1" fill="url(#lg4)" stroke="#1F2A33" stroke-width="1.4"/><path d="M112 99L130 78h6.8999999999999995L119 99z" fill="#fff" opacity=".6"/><rect x="107" y="111" width="46" height="32" rx="1" fill="url(#lg4)" stroke="#1F2A33" stroke-width="1.4"/><path d="M112 137L130 116h6.8999999999999995L119 137z" fill="#fff" opacity=".6"/><rect x="107" y="149" width="46" height="32" rx="1" fill="url(#lg4)" stroke="#1F2A33" stroke-width="1.4"/><path d="M112 175L130 154h6.8999999999999995L119 175z" fill="#fff" opacity=".6"/></svg></div>
+          <h3>2-luft spröjs, 4 rutor</h3>
+          <div class="calc-stepper">
+            <button type="button" data-target="antalS4" data-step="-1" aria-label="Minska 2-luft spröjs, 4 rutor">−</button>
+            <input type="number" id="antalS4" min="0" max="200" value="0" inputmode="numeric" aria-label="Antal 2-luft spröjs, 4 rutor" />
+            <button type="button" data-target="antalS4" data-step="1" aria-label="Öka 2-luft spröjs, 4 rutor">+</button>
+          </div>
+        </div>
+        <div class="calc-card" id="card-antalOverligg">
+          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgOver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3F0FB"/><stop offset="1" stop-color="#9FC3E4"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#C5CCD3" stroke-width="2" stroke-dasharray="5 4"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#C5CCD3"/><rect x="40" y="80" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="47" y="87" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="100" y="80" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="107" y="87" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="40" y="28" width="120" height="46" fill="#fff" stroke="#0B3D6E" stroke-width="2.6"/><rect x="47" y="35" width="106" height="32" rx="1" fill="url(#lgOver)" stroke="#0B3D6E" stroke-width="1.6"/><path d="M53 62L78.8 40h10.600000000000001L59.72 62z" fill="#fff" opacity=".7"/></svg></div>
+          <h3>Överliggande fönster</h3>
+          <p class="calc-look-note">Bara den liggande rutan överst</p>
+          <div class="calc-stepper">
+            <button type="button" data-target="antalOverligg" data-step="-1" aria-label="Minska Överliggande fönster">−</button>
+            <input type="number" id="antalOverligg" min="0" max="200" value="0" inputmode="numeric" aria-label="Antal Överliggande fönster" />
+            <button type="button" data-target="antalOverligg" data-step="1" aria-label="Öka Överliggande fönster">+</button>
+          </div>
+        </div>
+        <div class="calc-card" id="card-antalUnderligg">
+          <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgUnder" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3F0FB"/><stop offset="1" stop-color="#9FC3E4"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#C5CCD3" stroke-width="2" stroke-dasharray="5 4"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#C5CCD3"/><rect x="40" y="28" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="47" y="35" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="100" y="28" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="107" y="35" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="40" y="142" width="120" height="46" fill="#fff" stroke="#0B3D6E" stroke-width="2.6"/><rect x="47" y="149" width="106" height="32" rx="1" fill="url(#lgUnder)" stroke="#0B3D6E" stroke-width="1.6"/><path d="M53 176L78.8 154h10.600000000000001L59.72 176z" fill="#fff" opacity=".7"/></svg></div>
+          <h3>Underliggande fönster</h3>
+          <p class="calc-look-note">Bara den liggande rutan nederst</p>
+          <div class="calc-stepper">
+            <button type="button" data-target="antalUnderligg" data-step="-1" aria-label="Minska Underliggande fönster">−</button>
+            <input type="number" id="antalUnderligg" min="0" max="200" value="0" inputmode="numeric" aria-label="Antal Underliggande fönster" />
+            <button type="button" data-target="antalUnderligg" data-step="1" aria-label="Öka Underliggande fönster">+</button>
           </div>
         </div>
       </div>
+      <input type="hidden" id="antal2" name="antal_2_sidor" value="0" />
+      <input type="hidden" id="antal4" name="antal_4_sidor" value="0" />
+      <input type="hidden" id="antalUtat" name="antal_utatgaende" value="0" />
 
-      <h3 class="calc-step-title">3. Uterum, balkong och altan</h3>
+      <h3 class="calc-step-title">4. Tillval</h3>
+      <div class="calc-tillval">
+        <label class="calc-toggle" id="valKarmToggle">
+          <input type="checkbox" id="valKarm" />
+          <div class="calc-toggle-copy">
+            <strong>Lätt karmtvätt</strong>
+            <span>Rengöring av karmarna</span>
+          </div>
+          <span class="calc-switch" aria-hidden="true"></span>
+        </label>
+        <label class="calc-toggle" id="valSaneringToggle">
+          <input type="checkbox" id="valSanering" />
+          <div class="calc-toggle-copy">
+            <strong>Färg, silikon eller byggdamm</strong>
+            <span>Prissätts när jag har sett glasen</span>
+          </div>
+          <span class="calc-switch" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <h3 class="calc-step-title">5. Uterum, balkong och altan</h3>
       <p class="calc-lead" style="margin-bottom:16px;">Räknas in i totalsumman. Golv till tak 40 kr / st efter RUT. Räcker till tak 20 kr / st efter RUT.</p>
       <div class="calc-extra-grid">
         <div class="calc-card calc-card-tall" id="cardUterum">
@@ -524,8 +613,8 @@
         </div>
       </div>
 
-      <h3 class="calc-step-title">4. Har fönstren fasta spröjs?</h3>
-      <label class="calc-toggle" id="sprojsToggle">
+      <h3 class="calc-step-title" style="display:none">Har fönstren fasta spröjs?</h3>
+      <label class="calc-toggle" id="sprojsToggle" style="display:none">
         <input type="checkbox" id="sprojs" />
         <div class="calc-toggle-copy">
           <strong>Fasta spröjs</strong>
@@ -996,18 +1085,41 @@
 
 <script>
   (function () {
-    var PRICE_2 = 38;
-    var PRICE_4 = 75;
-    var PRICE_UTAT = 100;
+    var PRICE_2 = 33;
+    var PRICE_4 = 67;
+    var PRICE_UTAT = 67;
     var PRICE_GOLV = 40;
     var PRICE_TAK = 20;
     var PRICE_SPROJS_TBD = null; // Spröjspris ej bestämt ännu – sätts separat tills Tommy ger exakta priser
-    var MIN_ENPLAN = 600;
+    var MIN_ENPLAN = 750;
     var MIN_SOUTERRANG = 900;
     var SPROJS_QUOTE_LIMIT = 10;
 
-    var countIds = ['antal2', 'antal4', 'antalUtat', 'uterumGolv', 'uterumTak', 'balkongGolv', 'balkongTak', 'altanGolv', 'altanTak', 'antalSprojs'];
-    var windowIds = ['antal2', 'antal4', 'antalUtat', 'uterumGolv', 'uterumTak', 'balkongGolv', 'balkongTak', 'altanGolv', 'altanTak'];
+    var LOOK_MIN = { antalL1: 2, antalL2: 4, antalS2: 16 / 3, antalS3: 20 / 3, antalS4: 8, antalOverligg: 4.5, antalUnderligg: 3 }; // minuter per fönster, 2-sidigt
+    var LOOK_NAMN = { antalL1: '1-luft', antalL2: '2-luft', antalS2: '2-luft spröjs 2 rutor', antalS3: '2-luft spröjs 3 rutor', antalS4: '2-luft spröjs 4 rutor', antalOverligg: 'Överliggande fönster', antalUnderligg: 'Underliggande fönster' };
+    var lookIds = Object.keys(LOOK_NAMN);
+    var TYP_FAKTOR = { '2': 1, '4': 2, 'utat': 2 };
+    // Egna tider för 4-sidigt/utåtgående där det inte är dubbla 2-sidiga tiden (Tommy 2026-10-15)
+    var LOOK_MIN_4 = { antalOverligg: 10, antalUnderligg: 10 };
+    function fonsterMin(typ) {
+      return lookIds.reduce(function (sum, id) {
+        var min = typ !== '2' && LOOK_MIN_4[id] ? LOOK_MIN_4[id] : LOOK_MIN[id] * TYP_FAKTOR[typ];
+        return sum + val(id) * min;
+      }, 0);
+    }
+    var TYP_NAMN = { '2': '2-sidigt', '4': '4-sidigt', 'utat': 'Utåtgående' };
+    var fonsterTyp = '2';
+    var KARM_ANDEL = 0.15; // lätt karmtvätt: +15 % av priset
+    var HOGA_MIN = 10; // höga fönster: 10 min per jobb att plocka fram stege/renvatten
+    // Pris efter RUT per påbörjad halvtimme (minst 1,5 h), enligt prislistan i TIDER.md.
+    var TIDS_PRISER = { 1.5: 750, 2: 1000, 2.5: 1250, 3: 1525, 3.5: 1800, 4: 2050, 4.5: 2325, 5: 2575, 5.5: 2850, 6: 3100 };
+    function tidsPris(minuter) {
+      if (minuter <= 0) return 0;
+      var h = Math.max(1.5, Math.ceil(Math.round(minuter) / 30) / 2);
+      return h <= 6 ? TIDS_PRISER[h] : TIDS_PRISER[6] + (h - 6) * 2 * 250;
+    }
+    var countIds = ['antalL1', 'antalL2', 'antalS2', 'antalS3', 'antalS4', 'antalOverligg', 'antalUnderligg', 'uterumGolv', 'uterumTak', 'balkongGolv', 'balkongTak', 'altanGolv', 'altanTak', 'antalSprojs'];
+    var windowIds = ['antalL1', 'antalL2', 'antalS2', 'antalS3', 'antalS4', 'antalOverligg', 'antalUnderligg', 'uterumGolv', 'uterumTak', 'balkongGolv', 'balkongTak', 'altanGolv', 'altanTak'];
     var hustypInput = document.getElementById('hustyp');
     var sprojs = document.getElementById('sprojs');
     var sprojsTyp = '2-sidor';
@@ -1103,7 +1215,7 @@
       var nSprojs = val('antalSprojs');
       var siteVisit = needsSiteVisit(sprojs.checked, nSprojs);
       if (allWindows < 1 && nSprojs > 0) {
-        return 'Fyll i hur många fönster som ska putsas (standard, öppningsbara eller utåtgående). Spröjs är ett tillägg ovanpå det.';
+        return 'Fyll i hur många fönster som ska putsas.';
       }
       if (!siteVisit && allWindows < 1) return 'Fyll i hur många fönster som ska putsas, sen tryck Beräkna uppskattat pris.';
       if (siteVisit && allWindows < 1 && nSprojs < 1) return 'Fyll i antal fönster och spröjs, så jag vet vad jag ska räkna på.';
@@ -1135,6 +1247,12 @@
         document.getElementById(id).value = val(id);
       });
 
+      var lookCount = 0, lookMin = 0;
+      lookIds.forEach(function (id) { lookCount += val(id); lookMin += val(id) * LOOK_MIN[id]; });
+      var typ = document.getElementById('valUtat').checked ? 'utat' : fonsterTyp;
+      document.getElementById('antal2').value = typ === '2' ? lookCount : 0;
+      document.getElementById('antal4').value = typ === '4' ? lookCount : 0;
+      document.getElementById('antalUtat').value = typ === 'utat' ? lookCount : 0;
       var n2 = val('antal2');
       var n4 = val('antal4');
       var nUtat = val('antalUtat');
@@ -1154,7 +1272,10 @@
 
       var hasSprojs = sprojs.checked;
       var siteVisit = needsSiteVisit(hasSprojs, nSprojs);
-      var houseRaw = (n2 * PRICE_2) + (n4 * PRICE_4) + (nUtat * PRICE_UTAT);
+      var valKarm = document.getElementById('valKarm').checked;
+      var valSanering = document.getElementById('valSanering').checked;
+      var valHoga = document.getElementById('valHoga').checked;
+      var houseRaw = tidsPris(fonsterMin(typ) + (valHoga && lookCount > 0 ? HOGA_MIN : 0));
       var extraRaw = (extraGolv * PRICE_GOLV) + (extraTak * PRICE_TAK);
       var sprojsRaw = 0;
       var sprojsPending = hasSprojs && nSprojs > 0 && !siteVisit;
@@ -1163,10 +1284,12 @@
       var hasWindows = allWindows > 0;
       var usedMin = hasWindows && !siteVisit && raw < minPrice;
       var total = hasWindows ? Math.max(raw, minPrice) : 0;
+      if (valKarm) total += Math.round(total * KARM_ANDEL);
+      ['valKarm', 'valSanering', 'valHoga', 'valUtat', 'valSprojsFast'].forEach(function (id) {
+        document.getElementById(id + 'Toggle').classList.toggle('is-active', document.getElementById(id).checked);
+      });
 
-      document.getElementById('card2').classList.toggle('is-active', n2 > 0);
-      document.getElementById('card4').classList.toggle('is-active', n4 > 0);
-      document.getElementById('cardUtat').classList.toggle('is-active', nUtat > 0);
+      lookIds.forEach(function (id) { document.getElementById('card-' + id).classList.toggle('is-active', val(id) > 0); });
       document.getElementById('cardUterum').classList.toggle('is-active', ug + ut > 0);
       document.getElementById('cardBalkong').classList.toggle('is-active', bg + bt > 0);
       document.getElementById('cardAltan').classList.toggle('is-active', ag + at > 0);
@@ -1261,9 +1384,12 @@
         }
       }
       var poster = [];
-      if (n2 > 0) poster.push('Standardfönster (2-sidor): ' + n2 + ' st');
-      if (n4 > 0) poster.push('Öppningsbara (4-sidor): ' + n4 + ' st');
-      if (nUtat > 0) poster.push('Utåtgående (4-sidor): ' + nUtat + ' st');
+      lookIds.forEach(function (id) { if (val(id) > 0) poster.push(LOOK_NAMN[id] + ': ' + val(id) + ' st'); });
+      if (lookCount > 0) poster.push('Typ av fönster: ' + TYP_NAMN[typ]);
+      if (document.getElementById('valSprojsFast').checked) poster.push('Fasta spröjs: Ja');
+      if (valKarm) poster.push('Lätt karmtvätt: Ja');
+      if (valHoga) poster.push('Höga fönster: Ja');
+      if (valSanering) poster.push('Färg, silikon eller byggdamm: Ja (prissätts när jag sett glasen)');
       if (ug > 0) poster.push('Uterum golv till tak: ' + ug + ' st');
       if (ut > 0) poster.push('Uterum räcke till tak: ' + ut + ' st');
       if (bg > 0) poster.push('Balkong golv till tak: ' + bg + ' st');
@@ -1295,6 +1421,16 @@
       });
     });
 
+    document.querySelectorAll('[data-fonstertyp]').forEach(function (card) {
+      card.addEventListener('click', function () {
+        document.querySelectorAll('[data-fonstertyp]').forEach(function (other) {
+          other.classList.toggle('is-active', other === card);
+        });
+        fonsterTyp = card.getAttribute('data-fonstertyp');
+        update();
+      });
+    });
+
     document.querySelectorAll('[data-sprojs-typ]').forEach(function (card) {
       card.addEventListener('click', function () {
         document.querySelectorAll('[data-sprojs-typ]').forEach(function (other) {
@@ -1316,12 +1452,12 @@
 
     sprojs.addEventListener('change', function () {
       if (sprojs.checked && val('antalSprojs') === 0) {
-        var guessed = val('antal2') + val('antal4') + val('antalUtat');
+        var guessed = lookIds.reduce(function (sum, id) { return sum + val(id); }, 0);
         if (guessed > 0) document.getElementById('antalSprojs').value = guessed;
       }
     });
 
-    countIds.concat(['sprojs']).forEach(function (id) {
+    countIds.concat(['sprojs', 'valKarm', 'valSanering', 'valHoga', 'valUtat', 'valSprojsFast']).forEach(function (id) {
       var el = document.getElementById(id);
       el.addEventListener('input', update);
       el.addEventListener('change', update);
