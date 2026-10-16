@@ -1295,6 +1295,9 @@
       });
 
       lookIds.forEach(function (id) { document.getElementById('card-' + id).classList.toggle('is-active', val(id) > 0); });
+      ['antalS2', 'antalS3', 'antalS4'].forEach(function (id) {
+        document.getElementById('card-' + id).style.display = document.getElementById('valSprojsFast').checked ? '' : 'none';
+      });
       document.getElementById('cardUterum').classList.toggle('is-active', ug + ut > 0);
       document.getElementById('cardBalkong').classList.toggle('is-active', bg + bt > 0);
       document.getElementById('cardAltan').classList.toggle('is-active', ag + at > 0);
@@ -1460,6 +1463,11 @@
         var guessed = lookIds.reduce(function (sum, id) { return sum + val(id); }, 0);
         if (guessed > 0) document.getElementById('antalSprojs').value = guessed;
       }
+    });
+
+    // Spröjskorten visas bara när "Fasta spröjs" är på – nollställ dem när det slås av
+    document.getElementById('valSprojsFast').addEventListener('change', function () {
+      if (!this.checked) ['antalS2', 'antalS3', 'antalS4'].forEach(function (id) { document.getElementById(id).value = 0; });
     });
 
     countIds.concat(['sprojs', 'valKarm', 'valSanering', 'valHoga', 'valUtat', 'valSprojsFast']).forEach(function (id) {
