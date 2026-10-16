@@ -66,12 +66,12 @@
       --muted: #4A5259;
       /* Den här sidan har egen CSS och missade den blå paletten. Namnen behålls så att
          befintliga regler fungerar, men värdena är nu samma blå som resten av sajten. */
-      --accent: #0B3D6E;
-      --accent-hover: #082C50;
+      --accent: #d1101f;
+      --accent-hover: #b00d1a;
       --green: var(--accent);
       --green-text: var(--accent-hover);
       /* Ljusare blå som knapparna tänds upp med när musen är över dem. */
-      --cta-bright: #1D5C99;
+      --cta-bright: #e3263a;
       --border: rgba(20,24,27,0.09);
     }
     html {
@@ -122,7 +122,7 @@
     .nav-dropdown-menu a { display: block; padding: 9px 16px; font-size: 10.5px; white-space: nowrap; text-align: left; }
     .nav-dropdown-menu a:hover { transform: none; color: var(--accent); }
     .nav-cta { background: var(--green) !important; color: var(--white) !important; padding: 9px 20px; border-radius: 999px; white-space: nowrap; transition: background 0.15s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s; }
-    .nav-cta:hover { background: var(--cta-bright) !important; transform: scale(1.08) !important; box-shadow: 0 8px 20px -8px rgba(9,105,218,0.9); }
+    .nav-cta:hover { background: var(--cta-bright) !important; transform: scale(1.08) !important; box-shadow: 0 8px 20px -8px rgba(209,16,31,0.9); }
     .nav-cta:active { transform: scale(0.96) !important; }
     .nav-cta-mob { display: none !important; }
     .nav-toggle {
@@ -206,9 +206,9 @@
       font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
       padding: 16px 36px; border: none; border-radius: 4px; cursor: pointer;
       text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 8px 20px -10px rgba(9,105,218,0.65);
+      box-shadow: 0 8px 20px -10px rgba(209,16,31,0.65);
     }
-    .btn-primary:hover { background: var(--cta-bright); transform: translateY(-2px); box-shadow: 0 14px 28px -10px rgba(9,105,218,0.9); }
+    .btn-primary:hover { background: var(--cta-bright); transform: translateY(-2px); box-shadow: 0 14px 28px -10px rgba(209,16,31,0.9); }
     .btn-primary:active { background: var(--accent-hover); transform: translateY(0); }
     .btn-outline {
       background: rgba(20,24,27,0.03); color: var(--ink); font-family: 'Montserrat', sans-serif;
@@ -785,6 +785,7 @@
   </style>
   <style>#nl-badge-frame{display:none !important;}</style>
   <link rel="stylesheet" href="css/sidfot.css" />
+  <link rel="stylesheet" href="css/bubblor.css" />
 </head>
 <body>
 <!-- NAV -->

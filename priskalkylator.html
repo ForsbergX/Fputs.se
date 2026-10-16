@@ -125,7 +125,7 @@
     }
     .calc-card.is-active {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(9,105,218,0.12);
+      box-shadow: 0 0 0 3px rgba(209,16,31,0.12);
     }
     .calc-check {
       position: absolute; top: 12px; right: 12px;
@@ -148,7 +148,7 @@
       font-size: 20px; line-height: 1; color: var(--ink); cursor: pointer;
       transition: background 0.15s, border-color 0.15s, color 0.15s;
     }
-    .calc-stepper button:hover { border-color: var(--accent); color: var(--accent); background: rgba(9,105,218,0.06); }
+    .calc-stepper button:hover { border-color: var(--accent); color: var(--accent); background: rgba(209,16,31,0.06); }
     .calc-stepper input {
       width: 52px; border: none; background: transparent;
       text-align: center; font-size: 20px; font-weight: 800;
@@ -226,7 +226,7 @@
     }
     .calc-toggle.is-active {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(9,105,218,0.12);
+      box-shadow: 0 0 0 3px rgba(209,16,31,0.12);
     }
     .calc-toggle-copy strong { display: block; font-size: 15px; margin-bottom: 4px; }
     .calc-toggle-copy span { font-size: 13px; color: var(--muted); }
@@ -345,6 +345,7 @@
     }
   </style>
   <link rel="stylesheet" href="css/sidfot.css" />
+  <link rel="stylesheet" href="css/bubblor.css" />
 </head>
 <body>
 <nav>
@@ -365,7 +366,7 @@
   <div class="hero-content">
     <div class="section-label" style="justify-content:center;display:flex;">Priskalkylator</div>
     <h1 class="hero-title">Räkna ut ditt pris</h1>
-    <p class="hero-sub">Fyll i dina fönster. Tryck sen Beräkna uppskattat pris. Då ser du vad hela huset kostar efter RUT.</p>
+    <p class="hero-sub">Fyll i dina fönster, så ser du direkt vad hela huset kostar efter RUT.</p>
     <p class="hero-sub" style="margin-top:8px;">Vill du hellre bara ringa? Ring <a href="tel:0793463964" style="color:inherit;text-decoration:underline;white-space:nowrap;">079‑346 39 64</a> så bokar vi direkt.</p>
   </div>
 </section>
@@ -373,7 +374,7 @@
 <section class="calc-section" id="kalkylator">
   <div class="calc-shell">
     <div class="calc-main">
-      <h2 class="calc-heading">Fyll i hur många fönster du har. När du är klar trycker du Beräkna uppskattat pris. Du behöver inte lämna några uppgifter för att se priset.</h2>
+      <h2 class="calc-heading">Fyll i hur många fönster du har, så ser du priset direkt. Du behöver inte lämna några uppgifter för att se priset.</h2>
 
       <h3 class="calc-step-title">1. Hur många sidor?</h3>
       <div class="calc-choice-grid calc-typ-grid">
@@ -484,7 +485,7 @@
         </div>
         <div class="calc-card" id="card-antalOverligg">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgOver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3F0FB"/><stop offset="1" stop-color="#9FC3E4"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#C5CCD3" stroke-width="2" stroke-dasharray="5 4"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#C5CCD3"/><rect x="40" y="80" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="47" y="87" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="100" y="80" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="107" y="87" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="40" y="28" width="120" height="46" fill="#fff" stroke="#0B3D6E" stroke-width="2.6"/><rect x="47" y="35" width="106" height="32" rx="1" fill="url(#lgOver)" stroke="#0B3D6E" stroke-width="1.6"/><path d="M53 62L78.8 40h10.600000000000001L59.72 62z" fill="#fff" opacity=".7"/></svg></div>
+          <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgOver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3F0FB"/><stop offset="1" stop-color="#9FC3E4"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#C5CCD3" stroke-width="2" stroke-dasharray="5 4"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#C5CCD3"/><rect x="40" y="80" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="47" y="87" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="100" y="80" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="107" y="87" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="40" y="28" width="120" height="46" fill="#fff" stroke="#d1101f" stroke-width="2.6"/><rect x="47" y="35" width="106" height="32" rx="1" fill="url(#lgOver)" stroke="#d1101f" stroke-width="1.6"/><path d="M53 62L78.8 40h10.600000000000001L59.72 62z" fill="#fff" opacity=".7"/></svg></div>
           <h3>Överliggande fönster</h3>
           <p class="calc-look-note">Bara den liggande rutan överst</p>
           <div class="calc-stepper">
@@ -495,7 +496,7 @@
         </div>
         <div class="calc-card" id="card-antalUnderligg">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgUnder" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3F0FB"/><stop offset="1" stop-color="#9FC3E4"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#C5CCD3" stroke-width="2" stroke-dasharray="5 4"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#C5CCD3"/><rect x="40" y="28" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="47" y="35" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="100" y="28" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="107" y="35" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="40" y="142" width="120" height="46" fill="#fff" stroke="#0B3D6E" stroke-width="2.6"/><rect x="47" y="149" width="106" height="32" rx="1" fill="url(#lgUnder)" stroke="#0B3D6E" stroke-width="1.6"/><path d="M53 176L78.8 154h10.600000000000001L59.72 176z" fill="#fff" opacity=".7"/></svg></div>
+          <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgUnder" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3F0FB"/><stop offset="1" stop-color="#9FC3E4"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#C5CCD3" stroke-width="2" stroke-dasharray="5 4"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#C5CCD3"/><rect x="40" y="28" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="47" y="35" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="100" y="28" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="107" y="35" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="40" y="142" width="120" height="46" fill="#fff" stroke="#d1101f" stroke-width="2.6"/><rect x="47" y="149" width="106" height="32" rx="1" fill="url(#lgUnder)" stroke="#d1101f" stroke-width="1.6"/><path d="M53 176L78.8 154h10.600000000000001L59.72 176z" fill="#fff" opacity=".7"/></svg></div>
           <h3>Underliggande fönster</h3>
           <p class="calc-look-note">Bara den liggande rutan nederst</p>
           <div class="calc-stepper">
@@ -535,7 +536,7 @@
         <div class="calc-card calc-card-tall" id="cardUterum">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div class="calc-card-art">
-            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><rect x="14" y="18" width="92" height="58" rx="3" stroke="#1a1a1a" stroke-width="2.2"/><path d="M14 38h92M45 18v58M75 18v58" stroke="#1a1a1a" stroke-width="1.6"/><path d="M60 8v8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/><path d="M54 12l6-8 6 8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><rect x="14" y="18" width="92" height="58" rx="3" stroke="#1a1a1a" stroke-width="2.2"/><path d="M14 38h92M45 18v58M75 18v58" stroke="#1a1a1a" stroke-width="1.6"/><path d="M60 8v8" stroke="#d1101f" stroke-width="2.2" stroke-linecap="round"/><path d="M54 12l6-8 6 8" stroke="#d1101f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <h3>Uterum</h3>
           <p>Glaspartier i uterum</p>
@@ -562,7 +563,7 @@
         <div class="calc-card calc-card-tall" id="cardBalkong">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div class="calc-card-art">
-            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><rect x="28" y="10" width="64" height="52" rx="3" stroke="#1a1a1a" stroke-width="2.2"/><path d="M60 10v52M28 36h64" stroke="#1a1a1a" stroke-width="1.6"/><path d="M20 64h80" stroke="#1a1a1a" stroke-width="2.2"/><path d="M24 64v14M96 64v14M20 78h80" stroke="#1a1a1a" stroke-width="2"/><path d="M14 36h10" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/><path d="M18 30l-8 6 8 6" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><rect x="28" y="10" width="64" height="52" rx="3" stroke="#1a1a1a" stroke-width="2.2"/><path d="M60 10v52M28 36h64" stroke="#1a1a1a" stroke-width="1.6"/><path d="M20 64h80" stroke="#1a1a1a" stroke-width="2.2"/><path d="M24 64v14M96 64v14M20 78h80" stroke="#1a1a1a" stroke-width="2"/><path d="M14 36h10" stroke="#d1101f" stroke-width="2.2" stroke-linecap="round"/><path d="M18 30l-8 6 8 6" stroke="#d1101f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <h3>Balkong</h3>
           <p>Balkongdörr och fönster</p>
@@ -589,7 +590,7 @@
         <div class="calc-card calc-card-tall" id="cardAltan">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div class="calc-card-art">
-            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><path d="M16 70V36l44-20 44 20v34" stroke="#1a1a1a" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 36h88M60 16v54" stroke="#1a1a1a" stroke-width="1.6"/><path d="M28 70h64" stroke="#1a1a1a" stroke-width="2"/><path d="M60 78v8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round"/><path d="M54 80l6 8 6-8" stroke="#0B3D6E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 120 90" fill="none" aria-hidden="true"><path d="M16 70V36l44-20 44 20v34" stroke="#1a1a1a" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 36h88M60 16v54" stroke="#1a1a1a" stroke-width="1.6"/><path d="M28 70h64" stroke="#1a1a1a" stroke-width="2"/><path d="M60 78v8" stroke="#d1101f" stroke-width="2.2" stroke-linecap="round"/><path d="M54 80l6 8 6-8" stroke="#d1101f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
           <h3>Altan</h3>
           <p>Altanfönster och skjutpartier</p>
@@ -653,7 +654,6 @@
       </div>
 
       <div class="calc-compute">
-        <button type="button" class="btn-primary" id="calcPriceBtn">Beräkna uppskattat pris</button>
         <p class="calc-compute-error" id="calcPriceError"></p>
       </div>
       <div class="calc-inline-result" id="prisresultat">
@@ -1173,11 +1173,12 @@
     var photoGroup = document.getElementById('photoGroup');
     var subjectField = document.querySelector('#offertForm input[name="kalla"]');
     var barPrice = document.getElementById('barPrice');
-    var priceRevealed = false;
+    var priceRevealed = true; // Priset visas direkt medan kunden fyller i
     var priceBtn = document.getElementById('calcPriceBtn');
     var priceError = document.getElementById('calcPriceError');
     var priceBox = document.getElementById('prisresultat');
     var mobileBar = document.getElementById('calcMobileBar');
+    if (mobileBar) mobileBar.classList.add('is-ready');
 
     function setBarPrice(text) {
       if (barPrice) barPrice.textContent = text;
@@ -1222,7 +1223,7 @@
       if (allWindows < 1 && nSprojs > 0) {
         return 'Fyll i hur många fönster som ska putsas.';
       }
-      if (!siteVisit && allWindows < 1) return 'Fyll i hur många fönster som ska putsas, sen tryck Beräkna uppskattat pris.';
+      if (!siteVisit && allWindows < 1) return 'Fyll i hur många fönster som ska putsas.';
       if (siteVisit && allWindows < 1 && nSprojs < 1) return 'Fyll i antal fönster och spröjs, så jag vet vad jag ska räkna på.';
       return '';
     }

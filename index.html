@@ -96,13 +96,13 @@
       --muted: #4A5259;
       /* En enda accentfärg. Används bara där ögat ska dras:
          offert, pris, länkar och bockar. Allt annat är vitt och nästan svart. */
-      --accent: #0B3D6E;
-      --accent-hover: #082C50;
+      --accent: #d1101f;
+      --accent-hover: #b00d1a;
       --cta: var(--accent);
       --cta-hover: var(--accent-hover);
       /* Ljusare blå som knapparna tänds upp med när musen är över dem.
          --cta-hover är mörkare och används när knappen trycks ner. */
-      --cta-bright: #1D5C99;
+      --cta-bright: #e3263a;
       --border: rgba(20,24,27,0.09);
     }
     html {
@@ -162,7 +162,7 @@
     .nav-dropdown-menu a { display: block; padding: 9px 16px; font-size: 10.5px; white-space: nowrap; text-align: left; }
     .nav-dropdown-menu a:hover { transform: none; color: var(--accent); }
     .nav-cta { background: var(--cta) !important; color: var(--white) !important; padding: 9px 20px; border-radius: 999px; white-space: nowrap; transition: background 0.15s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s; }
-    .nav-cta:hover { background: var(--cta-bright) !important; transform: scale(1.08) !important; box-shadow: 0 8px 20px -8px rgba(9,105,218,0.9); }
+    .nav-cta:hover { background: var(--cta-bright) !important; transform: scale(1.08) !important; box-shadow: 0 8px 20px -8px rgba(209,16,31,0.9); }
     .nav-cta:active { transform: scale(0.96) !important; }
     .nav-cta-mob { display: none !important; }
     .nav-toggle {
@@ -413,6 +413,17 @@
     .kampanj-pris-num { font-size: 64px; font-weight: 900; line-height: 1; letter-spacing: -0.04em; color: #d1101f; }
     .kampanj-pris-num small { font-size: 18px; font-weight: 700; margin-left: 4px; vertical-align: top; letter-spacing: 0; }
     .kampanj-pris-sub { font-size: 15px; color: #6a6a70; margin-bottom: 10px; }
+    .kampanj-val { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; margin: 8px 0 6px; }
+    .kampanj-tile {
+      display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 16px 10px 12px;
+      background: #fff; border: 2px solid #e2e3e7; border-radius: 10px; cursor: pointer; font-family: inherit; color: #18181b;
+      transition: border-color .15s, transform .15s;
+    }
+    .kampanj-tile:hover { border-color: #d1101f; transform: translateY(-1px); }
+    .kampanj-tile-name { font-size: 14px; font-weight: 700; line-height: 1.25; min-height: 2.5em; display: flex; align-items: center; }
+    .kampanj-tile .kampanj-pris-num { font-size: 46px; }
+    .kampanj-tile .kampanj-pris-num small { font-size: 15px; }
+    .kampanj-tile-cta { margin-top: 6px; width: 100%; padding: 10px 0; border-radius: 6px; background: #d1101f; color: #fff; font-size: 15px; font-weight: 700; }
     .kampanj-btn {
       width: 100%; max-width: 260px; height: 50px; border: 0; border-radius: 6px; cursor: pointer;
       background: #d1101f; color: #fff; font: 700 17px 'Montserrat', sans-serif; transition: background .15s;
@@ -606,18 +617,18 @@
       font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
       padding: 18px 40px; border: none; border-radius: 4px; cursor: pointer;
       text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 8px 20px -10px rgba(9,105,218,0.65);
+      box-shadow: 0 8px 20px -10px rgba(209,16,31,0.65);
     }
-    .btn-primary:hover { background: var(--cta-bright); transform: translateY(-2px); box-shadow: 0 14px 28px -10px rgba(9,105,218,0.9); }
+    .btn-primary:hover { background: var(--cta-bright); transform: translateY(-2px); box-shadow: 0 14px 28px -10px rgba(209,16,31,0.9); }
     .btn-primary:active { background: var(--cta-hover); transform: translateY(0); }
     .btn-outline {
       background: var(--white); color: var(--accent); font-family: 'Montserrat', sans-serif;
       font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-      padding: 18px 40px; border: 1px solid rgba(9,105,218,0.45); border-radius: 4px;
+      padding: 18px 40px; border: 1px solid rgba(209,16,31,0.45); border-radius: 4px;
       cursor: pointer; text-decoration: none; display: inline-block;
       transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
     }
-    .btn-outline:hover { border-color: var(--accent); background: rgba(9,105,218,0.10); color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 24px -12px rgba(9,105,218,0.55); }
+    .btn-outline:hover { border-color: var(--accent); background: rgba(209,16,31,0.10); color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 24px -12px rgba(209,16,31,0.55); }
     .btn-outline:active { transform: translateY(0); }
     .btn-outline-hero {
       background: transparent; color: var(--white);
@@ -734,7 +745,7 @@
       letter-spacing: -0.01em; margin-bottom: 16px; color: var(--white);
     }
     .rut-badge {
-      display: inline-block; background: rgba(9,105,218,0.12); border: 1px solid rgba(9,105,218,0.3);
+      display: inline-block; background: rgba(209,16,31,0.12); border: 1px solid rgba(209,16,31,0.3);
       color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
       padding: 6px 14px; border-radius: 3px; margin-bottom: 24px;
     }
@@ -778,7 +789,7 @@
       width: 100%; transition: border-color 0.2s, background 0.2s;
     }
     .form-group input:focus, .form-group textarea:focus {
-      outline: none; border-color: rgba(9,105,218,0.5); background: rgba(255,255,255,0.05);
+      outline: none; border-color: rgba(209,16,31,0.5); background: rgba(255,255,255,0.05);
     }
     .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
     .form-group textarea { resize: vertical; min-height: 120px; font-family: inherit; }
@@ -1275,7 +1286,7 @@
       .btn-outline:hover,
       .btn-outline-hero:hover,
       .btn-primary.btn-outline-hero:hover { transform: none; }
-      .btn-primary:hover { background: var(--cta); box-shadow: 0 8px 20px -10px rgba(9,105,218,0.65); }
+      .btn-primary:hover { background: var(--cta); box-shadow: 0 8px 20px -10px rgba(209,16,31,0.65); }
       .btn-outline:hover { background: var(--white); color: var(--accent); box-shadow: none; }
       .btn-outline-hero:hover,
       .btn-primary.btn-outline-hero:hover { background: transparent; border-color: rgba(255,255,255,0.55); box-shadow: none; }
@@ -1336,6 +1347,7 @@
   </style>
   <style>#nl-badge-frame{display:none !important;}</style>
   <link rel="stylesheet" href="css/sidfot.css" />
+  <link rel="stylesheet" href="css/bubblor.css" />
 </head>
 <body>
 <!-- NAV -->
@@ -1357,7 +1369,7 @@
       <img class="hero-photo" src="images/hero-bil-parkerad.jpg" alt="Forsbergs Fönsterputs servicebil vid kväll med utsikt över Jönköping" width="1672" height="941" />
       <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
       <div class="hero-copy">
-        <p class="hero-copy-title">Prova på – utvändig puts av bottenvåning och andra våning för 299 kr!</p>
+        <p class="hero-copy-title">Prova på – utvändig fönstertvätt från 250 kr!</p>
         <a href="#kampanj" class="hero-copy-btn">Boka nu</a>
       </div>
       <div class="hero-reviews">
@@ -1371,33 +1383,46 @@
     </div>
     <div class="kampanj" id="kampanj">
       <div class="kampanj-text">
-        <h2 class="kampanj-title">Erbjudande: utvändig puts</h2>
-        <p>Du beställer en utvändig fönsterputs av bottenvåning och andra våning till ett fast pris på <strong>299 kr efter RUT-avdrag</strong>. Priset gäller första putsningen när du startar ett återkommande abonnemang.</p>
-        <p>Tillval som uterum, invändig puts eller fönster högre upp än andra våningen räknar jag på separat.</p>
+        <h2 class="kampanj-title">Erbjudande: utvändig fönstertvätt</h2>
+        <p>Prova på en utvändig fönstertvätt för <strong>250 kr</strong> på markplan eller <strong>359 kr</strong> för markplan och andra våning – efter RUT-avdrag. Inget abonnemang och inga krav – känn efter om det är något för dig.</p>
+        <p>Tillval som uterum, invändig fönstertvätt eller fönster högre upp än andra våningen räknar jag på separat.</p>
         <p class="kampanj-small">Gäller en beställning per hushåll, upp till 30 vanliga fönster.</p>
         <ul class="kampanj-checks">
-          <li>Utvändig putsning</li>
-          <li>Återkommande</li>
+          <li>Utvändig fönstertvätt</li>
+          <li>Inget abonnemang</li>
           <li>Ingen bindningstid</li>
         </ul>
       </div>
       <div class="kampanj-pris">
-        <span class="kampanj-pris-label">Fast pris</span>
-        <span class="kampanj-pris-num">299<small>kr</small></span>
-        <span class="kampanj-pris-sub">vid första putsningen</span>
-        <button type="button" class="kampanj-btn" id="kampanjBoka">Boka nu för 299 kr</button>
+        <span class="kampanj-pris-label">Fast pris efter RUT</span>
+        <div class="kampanj-val">
+          <button type="button" class="kampanj-tile" data-pris="250" data-vad="markplan">
+            <span class="kampanj-tile-name">Markplan</span>
+            <span class="kampanj-pris-num">250<small>kr</small></span>
+            <span class="kampanj-tile-cta">Boka</span>
+          </button>
+          <button type="button" class="kampanj-tile" data-pris="359" data-vad="markplan och andra våning">
+            <span class="kampanj-tile-name">Markplan + andra våning</span>
+            <span class="kampanj-pris-num">359<small>kr</small></span>
+            <span class="kampanj-tile-cta">Boka</span>
+          </button>
+        </div>
+        <span class="kampanj-pris-sub">Prova på en gång – utvändig fönstertvätt</span>
         <span class="kampanj-help">Behöver du hjälp? <a href="tel:0793463964">Ring 079-346 39 64</a></span>
         <span class="kampanj-rating"><strong>5,0</strong>/5 <span class="kampanj-stars">★★★★★</span> på Google</span>
       </div>
     </div>
     <script>
-      document.getElementById('kampanjBoka').addEventListener('click', function () {
-        var kalla = document.querySelector('#fpHemForm input[name="kalla"]');
-        var msg = document.querySelector('#fpHemForm textarea[name="meddelande"]');
-        if (kalla) kalla.value = 'Kampanj 299 kr';
-        if (msg && !msg.value) msg.value = 'Jag vill boka kampanjen för 299 kr (bottenvåning och andra våning, utvändigt).';
-        var panel = document.getElementById('fpPanel');
-        if (panel && panel.hidden) document.getElementById('fpFab').click();
+      document.querySelectorAll('.kampanj-tile').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var pris = btn.getAttribute('data-pris'), vad = btn.getAttribute('data-vad');
+          var kalla = document.querySelector('#fpHemForm input[name="kalla"]');
+          var msg = document.querySelector('#fpHemForm textarea[name="meddelande"]');
+          if (kalla) kalla.value = 'Kampanj ' + pris + ' kr';
+          if (msg) msg.value = 'Jag vill prova på utvändig fönstertvätt för ' + pris + ' kr (' + vad + ').';
+          var panel = document.getElementById('fpPanel');
+          if (panel && panel.hidden) document.getElementById('fpFab').click();
+        });
       });
     </script>
     <div class="fp-book" id="prisforslag">
@@ -1513,82 +1538,14 @@
 </script>
 
 
-<section id="innan-efter">
-  <div class="container">
-    <div class="ba-header">
-      <h2 class="section-title">Före och efter</h2>
-    </div>
-    <div class="ba-grid">
-      <div class="ba-wrap">
-        <div class="ba-slider" data-ba-slider>
-          <img class="ba-img ba-img-after" src="images/fonster-efter-web.jpg" alt="Fönster efter fönsterputs, kristallklart glas" loading="lazy" width="1000" height="1244">
-          <img class="ba-img ba-img-before" src="images/fonster-innan-web.jpg" alt="Fönster innan fönsterputs, smutsigt och fläckigt glas" loading="lazy" width="1000" height="1244">
-          <span class="ba-label ba-label-before">Före</span>
-          <span class="ba-label ba-label-after">Efter</span>
-          <input type="range" class="ba-range" min="0" max="100" value="50" aria-label="Dra för att jämföra innan och efter fönsterputs, köksfönster">
-          <div class="ba-handle">
-            <div class="ba-handle-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 6L2 12L8 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6L22 12L16 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<script>
-  (function() {
-    document.querySelectorAll('[data-ba-slider]').forEach(function(slider) {
-      var range = slider.querySelector('.ba-range');
-      var handle = slider.querySelector('.ba-handle');
-      if (!range || !slider || !handle) return;
-
-      function setPos(val) {
-        val = Math.max(0, Math.min(100, val));
-        range.value = val;
-        slider.style.setProperty('--ba-pos', val + '%');
-        handle.style.left = val + '%';
-      }
-
-      function valueFromClientX(clientX) {
-        var rect = slider.getBoundingClientRect();
-        var pct = ((clientX - rect.left) / rect.width) * 100;
-        return pct;
-      }
-
-      var dragging = false;
-
-      slider.addEventListener('pointerdown', function(e) {
-        dragging = true;
-        slider.setPointerCapture(e.pointerId);
-        setPos(valueFromClientX(e.clientX));
-      });
-      slider.addEventListener('pointermove', function(e) {
-        if (!dragging) return;
-        setPos(valueFromClientX(e.clientX));
-      });
-      slider.addEventListener('pointerup', function() { dragging = false; });
-      slider.addEventListener('pointercancel', function() { dragging = false; });
-
-      // Tangentbord / tillgänglighet
-      range.addEventListener('input', function() { setPos(parseFloat(range.value)); });
-
-      setPos(parseFloat(range.value));
-    });
-  })();
-</script>
-
 <section id="om-mig">
   <div class="container om-layout">
     <div class="om-photo-grid">
       <div class="om-photo om-photo-arbete"><img src="images/tommy-putsar-fonster.jpg" alt="Tommy Forsberg putsar fönster på plats hos kund" loading="lazy" decoding="async" width="1024" height="915" /></div>
       <div class="om-photo om-photo-portratt"><img src="images/tommy-forsberg-altan.jpg" alt="Tommy Forsberg putsar en altandörr hos kund i Jönköping" loading="lazy" decoding="async" width="485" height="1024" /></div>
     </div>
-    <div class="om-text">
-      <div class="section-label">Om mig</div>
-      <h2 class="section-title">Samma putsare varje gång</h2>
-      <p class="section-sub">Jag heter Tommy Forsberg. Fem år i Stockholm, nu i Jönköping. När du bokar är det jag som kommer – inte en ny person varje gång.</p>
-      <a href="om-oss.html" class="btn-outline" style="margin-top:8px;">Läs mer om mig</a>
+    <div class="om-text om-text-knapp">
+      <a href="om-oss.html" class="btn-outline">Läs mer om mig</a>
     </div>
   </div>
 </section>
