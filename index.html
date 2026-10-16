@@ -390,6 +390,47 @@
       .karta-actions { width: 100%; }
       .karta-btn { flex: 1; }
     }
+    /* Kampanj 299 kr */
+    .kampanj {
+      display: grid; grid-template-columns: 1.6fr 1fr; margin-top: 28px; overflow: hidden;
+      background: #f4f5f7; border-radius: 18px; color: #18181b;
+    }
+    .kampanj-text { padding: 34px 36px; }
+    .kampanj-title { margin: 0 0 14px; font-size: clamp(28px, 3.2vw, 38px); font-weight: 900; letter-spacing: -0.03em; text-transform: none; color: #18181b; }
+    .kampanj-text p { margin: 0 0 12px; font-size: 16px; line-height: 1.6; color: #2d2d33; }
+    .kampanj-text p.kampanj-small { font-size: 14px; color: #6a6a70; }
+    .kampanj-checks { display: flex; flex-wrap: wrap; gap: 8px 26px; list-style: none; margin: 18px 0 0; padding: 0; }
+    .kampanj-checks li { display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; }
+    .kampanj-checks li::before {
+      content: "✓"; display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 4px;
+      background: #1a9a4b; color: #fff; font-size: 13px; font-weight: 800;
+    }
+    .kampanj-pris {
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 34px 28px;
+      border-left: 1px solid #e2e3e7; text-align: center;
+    }
+    .kampanj-pris-label { font-size: 16px; font-weight: 600; }
+    .kampanj-pris-num { font-size: 64px; font-weight: 900; line-height: 1; letter-spacing: -0.04em; color: #d1101f; }
+    .kampanj-pris-num small { font-size: 18px; font-weight: 700; margin-left: 4px; vertical-align: top; letter-spacing: 0; }
+    .kampanj-pris-sub { font-size: 15px; color: #6a6a70; margin-bottom: 10px; }
+    .kampanj-btn {
+      width: 100%; max-width: 260px; height: 50px; border: 0; border-radius: 6px; cursor: pointer;
+      background: #d1101f; color: #fff; font: 700 17px 'Montserrat', sans-serif; transition: background .15s;
+    }
+    .kampanj-btn:hover { background: #b00d1a; }
+    .kampanj-help { margin-top: 6px; font-size: 13.5px; color: #3d3d42; }
+    .kampanj-help a { color: #d1101f; font-weight: 700; text-decoration: none; }
+    .kampanj-rating { margin-top: 6px; font-size: 14px; color: #3d3d42; }
+    .kampanj-rating strong { font-size: 20px; font-weight: 800; color: #18181b; }
+    .kampanj-stars { color: #FBBC04; letter-spacing: 1px; }
+    @media (max-width: 720px) {
+      .kampanj { grid-template-columns: 1fr; margin-top: 20px; border-radius: 14px; }
+      .kampanj-text { padding: 24px 20px 6px; }
+      .kampanj-text p { font-size: 15px; }
+      .kampanj-checks { flex-direction: column; gap: 8px; }
+      .kampanj-pris { border-left: 0; border-top: 1px solid #e2e3e7; margin: 18px 20px 0; padding: 22px 0 26px; }
+      .kampanj-btn { max-width: none; }
+    }
     /* Pris & bokning – samma stil som nya versionen */
     .fp-book {
       margin-top: 18px; padding: 32px 36px; background: #fff; color: #18181b;
@@ -1316,8 +1357,8 @@
       <img class="hero-photo" src="images/hero-bil-parkerad.jpg" alt="Forsbergs Fönsterputs servicebil vid kväll med utsikt över Jönköping" width="1672" height="941" />
       <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
       <div class="hero-copy">
-        <p class="hero-copy-title">Kristallklara fönster – fast pris med RUT</p>
-        <a href="#prisforslag" class="hero-copy-btn">Få ditt pris</a>
+        <p class="hero-copy-title">Prova på – få bottenvåning och andra våning putsat för 299 kr!</p>
+        <a href="#kampanj" class="hero-copy-btn">Boka nu</a>
       </div>
       <div class="hero-reviews">
         <a class="hero-reviews-head" href="https://www.google.com/search?q=Forsbergs+F%C3%B6nsterputs+J%C3%B6nk%C3%B6ping+recensioner" target="_blank" rel="noopener">
@@ -1328,6 +1369,37 @@
         <div class="hero-reviews-bar"><span id="heroReviewsBar"></span></div>
       </div>
     </div>
+    <div class="kampanj" id="kampanj">
+      <div class="kampanj-text">
+        <h2 class="kampanj-title">Erbjudande</h2>
+        <p>Du beställer en utvändig fönsterputs av bottenvåning och andra våning till ett fast pris på <strong>299 kr efter RUT-avdrag</strong>. Priset gäller första putsningen när du startar ett återkommande abonnemang.</p>
+        <p>Tillval som uterum, invändig puts eller fönster högre upp än andra våningen räknar jag på separat.</p>
+        <p class="kampanj-small">Gäller en beställning per hushåll, upp till 30 vanliga fönster.</p>
+        <ul class="kampanj-checks">
+          <li>Utvändig putsning</li>
+          <li>Återkommande</li>
+          <li>Ingen bindningstid</li>
+        </ul>
+      </div>
+      <div class="kampanj-pris">
+        <span class="kampanj-pris-label">Fast pris</span>
+        <span class="kampanj-pris-num">299<small>kr</small></span>
+        <span class="kampanj-pris-sub">vid första putsningen</span>
+        <button type="button" class="kampanj-btn" id="kampanjBoka">Boka nu för 299 kr</button>
+        <span class="kampanj-help">Behöver du hjälp? <a href="tel:0793463964">Ring 079-346 39 64</a></span>
+        <span class="kampanj-rating"><strong>5,0</strong>/5 <span class="kampanj-stars">★★★★★</span> på Google</span>
+      </div>
+    </div>
+    <script>
+      document.getElementById('kampanjBoka').addEventListener('click', function () {
+        var kalla = document.querySelector('#fpHemForm input[name="kalla"]');
+        var msg = document.querySelector('#fpHemForm textarea[name="meddelande"]');
+        if (kalla) kalla.value = 'Kampanj 299 kr';
+        if (msg && !msg.value) msg.value = 'Jag vill boka kampanjen för 299 kr (bottenvåning och andra våning, utvändigt).';
+        var panel = document.getElementById('fpPanel');
+        if (panel && panel.hidden) document.getElementById('fpFab').click();
+      });
+    </script>
     <div class="fp-book" id="prisforslag">
       <div class="fp-book-head">
         <h1 class="fp-book-title">Pris &amp; bokning</h1>
