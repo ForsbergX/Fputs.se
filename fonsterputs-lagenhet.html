@@ -177,6 +177,16 @@
     }
     .apt-tid-note.is-on { display: block; }
     @media (max-width: 680px) { .apt-date-row { grid-template-columns: 1fr; } }
+    /* Vad som ingår i lägenhetspriset */
+    .apt-ingar { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; margin: 22px 0 6px; padding: 18px 20px; background: #f6f6f8; border-radius: 14px; text-align: left; }
+    .apt-ingar strong { display: block; font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+    .apt-ingar ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+    .apt-ingar li { position: relative; padding-left: 24px; font-size: 14.5px; line-height: 1.45; color: #2d2d33; }
+    .apt-ingar li::before { content: "✓"; position: absolute; left: 0; top: 0; width: 17px; height: 17px; border-radius: 50%; background: #1a7f37; color: #fff; font-size: 11px; font-weight: 800; display: grid; place-items: center; }
+    .apt-ingar .apt-extra li::before { content: "+"; background: #d1101f; font-size: 13px; }
+    .apt-ingar p { grid-column: 1 / -1; margin: 4px 0 0; font-size: 14px; line-height: 1.5; color: #3d444b; }
+    .apt-ingar p a { color: #d1101f; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    @media (max-width: 600px) { .apt-ingar { grid-template-columns: 1fr; padding: 16px; } }
   </style>
   <link rel="stylesheet" href="css/sidfot.css" />
   <link rel="stylesheet" href="css/bubblor.css" />
@@ -226,6 +236,25 @@
         <div class="price-row"><div class="row-label">3:a</div><div class="row-price-wrap"><div class="row-price-line"><span class="row-price-before">1 050 kr</span><span class="row-price-after">525 <span>kr</span></span></div><div class="row-price-label">efter RUT</div></div></div>
         <div class="price-row"><div class="row-label">4:a</div><div class="row-price-wrap"><div class="row-price-line"><span class="row-price-before">1 100 kr</span><span class="row-price-after">550 <span>kr</span></span></div><div class="row-price-label">efter RUT</div></div></div>
         <div class="price-row"><div class="row-label">5:a</div><div class="row-price-wrap"><div class="row-price-line"><span class="row-price-before">1 150 kr</span><span class="row-price-after">575 <span>kr</span></span></div><div class="row-price-label">efter RUT</div></div></div>
+      </div>
+      <div class="apt-ingar">
+        <div>
+          <strong>Det här ingår i priset</strong>
+          <ul>
+            <li>Ett vanligt fönster per rum (ett glasparti)</li>
+            <li>Balkongdörren</li>
+            <li>Putsning ut, in och emellan</li>
+          </ul>
+        </div>
+        <div>
+          <strong>Kostar extra</strong>
+          <ul class="apt-extra">
+            <li>Fler eller större fönster än ett per rum</li>
+            <li>Spröjs, över- eller underliggande fönster</li>
+            <li>Inglasad balkong (pris per ruta nedan)</li>
+          </ul>
+        </div>
+        <p>Har du fler fönster än så? Skicka en bild eller ring <a href="tel:0793463964">079-346 39 64</a> så får du ett fast pris innan du bokar.</p>
       </div>
       <a href="#formular" class="btn-primary panel-cta">Boka mig</a>
     </div>
