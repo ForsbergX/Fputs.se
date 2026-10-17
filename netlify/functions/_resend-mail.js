@@ -60,7 +60,7 @@ function buildText(title, pairs, email, telefon) {
   return lines.join("\n");
 }
 
-async function sendToKontakt(apiKey, { subject, html, text, replyTo }) {
+async function sendToKontakt(apiKey, { subject, html, text, replyTo, attachments }) {
   const payload = {
     from: FROM_EMAIL,
     to: [CONTACT_EMAIL],
@@ -71,6 +71,9 @@ async function sendToKontakt(apiKey, { subject, html, text, replyTo }) {
 
   if (isValidEmail(replyTo)) {
     payload.reply_to = replyTo.trim();
+  }
+  if (attachments && attachments.length) {
+    payload.attachments = attachments;
   }
 
   let lastStatus = 0;

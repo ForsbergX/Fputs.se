@@ -53,3 +53,16 @@ form.book-form button[type="submit"] {
 .fpx-sum span { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #6a6a70; margin-bottom: 4px; }
 .fpx-sum strong { display: block; font-weight: 600; color: #18181b; }
 .fpx-sum b { display: block; margin-top: 4px; font-size: 18px; font-weight: 800; color: #d1101f; }
+
+/* Reseavgift och bilduppladdning i formulären */
+.fp-resa { margin: -4px 0 2px; font-size: 13px; line-height: 1.45; color: #6a6a70; }
+.fp-bilder { display: grid; gap: 8px; }
+.fp-bilder-knapp { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 14px; border: 1.5px dashed #c9c9cf; border-radius: 6px; background: #fafafb; color: #18181b; font-size: 15px; font-weight: 600; cursor: pointer; }
+.fp-bilder-knapp:hover { border-color: #d1101f; }
+.fp-bilder.is-full .fp-bilder-knapp { display: none; }
+.fp-bilder-lista { display: flex; gap: 8px; flex-wrap: wrap; }
+.fp-bilder-lista:empty { display: none; }
+.fp-bild { position: relative; width: 72px; height: 72px; border-radius: 6px; overflow: hidden; border: 1px solid #e4e4e8; }
+.fp-bild img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fp-bild button { position: absolute; top: 3px; right: 3px; width: 24px; height: 24px; border: 0; border-radius: 50%; background: rgba(0,0,0,0.65); color: #fff; font-size: 16px; line-height: 1; cursor: pointer; }
+.fp-bilder-info { margin: 0; font-size: 12.5px; color: #6a6a70; text-align: center; }
