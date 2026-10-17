@@ -282,6 +282,12 @@
       display: block; margin-top: 24px; padding: 24px 20px;
       background: #f3f4f6; border-radius: 16px;
     }
+    .calc-sa-funkar { margin: -4px 0 16px; padding: 14px 16px; background: #f6f6f8; border-radius: 12px; font-size: 14.5px; line-height: 1.5; color: #2d2d33; }
+    .calc-sa-funkar strong { display: block; font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+    .calc-sa-funkar ol { margin: 0 0 8px; padding-left: 20px; }
+    .calc-sa-funkar li { margin-bottom: 3px; }
+    .calc-sa-funkar p { margin: 0; color: #3d444b; }
+    .calc-obs { margin: 12px 0 0; border-left: 4px solid #d1101f; border-radius: 0 12px 12px 0; }
     /* Löpande sammanfattning bredvid kalkylatorn (dator) */
     .calc-live { display: none; }
     @media (min-width: 1100px) {
@@ -298,6 +304,7 @@
       display: flex; justify-content: space-between; gap: 12px; padding: 9px 0;
       border-bottom: 1px solid rgba(0,0,0,0.07); font-size: 14px; color: #3d444b;
     }
+    .calc-live-list li.calc-live-grupp { display: block; padding: 12px 0 4px; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #d1101f; }
     .calc-live-list li strong { color: var(--ink); font-weight: 700; text-align: right; white-space: nowrap; }
     .calc-live-empty { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.5; }
     .calc-live-total { margin-top: 16px; padding-top: 14px; border-top: 2px solid var(--ink); display: flex; flex-direction: column; gap: 2px; }
@@ -405,7 +412,10 @@
       <h2 class="calc-heading">Fyll i hur många fönster du har, så ser du priset direkt. Du behöver inte lämna några uppgifter för att se priset.</h2>
 
       <h3 class="calc-step-title">1. Hur många sidor?</h3>
-      <p class="calc-lead" style="margin:-4px 0 14px;">Välj typ och fyll i dina fönster i steg 3, så räknas priset ut direkt. Har du båda sorterna? Välj den vanligaste och skriv resten i meddelandet när du bokar.</p>
+      <div class="calc-sa-funkar">
+        <strong>Har du både 2-sidiga och 4-sidiga fönster?</strong>
+        <p>Börja med att trycka på 2-sidigt och fyll i de fönstren. Tryck sedan på 4-sidigt och fyll i resten. Till höger ser du allt du har räknat.</p>
+      </div>
       <div class="calc-choice-grid calc-typ-grid">
         <button type="button" class="calc-card calc-card-choice is-active" data-fonstertyp="2">
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -547,14 +557,10 @@
           </div>
           <span class="calc-switch" aria-hidden="true"></span>
         </label>
-        <label class="calc-toggle" id="valSaneringToggle">
-          <input type="checkbox" id="valSanering" />
-          <div class="calc-toggle-copy">
-            <strong>Färg, silikon eller byggdamm</strong>
-            <span>Prissätts när jag har sett glasen</span>
-          </div>
-          <span class="calc-switch" aria-hidden="true"></span>
-        </label>
+      </div>
+      <div class="calc-sa-funkar calc-obs">
+        <strong>Obs!</strong>
+        <p>Vi utför endast vanlig fönsterputs. Sanering av byggdamm, silikon, färg eller tejprester ingår ej i standardputsen och utförs inte.</p>
       </div>
 
       <h3 class="calc-step-title">5. Uterum, balkong och altan</h3>
@@ -1145,10 +1151,14 @@
     var TYP_FAKTOR = { '2': 1, '4': 2, 'utat': 2 };
     // Egna tider för 4-sidigt/utåtgående där det inte är dubbla 2-sidiga tiden (Tommy 2026-10-15)
     var LOOK_MIN_4 = { antalOverligg: 10, antalUnderligg: 10 };
-    function fonsterMin(typ) {
+    // Antal sparas separat för 2-sidigt och 4-sidigt; rutorna i steg 3 visar den typ som är vald just nu
+    var antalPerTyp = { '2': {}, '4': {} };
+    function antal(set, id) { return set === fonsterTyp ? val(id) : (antalPerTyp[set][id] || 0); }
+    function antalSumma(set) { return lookIds.reduce(function (sum, id) { return sum + antal(set, id); }, 0); }
+    function fonsterMin(typ, set) {
       return lookIds.reduce(function (sum, id) {
         var min = typ !== '2' && LOOK_MIN_4[id] ? LOOK_MIN_4[id] : LOOK_MIN[id] * TYP_FAKTOR[typ];
-        return sum + val(id) * min;
+        return sum + antal(set, id) * min;
       }, 0);
     }
     var TYP_NAMN = { '2': '2-sidigt', '4': '4-sidigt', 'utat': 'Utåtgående' };
@@ -1292,12 +1302,13 @@
         document.getElementById(id).value = val(id);
       });
 
-      var lookCount = 0, lookMin = 0;
-      lookIds.forEach(function (id) { lookCount += val(id); lookMin += val(id) * LOOK_MIN[id]; });
-      var typ = document.getElementById('valUtat').checked ? 'utat' : fonsterTyp;
-      document.getElementById('antal2').value = typ === '2' ? lookCount : 0;
-      document.getElementById('antal4').value = typ === '4' ? lookCount : 0;
-      document.getElementById('antalUtat').value = typ === 'utat' ? lookCount : 0;
+      var count2 = antalSumma('2'), count4 = antalSumma('4');
+      var lookCount = count2 + count4;
+      var utat = document.getElementById('valUtat').checked;
+      var typ = utat ? 'utat' : fonsterTyp;
+      document.getElementById('antal2').value = utat ? 0 : count2;
+      document.getElementById('antal4').value = utat ? 0 : count4;
+      document.getElementById('antalUtat').value = utat ? lookCount : 0;
       var n2 = val('antal2');
       var n4 = val('antal4');
       var nUtat = val('antalUtat');
@@ -1318,9 +1329,9 @@
       var hasSprojs = sprojs.checked;
       var siteVisit = needsSiteVisit(hasSprojs, nSprojs);
       var valKarm = document.getElementById('valKarm').checked;
-      var valSanering = document.getElementById('valSanering').checked;
       var valHoga = document.getElementById('valHoga').checked;
-      var houseRaw = tidsPris(fonsterMin(typ) + (valHoga && lookCount > 0 ? HOGA_MIN : 0));
+      var houseMin = utat ? fonsterMin('utat', '2') + fonsterMin('utat', '4') : fonsterMin('2', '2') + fonsterMin('4', '4');
+      var houseRaw = tidsPris(houseMin + (valHoga && lookCount > 0 ? HOGA_MIN : 0));
       var extraRaw = (extraGolv * PRICE_GOLV) + (extraTak * PRICE_TAK);
       var sprojsRaw = 0;
       var sprojsPending = hasSprojs && nSprojs > 0 && !siteVisit;
@@ -1330,7 +1341,7 @@
       var usedMin = hasWindows && !siteVisit && raw < minPrice;
       var total = hasWindows ? Math.max(raw, minPrice) : 0;
       if (valKarm) total += Math.round(total * KARM_ANDEL);
-      ['valKarm', 'valSanering', 'valHoga', 'valUtat', 'valSprojsFast'].forEach(function (id) {
+      ['valKarm', 'valHoga', 'valUtat', 'valSprojsFast'].forEach(function (id) {
         document.getElementById(id + 'Toggle').classList.toggle('is-active', document.getElementById(id).checked);
       });
 
@@ -1432,12 +1443,21 @@
         }
       }
       var poster = [];
-      lookIds.forEach(function (id) { if (val(id) > 0) poster.push(LOOK_NAMN[id] + ': ' + val(id) + ' st'); });
-      if (lookCount > 0) poster.push('Typ av fönster: ' + TYP_NAMN[typ]);
+      // Grupper per typ: utåtgående slår ihop allt, annars 2-sidigt och 4-sidigt var för sig
+      var grupper = (utat ? [['utat', ['2', '4']]] : [['2', ['2']], ['4', ['4']]]).map(function (g) {
+        var poster2 = [];
+        lookIds.forEach(function (id) {
+          var n = g[1].reduce(function (sum, set) { return sum + antal(set, id); }, 0);
+          if (n > 0) poster2.push([LOOK_NAMN[id], n]);
+        });
+        return { namn: TYP_NAMN[g[0]], fonster: poster2 };
+      }).filter(function (g) { return g.fonster.length; });
+      grupper.forEach(function (g) {
+        g.fonster.forEach(function (f) { poster.push(g.namn + ' ' + f[0] + ': ' + f[1] + ' st'); });
+      });
       if (document.getElementById('valSprojsFast').checked) poster.push('Fasta spröjs: Ja');
       if (valKarm) poster.push('Lätt karmtvätt: Ja');
       if (valHoga) poster.push('Höga fönster: Ja');
-      if (valSanering) poster.push('Färg, silikon eller byggdamm: Ja (prissätts när jag sett glasen)');
       if (ug > 0) poster.push('Uterum golv till tak: ' + ug + ' st');
       if (ut > 0) poster.push('Uterum räcke till tak: ' + ut + ' st');
       if (bg > 0) poster.push('Balkong golv till tak: ' + bg + ' st');
@@ -1453,18 +1473,20 @@
       if (antalField) antalField.value = allWindows + ' st';
 
       // Löpande sammanfattning: det kunden valt + priset
-      var rader = [['Typ', TYP_NAMN[typ]]];
-      lookIds.forEach(function (id) { if (val(id) > 0) rader.push([LOOK_NAMN[id], val(id) + ' st']); });
+      var rader = [];
+      grupper.forEach(function (g) {
+        rader.push([g.namn, '', true]);
+        g.fonster.forEach(function (f) { rader.push([f[0], f[1] + ' st']); });
+      });
       if (valHoga) rader.push(['Höga fönster', 'Ja']);
       if (document.getElementById('valSprojsFast').checked) rader.push(['Fasta spröjs', 'Ja']);
       if (valKarm) rader.push(['Karmtvätt', '+15 %']);
-      if (valSanering) rader.push(['Färg/silikon', 'Prissätts på plats']);
       if (ug + ut > 0) rader.push(['Uterum', (ug + ut) + ' st']);
       if (bg + bt > 0) rader.push(['Balkong', (bg + bt) + ' st']);
       if (ag + at > 0) rader.push(['Altan', (ag + at) + ' st']);
       var liveList = document.getElementById('calcLiveList');
       if (liveList) {
-        liveList.innerHTML = rader.map(function (r) { return '<li><span>' + r[0] + '</span><strong>' + r[1] + '</strong></li>'; }).join('');
+        liveList.innerHTML = rader.map(function (r) { return r[2] ? '<li class="calc-live-grupp">' + r[0] + '</li>' : '<li><span>' + r[0] + '</span><strong>' + r[1] + '</strong></li>'; }).join('');
         document.getElementById('calcLiveEmpty').style.display = hasWindows ? 'none' : '';
         var livePrice = document.getElementById('calcLivePrice');
         var liveBefore = document.getElementById('calcLiveBefore');
@@ -1473,7 +1495,7 @@
         else { livePrice.textContent = total + ' kr'; liveBefore.textContent = (total * 2) + ' kr före RUT'; }
       }
       var barSpec = document.getElementById('barSpec');
-      if (barSpec) barSpec.textContent = hasWindows ? allWindows + ' fönster · ' + TYP_NAMN[typ] + (valHoga ? ' · höga' : '') + (valKarm ? ' · karm' : '') : '';
+      if (barSpec) barSpec.textContent = hasWindows ? grupper.map(function (g) { return g.namn + ' ' + g.fonster.reduce(function (sum, f) { return sum + f[1]; }, 0); }).join(' · ') + (valHoga ? ' · höga' : '') + (valKarm ? ' · karm' : '') : '';
     }
     window.fputsUpdateCalc = update;
 
@@ -1497,7 +1519,9 @@
         document.querySelectorAll('[data-fonstertyp]').forEach(function (other) {
           other.classList.toggle('is-active', other === card);
         });
+        lookIds.forEach(function (id) { antalPerTyp[fonsterTyp][id] = val(id); });
         fonsterTyp = card.getAttribute('data-fonstertyp');
+        lookIds.forEach(function (id) { document.getElementById(id).value = antalPerTyp[fonsterTyp][id] || 0; });
         update();
       });
     });
@@ -1530,10 +1554,10 @@
 
     // Spröjskorten visas bara när "Fasta spröjs" är på – nollställ dem när det slås av
     document.getElementById('valSprojsFast').addEventListener('change', function () {
-      if (!this.checked) ['antalS2', 'antalS3', 'antalS4'].forEach(function (id) { document.getElementById(id).value = 0; });
+      if (!this.checked) ['antalS2', 'antalS3', 'antalS4'].forEach(function (id) { document.getElementById(id).value = 0; antalPerTyp['2'][id] = 0; antalPerTyp['4'][id] = 0; });
     });
 
-    countIds.concat(['sprojs', 'valKarm', 'valSanering', 'valHoga', 'valUtat', 'valSprojsFast']).forEach(function (id) {
+    countIds.concat(['sprojs', 'valKarm', 'valHoga', 'valUtat', 'valSprojsFast']).forEach(function (id) {
       var el = document.getElementById(id);
       el.addEventListener('input', update);
       el.addEventListener('change', update);
