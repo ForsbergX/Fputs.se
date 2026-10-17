@@ -480,10 +480,6 @@
     @media (max-width: 768px) {
       .fp-fab { display: none !important; }
       body.fp-panel-open .fp-bottombar { display: none; }
-      /* Header: logga vänster, telefon + hamburgare höger */
-      nav:not(.breadcrumb-nav) .nav-logo { position: static !important; transform: none !important; left: auto !important; top: auto !important; margin-right: auto !important; }
-      nav:not(.breadcrumb-nav) .nav-logo:hover { transform: none !important; }
-      .nav-tel { display: flex !important; }
       /* Kampanjen nästan kant i kant */
       #hero { padding-left: 16px; padding-right: 16px; }
       html body .kampanj { background: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
@@ -493,7 +489,6 @@
       html body .kampanj-lgh .lgh-desk { display: none; }
       .kampanj-ring { display: flex; align-items: center; justify-content: center; height: 48px; margin-top: 6px; border: 1.5px solid #d1101f; border-radius: 8px; }
     }
-    .nav-tel { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; color: #18181b; }
     /* Två tjänstekort (2026-10-17) */
     .kampanj { grid-template-columns: 1fr; }
     .kampanj-kort { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0 0; }
