@@ -1492,11 +1492,17 @@
     var mq = window.matchMedia('(max-width: 720px)');
     function setup() {
       if (!mq.matches || v.getAttribute('src')) return;
+      // preload=none i HTML så att datorn inte laddar videon; på mobil: autoplay + preload auto
       v.poster = 'images/hero-putsar-poster.jpg';
+      v.autoplay = true; v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
       v.src = 'images/hero-putsar.mp4';
       v.closest('.hero-photo-wrap').classList.add('has-video');
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      spela();
+      // Starta om om videon pausas eller stannar (strömsparläge på iPhone blockerar autoplay – då syns postern)
+      ['pause', 'stalled', 'ended', 'suspend'].forEach(function (ev) { v.addEventListener(ev, function () { if (!document.hidden) setTimeout(spela, 300); }); });
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) spela(); });
     }
+    function spela() { if (v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } }
     setup();
     if (mq.addEventListener) mq.addEventListener('change', setup);  })();
 </script>
