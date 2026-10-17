@@ -381,6 +381,7 @@
   </style>
   <link rel="stylesheet" href="css/sidfot.css" />
   <link rel="stylesheet" href="css/bubblor.css" />
+  <link rel="stylesheet" href="css/kompakt-form.css" />
 </head>
 <body>
 <nav>
@@ -719,53 +720,40 @@
           <p class="calc-file-hint">Skicka gärna bilder på spröjsen via SMS till <a href="sms:0793463964" style="color:var(--accent);">079-346 39 64</a> så jag kan räkna på jobbet.</p>
         </div>
 
-        <div class="price-panel price-panel-featured" id="boka" style="scroll-margin-top:100px;margin-top:24px;">
-          <div class="panel-glow"></div>
-          <div class="panel-content" id="formular" style="scroll-margin-top:100px;">
-            <h2 class="panel-title panel-title-green">Skicka offertförfrågan</h2>
-            <p class="panel-lead">Samma uppgifter som i SMS:et – så kan jag sätta ett fast pris samma dag.<br><span style="color:var(--muted);font-size:13px;">Du betalar bara halva arbetskostnaden med RUT. Inga lockpriser.</span></p>
-            <form class="book-form" id="offertForm" action="/.netlify/functions/send-email" method="POST">
-              <input type="hidden" name="kalla" value="Priskalkylator från fputs.se" />
-              <input type="hidden" name="uppskattat_pris" id="hiddenPrice" value="" />
-              <input type="hidden" name="pris_fore_rut" id="hiddenPriceBefore" value="" />
-              <input type="hidden" name="antal_fonster" id="hiddenAntal" value="0" />
-              <input type="hidden" name="kalkyl" id="hiddenKalkyl" value="" />
-              <input type="hidden" id="hiddenSmsSpec" value="" />
-              <input type="hidden" name="atkomst" id="hustyp" value="Vanlig villa" />
-              <input type="hidden" name="sprojs" id="hiddenSprojs" value="Nej" />
-              <input type="hidden" name="sprojs_typ" id="hiddenSprojsTyp" value="" />
-              <input type="hidden" name="sprojs_antal" id="hiddenSprojsCount" value="0" />
-              <input type="hidden" name="platsbesok" id="hiddenPlatsbesok" value="Nej" />
-              <input type="hidden" name="hus_delsumma" id="hiddenBase" value="" />
-              <input type="hidden" name="uterum_balkong_altan" id="hiddenExtra" value="" />
-              <input type="hidden" name="uraknat_belopp" id="hiddenRaw" value="" />
-              <div class="form-group"><label for="namn">Namn</label><input type="text" id="namn" name="namn" autocomplete="name" placeholder="Ditt namn" required /></div>
-              <div class="form-group"><label for="telefon">Telefonnummer</label><input type="tel" id="telefon" name="telefon" autocomplete="tel" placeholder="07X-XXX XX XX" required /></div>
-              <div class="form-group"><label for="adress">Adress</label><input type="text" id="adress" name="adress" autocomplete="street-address" placeholder="Gata och ort, t.ex. Storgatan 12, Jönköping" required /></div>
-              <div class="form-group">
-                <label for="bostadstyp">Villa eller lägenhet</label>
-                <select id="bostadstyp" name="bostadstyp" required>
-                  <option value="" disabled>Välj bostadstyp</option>
-                  <option value="Villa" selected>Villa</option>
-                  <option value="Lägenhet">Lägenhet</option>
-                  <option value="Företag">Företag</option>
-                  <option value="Solcellstvätt">Solcellstvätt</option>
-                  <option value="Annat">Annat</option>
-                </select>
-              </div>
-              <div class="form-row">
-                <div class="form-group"><label for="datum1">Önskat datum 1</label><input type="date" id="datum1" name="onskat_datum_1" /></div>
-                <div class="form-group"><label for="datum2">Önskat datum 2</label><input type="date" id="datum2" name="onskat_datum_2" /></div>
-              </div>
-              <p id="datumHelgNote" style="display:none;font-size:13px;font-weight:600;line-height:1.5;margin:0;color:var(--ink);">Denna helg tar jag bara emot kortare jobb efter kl 17:00 (1–3 timmar).</p>
-              <input type="hidden" name="jobbhelg" id="offertJobbhelg" value="Nej" />
-              <div class="form-group"><label for="email">E-post <span style="text-transform:none;letter-spacing:0;font-weight:500;">(valfritt)</span></label><input type="email" id="email" name="email" autocomplete="email" placeholder="din@epost.se" /></div>
-              <div class="form-group"><label for="meddelande">Meddelande <span style="text-transform:none;letter-spacing:0;font-weight:500;">(valfritt)</span></label><textarea id="meddelande" name="meddelande" placeholder="Tider som passar, kodlås, eller annat jag behöver veta..."></textarea></div>
-              <button type="submit" class="btn-primary panel-cta" id="offertSubmitBtn">Skicka offertförfrågan</button>
-              <button type="button" class="btn-outline panel-cta" id="offertSmsBtn">Skicka som SMS</button>
-              <p id="offertSmsHint" style="font-size:12px;line-height:1.5;margin:-8px 0 0;color:var(--muted);">Öppnar ditt vanliga SMS med antal fönster och uppskattat pris ifyllt. Du trycker bara skicka.</p>
-              <p id="offertFormError" style="display:none;color:#b42318;font-size:13px;margin-top:12px;">Något gick fel. Prova igen, eller ring mig direkt på <a href="tel:0793463964" style="color:inherit;text-decoration:underline;">079-346 39 64</a>.</p>
-            </form>
+        <div class="fpx-card" id="boka" style="scroll-margin-top:100px;margin-top:24px;">
+          <div class="fpx-head"><strong>Boka fönsterputs</strong><span>Jag bekräftar tid samma dag</span></div>
+          <div class="fpx-body" id="formular" style="scroll-margin-top:100px;">
+          <form class="fp-form" id="offertForm" action="/.netlify/functions/send-email" method="POST">
+            <input type="hidden" name="kalla" value="Priskalkylator från fputs.se" />
+            <input type="hidden" name="uppskattat_pris" id="hiddenPrice" value="" />
+            <input type="hidden" name="pris_fore_rut" id="hiddenPriceBefore" value="" />
+            <input type="hidden" name="antal_fonster" id="hiddenAntal" value="0" />
+            <input type="hidden" name="kalkyl" id="hiddenKalkyl" value="" />
+            <input type="hidden" id="hiddenSmsSpec" value="" />
+            <input type="hidden" name="atkomst" id="hustyp" value="Vanlig villa" />
+            <input type="hidden" name="sprojs" id="hiddenSprojs" value="Nej" />
+            <input type="hidden" name="sprojs_typ" id="hiddenSprojsTyp" value="" />
+            <input type="hidden" name="sprojs_antal" id="hiddenSprojsCount" value="0" />
+            <input type="hidden" name="platsbesok" id="hiddenPlatsbesok" value="Nej" />
+            <input type="hidden" name="hus_delsumma" id="hiddenBase" value="" />
+            <input type="hidden" name="uterum_balkong_altan" id="hiddenExtra" value="" />
+            <input type="hidden" name="uraknat_belopp" id="hiddenRaw" value="" />
+            <input type="hidden" id="datum1" name="onskat_datum_1" value="" />
+            <input type="hidden" id="datum2" name="onskat_datum_2" value="" />
+            <input type="hidden" name="jobbhelg" id="offertJobbhelg" value="Nej" />
+            <p id="datumHelgNote" hidden></p>
+            <input type="hidden" id="bostadstyp" name="bostadstyp" value="Villa" />
+            <div class="fpx-sum" id="fpxSum"></div>
+            <label class="fp-field"><span class="fp-sr">Namn</span><input type="text" id="namn" name="namn" autocomplete="name" placeholder="Namn" required /></label>
+            <label class="fp-field"><span class="fp-sr">Adress</span><input type="text" id="adress" name="adress" autocomplete="street-address" placeholder="Adress och ort" required /></label>
+            <label class="fp-field"><span class="fp-sr">Telefon</span><input type="tel" id="telefon" name="telefon" autocomplete="tel" placeholder="Telefonnummer" required /></label>
+            <label class="fp-field"><span class="fp-sr">E-post</span><input type="email" id="email" name="email" autocomplete="email" placeholder="E-post (valfritt)" /></label>
+            <label class="fp-field"><span class="fp-sr">Meddelande</span><textarea id="meddelande" name="meddelande" rows="2" placeholder="Meddelande (valfritt)"></textarea></label>
+            <a class="fp-google" href="https://www.google.com/search?q=Forsbergs+F%C3%B6nsterputs+J%C3%B6nk%C3%B6ping+recensioner" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.5 2.4-7.2 2.4-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg><span class="fp-google-stars">★★★★★</span> <strong>5/5 på Google</strong> · 43 recensioner</a>
+            <p class="fp-checks"><span>✓ Ej bindande</span><span>✓ 100 % gratis</span></p>
+            <button type="submit" class="fp-book-go" id="offertSubmitBtn">Boka</button>
+            <p class="fp-form-error" id="offertFormError" style="display:none;">Något gick fel. Prova igen, eller ring <a href="tel:0793463964">079-346 39 64</a>.</p>
+          </form>
             <div id="offertFormSuccess" style="display:none;text-align:center;padding:30px 10px;">
               <div style="font-size:40px;margin-bottom:12px;">✅</div>
               <h2 class="panel-title panel-title-green" style="margin-bottom:10px;">Tack, din förfrågan är skickad!</h2>
@@ -849,7 +837,7 @@
               }).catch(function () {
                 errorMsg.style.display = 'block';
                 btn.disabled = false;
-                btn.textContent = btn.getAttribute('data-label') || 'Skicka offertförfrågan';
+                btn.textContent = btn.getAttribute('data-label') || 'Boka';
               });
             });
             var smsBtn = document.getElementById('offertSmsBtn');
@@ -1153,6 +1141,9 @@
     var LOOK_MIN_4 = { antalOverligg: 10, antalUnderligg: 10 };
     // Antal sparas separat för 2-sidigt och 4-sidigt; rutorna i steg 3 visar den typ som är vald just nu
     var antalPerTyp = { '2': {}, '4': {} };
+    // Endast utsida (?utsida=1): halva priset av komplett 2-sidig puts, minst 375 kr (antagande, Tommy 2026-10-17)
+    var UTSIDA = new URLSearchParams(window.location.search).get('utsida') === '1';
+    var MIN_UTSIDA = 375;
     function antal(set, id) { return set === fonsterTyp ? val(id) : (antalPerTyp[set][id] || 0); }
     function antalSumma(set) { return lookIds.reduce(function (sum, id) { return sum + antal(set, id); }, 0); }
     function fonsterMin(typ, set) {
@@ -1324,7 +1315,7 @@
       var extraCount = extraGolv + extraTak;
       var houseCount = n2 + n4 + nUtat;
       var allWindows = houseCount + extraCount;
-      var minPrice = hustypInput.value === 'Avancerad villa' ? MIN_SOUTERRANG : MIN_ENPLAN;
+      var minPrice = UTSIDA ? MIN_UTSIDA : (hustypInput.value === 'Avancerad villa' ? MIN_SOUTERRANG : MIN_ENPLAN);
 
       var hasSprojs = sprojs.checked;
       var siteVisit = needsSiteVisit(hasSprojs, nSprojs);
@@ -1332,6 +1323,7 @@
       var valHoga = document.getElementById('valHoga').checked;
       var houseMin = utat ? fonsterMin('utat', '2') + fonsterMin('utat', '4') : fonsterMin('2', '2') + fonsterMin('4', '4');
       var houseRaw = tidsPris(houseMin + (valHoga && lookCount > 0 ? HOGA_MIN : 0));
+      if (UTSIDA) houseRaw = Math.round(houseRaw / 10) * 5;
       var extraRaw = (extraGolv * PRICE_GOLV) + (extraTak * PRICE_TAK);
       var sprojsRaw = 0;
       var sprojsPending = hasSprojs && nSprojs > 0 && !siteVisit;
@@ -1356,10 +1348,10 @@
       document.getElementById('sprojsPanel').classList.toggle('is-open', hasSprojs);
       if (photoGroup) photoGroup.style.display = siteVisit ? 'flex' : 'none';
       if (btn) {
-        btn.setAttribute('data-label', siteVisit ? 'Skicka förfrågan så kommer jag ut' : 'Skicka offertförfrågan');
+        btn.setAttribute('data-label', siteVisit ? 'Skicka förfrågan så kommer jag ut' : 'Boka');
         if (!btn.disabled) btn.textContent = btn.getAttribute('data-label');
       }
-      if (subjectField) subjectField.value = siteVisit ? 'Platsbesök spröjs från fputs.se' : 'Priskalkylator från fputs.se';
+      if (subjectField) subjectField.value = siteVisit ? 'Platsbesök spröjs från fputs.se' : (UTSIDA ? 'Endast utsida från fputs.se' : 'Priskalkylator från fputs.se');
 
       document.getElementById('sumHustyp').textContent = hustypInput.value;
       document.getElementById('sum2').textContent = n2 + ' st';
@@ -1450,7 +1442,7 @@
           var n = g[1].reduce(function (sum, set) { return sum + antal(set, id); }, 0);
           if (n > 0) poster2.push([LOOK_NAMN[id], n]);
         });
-        return { namn: TYP_NAMN[g[0]], fonster: poster2 };
+        return { namn: UTSIDA ? 'Endast utsida' : TYP_NAMN[g[0]], fonster: poster2 };
       }).filter(function (g) { return g.fonster.length; });
       grupper.forEach(function (g) {
         g.fonster.forEach(function (f) { poster.push(g.namn + ' ' + f[0] + ': ' + f[1] + ' st'); });
@@ -1466,9 +1458,19 @@
       if (at > 0) poster.push('Altan räcke till tak: ' + at + ' st');
       if (hasSprojs) poster.push('Spröjs: ' + nSprojs + ' st, ' + sprojsTyp);
       var kalkyl = document.getElementById('hiddenKalkyl');
+      if (UTSIDA) poster.unshift('ENDAST UTVÄNDIG PUTS');
       if (kalkyl) kalkyl.value = poster.length ? hustypInput.value + ' | ' + poster.join(' | ') : hustypInput.value;
       var smsSpec = document.getElementById('hiddenSmsSpec');
       if (smsSpec) smsSpec.value = poster.join('\n');
+      var sumEl = document.getElementById('fpxSum');
+      if (sumEl) {
+        var sumRader = [];
+        grupper.forEach(function (g) { sumRader.push(g.namn + ': ' + g.fonster.map(function (f) { return f[1] + ' st ' + f[0]; }).join(', ')); });
+        if (ug + ut + bg + bt + ag + at > 0) sumRader.push('Uterum/balkong/altan: ' + (ug + ut + bg + bt + ag + at) + ' st');
+        sumEl.innerHTML = hasWindows
+          ? '<span>Din beräkning skickas med</span><strong>' + sumRader.join('<br>') + '</strong><b>' + (siteVisit ? 'Räknas på plats' : total + ' kr efter RUT') + '</b>'
+          : '<span>Fyll i dina fönster ovan så skickas din beräkning med.</span>';
+      }
       var antalField = document.getElementById('hiddenAntal');
       if (antalField) antalField.value = allWindows + ' st';
 
@@ -1578,6 +1580,21 @@
       });
     }
 
+    if (UTSIDA) {
+      var titlar = document.querySelectorAll('#kalkylator .calc-step-title');
+      var dolj = [titlar[0], document.querySelector('.calc-typ-grid'), document.querySelector('.calc-sa-funkar:not(.calc-obs)'), document.getElementById('valUtatToggle'), titlar[4], document.querySelector('.calc-extra-grid')];
+      if (titlar[4] && titlar[4].nextElementSibling) dolj.push(titlar[4].nextElementSibling);
+      dolj.forEach(function (el) { if (el) el.style.display = 'none'; });
+      titlar[1].textContent = '1. Gäller något av detta?';
+      titlar[2].textContent = '2. Antal fönster';
+      titlar[3].textContent = '3. Tillval';
+      document.querySelector('#hero .hero-title').textContent = 'Endast utvändig puts';
+      document.querySelector('#hero .hero-sub').textContent = 'Fyll i dina fönster, så ser du direkt vad utsidan kostar efter RUT. Från 375 kr.';
+      document.querySelector('.calc-heading').textContent = 'Vi putsar bara utsidan – du behöver inte vara hemma. Fyll i dina fönster så ser du priset direkt.';
+      if (subjectField) subjectField.value = 'Endast utsida från fputs.se';
+      var bostadSel = document.getElementById('bostadstyp');
+      if (bostadSel) bostadSel.value = 'Endast utsida';
+    }
     update();
   })();
 </script>

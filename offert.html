@@ -54,6 +54,7 @@
   <style>#nl-badge-frame{display:none !important;}</style>
   <link rel="stylesheet" href="css/sidfot.css" />
   <link rel="stylesheet" href="css/bubblor.css" />
+  <link rel="stylesheet" href="css/kompakt-form.css" />
 </head>
 <body>
 <!-- NAV -->
@@ -94,38 +95,26 @@
       </div>
     </div>
     <div class="book-right" id="formular" style="scroll-margin-top: 100px;">
-      <div class="price-panel price-panel-featured">
-        <div class="panel-glow"></div>
-        <div class="panel-content">
-          <h2 class="panel-title panel-title-green">Skicka offertförfrågan</h2>
-          <p class="panel-lead">Samma uppgifter som i SMS:et – så kan jag sätta ett fast pris samma dag.<br><span style="color:rgba(255,255,255,0.6);font-size:13px;">Du betalar bara halva arbetskostnaden med RUT. Inga lockpriser.</span></p>
-          <form class="book-form" id="offertForm" action="/.netlify/functions/send-email" method="POST">
-            <div class="form-group"><label for="namn">Namn</label><input type="text" id="namn" name="namn" autocomplete="name" placeholder="Ditt namn" required /></div>
-            <div class="form-group"><label for="telefon">Telefonnummer</label><input type="tel" id="telefon" name="telefon" autocomplete="tel" placeholder="07X-XXX XX XX" required /></div>
-            <div class="form-group"><label for="adress">Adress</label><input type="text" id="adress" name="adress" autocomplete="street-address" placeholder="Gata och ort, t.ex. Storgatan 12, Jönköping" required /></div>
-            <div class="form-group">
-              <label for="bostadstyp">Villa eller lägenhet</label>
-              <select id="bostadstyp" name="bostadstyp" required>
-                <option value="" disabled selected>Välj bostadstyp</option>
-                <option value="Villa">Villa</option>
-                <option value="Lägenhet">Lägenhet</option>
-                <option value="Företag">Företag</option>
-                <option value="Solcellstvätt">Solcellstvätt</option>
-                <option value="Annat">Annat</option>
-              </select>
-            </div>
-            <div class="form-row">
-              <div class="form-group"><label for="datum1">Önskat datum 1</label><input type="date" id="datum1" name="onskat_datum_1" /></div>
-              <div class="form-group"><label for="datum2">Önskat datum 2</label><input type="date" id="datum2" name="onskat_datum_2" /></div>
-            </div>
-            <p id="datumHelgNote" style="display:none;font-size:13px;font-weight:600;line-height:1.5;margin:0;color:#fff;">Denna helg tar jag bara emot kortare jobb efter kl 17:00 (1–3 timmar).</p>
+      <div class="fpx-card">
+          <div class="fpx-head"><strong>Få ett fast pris</strong><span>Svar samma dag</span></div>
+          <div class="fpx-body">
+          <form class="fp-form" id="offertForm" action="/.netlify/functions/send-email" method="POST">
+
+            <input type="hidden" id="datum1" name="onskat_datum_1" value="" />
+            <input type="hidden" id="datum2" name="onskat_datum_2" value="" />
             <input type="hidden" name="jobbhelg" id="offertJobbhelg" value="Nej" />
-            <div class="form-group"><label for="email">E-post <span style="text-transform:none;letter-spacing:0;font-weight:500;">(valfritt)</span></label><input type="email" id="email" name="email" autocomplete="email" placeholder="din@epost.se" /></div>
-            <div class="form-group"><label for="meddelande">Meddelande <span style="text-transform:none;letter-spacing:0;font-weight:500;">(valfritt)</span></label><textarea id="meddelande" name="meddelande" placeholder="Tider som passar, kodlås, eller annat jag behöver veta..."></textarea></div>
-            <button type="submit" class="btn-primary panel-cta" id="offertSubmitBtn">Skicka offertförfrågan</button>
-            <button type="button" class="btn-outline panel-cta" id="offertSmsBtn">Skicka som SMS</button>
-            <p id="offertSmsHint" style="font-size:12px;line-height:1.5;margin:-8px 0 0;color:var(--muted);">Öppnar ditt vanliga SMS med alla uppgifter ifyllda. Du trycker bara skicka.</p>
-            <p id="offertFormError" style="display:none;color:#f87171;font-size:13px;margin-top:12px;">Något gick fel. Prova igen, eller ring mig direkt på <a href="tel:0793463964" style="color:#f87171;text-decoration:underline;">079-346 39 64</a>.</p>
+            <p id="datumHelgNote" hidden></p>
+            <label class="fp-field"><span class="fp-sr">Bostad</span><select id="bostadstyp" name="bostadstyp" required><option value="" disabled selected>Villa eller lägenhet?</option><option value="Villa">Villa / Radhus</option><option value="Lägenhet">Lägenhet</option><option value="Endast utsida">Endast utsida</option></select></label>
+            <label class="fp-field"><span class="fp-sr">Namn</span><input type="text" id="namn" name="namn" autocomplete="name" placeholder="Namn" required /></label>
+            <label class="fp-field"><span class="fp-sr">Adress</span><input type="text" id="adress" name="adress" autocomplete="street-address" placeholder="Adress och ort" required /></label>
+            <label class="fp-field"><span class="fp-sr">Telefon</span><input type="tel" id="telefon" name="telefon" autocomplete="tel" placeholder="Telefonnummer" required /></label>
+            <label class="fp-field"><span class="fp-sr">E-post</span><input type="email" id="email" name="email" autocomplete="email" placeholder="E-post (valfritt)" /></label>
+            <label class="fp-field"><span class="fp-sr">Meddelande</span><textarea id="meddelande" name="meddelande" rows="2" placeholder="Meddelande (valfritt)"></textarea></label>
+            <a class="fp-google" href="https://www.google.com/search?q=Forsbergs+F%C3%B6nsterputs+J%C3%B6nk%C3%B6ping+recensioner" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.5 2.4-7.2 2.4-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg><span class="fp-google-stars">★★★★★</span> <strong>5/5 på Google</strong> · 43 recensioner</a>
+            <p class="fp-checks"><span>✓ Ej bindande</span><span>✓ 100 % gratis</span></p>
+            <button type="submit" class="fp-book-go" id="offertSubmitBtn">Få ett fast pris</button>
+            <p class="fp-form-error" id="offertFormError" style="display:none;">Något gick fel. Prova igen, eller ring <a href="tel:0793463964">079-346 39 64</a>.</p>
+            <a class="fp-calc-link" href="priskalkylator.html">Eller räkna ut priset själv →</a>
           </form>
           <div id="offertFormSuccess" style="display:none;text-align:center;padding:30px 10px;">
             <div style="font-size:40px;margin-bottom:12px;">✅</div>
@@ -208,7 +197,7 @@
                 }).catch(function () {
                   errorMsg.style.display = 'block';
                   btn.disabled = false;
-                  btn.textContent = 'Skicka offertförfrågan';
+                  btn.textContent = 'Få ett fast pris';
                 });
               });
               var smsBtn = document.getElementById('offertSmsBtn');

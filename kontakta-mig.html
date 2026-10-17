@@ -54,6 +54,7 @@
   <style>#nl-badge-frame{display:none !important;}</style>
   <link rel="stylesheet" href="css/sidfot.css" />
   <link rel="stylesheet" href="css/bubblor.css" />
+  <link rel="stylesheet" href="css/kompakt-form.css" />
 </head>
 <body>
 <!-- NAV -->
@@ -100,15 +101,15 @@
             <div class="form-group">
               <label for="amne">Vad gäller det?</label>
               <select id="amne" name="amne">
-                <option value="" disabled selected>Välj alternativ</option>
+                <option value="" disabled selected>Vad gäller det?</option>
                 <option value="Ny förfrågan">Ny förfrågan</option>
                 <option value="Befintlig kund">Befintlig kund</option>
                 <option value="Annat">Annat</option>
               </select>
             </div>
-            <div class="form-group"><label for="knamn">Namn</label><input type="text" id="knamn" name="namn" autocomplete="name" placeholder="Ditt namn" required /></div>
-            <div class="form-group"><label for="kepost">E-post</label><input type="email" id="kepost" name="epost" autocomplete="email" placeholder="din@epost.se" required /></div>
-            <div class="form-group"><label for="kmeddelande">Meddelande</label><textarea id="kmeddelande" name="meddelande" placeholder="Skriv ditt meddelande här..." required></textarea></div>
+            <div class="form-group"><label for="knamn">Namn</label><input type="text" id="knamn" name="namn" autocomplete="name" placeholder="Namn" required /></div>
+            <div class="form-group"><label for="kepost">E-post</label><input type="email" id="kepost" name="epost" autocomplete="email" placeholder="E-post" required /></div>
+            <div class="form-group"><label for="kmeddelande">Meddelande</label><textarea id="kmeddelande" name="meddelande" placeholder="Meddelande" required></textarea></div>
             <button type="submit" class="btn-primary panel-cta" id="kontaktSubmitBtn">Skicka meddelande</button>
             <p id="kontaktFormError" style="display:none;color:#f87171;font-size:13px;margin-top:12px;">Något gick fel. Prova igen, eller ring mig direkt på <a href="tel:0793463964" style="color:#f87171;text-decoration:underline;">079-346 39 64</a>.</p>
           </form>
