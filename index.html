@@ -22,11 +22,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <meta name="description" content="Fönsterputs i Jönköping och Huskvarna. Villa från 750 kr, lägenhet från 425 kr efter RUT. Sms:a din adress så får du fast pris samma dag." />
+  <meta name="description" content="Fönsterputs i Jönköping och Huskvarna. Villa från 750 kr, utvändig tvätt från 375 kr och lägenhet från 475 kr efter RUT. Fast pris samma dag, ingen bindningstid." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Forsbergs Fönsterputs Jönköping" />
   <meta property="og:title" content="Fönsterputs Jönköping – Fast pris med RUT | Forsbergs Fönsterputs" />
-  <meta property="og:description" content="Fönsterputs i Jönköping och Huskvarna. Villa från 750 kr, lägenhet från 425 kr efter RUT. Sms:a din adress så får du fast pris samma dag." />
+  <meta property="og:description" content="Fönsterputs i Jönköping och Huskvarna. Villa från 750 kr, utvändig tvätt från 375 kr och lägenhet från 475 kr efter RUT. Fast pris samma dag, ingen bindningstid." />
   <meta property="og:url" content="https://fputs.se/" />
   <meta property="og:image" content="https://fputs.se/images/og-share.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -34,7 +34,7 @@
   <meta property="og:locale" content="sv_SE" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Fönsterputs Jönköping – Fast pris med RUT | Forsbergs Fönsterputs" />
-  <meta name="twitter:description" content="Fönsterputs i Jönköping och Huskvarna. Villa från 750 kr, lägenhet från 425 kr efter RUT. Sms:a din adress så får du fast pris samma dag." />
+  <meta name="twitter:description" content="Fönsterputs i Jönköping och Huskvarna. Villa från 750 kr, utvändig tvätt från 375 kr och lägenhet från 475 kr efter RUT. Fast pris samma dag, ingen bindningstid." />
   <meta name="twitter:image" content="https://fputs.se/images/og-share.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -263,6 +263,9 @@
         margin: 0; color: #fff; font-size: clamp(30px, 8.6vw, 38px); font-weight: 900; line-height: 1.12; letter-spacing: -0.02em;
         text-shadow: 0 2px 18px rgba(0,0,0,0.45);
       }
+      .hero-copy-rut { display: inline-block; font-size: 0.5em; font-weight: 800; vertical-align: middle; white-space: nowrap; }
+      .hero-copy-sub { margin: -8px 0 0; color: #fff; font-size: 15px; font-weight: 600; text-shadow: 0 1px 10px rgba(0,0,0,0.5); }
+      .hero-copy-sub span { display: block; }
       .hero-copy-btn {
         display: inline-flex; align-items: center; height: 50px; padding: 0 28px; border-radius: 6px;
         background: #d1101f; color: #fff; font-size: 17px; font-weight: 700; text-decoration: none;
@@ -496,6 +499,7 @@
     .kampanj-kort { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0 0; }
     .kampanj-kort .kampanj-tjanst { display: flex; flex-direction: column; margin: 0; padding: 22px; background: #fff; border: 1.5px solid #e4e4e8; border-radius: 14px; }
     .kampanj-kort .kampanj-tjanst h3 { margin-bottom: 8px; font-size: 20px; }
+    .kampanj-etikett { margin-bottom: 4px; font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #6a6a70; }
     .kampanj-kort .kampanj-bubbla { align-self: flex-start; margin-bottom: 12px; }
     .kampanj-kort .kampanj-lista { flex-direction: column; gap: 8px; margin: 14px 0 20px; }
     .kampanj-knapp { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; height: 50px; border-radius: 6px; background: #d1101f; color: #fff; font-size: 16px; font-weight: 700; text-decoration: none; transition: background .15s; }
@@ -1416,14 +1420,21 @@
   <style>#nl-badge-frame{display:none !important;}</style>
   <link rel="stylesheet" href="css/sidfot.css" />
   <link rel="stylesheet" href="css/bubblor.css" />
+  <style>
+/* Stängd dropdown ska inte synas alls (dator) */
+@media (min-width: 769px) {
+  .nav-dropdown-menu { visibility: hidden; transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s; }
+  .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown-menu:hover, .nav-dropdown:focus-within .nav-dropdown-menu { visibility: visible; transition-delay: 0s; }
+}
+  </style>
 </head>
 <body>
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html"><img src="images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="1109" height="260" /></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta mig</a></li>
-    <li><a href="offert.html#formular" class="nav-cta nav-cta-desk">Få prisförslag</a></li>
+    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Metod &amp; utrustning</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta mig</a></li>
+    <li><a href="kontakta-mig.html#formular" class="nav-cta nav-cta-desk">Få prisförslag</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Meny" type="button" onclick="toggleMobileMenu(this)">
     <span></span><span></span><span></span>
@@ -1437,19 +1448,21 @@
       <img class="hero-photo" src="images/hero-bil-parkerad.jpg" alt="Forsbergs Fönsterputs servicebil vid kväll med utsikt över Jönköping" width="1672" height="941" />
       <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
       <div class="hero-copy">
-        <p class="hero-copy-title">Prova på – utvändig fönstertvätt från 375 kr!</p>
-        <a href="priskalkylator.html?typ=utsida" class="hero-copy-btn">Boka nu</a>
+        <h1 class="hero-copy-title">Fönsterputs i Jönköping – från 375 kr efter RUT</h1>
+        <p class="hero-copy-sub"><span>Jönköping &amp; Huskvarna</span> <span>Villa &amp; radhus · Ingen bindningstid</span></p>
+        <a href="kontakta-mig.html#formular" class="hero-copy-btn" id="heroFastPris">Få fast pris →</a>
       </div>
     </div>
     <div class="kampanj" id="kampanj">
       <div class="kampanj-text">
-        <h1 class="kampanj-title">Dina fönster. Dina behov. På dina villkor.</h1>
-        <p>Hos Forsbergs Fönsterputs tror vi på ärliga priser, noggrant arbete och friheten att boka när du behöver. Du får ett fast pris i förväg, med framkörning och material inkluderat. Utan abonnemang eller bindningstid.</p>
+        <h2 class="kampanj-title">Dina fönster. Dina behov. På dina villkor.</h2>
+        <p>Hos Forsbergs Fönsterputs i Jönköping tror vi på ärliga priser, noggrant arbete och friheten att boka när du behöver. Du får ett fast pris i förväg, med framkörning och material inkluderat. Utan abonnemang eller bindningstid.</p>
         <div class="kampanj-kort">
           <div class="kampanj-tjanst">
+            <span class="kampanj-etikett">Villa &amp; radhus</span>
             <h3>Komplett fönsterputs</h3>
             <span class="kampanj-bubbla">från 750 kr efter RUT</span>
-            <p>Vi tar hand om in-, ut- och emellanåt – hela jobbet gjort ordentligt på alla sidor där fönstren går att öppna.</p>
+            <p>Vi tar hand om insida, utsida och mellan glasen – hela jobbet gjort ordentligt på alla sidor där fönstren går att öppna.</p>
             <ul class="kampanj-lista">
               <li>Insida &amp; utsida</li>
               <li>Mellan glasen</li>
@@ -1458,12 +1471,13 @@
             <a class="kampanj-knapp" href="priskalkylator.html?typ=komplett">Räkna ut mitt pris <span aria-hidden="true">→</span></a>
           </div>
           <div class="kampanj-tjanst">
+            <span class="kampanj-etikett">Villa &amp; radhus</span>
             <h3>Endast utvändig tvätt</h3>
             <span class="kampanj-bubbla">från 375 kr efter RUT</span>
             <p>Perfekt för dig som vill hålla pollen, smuts och spindelnät borta med jämna mellanrum. Smidigt och prisvärt!</p>
             <ul class="kampanj-lista">
               <li>Du behöver inte vara hemma</li>
-              <li>Snabbt och enkelt</li>
+              <li>Material &amp; framkörning</li>
               <li>Perfekt att boka regelbundet</li>
             </ul>
             <a class="kampanj-knapp" href="priskalkylator.html?typ=utsida">Räkna ut mitt pris <span aria-hidden="true">→</span></a>
@@ -1483,6 +1497,7 @@
     var mq = window.matchMedia('(max-width: 720px)');
     function setup() {
       if (!mq.matches || v.getAttribute('src')) return;
+      v.poster = 'images/hero-putsar-poster.jpg';
       v.src = 'images/hero-putsar.mp4';
       v.closest('.hero-photo-wrap').classList.add('has-video');
       var p = v.play(); if (p && p.catch) p.catch(function () {});
@@ -1633,7 +1648,7 @@
       <ul>
         <li><a href="index.html">Hem</a></li>
         <li><a href="om-oss.html">Om Forsbergs</a></li>
-        <li><a href="hur-jag-jobbar.html">Hur jag jobbar</a></li>
+        <li><a href="hur-jag-jobbar.html">Metod &amp; utrustning</a></li>
         <li><a href="omraden.html">Områden</a></li>
         <li><a href="media.html">Media</a></li>
       </ul>
@@ -1932,7 +1947,7 @@
         <label class="fp-field">
           <span class="fp-sr">Bostad</span>
           <select name="bostadstyp" id="fpHemBostad" required>
-            <option value="" disabled selected>Villa eller lägenhet?</option>
+            <option value="" disabled selected>Vad gäller det?</option>
             <option value="Villa">Villa / Radhus</option>
             <option value="Lägenhet">Lägenhet</option>
             <option value="Endast utsida">Endast utsida</option>
@@ -2000,6 +2015,8 @@
     fab.addEventListener('click', function () { setOpen(panel.hidden); });
     var bbPris = document.getElementById('fpBbPris');
     if (bbPris) bbPris.addEventListener('click', function () { setOpen(true); });
+    var heroPris = document.getElementById('heroFastPris');
+    if (heroPris) heroPris.addEventListener('click', function (e) { e.preventDefault(); setOpen(true); });
     document.getElementById('fpPanelClose').addEventListener('click', function () { setOpen(false); fab.focus(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { setOpen(false); fab.focus(); } });
   })();

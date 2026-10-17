@@ -825,3 +825,8 @@
   font-size: 20px; line-height: 1; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
 }
+/* Stängd dropdown ska inte synas alls (dator) */
+@media (min-width: 769px) {
+  .nav-dropdown-menu { visibility: hidden; transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s; }
+  .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown-menu:hover, .nav-dropdown:focus-within .nav-dropdown-menu { visibility: visible; transition-delay: 0s; }
+}

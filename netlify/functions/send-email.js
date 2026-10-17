@@ -69,7 +69,9 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Ogiltig data" }) };
   }
 
-  if (!fields.namn || !fields.telefon || !fields.adress) {
+  // Adress behövs inte för "Annat / fråga" från kontaktsidan
+  const adressKravs = fields.bostadstyp !== "Annat / fråga";
+  if (!fields.namn || !fields.telefon || (adressKravs && !fields.adress)) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Obligatoriska fält saknas" }) };
   }
 
