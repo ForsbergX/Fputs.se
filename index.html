@@ -402,6 +402,14 @@
     .kampanj-arlig { margin: 16px 0 14px; padding: 16px 18px; border-left: 4px solid #d1101f; background: #fdf1f2; border-radius: 0 10px 10px 0; }
     .kampanj-arlig strong { display: block; font-size: 16px; font-weight: 800; margin-bottom: 6px; }
     .kampanj-text .kampanj-arlig p { margin: 0; font-size: 15px; }
+    .kampanj-tjanst { margin: 16px 0; padding: 16px 18px; background: #f6f6f8; border-radius: 14px; }
+    .kampanj-tjanst h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 6px; font-size: 18px; font-weight: 800; text-transform: none; letter-spacing: -0.01em; color: #18181b; }
+    .kampanj-text .kampanj-tjanst p { margin: 0; font-size: 15px; }
+    .kampanj-bubbla { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 999px; background: #d1101f; color: #fff; font-size: 13.5px; font-weight: 700; letter-spacing: 0; white-space: nowrap; }
+    .kampanj-text p.kampanj-cta { margin: 16px 0 0; }
+    .kampanj-cta a { color: #d1101f; font-weight: 800; text-decoration: none; }
+    .kampanj-cta a:hover { text-decoration: underline; }
+    .kampanj-fran { font-size: 13px; font-weight: 600; color: #6a6a70; margin-bottom: -6px; }
     .kampanj-checks { display: flex; flex-wrap: wrap; gap: 8px 26px; list-style: none; margin: 18px 0 0; padding: 0; }
     .kampanj-checks li { display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; }
     .kampanj-checks li::before {
@@ -1375,47 +1383,39 @@
         <p class="hero-copy-title">Prova på – utvändig fönstertvätt från 299 kr!</p>
         <a href="#kampanj" class="hero-copy-btn">Boka nu</a>
       </div>
-      <div class="hero-reviews">
-        <a class="hero-reviews-head" href="https://www.google.com/search?q=Forsbergs+F%C3%B6nsterputs+J%C3%B6nk%C3%B6ping+recensioner" target="_blank" rel="noopener">
-          <svg width="17" height="17" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.94 21.94 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
-          <strong>5,0</strong><span class="hero-reviews-stars">★★★★★</span><span class="hero-reviews-count">43 recensioner på Google</span>
-        </a>
-        <div class="hero-reviews-stage" id="heroReviews" aria-live="polite"></div>
-        <div class="hero-reviews-bar"><span id="heroReviewsBar"></span></div>
-      </div>
     </div>
     <div class="kampanj" id="kampanj">
       <div class="kampanj-text">
-        <h2 class="kampanj-title">Trött på fönsterputsare med dolda avgifter?</h2>
-        <p>Många stora bolag lockar med superbilliga priser, men på nästa faktura dyker det plötsligt upp startavgifter, administrationsavgifter och extrakostnader för övervåningen.</p>
-        <p>Hos Forsbergs Fönsterputs gör vi tvärtom. Vi tror på ärliga priser. Du får ett fast pris på <strong>399 kr efter RUT för hela huset</strong> – både markplan och andra våningen. Inga överraskningar, bara skinande rena fönster.</p>
-        <div class="kampanj-arlig">
-          <strong>Just nu: prova på utvändig fönstertvätt från 299 kr!</strong>
-          <p>299 kr för markplan eller 399 kr för markplan och andra våning, efter RUT. Välj engångstvätt eller starta abonnemang helt utan bindningstid – du kan säga upp det när du vill.</p>
+        <h2 class="kampanj-title">Fönsterputs på dina villkor</h2>
+        <p>Hos Forsbergs Fönsterputs får du rena fönster till ett fast pris. Framkörning och material ingår. Du bokar när du behöver – utan abonnemang eller bindningstid.</p>
+        <div class="kampanj-tjanst">
+          <h3>Komplett fönsterputs <span class="kampanj-bubbla">från 750 kr efter RUT</span></h3>
+          <p>Vi putsar insidan, utsidan och mellan glasen där fönstren går att öppna.</p>
         </div>
-        <p>Tillval som uterum, invändig fönstertvätt eller fönster högre upp än andra våningen räknar jag på separat.</p>
-        <p class="kampanj-small">Gäller en beställning per hushåll, upp till 30 vanliga fönster.</p>
-        <ul class="kampanj-checks">
-          <li>Utvändig fönstertvätt</li>
-          <li>Engångstvätt eller abonnemang</li>
-          <li>Ingen bindningstid</li>
-        </ul>
+        <div class="kampanj-tjanst">
+          <h3>Bara utsidan <span class="kampanj-bubbla">från 375 kr efter RUT</span></h3>
+          <p>Perfekt när insidan fortfarande är ren men utsidan fått smuts och spindelnät. Vi tvättar utifrån med renvatten, så du behöver inte vara hemma när vi kommer åt alla fönster.</p>
+        </div>
+        <p class="kampanj-small">Frånpriserna gäller en vanlig villa i upp till två plan, med ett tvåluftsfönster per rum, utan spröjs eller utåtgående fönster.</p>
+        <p class="kampanj-cta"><a href="#prisforslag">Välj dina fönster i kalkylatorn nedan och få ett fast pris för ditt hem.</a></p>
       </div>
       <div class="kampanj-pris">
         <span class="kampanj-pris-label">Fast pris efter RUT</span>
         <div class="kampanj-val">
-          <button type="button" class="kampanj-tile" data-pris="299" data-vad="markplan">
-            <span class="kampanj-tile-name">Markplan</span>
-            <span class="kampanj-pris-num">299<small>kr</small></span>
+          <button type="button" class="kampanj-tile" data-pris="750" data-vad="Komplett fönsterputs">
+            <span class="kampanj-tile-name">Komplett fönsterputs</span>
+            <span class="kampanj-fran">från</span>
+            <span class="kampanj-pris-num">750<small>kr</small></span>
             <span class="kampanj-tile-cta">Boka</span>
           </button>
-          <button type="button" class="kampanj-tile" data-pris="399" data-vad="markplan och andra våning">
-            <span class="kampanj-tile-name">Markplan + andra våning</span>
-            <span class="kampanj-pris-num">399<small>kr</small></span>
+          <button type="button" class="kampanj-tile" data-pris="375" data-vad="Bara utsidan">
+            <span class="kampanj-tile-name">Bara utsidan</span>
+            <span class="kampanj-fran">från</span>
+            <span class="kampanj-pris-num">375<small>kr</small></span>
             <span class="kampanj-tile-cta">Boka</span>
           </button>
         </div>
-        <span class="kampanj-pris-sub">Prova på en gång – utvändig fönstertvätt</span>
+        <span class="kampanj-pris-sub">Framkörning och material ingår</span>
         <span class="kampanj-help">Behöver du hjälp? <a href="tel:0793463964">Ring 079-346 39 64</a></span>
         <span class="kampanj-rating"><strong>5,0</strong>/5 <span class="kampanj-stars">★★★★★</span> på Google</span>
       </div>
@@ -1426,8 +1426,8 @@
           var pris = btn.getAttribute('data-pris'), vad = btn.getAttribute('data-vad');
           var kalla = document.querySelector('#fpHemForm input[name="kalla"]');
           var msg = document.querySelector('#fpHemForm textarea[name="meddelande"]');
-          if (kalla) kalla.value = 'Kampanj ' + pris + ' kr';
-          if (msg) msg.value = 'Jag vill prova på utvändig fönstertvätt för ' + pris + ' kr (' + vad + ').';
+          if (kalla) kalla.value = vad + ' från ' + pris + ' kr';
+          if (msg) msg.value = 'Jag vill boka ' + vad.toLowerCase() + ' (från ' + pris + ' kr efter RUT).';
           var panel = document.getElementById('fpPanel');
           if (panel && panel.hidden) document.getElementById('fpFab').click();
         });
@@ -1479,8 +1479,7 @@
       var p = v.play(); if (p && p.catch) p.catch(function () {});
     }
     setup();
-    if (mq.addEventListener) mq.addEventListener('change', setup);
-  })();
+    if (mq.addEventListener) mq.addEventListener('change', setup);  })();
 </script>
 <script>
   (function () {

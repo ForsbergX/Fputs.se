@@ -282,6 +282,34 @@
       display: block; margin-top: 24px; padding: 24px 20px;
       background: #f3f4f6; border-radius: 16px;
     }
+    /* Löpande sammanfattning bredvid kalkylatorn (dator) */
+    .calc-live { display: none; }
+    @media (min-width: 1100px) {
+      .calc-shell { max-width: 1160px; display: grid; grid-template-columns: minmax(0, 800px) 320px; gap: 28px; align-items: start; justify-content: center; }
+      .calc-live {
+        display: block; position: sticky; top: 110px;
+        background: #fff; border: 1px solid var(--card-border); border-radius: 16px;
+        box-shadow: 0 10px 32px -18px rgba(20,24,27,0.18); padding: 24px 22px;
+      }
+    }
+    .calc-live-title { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 14px; }
+    .calc-live-list { list-style: none; margin: 0; padding: 0; }
+    .calc-live-list li {
+      display: flex; justify-content: space-between; gap: 12px; padding: 9px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07); font-size: 14px; color: #3d444b;
+    }
+    .calc-live-list li strong { color: var(--ink); font-weight: 700; text-align: right; white-space: nowrap; }
+    .calc-live-empty { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.5; }
+    .calc-live-total { margin-top: 16px; padding-top: 14px; border-top: 2px solid var(--ink); display: flex; flex-direction: column; gap: 2px; }
+    .calc-live-total span { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .calc-live-total strong { font-size: 32px; font-weight: 900; color: #d1101f; letter-spacing: -0.03em; line-height: 1.1; }
+    .calc-live-total small { font-size: 13px; color: var(--muted); }
+    .calc-live-btn {
+      display: flex; justify-content: center; align-items: center; height: 50px; margin-top: 16px;
+      border-radius: 8px; background: #d1101f; color: #fff; font-weight: 700; font-size: 16px; text-decoration: none;
+    }
+    .calc-live-btn:hover { background: #b00d1a; }
+    .calc-bar-spec { font-size: 12px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .calc-mobile-bar { display: none !important; }
     .calc-mobile-bar.is-ready .calc-bar-price { display: flex; }
     .calc-mobile-bar.is-ready .bar-book-btn { display: flex; }
@@ -487,7 +515,6 @@
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgOver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3F0FB"/><stop offset="1" stop-color="#9FC3E4"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#C5CCD3" stroke-width="2" stroke-dasharray="5 4"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#C5CCD3"/><rect x="40" y="80" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="47" y="87" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="100" y="80" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="107" y="87" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="40" y="28" width="120" height="46" fill="#fff" stroke="#d1101f" stroke-width="2.6"/><rect x="47" y="35" width="106" height="32" rx="1" fill="url(#lgOver)" stroke="#d1101f" stroke-width="1.6"/><path d="M53 62L78.8 40h10.600000000000001L59.72 62z" fill="#fff" opacity=".7"/></svg></div>
           <h3>Överliggande fönster</h3>
-          <p class="calc-look-note">Bara den liggande rutan överst</p>
           <div class="calc-stepper">
             <button type="button" data-target="antalOverligg" data-step="-1" aria-label="Minska Överliggande fönster">−</button>
             <input type="number" id="antalOverligg" min="0" max="200" value="0" inputmode="numeric" aria-label="Antal Överliggande fönster" />
@@ -498,7 +525,6 @@
           <span class="calc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div class="calc-card-art"><svg viewBox="0 0 200 216" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lgUnder" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3F0FB"/><stop offset="1" stop-color="#9FC3E4"/></linearGradient></defs><rect x="30" y="18" width="140" height="180" rx="4" fill="#fff" stroke="#C5CCD3" stroke-width="2" stroke-dasharray="5 4"/><rect x="24" y="198" width="152" height="8" rx="2" fill="#C5CCD3"/><rect x="40" y="28" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="47" y="35" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="100" y="28" width="60" height="108" fill="#fff" stroke="#C5CCD3" stroke-width="1.6" stroke-dasharray="4 3"/><rect x="107" y="35" width="46" height="94" fill="#F4F6F8" stroke="#C5CCD3" stroke-width="1.2" stroke-dasharray="4 3"/><rect x="40" y="142" width="120" height="46" fill="#fff" stroke="#d1101f" stroke-width="2.6"/><rect x="47" y="149" width="106" height="32" rx="1" fill="url(#lgUnder)" stroke="#d1101f" stroke-width="1.6"/><path d="M53 176L78.8 154h10.600000000000001L59.72 176z" fill="#fff" opacity=".7"/></svg></div>
           <h3>Underliggande fönster</h3>
-          <p class="calc-look-note">Bara den liggande rutan nederst</p>
           <div class="calc-stepper">
             <button type="button" data-target="antalUnderligg" data-step="-1" aria-label="Minska Underliggande fönster">−</button>
             <input type="number" id="antalUnderligg" min="0" max="200" value="0" inputmode="numeric" aria-label="Antal Underliggande fönster" />
@@ -851,6 +877,17 @@
       </div>
       </div>
     </div>
+    <aside class="calc-live" id="calcLive" aria-live="polite">
+      <div class="calc-live-title">Din beställning</div>
+      <ul class="calc-live-list" id="calcLiveList"></ul>
+      <p class="calc-live-empty" id="calcLiveEmpty">Välj dina fönster så växer beställningen fram här.</p>
+      <div class="calc-live-total">
+        <span>Pris efter RUT</span>
+        <strong id="calcLivePrice">–</strong>
+        <small id="calcLiveBefore"></small>
+      </div>
+      <a href="#boka" class="calc-live-btn">Boka</a>
+    </aside>
   </div>
 </section>
 
@@ -1026,6 +1063,7 @@
   <div class="calc-bar-price">
     <span class="calc-bar-label">Uppskattat pris</span>
     <strong id="barPrice">–</strong>
+    <span class="calc-bar-spec" id="barSpec"></span>
   </div>
   <a href="#boka" class="mobile-cta-book bar-book-btn">Boka</a>
 </div>
@@ -1412,6 +1450,29 @@
       if (smsSpec) smsSpec.value = poster.join('\n');
       var antalField = document.getElementById('hiddenAntal');
       if (antalField) antalField.value = allWindows + ' st';
+
+      // Löpande sammanfattning: det kunden valt + priset
+      var rader = [['Typ', TYP_NAMN[typ]]];
+      lookIds.forEach(function (id) { if (val(id) > 0) rader.push([LOOK_NAMN[id], val(id) + ' st']); });
+      if (valHoga) rader.push(['Höga fönster', 'Ja']);
+      if (document.getElementById('valSprojsFast').checked) rader.push(['Fasta spröjs', 'Ja']);
+      if (valKarm) rader.push(['Karmtvätt', '+15 %']);
+      if (valSanering) rader.push(['Färg/silikon', 'Prissätts på plats']);
+      if (ug + ut > 0) rader.push(['Uterum', (ug + ut) + ' st']);
+      if (bg + bt > 0) rader.push(['Balkong', (bg + bt) + ' st']);
+      if (ag + at > 0) rader.push(['Altan', (ag + at) + ' st']);
+      var liveList = document.getElementById('calcLiveList');
+      if (liveList) {
+        liveList.innerHTML = rader.map(function (r) { return '<li><span>' + r[0] + '</span><strong>' + r[1] + '</strong></li>'; }).join('');
+        document.getElementById('calcLiveEmpty').style.display = hasWindows ? 'none' : '';
+        var livePrice = document.getElementById('calcLivePrice');
+        var liveBefore = document.getElementById('calcLiveBefore');
+        if (siteVisit) { livePrice.textContent = 'Räknas på plats'; liveBefore.textContent = ''; }
+        else if (!hasWindows) { livePrice.textContent = '–'; liveBefore.textContent = ''; }
+        else { livePrice.textContent = total + ' kr'; liveBefore.textContent = (total * 2) + ' kr före RUT'; }
+      }
+      var barSpec = document.getElementById('barSpec');
+      if (barSpec) barSpec.textContent = hasWindows ? allWindows + ' fönster · ' + TYP_NAMN[typ] + (valHoga ? ' · höga' : '') + (valKarm ? ' · karm' : '') : '';
     }
     window.fputsUpdateCalc = update;
 
