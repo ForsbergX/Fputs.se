@@ -216,7 +216,7 @@
       <div class="footer-col-title">Kontakt</div>
       <ul>
         <li><a href="kontakta-mig.html">Kontakta mig</a></li>
-        <li><a href="tel:0793463964">079-346 39 64</a></li>
+        <li><a href="tel:+46793463964">079-346 39 64</a></li>
         <li><a href="mailto:kontakt@fputs.se">kontakt@fputs.se</a></li>
         <li><span class="footer-hours">Öppettider 09:00-21:00</span></li>
       </ul>
@@ -352,7 +352,7 @@
       <li>🏠 Kort info om bostaden</li>
     </ul>
     <p>Då kan jag snabbt räkna ut ett pris och ringa upp dig.</p>
-    <a class="sms-modal-open-btn" href="sms:0793463964">Öppna SMS</a>
+    <a class="sms-modal-open-btn" href="sms:+46793463964">Öppna SMS</a>
   </div>
 </div>
 
@@ -452,15 +452,10 @@
 </script>
 
 <script>
-  document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
-    a.addEventListener('click', function(){
-      if (typeof gtag === 'function') {
-        gtag('event', 'phone_click', {
-          'event_category': 'contact',
-          'event_label': a.getAttribute('href')
-        });
-      }
-    });
+  // Fångar alla tel-länkar, även bottenbaren längst ner på sidan
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (a && typeof gtag === 'function') gtag('event', 'phone_click', { 'event_category': 'contact', 'event_label': a.getAttribute('href') });
   });
 </script>
 
@@ -470,15 +465,12 @@
 
 
 <script>
-  document.querySelectorAll('a[href^="sms:"]').forEach(function(a){
-    a.addEventListener('click', function(){
-      if (typeof gtag === 'function') {
-        gtag('event', 'sms_click', { 'event_category': 'contact', 'event_label': 'sms' });
-      }
-    });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="sms:"]');
+    if (a && typeof gtag === 'function') gtag('event', 'sms_click', { 'event_category': 'contact', 'event_label': 'sms' });
   });
 </script>
 </div>
-<div class="fp-bottombar"><a class="fp-bb-ring" href="tel:0793463964">📞 Ring</a><a class="fp-bb-pris" href="kontakta-mig.html#formular">Få fast pris →</a></div>
+<div class="fp-bottombar"><a class="fp-bb-ring" href="tel:+46793463964">📞 Ring</a><a class="fp-bb-pris" href="kontakta-mig.html#formular">Få fast pris →</a></div>
 </body>
 </html>

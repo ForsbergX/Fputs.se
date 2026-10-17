@@ -15,7 +15,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preload" as="image" href="images/hero-bil-parkerad.jpg" />
-  <title>Fönsterputs Jönköping – Fast pris med RUT | Forsbergs Fönsterputs</title>
+  <title>Forsbergs Fönsterputs – Fönsterputs i Jönköping med fast pris efter RUT</title>
   <link rel="canonical" href="https://fputs.se/" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
@@ -61,7 +61,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Forsbergs Fönsterputs Jönköping",
-  "alternateName": ["Forsbergs Fönsterputs", "FPUTS"],
+  "alternateName": ["Forsbergs Fönsterputs", "fputs.se"],
   "url": "https://fputs.se/",
   "inLanguage": "sv-SE",
   "publisher": {"@id": "https://fputs.se/#business"}
@@ -1484,7 +1484,7 @@
           </div>
         </div>
         <a class="kampanj-lgh" href="priskalkylator.html?typ=lagenhet"><span>Bor du i lägenhet? Se <span class="lgh-desk">lägenhets</span>priser</span> <span class="lgh-pil" aria-hidden="true">→</span></a>
-        <p class="kampanj-rad"><span><span class="kampanj-stars">★★★★★</span> <strong>5,0</strong> · 43 recensioner på Google</span><span>Fast pris, ingen bindningstid</span><a class="kampanj-ring" href="tel:0793463964">Ring 079-346 39 64</a></p>
+        <p class="kampanj-rad"><span><span class="kampanj-stars">★★★★★</span> <strong>5,0</strong> · 43 recensioner på Google</span><span>Fast pris, ingen bindningstid</span><a class="kampanj-ring" href="tel:+46793463964">Ring 079-346 39 64</a></p>
         <p class="kampanj-small">Frånpriserna gäller en vanlig villa i upp till två plan, med ett tvåluftsfönster per rum, utan spröjs eller utåtgående fönster.</p>
       </div>
     </div>
@@ -1604,7 +1604,7 @@
         </div>
         <div class="karta-actions">
           <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Forsbergs+F%C3%B6nsterputs+J%C3%B6nk%C3%B6ping" target="_blank" rel="noopener" class="karta-btn karta-btn-solid">Vägbeskrivning</a>
-          <a href="tel:0793463964" class="karta-btn">Ring</a>
+          <a href="tel:+46793463964" class="karta-btn">Ring</a>
         </div>
       </div>
     </div>
@@ -1675,7 +1675,7 @@
       <div class="footer-col-title">Kontakt</div>
       <ul>
         <li><a href="kontakta-mig.html">Kontakta mig</a></li>
-        <li><a href="tel:0793463964">079-346 39 64</a></li>
+        <li><a href="tel:+46793463964">079-346 39 64</a></li>
         <li><a href="mailto:kontakt@fputs.se">kontakt@fputs.se</a></li>
         <li><span class="footer-hours">Öppettider 09:00-21:00</span></li>
       </ul>
@@ -1811,7 +1811,7 @@
       <li>🏠 Kort info om bostaden</li>
     </ul>
     <p>Då kan jag snabbt räkna ut ett pris och ringa upp dig.</p>
-    <a class="sms-modal-open-btn" href="sms:0793463964">Öppna SMS</a>
+    <a class="sms-modal-open-btn" href="sms:+46793463964">Öppna SMS</a>
   </div>
 </div>
 
@@ -1894,25 +1894,14 @@
 </script>
 
 <script>
-  document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
-    a.addEventListener('click', function(){
-      if (typeof gtag === 'function') {
-        gtag('event', 'phone_click', {
-          'event_category': 'contact',
-          'event_label': a.getAttribute('href')
-        });
-      }
-    });
+  // Fångar alla tel-länkar, även bottenbaren längst ner på sidan
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (a && typeof gtag === 'function') gtag('event', 'phone_click', { 'event_category': 'contact', 'event_label': a.getAttribute('href') });
   });
-  document.querySelectorAll('a[href^="sms:"]').forEach(function(a){
-    a.addEventListener('click', function(){
-      if (typeof gtag === 'function') {
-        gtag('event', 'sms_click', {
-          'event_category': 'contact',
-          'event_label': 'sms'
-        });
-      }
-    });
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="sms:"]');
+    if (a && typeof gtag === 'function') gtag('event', 'sms_click', { 'event_category': 'contact', 'event_label': 'sms' });
   });
   </script>
 
@@ -1923,7 +1912,7 @@
 
 </div>
 
-<div class="fp-bottombar"><a class="fp-bb-ring" href="tel:0793463964">📞 Ring</a><button type="button" class="fp-bb-pris" id="fpBbPris">Få fast pris →</button></div>
+<div class="fp-bottombar"><a class="fp-bb-ring" href="tel:+46793463964">📞 Ring</a><button type="button" class="fp-bb-pris" id="fpBbPris">Få fast pris →</button></div>
 <button type="button" class="fp-fab" id="fpFab" aria-expanded="false" aria-controls="fpPanel">
   <svg class="fp-fab-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12c0 4.4-4 8-9 8-1.3 0-2.6-.2-3.7-.7L3 21l1.5-4.2C3.6 15.4 3 13.8 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-width="2.6"/></svg>
   <svg class="fp-fab-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -1964,7 +1953,7 @@
         </a>
         <p class="fp-checks"><span>✓ Ej bindande</span><span>✓ 100 % gratis</span></p>
         <button type="submit" class="fp-book-go" id="fpHemSubmit">Få ett fast pris <span aria-hidden="true">→</span></button>
-        <p class="fp-form-error" id="fpHemError" hidden>Något gick fel. Prova igen, eller ring <a href="tel:0793463964">079-346 39 64</a>.</p>
+        <p class="fp-form-error" id="fpHemError" hidden>Något gick fel. Prova igen, eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
         <a class="fp-calc-link" id="fpCalcLink" href="priskalkylator.html">Eller räkna ut priset själv →</a>
       </form>
       <div class="fp-form-done" id="fpHemDone" hidden>
@@ -1993,6 +1982,10 @@
             if (!r.ok) throw new Error();
             form.hidden = true;
             document.getElementById('fpHemDone').hidden = false;
+            if (typeof gtag === 'function') {
+              gtag('event', 'generate_lead', { 'event_category': 'contact', 'event_label': 'startsidan' });
+              gtag('event', 'conversion', { 'send_to': 'AW-18225187055/j67gCPv6hOscEO-RufJD' });
+            }
           }).catch(function () {
             err.hidden = false; btn.disabled = false;
           });
