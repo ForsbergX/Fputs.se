@@ -288,6 +288,23 @@
     .calc-sa-funkar li { margin-bottom: 3px; }
     .calc-sa-funkar p { margin: 0; color: #3d444b; }
     .calc-obs { margin: 12px 0 0; border-left: 4px solid #d1101f; border-radius: 0 12px 12px 0; }
+    /* Mobil: fast bottenbar Ring + pris (2026-10-17) */
+    .fp-bottombar { display: none; }
+    @media (max-width: 768px) {
+      .fp-bottombar {
+        display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 150;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: #fff;
+        border-top: 1px solid #e4e4e8; box-shadow: 0 -8px 24px -12px rgba(20,24,27,0.18);
+      }
+      .fp-bottombar a, .fp-bottombar button {
+        display: flex; align-items: center; justify-content: center; gap: 6px; height: 50px; border-radius: 8px;
+        font: 700 16px 'Montserrat', sans-serif; text-decoration: none; cursor: pointer; white-space: nowrap;
+      }
+      .fp-bb-ring { flex: 0 0 38%; background: #fff; color: #18181b; border: 1.5px solid #18181b; }
+      .fp-bb-pris { flex: 1; background: #d1101f; color: #fff; border: 0; }
+      .fp-bb-pris:active { background: #b00d1a; }
+      body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
+    }
     /* Löpande sammanfattning bredvid kalkylatorn (dator) */
     .calc-live { display: none; }
     @media (min-width: 1100px) {
@@ -400,13 +417,13 @@
   <div class="hero-bg-img" style="background-image:url('images/hero-villa.jpg');background-size:cover;background-position:center;"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="section-label" style="justify-content:center;display:flex;">Priskalkylator</div>
     <h1 class="hero-title">Räkna ut ditt pris</h1>
     <p class="hero-sub">Fyll i dina fönster, så ser du direkt vad hela huset kostar efter RUT.</p>
     <p class="hero-sub" style="margin-top:8px;">Vill du hellre bara ringa? Ring <a href="tel:0793463964" style="color:inherit;text-decoration:underline;white-space:nowrap;">079‑346 39 64</a> så bokar vi direkt.</p>
   </div>
 </section>
 
+<script>if (new URLSearchParams(location.search).get('typ') === 'lagenhet') location.replace('fonsterputs-lagenhet.html#priser');</script>
 <section class="calc-section" id="kalkylator">
   <div class="calc-shell">
     <div class="calc-main">
@@ -1054,14 +1071,7 @@
     } catch (e) { show(); }
   })();
 </script>
-<div class="mobile-cta-bar calc-mobile-bar" id="calcMobileBar">
-  <div class="calc-bar-price">
-    <span class="calc-bar-label">Uppskattat pris</span>
-    <strong id="barPrice">–</strong>
-    <span class="calc-bar-spec" id="barSpec"></span>
-  </div>
-  <a href="#boka" class="mobile-cta-book bar-book-btn">Boka</a>
-</div>
+<div class="fp-bottombar" id="calcMobileBar"><a class="fp-bb-ring" href="tel:0793463964">📞 Ring</a><a class="fp-bb-pris" href="#boka"><span id="barPrice">Räkna ut pris</span> →</a></div>
 
 <script>
   function scrollToHashTarget() {
@@ -1142,7 +1152,8 @@
     // Antal sparas separat för 2-sidigt och 4-sidigt; rutorna i steg 3 visar den typ som är vald just nu
     var antalPerTyp = { '2': {}, '4': {} };
     // Endast utsida (?utsida=1): halva priset av komplett 2-sidig puts, minst 375 kr (antagande, Tommy 2026-10-17)
-    var UTSIDA = new URLSearchParams(window.location.search).get('utsida') === '1';
+    var URL_PARAMS = new URLSearchParams(window.location.search);
+    var UTSIDA = URL_PARAMS.get('utsida') === '1' || URL_PARAMS.get('typ') === 'utsida';
     var MIN_UTSIDA = 375;
     function antal(set, id) { return set === fonsterTyp ? val(id) : (antalPerTyp[set][id] || 0); }
     function antalSumma(set) { return lookIds.reduce(function (sum, id) { return sum + antal(set, id); }, 0); }
@@ -1221,7 +1232,7 @@
     if (mobileBar) mobileBar.classList.add('is-ready');
 
     function setBarPrice(text) {
-      if (barPrice) barPrice.textContent = text;
+      if (barPrice) barPrice.textContent = text === '–' ? 'Räkna ut pris' : 'Boka · ' + text;
     }
 
     function clampCount(value) {
@@ -1418,7 +1429,7 @@
         minNote.style.display = 'none';
       } else {
         priceEl.innerHTML = pricePairHtml(total);
-        setBarPrice(pricePairText(total));
+        setBarPrice(total + ' kr');
         document.getElementById('hiddenPrice').value = total + ' kr efter RUT' + (sprojsPending ? ' (exkl. spröjs, pris sätts separat)' : '');
         document.getElementById('hiddenPriceBefore').value = (total * 2) + ' kr före RUT';
         document.getElementById('hiddenBase').value = houseRaw + ' kr';

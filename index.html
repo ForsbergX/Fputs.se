@@ -457,6 +457,58 @@
       .kampanj-pris { border-left: 0; border-top: 1px solid #e2e3e7; margin: 18px 20px 0; padding: 22px 0 26px; }
       .kampanj-btn { max-width: none; }
     }
+    /* Mobil: fast bottenbar Ring + pris (2026-10-17) */
+    .fp-bottombar { display: none; }
+    @media (max-width: 768px) {
+      .fp-bottombar {
+        display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 150;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: #fff;
+        border-top: 1px solid #e4e4e8; box-shadow: 0 -8px 24px -12px rgba(20,24,27,0.18);
+      }
+      .fp-bottombar a, .fp-bottombar button {
+        display: flex; align-items: center; justify-content: center; gap: 6px; height: 50px; border-radius: 8px;
+        font: 700 16px 'Montserrat', sans-serif; text-decoration: none; cursor: pointer; white-space: nowrap;
+      }
+      .fp-bb-ring { flex: 0 0 38%; background: #fff; color: #18181b; border: 1.5px solid #18181b; }
+      .fp-bb-pris { flex: 1; background: #d1101f; color: #fff; border: 0; }
+      .fp-bb-pris:active { background: #b00d1a; }
+      body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
+    }
+    @media (max-width: 768px) {
+      .fp-fab { display: none !important; }
+      body.fp-panel-open .fp-bottombar { display: none; }
+      /* Header: logga vänster, telefon + hamburgare höger */
+      nav:not(.breadcrumb-nav) .nav-logo { position: static !important; transform: none !important; left: auto !important; top: auto !important; margin-right: auto !important; }
+      nav:not(.breadcrumb-nav) .nav-logo:hover { transform: none !important; }
+      .nav-tel { display: flex !important; }
+      /* Kampanjen nästan kant i kant */
+      #hero { padding-left: 16px; padding-right: 16px; }
+      html body .kampanj { background: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+      html body .kampanj-text { padding: 22px 0 8px; }
+      html body .kampanj-lgh { display: flex; align-items: center; gap: 10px; margin: 16px 0 6px; padding: 14px 16px; background: #fdf1f2; border: 1.5px solid #d1101f; border-radius: 10px; color: #18181b; text-decoration: none; white-space: nowrap; box-shadow: 0 6px 16px -10px rgba(209,16,31,0.5); }
+      html body .kampanj-lgh .lgh-pil { display: grid; place-items: center; width: 28px; height: 28px; margin-left: auto; border-radius: 50%; background: #d1101f; color: #fff; font-size: 16px; flex: 0 0 28px; }
+      html body .kampanj-lgh .lgh-desk { display: none; }
+      .kampanj-ring { display: flex; align-items: center; justify-content: center; height: 48px; margin-top: 6px; border: 1.5px solid #d1101f; border-radius: 8px; }
+    }
+    .nav-tel { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; color: #18181b; }
+    /* Två tjänstekort (2026-10-17) */
+    .kampanj { grid-template-columns: 1fr; }
+    .kampanj-kort { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0 0; }
+    .kampanj-kort .kampanj-tjanst { display: flex; flex-direction: column; margin: 0; padding: 22px; background: #fff; border: 1.5px solid #e4e4e8; border-radius: 14px; }
+    .kampanj-kort .kampanj-tjanst h3 { margin-bottom: 8px; font-size: 20px; }
+    .kampanj-kort .kampanj-bubbla { align-self: flex-start; margin-bottom: 12px; }
+    .kampanj-kort .kampanj-lista { flex-direction: column; gap: 8px; margin: 14px 0 20px; }
+    .kampanj-knapp { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; height: 50px; border-radius: 6px; background: #d1101f; color: #fff; font-size: 16px; font-weight: 700; text-decoration: none; transition: background .15s; }
+    .kampanj-knapp:hover { background: #b00d1a; }
+    .kampanj-lgh { display: inline-block; margin: 18px 0 4px; font-size: 16px; font-weight: 800; color: #d1101f; text-decoration: underline; text-underline-offset: 3px; }
+    .kampanj-text .kampanj-rad { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 10px 0 12px; font-size: 14.5px; color: #3d3d42; }
+    .kampanj-rad strong { color: #18181b; }
+    .kampanj-rad a { color: #d1101f; font-weight: 700; text-decoration: none; }
+    @media (max-width: 720px) {
+      .kampanj-kort { grid-template-columns: 1fr; }
+      .kampanj-text { padding-bottom: 22px; }
+      .kampanj-text .kampanj-rad { flex-direction: column; gap: 4px; }
+    }
     /* Pris & bokning – samma stil som nya versionen */
     .fp-book {
       margin-top: 18px; padding: 32px 36px; background: #fff; color: #18181b;
@@ -1386,105 +1438,42 @@
       <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
       <div class="hero-copy">
         <p class="hero-copy-title">Prova på – utvändig fönstertvätt från 375 kr!</p>
-        <a href="#kampanj" class="hero-copy-btn">Boka nu</a>
+        <a href="priskalkylator.html?typ=utsida" class="hero-copy-btn">Boka nu</a>
       </div>
     </div>
     <div class="kampanj" id="kampanj">
       <div class="kampanj-text">
-        <h2 class="kampanj-title">Dina fönster. Dina behov. På dina villkor.</h2>
+        <h1 class="kampanj-title">Dina fönster. Dina behov. På dina villkor.</h1>
         <p>Hos Forsbergs Fönsterputs tror vi på ärliga priser, noggrant arbete och friheten att boka när du behöver. Du får ett fast pris i förväg, med framkörning och material inkluderat. Utan abonnemang eller bindningstid.</p>
-        <div class="kampanj-tjanst">
-          <h3>Komplett fönsterputs <span class="kampanj-bubbla">från 750 kr efter RUT</span></h3>
-          <p>Vi tar hand om in-, ut- och emellanåt – hela jobbet gjort ordentligt på alla sidor där fönstren går att öppna.</p>
-          <ul class="kampanj-lista">
-            <li>Insida &amp; utsida ingår</li>
-            <li>Putsning mellan glasen</li>
-            <li>Material &amp; framkörning ingår</li>
-          </ul>
+        <div class="kampanj-kort">
+          <div class="kampanj-tjanst">
+            <h3>Komplett fönsterputs</h3>
+            <span class="kampanj-bubbla">från 750 kr efter RUT</span>
+            <p>Vi tar hand om in-, ut- och emellanåt – hela jobbet gjort ordentligt på alla sidor där fönstren går att öppna.</p>
+            <ul class="kampanj-lista">
+              <li>Insida &amp; utsida</li>
+              <li>Mellan glasen</li>
+              <li>Material &amp; framkörning</li>
+            </ul>
+            <a class="kampanj-knapp" href="priskalkylator.html?typ=komplett">Räkna ut mitt pris <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="kampanj-tjanst">
+            <h3>Endast utvändig tvätt</h3>
+            <span class="kampanj-bubbla">från 375 kr efter RUT</span>
+            <p>Perfekt för dig som vill hålla pollen, smuts och spindelnät borta med jämna mellanrum. Smidigt och prisvärt!</p>
+            <ul class="kampanj-lista">
+              <li>Du behöver inte vara hemma</li>
+              <li>Snabbt och enkelt</li>
+              <li>Perfekt att boka regelbundet</li>
+            </ul>
+            <a class="kampanj-knapp" href="priskalkylator.html?typ=utsida">Räkna ut mitt pris <span aria-hidden="true">→</span></a>
+          </div>
         </div>
-        <div class="kampanj-tjanst">
-          <h3>Endast utvändig tvätt <span class="kampanj-bubbla">från 375 kr efter RUT</span></h3>
-          <p>Perfekt för dig som vill hålla pollen, smuts och spindelnät borta med jämna mellanrum. Smidigt och prisvärt!</p>
-          <ul class="kampanj-lista">
-            <li>Du behöver inte vara hemma</li>
-            <li>Snabbt och enkelt</li>
-            <li>Perfekt som abonnemang</li>
-          </ul>
-        </div>
+        <a class="kampanj-lgh" href="priskalkylator.html?typ=lagenhet"><span>Bor du i lägenhet? Se <span class="lgh-desk">lägenhets</span>priser</span> <span class="lgh-pil" aria-hidden="true">→</span></a>
+        <p class="kampanj-rad"><span><span class="kampanj-stars">★★★★★</span> <strong>5,0</strong> · 43 recensioner på Google</span><span>Fast pris, ingen bindningstid</span><a class="kampanj-ring" href="tel:0793463964">Ring 079-346 39 64</a></p>
         <p class="kampanj-small">Frånpriserna gäller en vanlig villa i upp till två plan, med ett tvåluftsfönster per rum, utan spröjs eller utåtgående fönster.</p>
-        <p class="kampanj-cta"><a href="#prisforslag">Välj vad du vill ha hjälp med i kalkylatorn nedan och få ett fast pris för ditt hem.</a></p>
-      </div>
-      <div class="kampanj-pris">
-        <span class="kampanj-pris-label">Fast pris efter RUT</span>
-        <div class="kampanj-val">
-          <button type="button" class="kampanj-tile" data-pris="750" data-vad="Komplett fönsterputs">
-            <span class="kampanj-tile-name">Komplett fönsterputs</span>
-            <span class="kampanj-fran">från</span>
-            <span class="kampanj-pris-num">750<small>kr</small></span>
-            <span class="kampanj-tile-cta">Boka</span>
-          </button>
-          <button type="button" class="kampanj-tile" data-pris="375" data-vad="Bara utsidan">
-            <span class="kampanj-tile-name">Bara utsidan</span>
-            <span class="kampanj-fran">från</span>
-            <span class="kampanj-pris-num">375<small>kr</small></span>
-            <span class="kampanj-tile-cta">Boka</span>
-          </button>
-        </div>
-        <span class="kampanj-pris-sub">Framkörning och material ingår</span>
-        <span class="kampanj-help">Behöver du hjälp? <a href="tel:0793463964">Ring 079-346 39 64</a></span>
-        <span class="kampanj-rating"><strong>5,0</strong>/5 <span class="kampanj-stars">★★★★★</span> på Google</span>
       </div>
     </div>
-    <script>
-      document.querySelectorAll('.kampanj-tile').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var pris = btn.getAttribute('data-pris'), vad = btn.getAttribute('data-vad');
-          var kalla = document.querySelector('#fpHemForm input[name="kalla"]');
-          var msg = document.querySelector('#fpHemForm textarea[name="meddelande"]');
-          if (kalla) kalla.value = vad + ' från ' + pris + ' kr';
-          if (msg) msg.value = 'Jag vill boka ' + vad.toLowerCase() + ' (från ' + pris + ' kr efter RUT).';
-          var panel = document.getElementById('fpPanel');
-          if (panel && panel.hidden) document.getElementById('fpFab').click();
-        });
-      });
-    </script>
-    <div class="fp-book" id="prisforslag">
-      <div class="fp-book-head">
-        <h1 class="fp-book-title">Pris &amp; bokning</h1>
-        <p class="fp-book-meta">Få ditt fasta pris på någon minut.</p>
-      </div>
-      <ol class="fp-book-progress" aria-label="Steg">
-        <li class="is-now"><span class="fp-book-dot">1</span><span class="fp-book-name">Bostad</span></li>
-        <li><span class="fp-book-dot">2</span><span class="fp-book-name">Fönster</span></li>
-        <li><span class="fp-book-dot">3</span><span class="fp-book-name">Pris</span></li>
-        <li><span class="fp-book-dot">4</span><span class="fp-book-name">Boka</span></li>
-      </ol>
-      <h2 class="fp-book-q">Vilken typ av bostad har du?</h2>
-      <p class="fp-book-lead">Räkna ut vad fönsterputsen kostar efter RUT. Fast pris i förväg. Ingen bindningstid.</p>
-      <div class="fp-book-grid">
-        <label class="fp-book-card">
-          <input type="radio" name="fpBostad" value="priskalkylator.html" checked />
-          <span class="fp-book-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 30 32 12l24 18"/><path d="M14 26v26h36V26"/><rect x="20" y="33" width="9" height="9"/><rect x="35" y="33" width="9" height="19"/><path d="M20 37.5h9M24.5 33v9" stroke="#d1101f"/></svg></span>
-          <span class="fp-book-text"><b>Villa / Radhus</b></span>
-        </label>
-        <label class="fp-book-card">
-          <input type="radio" name="fpBostad" value="fonsterputs-lagenhet.html" />
-          <span class="fp-book-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="8" width="36" height="48"/><rect x="20" y="16" width="8" height="6"/><rect x="36" y="16" width="8" height="6"/><rect x="20" y="26" width="8" height="6"/><rect x="36" y="26" width="8" height="6"/><rect x="20" y="36" width="8" height="6"/><rect x="36" y="36" width="8" height="6"/><path d="M36 26h8v6h-8z" stroke="#d1101f"/><path d="M28 56V47h8v9"/></svg></span>
-          <span class="fp-book-text"><b>Lägenhet</b></span>
-        </label>
-        <label class="fp-book-card">
-          <input type="radio" name="fpBostad" value="priskalkylator.html?utsida=1" />
-          <span class="fp-book-icon"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="12" width="36" height="40"/><path d="M32 12v40M14 32h36"/><path d="M40 18l4-4M44 22l4-4" stroke="#d1101f"/><circle cx="50" cy="46" r="6" stroke="#d1101f"/><path d="M50 43v6M47 46h6" stroke="#d1101f"/></svg></span>
-          <span class="fp-book-text"><b>Endast utsida</b></span>
-        </label>
-      </div>
-      <a href="priskalkylator.html" class="fp-book-go" id="fpBookGo">Fortsätt <span aria-hidden="true">→</span></a>
-    </div>
-    <script>
-      document.querySelectorAll('input[name="fpBostad"]').forEach(function (r) {
-        r.addEventListener('change', function () { document.getElementById('fpBookGo').href = r.value; });
-      });
-    </script>
   </div>
 </section>
 
@@ -1919,6 +1908,7 @@
 
 </div>
 
+<div class="fp-bottombar"><a class="fp-bb-ring" href="tel:0793463964">📞 Ring</a><button type="button" class="fp-bb-pris" id="fpBbPris">Få fast pris →</button></div>
 <button type="button" class="fp-fab" id="fpFab" aria-expanded="false" aria-controls="fpPanel">
   <svg class="fp-fab-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12c0 4.4-4 8-9 8-1.3 0-2.6-.2-3.7-.7L3 21l1.5-4.2C3.6 15.4 3 13.8 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-width="2.6"/></svg>
   <svg class="fp-fab-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -1973,7 +1963,7 @@
         var bostad = document.getElementById('fpHemBostad');
         var link = document.getElementById('fpCalcLink');
         bostad.addEventListener('change', function () {
-          link.href = bostad.value === 'Lägenhet' ? 'fonsterputs-lagenhet.html' : bostad.value === 'Endast utsida' ? 'priskalkylator.html?utsida=1' : 'priskalkylator.html';
+          link.href = bostad.value === 'Lägenhet' ? 'fonsterputs-lagenhet.html' : bostad.value === 'Endast utsida' ? 'priskalkylator.html?typ=utsida' : 'priskalkylator.html';
         });
         form.addEventListener('submit', function (e) {
           e.preventDefault();
@@ -2008,6 +1998,8 @@
       if (open) { var f = panel.querySelector('select, input:not([type=hidden])'); if (f) f.focus({ preventScroll: true }); }
     }
     fab.addEventListener('click', function () { setOpen(panel.hidden); });
+    var bbPris = document.getElementById('fpBbPris');
+    if (bbPris) bbPris.addEventListener('click', function () { setOpen(true); });
     document.getElementById('fpPanelClose').addEventListener('click', function () { setOpen(false); fab.focus(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { setOpen(false); fab.focus(); } });
   })();
