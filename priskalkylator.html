@@ -1154,10 +1154,12 @@
     var LOOK_MIN_4 = { antalOverligg: 10, antalUnderligg: 10 };
     // Antal sparas separat för 2-sidigt och 4-sidigt; rutorna i steg 3 visar den typ som är vald just nu
     var antalPerTyp = { '2': {}, '4': {} };
-    // Endast utsida (?utsida=1): halva priset av komplett 2-sidig puts, minst 375 kr (antagande, Tommy 2026-10-17)
+    // Endast utsida (?utsida=1): 500 kr upp till 20 fönster, sedan 20 kr per fönster (Tommy 2026-10-18)
     var URL_PARAMS = new URLSearchParams(window.location.search);
     var UTSIDA = URL_PARAMS.get('utsida') === '1' || URL_PARAMS.get('typ') === 'utsida';
-    var MIN_UTSIDA = 375;
+    var MIN_UTSIDA = 500;
+    var UTSIDA_INGAR = 20;
+    var UTSIDA_PER_FONSTER = 20;
     function antal(set, id) { return set === fonsterTyp ? val(id) : (antalPerTyp[set][id] || 0); }
     function antalSumma(set) { return lookIds.reduce(function (sum, id) { return sum + antal(set, id); }, 0); }
     function fonsterMin(typ, set) {
@@ -1337,7 +1339,7 @@
       var valHoga = document.getElementById('valHoga').checked;
       var houseMin = utat ? fonsterMin('utat', '2') + fonsterMin('utat', '4') : fonsterMin('2', '2') + fonsterMin('4', '4');
       var houseRaw = tidsPris(houseMin + (valHoga && lookCount > 0 ? HOGA_MIN : 0));
-      if (UTSIDA) houseRaw = Math.round(houseRaw / 10) * 5;
+      if (UTSIDA) houseRaw = lookCount > 0 ? MIN_UTSIDA + Math.max(0, lookCount - UTSIDA_INGAR) * UTSIDA_PER_FONSTER : 0;
       var extraRaw = (extraGolv * PRICE_GOLV) + (extraTak * PRICE_TAK);
       var sprojsRaw = 0;
       var sprojsPending = hasSprojs && nSprojs > 0 && !siteVisit;
@@ -1473,6 +1475,7 @@
       if (hasSprojs) poster.push('Spröjs: ' + nSprojs + ' st, ' + sprojsTyp);
       var kalkyl = document.getElementById('hiddenKalkyl');
       if (UTSIDA) poster.unshift('ENDAST UTVÄNDIG PUTS');
+      if (UTSIDA && lookCount > UTSIDA_INGAR) poster.push('Extra fönster över ' + UTSIDA_INGAR + ': ' + (lookCount - UTSIDA_INGAR) + ' st × ' + UTSIDA_PER_FONSTER + ' kr');
       if (kalkyl) kalkyl.value = poster.length ? hustypInput.value + ' | ' + poster.join(' | ') : hustypInput.value;
       var smsSpec = document.getElementById('hiddenSmsSpec');
       if (smsSpec) smsSpec.value = poster.join('\n');
@@ -1494,7 +1497,12 @@
         rader.push([g.namn, '', true]);
         g.fonster.forEach(function (f) { rader.push([f[0], f[1] + ' st']); });
       });
-      if (valHoga) rader.push(['Höga fönster', 'Ja']);
+      var utsidaExtra = UTSIDA ? Math.max(0, lookCount - UTSIDA_INGAR) : 0;
+      if (UTSIDA && hasWindows) {
+        rader.push(['Ingår i ' + MIN_UTSIDA + ' kr', Math.min(lookCount, UTSIDA_INGAR) + ' av ' + UTSIDA_INGAR + ' fönster']);
+        if (utsidaExtra > 0) rader.push(['Extra fönster (' + utsidaExtra + ' × ' + UTSIDA_PER_FONSTER + ' kr)', '+' + (utsidaExtra * UTSIDA_PER_FONSTER) + ' kr']);
+      }
+      if (valHoga) rader.push(['Höga fönster', UTSIDA ? 'Ingår' : 'Ja']);
       if (document.getElementById('valSprojsFast').checked) rader.push(['Fasta spröjs', 'Ja']);
       if (valKarm) rader.push(['Karmtvätt', '+15 %']);
       if (ug + ut > 0) rader.push(['Uterum', (ug + ut) + ' st']);
@@ -1511,7 +1519,7 @@
         else { livePrice.textContent = total + ' kr'; liveBefore.textContent = (total * 2) + ' kr före RUT'; }
       }
       var barSpec = document.getElementById('barSpec');
-      if (barSpec) barSpec.textContent = hasWindows ? grupper.map(function (g) { return g.namn + ' ' + g.fonster.reduce(function (sum, f) { return sum + f[1]; }, 0); }).join(' · ') + (valHoga ? ' · höga' : '') + (valKarm ? ' · karm' : '') : '';
+      if (barSpec) barSpec.textContent = hasWindows ? grupper.map(function (g) { return g.namn + ' ' + g.fonster.reduce(function (sum, f) { return sum + f[1]; }, 0); }).join(' · ') + (UTSIDA && lookCount > UTSIDA_INGAR ? ' · ' + (lookCount - UTSIDA_INGAR) + ' extra' : '') + (valHoga ? ' · höga' : '') + (valKarm ? ' · karm' : '') : '';
     }
     window.fputsUpdateCalc = update;
 
@@ -1603,8 +1611,12 @@
       titlar[2].textContent = '2. Antal fönster';
       titlar[3].textContent = '3. Tillval';
       document.querySelector('#hero .hero-title').textContent = 'Endast utvändig puts';
-      document.querySelector('#hero .hero-sub').textContent = 'Fyll i dina fönster, så ser du direkt vad utsidan på din villa kostar efter RUT. Från 375 kr.';
+      document.querySelector('#hero .hero-sub').textContent = 'Fyll i dina fönster, så ser du direkt vad utsidan på din villa kostar efter RUT. 500 kr upp till 20 fönster, sedan 20 kr per fönster.';
       document.querySelector('.calc-heading').textContent = 'Vi putsar bara utsidan – du behöver inte vara hemma. Fyll i dina fönster så ser du priset direkt.';
+      var ingar = document.createElement('div');
+      ingar.className = 'calc-sa-funkar';
+      ingar.innerHTML = '<strong>Det här ingår i ' + MIN_UTSIDA + ' kr</strong><ol><li>Upp till ' + UTSIDA_INGAR + ' fönster, alla sorter</li><li>Övervåning – samma pris</li><li>Höga fönster – ingen höjdavgift</li><li>Ingen startavgift eller adminavgift</li></ol><p>Fler än ' + UTSIDA_INGAR + ' fönster: +' + UTSIDA_PER_FONSTER + ' kr per fönster.</p>';
+      document.querySelector('.calc-heading').insertAdjacentElement('afterend', ingar);
       if (subjectField) subjectField.value = 'Endast utsida från fputs.se';
       var bostadSel = document.getElementById('bostadstyp');
       if (bostadSel) bostadSel.value = 'Endast utsida';
