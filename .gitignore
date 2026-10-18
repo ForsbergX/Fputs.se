@@ -1,0 +1,7 @@
+# Nycklar och hemligheter får aldrig hamna i GitHub
+*.iam.gserviceaccount.com.json
+forsbergs-bokning-*.json
+*service-account*.json
+.env
+.env.*
+.netlify

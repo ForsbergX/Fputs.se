@@ -247,6 +247,23 @@
     .calc-form { margin-top: 8px; }
     .calc-form .btn-primary { width: 100%; text-align: center; }
     .calc-result-title { font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 18px; }
+    /* "Ditt pris": stor, lättläst prisruta i slutet (samma upplägg som gamla bokningssystemets steg 3) */
+    #prisresultat .calc-result-title, #prisresultat .calc-total-label, #sumPrice, #calcReceipt { display: none !important; }
+    .pk-card { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 22px 20px 18px; margin: 4px 0 8px; box-shadow: 0 6px 24px rgba(13,15,17,.06); }
+    .pk-head { font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #d1101f; margin-bottom: 6px; }
+    .pk-big strong { display: block; font-size: 44px; line-height: 1.05; font-weight: 900; color: var(--ink); letter-spacing: -1px; }
+    .pk-big span { display: block; font-size: 14.5px; color: #4A5259; margin-top: 4px; }
+    .pk-rows { list-style: none; margin: 16px 0 0; padding: 0; border-top: 1px solid var(--border); }
+    .pk-rows li { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 15.5px; color: var(--ink); }
+    .pk-rows li strong { font-weight: 800; white-space: nowrap; }
+    .pk-rows li.pk-grupp { display: block; padding: 14px 0 4px; border-bottom: 0; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #4A5259; }
+    .pk-total { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0 2px; font-size: 16px; font-weight: 800; color: var(--ink); }
+    .pk-total strong { font-size: 22px; font-weight: 900; color: #d1101f; white-space: nowrap; }
+    @media (max-width: 600px) { .pk-card { padding: 18px 16px 16px; margin-left: -8px; margin-right: -8px; } }
+    .pk-fine { font-size: 13.5px; line-height: 1.5; color: #4A5259; margin: 12px 0 0; }
+    .pk-ingar { list-style: none; margin: 14px 0 0; padding: 14px 0 0; border-top: 1px solid var(--border); display: grid; gap: 8px; }
+    .pk-ingar li { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: var(--ink); }
+    .pk-ingar li::before { content: "✓"; flex: none; width: 22px; height: 22px; border-radius: 50%; background: #1f8a4c; color: #fff; font-size: 13px; font-weight: 900; display: grid; place-items: center; }
     .calc-receipt { background: #ffffff; border: 1px solid var(--border); border-radius: 16px; padding: 20px 20px 6px; margin: 20px 0 4px; }
     .calc-receipt-title { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
     .calc-summary { list-style: none; display: flex; flex-direction: column; margin-bottom: 0; }
@@ -401,6 +418,7 @@
   <link rel="stylesheet" href="css/sidfot.css" />
   <link rel="stylesheet" href="css/bubblor.css" />
   <link rel="stylesheet" href="css/kompakt-form.css" />
+  <link rel="stylesheet" href="css/kalender.css" />
 </head>
 <body>
 <nav>
@@ -710,6 +728,19 @@
         <p class="calc-compute-error" id="calcPriceError"></p>
       </div>
       <div class="calc-inline-result" id="prisresultat">
+        <div class="pk-card" id="prisKort" hidden>
+          <div class="pk-head">Ditt pris</div>
+          <div class="pk-big"><strong id="pkPris">–</strong><span id="pkFore"></span></div>
+          <ul class="pk-rows" id="pkRader"></ul>
+          <div class="pk-total" id="pkTotalRad"><span>Totalt efter RUT</span><strong id="pkTotal"></strong></div>
+          <p class="pk-fine">Fast pris, moms ingår. Material och framkörning ingår. Priset bygger på dina uppgifter – avviker fönstren på plats justeras priset efter prislistan.</p>
+          <ul class="pk-ingar">
+            <li>Jag kontrollerar varje ruta</li>
+            <li>Jag tar med allt som behövs</li>
+            <li>Jag fixar RUT-avdraget</li>
+            <li>Du betalar när jobbet är klart</li>
+          </ul>
+        </div>
         <div class="calc-result-title">Ditt uppskattade pris</div>
         <div class="calc-total-label">Uppskattat pris:</div>
         <div class="calc-total-value" id="sumPrice">–</div>
@@ -763,6 +794,14 @@
             <p id="datumHelgNote" hidden></p>
             <input type="hidden" id="bostadstyp" name="bostadstyp" value="Villa" />
             <div class="fpx-sum" id="fpxSum"></div>
+            <div class="fpk">
+              <p class="fpk-titel">Önskad dag och tid</p>
+              <p class="fpk-sub">Välj en dag och en tid som passar. Jag bekräftar den slutliga tiden via SMS.</p>
+              <div id="fpKalender"></div>
+              <div class="fpk-tider" id="fpKalenderTider"></div>
+              <p class="fpk-fel" id="fpKalenderFel" hidden>Välj dag och tid i kalendern.</p>
+              <input type="hidden" name="onskad_tid" id="onskadTid" value="" />
+            </div>
             <label class="fp-field"><span class="fp-sr">Namn</span><input type="text" id="namn" name="namn" autocomplete="name" placeholder="Namn" required /></label>
             <label class="fp-field"><span class="fp-sr">Adress</span><input type="text" id="adress" name="adress" autocomplete="street-address" placeholder="Adress och ort" required /></label>
             <p class="fp-resa">Utanför Jönköping &amp; Huskvarna tillkommer en reseavgift på 50 kr (ej RUT-berättigad).</p>
@@ -832,6 +871,7 @@
             datum2.addEventListener('input', syncHelg);
             form.addEventListener('submit', function (e) {
               e.preventDefault();
+              if (window.fpKalenderKlar && !window.fpKalenderKlar()) return;
               errorMsg.style.display = 'none';
               btn.disabled = true;
               btn.textContent = 'Skickar...';
@@ -1298,7 +1338,7 @@
       if (mobileBar) mobileBar.classList.add('is-ready');
       update();
       window.setTimeout(function () {
-        var target = document.getElementById('sumPrice');
+        var target = document.getElementById('prisKort');
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 50);
       return true;
@@ -1520,6 +1560,16 @@
         else { livePrice.textContent = total + ' kr'; liveBefore.textContent = (total * 2) + ' kr före RUT'; }
       }
       var barSpec = document.getElementById('barSpec');
+      var prisKort = document.getElementById('prisKort');
+      if (prisKort) {
+        prisKort.hidden = !priceRevealed || !hasWindows;
+        document.getElementById('pkRader').innerHTML = rader.map(function (r) { return r[2] ? '<li class="pk-grupp">' + r[0] + '</li>' : '<li><span>' + r[0] + '</span><strong>' + r[1] + '</strong></li>'; }).join('');
+        var kr = function (n) { return n.toLocaleString('sv-SE') + ' kr'; };
+        document.getElementById('pkPris').textContent = siteVisit ? 'Räknas på plats' : kr(total);
+        document.getElementById('pkFore').textContent = siteVisit ? 'Jag kommer ut och ger ett fast pris' : 'efter RUT · ' + kr(total * 2) + ' före RUT';
+        document.getElementById('pkTotalRad').style.display = siteVisit ? 'none' : '';
+        document.getElementById('pkTotal').textContent = kr(total);
+      }
       if (barSpec) barSpec.textContent = hasWindows ? grupper.map(function (g) { return g.namn + ' ' + g.fonster.reduce(function (sum, f) { return sum + f[1]; }, 0); }).join(' · ') + (UTSIDA && lookCount > UTSIDA_INGAR ? ' · ' + (lookCount - UTSIDA_INGAR) + ' extra' : '') + (valHoga ? ' · höga' : '') + (valKarm ? ' · karm' : '') : '';
     }
     window.fputsUpdateCalc = update;
@@ -1644,5 +1694,6 @@
 </script>
 </div>
 <script src="js/bilder.js"></script>
+<script src="js/kalender.js"></script>
 </body>
 </html>

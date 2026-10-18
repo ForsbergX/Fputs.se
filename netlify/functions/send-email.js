@@ -45,6 +45,7 @@ function fieldPairs(fields) {
     ["Platsbesök", fields.platsbesok],
     ["Uppskattat pris", fields.uppskattat_pris],
     ["Pris före RUT", fields.pris_fore_rut],
+    ["Önskad tid", fields.onskad_tid],
     ["Önskat datum 1", fields.onskat_datum_1],
     ["Önskat datum 2", fields.onskat_datum_2],
     ["Helgjobb", fields.jobbhelg],

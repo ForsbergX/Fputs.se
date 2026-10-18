@@ -1,0 +1,23 @@
+/* Bokningskalendern i priskalkylatorn (js/kalender.js) */
+.fpk { margin: 4px 0 14px; }
+.fpk-titel { font-size: 16px; font-weight: 800; color: #0D0F11; margin: 0 0 2px; }
+.fpk-sub { font-size: 14px; line-height: 1.45; color: #4A5259; margin: 0 0 10px; }
+#fpKalender { border: 1px solid #E4E4E0; border-radius: 16px; padding: 10px 8px; background: #fff; }
+.fpk-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.fpk-head strong { font-size: 16px; font-weight: 800; color: #0D0F11; }
+.fpk-nav { width: 40px; height: 40px; border-radius: 10px; border: 1px solid #E4E4E0; background: #fff; font-size: 20px; line-height: 1; color: #0D0F11; cursor: pointer; }
+.fpk-nav:disabled { opacity: .35; cursor: default; }
+.fpk-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.fpk-grid > span { text-align: center; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: #4A5259; padding-bottom: 4px; }
+.fpk-dag { min-height: 44px; border-radius: 10px; border: 1px solid #E4E4E0; background: #F6F7F8; font: inherit; font-size: 15px; font-weight: 800; color: #0D0F11; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2px; }
+.fpk-dag small { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 7.5px; font-weight: 600; line-height: 1.1; color: #6A6A70; margin-top: 1px; }
+.fpk-dag.fpk-av { background: transparent; border-color: transparent; color: #B8BCC0; cursor: default; font-weight: 600; }
+.fpk-dag.fpk-vald { background: #D1101F; border-color: #D1101F; color: #fff; }
+.fpk-tider { display: grid; gap: 8px; margin-top: 12px; }
+.fpk-tider-titel { font-size: 14.5px; font-weight: 800; color: #0D0F11; margin: 0; }
+.fpk-tid { text-align: left; border: 1.5px solid #E4E4E0; border-radius: 12px; background: #fff; padding: 12px 14px; font: inherit; cursor: pointer; }
+.fpk-tid strong { display: block; font-size: 15px; font-weight: 800; color: #0D0F11; }
+.fpk-tid span { display: block; font-size: 13.5px; color: #4A5259; margin-top: 2px; }
+.fpk-tid.fpk-vald { border-color: #D1101F; background: #FFF4F5; }
+.fpk-fel { margin: 10px 0 0; padding: 10px 12px; border-radius: 10px; background: #FFF4F5; border: 1px solid #F3B6BC; color: #A50D18; font-size: 14px; font-weight: 700; }
+@media (max-width: 480px) { .fpk-dag small { display: none; } }
