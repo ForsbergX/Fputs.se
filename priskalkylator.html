@@ -1154,10 +1154,10 @@
     var LOOK_MIN_4 = { antalOverligg: 10, antalUnderligg: 10 };
     // Antal sparas separat för 2-sidigt och 4-sidigt; rutorna i steg 3 visar den typ som är vald just nu
     var antalPerTyp = { '2': {}, '4': {} };
-    // Endast utsida (?utsida=1): 500 kr upp till 20 fönster, sedan 20 kr per fönster (Tommy 2026-10-18)
+    // Endast utsida (?utsida=1): 399 kr upp till 20 fönster, sedan 20 kr per fönster (Tommy 2026-10-18)
     var URL_PARAMS = new URLSearchParams(window.location.search);
     var UTSIDA = URL_PARAMS.get('utsida') === '1' || URL_PARAMS.get('typ') === 'utsida';
-    var MIN_UTSIDA = 500;
+    var MIN_UTSIDA = 399;
     var UTSIDA_INGAR = 20;
     var UTSIDA_PER_FONSTER = 20;
     function antal(set, id) { return set === fonsterTyp ? val(id) : (antalPerTyp[set][id] || 0); }
@@ -1611,7 +1611,7 @@
       titlar[2].textContent = '2. Antal fönster';
       titlar[3].textContent = '3. Tillval';
       document.querySelector('#hero .hero-title').textContent = 'Endast utvändig puts';
-      document.querySelector('#hero .hero-sub').textContent = 'Fyll i dina fönster, så ser du direkt vad utsidan på din villa kostar efter RUT. 500 kr upp till 20 fönster, sedan 20 kr per fönster.';
+      document.querySelector('#hero .hero-sub').textContent = 'Fyll i dina fönster, så ser du direkt vad utsidan på din villa kostar efter RUT. 399 kr upp till 20 fönster, sedan 20 kr per fönster.';
       document.querySelector('.calc-heading').textContent = 'Vi putsar bara utsidan – du behöver inte vara hemma. Fyll i dina fönster så ser du priset direkt.';
       var ingar = document.createElement('div');
       ingar.className = 'calc-sa-funkar';
