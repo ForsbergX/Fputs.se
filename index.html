@@ -1427,6 +1427,7 @@
   <style>#nl-badge-frame{display:none !important;}</style>
   <link rel="stylesheet" href="css/sidfot.css" />
   <link rel="stylesheet" href="css/bubblor.css" />
+  <link rel="stylesheet" href="css/kalender.css" />
   <style>
 /* Stängd dropdown ska inte synas alls (dator) */
 @media (min-width: 769px) {
@@ -1956,6 +1957,15 @@
             <option value="Endast utsida">Endast utsida</option>
           </select>
         </label>
+        <div class="fpk" data-fp-kalender>
+          <p class="fpk-titel">Önskad dag och tid</p>
+          <p class="fpk-sub">Välj en dag och en tid som passar. Jag bekräftar den slutliga tiden via SMS.</p>
+          <div class="fpk-kal"></div>
+          <div class="fpk-tider"></div>
+          <p class="fpk-fel" hidden>Välj dag och tid i kalendern.</p>
+          <input type="hidden" name="onskat_datum_1" value="" />
+          <input type="hidden" name="onskad_tid" value="" />
+        </div>
         <label class="fp-field"><span class="fp-sr">Namn</span><input type="text" name="namn" autocomplete="name" placeholder="Namn" required /></label>
         <label class="fp-field"><span class="fp-sr">Adress</span><input type="text" name="adress" autocomplete="street-address" placeholder="Adress och ort" required /></label>
             <p class="fp-resa">Utanför Jönköping &amp; Huskvarna tillkommer en reseavgift på 50 kr (ej RUT-berättigad).</p>
@@ -2000,6 +2010,7 @@
         window.fpValjUtsida = function () { bostad.value = 'Endast utsida'; visaUtsida(true); };
         form.addEventListener('submit', function (e) {
           e.preventDefault();
+          if (window.fpKalenderKlar && !window.fpKalenderKlar(form)) return;
           var btn = document.getElementById('fpHemSubmit');
           var err = document.getElementById('fpHemError');
           btn.disabled = true; err.hidden = true;
@@ -2048,5 +2059,6 @@
   })();
 </script>
 <script src="js/bilder.js"></script>
+<script src="js/kalender.js"></script>
 </body>
 </html>

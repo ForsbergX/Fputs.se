@@ -794,12 +794,12 @@
             <p id="datumHelgNote" hidden></p>
             <input type="hidden" id="bostadstyp" name="bostadstyp" value="Villa" />
             <div class="fpx-sum" id="fpxSum"></div>
-            <div class="fpk">
+            <div class="fpk" data-fp-kalender>
               <p class="fpk-titel">Önskad dag och tid</p>
               <p class="fpk-sub">Välj en dag och en tid som passar. Jag bekräftar den slutliga tiden via SMS.</p>
-              <div id="fpKalender"></div>
-              <div class="fpk-tider" id="fpKalenderTider"></div>
-              <p class="fpk-fel" id="fpKalenderFel" hidden>Välj dag och tid i kalendern.</p>
+              <div class="fpk-kal"></div>
+              <div class="fpk-tider"></div>
+              <p class="fpk-fel" hidden>Välj dag och tid i kalendern.</p>
               <input type="hidden" name="onskad_tid" id="onskadTid" value="" />
             </div>
             <label class="fp-field"><span class="fp-sr">Namn</span><input type="text" id="namn" name="namn" autocomplete="name" placeholder="Namn" required /></label>
@@ -871,7 +871,7 @@
             datum2.addEventListener('input', syncHelg);
             form.addEventListener('submit', function (e) {
               e.preventDefault();
-              if (window.fpKalenderKlar && !window.fpKalenderKlar()) return;
+              if (window.fpKalenderKlar && !window.fpKalenderKlar(form)) return;
               errorMsg.style.display = 'none';
               btn.disabled = true;
               btn.textContent = 'Skickar...';

@@ -2,7 +2,7 @@
 .fpk { margin: 4px 0 14px; }
 .fpk-titel { font-size: 16px; font-weight: 800; color: #0D0F11; margin: 0 0 2px; }
 .fpk-sub { font-size: 14px; line-height: 1.45; color: #4A5259; margin: 0 0 10px; }
-#fpKalender { border: 1px solid #E4E4E0; border-radius: 16px; padding: 10px 8px; background: #fff; }
+.fpk-kal { border: 1px solid #E4E4E0; border-radius: 16px; padding: 10px 8px; background: #fff; }
 .fpk-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 .fpk-head strong { font-size: 16px; font-weight: 800; color: #0D0F11; }
 .fpk-nav { width: 40px; height: 40px; border-radius: 10px; border: 1px solid #E4E4E0; background: #fff; font-size: 20px; line-height: 1; color: #0D0F11; cursor: pointer; }
