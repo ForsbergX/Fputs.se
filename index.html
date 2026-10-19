@@ -22,11 +22,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <meta name="description" content="Fönsterputs i Jönköping och Huskvarna. Villa och utvändig tvätt från 400 kr, lägenhet från 475 kr efter RUT. Fast pris samma dag, ingen bindningstid." />
+  <meta name="description" content="Fönsterputs i Jönköping och Huskvarna. Utvändig tvätt från 399 kr (299 kr med paket), lägenhet från 475 kr efter RUT. Fast pris samma dag, ingen bindningstid." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Forsbergs Fönsterputs Jönköping" />
   <meta property="og:title" content="Fönsterputs Jönköping – Fast pris med RUT | Forsbergs Fönsterputs" />
-  <meta property="og:description" content="Fönsterputs i Jönköping och Huskvarna. Villa och utvändig tvätt från 400 kr, lägenhet från 475 kr efter RUT. Fast pris samma dag, ingen bindningstid." />
+  <meta property="og:description" content="Fönsterputs i Jönköping och Huskvarna. Utvändig tvätt från 399 kr (299 kr med paket), lägenhet från 475 kr efter RUT. Fast pris samma dag, ingen bindningstid." />
   <meta property="og:url" content="https://fputs.se/" />
   <meta property="og:image" content="https://fputs.se/images/og-share.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -34,7 +34,7 @@
   <meta property="og:locale" content="sv_SE" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Fönsterputs Jönköping – Fast pris med RUT | Forsbergs Fönsterputs" />
-  <meta name="twitter:description" content="Fönsterputs i Jönköping och Huskvarna. Villa och utvändig tvätt från 400 kr, lägenhet från 475 kr efter RUT. Fast pris samma dag, ingen bindningstid." />
+  <meta name="twitter:description" content="Fönsterputs i Jönköping och Huskvarna. Utvändig tvätt från 399 kr (299 kr med paket), lägenhet från 475 kr efter RUT. Fast pris samma dag, ingen bindningstid." />
   <meta name="twitter:image" content="https://fputs.se/images/og-share.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -508,6 +508,9 @@
     .kampanj-kort .kampanj-tjanst h3 { margin-bottom: 8px; font-size: 20px; }
     .kampanj-etikett { margin-bottom: 4px; font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #6a6a70; }
     .kampanj-kort .kampanj-bubbla { align-self: flex-start; margin-bottom: 12px; }
+    .kampanj-kort .kampanj-bubblor { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .kampanj-kort .kampanj-bubblor .kampanj-bubbla { margin-bottom: 0; }
+    .kampanj-bubbla-paket { background: #111; }
     .kampanj-kort .kampanj-lista { flex-direction: column; gap: 8px; margin: 14px 0 20px; }
     .kampanj-knapp { margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; height: 50px; border-radius: 6px; background: #d1101f; color: #fff; font-size: 16px; font-weight: 700; text-decoration: none; transition: background .15s; }
     .kampanj-knapp:hover { background: #b00d1a; }
@@ -1469,7 +1472,6 @@
           <div class="kampanj-tjanst">
             <span class="kampanj-etikett">Villa &amp; radhus</span>
             <h3>Komplett fönsterputs</h3>
-            <span class="kampanj-bubbla">från 400 kr efter RUT</span>
             <p>Vi tar hand om insida, utsida och mellan glasen – hela jobbet gjort ordentligt på alla sidor där fönstren går att öppna.</p>
             <ul class="kampanj-lista">
               <li>Insida &amp; utsida</li>
@@ -1481,7 +1483,7 @@
           <div class="kampanj-tjanst">
             <span class="kampanj-etikett">Villa &amp; radhus</span>
             <h3>Endast utvändig tvätt</h3>
-            <span class="kampanj-bubbla">från 400 kr efter RUT</span>
+            <span class="kampanj-bubblor"><span class="kampanj-bubbla">från 399 kr efter RUT</span><span class="kampanj-bubbla kampanj-bubbla-paket">299 kr med paket</span></span>
             <p>Perfekt för dig som vill hålla pollen, smuts och spindelnät borta med jämna mellanrum. Smidigt och prisvärt!</p>
             <ul class="kampanj-lista">
               <li>Även övervåning</li>
