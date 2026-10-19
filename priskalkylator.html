@@ -1183,7 +1183,8 @@
     var PRICE_GOLV = 40;
     var PRICE_TAK = 20;
     var PRICE_SPROJS_TBD = null; // Spröjspris ej bestämt ännu – sätts separat tills Tommy ger exakta priser
-    var MIN_ENPLAN = 750;
+    var MIN_ENPLAN = 400;
+    var START_PER_FONSTER = 50; // små jobb: 400 kr första fönstret, +50 kr per fönster upp till 1,5 h-priset (Tommy 2026-10-20)
     var MIN_SOUTERRANG = 900;
     var SPROJS_QUOTE_LIMIT = 10;
 
@@ -1380,6 +1381,7 @@
       var valHoga = document.getElementById('valHoga').checked;
       var houseMin = utat ? fonsterMin('utat', '2') + fonsterMin('utat', '4') : fonsterMin('2', '2') + fonsterMin('4', '4');
       var houseRaw = tidsPris(houseMin + (valHoga && lookCount > 0 ? HOGA_MIN : 0));
+      if (houseRaw === TIDS_PRISER[1.5]) houseRaw = Math.min(houseRaw, MIN_ENPLAN + (lookCount - 1) * START_PER_FONSTER);
       if (UTSIDA) houseRaw = lookCount > 0 ? MIN_UTSIDA + Math.max(0, lookCount - UTSIDA_INGAR) * UTSIDA_PER_FONSTER : 0;
       var extraRaw = (extraGolv * PRICE_GOLV) + (extraTak * PRICE_TAK);
       var sprojsRaw = 0;
