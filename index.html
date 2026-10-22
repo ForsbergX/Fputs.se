@@ -248,7 +248,7 @@
     /* Video-loop i toppen (mobil) */
     .hero-video, .hero-copy { display: none; }
     @media (max-width: 720px) {
-      .hero-photo-wrap.has-video .hero-photo { height: min(74vh, 580px); visibility: hidden; }
+      .hero-photo-wrap.has-video .hero-photo { height: min(74vh, 580px); }
       .hero-photo-wrap.has-video { background: #1b2026; }
       .hero-photo-wrap.has-video .hero-video { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
       .hero-photo-wrap.has-video::after {
@@ -1459,10 +1459,9 @@
       <img class="hero-photo" src="images/hero-bil-svart.jpg" alt="Forsbergs Fönsterputs servicebil vid kväll med utsikt över Jönköping" width="1672" height="941" />
       <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
       <div class="hero-copy">
-        <h1 class="hero-copy-title">Fönsterputs i Jönköping – från 399 kr efter RUT</h1>
+        <h1 class="hero-copy-title">Fönsterputs i Jönköping</h1>
         <p class="hero-copy-sub"><span>Jönköping &amp; Huskvarna</span> <span>Villa &amp; radhus · Ingen bindningstid</span></p>
-        <a href="kontakta-mig.html#formular" class="hero-copy-btn" id="heroFastPris">Få fast pris →</a>
-      </div>
+        <a href="priskalkylator.html" class="hero-copy-btn">Räkna ut priset själv →</a>      </div>
     </div>
     <div class="kampanj" id="kampanj">
       <div class="kampanj-text">
@@ -1506,6 +1505,10 @@
   (function () {
     var v = document.getElementById('heroVideo');
     var mq = window.matchMedia('(max-width: 720px)');
+    // Mobil: bilbilden bakom rubriken i stället för videon (Tommy 2026-10-22)
+    v.closest('.hero-photo-wrap').classList.add('has-video');
+    v.remove();
+    return;
     function setup() {
       if (!mq.matches || v.getAttribute('src')) return;
       // preload=none i HTML så att datorn inte laddar videon; på mobil: autoplay + preload auto
@@ -1929,7 +1932,7 @@
 
 </div>
 
-<div class="fp-bottombar"><a class="fp-bb-ring" href="tel:+46793463964">📞 Ring</a><button type="button" class="fp-bb-pris" id="fpBbPris">Få fast pris →</button></div>
+<div class="fp-bottombar"><a class="fp-bb-ring" href="tel:+46793463964">📞 Ring</a><button type="button" class="fp-bb-pris" id="fpBbPris">Jag räknar åt dig →</button></div>
 <button type="button" class="fp-fab" id="fpFab" aria-expanded="false" aria-controls="fpPanel">
   <svg class="fp-fab-open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12c0 4.4-4 8-9 8-1.3 0-2.6-.2-3.7-.7L3 21l1.5-4.2C3.6 15.4 3 13.8 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-width="2.6"/></svg>
   <svg class="fp-fab-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -1937,7 +1940,7 @@
 </button>
 <div class="fp-panel" id="fpPanel" role="dialog" aria-labelledby="fpPanelTitle" hidden>
   <div class="fp-panel-head">
-    <div><strong id="fpPanelTitle">Få ett fast pris</strong><span>Svar samma dag</span></div>
+    <div><strong id="fpPanelTitle">Få ett fast pris</strong><span>Skicka några bilder på dina fönster, din adress och skriv vad du har – så återkommer jag inom 24 timmar med ett fast pris.</span></div>
     <button type="button" class="fp-panel-x" id="fpPanelClose" aria-label="Stäng">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </button>
