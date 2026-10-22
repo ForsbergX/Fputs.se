@@ -1215,12 +1215,13 @@
     var KARM_ANDEL = 0.15; // lätt karmtvätt: +15 % av priset
     var HOGA_MIN = 10; // höga fönster: 10 min per jobb att plocka fram stege/renvatten
     // Pris efter RUT per påbörjad halvtimme (minst 1,5 h), enligt prislistan i TIDER.md.
-    // Samma trappa som 750-listan, skalad till 699 (× 699/750), avrundat till 5 kr.
-    var TIDS_PRISER = { 1.5: 699, 2: 930, 2.5: 1165, 3: 1420, 3.5: 1675, 4: 1910, 4.5: 2165, 5: 2400, 5.5: 2655, 6: 2890 };
+    // 699 kr upp till 1,5 h, sedan samma minutpris (699/90 min) per påbörjad 5 min,
+    // avrundat uppåt till …9 kr: 699, 739, 779 … – inga hopp per halvtimme (Tommy 2026-10-22).
+    var TIDS_PRISER = { 1.5: 699 };
     function tidsPris(minuter) {
       if (minuter <= 0) return 0;
-      var h = Math.max(1.5, Math.ceil(Math.round(minuter) / 30) / 2);
-      return h <= 6 ? TIDS_PRISER[h] : TIDS_PRISER[6] + (h - 6) * 2 * 233;
+      var m = Math.max(90, Math.ceil(Math.round(minuter) / 5) * 5);
+      return Math.ceil(TIDS_PRISER[1.5] * m / 90 / 10) * 10 - 1;
     }
     var countIds = ['antalL1', 'antalL2', 'antalS2', 'antalS3', 'antalS4', 'antalOverligg', 'antalUnderligg', 'uterumGolv', 'uterumTak', 'balkongGolv', 'balkongTak', 'altanGolv', 'altanTak', 'antalSprojs'];
     var windowIds = ['antalL1', 'antalL2', 'antalS2', 'antalS3', 'antalS4', 'antalOverligg', 'antalUnderligg', 'uterumGolv', 'uterumTak', 'balkongGolv', 'balkongTak', 'altanGolv', 'altanTak'];
