@@ -1218,6 +1218,7 @@
     // 699 kr upp till 1,5 h, sedan samma minutpris (699/90 min) per påbörjad 5 min,
     // avrundat uppåt till …9 kr: 699, 739, 779 … – inga hopp per halvtimme (Tommy 2026-10-22).
     var TIDS_PRISER = { 1.5: 699 };
+    var INGAR_FONSTER = 14;
     function tidsPris(minuter) {
       if (minuter <= 0) return 0;
       var m = Math.max(90, Math.ceil(Math.round(minuter) / 5) * 5);
@@ -1382,7 +1383,11 @@
       var valKarm = document.getElementById('valKarm').checked;
       var valHoga = document.getElementById('valHoga').checked;
       var houseMin = utat ? fonsterMin('utat', '2') + fonsterMin('utat', '4') : fonsterMin('2', '2') + fonsterMin('4', '4');
-      var houseRaw = tidsPris(houseMin + (valHoga && lookCount > 0 ? HOGA_MIN : 0));
+      // 699 kr täcker upp till 14 fönster; varje fönster därutöver kostar sin tid i kalkylen (Tommy 2026-10-22).
+      // Tar jobbet ändå längre tid (t.ex. 4-sidigt) gäller tidspriset.
+      var extraFonsterKr = lookCount > INGAR_FONSTER ? houseMin * (lookCount - INGAR_FONSTER) / lookCount * TIDS_PRISER[1.5] / 90 : 0;
+      var fonsterPris = extraFonsterKr > 0 ? Math.ceil((TIDS_PRISER[1.5] + extraFonsterKr) / 10) * 10 - 1 : TIDS_PRISER[1.5];
+      var houseRaw = lookCount > 0 ? Math.max(fonsterPris, tidsPris(houseMin + (valHoga ? HOGA_MIN : 0))) : 0;
       if (houseRaw === TIDS_PRISER[1.5]) houseRaw = Math.min(houseRaw, MIN_ENPLAN + (lookCount - 1) * START_PER_FONSTER);
       if (UTSIDA) houseRaw = lookCount > 0 ? MIN_UTSIDA + Math.max(0, lookCount - UTSIDA_INGAR) * UTSIDA_PER_FONSTER : 0;
       var extraRaw = (extraGolv * PRICE_GOLV) + (extraTak * PRICE_TAK);
