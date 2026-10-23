@@ -1612,7 +1612,7 @@
 <section class="ns-sektion" id="offert">
   <div class="ns-form-kort">
     <h2>Få en kostnadsfri offert</h2>
-    <p class="ns-form-sub">Gratis och ej bindande. Vi svarar samma dag. Du behöver inte vara hemma när vi kommer och räknar på jobbet – det är helt gratis.</p>
+    <p class="ns-form-sub">Gratis och ej bindande. Vi svarar samma dag.<span id="nsInteHemma"> Du behöver inte vara hemma när vi kommer och räknar på jobbet – det är helt gratis.</span></p>
     <form class="ns-form" id="nsForm" action="/.netlify/functions/send-email" method="POST">
       <input type="hidden" name="kalla" value="Startsidan" />
       <label class="ns-falt"><span>Vad gäller det? *</span><select name="bostadstyp" id="nsTjanst" required><option value="" disabled selected>Välj vad det gäller</option><option value="Villa">Villa / radhus</option><option value="Lägenhet">Lägenhet</option><option value="Företag">Företag / butik</option><option value="Solcellstvätt">Solcellstvätt</option><option value="Annat / fråga">Annat / fråga</option></select></label>
@@ -2009,7 +2009,7 @@
     lgh.querySelectorAll('[data-lgh]').forEach(function (b) {
       b.addEventListener('click', function () { var k = b.getAttribute('data-lgh'); lghVal[k] = Math.max(0, Math.min(80, lghVal[k] + Number(b.getAttribute('data-steg')))); raknaLgh(); });
     });
-    function visaLgh(ja) { lgh.hidden = !ja; lghDolda.forEach(function (i) { i.disabled = !ja; }); }
+    function visaLgh(ja) { document.getElementById('nsInteHemma').hidden = ja; lgh.hidden = !ja; lghDolda.forEach(function (i) { i.disabled = !ja; }); }
     // Kunden väljer själv vad det gäller – Lägenhet visar storlek/balkong/pris
     tjanst.addEventListener('change', function () { visaLgh(tjanst.value === 'Lägenhet'); });
     document.querySelectorAll('[data-tjanst]').forEach(function (a) {
