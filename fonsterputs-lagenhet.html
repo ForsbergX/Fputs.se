@@ -282,7 +282,7 @@
   <p class="ns-form-sub">Gratis och ej bindande. Vi svarar samma dag. Du behöver inte vara hemma när vi kommer och räknar på jobbet – det är helt gratis.</p>
   <form class="ns-form" id="offertForm" data-enkel-form="Lägenhetssidan" action="/.netlify/functions/send-email" method="POST">
     <input type="hidden" name="kalla" value="Lägenhetssidan" />
-    <input type="hidden" name="bostadstyp" value="Lägenhet" />
+    <label class="ns-falt"><span>Vad gäller det? *</span><select name="bostadstyp" required><option value="" disabled>Välj vad det gäller</option><option value="Villa">Villa / radhus</option><option value="Lägenhet" selected>Lägenhet</option><option value="Företag">Företag / butik</option><option value="Solcellstvätt">Solcellstvätt</option><option value="Annat / fråga">Annat / fråga</option></select></label>
   <input type="hidden" name="uppskattat_pris" id="hiddenAptPrice" value="" />
   <input type="hidden" name="pris_fore_rut" id="hiddenAptPriceBefore" value="" />
   <input type="hidden" name="lagenhetsstorlek" id="hiddenApt" value="Ej vald" />
