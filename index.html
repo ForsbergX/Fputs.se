@@ -1612,7 +1612,7 @@
 <section class="ns-sektion" id="offert">
   <div class="ns-form-kort">
     <h2>Få en kostnadsfri offert</h2>
-    <p class="ns-form-sub">Gratis och ej bindande. Vi svarar samma dag<span id="nsInteHemma"> – och du behöver inte vara hemma när vi putsar</span>.</p>
+    <p class="ns-form-sub">Gratis och ej bindande. Vi svarar samma dag. Du behöver inte vara hemma när vi kommer och räknar på jobbet – det är helt gratis.</p>
     <form class="ns-form" id="nsForm" action="/.netlify/functions/send-email" method="POST">
       <input type="hidden" name="kalla" value="Startsidan" />
       <input type="hidden" name="bostadstyp" id="nsTjanst" value="" />
@@ -2009,7 +2009,7 @@
     lgh.querySelectorAll('[data-lgh]').forEach(function (b) {
       b.addEventListener('click', function () { var k = b.getAttribute('data-lgh'); lghVal[k] = Math.max(0, Math.min(80, lghVal[k] + Number(b.getAttribute('data-steg')))); raknaLgh(); });
     });
-    function visaLgh(ja) { document.getElementById('nsInteHemma').hidden = ja; lgh.hidden = !ja; lghDolda.forEach(function (i) { i.disabled = !ja; }); }
+    function visaLgh(ja) { lgh.hidden = !ja; lghDolda.forEach(function (i) { i.disabled = !ja; }); }
     document.querySelectorAll('[data-tjanst]').forEach(function (a) {
       a.addEventListener('click', function () {
         tjanst.value = a.getAttribute('data-tjanst');
