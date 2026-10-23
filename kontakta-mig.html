@@ -63,13 +63,15 @@
   <link rel="stylesheet" href="css/bubblor.css" />
   <link rel="stylesheet" href="css/kompakt-form.css" />
   <link rel="stylesheet" href="css/bottombar.css" />
+<link rel="stylesheet" href="css/tema.css" />
+<link rel="stylesheet" href="css/enkel-form.css" />
 </head>
 <body>
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html"><img src="images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="1109" height="260" /></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Metod &amp; utrustning</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta mig</a></li>
+    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om oss</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om oss</a></li><li><a href="hur-jag-jobbar.html">Metod &amp; utrustning</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta oss</a></li>
     <li><a href="kontakta-mig.html#formular" class="nav-cta nav-cta-desk">Få prisförslag</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Meny" type="button" onclick="toggleMobileMenu(this)">
@@ -85,7 +87,7 @@
     <h1 class="hero-title">Få ett fast pris samma dag</h1>
     <p class="hero-sub">Skicka adressen så får du priset idag. Eller ring/sms:a direkt.</p>
     <div class="kontakt-knappar">
-      <a href="sms:+46793463964" class="kontakt-sms">SMS:a mig</a>
+      <a href="sms:+46793463964" class="kontakt-sms">SMS:a oss</a>
       <a href="tel:+46793463964" class="kontakt-ring">Ring 079-346 39 64</a>
     </div>
   </div>
@@ -102,139 +104,22 @@
       </div>
     </div>
     <div class="book-right" id="formular" style="scroll-margin-top: 100px;">
-      <div class="fpx-card">
-          <div class="fpx-head"><strong>Få ett fast pris</strong><span>Svar samma dag</span></div>
-          <div class="fpx-body">
-          <form class="fp-form" id="offertForm" action="/.netlify/functions/send-email" method="POST">
-            <input type="hidden" name="kalla" value="Kontaktsidan" />
-
-            <input type="hidden" id="datum1" name="onskat_datum_1" value="" />
-            <input type="hidden" id="datum2" name="onskat_datum_2" value="" />
-            <input type="hidden" name="jobbhelg" id="offertJobbhelg" value="Nej" />
-            <p id="datumHelgNote" hidden></p>
-            <label class="fp-field"><span class="fp-sr">Bostad</span><select id="bostadstyp" name="bostadstyp" required><option value="" disabled selected>Vad gäller det?</option><option value="Villa">Villa / Radhus</option><option value="Lägenhet">Lägenhet</option><option value="Endast utsida">Endast utsida</option><option value="Annat / fråga">Annat / fråga</option></select></label>
-            <label class="fp-field"><span class="fp-sr">Namn</span><input type="text" id="namn" name="namn" autocomplete="name" placeholder="Namn" required /></label>
-            <label class="fp-field"><span class="fp-sr">Adress</span><input type="text" id="adress" name="adress" autocomplete="street-address" placeholder="Adress och ort" required /></label>
-            <p class="fp-resa">Utanför Jönköping &amp; Huskvarna tillkommer en reseavgift på 50 kr (ej RUT-berättigad).</p>
-            <label class="fp-field"><span class="fp-sr">Telefon</span><input type="tel" id="telefon" name="telefon" autocomplete="tel" placeholder="Telefonnummer" required /></label>
-            <label class="fp-field"><span class="fp-sr">E-post</span><input type="email" id="email" name="email" autocomplete="email" placeholder="E-post (valfritt)" /></label>
-            <label class="fp-field"><span class="fp-sr">Meddelande</span><textarea id="meddelande" name="meddelande" rows="2" placeholder="Meddelande (valfritt)"></textarea></label>
-            <div class="fp-bilder"><label class="fp-bilder-knapp"><input type="file" accept="image/*" multiple data-fp-bilder hidden /><span aria-hidden="true">📷</span> Bifoga bilder på fönstren (valfritt)</label><div class="fp-bilder-lista"></div><p class="fp-bilder-info">Max 3 bilder</p></div>
-            <a class="fp-google" href="https://www.google.com/search?q=Forsbergs+F%C3%B6nsterputs+J%C3%B6nk%C3%B6ping+recensioner" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.5 2.4-7.2 2.4-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg><span class="fp-google-stars">★★★★★</span> <strong>5/5 på Google</strong> · 43 recensioner</a>
-            <p class="fp-checks"><span>✓ Ej bindande</span><span>✓ 100 % gratis</span></p>
-            <button type="submit" class="fp-book-go" id="offertSubmitBtn">Få ett fast pris</button>
-            <p class="fp-form-error" id="offertFormError" style="display:none;">Något gick fel. Prova igen, eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
-            <a class="fp-calc-link" href="priskalkylator.html">Eller räkna ut priset själv →</a>
-          </form>
-          <div id="offertFormSuccess" style="display:none;text-align:center;padding:30px 10px;">
-            <div style="font-size:40px;margin-bottom:12px;">✅</div>
-            <h2 class="panel-title panel-title-green" style="margin-bottom:10px;">Tack, din förfrågan är skickad!</h2>
-            <p class="panel-lead">Jag återkommer samma dag med pris och ledig tid. Vill du ha svar snabbare kan du alltid ringa direkt på <a href="tel:+46793463964" style="color:var(--accent);text-decoration:underline;">079-346 39 64</a>.</p>
-          </div>
-          <script>
-            (function () {
-              var form = document.getElementById('offertForm');
-              if (!form) return;
-              var typ = new URLSearchParams(window.location.search).get('typ');
-              var bostad = document.getElementById('bostadstyp');
-              var typMap = { foretag: 'Företag', villa: 'Villa', lagenhet: 'Lägenhet', solceller: 'Solcellstvätt' };
-              if (bostad && typ && typMap[typ]) bostad.value = typMap[typ];
-              var adressFalt = document.getElementById('adress');
-              if (bostad && adressFalt) bostad.addEventListener('change', function () { adressFalt.required = bostad.value !== 'Annat / fråga'; adressFalt.placeholder = bostad.value === 'Annat / fråga' ? 'Adress och ort (valfritt)' : 'Adress och ort'; });
-              var btn = document.getElementById('offertSubmitBtn');
-              var errorMsg = document.getElementById('offertFormError');
-              var successBox = document.getElementById('offertFormSuccess');
-              var datum1 = document.getElementById('datum1');
-              var datum2 = document.getElementById('datum2');
-              var datumNote = document.getElementById('datumHelgNote');
-              var jobbhelgField = document.getElementById('offertJobbhelg');
-              var WORK_WEEKENDS = (function () {
-                var set = {};
-                function key(d) {
-                  var m = d.getMonth() + 1;
-                  var day = d.getDate();
-                  return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (day < 10 ? '0' : '') + day;
-                }
-                var start = new Date(2026, 9, 3);
-                for (var i = 0; i < 60; i++) {
-                  var sat = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i * 42);
-                  var sun = new Date(sat.getFullYear(), sat.getMonth(), sat.getDate() + 1);
-                  set[key(sat)] = true;
-                  set[key(sun)] = true;
-                }
-                return set;
-              })();
-              (function setMinDate() {
-                var n = new Date();
-                var m = n.getMonth() + 1;
-                var d = n.getDate();
-                var min = n.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (d < 10 ? '0' : '') + d;
-                datum1.min = min;
-                datum2.min = min;
-              })();
-              function syncHelg() {
-                var work = !!(WORK_WEEKENDS[datum1.value] || WORK_WEEKENDS[datum2.value]);
-                datumNote.style.display = work ? 'block' : 'none';
-                jobbhelgField.value = work ? 'Ja – efter 17:00, 1–3 timmar' : 'Nej';
-              }
-              datum1.addEventListener('change', syncHelg);
-              datum2.addEventListener('change', syncHelg);
-              datum1.addEventListener('input', syncHelg);
-              datum2.addEventListener('input', syncHelg);
-              form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                errorMsg.style.display = 'none';
-                btn.disabled = true;
-                btn.textContent = 'Skickar...';
-                fetch(form.action, {
-                  method: 'POST',
-                  body: JSON.stringify(Object.assign(Object.fromEntries(new FormData(form)), window.fpBilder ? { bilder: window.fpBilder(form) } : {})),
-                  headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
-                }).then(function (response) {
-                  if (response.ok) {
-                    form.style.display = 'none';
-                    successBox.style.display = 'block';
-                    if (typeof gtag === 'function') {
-                      gtag('event', 'generate_lead', {
-                        'event_category': 'contact',
-                        'event_label': 'kontaktsidan'
-                      });
-                      gtag('event', 'conversion', {
-                        'send_to': 'AW-18225187055/j67gCPv6hOscEO-RufJD'
-                      });
-                    }
-                  } else {
-                    throw new Error('send-email error');
-                  }
-                }).catch(function () {
-                  errorMsg.style.display = 'block';
-                  btn.disabled = false;
-                  btn.textContent = 'Få ett fast pris';
-                });
-              });
-              var smsBtn = document.getElementById('offertSmsBtn');
-              if (smsBtn) {
-                smsBtn.addEventListener('click', function () {
-                  if (typeof form.reportValidity === 'function' && !form.reportValidity()) return;
-                  function f(namn) {
-                    var el = form.querySelector('[name="' + namn + '"]');
-                    return el ? String(el.value).trim() : '';
-                  }
-                  var typ = f('bostadstyp');
-                  var rader = ['Offertförfrågan' + (typ ? ' - ' + typ : ''), ''];
-                  rader.push(f('namn'), f('telefon'), f('adress'));
-                  var d1 = f('onskat_datum_1');
-                  var d2 = f('onskat_datum_2');
-                  if (d1 || d2) rader.push('Önskat datum: ' + [d1, d2].filter(Boolean).join(' eller '));
-                  if (f('email')) rader.push(f('email'));
-                  if (f('meddelande')) rader.push('', f('meddelande'));
-                  window.location.href = 'sms:+46793463964?&body=' + encodeURIComponent(rader.join('\n'));
-                });
-              }
-            })();
-          </script>
-        </div>
-      </div>
+<div class="ns-form-kort" id="formular-kort">
+  <h2>Få en kostnadsfri offert</h2>
+  <p class="ns-form-sub">Gratis och ej bindande. Vi svarar samma dag – och du behöver inte vara hemma när vi putsar.</p>
+  <form class="ns-form" id="offertForm" data-enkel-form="Kontaktsidan" action="/.netlify/functions/send-email" method="POST">
+    <input type="hidden" name="kalla" value="Kontaktsidan" />
+    <input type="hidden" name="bostadstyp" value="" />
+    <label class="ns-falt"><span>Namn *</span><input type="text" name="namn" autocomplete="name" placeholder="Ditt fullständiga namn" required /></label>
+    <label class="ns-falt"><span>Telefon *</span><input type="tel" name="telefon" autocomplete="tel" placeholder="070-123 45 67" required /></label>
+    <label class="ns-falt"><span>Adress *</span><input type="text" name="adress" autocomplete="street-address" placeholder="Gata och ort" required /></label>
+    <label class="ns-falt"><span>E-post</span><input type="email" name="email" autocomplete="email" placeholder="din@email.se" /></label>
+    <label class="ns-falt"><span>Beskriv vad du behöver *</span><textarea name="meddelande" rows="4" placeholder="T.ex. villa i Huskvarna, ca 15 fönster, in- och utsida…" required></textarea></label>
+    <button type="submit" class="ns-skicka">Skicka förfrågan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></button>
+    <p class="ns-fel" hidden>Något gick fel. Prova igen, eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
+  </form>
+  <div class="ns-tack" hidden><strong>Tack, det är skickat!</strong><p>Vi hör av oss samma dag. Bråttom? Ring <a href="tel:+46793463964">079-346 39 64</a>.</p></div>
+</div>
     </div>
   </div>
 </section>
@@ -281,7 +166,7 @@
     <div class="footer-col">
       <div class="footer-col-title">Kontakt</div>
       <ul>
-        <li><a href="kontakta-mig.html">Kontakta mig</a></li>
+        <li><a href="kontakta-mig.html">Kontakta oss</a></li>
         <li><a href="tel:+46793463964">079-346 39 64</a></li>
         <li><a href="mailto:kontakt@fputs.se">kontakt@fputs.se</a></li>
         <li><span class="footer-hours">Öppettider 09:00-21:00</span></li>
@@ -289,7 +174,7 @@
     </div>
   </div>
   <div class="footer-areas-row">
-    <span class="footer-areas-label">Jag putsar också fönster i:</span> <a href="fonsterputs-bankeryd.html">Bankeryd</a> &middot; <a href="fonsterputs-barnarp.html">Barnarp</a> &middot; <a href="fonsterputs-bottnaryd.html">Bottnaryd</a> &middot; <a href="fonsterputs-branninge.html">Bränninge</a> &middot; <a href="fonsterputs-bymarken.html">Bymarken</a> &middot; <a href="fonsterputs-dalvik.html">Dalvik</a> &middot; <a href="fonsterputs-dunkehalla.html">Dunkehalla</a> &middot; <a href="fonsterputs-egna-hem.html">Egna Hem</a> &middot; <a href="fonsterputs-ekhagen.html">Ekhagen</a> &middot; <a href="fonsterputs-furusjo.html">Furusjö</a> &middot; <a href="fonsterputs-granna.html">Gränna</a> &middot; <a href="fonsterputs-grashagen.html">Gräshagen</a> &middot; <a href="fonsterputs-habo.html">Habo</a> &middot; <a href="fonsterputs-hedenstorp.html">Hedenstorp</a> &middot; <a href="fonsterputs-hovslatt.html">Hovslätt</a> &middot; <a href="fonsterputs-huskvarna.html">Huskvarna</a> &middot; <a href="fonsterputs-kaxholmen.html">Kaxholmen</a> &middot; <a href="fonsterputs-kortebo.html">Kortebo</a> &middot; <a href="fonsterputs-lekeryd.html">Lekeryd</a> &middot; <a href="fonsterputs-liljeholmen.html">Liljeholmen</a> &middot; <a href="fonsterputs-ljungarum.html">Ljungarum</a> &middot; <a href="fonsterputs-mariebo.html">Mariebo</a> &middot; <a href="fonsterputs-mansarp.html">Månsarp</a> &middot; <a href="fonsterputs-norrahammar.html">Norrahammar</a> &middot; <a href="fonsterputs-raslatt.html">Råslätt</a> &middot; <a href="fonsterputs-sanna.html">Sanna</a> &middot; <a href="fonsterputs-skarstad.html">Skärstad</a> &middot; <a href="fonsterputs-taberg.html">Taberg</a> &middot; <a href="fonsterputs-tenhult.html">Tenhult</a> &middot; <a href="fonsterputs-torpa.html">Torpa</a> &middot; <a href="fonsterputs-torsvik.html">Torsvik</a> &middot; <a href="fonsterputs-tronghalla.html">Trånghalla</a> &middot; <a href="fonsterputs-vattersnas.html">Vättersnäs</a> &middot; <a href="fonsterputs-oggestorp.html">Öggestorp</a> &middot; <a href="fonsterputs-olmstad.html">Ölmstad</a> &middot; <a href="fonsterputs-orserum.html">Örserum</a> &middot; <a href="fonsterputs-osterang.html">Österäng</a> &middot; <a href="fonsterputs-oxnehaga.html">Öxnehaga</a>
+    <span class="footer-areas-label">Vi putsar också fönster i:</span> <a href="fonsterputs-bankeryd.html">Bankeryd</a> &middot; <a href="fonsterputs-barnarp.html">Barnarp</a> &middot; <a href="fonsterputs-bottnaryd.html">Bottnaryd</a> &middot; <a href="fonsterputs-branninge.html">Bränninge</a> &middot; <a href="fonsterputs-bymarken.html">Bymarken</a> &middot; <a href="fonsterputs-dalvik.html">Dalvik</a> &middot; <a href="fonsterputs-dunkehalla.html">Dunkehalla</a> &middot; <a href="fonsterputs-egna-hem.html">Egna Hem</a> &middot; <a href="fonsterputs-ekhagen.html">Ekhagen</a> &middot; <a href="fonsterputs-furusjo.html">Furusjö</a> &middot; <a href="fonsterputs-granna.html">Gränna</a> &middot; <a href="fonsterputs-grashagen.html">Gräshagen</a> &middot; <a href="fonsterputs-habo.html">Habo</a> &middot; <a href="fonsterputs-hedenstorp.html">Hedenstorp</a> &middot; <a href="fonsterputs-hovslatt.html">Hovslätt</a> &middot; <a href="fonsterputs-huskvarna.html">Huskvarna</a> &middot; <a href="fonsterputs-kaxholmen.html">Kaxholmen</a> &middot; <a href="fonsterputs-kortebo.html">Kortebo</a> &middot; <a href="fonsterputs-lekeryd.html">Lekeryd</a> &middot; <a href="fonsterputs-liljeholmen.html">Liljeholmen</a> &middot; <a href="fonsterputs-ljungarum.html">Ljungarum</a> &middot; <a href="fonsterputs-mariebo.html">Mariebo</a> &middot; <a href="fonsterputs-mansarp.html">Månsarp</a> &middot; <a href="fonsterputs-norrahammar.html">Norrahammar</a> &middot; <a href="fonsterputs-raslatt.html">Råslätt</a> &middot; <a href="fonsterputs-sanna.html">Sanna</a> &middot; <a href="fonsterputs-skarstad.html">Skärstad</a> &middot; <a href="fonsterputs-taberg.html">Taberg</a> &middot; <a href="fonsterputs-tenhult.html">Tenhult</a> &middot; <a href="fonsterputs-torpa.html">Torpa</a> &middot; <a href="fonsterputs-torsvik.html">Torsvik</a> &middot; <a href="fonsterputs-tronghalla.html">Trånghalla</a> &middot; <a href="fonsterputs-vattersnas.html">Vättersnäs</a> &middot; <a href="fonsterputs-oggestorp.html">Öggestorp</a> &middot; <a href="fonsterputs-olmstad.html">Ölmstad</a> &middot; <a href="fonsterputs-orserum.html">Örserum</a> &middot; <a href="fonsterputs-osterang.html">Österäng</a> &middot; <a href="fonsterputs-oxnehaga.html">Öxnehaga</a>
   </div>
   <div class="footer-inner">
     <p class="footer-copy">© <span class="footer-year">2025</span> Forsbergs Fönsterputs · Jönköping med omnejd</p>
@@ -358,7 +243,7 @@
         </div>
         <div class="cookie-modal-actions cookie-modal-actions-detail">
           <button type="button" class="cookie-btn-outline" onclick="window.cookieConsent('all')">Acceptera alla</button>
-          <button type="button" class="cookie-btn-solid" onclick="window.cookieConsent('custom')">Spara mina val</button>
+          <button type="button" class="cookie-btn-solid" onclick="window.cookieConsent('custom')">Spara våra val</button>
         </div>
       </div>
     </div>
@@ -417,7 +302,7 @@
       <li>📍 Din adress</li>
       <li>🏠 Kort info om bostaden</li>
     </ul>
-    <p>Då kan jag snabbt räkna ut ett pris och ringa upp dig.</p>
+    <p>Då kan vi snabbt räkna ut ett pris och ringa upp dig.</p>
     <a class="sms-modal-open-btn" href="sms:+46793463964">Öppna SMS</a>
   </div>
 </div>
@@ -537,7 +422,7 @@
   });
 </script>
 </div>
-<div class="fp-bottombar"><a class="fp-bb-ring" href="tel:+46793463964">📞 Ring</a><a class="fp-bb-pris" href="#formular">Skicka meddelande ↓</a></div>
+<div class="fp-bottombar"><a class="fp-bb-ring" href="tel:+46793463964">Ring</a><a class="fp-bb-pris" href="#formular">Skicka meddelande ↓</a></div>
 <script>
   // Göm bottenbaren medan man skriver i formuläret
   (function () {
@@ -548,5 +433,6 @@
   })();
 </script>
 <script src="js/bilder.js"></script>
+<script src="js/enkel-form.js"></script>
 </body>
 </html>

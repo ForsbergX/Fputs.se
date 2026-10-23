@@ -1,0 +1,30 @@
+/* Samma enkla offertformulär på alla sidor (Installia-stil, Tommy 2026-10-23).
+   Laddas efter tema.css så att fälten blir vita. */
+.ns-form-kort {
+  max-width: 560px; margin: 0 auto; padding: 32px 22px; border-radius: 20px; background: #fff;
+  border: 1px solid #e6e2db; box-shadow: 0 24px 50px -30px rgba(20,24,27,0.45); text-align: left;
+  scroll-margin-top: 100px;
+}
+.ns-form-kort h2 { margin: 0 0 6px; font-size: 26px; font-weight: 800; letter-spacing: -0.02em; text-transform: none; color: #14181b; }
+.ns-form-kort .ns-form-sub { margin: 0 0 22px; font-size: 15px; color: #5b6168; }
+.ns-form-kort .ns-form { display: grid; gap: 18px; }
+.ns-form-kort .ns-falt { display: grid; gap: 8px; }
+.ns-form-kort .ns-falt > span { font-size: 15px; font-weight: 700; color: #14181b; }
+.ns-form-kort .ns-form .ns-falt input, .ns-form-kort .ns-form .ns-falt textarea {
+  width: 100%; min-height: 54px; padding: 14px 16px; border-radius: 12px !important;
+  border: 1.5px solid #d8d4cc !important; background: #fff !important; color: #14181b;
+  font: 500 16px 'Montserrat', sans-serif; outline: none; box-sizing: border-box;
+}
+.ns-form-kort .ns-form .ns-falt textarea { min-height: 120px; resize: vertical; }
+.ns-form-kort .ns-form .ns-falt input:focus, .ns-form-kort .ns-form .ns-falt textarea:focus { border-color: #14181b !important; }
+.ns-form-kort .ns-skicka {
+  display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 58px;
+  border: 0; border-radius: 12px; background: #14181b; color: #fff; font: 700 18px 'Montserrat', sans-serif; cursor: pointer;
+}
+.ns-form-kort .ns-skicka svg { width: 20px; height: 20px; }
+.ns-form-kort .ns-skicka:active { transform: scale(.98); }
+.ns-form-kort .ns-skicka:disabled { opacity: .6; cursor: wait; }
+.ns-form-kort .ns-fel { margin: 0; font-size: 14px; color: #b00d1a; text-align: center; }
+.ns-form-kort .ns-tack { text-align: center; padding: 20px 6px; }
+.ns-form-kort .ns-tack strong { display: block; margin-bottom: 8px; font-size: 22px; color: #14181b; }
+.ns-form-kort .ns-tack p { margin: 0; color: #5b6168; line-height: 1.6; }

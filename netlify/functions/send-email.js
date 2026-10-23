@@ -38,6 +38,7 @@ function fieldPairs(fields) {
     ["Lägenhetsstorlek", fields.lagenhetsstorlek],
     ["Antal fönster", fields.antal_fonster],
     ["Balkongrutor", fields.antal_balkongrutor],
+    ["Antal solpaneler", fields.antal_paneler],
     ["Beställning", fields.kalkyl],
     ["Spröjs", fields.sprojs],
     ["Spröjs-typ", fields.sprojs_typ],
@@ -86,8 +87,9 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Ogiltig data" }) };
   }
 
-  // Adress behövs inte för "Annat / fråga" från kontaktsidan
-  const adressKravs = fields.bostadstyp !== "Annat / fråga";
+  // Adress behövs inte för "Annat / fråga" från kontaktsidan, och inte från startsidans
+  // enkla formulär som saknar adressfält (Tommy 2026-10-23)
+  const adressKravs = "adress" in fields && fields.bostadstyp !== "Annat / fråga";
   if (!fields.namn || !fields.telefon || (adressKravs && !fields.adress)) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Obligatoriska fält saknas" }) };
   }

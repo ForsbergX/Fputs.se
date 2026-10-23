@@ -1,0 +1,53 @@
+/* Gemensamt tema för alla sidor: sand, svart och rött (Tommy 2026-10-23).
+   Laddas sist så att det vinner över styles.css och sidornas egna <style>. */
+html:root {
+  --sand: #f5efe6;
+  --sand-2: #efe7da;
+  --sand-kort: #fffaf2;
+  --sand-kant: #e6dccd;
+  --sand-text: #1d1a16;
+  --sand-mjuk: #6d6358;
+
+  --bg-a: var(--sand);
+  --bg-b: var(--sand-2);
+  --card-bg: var(--sand-kort);
+  --card-border: var(--sand-kant);
+  --border: rgba(29,26,22,0.12);
+  --dark: var(--sand-2);
+  --dark-2: var(--sand-2);
+  --dark-3: var(--sand-kant);
+  --ink: var(--sand-text);
+  --muted: var(--sand-mjuk);
+}
+
+body { background: var(--sand); color: var(--sand-text); }
+nav:not(.breadcrumb-nav) { background: var(--sand) !important; border-bottom-color: var(--sand-kant) !important; }
+.nav-dropdown-menu { background: var(--sand-kort); border-color: var(--sand-kant); }
+
+/* Knappar: röd huvudknapp, övriga svart kant på ljus sand – samma som startsidan */
+.btn-primary { border-radius: 12px; }
+.btn-outline {
+  background: var(--sand-kort); color: var(--sand-text); border-color: var(--sand-text); border-radius: 12px;
+}
+.btn-outline:hover { background: var(--sand-text); color: #fff; border-color: var(--sand-text); }
+
+/* Kort och rutor som var vita/grå på undersidorna */
+.faq-item, .fordelar-card, .chooser-card, .comment-card, .om-text, .renvatten-info,
+.price-panel, .apt-calc, .fpx-card, .calc-main, .calc-card, .calc-card-choice,
+.metod-card, .contact-card, .karta-box, .fpk-kal {
+  background: var(--sand-kort) !important; border-color: var(--sand-kant) !important;
+}
+.apt-ingar, .fpx-sum, .calc-sa-funkar, .calc-card-art, .calc-inline-result, .karta-frame { background: var(--sand-2) !important; }
+section > .container { background: transparent !important; }
+.fp-bottombar { background: var(--sand) !important; border-top-color: var(--sand-kant) !important; }
+
+/* Formulärfält */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea {
+  background-color: var(--sand-kort) !important; border-color: var(--sand-kant) !important;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--sand-text) !important; }
+
+/* Mobilmenyn */
+@media (max-width: 768px) {
+  .nav-links { background: var(--sand) !important; }
+}

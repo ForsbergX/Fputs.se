@@ -100,13 +100,29 @@
   <link rel="stylesheet" href="css/sidfot.css" />
   <link rel="stylesheet" href="css/bubblor.css" />
   <link rel="stylesheet" href="css/bottombar.css" />
+  <link rel="stylesheet" href="css/kompakt-form.css" />
+<link rel="stylesheet" href="css/tema.css" />
+<link rel="stylesheet" href="css/enkel-form.css" />
+  <style>
+    /* Solcellsoffert: antal paneler + bilder + kontakt (2026-10-23) */
+    #offert { padding: 28px 16px 10px; scroll-margin-top: 90px; }
+    .sol-antal { display: grid; gap: 8px; }
+    .sol-antal-rubrik { font-size: 16px; font-weight: 800; color: #18181b; }
+    .sol-steg { display: grid; grid-template-columns: 56px 1fr 56px; gap: 8px; }
+    .sol-steg button { height: 56px; border: 2px solid #1d1a16; border-radius: 12px; background: #fff; color: #1d1a16; font: 800 26px/1 'Montserrat', sans-serif; cursor: pointer; }
+    .sol-steg button:active { transform: scale(.96); }
+    .sol-steg input { height: 56px; width: 100%; border: 1.5px solid #d7dbe0; border-radius: 12px; text-align: center; font: 800 24px 'Montserrat', sans-serif; color: #18181b; -moz-appearance: textfield; }
+    .sol-steg input::-webkit-outer-spin-button, .sol-steg input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .sol-offert .fp-bilder-knapp { padding: 16px 14px; font-size: 16px; }
+    .sol-offert .fp-book-go { border-radius: 12px; }
+  </style>
 </head>
 <body>
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html"><img src="images/logo-nav-badge.png" alt="Forsbergs Fönsterputs" width="1109" height="260" /></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om mig</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om mig</a></li><li><a href="hur-jag-jobbar.html">Metod &amp; utrustning</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta mig</a></li>
+    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="tjanster.html">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="fonsterputs.html">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om oss</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om oss</a></li><li><a href="hur-jag-jobbar.html">Metod &amp; utrustning</a></li><li><a href="media.html">Media</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta oss</a></li>
     <li><a href="kontakta-mig.html#formular" class="nav-cta nav-cta-desk">Få prisförslag</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Meny" type="button" onclick="toggleMobileMenu(this)">
@@ -124,11 +140,28 @@
     <h1 class="hero-title">Solcellstvätt i Jönköping</h1>
     <p class="hero-sub">Professionell rengöring av solcellspaneler – smuts och pollen sänker effekten. Kostnadsfri offert, ROT-avdrag 30%.</p>
   </div>
+</section><section id="offert">
+<div class="ns-form-kort" id="solOffert">
+  <h2>Få en kostnadsfri offert</h2>
+  <p class="ns-form-sub">Gratis och ej bindande. Vi svarar samma dag – och du behöver inte vara hemma när vi putsar.</p>
+  <form class="ns-form" id="offertForm" data-enkel-form="Solcellstvätt" action="/.netlify/functions/send-email" method="POST">
+    <input type="hidden" name="kalla" value="Solcellstvätt" />
+    <input type="hidden" name="bostadstyp" value="Solcellstvätt" />
+    <label class="ns-falt"><span>Namn *</span><input type="text" name="namn" autocomplete="name" placeholder="Ditt fullständiga namn" required /></label>
+    <label class="ns-falt"><span>Telefon *</span><input type="tel" name="telefon" autocomplete="tel" placeholder="070-123 45 67" required /></label>
+    <label class="ns-falt"><span>Adress *</span><input type="text" name="adress" autocomplete="street-address" placeholder="Gata och ort" required /></label>
+    <label class="ns-falt"><span>E-post</span><input type="email" name="email" autocomplete="email" placeholder="din@email.se" /></label>
+    <label class="ns-falt"><span>Beskriv vad du behöver *</span><textarea name="meddelande" rows="4" placeholder="T.ex. villa i Huskvarna, ca 15 fönster, in- och utsida…" required></textarea></label>
+    <button type="submit" class="ns-skicka">Skicka förfrågan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></button>
+    <p class="ns-fel" hidden>Något gick fel. Prova igen, eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
+  </form>
+  <div class="ns-tack" hidden><strong>Tack, det är skickat!</strong><p>Vi hör av oss samma dag. Bråttom? Ring <a href="tel:+46793463964">079-346 39 64</a>.</p></div>
+</div>
 </section><section id="intro" style="padding:70px 24px 30px;">
   <div class="container" style="max-width:800px;">
     <div class="section-label">Solcellstvätt</div>
     <h2 class="section-title" style="font-size:clamp(24px,3vw,34px);">Rena paneler ger bättre effekt</h2>
-    <p class="section-sub" style="max-width:100%;font-size:15px;">Smuts, pollen, fågelspillning och damm lägger sig på solcellspanelerna över tid och kan sänka effekten märkbart. Jag rengör panelerna varsamt med renvattensystem, utan repor eller kemikalier som kan skada ytan, så att anläggningen producerar så mycket el som den är byggd för. Jag arbetar i Jönköping, Huskvarna, Habo, Bankeryd, Gränna, Lekeryd och Tenhult.</p>
+    <p class="section-sub" style="max-width:100%;font-size:15px;">Smuts, pollen, fågelspillning och damm lägger sig på solcellspanelerna över tid och kan sänka effekten märkbart. Vi rengör panelerna varsamt med renvattensystem, utan repor eller kemikalier som kan skada ytan, så att anläggningen producerar så mycket el som den är byggd för. Vi arbetar i Jönköping, Huskvarna, Habo, Bankeryd, Gränna, Lekeryd och Tenhult.</p>
   </div>
 </section><section style="padding:20px 24px 30px;">
   <div class="container" style="max-width:800px;">
@@ -137,13 +170,13 @@
   </div>
 </section><section style="padding:0 24px 30px;">
   <div class="container" style="max-width:800px;">
-    <h2 class="section-title" style="font-size:clamp(20px,2.6vw,26px);margin-bottom:10px;">Så rengör jag solceller på tak – säkert och utan skador</h2>
-    <p class="section-sub" style="max-width:100%;font-size:15px;">Jag tvättar med rent osmosvatten – fritt från kalk, salter och mineraler. Det löser smutsen effektivt, lämnar inga fläckar och är helt kemikaliefritt. I de flesta fall arbetar jag från marken med långa teleskopskaft och mjuka borstar, vilket är skonsamt mot både paneler och tak. Jag använder aldrig högtryckstvätt eftersom trycket kan skapa mikrosprickor och skada tätningar.</p>
+    <h2 class="section-title" style="font-size:clamp(20px,2.6vw,26px);margin-bottom:10px;">Så rengör vi solceller på tak – säkert och utan skador</h2>
+    <p class="section-sub" style="max-width:100%;font-size:15px;">Vi tvättar med rent osmosvatten – fritt från kalk, salter och mineraler. Det löser smutsen effektivt, lämnar inga fläckar och är helt kemikaliefritt. I de flesta fall arbetar vi från marken med långa teleskopskaft och mjuka borstar, vilket är skonsamt mot både paneler och tak. Vi använder aldrig högtryckstvätt eftersom trycket kan skapa mikrosprickor och skada tätningar.</p>
   </div>
 </section><section style="padding:0 24px 40px;">
   <div class="container" style="max-width:800px;">
     <h2 class="section-title" style="font-size:clamp(20px,2.6vw,26px);margin-bottom:10px;">Därför väljer du Forsbergs Fönsterputs</h2>
-    <p class="section-sub" style="max-width:100%;font-size:15px;">Jag har lång erfarenhet av att arbeta säkert på och kring tak, samma kompetens jag använder när jag putsar fönster hos hundratals hushåll varje år. Du får en och samma person från offert till avslutat jobb, F-skatt och en tydlig kontaktperson genom hela processen. Många kunder bokar solcellstvätten i samband med ordinarie fönsterputs.</p>
+    <p class="section-sub" style="max-width:100%;font-size:15px;">Vi har lång erfarenhet av att arbeta säkert på och kring tak, samma kompetens vi använder när vi putsar fönster hos hundratals hushåll varje år. Du får en och samma person från offert till avslutat jobb, F-skatt och en tydlig kontaktperson genom hela processen. Många kunder bokar solcellstvätten i samband med ordinarie fönsterputs.</p>
   </div>
 </section><section id="priser">
   <div class="container">
@@ -153,21 +186,21 @@
     <div class="panel-glow"></div>
     <div class="panel-content">
       <h2 class="panel-title panel-title-green">Solcellstvätt</h2>
-      <p class="panel-lead">Skicka in det här så räknar jag ut ett exakt pris åt dig – helt kostnadsfritt, oftast samma dag:</p>
+      <p class="panel-lead">Skicka in det här så räknar vi ut ett exakt pris åt dig – helt kostnadsfritt, oftast samma dag:</p>
       <ul class="panel-lead" style="margin:0 0 20px;padding-left:20px;">
         <li>Adressen (t.ex. en Google Maps-länk)</li>
         <li>Antal paneler och några bilder på anläggningen</li>
       </ul>
       <div class="rut-badge">✓ Priser efter ROT-avdrag</div>
-      <a href="kontakta-mig.html#formular" class="btn-primary panel-cta">Boka mig</a>
+      <a href="#offert" class="btn-primary panel-cta">Boka oss</a>
     </div>
   </div>
 </div>
-    <p class="rut-note">ROT-avdrag gäller privatpersoner. <strong>Du får 30% avdrag på arbetskostnaden.</strong> Jag sköter allt pappersarbete med Skatteverket åt dig.</p>
+    <p class="rut-note">ROT-avdrag gäller privatpersoner. <strong>Du får 30% avdrag på arbetskostnaden.</strong> Vi sköter allt pappersarbete med Skatteverket åt dig.</p>
   </div>
 </section><section id="faq"><div class="container"><div class="faq-header"><div class="section-label">Vanliga frågor</div><h2 class="section-title">Solcellstvätt</h2></div>
-<div class="faq-list"><div class="faq-item"><div class="faq-question"><h2>Hur får jag ett pris för solcellstvätt?</h2><div class="faq-toggle"></div></div><div class="faq-answer-wrap"><p class="faq-answer">Skicka några bilder på taket och adressen (t.ex. en Google Maps-länk) via offertformuläret, så räknar jag ut ett exakt pris åt dig helt gratis – oftast samma dag. Antal paneler, taklutning och åtkomst avgör priset, så jag vill alltid se anläggningen innan jag lovar ett pris.</p></div></div>
-<div class="faq-item"><div class="faq-question"><h2>Varför ska jag tvätta solcellspanelerna?</h2><div class="faq-toggle"></div></div><div class="faq-answer-wrap"><p class="faq-answer">Smuts, pollen och fågelspillning på panelerna minskar effekten och därmed din avkastning. Regelbunden rengöring gör att panelerna producerar så mycket el som de är byggda för.</p></div></div><div class="faq-item"><div class="faq-question"><h2>Gäller ROT-avdrag för solcellstvätt?</h2><div class="faq-toggle"></div></div><div class="faq-answer-wrap"><p class="faq-answer">Ja, solcellstvätt räknas som ROT-arbete, vilket innebär 30% avdrag på arbetskostnaden. Jag sköter allt pappersarbete med Skatteverket åt dig.</p></div></div></div></div></section><section style="padding:20px 24px 60px;">
+<div class="faq-list"><div class="faq-item"><div class="faq-question"><h2>Hur får vi ett pris för solcellstvätt?</h2><div class="faq-toggle"></div></div><div class="faq-answer-wrap"><p class="faq-answer">Skicka några bilder på taket och adressen (t.ex. en Google Maps-länk) via offertformuläret, så räknar vi ut ett exakt pris åt dig helt gratis – oftast samma dag. Antal paneler, taklutning och åtkomst avgör priset, så vi vill alltid se anläggningen innan vi lovar ett pris.</p></div></div>
+<div class="faq-item"><div class="faq-question"><h2>Varför ska vi tvätta solcellspanelerna?</h2><div class="faq-toggle"></div></div><div class="faq-answer-wrap"><p class="faq-answer">Smuts, pollen och fågelspillning på panelerna minskar effekten och därmed din avkastning. Regelbunden rengöring gör att panelerna producerar så mycket el som de är byggda för.</p></div></div><div class="faq-item"><div class="faq-question"><h2>Gäller ROT-avdrag för solcellstvätt?</h2><div class="faq-toggle"></div></div><div class="faq-answer-wrap"><p class="faq-answer">Ja, solcellstvätt räknas som ROT-arbete, vilket innebär 30% avdrag på arbetskostnaden. Vi sköter allt pappersarbete med Skatteverket åt dig.</p></div></div></div></div></section><section style="padding:20px 24px 60px;">
   <div class="container" style="max-width:800px;">
     <div class="section-label">Andra tjänster</div>
     <div style="display:flex;flex-wrap:wrap;gap:10px;"><a href="fonsterputs.html" class="btn-outline" style="font-size:11px;padding:10px 18px;">Fönsterputs</a></div>
@@ -215,7 +248,7 @@
     <div class="footer-col">
       <div class="footer-col-title">Kontakt</div>
       <ul>
-        <li><a href="kontakta-mig.html">Kontakta mig</a></li>
+        <li><a href="kontakta-mig.html">Kontakta oss</a></li>
         <li><a href="tel:+46793463964">079-346 39 64</a></li>
         <li><a href="mailto:kontakt@fputs.se">kontakt@fputs.se</a></li>
         <li><span class="footer-hours">Öppettider 09:00-21:00</span></li>
@@ -223,7 +256,7 @@
     </div>
   </div>
   <div class="footer-areas-row">
-    <span class="footer-areas-label">Jag putsar också fönster i:</span> <a href="fonsterputs-bankeryd.html">Bankeryd</a> &middot; <a href="fonsterputs-barnarp.html">Barnarp</a> &middot; <a href="fonsterputs-bottnaryd.html">Bottnaryd</a> &middot; <a href="fonsterputs-branninge.html">Bränninge</a> &middot; <a href="fonsterputs-bymarken.html">Bymarken</a> &middot; <a href="fonsterputs-dalvik.html">Dalvik</a> &middot; <a href="fonsterputs-dunkehalla.html">Dunkehalla</a> &middot; <a href="fonsterputs-egna-hem.html">Egna Hem</a> &middot; <a href="fonsterputs-ekhagen.html">Ekhagen</a> &middot; <a href="fonsterputs-furusjo.html">Furusjö</a> &middot; <a href="fonsterputs-granna.html">Gränna</a> &middot; <a href="fonsterputs-grashagen.html">Gräshagen</a> &middot; <a href="fonsterputs-habo.html">Habo</a> &middot; <a href="fonsterputs-hedenstorp.html">Hedenstorp</a> &middot; <a href="fonsterputs-hovslatt.html">Hovslätt</a> &middot; <a href="fonsterputs-huskvarna.html">Huskvarna</a> &middot; <a href="fonsterputs-kaxholmen.html">Kaxholmen</a> &middot; <a href="fonsterputs-kortebo.html">Kortebo</a> &middot; <a href="fonsterputs-lekeryd.html">Lekeryd</a> &middot; <a href="fonsterputs-liljeholmen.html">Liljeholmen</a> &middot; <a href="fonsterputs-ljungarum.html">Ljungarum</a> &middot; <a href="fonsterputs-mariebo.html">Mariebo</a> &middot; <a href="fonsterputs-mansarp.html">Månsarp</a> &middot; <a href="fonsterputs-norrahammar.html">Norrahammar</a> &middot; <a href="fonsterputs-raslatt.html">Råslätt</a> &middot; <a href="fonsterputs-sanna.html">Sanna</a> &middot; <a href="fonsterputs-skarstad.html">Skärstad</a> &middot; <a href="fonsterputs-taberg.html">Taberg</a> &middot; <a href="fonsterputs-tenhult.html">Tenhult</a> &middot; <a href="fonsterputs-torpa.html">Torpa</a> &middot; <a href="fonsterputs-torsvik.html">Torsvik</a> &middot; <a href="fonsterputs-tronghalla.html">Trånghalla</a> &middot; <a href="fonsterputs-vattersnas.html">Vättersnäs</a> &middot; <a href="fonsterputs-oggestorp.html">Öggestorp</a> &middot; <a href="fonsterputs-olmstad.html">Ölmstad</a> &middot; <a href="fonsterputs-orserum.html">Örserum</a> &middot; <a href="fonsterputs-osterang.html">Österäng</a> &middot; <a href="fonsterputs-oxnehaga.html">Öxnehaga</a>
+    <span class="footer-areas-label">Vi putsar också fönster i:</span> <a href="fonsterputs-bankeryd.html">Bankeryd</a> &middot; <a href="fonsterputs-barnarp.html">Barnarp</a> &middot; <a href="fonsterputs-bottnaryd.html">Bottnaryd</a> &middot; <a href="fonsterputs-branninge.html">Bränninge</a> &middot; <a href="fonsterputs-bymarken.html">Bymarken</a> &middot; <a href="fonsterputs-dalvik.html">Dalvik</a> &middot; <a href="fonsterputs-dunkehalla.html">Dunkehalla</a> &middot; <a href="fonsterputs-egna-hem.html">Egna Hem</a> &middot; <a href="fonsterputs-ekhagen.html">Ekhagen</a> &middot; <a href="fonsterputs-furusjo.html">Furusjö</a> &middot; <a href="fonsterputs-granna.html">Gränna</a> &middot; <a href="fonsterputs-grashagen.html">Gräshagen</a> &middot; <a href="fonsterputs-habo.html">Habo</a> &middot; <a href="fonsterputs-hedenstorp.html">Hedenstorp</a> &middot; <a href="fonsterputs-hovslatt.html">Hovslätt</a> &middot; <a href="fonsterputs-huskvarna.html">Huskvarna</a> &middot; <a href="fonsterputs-kaxholmen.html">Kaxholmen</a> &middot; <a href="fonsterputs-kortebo.html">Kortebo</a> &middot; <a href="fonsterputs-lekeryd.html">Lekeryd</a> &middot; <a href="fonsterputs-liljeholmen.html">Liljeholmen</a> &middot; <a href="fonsterputs-ljungarum.html">Ljungarum</a> &middot; <a href="fonsterputs-mariebo.html">Mariebo</a> &middot; <a href="fonsterputs-mansarp.html">Månsarp</a> &middot; <a href="fonsterputs-norrahammar.html">Norrahammar</a> &middot; <a href="fonsterputs-raslatt.html">Råslätt</a> &middot; <a href="fonsterputs-sanna.html">Sanna</a> &middot; <a href="fonsterputs-skarstad.html">Skärstad</a> &middot; <a href="fonsterputs-taberg.html">Taberg</a> &middot; <a href="fonsterputs-tenhult.html">Tenhult</a> &middot; <a href="fonsterputs-torpa.html">Torpa</a> &middot; <a href="fonsterputs-torsvik.html">Torsvik</a> &middot; <a href="fonsterputs-tronghalla.html">Trånghalla</a> &middot; <a href="fonsterputs-vattersnas.html">Vättersnäs</a> &middot; <a href="fonsterputs-oggestorp.html">Öggestorp</a> &middot; <a href="fonsterputs-olmstad.html">Ölmstad</a> &middot; <a href="fonsterputs-orserum.html">Örserum</a> &middot; <a href="fonsterputs-osterang.html">Österäng</a> &middot; <a href="fonsterputs-oxnehaga.html">Öxnehaga</a>
   </div>
   <div class="footer-inner">
     <p class="footer-copy">© <span class="footer-year">2025</span> Forsbergs Fönsterputs · Jönköping med omnejd</p>
@@ -292,7 +325,7 @@
         </div>
         <div class="cookie-modal-actions cookie-modal-actions-detail">
           <button type="button" class="cookie-btn-outline" onclick="window.cookieConsent('all')">Acceptera alla</button>
-          <button type="button" class="cookie-btn-solid" onclick="window.cookieConsent('custom')">Spara mina val</button>
+          <button type="button" class="cookie-btn-solid" onclick="window.cookieConsent('custom')">Spara våra val</button>
         </div>
       </div>
     </div>
@@ -351,7 +384,7 @@
       <li>📍 Din adress</li>
       <li>🏠 Kort info om bostaden</li>
     </ul>
-    <p>Då kan jag snabbt räkna ut ett pris och ringa upp dig.</p>
+    <p>Då kan vi snabbt räkna ut ett pris och ringa upp dig.</p>
     <a class="sms-modal-open-btn" href="sms:+46793463964">Öppna SMS</a>
   </div>
 </div>
@@ -471,6 +504,7 @@
   });
 </script>
 </div>
-<div class="fp-bottombar"><a class="fp-bb-ring" href="tel:+46793463964">📞 Ring</a><a class="fp-bb-pris" href="kontakta-mig.html#formular">Få fast pris →</a></div>
+<div class="fp-bottombar"><a class="fp-bb-ring" href="tel:+46793463964">Ring</a><a class="fp-bb-pris" href="#offert">Få fast pris →</a></div>
+<script src="js/enkel-form.js"></script>
 </body>
 </html>

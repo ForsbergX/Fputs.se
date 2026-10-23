@@ -1,0 +1,138 @@
+/* Startsidan i sand, svart och rött (Tommy valde G + layout K, 2026-10-23) */
+:root {
+  --sand: #f5efe6;
+  --sand-kort: #fffaf2;
+  --sand-kant: #e6dccd;
+  --sand-text: #1d1a16;
+  --sand-mjuk: #6d6358;
+}
+body,
+nav:not(.breadcrumb-nav),
+#hero,
+#om-mig,
+#karta { background: var(--sand) !important; }
+nav:not(.breadcrumb-nav) { border-bottom-color: var(--sand-kant); }
+body { color: var(--sand-text); }
+
+@media (min-width: 769px) {
+  #kampanj { background: var(--sand-kort) !important; border: 1px solid var(--sand-kant) !important; box-shadow: none !important; }
+}
+
+/* Textlogga utan FP (test 2026-10-23) */
+.nav-logo-text {
+  display: inline-flex; flex-direction: column; justify-content: center; gap: 1px;
+  padding: 9px 16px; border-radius: 10px; background: #111; text-decoration: none;
+  font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1; white-space: nowrap;
+}
+.nav-logo-text span:first-child { color: #ececec; font-size: 20px; letter-spacing: 0.04em; }
+.nav-logo-text span:last-child { color: #d1101f; font-size: 15.5px; letter-spacing: 0.05em; }
+@media (max-width: 768px) {
+  .nav-logo-text { padding: 7px 13px; }
+  .nav-logo-text span:first-child { font-size: 16px; }
+  .nav-logo-text span:last-child { font-size: 12.5px; }
+}
+
+/* Formulärpanelen i utsida-läge: bara antal, bilder och kontakt */
+.fp-utsida-antal { display: none; }
+.fp-form.is-utsida .fp-utsida-antal { display: grid; gap: 8px; order: -3; }
+.fp-form.is-utsida .fp-bilder { order: -2; }
+.fp-form.is-utsida .fpk { order: -1; }
+.fp-form.is-utsida > label.fp-field:has(select),
+.fp-form.is-utsida > label.fp-field:has([name="email"]),
+.fp-form.is-utsida > label.fp-field:has([name="meddelande"]),
+.fp-form.is-utsida .fp-google,
+.fp-form.is-utsida .fp-checks { display: none !important; }
+.fp-utsida-rubrik { font-size: 16px; font-weight: 800; color: #18181b; }
+.fp-steg { display: grid; grid-template-columns: 56px 1fr 56px; gap: 8px; }
+.fp-steg button { height: 56px; border: 2px solid var(--sand-text); border-radius: 12px; background: #fff; color: var(--sand-text); font: 800 26px/1 'Montserrat', sans-serif; cursor: pointer; }
+.fp-steg button:active { transform: scale(.96); }
+.fp-steg input { height: 56px; width: 100%; border: 1.5px solid #d7dbe0; border-radius: 12px; text-align: center; font: 800 24px 'Montserrat', sans-serif; color: #18181b; -moz-appearance: textfield; }
+.fp-steg input::-webkit-outer-spin-button, .fp-steg input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.fp-form.is-utsida .fp-bilder-knapp { padding: 16px 14px; font-size: 16px; }
+
+/* Hero: Tommy putsar, långsam zoom/panorering som en video-loop (test 2026-10-23) */
+.hero-photo.hero-loop {
+  object-position: 86% 30%;   /* skrapan (uppe till höger i bilden) ska synas */
+  transform-origin: 88% 15%;
+  animation: heroLoop 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes heroLoop {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to   { transform: scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo.hero-loop { animation: none; }
+}
+/* Mindre kladd i heron: bilden fri upptill, bara rubrik + knapp längst ner */
+@media (max-width: 720px) {
+  .hero-photo-wrap.has-video .hero-copy { top: auto; bottom: 22px; transform: none; gap: 14px; }
+  .hero-photo-wrap.has-video .hero-copy-sub { display: none; }
+  .hero-copy-betyg {
+    margin-top: -4px; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+  }
+  .hero-copy-betyg span { color: #FBBC04; letter-spacing: 1px; margin-right: 4px; }
+  .hero-photo-wrap.has-video::after {
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.65) 100%) !important;
+  }
+}
+
+/* Rubrik */
+#kampanj .kampanj-title { margin-bottom: 18px; color: var(--sand-text); }
+
+/* Fyra stora val-knappar */
+.val-lista { display: grid; gap: 12px; }
+.val-knapp {
+  display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 14px 16px;
+  border-radius: 16px; border: 1.5px solid var(--sand-text); background: var(--sand-kort);
+  color: var(--sand-text); text-decoration: none; transition: transform .15s;
+}
+.val-knapp:active { transform: scale(.98); }
+.val-rod { background: #d1101f; border-color: #d1101f; color: #fff; }
+.val-svart { background: var(--sand-text); border-color: var(--sand-text); color: #fff; }
+.val-ikon {
+  display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(29,26,22,0.07);
+}
+.val-rod .val-ikon, .val-svart .val-ikon { background: rgba(255,255,255,0.16); }
+.val-ikon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.val-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.val-text strong { font-size: 18px; font-weight: 800; line-height: 1.2; }
+.val-text small { font-size: 14px; font-weight: 500; opacity: 0.8; }
+.val-pil { margin-left: auto; font-size: 22px; font-weight: 700; }
+@media (min-width: 721px) {
+  .val-lista { grid-template-columns: 1fr 1fr; }
+}
+
+/* Fyra ikonkort */
+.glas-ikoner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 22px 0 8px; }
+.glas-ikon {
+  display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 16px 10px 14px;
+  border-radius: 14px; background: var(--sand-kort); border: 1px solid var(--sand-kant); text-align: center;
+}
+.glas-ikon svg { width: 26px; height: 26px; margin-bottom: 4px; fill: none; stroke: #d1101f; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.glas-ikon strong { font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sand-text); }
+.glas-ikon span { font-size: 13px; line-height: 1.3; color: var(--sand-mjuk); }
+@media (max-width: 720px) {
+  .glas-ikoner { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+
+/* Raderna under */
+#kampanj .kampanj-text .kampanj-rad { color: var(--sand-mjuk); }
+#kampanj .kampanj-text p.kampanj-small { color: var(--sand-mjuk); }
+.kampanj-ring { color: var(--sand-text) !important; border-color: var(--sand-text) !important; }
+
+/* Kartan och knappar längre ner */
+.karta-box { background: var(--sand-kort); border-color: var(--sand-kant); box-shadow: none; }
+.karta-btn { background: var(--sand-kort); border-color: var(--sand-text); color: var(--sand-text); }
+.karta-btn-solid { background: var(--sand-text); border-color: var(--sand-text); color: #fff; }
+.om-text-knapp .btn-outline { background: var(--sand-kort); border-color: var(--sand-text); color: var(--sand-text); }
+
+/* Bottenraden på mobil */
+.fp-bottombar { background: var(--sand) !important; border-top-color: var(--sand-kant) !important; }
+/* Samma stil som kartans knappar: svart + sandram, ingen röd telefon */
+.fp-bottombar a, .fp-bottombar button { border-radius: 12px !important; }
+.fp-bb-ring { background: var(--sand-kort) !important; color: var(--sand-text) !important; border: 2px solid var(--sand-text) !important; }
+.fp-bb-pris { background: var(--sand-text) !important; color: #fff !important; }
+.fp-bb-pris:active { background: #000 !important; }
