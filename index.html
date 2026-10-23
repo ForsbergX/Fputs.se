@@ -1474,7 +1474,7 @@
     <h1>Glasklara fönster i Jönköping</h1>
     <p class="ns-hero-p">Fönsterputs för villa och lägenhet i Jönköping och Huskvarna. Fast pris, noggrant jobb och ingen bindningstid.</p>
     <div class="ns-hero-knappar">
-      <a class="ns-knapp ns-knapp-rod" href="#offert">Få offert <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="ns-knapp ns-knapp-rod" href="kontakta-mig.html#formular">Få offert <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a class="ns-knapp ns-knapp-vit" href="#tjanster">Se tjänster</a>
     </div>
     <a class="ns-hero-betyg" href="https://www.google.com/search?q=Forsbergs+F%C3%B6nsterputs+J%C3%B6nk%C3%B6ping+recensioner" target="_blank" rel="noopener"><span aria-hidden="true">★★★★★</span> 5,0 · 45 recensioner på Google</a>
@@ -1491,26 +1491,26 @@
   <div class="ns-inner">
     <h2 class="ns-rubrik">Våra tjänster</h2>
     <div class="ns-tjanster-lista">
-      <a class="ns-kort" href="#offert" data-tjanst="Villa">
+      <a class="ns-kort" href="kontakta-mig.html?typ=Villa#formular">
         <span class="ns-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span>
         <h3>Villa &amp; radhus</h3>
         <p>Insida, utsida och mellan glasen. Du får ett fast pris innan vi börjar.</p>
         <p class="ns-kort-hemma">✓ Du behöver inte vara hemma</p>
         <span class="ns-kort-lank">Få offert →</span>
       </a>
-      <a class="ns-kort" href="#offert" data-tjanst="Lägenhet">
+      <a class="ns-kort" href="fonsterputs-lagenhet.html#boka">
         <span class="ns-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg></span>
         <h3>Lägenhet</h3>
         <p>Fönster och balkongdörr, in och ut. Snabbt och smidigt.</p>
         <span class="ns-kort-lank">Få offert →</span>
       </a>
-      <a class="ns-kort" href="#offert" data-tjanst="Företag">
+      <a class="ns-kort" href="kontakta-mig.html?typ=F%C3%B6retag#formular">
         <span class="ns-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></span>
         <h3>Företag</h3>
         <p>Skyltfönster, kontor och lokaler. Fast pris och tider som passar er verksamhet.</p>
         <span class="ns-kort-lank">Få offert →</span>
       </a>
-      <a class="ns-kort" href="#offert" data-tjanst="Solcellstvätt">
+      <a class="ns-kort" href="kontakta-mig.html?typ=Solcellstv%C3%A4tt#formular">
         <span class="ns-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l2-10h12l2 10z"/><path d="M5 13h14M10 8l-1 10M14 8l1 10"/><path d="M12 2v2M5 4l1 1.5M19 4l-1 1.5"/></svg></span>
         <h3>Solcellstvätt</h3>
         <p>Rena paneler ger mer el. Skonsamt med renvatten.</p>
@@ -1609,48 +1609,6 @@
   </div>
 </section>
 
-<section class="ns-sektion" id="offert">
-  <div class="ns-form-kort">
-    <h2>Få en kostnadsfri offert</h2>
-    <p class="ns-form-sub">Gratis och ej bindande. Vi svarar samma dag.<span id="nsInteHemma"> Du behöver inte vara hemma när vi kommer och räknar på jobbet – det är helt gratis.</span></p>
-    <form class="ns-form" id="nsForm" action="/.netlify/functions/send-email" method="POST">
-      <input type="hidden" name="kalla" value="Startsidan" />
-      <label class="ns-falt"><span>Vad gäller det? *</span><select name="bostadstyp" id="nsTjanst" required><option value="" disabled selected>Välj vad det gäller</option><option value="Villa">Villa / radhus</option><option value="Lägenhet">Lägenhet</option><option value="Företag">Företag / butik</option><option value="Solcellstvätt">Solcellstvätt</option><option value="Annat / fråga">Annat / fråga</option></select></label>
-      <div class="ns-lgh" id="nsLgh" hidden>
-        <span class="ns-lgh-rubrik">Storlek på lägenheten *</span>
-        <div class="ns-lgh-storlek">
-          <button type="button" data-apt="1:a" data-price="475">1:a · 475 kr</button>
-          <button type="button" data-apt="2:a" data-price="500">2:a · 500 kr</button>
-          <button type="button" data-apt="3:a" data-price="525">3:a · 525 kr</button>
-          <button type="button" data-apt="4:a" data-price="550">4:a · 550 kr</button>
-          <button type="button" data-apt="5:a" data-price="575">5:a · 575 kr</button>
-        </div>
-        <p class="ns-lgh-ingar">Ingår: ett fönster per rum, balkongdörren, ut, in och emellan.</p>
-        <span class="ns-lgh-rubrik">Inglasad balkong <small>(valfritt)</small></span>
-        <div class="ns-lgh-rad"><div><strong>Golv till tak</strong><span>40 kr / ruta</span></div><div class="ns-lgh-steg"><button type="button" data-lgh="golv" data-steg="-1" aria-label="Minska golv till tak">−</button><output id="nsGolv">0</output><button type="button" data-lgh="golv" data-steg="1" aria-label="Öka golv till tak">+</button></div></div>
-        <div class="ns-lgh-rad"><div><strong>Räcke till tak</strong><span>20 kr / ruta</span></div><div class="ns-lgh-steg"><button type="button" data-lgh="tak" data-steg="-1" aria-label="Minska räcke till tak">−</button><output id="nsTak">0</output><button type="button" data-lgh="tak" data-steg="1" aria-label="Öka räcke till tak">+</button></div></div>
-        <div class="ns-lgh-pris"><span>Ungefärligt pris efter RUT</span><strong id="nsLghPris">Välj storlek</strong></div>
-        <p class="ns-lgh-ingar ns-lgh-framkorning">I priset ingår framkörningsavgift.</p>
-        <input type="hidden" name="lagenhetsstorlek" value="" disabled />
-        <input type="hidden" name="antal_balkongrutor" value="" disabled />
-        <input type="hidden" name="kalkyl" value="" disabled />
-        <input type="hidden" name="uppskattat_pris" value="" disabled />
-        <input type="hidden" name="pris_fore_rut" value="" disabled />
-      </div>
-      <label class="ns-falt"><span>Namn *</span><input type="text" name="namn" autocomplete="name" placeholder="Ditt fullständiga namn" required /></label>
-      <label class="ns-falt"><span>Telefon *</span><input type="tel" name="telefon" autocomplete="tel" placeholder="070-123 45 67" required /></label>
-    <label class="ns-falt"><span>Adress *</span><input type="text" name="adress" autocomplete="street-address" placeholder="Gata och ort" required /></label>
-      <label class="ns-falt"><span>E-post</span><input type="email" name="email" autocomplete="email" placeholder="din@email.se" /></label>
-      <label class="ns-falt"><span>Beskriv vad du behöver *</span><textarea name="meddelande" id="nsMeddelande" rows="4" placeholder="T.ex. villa i Huskvarna, ca 15 fönster, in- och utsida…" required></textarea></label>
-      <button type="submit" class="ns-knapp" id="nsSkicka">Skicka förfrågan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></button>
-      <p class="ns-fel" id="nsFel" hidden>Något gick fel. Prova igen, eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
-    </form>
-    <div class="ns-tack" id="nsTack" hidden>
-      <strong>Tack, det är skickat!</strong>
-      <p>Vi hör av oss samma dag. Bråttom? Ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
-    </div>
-  </div>
-</section>
 
 <footer class="sidfot">
   <div class="footer-grid">
@@ -1678,7 +1636,7 @@
       <div class="footer-col-title">Information</div>
       <ul>
         <li><a href="faq.html">FAQ</a></li>
-        <li><a href="#offert">Få offert</a></li>
+        <li><a href="kontakta-mig.html#formular">Få offert</a></li>
         <li><a href="integritetspolicy.html">Integritetspolicy</a></li>
         <li><a href="allmanna-villkor.html">Allmänna villkor</a></li>
         <li><a href="#" onclick="if(window.openCookieBanner){window.openCookieBanner();}return false;">Cookieinställningar</a></li>
