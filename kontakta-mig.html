@@ -74,6 +74,8 @@
     @media (hover: hover) { a.kt-kort:hover { translate: 0 -4px; scale: 1.02; background: rgba(255,255,255,0.2); } a.kt-kort:hover .kt-ikon { scale: 1.15; } }
     .kt-layout .book-right .ns-form-kort { margin: 0; max-width: none; }
     @media (max-width: 420px) { .kt-knappar { grid-template-columns: 1fr; } }
+    .bara-formular .kt-info { display: none; }
+    .bara-formular .kt-layout { grid-template-columns: 1fr !important; max-width: 640px; }
   </style>
   <link rel="stylesheet" href="css/sidfot.css" />
   <link rel="stylesheet" href="css/bubblor.css" />
@@ -454,7 +456,11 @@
   (function () {
     var typ = new URLSearchParams(location.search).get('typ');
     var sel = document.querySelector('form[data-enkel-form] select[name=bostadstyp]');
-    if (typ && sel && [].some.call(sel.options, function (o) { return o.value === typ; })) sel.value = typ;
+    if (typ && sel && [].some.call(sel.options, function (o) { return o.value === typ; })) {
+      sel.value = typ;
+      // Från ett tjänstekort: visa bara formuläret för tjänsten (inga kontaktkort bredvid)
+      document.documentElement.classList.add('bara-formular');
+    }
   })();
 </script>
 </body>
