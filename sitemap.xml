@@ -301,6 +301,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://fputs.se/referenser.html</loc>
+    <lastmod>2026-10-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://fputs.se/priskalkylator.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
