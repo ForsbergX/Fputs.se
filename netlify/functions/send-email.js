@@ -35,6 +35,7 @@ function fieldPairs(fields) {
     ["Telefon", fields.telefon],
     ["Adress", fields.adress],
     ["Typ", fields.bostadstyp],
+    ["Kund", fields.kundtyp],
     ["Lägenhetsstorlek", fields.lagenhetsstorlek],
     ["Antal fönster", fields.antal_fonster],
     ["Balkongrutor", fields.antal_balkongrutor],
