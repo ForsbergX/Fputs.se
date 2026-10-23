@@ -1,0 +1,158 @@
+/* Blå glasstil på alla undersidor – samma känsla som startsidan (Tommy 2026-10-24).
+   Laddas sist i <head>. Stora innehållskort blir vitt frostat glas med mörk text så allt
+   går att läsa; text direkt på bakgrunden blir vit. */
+:root {
+  --gl-navy: #1e2b3c;
+  --gl-navy-2: #2a3b50;
+  --gl-mjuk: rgba(255, 255, 255, 0.82);
+  --gl-ink: #14181b;
+}
+
+/* ---------- Bakgrund: suddigt solnedgångsfoto + blå ton ---------- */
+html { background: #26354a; }
+html body { background: transparent !important; color: #fff; }
+body::before {
+  content: ""; position: fixed; inset: -40px; z-index: -2; pointer-events: none;
+  background: url("../images/hero-villa.jpg") 60% center / cover no-repeat;
+  filter: blur(22px) saturate(1.15);
+}
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(38, 56, 80, 0.6) 0%, rgba(30, 43, 60, 0.78) 100%);
+}
+html body section, html body .chooser-section, html body #priser, html body #faq, html body #fordelar,
+html body #intro, html body #metod, html body #omraden, html body #om-omradet, html body #kommentarer,
+html body #steg-for-steg, html body #tjanster, html body #offert, html body #boka { background: transparent !important; }
+
+/* Text direkt på bakgrunden */
+html body .section-title, html body .section-label, html body h1, html body h2, html body h3 { color: #fff; }
+html body .section-sub, html body section > .container > p, html body section p.section-sub,
+html body .rut-note, html body .price-header p { color: var(--gl-mjuk) !important; }
+html body .section-label { opacity: 0.85; }
+html body .section-label::before, html body .section-label::after { background: rgba(255, 255, 255, 0.6) !important; }
+html body .panel-title-green { color: #fff !important; }
+html body section :is(p, li, strong, h2, h3, h4, span:not(.ns-ikon)) { color: inherit; }
+html body section { color: rgba(255, 255, 255, 0.88); }
+html body .hero-title, html body .hero-title-line, html body .fordelar-title { color: #fff !important; }
+html body section a:not([class]) { color: #cfe2f7 !important; }
+html body :is(.fordelar-card, .faq-item, .om-text, .price-panel, .chooser-card, .apt-calc, .calc-main) :is(.fordelar-title, .hero-title) { color: var(--gl-ink) !important; }
+html body section ul li, html body section ol li { color: rgba(255, 255, 255, 0.85) !important; }
+/* Text inne i ljusa kort/rutor ska alltid vara mörk */
+html body :is(.fordelar-card, .faq-item, .om-text, .price-panel, .chooser-card, .apt-calc, .calc-main, .ns-form-kort, .media-caption, .renvatten-info, .comment-card, .book-left, .contact-card)
+  :is(h2, h3, h4, .section-title, .panel-title, .panel-title-green, .section-label) { color: var(--gl-ink) !important; }
+html body :is(.fordelar-card, .faq-item, .om-text, .price-panel, .chooser-card, .apt-calc, .calc-main, .media-caption, .renvatten-info, .comment-card, .book-left, .contact-card)
+  :is(p, li, .section-sub, .panel-lead) { color: #3f464d !important; }
+html body .om-text blockquote, html body .om-text .om-citat { color: var(--gl-ink) !important; }
+
+/* Rullgardinsmenyn på dator: samma frostade blå glas */
+@media (min-width: 769px) {
+  html body .nav-dropdown-menu {
+    background: linear-gradient(160deg, rgba(150, 178, 210, 0.92) 0%, rgba(96, 126, 162, 0.94) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+  }
+  html body .nav-dropdown-menu a { color: #fff !important; }
+  html body .nav-dropdown-menu a:hover { color: #dbe9f8 !important; }
+}
+html body :is(.fordelar-card, .faq-item, .om-text, .price-panel, .chooser-card, .apt-calc, .calc-main, .ns-form-kort) a:not([class]) { color: var(--gl-navy) !important; }
+
+/* ---------- Stora innehållskort: vitt frostat glas, mörk text ---------- */
+html body .faq-item, html body .fordelar-card, html body .chooser-card, html body .comment-card,
+html body .om-text, html body .renvatten-info, html body .price-panel, html body .apt-calc,
+html body .calc-main, html body .contact-card, html body .karta-box, html body .metod-card,
+html body .book-left, html body .info-card, html body .omrade-card {
+  background: rgba(255, 255, 255, 0.93) !important; border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 20px !important; color: var(--gl-ink) !important;
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: 0 22px 46px -26px rgba(6, 12, 22, 0.75) !important;
+}
+html body .faq-item :is(h2, h3, p, li, span, strong), html body .fordelar-card :is(h2, h3, h4, p, li, span, strong),
+html body .chooser-card :is(h2, h3, p, span, strong), html body .comment-card :is(h2, h3, p, span, strong),
+html body .om-text :is(h2, h3, p, li, span, strong), html body .renvatten-info :is(h2, h3, p, li, span, strong),
+html body .price-panel :is(h2, h3, p, li, span, strong), html body .apt-calc :is(h2, h3, p, li, span, strong, div),
+html body .calc-main :is(h2, h3, h4, p, li, span, strong, label), html body .metod-card :is(h2, h3, p, li, span, strong) {
+  color: var(--gl-ink);
+}
+html body .faq-item :is(p, li), html body .fordelar-card p, html body .om-text p, html body .chooser-card p,
+html body .price-panel p { color: #3f464d; }
+html body .faq-item, html body .fordelar-card, html body .chooser-card { transition: translate .25s ease, scale .25s ease; }
+@media (hover: hover) {
+  html body .fordelar-card:hover, html body .chooser-card:hover { translate: 0 -5px; scale: 1.02; }
+}
+
+/* ---------- Knappar: marinblå rundade "piller" ---------- */
+html body .btn-primary, html body .nav-cta, html body .panel-cta, html body .fp-book-go {
+  background: var(--gl-navy) !important; color: #fff !important; border-radius: 999px !important; border-color: var(--gl-navy) !important;
+}
+html body .btn-primary:hover, html body .panel-cta:hover { background: var(--gl-navy-2) !important; }
+html body .btn-outline {
+  background: rgba(255, 255, 255, 0.14) !important; color: #fff !important; border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 999px !important; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+html body .faq-item .btn-outline, html body .om-text .btn-outline, html body .price-panel .btn-outline, html body .apt-calc .btn-outline {
+  background: #fff !important; color: var(--gl-navy) !important; border-color: var(--gl-navy) !important;
+}
+
+/* ---------- Menyrad: flytande frostat blått glas (som startsidan) ---------- */
+html body nav:not(.breadcrumb-nav) {
+  position: sticky !important; top: 10px; z-index: 160;
+  margin: 10px 12px 0; width: auto !important; padding: 8px 10px 8px 12px !important;
+  background: transparent !important; border: 1px solid rgba(255, 255, 255, 0.45) !important; border-radius: 18px;
+  box-shadow: 0 14px 34px -18px rgba(8, 14, 24, 0.6) !important;
+}
+html body nav:not(.breadcrumb-nav)::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(160deg, rgba(150, 178, 210, 0.6) 0%, rgba(96, 126, 162, 0.62) 100%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+}
+html body .nav-toggle { position: relative; z-index: 200; }
+html body .nav-toggle span { background: #fff !important; }
+@media (min-width: 769px) {
+  html body .nav-links > li > a:not(.nav-cta) { color: #fff !important; text-shadow: 0 1px 6px rgba(20, 35, 55, 0.35); }
+}
+/* Textloggan (samma som startsidan) */
+.nav-logo-text {
+  display: inline-flex; flex-direction: column; justify-content: center; gap: 1px;
+  padding: 7px 12px; border-radius: 10px; background: #111; text-decoration: none;
+  font-family: 'Montserrat', sans-serif; font-weight: 800; line-height: 1; white-space: nowrap;
+}
+.nav-logo-text span:first-child { color: #ececec; font-size: 20px; letter-spacing: 0.04em; }
+.nav-logo-text span:last-child { color: #d1101f; font-size: 15.5px; letter-spacing: 0.05em; }
+.nav-tel {
+  display: none; align-items: center; gap: 6px; margin-left: auto; padding: 0 6px;
+  color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap;
+  text-shadow: 0 1px 6px rgba(20, 35, 55, 0.35);
+}
+.nav-tel svg { width: 16px; height: 16px; }
+@media (max-width: 768px) {
+  html body nav:not(.breadcrumb-nav) { justify-content: flex-start !important; gap: 8px !important; }
+  html body nav:not(.breadcrumb-nav) .nav-logo { position: static !important; transform: none !important; left: auto !important; top: auto !important; }
+  html body nav:not(.breadcrumb-nav) .nav-logo:hover { transform: none !important; }
+  .nav-logo-text span:first-child { font-size: 16px; }
+  .nav-logo-text span:last-child { font-size: 12.5px; }
+  .nav-tel { display: inline-flex; }
+  /* Mobilmenyn: frostat ljusblått glas */
+  html body .nav-links {
+    background: linear-gradient(160deg, rgba(150, 178, 210, 0.55) 0%, rgba(96, 126, 162, 0.6) 100%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%);
+    border-left: 1px solid rgba(255, 255, 255, 0.45) !important;
+  }
+  html body .nav-links a, html body .nav-dropdown-menu a { color: #fff !important; }
+  html body .nav-links > li { border-bottom-color: rgba(255, 255, 255, 0.3) !important; }
+  html body .nav-dropdown-menu { background: transparent !important; border: 0 !important; box-shadow: none !important; }
+  html body .nav-links > li.nav-dropdown > a::after { border-color: rgba(255, 255, 255, 0.75) !important; }
+}
+/* Heron ligger under den flytande menyn */
+html body #hero { margin-top: -72px; padding-top: calc(72px + 60px) !important; }
+
+/* ---------- Bottenrad (mobil) ---------- */
+html body .fp-bottombar {
+  background: rgba(30, 43, 60, 0.82) !important; border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+}
+html body .fp-bb-ring { background: rgba(255, 255, 255, 0.14) !important; color: #fff !important; border: 1px solid rgba(255, 255, 255, 0.5) !important; border-radius: 999px !important; }
+html body .fp-bb-pris { background: #fff !important; color: var(--gl-navy) !important; border-radius: 999px !important; }
+
+/* ---------- Formulär (samma enkla formulär) ---------- */
+html body .ns-form-kort { background: rgba(255, 255, 255, 0.95) !important; }
+html body .ns-form-kort .ns-skicka { background: var(--gl-navy) !important; border-radius: 999px !important; }
