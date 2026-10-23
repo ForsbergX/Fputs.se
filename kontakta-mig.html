@@ -126,7 +126,28 @@
   <p class="ns-form-sub">Gratis och ej bindande. Vi svarar samma dag. Du behöver inte vara hemma när vi kommer och räknar på jobbet – det är helt gratis.</p>
   <form class="ns-form" id="offertForm" data-enkel-form="Kontaktsidan" action="/.netlify/functions/send-email" method="POST">
     <input type="hidden" name="kalla" value="Kontaktsidan" />
-    <label class="ns-falt"><span>Vad gäller det? *</span><select name="bostadstyp" required><option value="" disabled selected>Välj vad det gäller</option><option value="Företag">Företag / butik</option><option value="Villa">Villa / radhus</option><option value="Lägenhet">Lägenhet</option><option value="Solcellstvätt">Solcellstvätt</option><option value="Annat / fråga">Annat / fråga</option></select></label>
+    <label class="ns-falt"><span>Vad gäller det? *</span><select name="bostadstyp" id="nsTjanst" required><option value="" disabled selected>Välj vad det gäller</option><option value="Företag">Företag / butik</option><option value="Villa">Villa / radhus</option><option value="Lägenhet">Lägenhet</option><option value="Solcellstvätt">Solcellstvätt</option><option value="Annat / fråga">Annat / fråga</option></select></label>
+    <div class="ns-lgh" id="nsLgh" hidden>
+        <span class="ns-lgh-rubrik">Storlek på lägenheten *</span>
+        <div class="ns-lgh-storlek">
+          <button type="button" data-apt="1:a" data-price="475">1:a · 475 kr</button>
+          <button type="button" data-apt="2:a" data-price="500">2:a · 500 kr</button>
+          <button type="button" data-apt="3:a" data-price="525">3:a · 525 kr</button>
+          <button type="button" data-apt="4:a" data-price="550">4:a · 550 kr</button>
+          <button type="button" data-apt="5:a" data-price="575">5:a · 575 kr</button>
+        </div>
+        <p class="ns-lgh-ingar">Ingår: ett fönster per rum, balkongdörren, ut, in och emellan.</p>
+        <span class="ns-lgh-rubrik">Inglasad balkong <small>(valfritt)</small></span>
+        <div class="ns-lgh-rad"><div><strong>Golv till tak</strong><span>40 kr / ruta</span></div><div class="ns-lgh-steg"><button type="button" data-lgh="golv" data-steg="-1" aria-label="Minska golv till tak">−</button><output id="nsGolv">0</output><button type="button" data-lgh="golv" data-steg="1" aria-label="Öka golv till tak">+</button></div></div>
+        <div class="ns-lgh-rad"><div><strong>Räcke till tak</strong><span>20 kr / ruta</span></div><div class="ns-lgh-steg"><button type="button" data-lgh="tak" data-steg="-1" aria-label="Minska räcke till tak">−</button><output id="nsTak">0</output><button type="button" data-lgh="tak" data-steg="1" aria-label="Öka räcke till tak">+</button></div></div>
+        <div class="ns-lgh-pris"><span>Ungefärligt pris efter RUT</span><strong id="nsLghPris">Välj storlek</strong></div>
+        <p class="ns-lgh-ingar ns-lgh-framkorning">I priset ingår framkörningsavgift.</p>
+        <input type="hidden" name="lagenhetsstorlek" value="" disabled />
+        <input type="hidden" name="antal_balkongrutor" value="" disabled />
+        <input type="hidden" name="kalkyl" value="" disabled />
+        <input type="hidden" name="uppskattat_pris" value="" disabled />
+        <input type="hidden" name="pris_fore_rut" value="" disabled />
+      </div>
     <label class="ns-falt"><span>Namn *</span><input type="text" name="namn" autocomplete="name" placeholder="Ditt fullständiga namn" required /></label>
     <label class="ns-falt"><span>Telefon *</span><input type="tel" name="telefon" autocomplete="tel" placeholder="070-123 45 67" required /></label>
     <label class="ns-falt"><span>Adress *</span><input type="text" name="adress" autocomplete="street-address" placeholder="Gata och ort" required /></label>
@@ -452,12 +473,56 @@
 <script src="js/bilder.js"></script>
 <script src="js/enkel-form.js"></script>
 <script>
+  // Lägenhet: storlek, inglasad balkong och ungefärligt pris (samma som förut)
+  (function () {
+    var form = document.querySelector('form[data-enkel-form]');
+    var tjanst = document.getElementById('nsTjanst');
+    if (!form || !tjanst || !document.getElementById('nsLgh')) return;
+    var lgh = document.getElementById('nsLgh');
+    var lghDolda = lgh.querySelectorAll('input[type=hidden]');
+    var lghVal = { apt: '', pris: 0, golv: 0, tak: 0 };
+    function falt(n) { return lgh.querySelector('[name="' + n + '"]'); }
+    function raknaLgh() {
+      document.getElementById('nsGolv').textContent = lghVal.golv;
+      document.getElementById('nsTak').textContent = lghVal.tak;
+      lgh.querySelectorAll('[data-apt]').forEach(function (b) { b.classList.toggle('vald', b.getAttribute('data-apt') === lghVal.apt); });
+      var rader = [];
+      if (lghVal.apt) rader.push('Lägenhet: ' + lghVal.apt);
+      if (lghVal.golv) rader.push('Balkong golv till tak: ' + lghVal.golv + ' st');
+      if (lghVal.tak) rader.push('Balkong räcke till tak: ' + lghVal.tak + ' st');
+      falt('lagenhetsstorlek').value = lghVal.apt;
+      falt('antal_balkongrutor').value = (lghVal.golv + lghVal.tak) + ' st';
+      falt('kalkyl').value = rader.join(' | ');
+      if (!lghVal.apt) { document.getElementById('nsLghPris').textContent = 'Välj storlek'; falt('uppskattat_pris').value = ''; falt('pris_fore_rut').value = ''; return; }
+      var total = lghVal.pris + lghVal.golv * 40 + lghVal.tak * 20;
+      document.getElementById('nsLghPris').textContent = total + ' kr';
+      falt('uppskattat_pris').value = total + ' kr efter RUT';
+      falt('pris_fore_rut').value = (total * 2) + ' kr före RUT';
+    }
+    lgh.querySelectorAll('[data-apt]').forEach(function (b) {
+      b.addEventListener('click', function () { lghVal.apt = b.getAttribute('data-apt'); lghVal.pris = Number(b.getAttribute('data-price')); raknaLgh(); });
+    });
+    lgh.querySelectorAll('[data-lgh]').forEach(function (b) {
+      b.addEventListener('click', function () { var k = b.getAttribute('data-lgh'); lghVal[k] = Math.max(0, Math.min(80, lghVal[k] + Number(b.getAttribute('data-steg')))); raknaLgh(); });
+    });
+    function visaLgh(ja) { lgh.hidden = !ja; lghDolda.forEach(function (i) { i.disabled = !ja; }); }
+    // Kunden väljer själv vad det gäller – Lägenhet visar storlek/balkong/pris
+    tjanst.addEventListener('change', function () { visaLgh(tjanst.value === 'Lägenhet'); });
+    // Storlek måste väljas när det gäller lägenhet
+    form.addEventListener('submit', function (e) {
+      if (!lgh.hidden && !lghVal.apt) { e.preventDefault(); e.stopImmediatePropagation(); lgh.scrollIntoView({ block: 'center', behavior: 'smooth' }); lgh.classList.add('saknas'); }
+    }, true);
+    tjanst.addEventListener('change', function () { visaLgh(tjanst.value === 'Lägenhet'); });
+    visaLgh(tjanst.value === 'Lägenhet');
+  })();
+</script>
+<script>
   // Förvälj tjänst när kunden kommer från ett tjänstekort på startsidan (?typ=Företag osv.)
   (function () {
     var typ = new URLSearchParams(location.search).get('typ');
     var sel = document.querySelector('form[data-enkel-form] select[name=bostadstyp]');
     if (typ && sel && [].some.call(sel.options, function (o) { return o.value === typ; })) {
-      sel.value = typ;
+      sel.value = typ; sel.dispatchEvent(new Event('change'));
       // Från ett tjänstekort: visa bara formuläret för tjänsten (inga kontaktkort bredvid)
       document.documentElement.classList.add('bara-formular');
     }

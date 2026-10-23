@@ -36,3 +36,33 @@
 .ns-form-kort .ns-tack { text-align: center; padding: 20px 6px; }
 .ns-form-kort .ns-tack strong { display: block; margin-bottom: 8px; font-size: 22px; color: #14181b; }
 .ns-form-kort .ns-tack p { margin: 0; color: #5b6168; line-height: 1.6; }
+
+/* Lägenhet i formuläret: storlek, inglasad balkong och ungefärligt pris */
+.ns-lgh { display: grid; gap: 12px; padding: 18px 16px; border-radius: 16px; background: #f4f6f9; border: 1px solid #e3e7ec; }
+.ns-lgh[hidden] { display: none; }
+.ns-lgh.saknas .ns-lgh-storlek { outline: 2px solid #d1101f; outline-offset: 4px; border-radius: 12px; }
+.ns-lgh-rubrik { font-size: 15px; font-weight: 700; color: #14181b; }
+.ns-lgh-rubrik small { font-weight: 500; color: #5b6168; }
+.ns-lgh-storlek { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ns-lgh-storlek button {
+  min-height: 46px; border: 1.5px solid #d3d8df; border-radius: 999px; background: #fff; color: #14181b;
+  font: 700 15px 'Montserrat', sans-serif; cursor: pointer;
+}
+.ns-lgh-storlek button.vald { background: #1e2b3c; border-color: #1e2b3c; color: #fff; }
+.ns-lgh-ingar { margin: -2px 0 4px; font-size: 13.5px; line-height: 1.5; color: #5b6168; }
+.ns-lgh-rad { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 12px; background: #fff; border: 1px solid #e3e7ec; }
+.ns-lgh-rad strong { display: block; font-size: 15px; color: #14181b; }
+.ns-lgh-rad span { font-size: 13px; color: #5b6168; }
+.ns-lgh-steg { display: flex; align-items: center; gap: 10px; }
+.ns-lgh-steg button { width: 40px; height: 40px; border: 1.5px solid #1e2b3c; border-radius: 50%; background: #fff; color: #1e2b3c; font: 700 20px/1 'Montserrat', sans-serif; cursor: pointer; }
+.ns-lgh-steg output { min-width: 22px; text-align: center; font-size: 18px; font-weight: 800; color: #14181b; }
+.ns-lgh-pris { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding-top: 4px; }
+.ns-lgh-pris span { font-size: 14px; color: #5b6168; }
+.ns-lgh-pris strong { font-size: 24px; font-weight: 800; color: #1e2b3c; }
+.ns-lgh .ns-lgh-framkorning { margin: -8px 0 0; text-align: right; }
+
+/* Läsbar mörk text i lägenhetsrutan även på sidor med vit text (glas-sidor) */
+html body .ns-form-kort .ns-lgh :is(span, strong, p, small, output) { color: #14181b !important; }
+html body .ns-form-kort .ns-lgh :is(.ns-lgh-ingar, .ns-lgh-rad span, .ns-lgh-pris span, .ns-lgh-rubrik small) { color: #5b6168 !important; }
+html body .ns-form-kort .ns-lgh .ns-lgh-pris strong { color: #1e2b3c !important; }
+html body .ns-form-kort .ns-lgh-storlek button.vald { color: #fff !important; }
