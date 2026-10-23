@@ -100,8 +100,7 @@
     <h2>Kontakta oss</h2>
     <form class="ns-form" id="offertForm" data-enkel-form="Företagssidan" action="/.netlify/functions/send-email" method="POST">
       <input type="hidden" name="kalla" value="Företagssidan" />
-      <input type="hidden" name="bostadstyp" value="Företag" />
-      <label class="ns-falt"><span>Välj alternativ</span><select name="kundtyp" required><option value="Ny kund" selected>Ny kund</option><option value="Befintlig kund">Befintlig kund</option></select></label>
+      <label class="ns-falt"><span>Välj alternativ</span><select name="bostadstyp" required><option value="Företag" selected>Företag / butik</option><option value="Villa">Villa / radhus</option><option value="Lägenhet">Lägenhet</option><option value="Solcellstvätt">Solcellstvätt</option><option value="Annat / fråga">Annat / fråga</option></select></label>
       <label class="ns-falt"><span>Namn</span><input type="text" name="namn" autocomplete="name" required /></label>
       <label class="ns-falt"><span>Telefon</span><input type="tel" name="telefon" autocomplete="tel" required /></label>
       <label class="ns-falt"><span>E-post</span><input type="email" name="email" autocomplete="email" /></label>
