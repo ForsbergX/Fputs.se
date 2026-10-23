@@ -59,17 +59,21 @@
 <link rel="stylesheet" href="css/enkel-form.css" />
 <link rel="stylesheet" href="css/glas-sidor.css" />
 <style>
-  .ft-sektion { padding: 48px 16px 80px; }
-  .ft-layout { display: grid; gap: 24px; max-width: 1080px; margin: 0 auto; align-items: start; }
-  @media (min-width: 900px) { .ft-layout { grid-template-columns: 1fr 1.1fr; gap: 32px; } }
-  .ft-text { padding: 28px 24px; border-radius: 20px; color: #fff; background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.3);
-    -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: 0 18px 40px -22px rgba(8,14,24,0.7); }
-  .ft-text h2 { margin: 0 0 12px; font-size: 24px; font-weight: 800; text-transform: none; letter-spacing: -0.01em; color: #fff; }
-  .ft-text p { margin: 0 0 14px; font-size: 16px; line-height: 1.65; color: rgba(255,255,255,0.85); }
-  .ft-text ul { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 10px; }
-  .ft-text li { position: relative; padding-left: 30px; font-size: 16px; font-weight: 600; color: #fff !important; }
-  .ft-text li::before { content: "✓"; position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 6px; background: rgba(255,255,255,0.2); font-size: 12px; }
-  .ft-layout .ns-form-kort { margin: 0; max-width: none; }
+  .ft-hero { position: relative; padding: 170px 20px 90px; text-align: center; background: linear-gradient(180deg, rgba(20,30,45,0.55), rgba(20,30,45,0.75)), url('images/hero-villa.jpg') center 60% / cover no-repeat !important; }
+  .ft-hero h1 { text-shadow: 0 2px 18px rgba(0,0,0,0.4); margin: 0 auto 22px; max-width: 760px; font-size: clamp(34px, 6vw, 52px); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; text-transform: none; color: #fff; }
+  .ft-hero p { text-shadow: 0 1px 10px rgba(0,0,0,0.5); margin: 0 auto; max-width: 720px; font-size: 18px; font-weight: 600; line-height: 1.55; color: #fff; }
+  .ft-sektion { padding: 60px 16px 90px; }
+  .ft-kort { max-width: 640px; margin: 0 auto; padding: 36px 28px; border-radius: 20px; background: rgba(255,255,255,0.96); box-shadow: 0 24px 50px -30px rgba(6,12,22,0.6); }
+  .ft-kort h2 { margin: 0 0 22px; text-align: center; font-size: 24px; font-weight: 800; text-transform: none; color: #14181b !important; }
+  .ft-kort .ns-form { display: grid; gap: 16px; }
+  .ft-kort .ns-falt { display: grid; gap: 6px; }
+  .ft-kort .ns-falt > span { font-size: 14px; font-weight: 600; color: #14181b; }
+  #formular .ns-falt :is(input, select, textarea) { width: 100%; min-height: 50px; padding: 12px 14px; box-sizing: border-box; border-radius: 10px !important; border: 1.5px solid #1e2b3c !important; background-color: #fff !important; color: #14181b; font: 500 16px 'Montserrat', sans-serif; }
+  .ft-kort .ns-falt select { appearance: none; -webkit-appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2314181b' stroke-width='2.4'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center !important; padding-right: 40px; }
+  .ft-kort .ns-falt textarea { min-height: 120px; resize: vertical; }
+  .ft-kort .ns-skicka { justify-self: start; height: 50px; padding: 0 26px; border: 0; border-radius: 999px; background: #1e2b3c; color: #fff; font: 700 16px 'Montserrat', sans-serif; cursor: pointer; }
+  .ft-kort .ns-fel { color: #b00d1a; }
+  .ft-kort .ns-tack { text-align: center; color: #14181b; }
 </style>
 </head>
 <body>
@@ -87,44 +91,24 @@
 </nav>
 <div class="page-wrap">
 <div class="nav-overlay" id="navOverlay"></div>
-<section id="hero" style="min-height:auto;padding:110px 24px 40px;">
-  <div class="hero-bg-img" style="background-image:url('images/referens-bild-13.webp');background-size:cover;background-position:center 40%;"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="section-label" style="justify-content:center;display:flex;">Företag</div>
-    <h1 class="hero-title">Fönsterputs för företag</h1>
-    <p class="hero-sub">Butik, kontor, restaurang eller lokal? Hör av dig så går vi igenom vad ni behöver och ger ett fast pris.</p>
-  </div>
+<section class="ft-hero">
+  <h1>Fönsterputs för företag</h1>
+  <p>Har du en butik, ett kontor eller en lokal och letar efter någon som kan sköta fönsterputsningen? Hör av dig så går vi igenom vad ni behöver och ger ett fast pris.</p>
 </section>
 <section class="ft-sektion">
-  <div class="ft-layout">
-    <div class="ft-text">
-      <h2>Rena fönster – bättre första intryck</h2>
-      <p>Skyltfönstret är det första kunderna ser. Vi putsar skyltfönster, entréer, kontor och lokaler i Jönköping med omnejd – vid ett tillfälle eller regelbundet.</p>
-      <ul>
-        <li>Fast pris – inga överraskningar</li>
-        <li>Tider som passar er verksamhet, även tidig morgon</li>
-        <li>Regelbundna besök utan bindningstid</li>
-        <li>Faktura till företaget</li>
-      </ul>
-      <p>Vill du ha referenser från tidigare företagskunder ordnar vi det gärna.</p>
-    </div>
-    <div class="ns-form-kort" id="formular">
-  <h2>Kontakta oss</h2>
-  <p class="ns-form-sub">Gratis och ej bindande. Vi svarar samma dag. Du behöver inte vara hemma när vi kommer och räknar på jobbet – det är helt gratis.</p>
-  <form class="ns-form" id="offertForm" data-enkel-form="Företagssidan" action="/.netlify/functions/send-email" method="POST">
-    <input type="hidden" name="kalla" value="Företagssidan" />
-    <label class="ns-falt"><span>Vad gäller det? *</span><select name="bostadstyp" required><option value="Företag" selected>Företag / butik</option><option value="Villa">Villa / radhus</option><option value="Lägenhet">Lägenhet</option><option value="Solcellstvätt">Solcellstvätt</option><option value="Annat / fråga">Annat / fråga</option></select></label>
-    <label class="ns-falt"><span>Namn *</span><input type="text" name="namn" autocomplete="name" placeholder="Ditt fullständiga namn" required /></label>
-    <label class="ns-falt"><span>Telefon *</span><input type="tel" name="telefon" autocomplete="tel" placeholder="070-123 45 67" required /></label>
-    <label class="ns-falt"><span>Adress *</span><input type="text" name="adress" autocomplete="street-address" placeholder="Gata och ort" required /></label>
-    <label class="ns-falt"><span>E-post</span><input type="email" name="email" autocomplete="email" placeholder="din@email.se" /></label>
-    <label class="ns-falt"><span>Beskriv vad du behöver *</span><textarea name="meddelande" rows="4" placeholder="T.ex. butik i centrala Jönköping, skyltfönster varannan vecka…" required></textarea></label>
-    <button type="submit" class="ns-skicka">Skicka förfrågan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></button>
-    <p class="ns-fel" hidden>Något gick fel. Prova igen, eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
-  </form>
-  <div class="ns-tack" hidden><strong>Tack, det är skickat!</strong><p>Vi hör av oss samma dag. Bråttom? Ring <a href="tel:+46793463964">079-346 39 64</a>.</p></div>
-</div>
+  <div class="ft-kort" id="formular">
+    <h2>Kontakta oss</h2>
+    <form class="ns-form" id="offertForm" data-enkel-form="Företagssidan" action="/.netlify/functions/send-email" method="POST">
+      <input type="hidden" name="kalla" value="Företagssidan" />
+      <label class="ns-falt"><span>Välj alternativ</span><select name="bostadstyp" required><option value="Företag" selected>Företag / butik</option><option value="Villa">Villa / radhus</option><option value="Lägenhet">Lägenhet</option><option value="Solcellstvätt">Solcellstvätt</option><option value="Annat / fråga">Annat / fråga</option></select></label>
+      <label class="ns-falt"><span>Namn</span><input type="text" name="namn" autocomplete="name" required /></label>
+      <label class="ns-falt"><span>Telefon</span><input type="tel" name="telefon" autocomplete="tel" required /></label>
+      <label class="ns-falt"><span>E-post</span><input type="email" name="email" autocomplete="email" /></label>
+      <label class="ns-falt"><span>Meddelande</span><textarea name="meddelande" rows="4" required></textarea></label>
+      <button type="submit" class="ns-skicka">Skicka förfrågan</button>
+      <p class="ns-fel" hidden>Något gick fel. Prova igen, eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
+    </form>
+    <div class="ns-tack" hidden><strong>Tack, det är skickat!</strong><p>Vi hör av oss samma dag.</p></div>
   </div>
 </section>
 <footer class="sidfot">
