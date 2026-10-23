@@ -207,3 +207,8 @@ nav:not(.breadcrumb-nav) {
 
 /* Ingen bottenrad på startsidan – Ring finns i menyn och Få offert i heron */
 @media (max-width: 768px) { body { padding-bottom: 0 !important; } }
+
+/* Om oss utan bild: kortet centrerat */
+.ns-om.ns-om-utan-bild { grid-template-columns: 1fr !important; max-width: 640px; text-align: center; }
+.ns-om.ns-om-utan-bild .ns-rubrik { text-align: center; }
+.ns-om.ns-om-utan-bild .ns-knapp { margin: 0 auto; }
