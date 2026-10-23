@@ -45,3 +45,19 @@ footer.sidfot .footer-logo-text {
 }
 footer.sidfot .footer-logo-text span:first-child { color: #ececec; font-size: 20px; letter-spacing: 0.04em; }
 footer.sidfot .footer-logo-text span:last-child { color: #d1101f; font-size: 15.5px; letter-spacing: 0.05em; }
+/* Cookie-rutan i nya stilen: frostat ljust glas, marinblå knappar, textlogga (2026-10-24) */
+html body .cookie-modal-overlay { background: rgba(20, 30, 45, 0.55) !important; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+html body .cookie-modal { background: rgba(255, 255, 255, 0.96) !important; border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 22px !important; box-shadow: 0 30px 70px -20px rgba(6, 12, 22, 0.7) !important; }
+html body .cookie-modal-logo { display: none !important; }
+html body .cookie-modal-header::before {
+  content: "FORSBERGS\A FÖNSTERPUTS"; white-space: pre; display: inline-block; padding: 8px 13px; border-radius: 10px; background: #111;
+  color: #ececec; font: 800 15px/1.05 'Montserrat', sans-serif; letter-spacing: 0.04em; text-align: left;
+}
+html body .cookie-modal-title { color: #14181b !important; }
+html body .cookie-modal-links a, html body .cookie-details-toggle { color: #1e2b3c !important; }
+html body :is(.cookie-btn-outline, .cookie-btn-solid) { border-radius: 999px !important; font-size: 14px !important; padding: 14px 18px !important; }
+html body .cookie-btn-solid { background: #1e2b3c !important; color: #fff !important; }
+html body .cookie-btn-solid:hover { background: #2a3b50 !important; }
+html body .cookie-btn-outline { color: #1e2b3c !important; border-color: rgba(30, 43, 60, 0.35) !important; }
+html body .cookie-btn-outline:hover { border-color: #1e2b3c !important; color: #1e2b3c !important; }
+html body .cookie-switch input:checked ~ .cookie-switch-track { background: #1e2b3c !important; }
