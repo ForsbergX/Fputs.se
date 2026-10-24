@@ -28,7 +28,7 @@
     el.forEach(function (e) {
       var i = 0, f = e.previousElementSibling;
       while (f && f.classList.contains('glid') && f.className.split(' ')[0] === e.className.split(' ')[0]) { i++; f = f.previousElementSibling; }
-      if (i) e.style.setProperty('--glid-delay', Math.min(i, 4) * 0.09 + 's');
+      if (i) e.style.setProperty('--glid-delay', Math.min(i, 4) * 0.05 + 's');
     });
 
     var io = new IntersectionObserver(function (poster) {
@@ -42,7 +42,7 @@
           e.classList.toggle('glid-ovan', p.boundingClientRect.top < 0);
         }
       });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px 0px 0px', threshold: 0.01 });
     el.forEach(function (e) { io.observe(e); });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);

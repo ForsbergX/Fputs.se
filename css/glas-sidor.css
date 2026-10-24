@@ -13,8 +13,8 @@ html { background: #26354a; }
 html body { background: transparent !important; color: #fff; }
 body::before {
   content: ""; position: fixed; inset: -40px; z-index: -2; pointer-events: none;
-  background: url("../images/hero-villa.jpg") 60% center / cover no-repeat;
-  filter: blur(22px) saturate(1.15);
+  /* Färdigsuddad liten bild (20 kB) – ingen blur-uträkning i mobilen = mjukare scroll (2026-10-24) */
+  background: url("../images/bakgrund-suddig.jpg") 60% center / cover no-repeat;
 }
 body::after {
   content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
