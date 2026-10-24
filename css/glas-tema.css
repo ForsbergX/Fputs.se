@@ -198,3 +198,9 @@ html body .nav-toggle span { background: #fff !important; }
 .fq p { margin: 0; padding: 0 22px 20px 82px; font-size: 16px; line-height: 1.65; color: var(--gl-mjuk); }
 @media (max-width: 480px) { .fq p { padding-left: 22px; } }
 .fq-alla { display: block; width: fit-content; margin: 22px auto 0; color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+
+/* Menyn "Fönsterputs": bara villa, lägenhet, företag (solcellstvätt dold). Tredje rutan blir full bredd på mobil. */
+#tjanster.bara-fonsterputs .ns-kort-sol { display: none !important; }
+#tjanster.bara-fonsterputs .ns-kort:nth-child(3) { grid-column: 1 / -1; }
+@media (min-width: 900px) { #tjanster.bara-fonsterputs .ns-tjanster-lista { grid-template-columns: repeat(3, 1fr); } #tjanster.bara-fonsterputs .ns-kort:nth-child(3) { grid-column: auto; } }
+#tjanster { scroll-margin-top: 90px; }
