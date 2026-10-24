@@ -5,6 +5,16 @@
     var btn = form.querySelector('.ns-skicka');
     var fel = form.querySelector('.ns-fel');
     var tack = kort && kort.querySelector('.ns-tack');
+    // "Annat / fråga" behöver ingen adress (servern kräver den inte heller)
+    var typ = form.querySelector('[name="bostadstyp"]'), adress = form.querySelector('[name="adress"]');
+    if (typ && adress) {
+      var adressText = adress.closest('label') && adress.closest('label').querySelector('span');
+      typ.addEventListener('change', function () {
+        var fraga = typ.value === 'Annat / fråga';
+        adress.required = !fraga;
+        if (adressText) adressText.textContent = fraga ? 'Adress' : 'Adress *';
+      });
+    }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       fel.hidden = true;

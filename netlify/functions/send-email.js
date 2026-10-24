@@ -38,6 +38,8 @@ function fieldPairs(fields) {
     ["Lägenhetsstorlek", fields.lagenhetsstorlek],
     ["Antal fönster", fields.antal_fonster],
     ["Balkongrutor", fields.antal_balkongrutor],
+    ["Balkong golv till tak", fields.balkong_golv_till_tak],
+    ["Balkong räcke till tak", fields.balkong_racke_till_tak],
     ["Antal solpaneler", fields.antal_paneler],
     ["Beställning", fields.kalkyl],
     ["Spröjs", fields.sprojs],
