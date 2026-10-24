@@ -161,28 +161,32 @@
 
     var spar = el.querySelector('.rk-spar');
     if (spar) {
+      /* Bläddring i steg om ett kort. Fungerar lika på mobil (1 kort) och dator (flera kort),
+         och går runt åt båda håll: förbi sista → första, före första → sista. */
       var korten = spar.children, raknare = el.querySelector('.rk-raknare');
-      var nu = function () {
-        var mitt = spar.scrollLeft + spar.clientWidth / 2, bast = 0, avst = 1e9;
-        for (var k = 0; k < korten.length; k++) {
-          var c = korten[k].offsetLeft + korten[k].offsetWidth / 2, d = Math.abs(c - mitt);
-          if (d < avst) { avst = d; bast = k; }
-        }
-        return spar.scrollLeft < 8 ? 0 : (spar.scrollLeft + spar.clientWidth >= spar.scrollWidth - 8 ? korten.length - 1 : bast);
+      var steg = function () { return korten.length > 1 ? korten[1].offsetLeft - korten[0].offsetLeft : spar.clientWidth; };
+      var vidStart = function () { return spar.scrollLeft < 8; };
+      var vidSlut = function () { return spar.scrollLeft + spar.clientWidth >= spar.scrollWidth - 8; };
+      var visaRaknare = function () {
+        var s = steg(), perVy = Math.max(1, Math.round((spar.clientWidth + 16) / s));
+        var forst = vidSlut() ? korten.length - perVy : Math.round(spar.scrollLeft / s);
+        var sist = Math.min(korten.length, forst + perVy);
+        raknare.textContent = (perVy > 1 ? (forst + 1) + '–' + sist : (forst + 1)) + ' / ' + korten.length;
       };
-      /* Raden följer höjden på kortet som visas, så korta recensioner inte lämnar tom yta */
-      var hojdTimer;
-      var anpassa = function () {};
-      spar.addEventListener('scroll', function () {
-        raknare.textContent = (nu() + 1) + ' / ' + korten.length;
-        clearTimeout(hojdTimer); hojdTimer = setTimeout(anpassa, 120);
-      }, { passive: true });
-      window.addEventListener('resize', anpassa);
-      anpassa();
+      spar.addEventListener('scroll', visaRaknare, { passive: true });
+      spar.addEventListener('scrollend', visaRaknare);
+      window.addEventListener('resize', visaRaknare);
+      visaRaknare();
       el.querySelectorAll('.rk-pil').forEach(function (p) {
         p.addEventListener('click', function () {
-          var mal = (nu() + Number(p.dataset.steg) + korten.length) % korten.length; /* går runt åt båda håll */
-          spar.scrollTo({ left: korten[mal].offsetLeft - (spar.clientWidth - korten[mal].offsetWidth) / 2, behavior: 'smooth' });
+          var d = Number(p.dataset.steg);
+          setTimeout(visaRaknare, 650);
+          if (d > 0 && vidSlut()) spar.scrollTo({ left: 0, behavior: 'smooth' });
+          else if (d < 0 && vidStart()) spar.scrollTo({ left: spar.scrollWidth, behavior: 'smooth' });
+          else {
+            var nu = Math.round(spar.scrollLeft / steg()), mal = Math.max(0, Math.min(korten.length - 1, nu + d));
+            spar.scrollTo({ left: korten[mal].offsetLeft - korten[0].offsetLeft, behavior: 'smooth' });
+          }
         });
       });
     }

@@ -149,3 +149,19 @@
 .rk-karusell .rk-kort q { -webkit-line-clamp: 6; }
 .rk-karusell .rk-kort q.rk-hel { -webkit-line-clamp: 6; display: -webkit-box; }
 .rk-karusell .rk-fot { margin-top: auto; }
+/* Bläddringsraden: korten låser i vänsterkant, inget halvt kort till vänster */
+.rk-karusell .rk-spar { scroll-padding-inline: 16px; }
+.rk-karusell .rk-spar > .rk-kort { scroll-snap-align: start; }
+.rk-raknare { min-width: 84px; }
+/* Dator/surfplatta: raden är exakt 2 eller 3 kort bred, så inget kort klipps i kanterna */
+@media (min-width: 720px) {
+  .rk-karusell { max-width: 696px; margin: 0 auto; }
+  .rk-karusell .rk-spar { margin: 0; padding: 4px 0 18px; scroll-padding-inline: 0; }
+}
+@media (min-width: 1100px) { .rk-karusell { max-width: 1052px; } }
+/* Recensionssidans hero: dator = svarta firmabilen vid villan (Tommy 2026-10-24) */
+.rk-hero-bild { background-position: 40% 60% !important; }
+/* Mobil: bilden på Tommy vid bilen (Tommy: 'detta var as snyggt') */
+@media (max-width: 640px) { .rk-hero-bild { background-image: url('../images/om-oss-tommy-bil.jpg') !important; background-position: 14% 50% !important; } }
+/* Mörkare ton över bilen så 5,0 och texten går att läsa */
+.rk-hero-bild + .hero-overlay { background: linear-gradient(180deg, rgba(20, 30, 45, .35) 0%, rgba(20, 30, 45, .62) 45%, rgba(20, 30, 45, .78) 100%) !important; }
