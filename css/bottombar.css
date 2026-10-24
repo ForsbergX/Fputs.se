@@ -1,21 +1,5 @@
-/* Mobil: fast bottenbar med Ring + Få fast pris på alla sidor (2026-10-17) */
 .fp-bottombar { display: none; }
-@media (max-width: 768px) {
-  .fp-bottombar {
-    display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 150;
-    padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: #fff;
-    border-top: 1px solid #e4e4e8; box-shadow: 0 -8px 24px -12px rgba(20,24,27,0.18);
-  }
-  .fp-bottombar a {
-    display: flex; align-items: center; justify-content: center; gap: 6px; height: 50px; border-radius: 12px;
-    font: 700 16px 'Montserrat', sans-serif; text-decoration: none; white-space: nowrap;
-  }
-  /* Samma knappar som startsidan (2026-10-23): sand + svart kant, svart huvudknapp, ingen röd telefon */
-  .fp-bb-ring { flex: 0 0 38%; background: #fffaf2; color: #1d1a16; border: 2px solid #1d1a16; }
-  .fp-bb-pris { flex: 1; background: #1d1a16; color: #fff; }
-  .fp-bb-pris:active { background: #000; }
-  body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
-}
+/* Bottenbaren (Ring / Få fast pris) borttagen på alla sidor 2026-10-24 – Tommy vill inte ha den. */
 /* Stängd dropdown ska inte synas alls (dator) */
 @media (min-width: 769px) {
   .nav-dropdown-menu { visibility: hidden; transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s; }

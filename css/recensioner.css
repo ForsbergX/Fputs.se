@@ -1,0 +1,151 @@
+/* Recensionskort, stil C (Tommy valde 2026-10-24): frostat glas, tjänsteetikett, vårt svar.
+   Korten byggs av js/recensioner.js utifrån data-rk="id,id" på sidan. */
+.rk-sektion { padding: 56px 16px; }
+.rk-inner { max-width: 1140px; margin: 0 auto; }
+.rk-rubrik { margin: 0 0 12px; text-align: center; color: #fff; font-size: clamp(28px, 6.5vw, 42px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+
+/* Betygsruta överst: stort 5,0 + stjärnor + antal + knapp till Google */
+.rk-summa {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 14px 22px; width: fit-content; max-width: 100%;
+  margin: 0 auto 32px; padding: 16px 24px; border-radius: 22px;
+  background: rgba(255, 255, 255, 0.13); border: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+}
+.rk-tal { font-size: 46px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: #fff; }
+.rk-summa-mitt { display: flex; flex-direction: column; gap: 5px; color: rgba(255, 255, 255, .85); font-size: 14px; }
+.rk-summa-mitt .rk-stj { font-size: 24px; }
+.rk-summa-mitt span:last-child { display: flex; align-items: center; gap: 6px; }
+.rk-knapp { display: inline-flex; align-items: center; padding: 11px 18px; border-radius: 99px; background: #fff; color: #1e2b3c !important; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; }
+.rk-g { width: 18px; height: 18px; flex: none; }
+.rk-stj { color: #fbbc04 !important; letter-spacing: 2px; font-size: 16px; line-height: 1; }
+/* Hero-varianten (startsidan) */
+.rk-betyg { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; color: #fff !important; text-decoration: none; }
+.rk-betyg b { font-size: 19px; font-weight: 800; }
+.rk-betyg u { font-size: 15px; font-weight: 500; text-underline-offset: 3px; }
+
+/* Vägg: korten får sin egen höjd, inget klipps (1 kolumn mobil, 2 surfplatta, 3 dator) */
+.rk-vagg { columns: 1; column-gap: 18px; }
+@media (min-width: 720px) { .rk-vagg { columns: 2; } }
+@media (min-width: 1040px) { .rk-vagg { columns: 3; } }
+.rk-vagg > .rk-kort { break-inside: avoid; margin-bottom: 18px; }
+.rk-vagg.rk-tva { max-width: 760px; margin: 0 auto; }
+@media (min-width: 1040px) { .rk-vagg.rk-tva { columns: 2; } }
+/* Mobil: visa 3, resten bakom knappen */
+@media (max-width: 719px) { .rk-vagg:not(.rk-visa-alla) > .rk-kort:nth-child(n+4) { display: none; } }
+.rk-fler { display: none; margin: 4px auto 0; padding: 13px 22px; border-radius: 99px; border: 1px solid rgba(255, 255, 255, .5); background: rgba(255, 255, 255, .12); color: #fff; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; }
+@media (max-width: 719px) { .rk-har-fler .rk-fler { display: block; } }
+.rk-ensam { max-width: 520px; margin: 0 auto; }
+.rk-alla { display: block; width: fit-content; margin: 22px auto 0; color: #fff !important; font-weight: 700; font-size: 15px; text-decoration: underline; text-underline-offset: 4px; }
+
+/* Kortet */
+.rk-kort {
+  margin: 0; display: flex; flex-direction: column; color: #fff; text-align: left;
+  background: rgba(255, 255, 255, 0.13); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 22px; padding: 24px 22px 20px;
+  -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 18px 40px -22px rgba(8, 14, 24, .7), inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+.rk-tagg { align-self: flex-start; font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 99px; background: rgba(255, 255, 255, .18); border: 1px solid rgba(255, 255, 255, .3); margin-bottom: 14px; }
+.rk-kort q { display: block; font-size: 15.5px; font-weight: 500; line-height: 1.6; color: rgba(255, 255, 255, .9); quotes: "”" "”"; }
+.rk-kort q strong { font-weight: 800; color: #fff; font-size: 16.5px; }
+/* Våra svar hålls korta i kortet */
+.rk-svar-text { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+.rk-svar { margin-top: 16px; padding: 11px 14px; border-left: 3px solid rgba(255, 255, 255, .5); background: rgba(255, 255, 255, .08); border-radius: 0 12px 12px 0; font-size: 14px; line-height: 1.45; }
+.rk-svar small { display: block; font-size: 12px; color: rgba(255, 255, 255, .75); margin-bottom: 2px; }
+.rk-fot { display: flex; align-items: center; gap: 12px; padding-top: 18px; }
+.rk-avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 19px; flex: none; background: rgba(255, 255, 255, .22); color: #fff; }
+.rk-namn { font-weight: 700; font-size: 15px; line-height: 1.25; }
+.rk-datum { font-size: 13px; color: rgba(255, 255, 255, .75); }
+.rk-fot .rk-kalla { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+
+/* Startsidans hero: betyget direkt under knapparna, som Smile */
+.ns-hero-rk { margin-top: 18px; justify-content: flex-start; }
+.ns-hero-rk .rk-stj { font-size: 26px; }
+.ns-hero-rk .rk-g { width: 22px; height: 22px; }
+
+/* Mobil: 5,0 och stjärnorna på samma rad, knappen under */
+@media (max-width: 719px) {
+  .rk-summa { display: grid; grid-template-columns: auto auto; justify-content: center; align-items: center; gap: 12px 14px; padding: 16px 18px; width: 100%; box-sizing: border-box; }
+  .rk-tal { font-size: 42px; }
+  .rk-summa-mitt { font-size: 13px; }
+  .rk-knapp { grid-column: 1 / -1; justify-content: center; }
+}
+
+/* Dator: 9 kort först när det finns fler */
+@media (min-width: 720px) {
+  .rk-har-fler-dator .rk-vagg:not(.rk-visa-alla) > .rk-kort:nth-child(n+10) { display: none; }
+  .rk-har-fler-dator .rk-fler { display: block; }
+}
+
+/* ---------- Toppkommentar under heron (startsidan) ---------- */
+.rk-topp-block { display: block; padding: 8px 16px 0; }
+.rk-topp {
+  position: relative; max-width: 640px; margin: 0 auto; padding: 30px 26px 20px; text-align: center; color: #fff;
+  border-radius: 26px; background: linear-gradient(160deg, rgba(255, 255, 255, .2), rgba(255, 255, 255, .08));
+  border: 1px solid rgba(255, 255, 255, .35); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%);
+  box-shadow: 0 24px 50px -26px rgba(8, 14, 24, .8), inset 0 1px 0 rgba(255, 255, 255, .3);
+}
+.rk-topp-tecken { position: absolute; top: -26px; left: 50%; transform: translateX(-50%); width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: #fbbc04; color: #1e2b3c; font: 800 44px/1 Georgia, serif; padding-top: 14px; box-sizing: border-box; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .5); }
+.rk-topp-yta { min-height: 108px; display: flex; flex-direction: column; justify-content: center; transition: opacity .25s ease, transform .25s ease; }
+.rk-topp-yta.rk-tona { opacity: 0; transform: translateY(6px); }
+.rk-topp-citat { margin: 6px 0 12px; font-size: clamp(19px, 4.8vw, 24px); font-weight: 800; line-height: 1.35; letter-spacing: -0.01em; color: #fff !important; }
+.rk-topp-vem { margin: 0; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, .85) !important; }
+.rk-topp-prickar { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+.rk-topp-prickar button { width: 8px; height: 8px; padding: 0; border-radius: 99px; border: 0; background: rgba(255, 255, 255, .35); cursor: pointer; transition: width .25s, background .25s; }
+.rk-topp-prickar button.aktiv { width: 22px; background: #fff; }
+
+/* ---------- Recensionssidan: stor betygsruta i heron ---------- */
+.rk-hero-summa { text-align: center; color: #fff; }
+.rk-stor-tal { font-size: clamp(72px, 20vw, 120px); font-weight: 800; line-height: .9; letter-spacing: -0.05em; }
+.rk-stor-stj { color: #fbbc04; font-size: clamp(30px, 8vw, 42px); letter-spacing: 6px; margin: 10px 0 12px; }
+.rk-stor-text { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 0 22px; font-size: 16px; color: rgba(255, 255, 255, .9) !important; }
+.rk-stor-knappar { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+.rk-knapp-glas { background: rgba(255, 255, 255, .14) !important; color: #fff !important; border: 1px solid rgba(255, 255, 255, .45); }
+.rk-topp-citat { font-size: clamp(18px, 4.6vw, 22px); }
+.rk-topp-yta { min-height: 128px; padding: 0 22px; }
+.rk-topp-pil { position: absolute; top: 50%; transform: translateY(-60%); width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .4); background: rgba(255, 255, 255, .12); color: #fff; font-family: inherit; font-size: 24px; font-weight: 700; line-height: 1; display: grid; place-items: center; padding: 0 0 3px; cursor: pointer; z-index: 2; }
+.rk-topp-forra { left: 8px; }
+.rk-topp-nasta { right: 8px; }
+.rk-topp { touch-action: pan-y; user-select: none; }
+
+/* ---------- Bläddringsrad med alla recensioner (startsidan längst ner) ---------- */
+.rk-karusell { position: relative; }
+.rk-spar {
+  display: flex; align-items: flex-start; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  margin: 0 -16px; padding: 4px 16px 18px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.rk-spar::-webkit-scrollbar { display: none; }
+.rk-spar > .rk-kort { flex: 0 0 84%; max-width: 360px; scroll-snap-align: center; }
+@media (min-width: 720px) { .rk-spar > .rk-kort { flex-basis: 340px; } }
+.rk-kontroll { display: flex; align-items: center; justify-content: center; gap: 18px; margin: -8px 0 16px; }
+.rk-pil { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .14); color: #fff; font-family: inherit; font-size: 28px; font-weight: 700; line-height: 1; padding: 0 0 4px; cursor: pointer; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.rk-pil:hover { background: rgba(255, 255, 255, .26); }
+.rk-raknare { min-width: 64px; text-align: center; font-weight: 700; font-size: 15px; color: rgba(255, 255, 255, .9); }
+.rk-topp-vem { flex-wrap: wrap; } .rk-topp-vem span:first-child { white-space: nowrap; }
+/* Gula citatikonen: inne i kortet, centrerad (Tommy 2026-10-24) */
+.rk-topp { padding-top: 22px; }
+.rk-topp-tecken { position: static; transform: none; margin: 0 auto 10px; width: 44px; height: 44px; padding: 0; font: inherit; display: grid; place-items: center; box-shadow: 0 8px 20px -10px rgba(0, 0, 0, .5); }
+.rk-topp-tecken svg { width: 24px; height: 24px; display: block; }
+.rk-topp-block { padding-top: 24px; }
+.rk-oversatt { display: block; margin-top: 8px; font-size: 12px; color: rgba(255, 255, 255, .65); font-style: italic; }
+.rk-spar { overflow-y: hidden; transition: height .3s ease; box-sizing: border-box; }
+
+/* ---------- Bläddringsraden, stramare (Tommy 2026-10-24: recensionen ska synas direkt) ---------- */
+.rk-karusell-block .rk-rubrik, .rk-block[data-layout="karusell"] .rk-rubrik { margin-bottom: 10px; }
+.rk-rad-betyg { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 8px; margin: 0 auto 22px; width: fit-content; color: #fff !important; text-decoration: none; font-size: 15px; }
+.rk-rad-betyg .rk-stj { font-size: 20px; }
+.rk-rad-betyg b { font-size: 17px; font-weight: 800; }
+.rk-rad-betyg span:last-child { color: rgba(255, 255, 255, .85); text-decoration: underline; text-underline-offset: 3px; }
+.rk-block[data-layout="karusell"] .rk-kontroll { margin: 4px 0 0; }
+/* Långa recensioner kortas till 7 rader – tryck på texten för att läsa allt */
+.rk-karusell .rk-kort q { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 7; overflow: hidden; cursor: pointer; }
+.rk-karusell .rk-kort q.rk-hel { -webkit-line-clamp: unset; display: block; }
+@media (min-width: 720px) { .rk-block[data-layout="karusell"] .rk-spar { justify-content: flex-start; } }
+@media (max-width: 480px) { .rk-rad-betyg span:last-child { flex-basis: 100%; text-align: center; } }
+
+/* Bläddringsraden: alla kort exakt samma storlek (Tommy 2026-10-24) */
+.rk-karusell .rk-spar { align-items: stretch; height: auto !important; }
+.rk-karusell .rk-kort { height: 300px; box-sizing: border-box; }
+.rk-karusell .rk-tagg { display: none; }
+.rk-karusell .rk-kort q { -webkit-line-clamp: 6; }
+.rk-karusell .rk-kort q.rk-hel { -webkit-line-clamp: 6; display: -webkit-box; }
+.rk-karusell .rk-fot { margin-top: auto; }

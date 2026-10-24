@@ -586,7 +586,7 @@
       .nav-logo img { height: 44px; }
       .nav-toggle { display: flex; }
       .nav-toggle:hover, .nav-toggle:active { transform: none; }
-      body { padding-bottom: 118px; }
+      /* body padding-bottom borttagen 2026-10-24: ingen bottenrad längre */
       .hero-actions { display: none; }
       .nav-dropdown-menu {
         position: static; opacity: 1; pointer-events: auto; transform: none;
