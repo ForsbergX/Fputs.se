@@ -57,7 +57,7 @@
     .abo-fordelar-text ul { margin: 0; padding-left: 20px; display: grid; gap: 12px; }
     .abo-fordelar-text li { font-size: 16px; line-height: 1.55; }
     .abo-fordelar-text strong { color: #fff; }
-    #paket { padding: 30px 16px 20px; }
+    #paket { padding: 30px 16px 60px; }
     .abo-rubrik { text-align: center; margin-bottom: 26px; }
     .abo-paket { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
     .abo-kort { position: relative; display: flex; flex-direction: column; padding: 28px 24px 24px; border-radius: 18px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
@@ -72,7 +72,8 @@
     .abo-valj { display: block; text-align: center; padding: 15px; border-radius: 12px; background: #fff; color: #1e2b3c !important; font-weight: 800; font-size: 16px; text-decoration: none; }
     .abo-kort-popular .abo-valj { background: #f5b82e; color: #1d1a16 !important; }
     .abo-not { text-align: center; font-size: 14px; margin: 20px auto 0; max-width: 700px; }
-    #offert { padding: 40px 16px 60px; scroll-margin-top: 90px; }
+    .abo-ingress { font-size: 18px; line-height: 1.5; margin: -8px 0 20px; }
+    .abo-not a { color: #f5b82e !important; font-weight: 800; }
     @media (max-width: 860px) {
       .abo-paket { grid-template-columns: 1fr; gap: 26px; }
     }
@@ -98,7 +99,8 @@
 <section id="fordelar-abo">
   <div class="abo-fordelar">
     <div class="abo-fordelar-text">
-      <h1>Fördelar med abonnemang</h1>
+      <h1>Vill du ha abonnemang?</h1>
+      <p class="abo-ingress">Gör det smidigare och slipp tänka på när du ska boka.</p>
       <ul>
         <li><strong>Alltid rena fönster.</strong> Vi kommer regelbundet, så smutsen hinner aldrig sätta sig.</li>
         <li><strong>Du behöver inte tänka på det.</strong> Vi hör av oss när det börjar bli dags och bokar en tid som passar dig.</li>
@@ -117,7 +119,6 @@
         <li>Höstputs – in- och utsida</li>
         <li>Vi hör av oss när det är dags</li>
       </ul>
-      <a href="#offert" class="abo-valj" data-paket="Bas">Välj Bas</a>
     </div>
     <div class="abo-kort abo-kort-popular">
       <div class="abo-etikett">Populärast</div>
@@ -128,7 +129,6 @@
         <li>+ 1 extra putsning av utsidan</li>
         <li>Vi hör av oss när det är dags</li>
       </ul>
-      <a href="#offert" class="abo-valj" data-paket="Plus">Välj Plus</a>
     </div>
     <div class="abo-kort">
       <div class="abo-namn">Premium</div>
@@ -138,39 +138,10 @@
         <li>+ 2 extra putsningar av utsidan</li>
         <li>Vi hör av oss när det är dags</li>
       </ul>
-      <a href="#offert" class="abo-valj" data-paket="Premium">Välj Premium</a>
     </div>
   </div>
-  <p class="abo-not">Passar inget av dem exakt? Kontakta oss så skräddarsyr vi ett upplägg som passar just dig.</p>
-</section><section id="offert">
-<div class="ns-form-kort">
-  <h2>Starta abonnemang</h2>
-  <p class="ns-form-sub">Fyll i så hör vi av oss samma dag och bekräftar pris och första tid. Inte bindande.</p>
-  <form class="ns-form" id="offertForm" data-enkel-form="Abonnemang" action="/.netlify/functions/send-email" method="POST">
-    <input type="hidden" name="kalla" value="Abonnemang" />
-    <label class="ns-falt"><span>Paket *</span><select name="kalkyl" id="aboPaket" required><option value="" disabled selected>Välj paket</option><option value="Abonnemang Bas">Bas</option><option value="Abonnemang Plus">Plus</option><option value="Abonnemang Premium">Premium</option><option value="Abonnemang skräddarsytt">Skräddarsytt – vi tar fram ett förslag</option></select></label>
-    <label class="ns-falt"><span>Vad gäller det? *</span><select name="bostadstyp" required><option value="" disabled selected>Välj vad det gäller</option><option value="Villa">Villa / radhus</option><option value="Lägenhet">Lägenhet</option><option value="Företag">Företag / butik</option></select></label>
-    <label class="ns-falt"><span>Namn *</span><input type="text" name="namn" autocomplete="name" placeholder="Ditt fullständiga namn" required /></label>
-    <label class="ns-falt"><span>Telefon *</span><input type="tel" name="telefon" autocomplete="tel" placeholder="070-123 45 67" required /></label>
-    <label class="ns-falt"><span>Adress *</span><input type="text" name="adress" autocomplete="street-address" placeholder="Gata och ort" required /></label>
-    <label class="ns-falt"><span>E-post</span><input type="email" name="email" autocomplete="email" placeholder="din@email.se" /></label>
-    <label class="ns-falt"><span>Meddelande</span><textarea name="meddelande" rows="3" placeholder="T.ex. ca 15 fönster, in- och utsida…"></textarea></label>
-    <button type="submit" class="ns-skicka">Skicka <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></button>
-    <p class="ns-fel" hidden>Något gick fel. Prova igen, eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
-  </form>
-  <div class="ns-tack" hidden><strong>Tack, det är skickat!</strong><p>Vi hör av oss samma dag. Bråttom? Ring <a href="tel:+46793463964">079-346 39 64</a>.</p></div>
-</div>
+  <p class="abo-not">Passar inget av dem exakt? <a href="tel:+46793463964">Ring oss</a> så skräddarsyr vi ett upplägg som passar just dig.</p>
 </section>
-<script>
-  // "Välj paket"-knapparna förväljer paketet i formuläret
-  document.querySelectorAll('.abo-valj').forEach(function (a) {
-    a.addEventListener('click', function () {
-      var sel = document.getElementById('aboPaket');
-      var p = a.getAttribute('data-paket');
-      Array.from(sel.options).forEach(function (o) { if (o.value === 'Abonnemang ' + p) sel.value = o.value; });
-    });
-  });
-</script>
 <footer class="sidfot">
   <div class="footer-grid">
     <div class="footer-col">
