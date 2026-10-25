@@ -23,11 +23,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <meta name="description" content="Fönsterputs med abonnemang i Jönköping. Bas, Plus eller Premium – upp till 15% rabatt per tillfälle, vi hör av oss när det är dags. Ingen bindningstid." />
+  <meta name="description" content="Fönsterputs med abonnemang i Jönköping. Våra rekommenderade upplägg, eller ett som vi skräddarsyr efter dig. Vi hör av oss när det är dags. Ingen bindningstid." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Forsbergs Fönsterputs Jönköping" />
   <meta property="og:title" content="Fönsterputs abonnemang Jönköping | Forsbergs Fönsterputs" />
-  <meta property="og:description" content="Fönsterputs med abonnemang i Jönköping. Bas, Plus eller Premium – upp till 15% rabatt per tillfälle, vi hör av oss när det är dags. Ingen bindningstid." />
+  <meta property="og:description" content="Fönsterputs med abonnemang i Jönköping. Våra rekommenderade upplägg, eller ett som vi skräddarsyr efter dig. Vi hör av oss när det är dags. Ingen bindningstid." />
   <meta property="og:url" content="https://fputs.se/abonnemang.html" />
   <meta property="og:image" content="https://fputs.se/images/og-share.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -35,7 +35,7 @@
   <meta property="og:locale" content="sv_SE" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Fönsterputs abonnemang Jönköping | Forsbergs Fönsterputs" />
-  <meta name="twitter:description" content="Fönsterputs med abonnemang i Jönköping. Bas, Plus eller Premium – upp till 15% rabatt per tillfälle, vi hör av oss när det är dags. Ingen bindningstid." />
+  <meta name="twitter:description" content="Fönsterputs med abonnemang i Jönköping. Våra rekommenderade upplägg, eller ett som vi skräddarsyr efter dig. Vi hör av oss när det är dags. Ingen bindningstid." />
   <meta name="twitter:image" content="https://fputs.se/images/og-share.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -102,17 +102,16 @@
       <ul>
         <li><strong>Alltid rena fönster.</strong> Vi kommer regelbundet, så smutsen hinner aldrig sätta sig.</li>
         <li><strong>Du behöver inte tänka på det.</strong> Vi hör av oss när det börjar bli dags och bokar en tid som passar dig.</li>
-        <li><strong>Rabatt varje gång.</strong> 10–15% rabatt på varje putstillfälle, beroende på paket.</li>
+        <li><strong>Skräddarsytt för dig.</strong> Vi anpassar upplägget efter dina fönster och önskemål.</li>
         <li><strong>Ingen bindningstid.</strong> Vill du pausa eller sluta är det bara att säga till.</li>
       </ul>
     </div>
   </div>
 </section><section id="paket">
-  <h2 class="section-title abo-rubrik">Välj paket</h2>
+  <h2 class="section-title abo-rubrik">Våra rekommendationer</h2>
   <div class="abo-paket">
     <div class="abo-kort">
       <div class="abo-namn">Bas</div>
-      <div class="abo-rabatt">10%<span>rabatt per tillfälle</span></div>
       <ul>
         <li>Vårputs – in- och utsida</li>
         <li>Höstputs – in- och utsida</li>
@@ -123,7 +122,6 @@
     <div class="abo-kort abo-kort-popular">
       <div class="abo-etikett">Populärast</div>
       <div class="abo-namn">Plus</div>
-      <div class="abo-rabatt">15%<span>rabatt per tillfälle</span></div>
       <ul>
         <li>Vårputs – in- och utsida</li>
         <li>Höstputs – in- och utsida</li>
@@ -134,7 +132,6 @@
     </div>
     <div class="abo-kort">
       <div class="abo-namn">Premium</div>
-      <div class="abo-rabatt">15%<span>rabatt per tillfälle</span></div>
       <ul>
         <li>Vårputs – in- och utsida</li>
         <li>Höstputs – in- och utsida</li>
@@ -144,14 +141,14 @@
       <a href="#offert" class="abo-valj" data-paket="Premium">Välj Premium</a>
     </div>
   </div>
-  <p class="abo-not">Rabatten dras på ordinarie pris, och RUT-avdraget gäller som vanligt. Ingen bindningstid.</p>
+  <p class="abo-not">Passar inget av dem exakt? Kontakta oss så skräddarsyr vi ett upplägg som passar just dig.</p>
 </section><section id="offert">
 <div class="ns-form-kort">
   <h2>Starta abonnemang</h2>
   <p class="ns-form-sub">Fyll i så hör vi av oss samma dag och bekräftar pris och första tid. Inte bindande.</p>
   <form class="ns-form" id="offertForm" data-enkel-form="Abonnemang" action="/.netlify/functions/send-email" method="POST">
     <input type="hidden" name="kalla" value="Abonnemang" />
-    <label class="ns-falt"><span>Paket *</span><select name="kalkyl" id="aboPaket" required><option value="" disabled selected>Välj paket</option><option value="Abonnemang Bas (10%)">Bas – 10% rabatt</option><option value="Abonnemang Plus (15%)">Plus – 15% rabatt</option><option value="Abonnemang Premium (15%)">Premium – 15% rabatt</option></select></label>
+    <label class="ns-falt"><span>Paket *</span><select name="kalkyl" id="aboPaket" required><option value="" disabled selected>Välj paket</option><option value="Abonnemang Bas">Bas</option><option value="Abonnemang Plus">Plus</option><option value="Abonnemang Premium">Premium</option><option value="Abonnemang skräddarsytt">Skräddarsytt – vi tar fram ett förslag</option></select></label>
     <label class="ns-falt"><span>Vad gäller det? *</span><select name="bostadstyp" required><option value="" disabled selected>Välj vad det gäller</option><option value="Villa">Villa / radhus</option><option value="Lägenhet">Lägenhet</option><option value="Företag">Företag / butik</option></select></label>
     <label class="ns-falt"><span>Namn *</span><input type="text" name="namn" autocomplete="name" placeholder="Ditt fullständiga namn" required /></label>
     <label class="ns-falt"><span>Telefon *</span><input type="tel" name="telefon" autocomplete="tel" placeholder="070-123 45 67" required /></label>
@@ -170,7 +167,7 @@
     a.addEventListener('click', function () {
       var sel = document.getElementById('aboPaket');
       var p = a.getAttribute('data-paket');
-      Array.from(sel.options).forEach(function (o) { if (o.value.indexOf(' ' + p + ' ') > -1) sel.value = o.value; });
+      Array.from(sel.options).forEach(function (o) { if (o.value === 'Abonnemang ' + p) sel.value = o.value; });
     });
   });
 </script>
