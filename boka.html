@@ -34,6 +34,25 @@
   <a class="bk-rund" href="index.html" aria-label="Stäng"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></a>
 </div>
 
+<!-- Steg 0: postnummer (Hemfrids första sida) – nås via Få offert och Villa -->
+<main class="bk-start" id="steg-start" hidden>
+  <div class="bk-start-text">
+    <p class="bk-etikett">Fönsterputs i Jönköping</p>
+    <h1>Dags för fönsterputs?</h1>
+    <p class="bk-start-under">Fast pris. Noggrant. Enkelt. Med fokus på kvalitet.</p>
+    <div class="bk-start-form">
+      <label for="bkStartPostnr">Ange ditt postnummer</label>
+      <input id="bkStartPostnr" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="T.ex. 561 31" />
+      <button type="button" id="bkStartFortsatt">Fortsätt</button>
+      <p class="bk-fel" id="bkStartFel" role="alert" hidden></p>
+    </div>
+    <ul class="bk-bockar bk-bockar-lista">
+      <li>Fast pris efter RUT</li><li>5,0 i betyg på Google</li><li>Ingen bindningstid</li>
+    </ul>
+  </div>
+  <div class="bk-start-bild"><img src="images/hero-villa.jpg" alt="Villa med stora fönster i solnedgång" width="1672" height="941" /></div>
+</main>
+
 <!-- Steg 1: välj engångsputs eller abonnemang -->
 <main class="bk-sida" id="steg-val">
   <div class="bk-vanster">

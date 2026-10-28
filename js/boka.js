@@ -9,7 +9,7 @@
   var INGAR_FONSTER = 14;        // 699 kr täcker upp till 14 fönster
   var HOGA_MIN = 10;             // svåra att nå/höga fönster: 10 min per jobb
   var KARM_ANDEL = 0.15;         // karmtvätt +15 %
-  var SERVICEAVGIFT = 50;        // engångsbokning, ingen avgift för abonnemang (Tommy 2026-10-28)
+  var FRAMKORNING = 50;          // framkörningsavgift engångsbokning, mer utanför Jönköping (Tommy 2026-10-28)
   var BALKONG = { helt: { namn: 'Helt inglasad', kr: 40 }, racke: { namn: 'Endast glasräcke', kr: 20 } };
 
   // Minuter per fönster: [2 sidor, 4 sidor]
@@ -69,7 +69,7 @@
     var balkong = b.antal * BALKONG[b.balkong].kr;
     var putsning = hus + balkong > 0 ? Math.max(hus + balkong, MIN_PRIS) : 0;
     var karm = f('karmtvatt').checked ? Math.round(putsning * KARM_ANDEL) : 0;
-    var avgift = putsning && bokning !== 'abonnemang' ? SERVICEAVGIFT : 0;
+    var avgift = putsning && bokning !== 'abonnemang' ? FRAMKORNING : 0;
     return { antal: antal, balkong: b.antal, putsning: putsning, karm: karm, avgift: avgift, total: putsning + karm + avgift };
   }
 
@@ -132,11 +132,11 @@
     } else {
       html += srad('Fönsterputs', p.putsning ? kr(p.putsning) : '–');
       if (p.karm) html += srad('Karmtvätt', kr(p.karm));
-      if (p.avgift) html += '<p class="bk-srad bk-stack"><span>Serviceavgift engångsbokning</span><b>' + kr(p.avgift) + '</b></p>';
+      if (p.avgift) html += '<p class="bk-srad bk-stack"><span>Framkörningsavgift</span><b>' + kr(p.avgift) + '</b></p>';
       html += '<hr /><p class="bk-srad bk-stack"><span>Datum och tid</span><b>' + datumText() + '</b></p><hr />' +
         '<p class="bk-total"><span>Totalt</span><b>' + (p.total ? kr(p.total) + '*' : '–') + '</b></p>' +
         '<p class="bk-liten">efter rutavdrag</p>' +
-        '<p class="bk-liten" style="margin-top:14px">*Utanför Jönköping &amp; Huskvarna tillkommer en reseavgift på 50 kr.</p>';
+        '<p class="bk-liten" style="margin-top:14px">*Bor du utanför Jönköping kan framkörningsavgiften bli högre. Du får alltid veta det innan vi bekräftar tiden.</p>';
     }
     document.querySelectorAll('[data-samman]').forEach(function (el) { el.innerHTML = html; });
     document.getElementById('bkMobilText').textContent = bokning === 'abonnemang' ? 'Pris per tillfälle efter RUT' : 'Totalt efter RUT';
@@ -159,7 +159,7 @@
       delar.push('Specialfönster: ' + (s.join(', ') || 'ja'));
     } else if (valt('special')) delar.push('Specialfönster: nej');
     if (p.karm) delar.push('Karmtvätt: ja (+' + kr(p.karm) + ')');
-    if (p.avgift) delar.push('Serviceavgift engångsbokning: ' + kr(p.avgift));
+    if (p.avgift) delar.push('Framkörningsavgift: ' + kr(p.avgift));
     if (valt('husdjur')) delar.push('Husdjur: ' + valt('husdjur').toLowerCase());
     delar.push('Nyckel: ' + valt('nyckel'));
     return delar.join(' · ');
@@ -190,9 +190,12 @@
   document.querySelector('[data-fp-kalender]').addEventListener('click', function () { setTimeout(uppdatera, 0); });
 
   // ---- Stegen ----
-  var STEG = ['val', 'fonster', 'uppgifter', 'tack'];
+  var STEG = ['start', 'val', 'fonster', 'uppgifter', 'tack'];
+  function harPostnr() { return window.fpOmrade(form.postnummer.value).ok; }
   function visa(steg) {
-    if (steg !== 'val' && steg !== 'tack' && !bokning) steg = 'val';
+    if (STEG.indexOf(steg) < 0) steg = 'start';
+    if (steg !== 'start' && steg !== 'tack' && !harPostnr()) steg = 'start';
+    if ((steg === 'fonster' || steg === 'uppgifter') && !bokning) steg = 'val';
     STEG.forEach(function (s) { document.getElementById('steg-' + s).hidden = s !== steg; });
     document.body.classList.toggle('bk-abo', bokning === 'abonnemang');
     document.querySelectorAll('.bk-rubrik-engang').forEach(function (el) { el.hidden = bokning === 'abonnemang'; });
@@ -202,15 +205,36 @@
     window.scrollTo(0, 0);
   }
   function ga(steg) { if (location.hash !== '#' + steg) location.hash = steg; else visa(steg); }
-  window.addEventListener('hashchange', function () { visa(location.hash.slice(1) || 'val'); });
+  window.addEventListener('hashchange', function () { visa(location.hash.slice(1) || 'start'); });
+
+  // Steg 0: postnumret måste vara i våra områden
+  var startPostnr = document.getElementById('bkStartPostnr');
+  startPostnr.value = form.postnummer.value;
+  function startFortsatt() {
+    var o = window.fpOmrade(startPostnr.value);
+    var fel = document.getElementById('bkStartFel');
+    fel.hidden = o.ok;
+    if (!o.ok) {
+      fel.innerHTML = o.giltigt
+        ? 'Vi kommer tyvärr inte ut till ditt område än. Ring oss gärna på <a href="tel:+46793463964">079-346 39 64</a>.'
+        : 'Skriv ditt postnummer med fem siffror, t.ex. 561 31.';
+      return;
+    }
+    if (form.postnummer.value !== o.postnr) form.ort.value = '';
+    form.postnummer.value = o.postnr;
+    fyllOrt();
+    ga(bokning ? 'fonster' : 'val');
+  }
+  document.getElementById('bkStartFortsatt').addEventListener('click', startFortsatt);
+  startPostnr.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); startFortsatt(); } });
 
   document.querySelectorAll('.bk-val').forEach(function (k) {
     k.addEventListener('click', function () { bokning = k.getAttribute('data-val'); ga('fonster'); });
   });
   document.getElementById('bkTillbaka').addEventListener('click', function () {
-    var steg = location.hash.slice(1) || 'val';
-    if (steg === 'val') location.href = 'index.html';
-    else ga(steg === 'uppgifter' ? 'fonster' : 'val');
+    var steg = location.hash.slice(1) || 'start';
+    var forra = { val: 'start', fonster: 'val', uppgifter: 'fonster' }[steg];
+    if (forra) ga(forra); else location.href = 'index.html';
   });
 
   document.getElementById('bkTillUppgifter').addEventListener('click', function () {
@@ -266,5 +290,5 @@
     });
   });
 
-  visa(location.hash.slice(1) || (bokning ? 'fonster' : 'val'));
+  visa(location.hash.slice(1) || (!harPostnr() ? 'start' : bokning ? 'fonster' : 'val'));
 })();
