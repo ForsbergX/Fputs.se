@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18225187055"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-18225187055');
+    gtag('config', 'G-DX43GW5J1M');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boka fönsterputs – Forsbergs Fönsterputs</title>
+  <meta name="description" content="Boka fönsterputs i Jönköping med omnejd. Välj engångsputs eller abonnemang, räkna ut ditt fasta pris och välj dag och tid." />
+  <link rel="canonical" href="https://fputs.se/boka.html" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/kalender.css" />
+  <link rel="stylesheet" href="css/boka.css" />
+</head>
+<body class="bk">
+
+<!-- Bokningen i Hemfrid-stil (Tommy 2026-10-28): 1. en gång / abonnemang, 2. fönster och val, 3. dag, tid och uppgifter -->
+<div class="bk-topp">
+  <button type="button" class="bk-rund" id="bkTillbaka" aria-label="Tillbaka"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+  <a class="bk-rund" href="index.html" aria-label="Stäng"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></a>
+</div>
+
+<!-- Steg 1: välj engångsputs eller abonnemang -->
+<main class="bk-sida" id="steg-val">
+  <div class="bk-vanster">
+    <h1>Boka fönsterputs</h1>
+    <p class="bk-ingress">Välj om du vill boka fönsterputs på abonnemang eller som engångstjänst.</p>
+    <ul class="bk-bockar">
+      <li>Alltid fast pris</li><li>50 % RUT-avdrag</li><li>Ingen bindningstid</li>
+    </ul>
+    <button type="button" class="bk-val" data-val="engang">
+      <span>
+        <strong>In- &amp; utvändig fönsterputs – en gång</strong>
+        <ul class="bk-bockar bk-bockar-lista"><li>Snabb och enkel bokning</li><li>Skinande rent inne och ute</li><li>Alltid fast pris</li></ul>
+        <small>En flexibel engångslösning för in- och utvändig fönsterputs.</small>
+      </span>
+      <svg class="bk-pil" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+    </button>
+    <button type="button" class="bk-val" data-val="abonnemang">
+      <span>
+        <strong>In- &amp; utvändig fönsterputs – abonnemang</strong>
+        <ul class="bk-bockar bk-bockar-lista"><li>Vi hör av oss när det är dags</li><li>Skinande rent inne och ute året runt</li><li>Ingen bindningstid</li></ul>
+        <small>För dig som vill ha både in- och utsidan putsad regelbundet.</small>
+      </span>
+      <svg class="bk-pil" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+    </button>
+  </div>
+  <aside class="bk-hoger">
+    <div class="bk-ruta">
+      <h2>Fönsterputs med kvalitet och trygghet.</h2>
+      <p class="bk-citat">”Mina fönster har helt ärligt aldrig sett så här fina och rena ut! Kan varmt rekommendera honom och kommer definitivt att anlita honom igen.” – <b>Emma</b></p>
+      <hr />
+      <p>Våra kunder uppskattar oss för noggrant arbete och fast pris. 5,0 av 5 i betyg på Google från 45 recensioner. Du betalar enkelt med Swish efter jobbet.</p>
+    </div>
+  </aside>
+</main>
+
+<form id="bkForm" novalidate>
+  <input type="hidden" name="kalla" value="Bokning (boka.html)" />
+  <input type="hidden" name="bostadstyp" value="" />
+  <input type="hidden" name="kalkyl" value="" />
+  <input type="hidden" name="antal_fonster" value="" />
+  <input type="hidden" name="antal_balkongrutor" value="" />
+  <input type="hidden" name="uppskattat_pris" value="" />
+  <input type="hidden" name="pris_fore_rut" value="" />
+
+  <!-- Steg 2: fönster och val -->
+  <main class="bk-sida" id="steg-fonster" hidden>
+    <div class="bk-vanster">
+      <h1 class="bk-rubrik-engang">Fönsterputs</h1>
+      <h1 class="bk-rubrik-abo">In- &amp; utvändig fönsterputs – abonnemang</h1>
+      <p class="bk-ingress bk-rubrik-abo">Med återkommande fönsterputs ser vi till att dina fönster alltid är skinande rena, utan att du behöver lyfta ett finger.</p>
+      <ul class="bk-bockar bk-rubrik-engang"><li>Alltid fast pris</li><li>50 % RUT-avdrag</li><li>Ingen bindningstid</li></ul>
+      <ul class="bk-bockar bk-rubrik-abo"><li>Alltid rena fönster</li><li>Vi hör av oss</li><li>Ingen bindningstid</li></ul>
+
+      <h2 class="bk-h2">Fönsterinformation</h2>
+      <p class="bk-fraga">Ange antalet fönster*</p>
+      <div class="bk-rader" id="bkRader"></div>
+      <p class="bk-fel" id="bkFelFonster" hidden>Ange alla fönster som ska putsas för att fortsätta.</p>
+      <p class="bk-mobilpris"><span id="bkMobilText">Totalt efter RUT</span><b id="bkMobilpris">0 kr</b></p>
+
+      <p class="bk-fraga">Har du några specialfönster?*</p>
+      <label class="bk-radio bk-radio-stor"><input type="radio" name="special" value="Ja" /><span><strong>Ja</strong><small>Med specialfönster menar vi fönster som öppnas utåt, är svåra att nå eller inte går att öppna.</small></span></label>
+      <label class="bk-radio"><input type="radio" name="special" value="Nej" /><span><strong>Nej</strong></span></label>
+      <p class="bk-fel" id="bkFelSpecial" hidden>Välj Ja eller Nej.</p>
+      <div id="bkSpecial" hidden>
+        <p class="bk-fraga">Ange vilka specialfönster du har*</p>
+        <label class="bk-check"><input type="checkbox" name="special_utat" value="Ja" /><span><strong>Jag har fönster som öppnas utåt</strong><small>Utåtgående fönster putsas på 4 sidor – välj 4 sidor på dem ovan.</small></span></label>
+        <label class="bk-check"><input type="checkbox" name="special_hoga" value="Ja" /><span><strong>Jag har fönster som är svåra att nå</strong><small>Höga fönster tar vi med stege eller renvattensystem.</small></span></label>
+        <label class="bk-check"><input type="checkbox" name="special_fasta" value="Ja" /><span><strong>Jag har fönster som inte går att öppna</strong></span></label>
+      </div>
+
+      <h2 class="bk-h2">Tilläggstjänster</h2>
+      <p class="bk-fraga">Vill du lägga till något mer?</p>
+      <label class="bk-check"><input type="checkbox" name="karmtvatt" value="Ja" /><span><strong>Ja, jag vill lägga till karmtvätt</strong><small>För bästa resultat rekommenderar vi att du lägger till karmtvätt (inkluderar även fönsterbågar).</small></span></label>
+
+      <p class="bk-fraga">Är det något mer vi behöver veta?</p>
+      <p class="bk-hjalp">Ange om du har några specialfönster eller annat som är bra för oss att veta.</p>
+      <textarea name="meddelande" rows="2"></textarea>
+
+      <hr class="bk-linje" />
+      <h2 class="bk-h2">Om din bostad</h2>
+      <p class="bk-fraga">Har du husdjur hemma?*</p>
+      <label class="bk-radio"><input type="radio" name="husdjur" value="Ja" /><span><strong>Ja</strong></span></label>
+      <label class="bk-radio"><input type="radio" name="husdjur" value="Nej" /><span><strong>Nej</strong></span></label>
+      <p class="bk-fraga">Nyckelhantering*</p>
+      <label class="bk-radio"><input type="radio" name="nyckel" value="Jag är hemma och öppnar" checked /><span><strong>Jag är hemma och öppnar</strong></span></label>
+      <label class="bk-radio"><input type="radio" name="nyckel" value="Jag lämnar nyckeln på en överenskommen plats" /><span><strong>Jag lämnar nyckeln på en överenskommen plats</strong></span></label>
+      <p class="bk-fel" id="bkFelBostad" hidden>Svara på frågorna om din bostad.</p>
+
+      <hr class="bk-linje" />
+      <div class="bk-fortsatt-rad">
+        <button type="button" class="bk-fortsatt" id="bkTillUppgifter">Fortsätt</button>
+        <p class="bk-hjalp">*Fyll i dessa fält för att fortsätta</p>
+      </div>
+    </div>
+    <aside class="bk-hoger"><div class="bk-ruta bk-samman" data-samman></div></aside>
+  </main>
+
+  <!-- Steg 3: dag, tid och uppgifter -->
+  <main class="bk-sida" id="steg-uppgifter" hidden>
+    <div class="bk-vanster">
+      <h1 class="bk-rubrik-engang">Välj dag och tid</h1>
+      <h1 class="bk-rubrik-abo">Välj startdatum</h1>
+      <div class="fpk" data-fp-kalender>
+        <p class="fpk-titel">Önskad dag och tid</p>
+        <p class="fpk-sub">Välj en dag och en tid som passar. Vi bekräftar den slutliga tiden via SMS.</p>
+        <div class="fpk-kal"></div>
+        <div class="fpk-tider"></div>
+        <p class="fpk-fel" hidden>Välj dag och tid i kalendern.</p>
+        <input type="hidden" name="onskat_datum_1" value="" />
+        <input type="hidden" name="onskad_tid" value="" />
+      </div>
+
+      <hr class="bk-linje" />
+      <h2 class="bk-h2">Dina uppgifter</h2>
+      <label class="bk-falt"><span>Namn*</span><input type="text" name="namn" autocomplete="name" required /></label>
+      <label class="bk-falt"><span>Telefon*</span><input type="tel" name="telefon" autocomplete="tel" required /></label>
+      <label class="bk-falt"><span>Adress*</span><input type="text" name="adress" autocomplete="street-address" placeholder="Gata och nummer" required /></label>
+      <div class="bk-falt-rad">
+        <label class="bk-falt"><span>Postnummer*</span><input type="text" name="postnummer" inputmode="numeric" autocomplete="postal-code" required /></label>
+        <label class="bk-falt"><span>Ort*</span><input type="text" name="ort" autocomplete="address-level2" required /></label>
+      </div>
+      <label class="bk-falt"><span>E-post</span><input type="email" name="email" autocomplete="email" /></label>
+      <p class="bk-fel" id="bkFelUppgifter" hidden>Fyll i namn, telefon och adress.</p>
+
+      <hr class="bk-linje" />
+      <div class="bk-fortsatt-rad">
+        <button type="submit" class="bk-fortsatt bk-skicka" id="bkSkicka">Skicka bokning</button>
+        <p class="bk-hjalp">Bokningen är inte bindande förrän vi har bekräftat tiden via SMS.</p>
+        <p class="bk-fel" id="bkFelSkicka" hidden>Något gick fel. Prova igen, eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
+      </div>
+    </div>
+    <aside class="bk-hoger"><div class="bk-ruta bk-samman" data-samman></div></aside>
+  </main>
+</form>
+
+<!-- Tack -->
+<main class="bk-sida bk-tack" id="steg-tack" hidden>
+  <div class="bk-vanster">
+    <h1>Tack för din bokning!</h1>
+    <p class="bk-ingress">Vi har fått din förfrågan och bekräftar tiden via SMS, oftast samma dag.</p>
+    <a class="bk-fortsatt" href="index.html">Till startsidan</a>
+  </div>
+</main>
+
+<script src="js/postnummer.js"></script>
+<script src="js/kalender.js"></script>
+<script src="js/boka.js"></script>
+</body>
+</html>

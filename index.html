@@ -1452,13 +1452,14 @@
 <link rel="stylesheet" href="css/ny-start.css" />
 <link rel="stylesheet" href="css/glas-tema.css" />
 <link rel="stylesheet" href="css/recensioner.css" />
+<link rel="stylesheet" href="css/hf-hero.css" />
 </head>
 <body>
 <!-- NAV -->
 <nav>
   <a class="nav-logo nav-logo-text" href="index.html" aria-label="Forsbergs Fönsterputs"><span>FORSBERGS</span><span>FÖNSTERPUTS</span></a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="#tjanster">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="foretag.html">Företag</a></li><li><a href="#fonsterputs">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li><a href="abonnemang.html">Abonnemang</a></li><li class="nav-dropdown"><a href="om-oss.html">Om oss</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om oss</a></li><li><a href="hur-jag-jobbar.html">Metod &amp; utrustning</a></li><li><a href="referenser.html">Referenser</a></li><li><a href="recensioner.html">Recensioner</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta oss</a></li>
+    <li><a href="index.html">Hem</a></li><li class="nav-dropdown"><a href="#tjanster">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="foretag.html">Företag</a></li><li><a href="#fonsterputs">Fönsterputs</a></li><li><a href="solcellspaneltvatt.html">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="om-oss.html">Om oss</a><ul class="nav-dropdown-menu"><li><a href="om-oss.html">Om oss</a></li><li><a href="hur-jag-jobbar.html">Metod &amp; utrustning</a></li><li><a href="referenser.html">Referenser</a></li><li><a href="recensioner.html">Recensioner</a></li></ul></li><li><a href="omraden.html">Områden</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakta-mig.html">Kontakta oss</a></li>
     <li><a href="#tjanster" class="nav-cta nav-cta-desk">Få prisförslag</a></li>
   </ul>
   <a class="nav-tel" href="tel:+46793463964"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>079-346 39 64</a>
@@ -1468,15 +1469,43 @@
 </nav>
 <div class="page-wrap">
 <div class="nav-overlay" id="navOverlay"></div>
-<section class="ns-hero" id="hero">
-  <img class="ns-hero-bild hero-photo hero-loop" src="images/hero-villa.jpg" alt="Villa med stora fönster i solnedgång" width="1672" height="941" fetchpriority="high" />
-  <div class="ns-hero-text">
-    <h1>Fönsterputs på elitnivå i Jönköping</h1>
-    <p class="ns-hero-p">Fönsterputs för villa och lägenhet i Jönköping med omnejd. Fast pris, noggrant jobb och ingen bindningstid.</p>
-    <div class="ns-hero-knappar">
-      <a class="ns-knapp ns-knapp-rod" href="kontakta-mig.html#formular">Få offert <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="ns-knapp ns-knapp-vit" href="#tjanster">Se tjänster</a>
-    </div>
+<!-- Topp i Hemfrid-stil (Tommy 2026-10-28): text + postnummer + Fortsätt vänster, bild höger -->
+<section class="hf-hero" id="hero">
+  <div class="hf-text">
+    <p class="hf-etikett">Fönsterputs i Jönköping</p>
+    <h1>Dags för fönsterputs?</h1>
+    <p class="hf-under">Fast pris. Noggrant. Enkelt. Med fokus på kvalitet.</p>
+    <form class="hf-form" action="boka.html" method="get">
+      <label for="hfPostnr">Ange ditt postnummer</label>
+      <input id="hfPostnr" name="postnr" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="T.ex. 561 31" />
+      <button type="submit">Fortsätt</button>
+      <p class="hf-fel" id="hfFel" role="alert" hidden></p>
+    </form>
+    <script src="js/postnummer.js"></script>
+    <script>
+      // Bara postnummer i våra områden går vidare till bokningen
+      document.querySelector('.hf-form').addEventListener('submit', function (e) {
+        var o = window.fpOmrade(document.getElementById('hfPostnr').value);
+        var fel = document.getElementById('hfFel');
+        if (o.ok) return;
+        e.preventDefault();
+        fel.innerHTML = o.giltigt
+          ? 'Vi kommer tyvärr inte ut till ditt område än. Ring oss gärna på <a href="tel:+46793463964">079-346 39 64</a>.'
+          : 'Skriv ditt postnummer med fem siffror, t.ex. 561 31.';
+        fel.hidden = false;
+      });
+    </script>
+    <ul class="hf-bockar">
+      <li>Fast pris efter RUT</li>
+      <li>5,0 i betyg på Google</li>
+      <li>Ingen bindningstid</li>
+    </ul>
+  </div>
+  <div class="hf-bild"><img src="images/hero-villa.jpg" alt="Villa med stora fönster i solnedgång" width="1672" height="941" fetchpriority="high" /></div>
+</section>
+
+<section class="ns-sektion hf-efter" aria-label="Därför väljer kunder oss">
+  <div class="ns-inner">
     <a class="rk-betyg ns-hero-rk" href="https://www.google.com/search?q=Forsbergs+F%C3%B6nsterputs+J%C3%B6nk%C3%B6ping+recensioner" target="_blank" rel="noopener"><svg class="rk-g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span class="rk-stj" aria-label="5 av 5 stjärnor">★★★★★</span><b>5,0 / 5</b><u>(45 recensioner)</u></a>
     <div class="gl-ikoner">
       <div class="gl-ikon"><span class="ns-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.6-7 10-4-1.4-7-5.4-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><strong>Fast pris</strong><span>Du vet priset innan vi börjar. Inga dolda avgifter.</span></div>

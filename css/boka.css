@@ -1,0 +1,127 @@
+/* Bokningen (boka.html) i Hemfrid-stil – Tommy 2026-10-28 */
+:root {
+  --bk-bg: #f5f3f0;
+  --bk-ink: #1d1d1f;
+  --bk-mjuk: #55585c;
+  --bk-kant: #cfc9c0;
+  --bk-navy: #1e2b3c;
+  --bk-aktiv: #eef2f7;
+  --bk-ruta: #ece8e3;
+  --bk-rod: #b3131f;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body.bk { margin: 0; background: var(--bk-bg); color: var(--bk-ink); font-family: Montserrat, Arial, sans-serif; font-size: 16px; line-height: 1.5; }
+.bk [hidden] { display: none !important; }
+.bk h1 { font-size: clamp(28px, 6vw, 40px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; text-align: center; margin: 0 0 14px; }
+.bk-h2 { font-size: 21px; font-weight: 700; margin: 36px 0 14px; }
+
+/* Rundade knappar uppe: tillbaka och stäng */
+.bk-topp { display: flex; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 14px 16px 0; }
+.bk-rund { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--bk-ink); background: transparent; display: grid; place-items: center; cursor: pointer; color: var(--bk-ink); }
+.bk-rund svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.bk-rund[aria-hidden="true"] { visibility: hidden; }
+
+/* Två kolumner: innehåll vänster, ruta höger */
+.bk-sida { display: grid; grid-template-columns: minmax(0, 560px) 330px; gap: 64px; justify-content: center; padding: 12px 16px 64px; }
+.bk-vanster { min-width: 0; }
+.bk-hoger { min-width: 0; }
+.bk-ruta { background: var(--bk-ruta); padding: 26px 24px; position: sticky; top: 16px; }
+.bk-ruta h2 { font-size: 22px; font-weight: 600; line-height: 1.35; margin: 0 0 22px; }
+.bk-ruta p { font-size: 15px; color: #3a3d41; margin: 0; }
+.bk-ruta hr { border: 0; border-top: 1px solid #b9b2a8; margin: 20px 0; }
+.bk-citat { font-style: italic; }
+.bk-citat b { font-style: normal; }
+.bk-ingress { text-align: center; color: #3a3d41; max-width: 440px; margin: 0 auto 22px; }
+
+/* Bockar */
+.bk-bockar { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; padding: 0; margin: 0 0 34px; font-size: 15px; }
+.bk-bockar li, .bk-bockar-lista li { display: flex; align-items: center; gap: 8px; }
+.bk-bockar li::before { content: ""; flex: none; width: 19px; height: 19px; border-radius: 50%; background: var(--bk-navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 12px no-repeat; }
+.bk-bockar-lista { display: grid; justify-content: start; gap: 6px; margin: 10px 0 12px; }
+
+/* Valkorten i steg 1 */
+.bk-val { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; background: #fff; border: 1px solid var(--bk-kant); border-radius: 4px; padding: 22px 22px; margin: 0 0 10px; font: inherit; color: inherit; cursor: pointer; }
+.bk-val:hover { border-color: var(--bk-navy); }
+.bk-val > span { flex: 1; }
+.bk-val strong { font-size: 18px; font-weight: 600; }
+.bk-val small { font-size: 13px; color: var(--bk-mjuk); }
+.bk-pil { flex: none; width: 24px; height: 24px; fill: none; stroke: var(--bk-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Frågor */
+.bk-fraga { font-weight: 600; margin: 26px 0 10px; }
+.bk-hjalp { font-size: 14px; color: var(--bk-mjuk); margin: -4px 0 10px; }
+.bk-fel { color: var(--bk-rod); font-size: 15px; margin: 8px 0 0; }
+.bk-linje { border: 0; border-top: 1px solid #c9c2b8; margin: 36px 0 0; }
+
+/* Fönsterrader med − antal + */
+.bk-rad { background: #fff; border: 1px solid var(--bk-kant); border-radius: 4px; margin: 0 0 9px; }
+.bk-rad.aktiv { border-color: var(--bk-navy); }
+.bk-rad-topp { display: flex; align-items: center; gap: 12px; min-height: 76px; padding: 10px 16px; }
+.bk-rad.aktiv .bk-rad-topp { background: var(--bk-aktiv); border-bottom: 1px solid var(--bk-navy); }
+.bk-rad-namn { flex: 1; min-width: 0; }
+.bk-rad-namn strong { display: block; font-size: 17px; font-weight: 600; }
+.bk-rad-namn small { display: block; font-size: 13px; color: var(--bk-mjuk); }
+.bk-steg { display: flex; align-items: center; gap: 14px; }
+.bk-steg button { width: 26px; height: 26px; border-radius: 3px; border: 0; background: var(--bk-navy); color: #fff; font-size: 20px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
+.bk-steg button:disabled { background: #d6d2cc; color: #77746f; cursor: default; }
+.bk-steg output { width: 44px; height: 44px; border: 1px solid var(--bk-kant); border-radius: 6px; background: #fff; display: grid; place-items: center; font-size: 17px; }
+.bk-rad.aktiv .bk-steg output { border-color: var(--bk-navy); }
+.bk-rad-panel { padding: 14px 16px 16px; }
+.bk-rad-panel p { font-size: 15px; color: #3a3d41; margin: 0 0 10px; }
+.bk-rad-panel p + .bk-radio { margin-top: 0; }
+.bk-rad-panel .bk-radio + p { margin-top: 16px; }
+
+/* Radioknappar och kryssrutor som kort */
+.bk-radio, .bk-check { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--bk-kant); border-radius: 4px; padding: 16px 16px; margin: 0 0 9px; cursor: pointer; }
+.bk-radio { flex-direction: row-reverse; justify-content: space-between; }
+.bk-radio span, .bk-check span { flex: 1; }
+.bk-radio strong, .bk-check strong { display: block; font-size: 16.5px; font-weight: 600; }
+.bk-radio small, .bk-check small { display: block; font-size: 14.5px; color: #3a3d41; margin-top: 6px; }
+.bk-radio:has(input:checked), .bk-check:has(input:checked) { border-color: var(--bk-navy); background: var(--bk-aktiv); }
+.bk-radio input { flex: none; width: 22px; height: 22px; margin: 0; accent-color: var(--bk-navy); }
+.bk-check input { flex: none; width: 16px; height: 16px; margin: 0; accent-color: var(--bk-navy); align-self: flex-start; margin-top: 4px; }
+
+/* Textfält */
+.bk textarea, .bk-falt input { width: 100%; font: inherit; font-size: 16px; color: var(--bk-ink); background: #fff; border: 1px solid var(--bk-kant); border-radius: 4px; padding: 14px 14px; min-height: 54px; }
+.bk textarea { resize: vertical; }
+.bk textarea:focus, .bk-falt input:focus { outline: 2px solid var(--bk-navy); outline-offset: -1px; }
+.bk-falt { display: block; margin: 0 0 14px; }
+.bk-falt span { display: block; font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+.bk-falt-rad { display: grid; grid-template-columns: 1fr 1.4fr; gap: 12px; }
+
+/* Fortsätt-knappen */
+.bk-fortsatt-rad { text-align: center; padding-top: 40px; }
+.bk-fortsatt { display: inline-block; min-width: 196px; padding: 16px 28px; border: 2px solid var(--bk-ink); border-radius: 4px; background: transparent; color: var(--bk-ink); font: inherit; font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; text-decoration: none; cursor: pointer; }
+.bk-fortsatt:hover, .bk-skicka { background: var(--bk-ink); color: #fff; }
+.bk-skicka:disabled { opacity: 0.6; cursor: default; }
+.bk-fortsatt-rad .bk-hjalp { margin: 14px 0 0; font-size: 13px; }
+
+/* Sammanställning */
+.bk-samman h2 { margin-bottom: 18px; }
+.bk-srad { display: flex; justify-content: space-between; gap: 12px; font-size: 16px; margin: 0 0 12px; }
+.bk-srad b { font-weight: 600; white-space: nowrap; }
+.bk-srad.bk-stack { display: block; }
+.bk-srad.bk-stack b { display: block; white-space: normal; }
+.bk-samman .bk-liten { font-size: 13px; color: #3a3d41; }
+.bk-total { display: flex; justify-content: space-between; font-size: 19px; margin: 0; }
+.bk-total b { font-weight: 600; }
+
+.bk-tack { grid-template-columns: minmax(0, 560px); text-align: center; padding-top: 60px; }
+
+/* Mobil: en kolumn, sammanställningen under innehållet och ett pris direkt under fönstren */
+.bk-mobilpris { display: none; }
+@media (max-width: 900px) {
+  .bk-sida { grid-template-columns: minmax(0, 1fr); gap: 28px; max-width: 600px; margin: 0 auto; }
+  .bk-ruta { position: static; }
+  .bk-mobilpris { display: flex; justify-content: space-between; align-items: baseline; background: var(--bk-ruta); padding: 14px 16px; margin: 4px 0 0; font-size: 15px; }
+  .bk-mobilpris b { font-size: 19px; font-weight: 700; }
+}
+@media (max-width: 480px) {
+  .bk-rad-topp { padding: 10px 12px; gap: 8px; }
+  .bk-steg { gap: 8px; }
+  .bk-steg output { width: 40px; height: 40px; }
+  .bk-bockar { font-size: 14px; gap: 8px 12px; }
+  .bk-val { padding: 18px 16px; }
+  .bk-val strong { font-size: 17px; }
+}
