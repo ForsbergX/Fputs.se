@@ -17,6 +17,8 @@
     }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      // Bokningskalendern (om formuläret har en) kräver dag och tid
+      if (window.fpKalenderKlar && !window.fpKalenderKlar(form)) return;
       fel.hidden = true;
       btn.disabled = true;
       fetch(form.action, {

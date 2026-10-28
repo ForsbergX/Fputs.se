@@ -83,6 +83,7 @@
   <link rel="stylesheet" href="css/bottombar.css" />
 <link rel="stylesheet" href="css/tema.css" />
 <link rel="stylesheet" href="css/enkel-form.css" />
+<link rel="stylesheet" href="css/kalender.css" />
 <link rel="stylesheet" href="css/glas-sidor.css" />
 <link rel="stylesheet" href="css/glid.css" />
 <style>@media (max-width: 768px) { body { padding-bottom: 0 !important; } }</style>
@@ -152,6 +153,15 @@
     <label class="ns-falt"><span>Telefon *</span><input type="tel" name="telefon" autocomplete="tel" placeholder="070-123 45 67" required /></label>
     <label class="ns-falt"><span>Adress *</span><input type="text" name="adress" autocomplete="street-address" placeholder="Gata och ort" required /></label>
     <label class="ns-falt"><span>E-post</span><input type="email" name="email" autocomplete="email" placeholder="din@email.se" /></label>
+    <div class="fpk" data-fp-kalender>
+      <p class="fpk-titel">Önskad dag och tid</p>
+      <p class="fpk-sub">Välj en dag och en tid som passar. Vi bekräftar den slutliga tiden via SMS.</p>
+      <div class="fpk-kal"></div>
+      <div class="fpk-tider"></div>
+      <p class="fpk-fel" hidden>Välj dag och tid i kalendern.</p>
+      <input type="hidden" name="onskat_datum_1" value="" />
+      <input type="hidden" name="onskad_tid" value="" />
+    </div>
     <label class="ns-falt"><span>Beskriv vad du behöver *</span><textarea name="meddelande" rows="4" placeholder="T.ex. villa i Huskvarna, ca 15 fönster, in- och utsida…" required></textarea></label>
     <button type="submit" class="ns-skicka">Skicka förfrågan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></button>
     <p class="ns-fel" hidden>Något gick fel. Prova igen, eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
@@ -471,6 +481,7 @@
   })();
 </script>
 <script src="js/bilder.js"></script>
+<script src="js/kalender.js"></script>
 <script src="js/enkel-form.js"></script>
 <script>
   // Lägenhet: storlek, inglasad balkong och ungefärligt pris (samma som förut)

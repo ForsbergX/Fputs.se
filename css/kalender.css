@@ -21,3 +21,8 @@
 .fpk-tid.fpk-vald { border-color: #D1101F; background: #FFF4F5; }
 .fpk-fel { margin: 10px 0 0; padding: 10px 12px; border-radius: 10px; background: #FFF4F5; border: 1px solid #F3B6BC; color: #A50D18; font-size: 14px; font-weight: 700; }
 @media (max-width: 480px) { .fpk-dag small { display: none; } }
+
+/* Glastemat (glas-sidor.css) gör text i sektioner vit – kalendern ligger i ett ljust kort */
+html body .fpk { color: #0D0F11; }
+html body .fpk .fpk-sub, html body .fpk .fpk-grid > span, html body .fpk .fpk-tid span { color: #4A5259; }
+html body .fpk .fpk-fel { color: #A50D18; }
