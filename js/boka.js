@@ -15,12 +15,12 @@
   // Minuter per fönster: [2 sidor, 4 sidor]
   var SPROJS_MIN = { 2: 16 / 3, 3: 20 / 3, 4: 8 };
   var TYPER = [
-    { id: 'L1', namn: '1-luft', info: 'Fönster med en båge', min: [2, 4] },
-    { id: 'L2', namn: '2-luft', info: 'Fönster med två bågar', min: [4, 8] },
-    { id: 'S', namn: 'Med spröjs', info: '2-luft med spröjs', sprojs: true },
-    { id: 'O', namn: 'Överliggande', info: '2-luft med liggande ruta överst', min: [4.5, 10] },
-    { id: 'U', namn: 'Underliggande', info: '2-luft med liggande ruta nederst', min: [3, 10] },
-    { id: 'B', namn: 'Inglasad balkong', info: 'Antal glasrutor', balkong: true }
+    // Samma fyra rader som Hemfrid, utan undertext (Tommy 2026-10-31).
+    // Utan spröjs räknas som gamla 2-luft, överhängda som gamla överliggande.
+    { id: 'L2', namn: 'Utan spröjs', min: [4, 8] },
+    { id: 'S', namn: 'Med spröjs', sprojs: true },
+    { id: 'O', namn: 'Överhängda fönster', min: [4.5, 10] },
+    { id: 'B', namn: 'Inglasad balkong', balkong: true }
   ];
   var val = {}; // per typ: { antal, sidor: 2|4, rutor: 2|3|4, balkong: 'helt'|'racke' }
   TYPER.forEach(function (t) { val[t.id] = { antal: 0, sidor: 2, rutor: 4, balkong: 'helt' }; });
@@ -94,7 +94,7 @@
           radioRad('bk-rutor', '2', '2 rutor', false) + radioRad('bk-rutor', '3', '3 rutor', false) + radioRad('bk-rutor', '4', '4 rutor', true);
       }
     }
-    rad.innerHTML = '<div class="bk-rad-topp"><div class="bk-rad-namn"><strong>' + t.namn + '</strong><small>' + t.info + '</small></div>' +
+    rad.innerHTML = '<div class="bk-rad-topp"><div class="bk-rad-namn"><strong>' + t.namn + '</strong>' + (t.info ? '<small>' + t.info + '</small>' : '') + '</div>' +
       '<div class="bk-steg"><button type="button" data-steg="-1" aria-label="Minska ' + t.namn + '" disabled>−</button><output>0</output>' +
       '<button type="button" data-steg="1" aria-label="Öka ' + t.namn + '">+</button></div></div>' +
       '<div class="bk-rad-panel" hidden>' + panel + '</div>';
@@ -191,10 +191,9 @@
 
   // ---- Stegen ----
   var STEG = ['start', 'val', 'fonster', 'uppgifter', 'tack'];
-  function harPostnr() { return window.fpOmrade(form.postnummer.value).ok; }
   function visa(steg) {
-    if (STEG.indexOf(steg) < 0) steg = 'start';
-    if (steg !== 'start' && steg !== 'tack' && !harPostnr()) steg = 'start';
+    // Postnummersteget borttaget (Tommy 2026-10-31) – postnumret kollas i stället när kunden skickar
+    if (STEG.indexOf(steg) < 0 || steg === 'start') steg = 'val';
     if ((steg === 'fonster' || steg === 'uppgifter') && !bokning) steg = 'val';
     STEG.forEach(function (s) { document.getElementById('steg-' + s).hidden = s !== steg; });
     document.body.classList.toggle('bk-abo', bokning === 'abonnemang');
@@ -205,7 +204,7 @@
     window.scrollTo(0, 0);
   }
   function ga(steg) { if (location.hash !== '#' + steg) location.hash = steg; else visa(steg); }
-  window.addEventListener('hashchange', function () { visa(location.hash.slice(1) || 'start'); });
+  window.addEventListener('hashchange', function () { visa(location.hash.slice(1) || 'val'); });
 
   // Steg 0: postnumret måste vara i våra områden
   var startPostnr = document.getElementById('bkStartPostnr');
@@ -232,8 +231,8 @@
     k.addEventListener('click', function () { bokning = k.getAttribute('data-val'); ga('fonster'); });
   });
   document.getElementById('bkTillbaka').addEventListener('click', function () {
-    var steg = location.hash.slice(1) || 'start';
-    var forra = { val: 'start', fonster: 'val', uppgifter: 'fonster' }[steg];
+    var steg = location.hash.slice(1) || 'val';
+    var forra = { fonster: 'val', uppgifter: 'fonster' }[steg];
     if (forra) ga(forra); else location.href = 'index.html';
   });
 
@@ -290,5 +289,5 @@
     });
   });
 
-  visa(location.hash.slice(1) || (!harPostnr() ? 'start' : bokning ? 'fonster' : 'val'));
+  visa(location.hash.slice(1) || (bokning ? 'fonster' : 'val'));
 })();

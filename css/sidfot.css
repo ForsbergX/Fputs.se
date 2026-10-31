@@ -27,14 +27,14 @@ footer.sidfot .footer-copy { font-size: 12.5px; color: rgba(255,255,255,.62); }
   footer.sidfot { padding: 56px 16px calc(28px + 76px); }
   footer.sidfot .footer-grid { grid-template-columns: 1fr; gap: 32px; }
 }
-/* Blå glasstil som resten av sidan (Tommy 2026-10-24): mörkblå i stället för svart, ingen röd linje, textlogga */
+/* Glasstil som resten av sidan: mörk grafit efter loggan (2026-10-31; blå i sidfot.blå-backup.css), ingen röd linje, textlogga */
 footer.sidfot {
-  background: linear-gradient(180deg, rgba(30, 43, 60, 0.92) 0%, #172231 100%) !important;
+  background: linear-gradient(180deg, rgba(22, 18, 15, 0.94) 0%, #0e0b09 100%) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.22) !important; color: rgba(255, 255, 255, 0.75);
   -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
 }
 footer.sidfot .footer-col a, footer.sidfot .footer-brand-text, footer.sidfot .footer-copy, footer.sidfot .footer-hours { color: rgba(255, 255, 255, 0.75); }
-footer.sidfot .footer-col a:hover, footer.sidfot .footer-areas-row a:hover { color: #cfe2f7; }
+footer.sidfot .footer-col a:hover, footer.sidfot .footer-areas-row a:hover { color: #ffb3b8; }
 footer.sidfot .footer-areas-row a { color: rgba(255, 255, 255, 0.68); }
 footer.sidfot .footer-grid, footer.sidfot .footer-areas-row { border-bottom-color: rgba(255, 255, 255, 0.14); }
 footer.sidfot .footer-social-link { background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 12px; }
@@ -46,7 +46,7 @@ footer.sidfot .footer-logo-text {
 footer.sidfot .footer-logo-text span:first-child { color: #ececec; font-size: 20px; letter-spacing: 0.04em; }
 footer.sidfot .footer-logo-text span:last-child { color: #d1101f; font-size: 15.5px; letter-spacing: 0.05em; }
 /* Cookie-rutan i nya stilen: frostat ljust glas, marinblå knappar, textlogga (2026-10-24) */
-html body .cookie-modal-overlay { background: rgba(20, 30, 45, 0.55) !important; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+html body .cookie-modal-overlay { background: rgba(14, 11, 9, 0.6) !important; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 html body .cookie-modal { background: rgba(255, 255, 255, 0.96) !important; border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 22px !important; box-shadow: 0 30px 70px -20px rgba(6, 12, 22, 0.7) !important; }
 html body .cookie-modal-logo { display: none !important; }
 html body .cookie-modal-header::before {
@@ -54,10 +54,10 @@ html body .cookie-modal-header::before {
   color: #ececec; font: 800 15px/1.05 'Montserrat', sans-serif; letter-spacing: 0.04em; text-align: left;
 }
 html body .cookie-modal-title { color: #14181b !important; }
-html body .cookie-modal-links a, html body .cookie-details-toggle { color: #1e2b3c !important; }
+html body .cookie-modal-links a, html body .cookie-details-toggle { color: #16120f !important; }
 html body :is(.cookie-btn-outline, .cookie-btn-solid) { border-radius: 999px !important; font-size: 14px !important; padding: 14px 18px !important; }
-html body .cookie-btn-solid { background: #1e2b3c !important; color: #fff !important; }
-html body .cookie-btn-solid:hover { background: #2a3b50 !important; }
-html body .cookie-btn-outline { color: #1e2b3c !important; border-color: rgba(30, 43, 60, 0.35) !important; }
-html body .cookie-btn-outline:hover { border-color: #1e2b3c !important; color: #1e2b3c !important; }
-html body .cookie-switch input:checked ~ .cookie-switch-track { background: #1e2b3c !important; }
+html body .cookie-btn-solid { background: #d1101f !important; color: #fff !important; }
+html body .cookie-btn-solid:hover { background: #b00d1a !important; }
+html body .cookie-btn-outline { color: #16120f !important; border-color: rgba(22, 18, 15, 0.35) !important; }
+html body .cookie-btn-outline:hover { border-color: #16120f !important; color: #16120f !important; }
+html body .cookie-switch input:checked ~ .cookie-switch-track { background: #d1101f !important; }
