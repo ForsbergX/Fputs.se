@@ -114,8 +114,10 @@ body.bk { margin: 0; background: var(--bk-bg); color: var(--bk-ink); font-family
 @media (max-width: 900px) {
   .bk-sida { grid-template-columns: minmax(0, 1fr); gap: 28px; max-width: 600px; margin: 0 auto; }
   .bk-ruta { position: static; }
-  .bk-mobilpris { display: flex; justify-content: space-between; align-items: baseline; background: var(--bk-ruta); padding: 14px 16px; margin: 4px 0 0; font-size: 15px; }
+  .bk-mobilpris { display: flex; justify-content: space-between; align-items: baseline; background: var(--bk-ruta); padding: 14px 16px; margin: 0 0 12px; font-size: 15px; }
   .bk-mobilpris b { font-size: 19px; font-weight: 700; }
+  /* Priset följer med högst upp när man scrollar vidare (Tommy 2026-10-31) */
+  .bk-mobilpris { position: sticky; top: 0; z-index: 20; box-shadow: 0 6px 14px -8px rgba(0, 0, 0, .35); }
 }
 @media (max-width: 480px) {
   .bk-rad-topp { padding: 10px 12px; gap: 8px; }
@@ -148,3 +150,6 @@ body.bk { margin: 0; background: var(--bk-bg); color: var(--bk-ink); font-family
   .bk-start-text { padding: 26px 16px 40px; }
   .bk .bk-start h1 { font-size: 34px; }
 }
+
+/* Info om spröjs: vi räknar på huset innan fast pris (Tommy 2026-10-31) */
+.bk-rad-panel p.bk-notis { margin: 0 0 14px; padding: 12px 14px; background: #fff4e5; border-left: 3px solid #d1101f; font-size: 14px; line-height: 1.5; color: #1d1a16; }

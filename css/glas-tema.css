@@ -103,7 +103,7 @@ html body .nav-toggle span { background: #fff !important; }
 /* 5 kort: på mobil (2 kolumner) tar det sista hela raden */
 @media (max-width: 759px) { .gl-ikoner > .gl-ikon:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 .gl-ikon { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 16px 10px 14px; border-radius: 16px; text-align: center; }
-.gl-ikon .ns-ikon { width: 40px; height: 40px; margin: 0 0 4px; border-radius: 12px; background: var(--gl-rod); box-shadow: none; }
+.gl-ikon .ns-ikon { width: 40px; height: 40px; margin: 0 0 4px; border-radius: 12px; background: rgba(255, 255, 255, 0.16); /* rent vitt glas, inte rött (Tommy 2026-10-31) */ box-shadow: none; }
 .gl-ikon .ns-ikon svg { width: 22px; height: 22px; stroke: #fff; }
 .gl-ikon strong { font-size: 12.5px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
 .gl-ikon span:not(.ns-ikon) { font-size: 12.5px; line-height: 1.35; color: var(--gl-mjuk); }
@@ -116,7 +116,7 @@ html body .nav-toggle span { background: #fff !important; }
 .ns-kort p { color: var(--gl-mjuk); }
 .ns-kort-lank { color: #fff; opacity: 0.9; }
 .ns-kort p.ns-kort-hemma { margin-top: -6px; font-size: 14.5px; font-weight: 700; color: #fff; }
-.ns-kort .ns-ikon { background: var(--gl-rod); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18); }
+.ns-kort .ns-ikon { background: rgba(255, 255, 255, 0.16); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18); }
 .ns-kort .ns-ikon svg { stroke: #fff; }
 
 /* ---------- Referenser ---------- */
@@ -166,7 +166,7 @@ html body .nav-toggle span { background: #fff !important; }
   .ns-kort:hover, .gl-ikon:hover { translate: 0 -6px; scale: 1.03; background: rgba(255, 255, 255, 0.2) !important; }
   .ns-ref:hover { scale: 1.02; }
   .ns-ikon { transition: scale .25s cubic-bezier(.34, 1.56, .64, 1), background .25s ease; }
-  .ns-kort:hover .ns-ikon, .gl-ikon:hover .ns-ikon { scale: 1.2; background: var(--gl-rod-2) !important; }
+  .ns-kort:hover .ns-ikon, .gl-ikon:hover .ns-ikon { scale: 1.2; background: rgba(255, 255, 255, 0.28) !important; }
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -211,3 +211,15 @@ html body .nav-toggle span { background: #fff !important; }
 
 /* Citatikonen i recensionerna: röd som loggan i stället för gul (stjärnorna får vara gula) */
 .rk-topp-tecken { background: var(--gl-rod) !important; color: #fff !important; }
+
+/* Få offert: rutan "Vad gäller det?" – vita rena kort som i bokningen (Tommy 2026-10-31) */
+.ov { position: fixed; inset: 0; margin: auto; height: fit-content; max-height: calc(100% - 32px); overflow: auto; width: min(440px, calc(100% - 32px)); padding: 0; border: 0; border-radius: 20px; background: #fff; color: #1d1a16; box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .7); }
+.ov::backdrop { background: rgba(14, 11, 9, .6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.ov-ruta { position: relative; padding: 26px 18px 18px; }
+.ov h2 { margin: 0 0 16px; font-size: 22px; font-weight: 800; color: #1d1a16; }
+.ov-stang { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid #1d1a16; background: #fff; color: #1d1a16; font-size: 22px; line-height: 1; cursor: pointer; }
+.ov-val { display: block; padding: 16px 44px 16px 16px; margin: 0 0 10px; border: 1px solid #e2ded8; border-radius: 12px; color: #1d1a16; text-decoration: none; position: relative; }
+.ov-val::after { content: "›"; position: absolute; right: 16px; top: 50%; transform: translateY(-52%); font-size: 26px; color: #1d1a16; }
+.ov-val:hover { border-color: #1d1a16; background: #f3f2f0; }
+.ov-val strong { display: block; font-size: 17px; font-weight: 700; }
+.ov-val span { display: block; font-size: 14px; color: #55585c; margin-top: 2px; }

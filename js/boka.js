@@ -20,7 +20,7 @@
     { id: 'L2', namn: 'Utan spröjs', min: [4, 8] },
     { id: 'S', namn: 'Med spröjs', sprojs: true },
     { id: 'O', namn: 'Överhängda fönster', min: [4.5, 10] },
-    { id: 'B', namn: 'Inglasad balkong', balkong: true }
+    { id: 'B', namn: 'Uterum, altanräcke eller balkong', balkong: true } // samma priser som inglasad balkong (Tommy 2026-10-31)
   ];
   var val = {}; // per typ: { antal, sidor: 2|4, rutor: 2|3|4, balkong: 'helt'|'racke' }
   TYPER.forEach(function (t) { val[t.id] = { antal: 0, sidor: 2, rutor: 4, balkong: 'helt' }; });
@@ -46,17 +46,20 @@
     var m = Math.max(90, Math.ceil(Math.round(minuter) / 5) * 5);
     return Math.ceil(TIMPRIS_15 * m / 90 / 10) * 10 - 1;
   }
-  function minPerFonster(t, v) {
-    if (t.sprojs) return SPROJS_MIN[v.rutor] * (v.sidor === 4 ? 2 : 1);
-    return t.min[v.sidor === 4 ? 1 : 0];
+  // Utåtgående fönster putsas på 4 sidor – räknas som fyrsidiga, som i gamla kalkylatorn (TIDER.md)
+  function minPerFonster(t, v, utat) {
+    var fyra = utat || v.sidor === 4;
+    if (t.sprojs) return SPROJS_MIN[v.rutor] * (fyra ? 2 : 1);
+    return t.min[fyra ? 1 : 0];
   }
 
   function rakna() {
     var antal = 0, minuter = 0;
+    var utat = valt('special') === 'Ja' && f('special_utat').checked;
     TYPER.forEach(function (t) {
       if (t.balkong) return;
       antal += val[t.id].antal;
-      minuter += val[t.id].antal * minPerFonster(t, val[t.id]);
+      minuter += val[t.id].antal * minPerFonster(t, val[t.id], utat);
     });
     var hoga = valt('special') === 'Ja' && f('special_hoga').checked;
     var hus = 0;
@@ -82,7 +85,7 @@
     rad.className = 'bk-rad';
     var panel;
     if (t.balkong) {
-      panel = '<p>Ange vad det är för typ av balkong som ska putsas</p>' +
+      panel = '<p>Ange antal glasrutor och vilken typ det är</p>' +
         radioRad('bk-balkong', 'helt', 'Helt inglasad <small>Golv till tak · 40 kr / ruta</small>', true) +
         radioRad('bk-balkong', 'racke', 'Endast glasräcke <small>Räcke till tak · 20 kr / ruta</small>', false);
     } else {
@@ -90,7 +93,9 @@
         radioRad('bk-sidor-' + t.id, '4', 'Dubbelsidiga – 4 sidor', false) +
         radioRad('bk-sidor-' + t.id, '2', 'Enkelsidiga – 2 sidor', true);
       if (t.sprojs) {
-        panel += '<p>Hur många rutor har varje båge?</p>' +
+        // Spröjs kan vara 6–8 rutor per sida – Tommy räknar på huset innan offert (2026-10-31)
+        panel = '<p class="bk-notis">Fönster med spröjs räknar vi på innan du får ett fast pris. Det kan vara 6–8 rutor per sida, upp till 32 rutor på ett fönster.</p>' + panel +
+          '<p>Hur många rutor har varje båge?</p>' +
           radioRad('bk-rutor', '2', '2 rutor', false) + radioRad('bk-rutor', '3', '3 rutor', false) + radioRad('bk-rutor', '4', '4 rutor', true);
       }
     }
@@ -148,7 +153,7 @@
     TYPER.forEach(function (t) {
       var v = val[t.id];
       if (!v.antal) return;
-      if (t.balkong) delar.push('Inglasad balkong (' + BALKONG[v.balkong].namn.toLowerCase() + '): ' + v.antal + ' rutor');
+      if (t.balkong) delar.push('Uterum/altan/balkong (' + BALKONG[v.balkong].namn.toLowerCase() + '): ' + v.antal + ' rutor');
       else delar.push(t.namn + (t.sprojs ? ' ' + v.rutor + ' rutor' : '') + ', ' + v.sidor + ' sidor: ' + v.antal + ' st');
     });
     if (valt('special') === 'Ja') {
@@ -160,8 +165,6 @@
     } else if (valt('special')) delar.push('Specialfönster: nej');
     if (p.karm) delar.push('Karmtvätt: ja (+' + kr(p.karm) + ')');
     if (p.avgift) delar.push('Framkörningsavgift: ' + kr(p.avgift));
-    if (valt('husdjur')) delar.push('Husdjur: ' + valt('husdjur').toLowerCase());
-    delar.push('Nyckel: ' + valt('nyckel'));
     return delar.join(' · ');
   }
 
@@ -240,12 +243,10 @@
     var p = uppdatera();
     var felF = p.antal + p.balkong === 0;
     var felS = !valt('special') || (valt('special') === 'Ja' && !form.querySelector('#bkSpecial input:checked'));
-    var felB = !valt('husdjur') || !valt('nyckel');
     document.getElementById('bkFelFonster').hidden = !felF;
     document.getElementById('bkFelSpecial').hidden = !felS;
     document.getElementById('bkFelSpecial').textContent = valt('special') === 'Ja' ? 'Kryssa i vilka specialfönster du har.' : 'Välj Ja eller Nej.';
-    document.getElementById('bkFelBostad').hidden = !felB;
-    var forsta = felF ? rader : felS ? document.getElementById('bkFelSpecial') : felB ? document.getElementById('bkFelBostad') : null;
+    var forsta = felF ? rader : felS ? document.getElementById('bkFelSpecial') : null;
     if (forsta) { forsta.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
     ga('uppgifter');
   });
@@ -267,7 +268,7 @@
     uppdatera();
     var data = Object.fromEntries(new FormData(form));
     data.adress = f('adress').value.trim() + ', ' + f('postnummer').value.trim() + ' ' + f('ort').value.trim();
-    ['postnummer', 'ort', 'special', 'special_utat', 'special_hoga', 'special_fasta', 'karmtvatt', 'husdjur', 'nyckel', 'bk-balkong', 'bk-rutor'].forEach(function (n) { delete data[n]; });
+    ['postnummer', 'ort', 'special', 'special_utat', 'special_hoga', 'special_fasta', 'karmtvatt', 'bk-balkong', 'bk-rutor'].forEach(function (n) { delete data[n]; });
     Object.keys(data).forEach(function (n) { if (n.indexOf('bk-sidor-') === 0) delete data[n]; });
     var knapp = document.getElementById('bkSkicka');
     var fel = document.getElementById('bkFelSkicka');

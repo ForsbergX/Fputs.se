@@ -24,7 +24,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/kalender.css" />
-  <link rel="stylesheet" href="css/boka.css" />
+  <link rel="stylesheet" href="css/boka.css?v=20261031e" />
+  <link rel="stylesheet" href="css/boka-glas.css?v=20261031k" />
 </head>
 <body class="bk">
 
@@ -108,9 +109,9 @@
 
       <h2 class="bk-h2">Fönsterinformation</h2>
       <p class="bk-fraga">Ange antalet fönster*</p>
+      <p class="bk-mobilpris"><span id="bkMobilText">Totalt efter RUT</span><b id="bkMobilpris">0 kr</b></p>
       <div class="bk-rader" id="bkRader"></div>
       <p class="bk-fel" id="bkFelFonster" hidden>Ange alla fönster som ska putsas för att fortsätta.</p>
-      <p class="bk-mobilpris"><span id="bkMobilText">Totalt efter RUT</span><b id="bkMobilpris">0 kr</b></p>
 
       <p class="bk-fraga">Har du några specialfönster?*</p>
       <label class="bk-radio bk-radio-stor"><input type="radio" name="special" value="Ja" /><span><strong>Ja</strong><small>Med specialfönster menar vi fönster som öppnas utåt, är svåra att nå eller inte går att öppna.</small></span></label>
@@ -118,7 +119,7 @@
       <p class="bk-fel" id="bkFelSpecial" hidden>Välj Ja eller Nej.</p>
       <div id="bkSpecial" hidden>
         <p class="bk-fraga">Ange vilka specialfönster du har*</p>
-        <label class="bk-check"><input type="checkbox" name="special_utat" value="Ja" /><span><strong>Jag har fönster som öppnas utåt</strong><small>Utåtgående fönster putsas på 4 sidor – välj 4 sidor på dem ovan.</small></span></label>
+        <label class="bk-check"><input type="checkbox" name="special_utat" value="Ja" /><span><strong>Jag har fönster som öppnas utåt</strong><small>Utåtgående fönster putsas på 4 sidor och räknas därför som 4 sidor i priset.</small></span></label>
         <label class="bk-check"><input type="checkbox" name="special_hoga" value="Ja" /><span><strong>Jag har fönster som är svåra att nå</strong><small>Höga fönster tar vi med stege eller renvattensystem.</small></span></label>
         <label class="bk-check"><input type="checkbox" name="special_fasta" value="Ja" /><span><strong>Jag har fönster som inte går att öppna</strong></span></label>
       </div>
@@ -130,16 +131,6 @@
       <p class="bk-fraga">Är det något mer vi behöver veta?</p>
       <p class="bk-hjalp">Ange om du har några specialfönster eller annat som är bra för oss att veta.</p>
       <textarea name="meddelande" rows="2"></textarea>
-
-      <hr class="bk-linje" />
-      <h2 class="bk-h2">Om din bostad</h2>
-      <p class="bk-fraga">Har du husdjur hemma?*</p>
-      <label class="bk-radio"><input type="radio" name="husdjur" value="Ja" /><span><strong>Ja</strong></span></label>
-      <label class="bk-radio"><input type="radio" name="husdjur" value="Nej" /><span><strong>Nej</strong></span></label>
-      <p class="bk-fraga">Nyckelhantering*</p>
-      <label class="bk-radio"><input type="radio" name="nyckel" value="Jag är hemma och öppnar" checked /><span><strong>Jag är hemma och öppnar</strong></span></label>
-      <label class="bk-radio"><input type="radio" name="nyckel" value="Jag lämnar nyckeln på en överenskommen plats" /><span><strong>Jag lämnar nyckeln på en överenskommen plats</strong></span></label>
-      <p class="bk-fel" id="bkFelBostad" hidden>Svara på frågorna om din bostad.</p>
 
       <hr class="bk-linje" />
       <div class="bk-fortsatt-rad">
@@ -199,6 +190,6 @@
 
 <script src="js/postnummer.js"></script>
 <script src="js/kalender.js"></script>
-<script src="js/boka.js"></script>
+<script src="js/boka.js?v=20261031g"></script>
 </body>
 </html>
