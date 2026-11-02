@@ -61,3 +61,10 @@ html body .cookie-btn-solid:hover { background: #b00d1a !important; }
 html body .cookie-btn-outline { color: #16120f !important; border-color: rgba(22, 18, 15, 0.35) !important; }
 html body .cookie-btn-outline:hover { border-color: #16120f !important; color: #16120f !important; }
 html body .cookie-switch input:checked ~ .cookie-switch-track { background: #d1101f !important; }
+/* Ny bildlogga (2026-11-02) */
+html body a.nav-logo-text, html body footer.sidfot a.footer-logo-text { flex-shrink: 0; padding: 0 !important; background: none !important; border-radius: 0; }
+html body a.nav-logo-text img { height: 38px; width: auto; display: block; margin-left: 6px; }
+html body footer.sidfot a.footer-logo-text img { height: 44px; width: auto; display: block; }
+@media (max-width: 768px) {
+  html body a.nav-logo-text img { height: 26px; margin-left: 2px; }
+}
