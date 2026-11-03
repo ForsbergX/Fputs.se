@@ -141,8 +141,10 @@
         <span class="ns-lgh-rubrik">Inglasad balkong <small>(valfritt)</small></span>
         <div class="ns-lgh-rad"><div><strong>Golv till tak</strong><span>40 kr / ruta</span></div><div class="ns-lgh-steg"><button type="button" data-lgh="golv" data-steg="-1" aria-label="Minska golv till tak">−</button><output id="nsGolv">0</output><button type="button" data-lgh="golv" data-steg="1" aria-label="Öka golv till tak">+</button></div></div>
         <div class="ns-lgh-rad"><div><strong>Räcke till tak</strong><span>20 kr / ruta</span></div><div class="ns-lgh-steg"><button type="button" data-lgh="tak" data-steg="-1" aria-label="Minska räcke till tak">−</button><output id="nsTak">0</output><button type="button" data-lgh="tak" data-steg="1" aria-label="Öka räcke till tak">+</button></div></div>
-        <div class="ns-lgh-pris"><span>Ungefärligt pris efter RUT</span><strong id="nsLghPris">Välj storlek</strong></div>
-        <p class="ns-lgh-ingar ns-lgh-framkorning">I priset ingår framkörningsavgift.</p>
+        <!-- Framkörningen 62,5 kr (ej RUT) läggs på efteråt och visas tydligt (Tommy 2026-11-03) -->
+        <div class="ns-lgh-pris ns-lgh-del"><span>Fönsterputs efter RUT</span><b id="nsLghPuts">–</b></div>
+        <div class="ns-lgh-pris ns-lgh-del"><span>+ Framkörningsavgift (ej RUT)</span><b>62,5 kr</b></div>
+        <div class="ns-lgh-pris"><span>Totalt med framkörning</span><strong id="nsLghPris">Välj storlek</strong></div>
         <input type="hidden" name="lagenhetsstorlek" value="" disabled />
         <input type="hidden" name="antal_balkongrutor" value="" disabled />
         <input type="hidden" name="kalkyl" value="" disabled />
@@ -504,11 +506,14 @@
       falt('lagenhetsstorlek').value = lghVal.apt;
       falt('antal_balkongrutor').value = (lghVal.golv + lghVal.tak) + ' st';
       falt('kalkyl').value = rader.join(' | ');
-      if (!lghVal.apt) { document.getElementById('nsLghPris').textContent = 'Välj storlek'; falt('uppskattat_pris').value = ''; falt('pris_fore_rut').value = ''; return; }
-      var total = lghVal.pris + lghVal.golv * 40 + lghVal.tak * 20;
-      document.getElementById('nsLghPris').textContent = total + ' kr';
-      falt('uppskattat_pris').value = total + ' kr efter RUT';
-      falt('pris_fore_rut').value = (total * 2) + ' kr före RUT';
+      if (!lghVal.apt) { document.getElementById('nsLghPris').textContent = 'Välj storlek'; document.getElementById('nsLghPuts').textContent = '–'; falt('uppskattat_pris').value = ''; falt('pris_fore_rut').value = ''; return; }
+      var puts = lghVal.pris + lghVal.golv * 40 + lghVal.tak * 20;
+      var total = puts + 62.5; // framkörning 62,5 kr inkl. moms, ej RUT
+      function sek(n) { return n.toLocaleString('sv-SE') + ' kr'; }
+      document.getElementById('nsLghPuts').textContent = sek(puts);
+      document.getElementById('nsLghPris').textContent = sek(total);
+      falt('uppskattat_pris').value = sek(total) + ' (' + sek(puts) + ' efter RUT + 62,5 kr framkörning)';
+      falt('pris_fore_rut').value = sek(puts * 2 + 62.5) + ' före RUT';
     }
     lgh.querySelectorAll('[data-apt]').forEach(function (b) {
       b.addEventListener('click', function () { lghVal.apt = b.getAttribute('data-apt'); lghVal.pris = Number(b.getAttribute('data-price')); raknaLgh(); });

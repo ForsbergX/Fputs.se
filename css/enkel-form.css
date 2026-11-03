@@ -60,6 +60,8 @@
 .ns-lgh-pris span { font-size: 14px; color: #5b6168; }
 .ns-lgh-pris strong { font-size: 24px; font-weight: 800; color: #1e2b3c; }
 .ns-lgh .ns-lgh-framkorning { margin: -8px 0 0; text-align: right; }
+.ns-lgh-del { padding-top: 0; }
+.ns-lgh-del b { font-size: 15px; font-weight: 700; color: #1e2b3c; }
 
 /* Läsbar mörk text i lägenhetsrutan även på sidor med vit text (glas-sidor) */
 html body .ns-form-kort .ns-lgh :is(span, strong, p, small, output) { color: #14181b !important; }

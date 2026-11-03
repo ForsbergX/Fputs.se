@@ -74,10 +74,8 @@
     var putsning = hus + balkong > 0 ? Math.max(hus + balkong, MIN_PRIS) : 0;
     var karm = f('karmtvatt').checked ? Math.round(putsning * KARM_ANDEL) : 0;
     var avgift = putsning && bokning !== 'abonnemang' ? FRAMKORNING : 0;
-    // Totalen = putsning + 50 kr som förut (749 + 50 = 799). Avgiften visas som 62,5 kr inkl. moms
-    // och fönsterputsraden blir resten: 799 − 62,5 = 736,5 (Tommy 2026-11-03)
-    var total = putsning ? putsning + karm + 50 : 0;
-    return { antal: antal, balkong: b.antal, putsning: putsning ? total - karm - avgift : 0, karm: karm, avgift: avgift, total: total };
+    // Framkörningen 62,5 kr (ej RUT) läggs ovanpå: 749 + 62,5 = 811,5 (Tommy 2026-11-03, under Jimmys 100 kr)
+    return { antal: antal, balkong: b.antal, putsning: putsning, karm: karm, avgift: avgift, total: putsning + karm + avgift };
   }
 
   // ---- Fönsterraderna ----
@@ -139,11 +137,12 @@
         '<p class="bk-liten">efter rutavdrag</p>' +
         '<p class="bk-liten" style="margin-top:14px">*Priset avser per tillfälle. Ditt slutliga pris fastställs när vi har gått igenom din förfrågan och återkommit med en bekräftelse.</p>';
     } else {
-      html += srad('Fönsterputs', p.putsning ? kr(p.putsning) : '–');
+      // En rad per post, pris till höger, så kunden ser vad totalen består av (Tommy 2026-11-03)
+      html += srad('Fönsterputs (efter RUT)', p.putsning ? kr(p.putsning) : '–');
       if (p.karm) html += srad('Karmtvätt', kr(p.karm));
-      if (p.avgift) html += '<p class="bk-srad bk-stack"><span>Framkörningsavgift</span><b>' + kr(p.avgift) + '</b></p>';
+      if (p.avgift) html += srad('Framkörningsavgift (ej RUT)', kr(p.avgift));
       html += '<hr /><p class="bk-srad bk-stack"><span>Datum och tid</span><b>' + datumText() + '</b></p><hr />' +
-        '<p class="bk-total"><span>Totalt</span><b>' + (p.total ? kr(p.total) + '*' : '–') + '</b></p>' +
+        '<p class="bk-total"><span>Totalt med framkörning</span><b>' + (p.total ? kr(p.total) + '*' : '–') + '</b></p>' +
         '<p class="bk-liten">efter rutavdrag</p>' +
         '<p class="bk-liten" style="margin-top:14px">*Framkörningsavgiften är ej RUT-berättigad. Bor du utanför Jönköping kan framkörningsavgiften bli högre. Du får alltid veta det innan vi bekräftar tiden.</p>';
     }
