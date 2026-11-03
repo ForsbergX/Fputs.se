@@ -9,7 +9,7 @@
   var INGAR_FONSTER = 14;        // 699 kr täcker upp till 14 fönster
   var HOGA_MIN = 10;             // svåra att nå/höga fönster: 10 min per jobb
   var KARM_ANDEL = 0.15;         // karmtvätt +15 %
-  var FRAMKORNING = 50;          // framkörningsavgift engångsbokning, mer utanför Jönköping (Tommy 2026-10-28)
+  var FRAMKORNING = 62.5;        // framkörningsavgift inkl. moms, ingen moms ovanpå (Tommy 2026-11-03), mer utanför Jönköping
   var BALKONG = { helt: { namn: 'Helt inglasad', kr: 40 }, racke: { namn: 'Endast glasräcke', kr: 20 } };
 
   // Minuter per fönster: [2 sidor, 4 sidor]
@@ -74,7 +74,10 @@
     var putsning = hus + balkong > 0 ? Math.max(hus + balkong, MIN_PRIS) : 0;
     var karm = f('karmtvatt').checked ? Math.round(putsning * KARM_ANDEL) : 0;
     var avgift = putsning && bokning !== 'abonnemang' ? FRAMKORNING : 0;
-    return { antal: antal, balkong: b.antal, putsning: putsning, karm: karm, avgift: avgift, total: putsning + karm + avgift };
+    // Totalen = putsning + 50 kr som förut (749 + 50 = 799). Avgiften visas som 62,5 kr inkl. moms
+    // och fönsterputsraden blir resten: 799 − 62,5 = 736,5 (Tommy 2026-11-03)
+    var total = putsning ? putsning + karm + 50 : 0;
+    return { antal: antal, balkong: b.antal, putsning: putsning ? total - karm - avgift : 0, karm: karm, avgift: avgift, total: total };
   }
 
   // ---- Fönsterraderna ----
@@ -142,7 +145,7 @@
       html += '<hr /><p class="bk-srad bk-stack"><span>Datum och tid</span><b>' + datumText() + '</b></p><hr />' +
         '<p class="bk-total"><span>Totalt</span><b>' + (p.total ? kr(p.total) + '*' : '–') + '</b></p>' +
         '<p class="bk-liten">efter rutavdrag</p>' +
-        '<p class="bk-liten" style="margin-top:14px">*Bor du utanför Jönköping kan framkörningsavgiften bli högre. Du får alltid veta det innan vi bekräftar tiden.</p>';
+        '<p class="bk-liten" style="margin-top:14px">*Framkörningsavgiften är ej RUT-berättigad. Bor du utanför Jönköping kan framkörningsavgiften bli högre. Du får alltid veta det innan vi bekräftar tiden.</p>';
     }
     document.querySelectorAll('[data-samman]').forEach(function (el) { el.innerHTML = html; });
     document.getElementById('bkMobilText').textContent = bokning === 'abonnemang' ? 'Pris per tillfälle efter RUT' : 'Totalt efter RUT';
@@ -165,7 +168,7 @@
       delar.push('Specialfönster: ' + (s.join(', ') || 'ja'));
     } else if (valt('special')) delar.push('Specialfönster: nej');
     if (p.karm) delar.push('Karmtvätt: ja (+' + kr(p.karm) + ')');
-    if (p.avgift) delar.push('Framkörningsavgift: ' + kr(p.avgift));
+    if (p.avgift) delar.push('Framkörningsavgift: ' + kr(p.avgift) + ' (ej RUT-berättigad)');
     return delar.join(' · ');
   }
 
