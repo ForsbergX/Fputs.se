@@ -228,6 +228,22 @@
     visa(0); start();
   });
 
+  /* Rullande citat i en befintlig ruta, t.ex. bokningen: <p class="rk-citat-rull"></p> (Tommy 2026-11-03) */
+  document.querySelectorAll('.rk-citat-rull').forEach(function (el) {
+    var i = 0;
+    el.style.transition = 'opacity .3s';
+    el.setAttribute('aria-live', 'polite');
+    function visa() {
+      var r = R[TOPP[i]];
+      el.innerHTML = '”' + r.text.replace(/<br>/g, ' ') + '” – <b>' + r.namn.split(' ')[0] + '</b>';
+    }
+    visa();
+    setInterval(function () {
+      el.style.opacity = 0;
+      setTimeout(function () { i = (i + 1) % TOPP.length; visa(); el.style.opacity = 1; }, 300);
+    }, 6000);
+  });
+
   /* Stor betygsruta (recensionssidans hero) */
   document.querySelectorAll('.rk-hero-summa').forEach(function (el) {
     el.innerHTML = '<div class="rk-stor-tal">5,0</div><div class="rk-stor-stj">★★★★★</div>' +

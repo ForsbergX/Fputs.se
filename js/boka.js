@@ -28,7 +28,8 @@
   var form = document.getElementById('bkForm');
   var rader = document.getElementById('bkRader');
   var q = new URLSearchParams(location.search);
-  var bokning = q.get('typ') === 'abonnemang' ? 'abonnemang' : (q.get('typ') === 'engang' ? 'engang' : '');
+  // Abonnemang borttaget (Tommy 2026-11-03) – gamla ?typ=abonnemang-länkar blir engångsbokning
+  var bokning = q.get('typ') ? 'engang' : '';
   // Postnumret från startsidan fylls i, och orten om vi känner igen den (js/postnummer.js)
   function fyllOrt() {
     var o = window.fpOmrade(form.postnummer.value);
