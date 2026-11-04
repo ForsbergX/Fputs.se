@@ -68,3 +68,10 @@ html body footer.sidfot a.footer-logo-text img { height: 44px; width: auto; disp
 @media (max-width: 768px) {
   html body a.nav-logo-text img { height: 26px; margin-left: 2px; }
 }
+
+/* Mobil: stoppa iOS-zoom i formulär (fokus på fält + dubbeltryck på +/− och uppladdning) */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+button, a, label, input, select, textarea, output, [role="button"] { touch-action: manipulation; }
+@media (max-width: 900px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea { font-size: 16px !important; }
+}
