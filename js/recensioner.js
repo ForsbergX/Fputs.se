@@ -126,12 +126,12 @@
       '<span class="rk-kalla">' + G + STJ + '</span></figcaption></figure>';
   }
   var summa = '<div class="rk-summa"><span class="rk-tal">5,0</span><div class="rk-summa-mitt">' + STJ +
-    '<span>' + G + '45 recensioner på Google</span></div>' +
+    '<span>' + G + '48 recensioner på Google</span></div>' +
     '<a class="rk-knapp" href="' + GOOGLE + '" target="_blank" rel="noopener">Se dem på Google</a></div>';
 
   /* Kompakt betygsrad under rubriken (bläddringsraden), så första recensionen syns direkt */
   var rad = '<a class="rk-rad-betyg" href="' + GOOGLE + '" target="_blank" rel="noopener">' + G +
-    '<span class="rk-stj">★★★★★</span><b>5,0</b><span>45 recensioner på Google</span></a>';
+    '<span class="rk-stj">★★★★★</span><b>5,0</b><span>48 recensioner på Google</span></a>';
 
   document.querySelectorAll('.rk-block[data-rk]').forEach(function (el) {
     var alla = el.dataset.rk === 'alla';
@@ -247,7 +247,7 @@
   /* Stor betygsruta (recensionssidans hero) */
   document.querySelectorAll('.rk-hero-summa').forEach(function (el) {
     el.innerHTML = '<div class="rk-stor-tal">5,0</div><div class="rk-stor-stj">★★★★★</div>' +
-      '<p class="rk-stor-text">' + G + '<span>Baserat på <b>45 recensioner</b> på Google</span></p>' +
+      '<p class="rk-stor-text">' + G + '<span>Baserat på <b>48 recensioner</b> på Google</span></p>' +
       '<div class="rk-stor-knappar"><a class="rk-knapp" href="' + GOOGLE + '" target="_blank" rel="noopener">Se alla på Google</a>' +
       '<a class="rk-knapp rk-knapp-glas" href="kontakta-mig.html#formular">Få offert →</a></div>';
   });
