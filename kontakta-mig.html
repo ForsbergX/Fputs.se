@@ -69,7 +69,7 @@
       box-shadow: 0 18px 40px -22px rgba(8,14,24,0.7), inset 0 1px 0 rgba(255,255,255,0.25); transition: translate .25s ease, scale .25s ease, background .25s ease; }
     .kt-kort span { display: block; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
     .kt-kort strong { display: block; margin-top: 3px; font-size: 17px; font-weight: 700; line-height: 1.35; color: #fff; }
-    .kt-ikon { display: grid; place-items: center; flex: 0 0 48px; width: 48px; height: 48px; border-radius: 14px; background: rgba(255,255,255,0.16); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18); transition: scale .25s cubic-bezier(.34,1.56,.64,1); }
+    .kt-ikon, .kt-kort .kt-ikon { display: grid; place-items: center; flex: 0 0 48px; width: 48px; height: 48px; border-radius: 14px; background: rgba(255,255,255,0.16); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18); transition: scale .25s cubic-bezier(.34,1.56,.64,1); }
     .kt-ikon svg { width: 22px; height: 22px; color: #fff; }
     @media (hover: hover) { a.kt-kort:hover { translate: 0 -4px; scale: 1.02; background: rgba(255,255,255,0.2); } a.kt-kort:hover .kt-ikon { scale: 1.15; } }
     .kt-layout .book-right .ns-form-kort { margin: 0; max-width: none; }
@@ -88,6 +88,35 @@
 <link rel="stylesheet" href="css/glid.css" />
 <style>@media (max-width: 768px) { body { padding-bottom: 0 !important; } }</style>
 <link rel="stylesheet" href="css/recensioner.css" />
+  <style>
+    /* Samma tre punkter som bokningen (Tommy 2026-11-07) */
+    .kt-bockar { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; padding: 0; margin: 16px 0 0; font-size: 15px; color: #fff; }
+    .kt-bockar li { display: flex; align-items: center; gap: 8px; }
+    .kt-bockar li::before { content: ""; flex: none; width: 19px; height: 19px; border-radius: 50%; background: #d1101f url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 12px no-repeat; }
+    /* Mobil: fast rad längst ner med "Visa detaljer" + pris, som Hemfrid (Tommy 2026-11-07).
+       Prisraderna i formuläret visas här i stället. */
+    .kt-detaljbar { display: none; }
+    @media (max-width: 900px) {
+      .ns-lgh .ns-lgh-pris { display: none !important; }
+      .kt-detaljbar:not([hidden]) { display: flex; flex-direction: column; position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; background: #fff; color: #1d1a16; box-shadow: 0 -6px 18px rgba(0, 0, 0, .18); border-radius: 16px 16px 0 0; padding-bottom: env(safe-area-inset-bottom); font-family: inherit; }
+      body:has(.kt-detaljbar:not([hidden])) { padding-bottom: 76px; }
+      .kt-detalj-knapp { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%; min-height: 64px; padding: 14px 20px; border: 0; background: transparent; color: inherit; font: inherit; font-size: 17px; cursor: pointer; text-align: left; }
+      .kt-detalj-knapp > span { display: inline-flex; align-items: center; gap: 6px; }
+      .kt-detalj-knapp svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s; }
+      .kt-detalj-knapp b { font-size: 20px; font-weight: 700; white-space: nowrap; }
+      .kt-detaljbar.oppen { max-height: 85vh; }
+      .kt-detaljbar.oppen .kt-detalj-knapp { border-bottom: 1px solid #e2ded8; }
+      .kt-detaljbar.oppen .kt-detalj-knapp svg { transform: rotate(180deg); }
+      .kt-detaljbar.oppen .kt-detalj-knapp b { display: none; }
+      .kt-detalj-panel { overflow-y: auto; padding: 22px 20px 26px; text-align: left; }
+      .kt-detalj-panel h2 { margin: 0 0 18px; font-size: 24px; color: #1d1a16; }
+      .kt-srad { display: flex; justify-content: space-between; gap: 12px; font-size: 16px; margin: 0 0 12px; color: #1d1a16; }
+      .kt-srad b, .kt-stotal b { font-weight: 600; white-space: nowrap; }
+      .kt-stotal { display: flex; justify-content: space-between; font-size: 19px; margin: 0; color: #1d1a16; }
+      .kt-sliten { font-size: 13px; color: #55585c; margin: 4px 0 0; }
+      .kt-detalj-panel hr { border: 0; border-top: 1px solid #e2ded8; margin: 16px 0; }
+    }
+  </style>
 </head>
 <body>
 <!-- NAV -->
@@ -111,6 +140,7 @@
     <div class="section-label" style="justify-content:center;display:flex;">Kontakt</div>
     <h1 class="kt-titel">Kontakta oss</h1>
     <p class="kt-sub">Gratis prisbesök och svar samma dag.</p>
+    <ul class="kt-bockar"><li>Alltid fast pris</li><li>Försäkring ingår</li><li>Specialutbildad personal</li></ul>
   </div>
 </section><section class="kt-sektion">
   <div class="container kt-layout">
@@ -141,10 +171,11 @@
         <span class="ns-lgh-rubrik">Inglasad balkong <small>(valfritt)</small></span>
         <div class="ns-lgh-rad"><div><strong>Golv till tak</strong><span>40 kr / ruta</span></div><div class="ns-lgh-steg"><button type="button" data-lgh="golv" data-steg="-1" aria-label="Minska golv till tak">−</button><output id="nsGolv">0</output><button type="button" data-lgh="golv" data-steg="1" aria-label="Öka golv till tak">+</button></div></div>
         <div class="ns-lgh-rad"><div><strong>Räcke till tak</strong><span>20 kr / ruta</span></div><div class="ns-lgh-steg"><button type="button" data-lgh="tak" data-steg="-1" aria-label="Minska räcke till tak">−</button><output id="nsTak">0</output><button type="button" data-lgh="tak" data-steg="1" aria-label="Öka räcke till tak">+</button></div></div>
-        <!-- Framkörningen 62,5 kr (ej RUT) läggs på efteråt och visas tydligt (Tommy 2026-11-03) -->
-        <div class="ns-lgh-pris ns-lgh-del"><span>Fönsterputs efter RUT</span><b id="nsLghPuts">–</b></div>
-        <div class="ns-lgh-pris ns-lgh-del"><span>+ Framkörningsavgift (ej RUT)</span><b>62,5 kr</b></div>
-        <div class="ns-lgh-pris"><span>Totalt med framkörning</span><strong id="nsLghPris">Välj storlek</strong></div>
+        <!-- Inställelseavgiften 30 kr (ej RUT, var 62,5 framkörning) läggs på efteråt och visas tydligt (Tommy 2026-11-03) -->
+        <div class="ns-lgh-pris ns-lgh-del"><span>Fönsterputs (utan RUT-avdrag)</span><b id="nsLghFore">–</b></div>
+        <div class="ns-lgh-pris ns-lgh-del"><span>− RUT-avdrag 50 %</span><b id="nsLghPuts">–</b></div>
+        <div class="ns-lgh-pris ns-lgh-del"><span>+ Inställelseavgift (ej RUT)</span><b>30 kr</b></div>
+        <div class="ns-lgh-pris"><span>Totalt med inställelseavgift</span><strong id="nsLghPris">Välj storlek</strong></div>
         <input type="hidden" name="lagenhetsstorlek" value="" disabled />
         <input type="hidden" name="antal_balkongrutor" value="" disabled />
         <input type="hidden" name="kalkyl" value="" disabled />
@@ -173,6 +204,21 @@
     </div>
   </div>
 </section>
+
+<!-- Mobil: fast rad längst ner med "Visa detaljer" + pris för lägenhet, som Hemfrid (Tommy 2026-11-07) -->
+<div class="kt-detaljbar" id="ktDetaljbar" hidden>
+  <button type="button" class="kt-detalj-knapp" id="ktDetaljKnapp" aria-expanded="false" aria-controls="ktDetaljPanel"><span><span id="ktDetaljText">Visa detaljer</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span><b id="ktBarPris">0 kr</b></button>
+  <div class="kt-detalj-panel" id="ktDetaljPanel" hidden>
+    <h2>Sammanställning</h2>
+    <p class="kt-srad"><span>Fönsterputs (utan RUT-avdrag)</span><b id="ktSamFore">–</b></p>
+    <p class="kt-srad"><span>RUT-avdrag 50 %</span><b id="ktSamPuts">–</b></p>
+    <p class="kt-srad"><span>Inställelseavgift (ej RUT)</span><b>30 kr</b></p>
+    <hr />
+    <p class="kt-stotal"><span>Totalt med inställelseavgift</span><b id="ktSamTotal">–</b></p>
+    <p class="kt-sliten">efter rutavdrag · alla priser är inkl. moms</p>
+    <p class="kt-sliten" style="margin-top:14px">*Inställelseavgiften är ej RUT-berättigad. Bor du utanför Jönköping kan inställelseavgiften bli högre. Du får alltid veta det innan vi bekräftar tiden.</p>
+  </div>
+</div>
 <section class="rk-sektion rk-block" data-rk="lovisa,andreaselg,camilla,rhelda,kushtrim" data-rubrik="Vad kunderna säger"></section>
 <footer class="sidfot">
   <div class="footer-grid">
@@ -506,14 +552,19 @@
       falt('lagenhetsstorlek').value = lghVal.apt;
       falt('antal_balkongrutor').value = (lghVal.golv + lghVal.tak) + ' st';
       falt('kalkyl').value = rader.join(' | ');
-      if (!lghVal.apt) { document.getElementById('nsLghPris').textContent = 'Välj storlek'; document.getElementById('nsLghPuts').textContent = '–'; falt('uppskattat_pris').value = ''; falt('pris_fore_rut').value = ''; return; }
+      if (!lghVal.apt) { document.getElementById('nsLghPris').textContent = 'Välj storlek'; document.getElementById('nsLghPuts').textContent = '–'; document.getElementById('nsLghFore').textContent = '–'; document.getElementById('ktSamFore').textContent = '–'; falt('uppskattat_pris').value = ''; falt('pris_fore_rut').value = ''; document.getElementById('ktBarPris').textContent = '0 kr'; document.getElementById('ktSamPuts').textContent = '–'; document.getElementById('ktSamTotal').textContent = '–'; return; }
       var puts = lghVal.pris + lghVal.golv * 40 + lghVal.tak * 20;
-      var total = puts + 62.5; // framkörning 62,5 kr inkl. moms, ej RUT
+      var total = puts + 30; // inställelseavgift 30 kr, ej RUT, tillkommer: 2:a = 500 + 30 = 530 (Tommy 2026-11-07)
       function sek(n) { return n.toLocaleString('sv-SE') + ' kr'; }
-      document.getElementById('nsLghPuts').textContent = sek(puts);
+      document.getElementById('nsLghFore').textContent = sek(puts * 2);
+      document.getElementById('nsLghPuts').textContent = '−' + sek(puts);
+      document.getElementById('ktSamFore').textContent = sek(puts * 2);
       document.getElementById('nsLghPris').textContent = sek(total);
-      falt('uppskattat_pris').value = sek(total) + ' (' + sek(puts) + ' efter RUT + 62,5 kr framkörning)';
-      falt('pris_fore_rut').value = sek(puts * 2 + 62.5) + ' före RUT';
+      document.getElementById('ktBarPris').textContent = sek(total) + '*';
+      document.getElementById('ktSamPuts').textContent = '−' + sek(puts);
+      document.getElementById('ktSamTotal').textContent = sek(total) + '*';
+      falt('uppskattat_pris').value = sek(puts * 2) + ' − ' + sek(puts) + ' RUT + 30 kr inställelseavgift = ' + sek(total);
+      falt('pris_fore_rut').value = sek(puts * 2) + ' före RUT';
     }
     lgh.querySelectorAll('[data-apt]').forEach(function (b) {
       b.addEventListener('click', function () { lghVal.apt = b.getAttribute('data-apt'); lghVal.pris = Number(b.getAttribute('data-price')); raknaLgh(); });
@@ -521,7 +572,15 @@
     lgh.querySelectorAll('[data-lgh]').forEach(function (b) {
       b.addEventListener('click', function () { var k = b.getAttribute('data-lgh'); lghVal[k] = Math.max(0, Math.min(80, lghVal[k] + Number(b.getAttribute('data-steg')))); raknaLgh(); });
     });
-    function visaLgh(ja) { lgh.hidden = !ja; lghDolda.forEach(function (i) { i.disabled = !ja; }); }
+    function visaLgh(ja) { lgh.hidden = !ja; lghDolda.forEach(function (i) { i.disabled = !ja; }); document.getElementById('ktDetaljbar').hidden = !ja; ktDetaljer(false); }
+    // Visa detaljer / Dölj detaljer i fasta raden (Tommy 2026-11-07, som Hemfrid)
+    function ktDetaljer(oppen) {
+      document.getElementById('ktDetaljbar').classList.toggle('oppen', oppen);
+      document.getElementById('ktDetaljPanel').hidden = !oppen;
+      document.getElementById('ktDetaljKnapp').setAttribute('aria-expanded', oppen ? 'true' : 'false');
+      document.getElementById('ktDetaljText').textContent = oppen ? 'Dölj detaljer' : 'Visa detaljer';
+    }
+    document.getElementById('ktDetaljKnapp').addEventListener('click', function () { ktDetaljer(!document.getElementById('ktDetaljbar').classList.contains('oppen')); });
     // Kunden väljer själv vad det gäller – Lägenhet visar storlek/balkong/pris
     tjanst.addEventListener('change', function () { visaLgh(tjanst.value === 'Lägenhet'); });
     // Storlek måste väljas när det gäller lägenhet

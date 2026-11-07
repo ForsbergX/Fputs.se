@@ -160,3 +160,25 @@ button, a, label, input, select, textarea, output, [role="button"] { touch-actio
 @media (max-width: 900px) {
   input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea { font-size: 16px !important; }
 }
+
+/* Mobil: fast rad längst ner med "Visa detaljer" + pris, som Hemfrid (Tommy 2026-11-07).
+   Priset visas här i stället för i rutan ovanför fönstren. */
+.bk-detaljbar { display: none; }
+@media (max-width: 900px) {
+  .bk-mobilpris { display: none !important; }
+  .bk-detaljbar:not([hidden]) { display: flex; flex-direction: column; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: #fff; color: #1d1a16; box-shadow: 0 -6px 18px rgba(0, 0, 0, .18); border-radius: 16px 16px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+  body:has(.bk-detaljbar:not([hidden])) { padding-bottom: 76px; }
+  .bk-detalj-knapp { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%; min-height: 64px; padding: 14px 20px; border: 0; background: transparent; color: inherit; font: inherit; font-size: 17px; cursor: pointer; text-align: left; }
+  .bk-detalj-knapp > span { display: inline-flex; align-items: center; gap: 6px; }
+  .bk-detalj-knapp svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s; }
+  .bk-detalj-knapp b { font-size: 20px; font-weight: 700; white-space: nowrap; }
+  .bk-detaljbar.oppen { max-height: 85vh; }
+  .bk-detaljbar.oppen .bk-detalj-knapp { border-bottom: 1px solid #e2ded8; }
+  .bk-detaljbar.oppen .bk-detalj-knapp svg { transform: rotate(180deg); }
+  .bk-detaljbar.oppen .bk-detalj-knapp b { display: none; }
+  .bk-detalj-panel { overflow-y: auto; padding: 22px 20px 26px; }
+  .bk-detalj-panel h2 { margin: 0 0 18px; color: #1d1a16; }
+  .bk-detalj-panel .bk-srad, .bk-detalj-panel .bk-total { color: #1d1a16; }
+  .bk-detalj-panel .bk-liten { color: #55585c; }
+  .bk-detalj-panel hr { border: 0; border-top: 1px solid #e2ded8; margin: 16px 0; }
+}

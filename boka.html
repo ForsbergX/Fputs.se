@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/kalender.css" />
-  <link rel="stylesheet" href="css/boka.css?v=20261104z" />
+  <link rel="stylesheet" href="css/boka.css?v=20261107a" />
   <link rel="stylesheet" href="css/boka-glas.css?v=20261031k" />
 </head>
 <body class="bk">
@@ -60,7 +60,7 @@
     <h1>Boka fönsterputs</h1>
     <p class="bk-ingress">Räkna ut ditt fasta pris och välj dag och tid.</p>
     <ul class="bk-bockar">
-      <li>Alltid fast pris</li><li>50 % RUT-avdrag</li><li>Ingen bindningstid</li>
+      <li>Alltid fast pris</li><li>Försäkring ingår</li><li>Specialutbildad personal</li>
     </ul>
     <button type="button" class="bk-val" data-val="engang">
       <span>
@@ -96,7 +96,7 @@
       <h1 class="bk-rubrik-engang">Fönsterputs</h1>
       <h1 class="bk-rubrik-abo">In- &amp; utvändig fönsterputs – abonnemang</h1>
       <p class="bk-ingress bk-rubrik-abo">Med återkommande fönsterputs ser vi till att dina fönster alltid är skinande rena, utan att du behöver lyfta ett finger.</p>
-      <ul class="bk-bockar bk-rubrik-engang"><li>Alltid fast pris</li><li>50 % RUT-avdrag</li><li>Ingen bindningstid</li></ul>
+      <ul class="bk-bockar bk-rubrik-engang"><li>Alltid fast pris</li><li>Försäkring ingår</li><li>Specialutbildad personal</li></ul>
       <ul class="bk-bockar bk-rubrik-abo"><li>Alltid rena fönster</li><li>Vi hör av oss</li><li>Ingen bindningstid</li></ul>
 
       <h2 class="bk-h2">Fönsterinformation</h2>
@@ -171,6 +171,12 @@
   </main>
 </form>
 
+<!-- Mobil: fast rad längst ner med "Visa detaljer" + pris, som Hemfrid (Tommy 2026-11-07) -->
+<div class="bk-detaljbar" id="bkDetaljbar" hidden>
+  <button type="button" class="bk-detalj-knapp" id="bkDetaljKnapp" aria-expanded="false" aria-controls="bkDetaljPanel"><span><span id="bkDetaljText">Visa detaljer</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span><b id="bkBarPris">0 kr</b></button>
+  <div class="bk-detalj-panel" id="bkDetaljPanel" hidden><div class="bk-samman" data-samman></div></div>
+</div>
+
 <!-- Tack -->
 <main class="bk-sida bk-tack" id="steg-tack" hidden>
   <div class="bk-vanster">
@@ -182,7 +188,7 @@
 
 <script src="js/postnummer.js"></script>
 <script src="js/kalender.js"></script>
-<script src="js/boka.js?v=20261103f"></script>
+<script src="js/boka.js?v=20261107f"></script>
 <script src="js/recensioner.js?v=20261103"></script>
 </body>
 </html>

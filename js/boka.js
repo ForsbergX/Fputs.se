@@ -4,12 +4,12 @@
  */
 (function () {
   // ---- Priser, samma som gamla priskalkylatorn ----
-  var MIN_PRIS = 736.5;          // lägsta pris efter RUT, så att 736,5 + 62,5 framkörning = 799 totalt (Tommy 2026-11-04)
+  var MIN_PRIS = 750;            // lägsta pris efter RUT, sedan tillkommer 30 kr inställelseavgift = 780 (Tommy 2026-11-07)
   var TIMPRIS_15 = 699;          // 699 kr efter RUT upp till 1,5 h
   var INGAR_FONSTER = 14;        // 699 kr täcker upp till 14 fönster
   var HOGA_MIN = 10;             // svåra att nå/höga fönster: 10 min per jobb
   var KARM_ANDEL = 0.15;         // karmtvätt +15 %
-  var FRAMKORNING = 62.5;        // framkörningsavgift inkl. moms, ingen moms ovanpå (Tommy 2026-11-03), mer utanför Jönköping
+  var FRAMKORNING = 30;          // inställelseavgift 30 kr (Tommy 2026-11-07, var 62,5 framkörning), mer utanför Jönköping
   var BALKONG = { helt: { namn: 'Helt inglasad', kr: 40 }, racke: { namn: 'Endast glasräcke', kr: 20 } };
 
   // Minuter per fönster: [2 sidor, 4 sidor]
@@ -134,21 +134,24 @@
       html += srad('Fönsterputs', 'In- och utvändig') + srad('Frekvens', 'Abonnemang') + '<hr />' +
         srad('Önskat startdatum', datumText()) + '<hr />' +
         '<p class="bk-total"><span>Pris per tillfälle</span><b>' + (p.total ? kr(p.total) + '*' : '–') + '</b></p>' +
-        '<p class="bk-liten">efter rutavdrag</p>' +
+        '<p class="bk-liten">efter rutavdrag · alla priser är inkl. moms</p>' +
         '<p class="bk-liten" style="margin-top:14px">*Priset avser per tillfälle. Ditt slutliga pris fastställs när vi har gått igenom din förfrågan och återkommit med en bekräftelse.</p>';
     } else {
       // En rad per post, pris till höger, så kunden ser vad totalen består av (Tommy 2026-11-03)
-      html += srad('Fönsterputs (efter RUT)', p.putsning ? kr(p.putsning) : '–');
-      if (p.karm) html += srad('Karmtvätt', kr(p.karm));
-      if (p.avgift) html += srad('Framkörningsavgift (ej RUT)', kr(p.avgift));
+      // Pris utan RUT, sedan RUT-avdraget, sedan avgiften – samma som fakturan (Tommy 2026-11-07)
+      html += srad('Fönsterputs (utan RUT-avdrag)', p.putsning ? kr(p.putsning * 2) : '–');
+      if (p.karm) html += srad('Karmtvätt (utan RUT-avdrag)', kr(p.karm * 2));
+      if (p.putsning) html += srad('RUT-avdrag 50 %', '−' + kr(p.putsning + p.karm));
+      if (p.avgift) html += srad('Inställelseavgift (ej RUT)', kr(p.avgift));
       html += '<hr /><p class="bk-srad bk-stack"><span>Datum och tid</span><b>' + datumText() + '</b></p><hr />' +
-        '<p class="bk-total"><span>Totalt med framkörning</span><b>' + (p.total ? kr(p.total) + '*' : '–') + '</b></p>' +
-        '<p class="bk-liten">efter rutavdrag</p>' +
-        '<p class="bk-liten" style="margin-top:14px">*Framkörningsavgiften är ej RUT-berättigad. Bor du utanför Jönköping kan framkörningsavgiften bli högre. Du får alltid veta det innan vi bekräftar tiden.</p>';
+        '<p class="bk-total"><span>Totalt med inställelseavgift</span><b>' + (p.total ? kr(p.total) + '*' : '–') + '</b></p>' +
+        '<p class="bk-liten">efter rutavdrag · alla priser är inkl. moms</p>' +
+        '<p class="bk-liten" style="margin-top:14px">*Inställelseavgiften är ej RUT-berättigad. Bor du utanför Jönköping kan inställelseavgiften bli högre. Du får alltid veta det innan vi bekräftar tiden.</p>';
     }
     document.querySelectorAll('[data-samman]').forEach(function (el) { el.innerHTML = html; });
     document.getElementById('bkMobilText').textContent = bokning === 'abonnemang' ? 'Pris per tillfälle efter RUT' : 'Totalt efter RUT';
     document.getElementById('bkMobilpris').textContent = p.total ? kr(p.total) : '0 kr';
+    document.getElementById('bkBarPris').textContent = p.total ? kr(p.total) + '*' : '0 kr';
   }
 
   function beskrivning(p) {
@@ -167,7 +170,7 @@
       delar.push('Specialfönster: ' + (s.join(', ') || 'ja'));
     } else if (valt('special')) delar.push('Specialfönster: nej');
     if (p.karm) delar.push('Karmtvätt: ja (+' + kr(p.karm) + ')');
-    if (p.avgift) delar.push('Framkörningsavgift: ' + kr(p.avgift) + ' (ej RUT-berättigad)');
+    if (p.avgift) delar.push('Inställelseavgift: ' + kr(p.avgift) + ' (ej RUT-berättigad)');
     return delar.join(' · ');
   }
 
@@ -186,14 +189,27 @@
     f('kalkyl').value = beskrivning(p);
     f('antal_fonster').value = p.antal ? String(p.antal) : '';
     f('antal_balkongrutor').value = p.balkong ? String(p.balkong) : '';
-    f('uppskattat_pris').value = p.total ? kr(p.total) + (bokning === 'abonnemang' ? ' per tillfälle' : '') : '';
-    f('pris_fore_rut').value = p.total ? kr((p.putsning + p.karm) * 2 + p.avgift) : ''; // avgiften ger inget RUT
+    f('uppskattat_pris').value = !p.total ? '' : bokning === 'abonnemang' ? kr(p.total) + ' per tillfälle'
+      : kr((p.putsning + p.karm) * 2) + ' − ' + kr(p.putsning + p.karm) + ' RUT' + (p.avgift ? ' + ' + kr(p.avgift) + ' inställelseavgift' : '') + ' = ' + kr(p.total);
+    f('pris_fore_rut').value = p.total ? kr((p.putsning + p.karm) * 2) : ''; // pris utan RUT, inställelseavgiften räknas inte in
     f('bostadstyp').value = bokning === 'abonnemang' ? 'Fönsterputs – abonnemang' : 'Fönsterputs – en gång';
     return p;
   }
   form.addEventListener('change', uppdatera);
   // Kalendern skriver dag och tid i dolda fält – visa dem i sammanställningen
   document.querySelector('[data-fp-kalender]').addEventListener('click', function () { setTimeout(uppdatera, 0); });
+
+  // ---- Mobil: Visa detaljer / Dölj detaljer i fasta raden (Tommy 2026-11-07, som Hemfrid) ----
+  function visaDetaljer(oppen) {
+    var bar = document.getElementById('bkDetaljbar');
+    bar.classList.toggle('oppen', oppen);
+    document.getElementById('bkDetaljPanel').hidden = !oppen;
+    document.getElementById('bkDetaljKnapp').setAttribute('aria-expanded', oppen ? 'true' : 'false');
+    document.getElementById('bkDetaljText').textContent = oppen ? 'Dölj detaljer' : 'Visa detaljer';
+  }
+  document.getElementById('bkDetaljKnapp').addEventListener('click', function () {
+    visaDetaljer(!document.getElementById('bkDetaljbar').classList.contains('oppen'));
+  });
 
   // ---- Stegen ----
   var STEG = ['start', 'val', 'fonster', 'uppgifter', 'tack'];
@@ -202,6 +218,8 @@
     if (STEG.indexOf(steg) < 0 || steg === 'start') steg = 'val';
     if ((steg === 'fonster' || steg === 'uppgifter') && !bokning) steg = 'val';
     STEG.forEach(function (s) { document.getElementById('steg-' + s).hidden = s !== steg; });
+    document.getElementById('bkDetaljbar').hidden = !(steg === 'fonster' || steg === 'uppgifter');
+    visaDetaljer(false);
     document.body.classList.toggle('bk-abo', bokning === 'abonnemang');
     document.querySelectorAll('.bk-rubrik-engang').forEach(function (el) { el.hidden = bokning === 'abonnemang'; });
     document.querySelectorAll('.bk-rubrik-abo').forEach(function (el) { el.hidden = bokning !== 'abonnemang'; });
