@@ -4,7 +4,7 @@
  */
 (function () {
   // ---- Priser, samma som gamla priskalkylatorn ----
-  var MIN_PRIS = 749;            // lägsta pris (Tommy 2026-10-28: "vi har 749 som lägsta")
+  var MIN_PRIS = 736.5;          // lägsta pris efter RUT, så att 736,5 + 62,5 framkörning = 799 totalt (Tommy 2026-11-04)
   var TIMPRIS_15 = 699;          // 699 kr efter RUT upp till 1,5 h
   var INGAR_FONSTER = 14;        // 699 kr täcker upp till 14 fönster
   var HOGA_MIN = 10;             // svåra att nå/höga fönster: 10 min per jobb
@@ -74,7 +74,7 @@
     var putsning = hus + balkong > 0 ? Math.max(hus + balkong, MIN_PRIS) : 0;
     var karm = f('karmtvatt').checked ? Math.round(putsning * KARM_ANDEL) : 0;
     var avgift = putsning && bokning !== 'abonnemang' ? FRAMKORNING : 0;
-    // Framkörningen 62,5 kr (ej RUT) läggs ovanpå: 749 + 62,5 = 811,5 (Tommy 2026-11-03, under Jimmys 100 kr)
+    // Framkörningen 62,5 kr (ej RUT) läggs ovanpå: 736,5 + 62,5 = 799 (Tommy 2026-11-04, under Jimmys 100 kr)
     return { antal: antal, balkong: b.antal, putsning: putsning, karm: karm, avgift: avgift, total: putsning + karm + avgift };
   }
 
