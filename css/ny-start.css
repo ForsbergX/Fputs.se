@@ -212,3 +212,6 @@ nav:not(.breadcrumb-nav) {
 .ns-om.ns-om-utan-bild { grid-template-columns: 1fr !important; max-width: 640px; text-align: center; }
 .ns-om.ns-om-utan-bild .ns-rubrik { text-align: center; }
 .ns-om.ns-om-utan-bild .ns-knapp { margin: 0 auto; }
+
+/* SM i fönsterputs 2026 – stående video (Tommy 2026-11-14) */
+.ns-sm-video { display: block; width: 100%; max-width: 340px; aspect-ratio: 608 / 1080; margin: 0 auto; border-radius: 22px; object-fit: cover; background: #111; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3); }

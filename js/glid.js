@@ -7,7 +7,7 @@
     var valjare = [
       // Startsidan
       '.kampanj-title', '.kampanj-text > p:not(.kampanj-rad):not(.kampanj-small)',
-      '.ns-rubrik', '.ns-kort', '.ns-mork-kort', '.ns-varfor-slut', '.ns-karusell', '.ns-om img', '.ns-om > div', '.ns-form-kort',
+      '.ns-rubrik', '.ns-sm-video', '.ns-kort', '.ns-mork-kort', '.ns-varfor-slut', '.ns-karusell', '.ns-om img', '.ns-om > div', '.ns-form-kort',
       '.val-knapp', '.glas-ikon', '.kampanj-rad', '.kampanj-small',
       '.om-photo', '.om-text', '.karta-head', '.karta-box',
       // Recensioner och frågor
