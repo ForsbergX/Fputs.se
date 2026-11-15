@@ -51,3 +51,14 @@ input:focus, select:focus, textarea:focus { border-color: var(--sand-text) !impo
 @media (max-width: 768px) {
   .nav-links { background: var(--sand) !important; }
 }
+
+/* Områdessidor: stående SM-video som kort på datorn (suddig om den sträcks ut) */
+@media (min-width: 900px) {
+  html body #hero:has(.hero-sm-video) { min-height: 640px !important; justify-content: flex-start; gap: 56px; padding-left: max(32px, calc((100vw - 1180px) / 2)) !important; padding-right: max(32px, calc((100vw - 1180px) / 2)) !important; background: radial-gradient(ellipse at 75% 50%, rgba(209,16,31,0.18), transparent 60%), #14110f !important; }
+  html body #hero video.hero-sm-video { position: relative !important; inset: auto !important; order: 2; flex: none; width: auto !important; height: min(520px, 70vh) !important; aspect-ratio: 608 / 1080; margin-left: auto; border-radius: 22px; border: 1px solid rgba(255,255,255,0.25); box-shadow: 0 30px 60px -25px rgba(0,0,0,0.8); z-index: 1 !important; }
+  html body #hero:has(.hero-sm-video) .hero-overlay { background: none !important; }
+  html body #hero:has(.hero-sm-video) .hero-content { order: 1; text-align: left; max-width: 640px; }
+  html body #hero:has(.hero-sm-video) .hero-content > * { margin-left: 0 !important; margin-right: 0 !important; }
+  html body #hero video.hero-sm-video { object-position: center !important; background: #111 url("../images/sm-2026-poster.jpg") center/cover; }
+  html body #hero:has(.hero-sm-video) .breadcrumb-nav, html body #hero:has(.hero-sm-video) .section-label { justify-content: flex-start !important; }
+}
