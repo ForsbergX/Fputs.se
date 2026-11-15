@@ -1582,11 +1582,23 @@
       <a class="ns-knapp ns-knapp-rod sm-knapp" href="boka.html" data-offert-val>Få offert av mig →</a>
     </div>
     <figure class="sm-video-wrap">
-      <video class="ns-sm-video" src="images/sm-2026.mp4" poster="images/sm-2026-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Tommy Forsberg tävlar i SM i fönsterputs 2026"></video>
+      <video class="ns-sm-video" id="smVideo" src="images/sm-2026.mp4" poster="images/sm-2026-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Tommy Forsberg tävlar i SM i fönsterputs 2026"></video>
       <figcaption class="sm-skylt"><span class="sm-prick"></span><span>Tommy Forsberg · SM i fönsterputs 2026<small>Kistamässan, Stockholm</small></span></figcaption>
     </figure>
   </div>
 </section>
+<script>
+  // SM-videon: ladda direkt och starta så fort den närmar sig skärmen
+  (function () {
+    var v = document.getElementById("smVideo");
+    if (!v) return;
+    v.muted = true;
+    function spela() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (e) { e.forEach(function (x) { if (x.isIntersecting) spela(); }); }, { rootMargin: "400px 0px" }).observe(v);
+    } else { spela(); }
+  })();
+</script>
 
 <section class="rk-topp-block" aria-label="Vad kunderna säger"></section>
 
