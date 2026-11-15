@@ -1436,6 +1436,13 @@
     .h1-namn span + span { font-weight: 600; opacity: .92; text-align: center; }
     .ns-hero h1.h1-namn { text-shadow: 0 0 14px rgba(255,255,255,0.55), 0 0 36px rgba(255,255,255,0.35), 0 0 70px rgba(209,16,31,0.45), 0 4px 22px rgba(0,0,0,0.65); }
     @media (max-width: 759px) { section#hero.ns-hero { padding-top: 104px; align-items: flex-start; min-height: 0; } }
+    /* Dator: text till vänster, Google-kortet till höger */
+    @media (min-width: 1100px) {
+      section#hero .ns-hero-text { display: grid; grid-template-columns: minmax(0, 1fr) 440px; column-gap: 56px; align-items: center; max-width: 1240px; }
+      .ns-hero h1.h1-namn { font-size: clamp(40px, 3.6vw, 60px); }
+      .ns-hero-text > h1, .ns-hero-text > .ns-hero-p, .ns-hero-text > .ns-hero-knappar { grid-column: 1; }
+      .ns-hero-text > .gk { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; justify-self: end; }
+    }
     /* Google-förtroendekort i heron (sidans glasstil) */
     .gk { display: block; width: 100%; max-width: 460px; margin-top: 22px; padding: 16px 16px 0; border-radius: 20px; background: linear-gradient(160deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06)); border: 1px solid rgba(255,255,255,0.28); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 20px 50px rgba(0,0,0,0.35); color: #fff; text-decoration: none; overflow: hidden; transition: transform .2s, border-color .2s; }
     .gk:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.45); }
