@@ -29,7 +29,7 @@
   var rader = document.getElementById('bkRader');
   var q = new URLSearchParams(location.search);
   // Abonnemang borttaget (Tommy 2026-11-03) – gamla ?typ=abonnemang-länkar blir engångsbokning
-  var bokning = q.get('typ') ? 'engang' : '';
+  var bokning = 'engang'; // valsteget borttaget (Tommy 2026-11-15) – bara engångsputs finns
   // Postnumret från startsidan fylls i, och orten om vi känner igen den (js/postnummer.js)
   function fyllOrt() {
     var o = window.fpOmrade(form.postnummer.value);
@@ -215,8 +215,8 @@
   var STEG = ['start', 'val', 'fonster', 'uppgifter', 'tack'];
   function visa(steg) {
     // Postnummersteget borttaget (Tommy 2026-10-31) – postnumret kollas i stället när kunden skickar
-    if (STEG.indexOf(steg) < 0 || steg === 'start') steg = 'val';
-    if ((steg === 'fonster' || steg === 'uppgifter') && !bokning) steg = 'val';
+    if (STEG.indexOf(steg) < 0 || steg === 'start' || steg === 'val') steg = 'fonster';
+    
     STEG.forEach(function (s) { document.getElementById('steg-' + s).hidden = s !== steg; });
     document.getElementById('bkDetaljbar').hidden = !(steg === 'fonster' || steg === 'uppgifter');
     visaDetaljer(false);
@@ -228,7 +228,7 @@
     window.scrollTo(0, 0);
   }
   function ga(steg) { if (location.hash !== '#' + steg) location.hash = steg; else visa(steg); }
-  window.addEventListener('hashchange', function () { visa(location.hash.slice(1) || 'val'); });
+  window.addEventListener('hashchange', function () { visa(location.hash.slice(1) || 'fonster'); });
 
   // Steg 0: postnumret måste vara i våra områden
   var startPostnr = document.getElementById('bkStartPostnr');
@@ -255,8 +255,8 @@
     k.addEventListener('click', function () { bokning = k.getAttribute('data-val'); ga('fonster'); });
   });
   document.getElementById('bkTillbaka').addEventListener('click', function () {
-    var steg = location.hash.slice(1) || 'val';
-    var forra = { fonster: 'val', uppgifter: 'fonster' }[steg];
+    var steg = location.hash.slice(1) || 'fonster';
+    var forra = { uppgifter: 'fonster' }[steg];
     if (forra) ga(forra); else location.href = 'index.html';
   });
 
