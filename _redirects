@@ -1,3 +1,10 @@
-/prova-pa.html    /priskalkylator.html    301
-/prova-pa         /priskalkylator.html    301
-/api/ledigt       /.netlify/functions/ledigt    200
+/prova-pa.html        /boka.html                    301!
+/prova-pa             /boka.html                    301!
+/priskalkylator.html  /boka.html                    301!
+/priskalkylator       /boka.html                    301!
+/offert.html          /kontakta-mig.html            301!
+/offert               /kontakta-mig.html            301!
+/fonsterputs.html     /                             301!
+/tjanster.html        /#tjanster                    301!
+/index-dark-backup.html /                           301!
+/api/ledigt           /.netlify/functions/ledigt    200
