@@ -15,4 +15,6 @@
 /media                      /                             301!
 /index-dark-backup.html     /                             301!
 /recension-utkast.html      /recensioner                  301!
+/fonsterputs-villa.html      /boka                         301!
+/fonsterputs-villa           /boka                         301!
 /api/ledigt                 /.netlify/functions/ledigt    200
