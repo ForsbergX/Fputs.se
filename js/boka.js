@@ -96,7 +96,7 @@
         radioRad('bk-sidor-' + t.id, '2', 'Enkelsidiga – 2 sidor', true);
       if (t.sprojs) {
         // Spröjs kan vara 6–8 rutor per sida – Tommy räknar på huset innan offert (2026-10-31)
-        panel = '<p class="bk-notis">Fönster med spröjs räknar vi på innan du får ett fast pris. Det kan vara 6–8 rutor per sida, upp till 32 rutor på ett fönster.</p>' + panel +
+        panel = '<p class="bk-notis">Fönster med spröjs räknar jag på innan du får ett fast pris. Det kan vara 6–8 rutor per sida, upp till 32 rutor på ett fönster.</p>' + panel +
           '<p>Hur många rutor har varje båge?</p>' +
           radioRad('bk-rutor', '2', '2 rutor', false) + radioRad('bk-rutor', '3', '3 rutor', false) + radioRad('bk-rutor', '4', '4 rutor', true);
       }
@@ -135,7 +135,7 @@
         srad('Önskat startdatum', datumText()) + '<hr />' +
         '<p class="bk-total"><span>Pris per tillfälle</span><b>' + (p.total ? kr(p.total) + '*' : '–') + '</b></p>' +
         '<p class="bk-liten">efter rutavdrag · alla priser är inkl. moms</p>' +
-        '<p class="bk-liten" style="margin-top:14px">*Priset avser per tillfälle. Ditt slutliga pris fastställs när vi har gått igenom din förfrågan och återkommit med en bekräftelse.</p>';
+        '<p class="bk-liten" style="margin-top:14px">*Priset avser per tillfälle. Ditt slutliga pris fastställs när jag har gått igenom din förfrågan och återkommit med en bekräftelse.</p>';
     } else {
       // En rad per post, pris till höger, så kunden ser vad totalen består av (Tommy 2026-11-03)
       // Pris utan RUT, sedan RUT-avdraget, sedan avgiften – samma som fakturan (Tommy 2026-11-07)
@@ -146,7 +146,7 @@
       html += '<hr /><p class="bk-srad bk-stack"><span>Datum och tid</span><b>' + datumText() + '</b></p><hr />' +
         '<p class="bk-total"><span>Totalt med inställelseavgift</span><b>' + (p.total ? kr(p.total) + '*' : '–') + '</b></p>' +
         '<p class="bk-liten">efter rutavdrag · alla priser är inkl. moms</p>' +
-        '<p class="bk-liten" style="margin-top:14px">*Inställelseavgiften är ej RUT-berättigad. Bor du utanför Jönköping kan inställelseavgiften bli högre. Du får alltid veta det innan vi bekräftar tiden.</p>';
+        '<p class="bk-liten" style="margin-top:14px">*Inställelseavgiften är ej RUT-berättigad. Bor du utanför Jönköping kan inställelseavgiften bli högre. Du får alltid veta det innan jag bekräftar tiden.</p>';
     }
     document.querySelectorAll('[data-samman]').forEach(function (el) { el.innerHTML = html; });
     document.getElementById('bkMobilText').textContent = bokning === 'abonnemang' ? 'Pris per tillfälle efter RUT' : 'Totalt efter RUT';
@@ -239,7 +239,7 @@
     fel.hidden = o.ok;
     if (!o.ok) {
       fel.innerHTML = o.giltigt
-        ? 'Vi kommer tyvärr inte ut till ditt område än. Ring oss gärna på <a href="tel:+46793463964">079-346 39 64</a>.'
+        ? 'Jag kommer tyvärr inte ut till ditt område än. Ring mig gärna på <a href="tel:+46793463964">079-346 39 64</a>.'
         : 'Skriv ditt postnummer med fem siffror, t.ex. 561 31.';
       return;
     }
@@ -283,7 +283,7 @@
     var felU = document.getElementById('bkFelUppgifter');
     felU.innerHTML = saknas ? 'Fyll i namn, telefon och adress.'
       : !omrade.giltigt ? 'Skriv ditt postnummer med fem siffror, t.ex. 561 31.'
-      : 'Vi kommer tyvärr inte ut till ditt område än. Ring oss gärna på <a href="tel:+46793463964">079-346 39 64</a>.';
+      : 'Jag kommer tyvärr inte ut till ditt område än. Ring mig gärna på <a href="tel:+46793463964">079-346 39 64</a>.';
     felU.hidden = !saknas && omrade.ok;
     if (!felU.hidden) return;
     uppdatera();
