@@ -20,7 +20,8 @@
 
 # .html-adresser -> rena adresser (så Google bara har en version av varje sida)
 /index.html                 /                             301!
-/abonnemang.html            /abonnemang                   301!
+/abonnemang.html            /                             301!
+/abonnemang                 /                             301!
 /allmanna-villkor.html      /allmanna-villkor             301!
 /boka.html                  /boka                         301!
 /faq.html                   /faq                          301!
