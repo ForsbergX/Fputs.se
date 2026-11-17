@@ -156,7 +156,7 @@
         lista.map(kort).join('') + '</div>' +
         (fler ? '<button type="button" class="rk-fler">Visa alla ' + lista.length + ' omdömen</button>' : '') + '</div>';
     }
-    if (!alla || el.dataset.layout === 'karusell') html += '<a class="rk-alla" href="recensioner.html">Läs alla recensioner →</a>';
+    if (!alla || el.dataset.layout === 'karusell') html += '<a class="rk-alla" href="/recensioner">Läs alla recensioner →</a>';
     el.innerHTML = html + '</div>';
 
     var spar = el.querySelector('.rk-spar');
@@ -249,7 +249,7 @@
     el.innerHTML = '<div class="rk-stor-tal">5,0</div><div class="rk-stor-stj">★★★★★</div>' +
       '<p class="rk-stor-text">' + G + '<span>Baserat på <b>51 recensioner</b> på Google</span></p>' +
       '<div class="rk-stor-knappar"><a class="rk-knapp" href="' + GOOGLE + '" target="_blank" rel="noopener">Se alla på Google</a>' +
-      '<a class="rk-knapp rk-knapp-glas" href="kontakta-mig.html#formular">Få offert →</a></div>';
+      '<a class="rk-knapp rk-knapp-glas" href="/kontakta-mig#formular">Få offert →</a></div>';
   });
 
   document.addEventListener('click', function (e) {

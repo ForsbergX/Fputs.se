@@ -257,7 +257,7 @@
   document.getElementById('bkTillbaka').addEventListener('click', function () {
     var steg = location.hash.slice(1) || 'fonster';
     var forra = { uppgifter: 'fonster' }[steg];
-    if (forra) ga(forra); else location.href = 'index.html';
+    if (forra) ga(forra); else location.href = '/';
   });
 
   document.getElementById('bkTillUppgifter').addEventListener('click', function () {
