@@ -54,7 +54,7 @@
   function lista() {
     if (typ === 'sol') return ['typ', 'extra', 'tid', 'uppgifter', 'oversikt', 'tack'];
     return typ === 'lgh' ? ['typ', 'lagenhet', 'extra', 'tid', 'uppgifter', 'oversikt', 'tack']
-      : ['typ', 'fonster', 'special', 'extra', 'tid', 'uppgifter', 'oversikt', 'tack'];
+      : ['typ', 'fonster', 'extra', 'tid', 'uppgifter', 'oversikt', 'tack'];
   }
 
   var form = document.getElementById('nf');
@@ -127,9 +127,10 @@
   }
   function ritaUterum(t, v) {
     var n = v.tak + v.golv + v.tri;
+    if (!v.oppen && !n) return '<div class="nf-typ nf-uterum-stangd" data-typ="' + t.id + '"><button type="button" class="nf-typ-topp nf-ut-oppna" data-utoppna="1" aria-expanded="false"><span class="nf-kortbild foto nf-ut-tumme" aria-hidden="true"><img src="images/' + t.bild + '" alt="" width="144" height="144" /></span><span class="nf-typ-namn">' + t.namn + '<small>Tryck för att räkna glasen</small></span><span class="nf-ut-pil" aria-hidden="true"></span></button></div>';
     return '<div class="nf-typ nf-uterum' + (n ? ' aktiv' : '') + '" data-typ="' + t.id + '"><div class="nf-ut-bild"><img src="images/' + t.bild + '" alt="' + t.alt + '" width="' + t.w + '" height="' + t.h + '" />' +
       t.rum.map(function (r, i) { return '<span class="nf-ut-pin" style="left:' + r.x + '%;top:' + r.y + '%" aria-hidden="true">' + (i + 1) + '</span>'; }).join('') +
-      '</div><p class="nf-typ-namn nf-ut-namn">' + t.namn + '<small>Räkna glasen – siffrorna visar var de sitter</small></p>' +
+      '</div><button type="button" class="nf-ut-namn-knapp" data-utoppna="0" aria-expanded="true"><span class="nf-typ-namn nf-ut-namn">' + t.namn + '<small>Räkna glasen – siffrorna visar var de sitter</small></span>' + (n ? '' : '<span class="nf-ut-pil upp" aria-hidden="true"></span>') + '</button>' +
       t.rum.map(function (r, i) { var a = v[r.k];
         return '<div class="nf-ut-rad"><span class="nf-ut-nr">' + (i + 1) + '</span><span class="nf-ut-text">' + r.namn + '<small>' + r.kr + ' kr per glas</small></span>' +
           '<div class="nf-raknare"><button type="button" data-utsteg="-1" data-ut="' + r.k + '" aria-label="Minska ' + r.namn + '"' + (a ? '' : ' disabled') + '>−</button><output>' + a + '</output><button type="button" data-utsteg="1" data-ut="' + r.k + '" aria-label="Öka ' + r.namn + '">+</button></div></div>'; }).join('') + '</div>';
@@ -163,6 +164,8 @@
     var rad = e.target.closest('[data-typ]');
     if (!rad) return;
     var v = val[rad.getAttribute('data-typ')];
+    var op = e.target.closest('[data-utoppna]');
+    if (op) { var n0 = v.tak + v.golv + v.tri; if (op.getAttribute('data-utoppna') === '1') v.oppen = true; else if (!n0) v.oppen = false; ritaTyper(); return; }
     var us = e.target.closest('[data-utsteg]');
     if (us) { var k = us.getAttribute('data-ut'); v[k] = Math.max(0, Math.min(99, v[k] + Number(us.getAttribute('data-utsteg')))); ritaTyper(); uppdatera(); if (rakna().antal + rakna().balkong > 0) document.getElementById('nfFelFonster').hidden = true; return; }
     var steg = e.target.closest('[data-steg]');
@@ -348,14 +351,13 @@
       if (!lgh.apt) { document.getElementById('nfFelLgh').hidden = false; return; }
       ga('extra');
     } else if (nu === 'fonster') {
-      if (p.antal + p.balkong === 0) { document.getElementById('nfFelFonster').hidden = false; return; }
-      ga('special');
-    } else if (nu === 'special') {
+      if (p.antal + p.balkong === 0) { document.getElementById('nfFelFonster').hidden = false; document.getElementById('nfFelFonster').scrollIntoView({ block: 'center' }); return; }
       var fel = !st.special || (st.special === 'Ja' && !st.utat && !st.hoga && !st.fasta);
       var felEl = document.getElementById('nfFelSpecial');
       felEl.textContent = st.special === 'Ja' ? 'Välj vilka specialfönster du har.' : 'Välj Ja eller Nej.';
       felEl.hidden = !fel;
-      if (!fel) ga('extra');
+      if (fel) { felEl.scrollIntoView({ block: 'center' }); return; }
+      ga('extra');
     } else if (nu === 'extra') {
       var tom = typ === 'sol' && !f('meddelande').value.trim();
       document.getElementById('nfFelExtra').hidden = !tom;

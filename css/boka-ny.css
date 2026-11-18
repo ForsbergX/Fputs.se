@@ -281,3 +281,15 @@ html body .nf .fpk-tider-titel { color: #fff; }
 .nf-d-total { margin-top: 4px; padding-top: 10px; border-top: 1px solid #E8ECF0; font-size: 16px; font-weight: 800; }
 .nf-detaljer hr { border: 0; border-top: 1px solid #E8ECF0; margin: 10px 0; }
 .nf-d-liten { margin: 6px 0 0; font-size: 12.5px; color: var(--m); }
+/* Uterum/växthus hopfällda tills man trycker (Tommy 2026-11-19) */
+.nf-uterum-stangd { padding: 12px 14px 12px 12px; }
+.nf-ut-oppna { width: 100%; padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.nf-ut-oppna .nf-typ-namn small { display: block; margin-top: 2px; font-size: 13px; font-weight: 500; color: var(--m); }
+.nf-typ-topp .nf-kortbild.foto.nf-ut-tumme { flex: none; width: 72px; height: 72px; aspect-ratio: auto; border-radius: 14px; }
+.nf-typ-topp .nf-kortbild.foto.nf-ut-tumme img { object-fit: cover; padding: 0; }
+.nf-ut-pil { flex: none; width: 38px; height: 38px; border-radius: 50%; background: #F1F5F9; position: relative; }
+.nf-ut-pil::after { content: ""; position: absolute; left: 50%; top: 44%; width: 9px; height: 9px; border-right: 2.4px solid var(--navy); border-bottom: 2.4px solid var(--navy); transform: translate(-50%, -50%) rotate(45deg); }
+.nf-ut-pil.upp::after { top: 58%; transform: translate(-50%, -50%) rotate(-135deg); }
+.nf-ut-namn-knapp { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 0 4px 0 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+/* Specialfönster och tilläggstjänster på fönstersidan */
+.nf-del-rubrik { margin: 34px 0 6px; font-size: 21px; font-weight: 800; letter-spacing: -0.01em; color: #fff; }
