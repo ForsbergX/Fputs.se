@@ -20,6 +20,12 @@
     { k: 'golv', namn: 'Golv till tak', kr: 40, x: 55, y: 60 },
     { k: 'tri', namn: 'Små fönster och trianglar', kr: 20, x: 11, y: 24 }
   ];
+  // Växthus: samma som uterum men +10 kr per glas, tuffare jobb (Tommy 2026-11-19)
+  var VAXTHUS = [
+    { k: 'tak', namn: 'Takglas', kr: 90, x: 42, y: 24 },
+    { k: 'golv', namn: 'Golv till tak', kr: 50, x: 38, y: 62 },
+    { k: 'tri', namn: 'Små fönster och trianglar', kr: 30, x: 79, y: 20 }
+  ];
   var PANORAMA = { liten: { text: 'ca 1 × 2 m', min: 4 }, mellan: { text: 'ca 2 × 2,5 m', min: 8 }, stor: { text: 'Större än 2 × 2,5 m', min: 12 } }; // 12 min: Tommy 2026-11-19
   var FOTO = { L1: "fonster-1-luft.jpg", L2: "fonster-2-luft.jpg", P: "panorama-helt.webp", O: "fonster-overliggande.webp", B: "altan-racke.webp", U: "fonster-underliggande.webp", S: "sprojs-4.webp" }; // riktiga bilder i korten (ikoner tills bild finns)
   var TYPER = [
@@ -30,7 +36,8 @@
     { id: 'O', namn: 'Överliggande fönster', visa: 'Över­liggande fönster', min: [4.5, 10] },
     { id: 'U', namn: 'Underliggande fönster', visa: 'Under­liggande fönster', min: [3, 10] }, // tider från TIDER.md (Tommy 2026-11-19: bild)
     { id: 'B', namn: 'Altanräcke eller balkong', balkong: true },
-    { id: 'UT', namn: 'Uterum', uterum: true }
+    { id: 'UT', namn: 'Uterum', uterum: true, rum: UTERUM, bild: 'uterum.webp', alt: 'Uterum med takglas, glas från golv till tak och små trianglar', w: 724, h: 543 },
+    { id: 'VH', namn: 'Växthus', uterum: true, rum: VAXTHUS, bild: 'vaxthus.webp', alt: 'Växthus i glas med takglas, väggar och gavlar', w: 768, h: 512 }
   ];
   var val = {};
   TYPER.forEach(function (t) { val[t.id] = { antal: 0, sidor: 2, rutor: 4, balkong: 'helt', storlek: 'mellan', tak: 0, golv: 0, tri: 0 }; });
@@ -80,8 +87,8 @@
       hus = Math.max(fonsterPris, tidsPris(minuter + (hoga ? HOGA_MIN : 0)));
     }
     var b = val.B;
-    var u = val.UT, utGlas = u.tak + u.golv + u.tri;
-    var balkong = b.antal * BALKONG[b.balkong].kr + UTERUM.reduce(function (s, r) { return s + u[r.k] * r.kr; }, 0);
+    var utGlas = 0, balkong = b.antal * BALKONG[b.balkong].kr;
+    TYPER.forEach(function (t) { if (!t.uterum) return; var u = val[t.id]; t.rum.forEach(function (r) { utGlas += u[r.k]; balkong += u[r.k] * r.kr; }); });
     var putsning = hus + balkong > 0 ? Math.max(hus + balkong, MIN_PRIS) : 0;
     var karm = st.karm ? Math.round(putsning * KARM_ANDEL) : 0;
     var avgift = putsning ? FRAMKORNING : 0;
@@ -92,7 +99,7 @@
     TYPER.forEach(function (t) {
       var v = val[t.id];
       if (!v.antal) return;
-      if (t.uterum) { if (v.tak + v.golv + v.tri) delar.push('Uterum: ' + UTERUM.filter(function (r) { return v[r.k]; }).map(function (r) { return r.namn.toLowerCase() + ' ' + v[r.k] + ' st'; }).join(', ')); return; }
+      if (t.uterum) { if (v.tak + v.golv + v.tri) delar.push(t.namn + ': ' + t.rum.filter(function (r) { return v[r.k]; }).map(function (r) { return r.namn.toLowerCase() + ' ' + v[r.k] + ' st'; }).join(', ')); return; }
       if (t.balkong) delar.push('Altan/balkong (' + BALKONG[v.balkong].namn.toLowerCase() + '): ' + v.antal + ' rutor');
       else delar.push(t.namn + (t.sprojs ? ' ' + v.rutor + ' rutor' : '') + (t.storlekar ? ' ' + PANORAMA[v.storlek].text : '') + ', ' + v.sidor + ' sidor: ' + v.antal + ' st');
     });
@@ -118,19 +125,19 @@
     var bild = SPROJS_BILD[n] ? '<img src="images/' + SPROJS_BILD[n] + '" alt="" width="300" height="200" />' : '<span class="nf-rutval-tom">' + n + '</span>';
     return '<button type="button" class="nf-rutval' + (vald ? ' vald' : '') + '" data-grupp="rutor" data-varde="' + n + '" aria-pressed="' + vald + '">' + bild + '<span>' + n + ' rutor</span></button>';
   }
-  function ritaUterum(v) {
+  function ritaUterum(t, v) {
     var n = v.tak + v.golv + v.tri;
-    return '<div class="nf-typ nf-uterum' + (n ? ' aktiv' : '') + '" data-typ="UT"><div class="nf-ut-bild"><img src="images/uterum.webp" alt="Uterum med takglas, glas från golv till tak och små trianglar" width="724" height="543" />' +
-      UTERUM.map(function (r, i) { return '<span class="nf-ut-pin" style="left:' + r.x + '%;top:' + r.y + '%" aria-hidden="true">' + (i + 1) + '</span>'; }).join('') +
-      '</div><p class="nf-typ-namn nf-ut-namn">Uterum<small>Räkna glasen – siffrorna visar var de sitter</small></p>' +
-      UTERUM.map(function (r, i) { var a = v[r.k];
+    return '<div class="nf-typ nf-uterum' + (n ? ' aktiv' : '') + '" data-typ="' + t.id + '"><div class="nf-ut-bild"><img src="images/' + t.bild + '" alt="' + t.alt + '" width="' + t.w + '" height="' + t.h + '" />' +
+      t.rum.map(function (r, i) { return '<span class="nf-ut-pin" style="left:' + r.x + '%;top:' + r.y + '%" aria-hidden="true">' + (i + 1) + '</span>'; }).join('') +
+      '</div><p class="nf-typ-namn nf-ut-namn">' + t.namn + '<small>Räkna glasen – siffrorna visar var de sitter</small></p>' +
+      t.rum.map(function (r, i) { var a = v[r.k];
         return '<div class="nf-ut-rad"><span class="nf-ut-nr">' + (i + 1) + '</span><span class="nf-ut-text">' + r.namn + '<small>' + r.kr + ' kr per glas</small></span>' +
           '<div class="nf-raknare"><button type="button" data-utsteg="-1" data-ut="' + r.k + '" aria-label="Minska ' + r.namn + '"' + (a ? '' : ' disabled') + '>−</button><output>' + a + '</output><button type="button" data-utsteg="1" data-ut="' + r.k + '" aria-label="Öka ' + r.namn + '">+</button></div></div>'; }).join('') + '</div>';
   }
   function ritaTyper() {
     typerEl.innerHTML = TYPER.map(function (t) {
       var v = val[t.id], html = '';
-      if (t.uterum) return ritaUterum(v);
+      if (t.uterum) return ritaUterum(t, v);
       if (v.antal) {
         if (t.balkong) {
           html += '<p class="nf-chips-rubrik">Vilken sort?</p><div class="nf-rutval-lista nf-balkval">' +
@@ -192,8 +199,48 @@
 
   // ---- Pris i bottenraden ----
   var prisEl = document.getElementById('nfPris');
+  // ---- Visa detaljer i nedre raden (Tommy 2026-11-19) ----
+  var detaljOppen = false;
+  function drad(t, v, cls) { return '<div class="nf-d-rad' + (cls ? ' ' + cls : '') + '"><span>' + t + '</span><b>' + v + '</b></div>'; }
+  function ritaDetaljer(p) {
+    var el = document.getElementById('nfDetaljer'), html = '<p class="nf-d-rubrik">Det här har du valt</p>';
+    if (typ === 'lgh') {
+      if (lgh.apt) html += drad('Lägenhet ' + lgh.apt, kr(lgh.pris));
+      if (lgh.golv) html += drad('Balkong golv till tak, ' + lgh.golv + ' glas', kr(lgh.golv * 40));
+      if (lgh.tak) html += drad('Balkong räcke till tak, ' + lgh.tak + ' glas', kr(lgh.tak * 20));
+    } else {
+      TYPER.forEach(function (t) {
+        var v = val[t.id];
+        if (t.uterum) { t.rum.forEach(function (r) { if (v[r.k]) html += drad(t.namn + ': ' + r.namn.toLowerCase() + ', ' + v[r.k] + ' glas', kr(v[r.k] * r.kr)); }); return; }
+        if (!v.antal) return;
+        if (t.balkong) { html += drad(BALKONG[v.balkong].text + ', ' + v.antal + ' glas', kr(v.antal * BALKONG[v.balkong].kr)); return; }
+        var extra = t.sprojs ? ' (' + v.rutor + ' rutor)' : t.storlekar ? ' (' + PANORAMA[v.storlek].text + ')' : '';
+        html += drad(t.namn + extra + (t.tvaSidor ? '' : ', ' + v.sidor + ' sidor'), v.antal + ' st');
+      });
+    }
+    html += '<hr />' + drad('Fönsterputs (före RUT)', kr(p.putsning * 2));
+    if (p.karm) html += drad('Karmtvätt (före RUT)', kr(p.karm * 2));
+    html += drad('RUT-avdrag 50 %', '−' + kr(p.putsning + p.karm));
+    if (p.avgift) html += drad('Inställelseavgift (ej RUT)', kr(p.avgift));
+    html += drad('Totalt efter RUT', kr(p.total), 'nf-d-total');
+    if (typ !== 'lgh' && p.putsning === MIN_PRIS) html += '<p class="nf-d-liten">Lägsta pris för villa är ' + kr(MIN_PRIS) + ' efter RUT.</p>';
+    el.innerHTML = html;
+  }
+  function visaDetaljer(oppen) {
+    var p = prisNu();
+    detaljOppen = oppen && !p.sol && p.total > 0;
+    if (detaljOppen) ritaDetaljer(p);
+    document.getElementById('nfDetaljer').hidden = !detaljOppen;
+    document.getElementById('nfBotten').classList.toggle('oppen', detaljOppen);
+    document.getElementById('nfDetaljKnapp').setAttribute('aria-expanded', detaljOppen ? 'true' : 'false');
+    document.getElementById('nfDetaljText').textContent = detaljOppen ? 'Dölj detaljer' : 'Visa detaljer';
+  }
+  document.getElementById('nfDetaljKnapp').addEventListener('click', function () { visaDetaljer(!detaljOppen); });
+
   function uppdatera() {
     var p = prisNu();
+    document.getElementById('nfBotten').classList.toggle('har-pris', !p.sol && p.total > 0);
+    if (detaljOppen) visaDetaljer(true);
     prisEl.textContent = p.sol ? 'Fast pris innan jag kommer' : p.total ? kr(p.total) : 'Välj för att se pris';
     prisEl.classList.toggle('tom', !p.total);
     return p;
@@ -251,6 +298,7 @@
     var knapp = document.getElementById('nfNasta');
     knapp.textContent = id === 'oversikt' ? 'Boka' : id === 'extra' ? 'Fortsätt' : 'Fortsätt';
     if (id === 'oversikt') ritaOversikt();
+    visaDetaljer(false);
     uppdatera();
     window.scrollTo(0, 0);
   }

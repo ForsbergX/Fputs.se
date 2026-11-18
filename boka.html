@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/kalender.css?v=3" />
-  <link rel="stylesheet" href="css/boka-ny.css?v=19" />
+  <link rel="stylesheet" href="css/boka-ny.css?v=21" />
 </head>
 <body>
 <!-- Ny bokning byggd från noll (Tommy 2026-11-18): en sak per skärm, stora val, knappen längst ner. -->
@@ -152,13 +152,14 @@
   </main>
 
   <footer class="nf-botten" id="nfBotten" hidden>
-    <div class="nf-pris"><small>Totalt efter RUT</small><b id="nfPris">–</b></div>
+    <div class="nf-detaljer" id="nfDetaljer" hidden></div>
+    <button type="button" class="nf-pris nf-detalj-knapp" id="nfDetaljKnapp" aria-expanded="false" aria-controls="nfDetaljer"><small>Totalt efter RUT <span class="nf-detalj-text"><span id="nfDetaljText">Visa detaljer</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></span></small><b id="nfPris">–</b></button>
     <button type="button" class="nf-knapp" id="nfNasta">Fortsätt</button>
   </footer>
 </form>
 
 <script src="js/postnummer.js"></script>
 <script src="js/kalender.js"></script>
-<script src="js/boka-ny.js?v=19"></script>
+<script src="js/boka-ny.js?v=21"></script>
 </body>
 </html>
