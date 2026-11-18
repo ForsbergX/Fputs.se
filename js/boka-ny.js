@@ -5,16 +5,35 @@
 (function () {
   // ---- Priser (samma som js/boka.js) ----
   var MIN_PRIS = 750, TIMPRIS_15 = 699, INGAR_FONSTER = 14, HOGA_MIN = 10, KARM_ANDEL = 0.15, FRAMKORNING = 30;
-  var BALKONG = { helt: { namn: 'Helt inglasad', kr: 40 }, racke: { namn: 'Endast glasräcke', kr: 20 } };
-  var SPROJS_MIN = { 2: 16 / 3, 3: 20 / 3, 4: 8 };
+  var BALKONG = {
+    helt: { namn: 'Helt inglasad', text: 'Golv till tak', kr: 40, bild: 'balkong-golv-tak.webp' },
+    racke: { namn: 'Endast glasräcke', text: 'Räcke till tak', kr: 20, bild: 'balkong-racke.webp' },
+    altan: { namn: 'Altanräcke i glas', text: 'Altanräcke', kr: 30, bild: 'altan-racke.webp' } // 30 kr/glas: Tommy 2026-11-19
+  };
+  // 4 rutor = 8 min (TIDER.md), +4/3 min per ruta; 6 och 8 rutor godkända av Tommy 2026-11-19
+  var SPROJS_MIN = { 2: 16 / 3, 3: 20 / 3, 4: 8, 6: 32 / 3, 8: 40 / 3 };
+  var SPROJS_BILD = { 2: "sprojs-2.webp", 3: "sprojs-3.webp", 4: "sprojs-4.webp", 6: "sprojs-6.webp", 8: "sprojs-8.webp" };
+  // Panorama: tre storlekar (4 och 8 min från gamla priskalkylatorn, 12 min för större enligt Tommy)
+  // Uterum: pris per glas efter RUT (Tommy 2026-11-19). x/y = siffrans plats på bilden i %.
+  var UTERUM = [
+    { k: 'tak', namn: 'Takglas', kr: 80, x: 52, y: 22 },
+    { k: 'golv', namn: 'Golv till tak', kr: 40, x: 55, y: 60 },
+    { k: 'tri', namn: 'Små fönster och trianglar', kr: 20, x: 11, y: 24 }
+  ];
+  var PANORAMA = { liten: { text: 'ca 1 × 2 m', min: 4 }, mellan: { text: 'ca 2 × 2,5 m', min: 8 }, stor: { text: 'Större än 2 × 2,5 m', min: 12 } }; // 12 min: Tommy 2026-11-19
+  var FOTO = { L1: "fonster-1-luft.jpg", L2: "fonster-2-luft.jpg", P: "panorama-helt.webp", O: "fonster-overliggande.webp", B: "altan-racke.webp", U: "fonster-underliggande.webp", S: "sprojs-4.webp" }; // riktiga bilder i korten (ikoner tills bild finns)
   var TYPER = [
-    { id: 'L2', namn: 'Utan spröjs', min: [4, 8] },
+    { id: 'L1', namn: '1-luft utan spröjs', min: [2, 4] }, // tider från TIDER.md (Tommy 2026-11-19: bild på 1-luft)
+    { id: 'L2', namn: '2-luft utan spröjs', min: [4, 8] },
+    { id: 'P', namn: 'Panoramafönster', visa: 'Panorama­fönster', min: [8, 8], tvaSidor: true, storlekar: true }, // 8 min per glas (TIDER.md), alltid 2 sidor, räknas styckvis (Tommy 2026-11-19)
     { id: 'S', namn: 'Med spröjs', sprojs: true },
-    { id: 'O', namn: 'Överhängda fönster', min: [4.5, 10] },
-    { id: 'B', namn: 'Uterum, altanräcke eller balkong', balkong: true }
+    { id: 'O', namn: 'Överliggande fönster', visa: 'Över­liggande fönster', min: [4.5, 10] },
+    { id: 'U', namn: 'Underliggande fönster', visa: 'Under­liggande fönster', min: [3, 10] }, // tider från TIDER.md (Tommy 2026-11-19: bild)
+    { id: 'B', namn: 'Altanräcke eller balkong', balkong: true },
+    { id: 'UT', namn: 'Uterum', uterum: true }
   ];
   var val = {};
-  TYPER.forEach(function (t) { val[t.id] = { antal: 0, sidor: 2, rutor: 4, balkong: 'helt' }; });
+  TYPER.forEach(function (t) { val[t.id] = { antal: 0, sidor: 2, rutor: 4, balkong: 'helt', storlek: 'mellan', tak: 0, golv: 0, tri: 0 }; });
   var st = { special: '', utat: false, hoga: false, fasta: false, karm: false };
   // Lägenhet (samma priser som kontaktsidan: storlek + 40/20 kr per balkongruta + 30 kr inställelseavgift)
   var typ = 'villa';
@@ -40,15 +59,16 @@
     return Math.ceil(TIMPRIS_15 * m / 90 / 10) * 10 - 1;
   }
   function minPerFonster(t, v, utat) {
-    var fyra = utat || v.sidor === 4;
+    var fyra = !t.tvaSidor && (utat || v.sidor === 4);
     if (t.sprojs) return SPROJS_MIN[v.rutor] * (fyra ? 2 : 1);
+    if (t.storlekar) return PANORAMA[v.storlek].min;
     return t.min[fyra ? 1 : 0];
   }
   function rakna() {
     var antal = 0, minuter = 0;
     var utat = st.special === 'Ja' && st.utat;
     TYPER.forEach(function (t) {
-      if (t.balkong) return;
+      if (t.balkong || t.uterum) return;
       antal += val[t.id].antal;
       minuter += val[t.id].antal * minPerFonster(t, val[t.id], utat);
     });
@@ -60,19 +80,21 @@
       hus = Math.max(fonsterPris, tidsPris(minuter + (hoga ? HOGA_MIN : 0)));
     }
     var b = val.B;
-    var balkong = b.antal * BALKONG[b.balkong].kr;
+    var u = val.UT, utGlas = u.tak + u.golv + u.tri;
+    var balkong = b.antal * BALKONG[b.balkong].kr + UTERUM.reduce(function (s, r) { return s + u[r.k] * r.kr; }, 0);
     var putsning = hus + balkong > 0 ? Math.max(hus + balkong, MIN_PRIS) : 0;
     var karm = st.karm ? Math.round(putsning * KARM_ANDEL) : 0;
     var avgift = putsning ? FRAMKORNING : 0;
-    return { antal: antal, balkong: b.antal, putsning: putsning, karm: karm, avgift: avgift, total: putsning + karm + avgift };
+    return { antal: antal, balkong: b.antal + utGlas, putsning: putsning, karm: karm, avgift: avgift, total: putsning + karm + avgift };
   }
   function beskrivning(p) {
     var delar = ['En gång'];
     TYPER.forEach(function (t) {
       var v = val[t.id];
       if (!v.antal) return;
-      if (t.balkong) delar.push('Uterum/altan/balkong (' + BALKONG[v.balkong].namn.toLowerCase() + '): ' + v.antal + ' rutor');
-      else delar.push(t.namn + (t.sprojs ? ' ' + v.rutor + ' rutor' : '') + ', ' + v.sidor + ' sidor: ' + v.antal + ' st');
+      if (t.uterum) { if (v.tak + v.golv + v.tri) delar.push('Uterum: ' + UTERUM.filter(function (r) { return v[r.k]; }).map(function (r) { return r.namn.toLowerCase() + ' ' + v[r.k] + ' st'; }).join(', ')); return; }
+      if (t.balkong) delar.push('Altan/balkong (' + BALKONG[v.balkong].namn.toLowerCase() + '): ' + v.antal + ' rutor');
+      else delar.push(t.namn + (t.sprojs ? ' ' + v.rutor + ' rutor' : '') + (t.storlekar ? ' ' + PANORAMA[v.storlek].text : '') + ', ' + v.sidor + ' sidor: ' + v.antal + ' st');
     });
     if (st.special === 'Ja') {
       var s = [];
@@ -92,23 +114,40 @@
   function chip(grupp, varde, text, vald) {
     return '<button type="button" class="nf-chip' + (vald ? ' vald' : '') + '" data-grupp="' + grupp + '" data-varde="' + varde + '">' + text + '</button>';
   }
+  function rutval(n, vald) {
+    var bild = SPROJS_BILD[n] ? '<img src="images/' + SPROJS_BILD[n] + '" alt="" width="300" height="200" />' : '<span class="nf-rutval-tom">' + n + '</span>';
+    return '<button type="button" class="nf-rutval' + (vald ? ' vald' : '') + '" data-grupp="rutor" data-varde="' + n + '" aria-pressed="' + vald + '">' + bild + '<span>' + n + ' rutor</span></button>';
+  }
+  function ritaUterum(v) {
+    var n = v.tak + v.golv + v.tri;
+    return '<div class="nf-typ nf-uterum' + (n ? ' aktiv' : '') + '" data-typ="UT"><div class="nf-ut-bild"><img src="images/uterum.webp" alt="Uterum med takglas, glas från golv till tak och små trianglar" width="724" height="543" />' +
+      UTERUM.map(function (r, i) { return '<span class="nf-ut-pin" style="left:' + r.x + '%;top:' + r.y + '%" aria-hidden="true">' + (i + 1) + '</span>'; }).join('') +
+      '</div><p class="nf-typ-namn nf-ut-namn">Uterum<small>Räkna glasen – siffrorna visar var de sitter</small></p>' +
+      UTERUM.map(function (r, i) { var a = v[r.k];
+        return '<div class="nf-ut-rad"><span class="nf-ut-nr">' + (i + 1) + '</span><span class="nf-ut-text">' + r.namn + '<small>' + r.kr + ' kr per glas</small></span>' +
+          '<div class="nf-raknare"><button type="button" data-utsteg="-1" data-ut="' + r.k + '" aria-label="Minska ' + r.namn + '"' + (a ? '' : ' disabled') + '>−</button><output>' + a + '</output><button type="button" data-utsteg="1" data-ut="' + r.k + '" aria-label="Öka ' + r.namn + '">+</button></div></div>'; }).join('') + '</div>';
+  }
   function ritaTyper() {
     typerEl.innerHTML = TYPER.map(function (t) {
       var v = val[t.id], html = '';
+      if (t.uterum) return ritaUterum(v);
       if (v.antal) {
         if (t.balkong) {
-          html += '<p class="nf-chips-rubrik">Vilken sort?</p><div class="nf-chips">' +
-            chip('balkong', 'helt', 'Helt inglasad · 40 kr/ruta', v.balkong === 'helt') +
-            chip('balkong', 'racke', 'Glasräcke · 20 kr/ruta', v.balkong === 'racke') + '</div>';
+          html += '<p class="nf-chips-rubrik">Vilken sort?</p><div class="nf-rutval-lista nf-balkval">' +
+            Object.keys(BALKONG).map(function (k) { var b = BALKONG[k], vald = v.balkong === k;
+              return '<button type="button" class="nf-rutval' + (vald ? ' vald' : '') + '" data-grupp="balkong" data-varde="' + k + '" aria-pressed="' + vald + '"><img src="images/' + b.bild + '" alt="" width="300" height="200" /><span>' + b.text + '<small>' + b.kr + ' kr per glas</small></span></button>'; }).join('') + '</div>';
         } else {
           if (t.sprojs) html += '<p class="nf-notis">Spröjsade fönster räknar jag gärna på innan du får ett fast pris.</p>';
-          html += '<p class="nf-chips-rubrik">Hur många sidor ska putsas?</p><div class="nf-chips">' +
+          if (t.storlekar) html += '<img class="nf-stor-bild" src="images/' + FOTO[t.id] + '" alt="" width="600" height="370" />' +
+            '<p class="nf-chips-rubrik">Ungefär hur stora är glasen?</p><div class="nf-chips">' +
+            Object.keys(PANORAMA).map(function (k) { return chip('storlek', k, PANORAMA[k].text, v.storlek === k); }).join('') + '</div>';
+          if (!t.tvaSidor) html += '<p class="nf-chips-rubrik">Hur många sidor ska putsas?</p><div class="nf-chips">' +
             chip('sidor', '2', '2 sidor (enkelsidiga)', v.sidor === 2) + chip('sidor', '4', '4 sidor (dubbelsidiga)', v.sidor === 4) + '</div>';
-          if (t.sprojs) html += '<p class="nf-chips-rubrik">Rutor per båge</p><div class="nf-chips">' +
-            chip('rutor', '2', '2 rutor', v.rutor === 2) + chip('rutor', '3', '3 rutor', v.rutor === 3) + chip('rutor', '4', '4 rutor', v.rutor === 4) + '</div>';
+          if (t.sprojs) html += '<p class="nf-chips-rubrik">Hur många rutor per båge?</p><div class="nf-rutval-lista">' +
+            [2, 3, 4, 6, 8].map(function (n) { return rutval(n, v.rutor === n); }).join('') + '</div>';
         }
       }
-      return '<div class="nf-typ' + (v.antal ? ' aktiv' : '') + '" data-typ="' + t.id + '"><div class="nf-typ-topp"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48">' + IKON[t.id] + '</svg></span><span class="nf-typ-namn">' + t.namn + '</span>' +
+      return '<div class="nf-typ' + (v.antal ? ' aktiv' : '') + '" data-typ="' + t.id + '"><div class="nf-typ-topp">' + (FOTO[t.id] ? '<span class="nf-kortbild foto" aria-hidden="true"><img src="images/' + FOTO[t.id] + '" alt="" width="300" height="200" /></span>' : '<span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48">' + IKON[t.id] + '</svg></span>') + '<span class="nf-typ-namn">' + (t.visa || t.namn) + '</span>' +
         '<div class="nf-raknare"><button type="button" data-steg="-1" aria-label="Minska ' + t.namn + '"' + (v.antal ? '' : ' disabled') + '>−</button>' +
         '<output>' + v.antal + '</output><button type="button" data-steg="1" aria-label="Öka ' + t.namn + '">+</button></div></div>' + html + '</div>';
     }).join('');
@@ -117,12 +156,14 @@
     var rad = e.target.closest('[data-typ]');
     if (!rad) return;
     var v = val[rad.getAttribute('data-typ')];
+    var us = e.target.closest('[data-utsteg]');
+    if (us) { var k = us.getAttribute('data-ut'); v[k] = Math.max(0, Math.min(99, v[k] + Number(us.getAttribute('data-utsteg')))); ritaTyper(); uppdatera(); if (rakna().antal + rakna().balkong > 0) document.getElementById('nfFelFonster').hidden = true; return; }
     var steg = e.target.closest('[data-steg]');
     var c = e.target.closest('[data-grupp]');
     if (steg) v.antal = Math.max(0, Math.min(99, v.antal + Number(steg.getAttribute('data-steg'))));
     else if (c) {
       var g = c.getAttribute('data-grupp'), x = c.getAttribute('data-varde');
-      if (g === 'balkong') v.balkong = x; else v[g] = Number(x);
+      if (g === 'balkong' || g === 'storlek') v[g] = x; else v[g] = Number(x);
     } else return;
     ritaTyper(); uppdatera();
     if (rakna().antal + rakna().balkong > 0) document.getElementById('nfFelFonster').hidden = true;
