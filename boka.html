@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/kalender.css?v=3" />
-  <link rel="stylesheet" href="css/boka-ny.css?v=22" />
+  <link rel="stylesheet" href="css/boka-ny.css?v=23" />
 </head>
 <body>
 <!-- Ny bokning byggd från noll (Tommy 2026-11-18): en sak per skärm, stora val, knappen längst ner. -->
@@ -43,8 +43,8 @@
       <p class="nf-under">Välj det som passar dig.</p>
       <div class="nf-lista">
         <button type="button" class="nf-bild" data-villa><img src="images/val-villa.jpg" alt="" width="120" height="120" /><span><strong>Villa &amp; radhus</strong><small>Fast pris direkt – boka här</small></span><i class="nf-pil"></i></button>
-        <button type="button" class="nf-bild" data-lgh><img src="images/val-lagenhet.jpg" alt="" width="120" height="120" /><span><strong>Lägenhet</strong><small>Fast pris direkt – boka här</small></span><i class="nf-pil"></i></button>
-        <a class="nf-bild" href="/foretag"><img src="images/val-foretag.jpg" alt="" width="120" height="120" /><span><strong>Företag</strong><small>Kontor, butik och lokaler</small></span><i class="nf-pil"></i></a>
+        <button type="button" class="nf-bild" data-lgh><img src="images/val-lagenhet-hus.webp" alt="" width="120" height="120" /><span><strong>Lägenhet</strong><small>Fast pris direkt – boka här</small></span><i class="nf-pil"></i></button>
+        <a class="nf-bild" href="/foretag"><img src="images/val-foretag-lokal.webp" alt="" width="120" height="120" /><span><strong>Företag</strong><small>Kontor, butik och lokaler</small></span><i class="nf-pil"></i></a>
         <button type="button" class="nf-bild" data-sol><img src="images/val-solceller.jpg" alt="" width="120" height="120" /><span><strong>Solcellstvätt</strong><small>Rena paneler med renvatten</small></span><i class="nf-pil"></i></button>
       </div>
     </section>
@@ -64,7 +64,7 @@
         <button type="button" class="nf-val" data-special="Ja"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M14 44 22 4M34 44 26 4M16 34h16M18 24h12M20 14h8"/></svg></span><span><strong>Ja</strong><small>Jag har några sådana</small></span></button>
       </div>
       <div class="nf-lista" id="nfSpecialLista" hidden>
-        <button type="button" class="nf-val nf-val-rad" data-check="utat"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="6" y="5" width="22" height="38" rx="2"/><path d="M28 5l14 6v34l-14-2"/></svg></span><span><strong>Öppnas utåt</strong><small>Räknas som 4 sidor</small></span></button>
+        <button type="button" class="nf-val nf-val-rad" data-check="utat"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="6" y="5" width="22" height="38" rx="2"/><path d="M28 5l14 6v34l-14-2"/></svg></span><span><strong>Öppnas utåt</strong></span></button>
         <button type="button" class="nf-val nf-val-rad" data-check="hoga"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M12 44 20 4M32 44 24 4M14 34h16M16 24h12M18 14h8"/><path d="M38 14v-8M35 9l3-3 3 3"/></svg></span><span><strong>Svåra att nå</strong><small>Stege eller renvattensystem</small></span></button>
         <button type="button" class="nf-val nf-val-rad" data-check="fasta"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="5" width="32" height="38" rx="2"/><rect x="18" y="20" width="12" height="10" rx="1.5"/><path d="M20 20v-3a4 4 0 0 1 8 0v3"/></svg></span><span><strong>Går inte att öppna</strong><small>Fasta fönster</small></span></button>
       </div>
@@ -102,7 +102,7 @@
       <p class="nf-under">Valfritt. Tryck Fortsätt om inget behövs.</p>
       
       <p class="nf-fel" id="nfFelExtra" hidden>Skriv några ord om jobbet.</p>
-      <label class="nf-falt"><span>Meddelande till mig</span><textarea name="meddelande" rows="3" placeholder="T.ex. portkod, husdjur eller annat jag bör veta"></textarea></label>
+      <label class="nf-falt"><span>Meddelande till mig</span><textarea name="meddelande" rows="3" placeholder="Här kan du ge mig mer konkret information, t.ex. portkod eller dylikt"></textarea></label>
     </section>
 
     <!-- 5 -->
@@ -160,6 +160,6 @@
 
 <script src="js/postnummer.js"></script>
 <script src="js/kalender.js"></script>
-<script src="js/boka-ny.js?v=22"></script>
+<script src="js/boka-ny.js?v=23"></script>
 </body>
 </html>

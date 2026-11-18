@@ -204,9 +204,11 @@
   var prisEl = document.getElementById('nfPris');
   // ---- Visa detaljer i nedre raden (Tommy 2026-11-19) ----
   var detaljOppen = false;
+  var storSkarm = window.matchMedia('(min-width: 1000px)'); // dator: sammanställningen syns alltid till höger
   function drad(t, v, cls) { return '<div class="nf-d-rad' + (cls ? ' ' + cls : '') + '"><span>' + t + '</span><b>' + v + '</b></div>'; }
   function ritaDetaljer(p) {
-    var el = document.getElementById('nfDetaljer'), html = '<p class="nf-d-rubrik">Det här har du valt</p>';
+    var el = document.getElementById('nfDetaljer'), html = '<p class="nf-d-rubrik">' + (storSkarm.matches ? 'Sammanställning' : 'Det här har du valt') + '</p>';
+    if (!p.total) { el.innerHTML = html + '<p class="nf-d-liten">Välj det du vill ha putsat, så räknas priset ut direkt.</p>'; return; }
     if (typ === 'lgh') {
       if (lgh.apt) html += drad('Lägenhet ' + lgh.apt, kr(lgh.pris));
       if (lgh.golv) html += drad('Balkong golv till tak, ' + lgh.golv + ' glas', kr(lgh.golv * 40));
@@ -232,18 +234,20 @@
   function visaDetaljer(oppen) {
     var p = prisNu();
     detaljOppen = oppen && !p.sol && p.total > 0;
-    if (detaljOppen) ritaDetaljer(p);
-    document.getElementById('nfDetaljer').hidden = !detaljOppen;
+    var syns = detaljOppen || (storSkarm.matches && !p.sol);
+    if (syns) ritaDetaljer(p);
+    document.getElementById('nfDetaljer').hidden = !syns;
     document.getElementById('nfBotten').classList.toggle('oppen', detaljOppen);
     document.getElementById('nfDetaljKnapp').setAttribute('aria-expanded', detaljOppen ? 'true' : 'false');
     document.getElementById('nfDetaljText').textContent = detaljOppen ? 'Dölj detaljer' : 'Visa detaljer';
   }
-  document.getElementById('nfDetaljKnapp').addEventListener('click', function () { visaDetaljer(!detaljOppen); });
+  document.getElementById('nfDetaljKnapp').addEventListener('click', function () { if (!storSkarm.matches) visaDetaljer(!detaljOppen); });
+  if (storSkarm.addEventListener) storSkarm.addEventListener('change', function () { visaDetaljer(false); });
 
   function uppdatera() {
     var p = prisNu();
     document.getElementById('nfBotten').classList.toggle('har-pris', !p.sol && p.total > 0);
-    if (detaljOppen) visaDetaljer(true);
+    visaDetaljer(detaljOppen);
     prisEl.textContent = p.sol ? 'Fast pris innan jag kommer' : p.total ? kr(p.total) : 'Välj för att se pris';
     prisEl.classList.toggle('tom', !p.total);
     return p;
