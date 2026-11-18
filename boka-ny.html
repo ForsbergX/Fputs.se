@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18225187055"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-18225187055');
+    gtag('config', 'G-DX43GW5J1M');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Boka fönsterputs – Forsbergs Fönsterputs</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="favicon.ico?v=4" sizes="any" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/kalender.css?v=3" />
+  <link rel="stylesheet" href="css/boka-ny.css?v=3" />
+</head>
+<body>
+<!-- Ny bokning byggd från noll (Tommy 2026-11-18): en sak per skärm, stora val, knappen längst ner. -->
+<form id="nf" class="nf" novalidate>
+  <input type="hidden" name="onskat_datum_1" value="" />
+  <input type="hidden" name="onskad_tid" value="" />
+
+  <header class="nf-topp">
+    <button type="button" class="nf-ikon" id="nfTillbaka" aria-label="Tillbaka"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button>
+    <div class="nf-progress" aria-hidden="true"><b id="nfProgress"></b></div>
+    <a class="nf-ikon" href="/" aria-label="Stäng"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></a>
+  </header>
+
+  <main class="nf-innehall">
+    <!-- 1 -->
+    <section class="nf-skarm" data-skarm="typ">
+      <p class="nf-steg">Steg 1 av 6</p>
+      <h1>Vad ska putsas?</h1>
+      <p class="nf-under">Välj det som passar dig.</p>
+      <div class="nf-lista">
+        <button type="button" class="nf-bild" data-villa><img src="images/val-villa.jpg" alt="" width="120" height="120" /><span><strong>Villa &amp; radhus</strong><small>Fast pris direkt – boka här</small></span><i class="nf-pil"></i></button>
+        <button type="button" class="nf-bild" data-lgh><img src="images/val-lagenhet.jpg" alt="" width="120" height="120" /><span><strong>Lägenhet</strong><small>Fast pris direkt – boka här</small></span><i class="nf-pil"></i></button>
+        <a class="nf-bild" href="/foretag"><img src="images/val-foretag.jpg" alt="" width="120" height="120" /><span><strong>Företag</strong><small>Kontor, butik och lokaler</small></span><i class="nf-pil"></i></a>
+        <a class="nf-bild" href="/kontakta-mig?typ=Solcellstv%C3%A4tt"><img src="images/val-solceller.jpg" alt="" width="120" height="120" /><span><strong>Solcellstvätt</strong><small>Rena paneler med renvatten</small></span><i class="nf-pil"></i></a>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="nf-skarm" data-skarm="fonster" hidden>
+      <p class="nf-steg">Steg 2 av 6</p>
+      <h1>Hur många fönster?</h1>
+      <p class="nf-under">Räkna fönster, inte rutor. Priset räknas ut direkt.</p>
+      <div class="nf-typer" id="nfTyper"></div>
+      <p class="nf-fel" id="nfFelFonster" hidden>Lägg till minst ett fönster.</p>
+    </section>
+
+    <!-- Lägenhet -->
+    <section class="nf-skarm" data-skarm="lagenhet" hidden>
+      <p class="nf-steg"></p>
+      <h1>Hur stor är lägenheten?</h1>
+      <p class="nf-under">Ett fönster per rum och balkongdörren ingår – ut, in och emellan.</p>
+      <div class="nf-lista" id="nfLghStorlek">
+        <button type="button" class="nf-val nf-val-pris" data-apt="1:a" data-price="475"><strong>1:a</strong><b>475 kr</b></button>
+        <button type="button" class="nf-val nf-val-pris" data-apt="2:a" data-price="500"><strong>2:a</strong><b>500 kr</b></button>
+        <button type="button" class="nf-val nf-val-pris" data-apt="3:a" data-price="525"><strong>3:a</strong><b>525 kr</b></button>
+        <button type="button" class="nf-val nf-val-pris" data-apt="4:a" data-price="550"><strong>4:a</strong><b>550 kr</b></button>
+        <button type="button" class="nf-val nf-val-pris" data-apt="5:a" data-price="575"><strong>5:a</strong><b>575 kr</b></button>
+      </div>
+      <p class="nf-chips-rubrik nf-lgh-rubrik">Inglasad balkong <em>(valfritt)</em></p>
+      <div class="nf-typer" id="nfLghBalkong">
+        <div class="nf-typ" data-lghb="golv"><div class="nf-typ-topp"><span class="nf-typ-namn">Golv till tak<small>40 kr per ruta</small></span><div class="nf-raknare"><button type="button" data-steg="-1" aria-label="Minska golv till tak" disabled>−</button><output>0</output><button type="button" data-steg="1" aria-label="Öka golv till tak">+</button></div></div></div>
+        <div class="nf-typ" data-lghb="tak"><div class="nf-typ-topp"><span class="nf-typ-namn">Räcke till tak<small>20 kr per ruta</small></span><div class="nf-raknare"><button type="button" data-steg="-1" aria-label="Minska räcke till tak" disabled>−</button><output>0</output><button type="button" data-steg="1" aria-label="Öka räcke till tak">+</button></div></div></div>
+      </div>
+      <p class="nf-fel" id="nfFelLgh" hidden>Välj storlek på lägenheten.</p>
+    </section>
+
+    <!-- 3 -->
+    <section class="nf-skarm" data-skarm="special" hidden>
+      <p class="nf-steg">Steg 3 av 6</p>
+      <h1>Några specialfönster?</h1>
+      <p class="nf-under">Fönster som öppnas utåt, sitter högt eller inte går att öppna.</p>
+      <div class="nf-tva">
+        <button type="button" class="nf-val" data-special="Nej"><strong>Nej</strong><small>Vanliga fönster</small></button>
+        <button type="button" class="nf-val" data-special="Ja"><strong>Ja</strong><small>Jag har några sådana</small></button>
+      </div>
+      <div class="nf-lista" id="nfSpecialLista" hidden>
+        <button type="button" class="nf-val nf-val-rad" data-check="utat"><strong>Öppnas utåt</strong><small>Räknas som 4 sidor</small></button>
+        <button type="button" class="nf-val nf-val-rad" data-check="hoga"><strong>Svåra att nå</strong><small>Stege eller renvattensystem</small></button>
+        <button type="button" class="nf-val nf-val-rad" data-check="fasta"><strong>Går inte att öppna</strong><small>Fasta fönster</small></button>
+      </div>
+      <p class="nf-fel" id="nfFelSpecial" hidden>Välj Ja eller Nej.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="nf-skarm" data-skarm="extra" hidden>
+      <p class="nf-steg">Steg 4 av 6</p>
+      <h1>Något mer?</h1>
+      <p class="nf-under">Valfritt. Tryck Fortsätt om inget behövs.</p>
+      <button type="button" class="nf-val nf-val-rad" data-check="karm" id="nfKarm"><strong>Karmtvätt</strong><small>Rena karmar och bågar · +15 %</small></button>
+      <label class="nf-falt"><span>Meddelande till mig</span><textarea name="meddelande" rows="3" placeholder="T.ex. portkod, husdjur eller annat jag bör veta"></textarea></label>
+    </section>
+
+    <!-- 5 -->
+    <section class="nf-skarm" data-skarm="tid" hidden>
+      <p class="nf-steg">Steg 5 av 6</p>
+      <h1>När passar det?</h1>
+      <p class="nf-under">Välj dag och tid. Jag bekräftar via SMS.</p>
+      <div class="fpk" data-fp-kalender>
+        <div class="fpk-kal"></div>
+        <div class="fpk-tider"></div>
+        <p class="fpk-fel" hidden>Välj dag och tid.</p>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="nf-skarm" data-skarm="uppgifter" hidden>
+      <p class="nf-steg">Steg 6 av 6</p>
+      <h1>Vart ska jag komma?</h1>
+      <p class="nf-under">Så jag kan bekräfta tiden.</p>
+      <label class="nf-falt"><span>Namn</span><input type="text" name="namn" autocomplete="name" required /></label>
+      <label class="nf-falt"><span>Telefon</span><input type="tel" name="telefon" autocomplete="tel" required /></label>
+      <label class="nf-falt"><span>Gatuadress</span><input type="text" name="gata" autocomplete="street-address" required /></label>
+      <div class="nf-rad2">
+        <label class="nf-falt"><span>Postnummer</span><input type="text" name="postnummer" inputmode="numeric" autocomplete="postal-code" required /></label>
+        <label class="nf-falt"><span>Ort</span><input type="text" name="ort" autocomplete="address-level2" required /></label>
+      </div>
+      <label class="nf-falt"><span>E-post <em>(valfritt)</em></span><input type="email" name="email" autocomplete="email" /></label>
+      <p class="nf-fel" id="nfFelUppgifter" hidden></p>
+    </section>
+
+    <!-- Översikt -->
+    <section class="nf-skarm" data-skarm="oversikt" hidden>
+      <p class="nf-steg">Klart att boka</p>
+      <h1>Stämmer allt?</h1>
+      <div class="nf-oversikt" id="nfOversikt"></div>
+      <p class="nf-liten">Bokningen är inte bindande förrän jag bekräftat tiden via SMS. Inställelseavgiften är ej RUT-berättigad.</p>
+      <p class="nf-fel" id="nfFelSkicka" hidden>Något gick fel. Prova igen eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
+    </section>
+
+    <!-- Tack -->
+    <section class="nf-skarm nf-tack" data-skarm="tack" hidden>
+      <div class="nf-bock"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h1>Tack för din bokning!</h1>
+      <p class="nf-under">Jag har fått den och bekräftar tiden via SMS, oftast samma dag.</p>
+      <a class="nf-knapp" href="/">Till startsidan</a>
+    </section>
+  </main>
+
+  <footer class="nf-botten" id="nfBotten" hidden>
+    <div class="nf-pris"><small>Totalt efter RUT</small><b id="nfPris">–</b></div>
+    <button type="button" class="nf-knapp" id="nfNasta">Fortsätt</button>
+  </footer>
+</form>
+
+<script src="js/postnummer.js"></script>
+<script src="js/kalender.js"></script>
+<script src="js/boka-ny.js?v=2"></script>
+</body>
+</html>

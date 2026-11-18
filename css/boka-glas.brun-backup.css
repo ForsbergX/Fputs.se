@@ -1,0 +1,73 @@
+/* Bokningen i samma mörka glastema som resten av sidan, svart/rött efter loggan (Tommy 2026-10-31).
+   Laddas efter boka.css. Ta bort länken i boka.html för att få tillbaka den ljusa Hemfrid-stilen.
+   Kalendern och textfälten är kvar vita så de går lätt att läsa. */
+:root {
+  --bk-ink: #fff;
+  --bk-mjuk: rgba(255, 255, 255, 0.72);
+  --bk-kant: rgba(255, 255, 255, 0.28);
+  --bk-navy: #d1101f;
+  --bk-aktiv: rgba(255, 255, 255, 0.18);
+  --bk-ruta: rgba(22, 18, 15, 0.72);
+  --bk-rod: #ff6b74;
+  --bk-glas: rgba(255, 255, 255, 0.1);
+}
+
+/* Bakgrund: samma suddiga solnedgångsfoto + mörk ton */
+html { background: #1a1613; }
+body.bk { background: transparent; color: #fff; }
+body.bk::before {
+  content: ""; position: fixed; inset: -40px; z-index: -2; pointer-events: none;
+  background: url("../images/bakgrund-suddig.jpg") 60% center / cover no-repeat;
+}
+body.bk::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(26, 20, 16, 0.6) 0%, rgba(14, 11, 9, 0.8) 100%);
+}
+
+/* Text */
+.bk-ruta p, .bk-ingress, .bk-rad-panel p, .bk-radio small, .bk-check small, .bk-samman .bk-liten { color: rgba(255, 255, 255, 0.78); }
+.bk-ruta hr { border-top-color: rgba(255, 255, 255, 0.2); }
+.bk-linje { border-top-color: rgba(255, 255, 255, 0.2); }
+.bk-rund { border-color: rgba(255, 255, 255, 0.7); background: rgba(255, 255, 255, 0.1); }
+.bk-pil { stroke: #fff; }
+
+/* Kalkylen ren som textfälten: vita kort med mörk text (Tommy 2026-10-31) */
+.bk-val, .bk-rad, .bk-radio, .bk-check { background: #fff; border: 1px solid transparent; border-radius: 12px; color: #1d1a16; }
+.bk-val small, .bk-rad-panel p, .bk-radio small, .bk-check small { color: #55585c; }
+.bk-pil { stroke: #1d1a16; }
+.bk-rad { overflow: hidden; }
+/* Vald rad/ruta: ljusgrå med mörk kant, inte rött */
+.bk-rad.aktiv { border-color: #1d1a16; }
+.bk-rad.aktiv .bk-rad-topp { background: #f3f2f0; border-bottom-color: #e2ded8; }
+.bk-radio:has(input:checked), .bk-check:has(input:checked) { border-color: #1d1a16; background: #f3f2f0; }
+.bk-radio input, .bk-check input { accent-color: #1d1a16; }
+
+/* − antal + : mörka knappar */
+.bk-steg button { border-radius: 8px; background: #1d1a16; }
+.bk-steg button:disabled { background: #e6e3df; color: #9a958f; }
+.bk-steg output { background: #fff; color: #1d1a16; border-color: #d8d3cc; border-radius: 10px; }
+.bk-rad.aktiv .bk-steg output { border-color: #1d1a16; }
+
+/* Rutan till höger och mobilpriset: mörkt glas */
+.bk-ruta, .bk-mobilpris { border: 1px solid var(--bk-kant); border-radius: 16px; -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); color: #fff; }
+.bk-mobilpris { background: rgba(22, 18, 15, 0.88); }
+
+/* Knappar: röda piller */
+.bk-fortsatt { border: 0; border-radius: 999px; background: var(--bk-navy); color: #fff; }
+.bk-fortsatt:hover, .bk-skicka { background: #b00d1a; color: #fff; }
+
+/* Textfält vita med mörk text (Tommy vill ha dem vita) */
+.bk textarea, .bk-falt input { color: #1d1a16; background: #fff; border-color: transparent; border-radius: 12px; }
+.bk textarea:focus, .bk-falt input:focus { outline-color: var(--bk-navy); }
+
+/* Spröjs-rutan: ljus med röd kant */
+.bk-rad-panel p.bk-notis { background: #fff4e5; color: #1d1a16; }
+
+/* Kalendern: vitt kort så dagarna syns tydligt */
+.bk .fpk { background: #fff; border-radius: 16px; padding: 14px; color: #0d0f11; }
+
+/* Sammanställningen: samma vita kort som kalkylen så kunden ser den tydligt (Tommy 2026-10-31) */
+.bk-ruta { background: #fff; color: #1d1a16; border-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.bk-ruta p, .bk-samman .bk-liten { color: #55585c; }
+.bk-ruta .bk-srad, .bk-ruta .bk-total, .bk-ruta h2 { color: #1d1a16; }
+.bk-ruta hr { border-top-color: #e2ded8; }

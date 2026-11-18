@@ -1,0 +1,225 @@
+/* Glastema som Gotenstam (Tommy 2026-10-23): solnedgångsfoto bakom hela sidan,
+   frostade glaskort, rundade knappar. Svart/rött efter loggan (Tommy 2026-10-31, blå version i glas-tema.blå-backup.css). Ta bort länken i index.html för att stänga av. */
+:root {
+  --gl-navy: #16120f;
+  --gl-rod: #d1101f;
+  --gl-rod-2: #b00d1a;
+  --gl-navy-2: #2a2420;
+  --gl-glas: rgba(255, 255, 255, 0.13);
+  --gl-glas-stark: rgba(255, 255, 255, 0.2);
+  --gl-kant: rgba(255, 255, 255, 0.3);
+  --gl-text: #ffffff;
+  --gl-mjuk: rgba(255, 255, 255, 0.78);
+}
+
+/* ---------- Fotot bakom hela sidan ---------- */
+html { background: #1a1613; }
+html body { background: transparent !important; color: var(--gl-text); }
+body::before {
+  content: ""; position: fixed; inset: -40px; z-index: -2; pointer-events: none;
+  /* Färdigsuddad liten bild (20 kB) – ingen blur-uträkning i mobilen = mjukare scroll (2026-10-24) */
+  background: url("../images/bakgrund-suddig.jpg") 60% center / cover no-repeat;
+}
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(26, 20, 16, 0.58) 0%, rgba(14, 11, 9, 0.78) 100%);
+}
+html body #om-mig, html body #karta, .ns-sektion { background: transparent !important; }
+
+/* Glas: samma frostade yta överallt */
+.ns-kort, .gl-ikon, .ns-ref, .ns-om > div, .ns-hero-knappar .ns-knapp-vit {
+  background: var(--gl-glas) !important;
+  border: 1px solid var(--gl-kant) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 18px 40px -22px rgba(8, 14, 24, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  color: var(--gl-text) !important;
+}
+
+/* ---------- Meny ---------- */
+.nav-cta { background: var(--gl-rod) !important; }
+/* Menyraden: frostat mörkt glas i stället för vitt.
+   Glaset ligger i ::before – backdrop-filter direkt på nav skulle knuffa ut mobilmenyn. */
+html body nav:not(.breadcrumb-nav) {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  box-shadow: 0 14px 34px -18px rgba(8, 14, 24, 0.6) !important;
+}
+html body nav:not(.breadcrumb-nav)::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(160deg, rgba(34, 29, 25, 0.62) 0%, rgba(14, 12, 10, 0.72) 100%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+}
+html body nav:not(.breadcrumb-nav) .nav-tel { color: #fff; text-shadow: 0 1px 6px rgba(20, 35, 55, 0.35); }
+html body .nav-toggle span { background: #fff !important; }
+@media (min-width: 769px) {
+  html body .nav-links > li > a:not(.nav-cta) { color: #fff !important; text-shadow: 0 1px 6px rgba(20, 35, 55, 0.35); }
+}
+/* Rullgardinsmenyn på dator: frostat mörkt glas */
+@media (min-width: 769px) {
+  html body .nav-dropdown-menu {
+    background: linear-gradient(160deg, rgba(34, 29, 25, 0.94) 0%, rgba(14, 12, 10, 0.96) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+  }
+  html body .nav-dropdown-menu a { color: #fff !important; }
+}
+/* Mobilmenyn: mörkt glas i stället för sand */
+@media (max-width: 768px) {
+  /* Samma frostade mörka glas som menyraden */
+  html body .nav-links {
+    background: linear-gradient(160deg, rgba(34, 29, 25, 0.82) 0%, rgba(14, 12, 10, 0.88) 100%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%);
+    border-left: 1px solid rgba(255, 255, 255, 0.45) !important;
+    box-shadow: -20px 0 40px -20px rgba(8, 14, 24, 0.55), inset 1px 0 0 rgba(255, 255, 255, 0.25);
+  }
+  html body .nav-links > li > a { text-shadow: 0 1px 6px rgba(20, 35, 55, 0.35); }
+  html body .nav-links a, html body .nav-dropdown-menu a { color: #fff !important; }
+  html body .nav-links a.active { color: #ff6b74 !important; }
+  html body .nav-links > li { border-bottom-color: rgba(255, 255, 255, 0.3) !important; }
+  html body .nav-dropdown-menu { background: transparent !important; border: 0 !important; box-shadow: none !important; }
+  html body .nav-links > li.nav-dropdown > a::after { border-color: rgba(255, 255, 255, 0.75) !important; }
+  html body .nav-toggle { position: relative; z-index: 200; }
+  html body .nav-toggle.open span { background: #fff !important; }
+}
+
+/* ---------- Knappar: rundade "piller" ---------- */
+.ns-knapp, .ns-form-kort .ns-skicka { border-radius: 999px !important; }
+.ns-knapp-rod { background: var(--gl-rod) !important; color: #fff !important; box-shadow: 0 12px 26px -14px rgba(0, 0, 0, 0.8); }
+.ns-knapp-rod:hover { background: var(--gl-rod-2) !important; }
+.ns-hero-knappar { grid-template-columns: 1fr 1fr; max-width: 460px; }
+
+/* ---------- Hero ---------- */
+#hero.ns-hero { background: transparent !important; align-items: flex-end; }
+#hero .ns-hero-bild { object-position: 58% 50%; }
+#hero.ns-hero::after {
+  background: linear-gradient(180deg, rgba(22, 17, 14, 0.15) 0%, rgba(22, 17, 14, 0.25) 45%, rgba(18, 14, 12, 0.78) 100%);
+}
+.ns-hero h1 { font-size: clamp(36px, 9.5vw, 60px); line-height: 1.05; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35); }
+.ns-hero-p { color: var(--gl-mjuk); }
+
+/* Fyra ikonkort i heron (som TRYGGT / NOGGRANT / PERSONLIGT / FLEXIBELT) */
+.gl-ikoner { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+@media (min-width: 760px) { .gl-ikoner { grid-template-columns: repeat(3, 1fr); gap: 14px; } }
+/* 5 kort: på mobil (2 kolumner) tar det sista hela raden */
+@media (max-width: 759px) { .gl-ikoner > .gl-ikon:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+.gl-ikon { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 16px 10px 14px; border-radius: 16px; text-align: center; }
+.gl-ikon .ns-ikon { width: 40px; height: 40px; margin: 0 0 4px; border-radius: 12px; background: rgba(255, 255, 255, 0.16); /* rent vitt glas, inte rött (Tommy 2026-10-31) */ box-shadow: none; }
+.gl-ikon .ns-ikon svg { width: 22px; height: 22px; stroke: #fff; }
+.gl-ikon strong { font-size: 12.5px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.gl-ikon span:not(.ns-ikon) { font-size: 12.5px; line-height: 1.35; color: var(--gl-mjuk); }
+
+/* ---------- Rubriker och tjänster ---------- */
+.ns-rubrik, .ns-om .ns-rubrik { color: #fff !important; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.25); }
+.ns-ref-sub { color: var(--gl-mjuk); }
+.ns-kort { border-radius: 20px; }
+.ns-kort h3 { color: #fff; }
+.ns-kort p { color: var(--gl-mjuk); }
+.ns-kort-lank { color: #fff; opacity: 0.9; }
+.ns-kort p.ns-kort-hemma { margin-top: -6px; font-size: 14.5px; font-weight: 700; color: #fff; }
+.ns-kort .ns-ikon { background: rgba(255, 255, 255, 0.16); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18); }
+.ns-kort .ns-ikon svg { stroke: #fff; }
+
+/* ---------- Referenser ---------- */
+.ns-ref figcaption { color: #fff; }
+.ns-kar-pil { background: rgba(255, 255, 255, 0.9); }
+.ns-kar-prickar button { background: rgba(255, 255, 255, 0.4); }
+.ns-kar-prickar button[aria-selected="true"] { background: #fff; }
+
+/* ---------- Om oss ---------- */
+.ns-om > div { padding: 26px 22px; border-radius: 20px; }
+.ns-om p { color: var(--gl-mjuk); }
+.ns-om .ns-knapp { background: #fff !important; color: var(--gl-navy) !important; }
+
+/* ---------- Offert: vitt frostat kort så fälten syns tydligt ---------- */
+.ns-form-kort { background: rgba(255, 255, 255, 0.94) !important; border-color: rgba(255, 255, 255, 0.6) !important; }
+.ns-form .ns-knapp, .ns-form-kort .ns-skicka { background: var(--gl-rod) !important; }
+
+/* Ikonkorten flyger in och landar på plats när startsidan laddas (Tommy 2026-10-24):
+   vänster kolumn från vänster, höger från höger, med en liten studs. Ikonen i mitten poppar efteråt. */
+.glid-pa .gl-ikon { animation: flygIn .6s cubic-bezier(.22, 1.35, .36, 1) both; }
+.glid-pa .gl-ikon:nth-child(odd) { --fran: -120%; --vrid: -8deg; }
+.glid-pa .gl-ikon:nth-child(even) { --fran: 120%; --vrid: 8deg; }
+.glid-pa .gl-ikon:nth-child(1) { animation-delay: .1s; }
+.glid-pa .gl-ikon:nth-child(2) { animation-delay: .17s; }
+.glid-pa .gl-ikon:nth-child(3) { animation-delay: .24s; }
+.glid-pa .gl-ikon:nth-child(4) { animation-delay: .31s; }
+.glid-pa .gl-ikon .ns-ikon { animation: ikonPop .4s cubic-bezier(.34, 1.8, .64, 1) both; }
+.glid-pa .gl-ikon:nth-child(1) .ns-ikon { animation-delay: .4s; }
+.glid-pa .gl-ikon:nth-child(2) .ns-ikon { animation-delay: .47s; }
+.glid-pa .gl-ikon:nth-child(3) .ns-ikon { animation-delay: .54s; }
+.glid-pa .gl-ikon:nth-child(4) .ns-ikon { animation-delay: .61s; }
+@keyframes flygIn {
+  from { opacity: 0; transform: translateX(var(--fran)) translateY(30px) rotate(var(--vrid)) scale(.85); }
+  60% { opacity: 1; }
+  to { opacity: 1; transform: none; }
+}
+@keyframes ikonPop { from { transform: scale(0) rotate(-30deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.ns-hero, .gl-ikoner { overflow-x: clip; }
+
+/* Hovra: korten lyfter och förstoras lite, ikonen förstoras mer.
+   Använder scale/translate (inte transform) så det inte krockar med uppglidningen. */
+@media (hover: hover) {
+  .ns-kort, .gl-ikon, .ns-ref {
+    transition: opacity .6s ease, transform .6s cubic-bezier(.2, .7, .2, 1), translate .25s ease, scale .25s ease, background .25s ease;
+    transition-delay: var(--glid-delay, 0s), var(--glid-delay, 0s), 0s, 0s, 0s;
+  }
+  .ns-kort:hover, .gl-ikon:hover { translate: 0 -6px; scale: 1.03; background: rgba(255, 255, 255, 0.2) !important; }
+  .ns-ref:hover { scale: 1.02; }
+  .ns-ikon { transition: scale .25s cubic-bezier(.34, 1.56, .64, 1), background .25s ease; }
+  .ns-kort:hover .ns-ikon, .gl-ikon:hover .ns-ikon { scale: 1.2; background: rgba(255, 255, 255, 0.28) !important; }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .ns-kort, .gl-ikon, .ns-ref, .ns-om > div { background: rgba(28, 23, 20, 0.82) !important; }
+}
+
+/* ---------- Tjänster som rutor, 2 i bredd (som smile.se, Tommy 2026-10-24) ----------
+   Bara ikon + rubrik så kunden ser alla tjänster direkt. Ta bort blocket för att få tillbaka de stora korten. */
+#tjanster .ns-tjanster-lista { grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (min-width: 900px) { #tjanster .ns-tjanster-lista { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+#tjanster .ns-kort {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  min-height: 132px; padding: 20px 10px !important; border-radius: 18px;
+}
+#tjanster .ns-kort .ns-ikon { width: 52px; height: 52px; margin: 0 0 12px; border-radius: 14px; display: grid; place-items: center; }
+#tjanster .ns-kort .ns-ikon svg { width: 28px; height: 28px; }
+#tjanster .ns-kort h3 { margin: 0; font-size: 16px; line-height: 1.25; }
+#tjanster .ns-kort p, #tjanster .ns-kort-lank { display: none; }
+
+/* Om oss med bilden på Tommy och bilen (2026-10-24): hela bilden syns, ingen beskärning av Tommy */
+#om-mig .ns-om img { height: auto; aspect-ratio: 1848 / 1480; object-fit: cover; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 22px 44px -22px rgba(8, 14, 24, .8); }
+
+/* ---------- Vanliga frågor på startsidan, Smile-stil (2026-10-24) ---------- */
+.fq-lista { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.fq { border-radius: 20px; background: var(--gl-glas); border: 1px solid var(--gl-kant); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: 0 18px 40px -26px rgba(8, 14, 24, .7); overflow: hidden; }
+.fq summary { list-style: none; display: flex; align-items: center; gap: 16px; padding: 18px 20px; cursor: pointer; }
+.fq summary::-webkit-details-marker { display: none; }
+.fq-knapp { flex: none; width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .75); display: grid; place-items: center; transition: background .2s, transform .3s; }
+.fq-knapp svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; transition: transform .3s; }
+.fq[open] .fq-knapp { background: #fff; }
+.fq[open] .fq-knapp svg { stroke: var(--gl-navy); transform: rotate(45deg); }
+.fq-fraga { font-size: 18px; font-weight: 600; line-height: 1.35; color: #fff; }
+.fq p { margin: 0; padding: 0 22px 20px 82px; font-size: 16px; line-height: 1.65; color: var(--gl-mjuk); }
+@media (max-width: 480px) { .fq p { padding-left: 22px; } }
+.fq-alla { display: block; width: fit-content; margin: 22px auto 0; color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+
+/* Menyn "Fönsterputs": bara villa, lägenhet, företag (solcellstvätt dold). Tredje rutan blir full bredd på mobil. */
+#tjanster.bara-fonsterputs .ns-kort-sol { display: none !important; }
+#tjanster.bara-fonsterputs .ns-kort:nth-child(3) { grid-column: 1 / -1; }
+@media (min-width: 900px) { #tjanster.bara-fonsterputs .ns-tjanster-lista { grid-template-columns: repeat(3, 1fr); } #tjanster.bara-fonsterputs .ns-kort:nth-child(3) { grid-column: auto; } }
+#tjanster { scroll-margin-top: 90px; }
+
+/* Citatikonen i recensionerna: röd som loggan i stället för gul (stjärnorna får vara gula) */
+.rk-topp-tecken { background: var(--gl-rod) !important; color: #fff !important; }
+
+/* Få offert: rutan "Vad gäller det?" – vita rena kort som i bokningen (Tommy 2026-10-31) */
+.ov { position: fixed; inset: 0; margin: auto; height: fit-content; max-height: calc(100% - 32px); overflow: auto; width: min(440px, calc(100% - 32px)); padding: 0; border: 0; border-radius: 20px; background: #fff; color: #1d1a16; box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .7); }
+.ov::backdrop { background: rgba(14, 11, 9, .6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.ov-ruta { position: relative; padding: 26px 18px 18px; }
+.ov h2 { margin: 0 0 16px; font-size: 22px; font-weight: 800; color: #1d1a16; }
+.ov-stang { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid #1d1a16; background: #fff; color: #1d1a16; font-size: 22px; line-height: 1; cursor: pointer; }
+.ov-val { display: block; padding: 16px 44px 16px 16px; margin: 0 0 10px; border: 1px solid #e2ded8; border-radius: 12px; color: #1d1a16; text-decoration: none; position: relative; }
+.ov-val::after { content: "›"; position: absolute; right: 16px; top: 50%; transform: translateY(-52%); font-size: 26px; color: #1d1a16; }
+.ov-val:hover { border-color: #1d1a16; background: #f3f2f0; }
+.ov-val strong { display: block; font-size: 17px; font-weight: 700; }
+.ov-val span { display: block; font-size: 14px; color: #55585c; margin-top: 2px; }

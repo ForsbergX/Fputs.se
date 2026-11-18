@@ -1496,10 +1496,13 @@
     .h1-namn { width: fit-content; max-width: 100%; }
     .h1-namn span + span { font-weight: 600; opacity: .92; text-align: center; }
     .ns-hero h1.h1-namn { text-shadow: 0 2px 16px rgba(0,0,0,0.45); }
-    @media (max-width: 759px) { section#hero.ns-hero { padding-top: 104px; align-items: flex-start; min-height: 0; } }
+    @media (max-width: 759px) { section#hero.ns-hero { padding-top: 104px; align-items: flex-start; min-height: 640px; } section#hero .ns-hero-knappar { margin-top: 206px; display: flex; justify-content: center; } section#hero .ns-hero-knappar .ns-knapp-rod { min-width: 240px; min-height: 64px; font-size: 19px; } /* samma höjd och knapplägen som när Tommy-texten fanns (2026-11-18) */ }
     /* Dator: text till vänster, Google-kortet till höger */
     @media (min-width: 1100px) {
-      section#hero .ns-hero-text { display: grid; grid-template-columns: minmax(0, 1fr) 440px; column-gap: 56px; align-items: center; max-width: 1240px; }
+      section#hero .ns-hero-text { display: block; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 8px; } /* en kolumn, i linje med menyn (Google-kortet flyttat 2026-11-18) */
+      section#hero .ns-hero-text h1.h1-namn { font-size: clamp(52px, 4.6vw, 84px); }
+      section#hero .ns-hero-knappar { margin-top: 28px; }
+      section#hero .ns-hero-knappar .ns-knapp-rod { min-width: 240px; height: 62px; font-size: 19px; }
       .ns-hero h1.h1-namn { font-size: clamp(40px, 3.6vw, 60px); }
       .ns-hero h1.h1-namn { width: auto; margin-bottom: 18px; letter-spacing: -0.025em; }
       .ns-hero h1.h1-namn span + span { text-align: left; margin-top: 4px; font-size: 0.62em; font-weight: 600; letter-spacing: 0.02em; opacity: 1; color: rgba(255,255,255,0.92); display: flex; align-items: center; gap: 14px; }
@@ -1507,10 +1510,9 @@
       .ns-hero-text > h1, .ns-hero-text > .ns-hero-p, .ns-hero-text > .ns-hero-knappar { grid-column: 1; }
       .ns-hero-text > .gk { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; justify-self: end; }
       section#hero.ns-hero { align-items: center; padding: 140px 48px 80px; min-height: min(90svh, 860px); }
-      section#hero.ns-hero::after { background: linear-gradient(90deg, rgba(14,11,9,0.78) 0%, rgba(14,11,9,0.55) 38%, rgba(14,11,9,0.18) 68%, rgba(14,11,9,0.05) 100%), linear-gradient(180deg, rgba(14,11,9,0.25) 0%, rgba(14,11,9,0) 30%, rgba(14,11,9,0) 70%, rgba(14,11,9,0.75) 100%); }
+      section#hero.ns-hero::after { background: linear-gradient(90deg, rgba(9,18,30,0.78) 0%, rgba(9,18,30,0.55) 38%, rgba(9,18,30,0.18) 68%, rgba(9,18,30,0.05) 100%), linear-gradient(180deg, rgba(9,18,30,0.25) 0%, rgba(9,18,30,0) 30%, rgba(9,18,30,0) 70%, rgba(9,18,30,0.75) 100%); }
       .ns-hero .ns-hero-p { max-width: 560px; font-size: 19px; line-height: 1.6; color: rgba(255,255,255,0.92); margin: 14px 0 32px; }
       .ns-hero .ns-hero-knappar { max-width: 480px; }
-      section#hero .gk { background: linear-gradient(160deg, rgba(30,24,20,0.62), rgba(30,24,20,0.42)); }
     }
     /* Kartrutan i glasstil (slår över tema.css/bubblor.css) */
     html body #karta .karta-box { background: linear-gradient(160deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05)) !important; border: 1px solid rgba(255,255,255,0.22) !important; box-shadow: 0 20px 50px rgba(0,0,0,0.35) !important; }
@@ -1522,6 +1524,7 @@
     /* SM-sektionen: text + video, tydligt att det är Tommy */
     .sm-grid { display: grid; gap: 26px; align-items: center; }
     .sm-text { text-align: left; }
+    #sm-2026 .gk { margin: 0 0 26px; } /* Google-kortet flyttat från heron hit (2026-11-18) */
     .sm-kicker { display: inline-block; margin-bottom: 10px; padding: 6px 12px; border-radius: 999px; background: rgba(209,16,31,0.18); border: 1px solid rgba(209,16,31,0.5); color: #fff; font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
     #sm-2026 .sm-text .ns-rubrik { text-align: left; margin-bottom: 14px; }
     .sm-p { margin: 0 0 12px; font-size: 16.5px; line-height: 1.6; color: rgba(255,255,255,0.88); }
@@ -1592,7 +1595,7 @@
   </style>
 <link rel="stylesheet" href="css/tema.css" />
 <link rel="stylesheet" href="css/ny-start.css?v=20261114" />
-<link rel="stylesheet" href="css/glas-tema.css?v=20261031" />
+<link rel="stylesheet" href="css/glas-tema.css?v=20261118d" />
 <link rel="stylesheet" href="css/recensioner.css" />
 </head>
 <body>
@@ -1611,31 +1614,29 @@
 <div class="page-wrap">
 <div class="nav-overlay" id="navOverlay"></div>
 <section class="ns-hero" id="hero">
-  <img class="ns-hero-bild hero-photo hero-loop" src="images/hero-villa.jpg" alt="Villa med stora fönster i solnedgång" width="1672" height="941" fetchpriority="high" />
+  <img class="ns-hero-bild hero-photo hero-loop" src="images/hero-villa-sjo.webp" alt="Vit villa med stora fönster och utsikt över Vättern" width="1672" height="941" fetchpriority="high" />
   <div class="ns-hero-text">
     <h1 class="h1-namn"><span>Forsbergs Fönsterputs</span> <span>Jönköping</span></h1>
-    <p class="ns-hero-p">Jag heter Tommy och putsar dina fönster själv – det är alltid jag som kommer. Villa och lägenhet i Jönköping och Huskvarna, fast pris och ingen bindningstid.</p>
     <div class="ns-hero-knappar">
       <a class="ns-knapp ns-knapp-rod" href="/boka" data-offert-val>Få offert <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="ns-knapp ns-knapp-vit" href="#tjanster">Se tjänster</a>
     </div>
-    <a class="gk" href="https://maps.google.com/?cid=6612101212141612760" target="_blank" rel="noopener" aria-label="Forsbergs Fönsterputs Jönköping på Google: 5,0 av 5 i betyg, 51 recensioner. Öppna profilen.">
-      <span class="gk-topp">
-        <span class="gk-logo"><img src="images/logo-nav-badge.png" alt="" width="44" height="44" /><svg class="gk-g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></span>
-        <span class="gk-namn"><strong>Forsbergs Fönsterputs Jönköping</strong><span class="gk-verif"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4C8DF6" d="M12 1l2.6 2.1 3.3-.3.9 3.2 2.9 1.6-1.1 3.1 1.1 3.1-2.9 1.6-.9 3.2-3.3-.3L12 23l-2.6-2.1-3.3.3-.9-3.2-2.9-1.6L3.4 13.3 2.3 10.2l2.9-1.6.9-3.2 3.3.3z"/><path d="M8 12.2l2.6 2.6L16.2 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verifierad på Google</span></span>
-      </span>
-      <span class="gk-betyg">
-        <span class="gk-tal">5,0</span>
-        <span class="gk-mitt"><span class="gk-stj">★★★★★</span><span class="gk-antal">51 recensioner</span></span>
-        <span class="gk-kunder" aria-hidden="true"><i>E</i><i>C</i><i>J</i><i>M</i><i>+47</i></span>
-      </span>
-      <span class="gk-cta">Se min profil på Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    </a>
   </div>
 </section>
 <section class="ns-sektion" id="sm-2026">
   <div class="ns-inner sm-grid">
     <div class="sm-text">
+      <a class="gk" href="https://maps.google.com/?cid=6612101212141612760" target="_blank" rel="noopener" aria-label="Forsbergs Fönsterputs Jönköping på Google: 5,0 av 5 i betyg, 51 recensioner. Öppna profilen.">
+        <span class="gk-topp">
+          <span class="gk-logo"><img src="images/logo-nav-badge.png" alt="" width="44" height="44" /><svg class="gk-g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></span>
+          <span class="gk-namn"><strong>Forsbergs Fönsterputs Jönköping</strong><span class="gk-verif"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4C8DF6" d="M12 1l2.6 2.1 3.3-.3.9 3.2 2.9 1.6-1.1 3.1 1.1 3.1-2.9 1.6-.9 3.2-3.3-.3L12 23l-2.6-2.1-3.3.3-.9-3.2-2.9-1.6L3.4 13.3 2.3 10.2l2.9-1.6.9-3.2 3.3.3z"/><path d="M8 12.2l2.6 2.6L16.2 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verifierad på Google</span></span>
+        </span>
+        <span class="gk-betyg">
+          <span class="gk-tal">5,0</span>
+          <span class="gk-mitt"><span class="gk-stj">★★★★★</span><span class="gk-antal">51 recensioner</span></span>
+          <span class="gk-kunder" aria-hidden="true"><i>E</i><i>C</i><i>J</i><i>M</i><i>+47</i></span>
+        </span>
+        <span class="gk-cta">Se min profil på Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
       <span class="sm-kicker">Det är jag i videon</span>
       <h2 class="ns-rubrik">SM i fönsterputs 2026</h2>
       <p class="sm-p">Jag heter <strong>Tommy Forsberg</strong> och driver Forsbergs Fönsterputs Jönköping. I videon tävlar jag i SM i fönsterputs 2026 – mot några av Sveriges snabbaste fönsterputsare.</p>
@@ -2302,11 +2303,12 @@
 <dialog class="ov" id="offertVal" aria-labelledby="ovRubrik">
   <div class="ov-ruta">
     <button type="button" class="ov-stang" aria-label="Stäng">×</button>
+    <div class="ov-steg"><span>Steg 1 av 3</span><i><b style="width:33.33%"></b></i></div>
     <h2 id="ovRubrik">Vad gäller det?</h2>
-    <a class="ov-val" href="/boka"><strong>Villa &amp; radhus</strong><span>Räkna ut priset och boka direkt</span></a>
-    <a class="ov-val" href="/kontakta-mig?typ=L%C3%A4genhet#formular"><strong>Lägenhet</strong><span>Fönster och balkongdörr</span></a>
-    <a class="ov-val" href="/foretag"><strong>Företag</strong><span>Kontor, butik och lokaler</span></a>
-    <a class="ov-val" href="/kontakta-mig?typ=Solcellstv%C3%A4tt#formular"><strong>Solcellstvätt</strong><span>Rena paneler med renvatten</span></a>
+    <a class="ov-val" href="/boka#fonster"><img src="images/val-villa.jpg" alt="" width="120" height="120" /><span class="ov-text"><strong>Villa &amp; radhus</strong><span>Fast pris direkt – boka här</span></span></a>
+    <a class="ov-val" href="/boka#lagenhet"><img src="images/val-lagenhet.jpg" alt="" width="120" height="120" /><span class="ov-text"><strong>Lägenhet</strong><span>Fast pris direkt – boka här</span></span></a>
+    <a class="ov-val" href="/foretag"><img src="images/val-foretag.jpg" alt="" width="120" height="120" /><span class="ov-text"><strong>Företag</strong><span>Kontor, butik och lokaler</span></span></a>
+    <a class="ov-val" href="/boka#sol"><img src="images/val-solceller.jpg" alt="" width="120" height="120" /><span class="ov-text"><strong>Solcellstvätt</strong><span>Rena paneler med renvatten</span></span></a>
   </div>
 </dialog>
 <script src="js/offert-val.js?v=20261031"></script>

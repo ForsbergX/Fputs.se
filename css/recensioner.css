@@ -164,4 +164,4 @@
 /* Mobil: bilden på Tommy vid bilen (Tommy: 'detta var as snyggt') */
 @media (max-width: 640px) { .rk-hero-bild { background-image: url('../images/om-oss-tommy-bil.jpg') !important; background-position: 14% 50% !important; } }
 /* Mörkare ton över bilen så 5,0 och texten går att läsa */
-.rk-hero-bild + .hero-overlay { background: linear-gradient(180deg, rgba(22, 17, 14, .30) 0%, rgba(22, 17, 14, .55) 45%, rgba(18, 14, 12, .78) 100%) !important; }
+.rk-hero-bild + .hero-overlay { background: linear-gradient(180deg, rgba(12, 24, 38, .30) 0%, rgba(12, 24, 38, .55) 45%, rgba(9, 18, 30, .78) 100%) !important; }

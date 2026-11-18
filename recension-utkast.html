@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Utkast – recensionskort</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/glas-tema.css" />
+  <style>
+    /* Utkast 2026-10-24: tre förslag på recensionskort. Inte länkad någonstans. */
+    body { margin: 0; font-family: 'Montserrat', sans-serif; }
+    main { max-width: 440px; margin: 0 auto; padding: 28px 16px 60px; }
+    .etikett { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gl-mjuk); margin: 40px 0 12px; }
+    .etikett:first-child { margin-top: 0; }
+    .g { width: 20px; height: 20px; flex: none; }
+    .stj { color: #fbbc04; letter-spacing: 2px; font-size: 18px; line-height: 1; }
+
+    /* Betygsrad, som i Smiles hero */
+    .betyg { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: #fff; text-decoration: none; }
+    .betyg .stj { font-size: 26px; }
+    .betyg b { font-size: 20px; }
+    .betyg u { font-size: 15px; text-underline-offset: 3px; }
+
+    /* A – glaskort (samma stil som resten av sidan) */
+    .rk-a {
+      background: var(--gl-glas); border: 1px solid var(--gl-kant); border-radius: 22px; padding: 26px 24px 22px;
+      -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+      box-shadow: 0 18px 40px -22px rgba(8,14,24,.7), inset 0 1px 0 rgba(255,255,255,.25);
+    }
+    .rk-a q { display: block; font-size: 18px; font-weight: 600; line-height: 1.5; quotes: "”" "”"; }
+    .rk-fot { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+    .rk-avatar { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 20px; flex: none; }
+    .rk-a .rk-avatar { background: rgba(255,255,255,.22); color: #fff; }
+    .rk-namn { font-weight: 700; font-size: 15px; }
+    .rk-datum { font-size: 13px; color: var(--gl-mjuk); }
+    .rk-a .rk-g { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+
+    /* B – vitt kort, som Smile */
+    .rk-b { background: #fff; color: #1e2b3c; border-radius: 22px; padding: 30px 26px 24px; box-shadow: 0 22px 44px -20px rgba(8,14,24,.65); }
+    .rk-b q { display: block; font-size: 17px; font-weight: 500; line-height: 1.6; quotes: "”" "”"; }
+    .rk-b .rk-namn { margin-top: 20px; }
+    .rk-b .rk-datum { color: #6b7280; font-style: italic; }
+    .rk-b .rk-rad { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
+    .rk-b .rk-rad > span:not(.rk-avatar) { display: flex; align-items: center; gap: 8px; }
+    .rk-b .rk-avatar { width: 56px; height: 56px; font-size: 24px; background: #6b8399; color: #fff; }
+
+    /* C – glaskort med tjänst och vårt svar */
+    .rk-c { margin: 0 0 18px; }
+    .rk-tagg { display: inline-block; font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 99px; background: rgba(255,255,255,.18); border: 1px solid var(--gl-kant); margin-bottom: 14px; }
+    .rk-svar { margin-top: 18px; padding: 12px 14px; border-left: 3px solid rgba(255,255,255,.5); background: rgba(255,255,255,.08); border-radius: 0 12px 12px 0; font-size: 14px; }
+    .rk-svar small { display: block; font-size: 12px; color: var(--gl-mjuk); margin-bottom: 2px; }
+  </style>
+</head>
+<body>
+<main>
+  <svg width="0" height="0" style="position:absolute"><symbol id="g" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></symbol></svg>
+
+  <p class="etikett">Betygsrad (heron)</p>
+  <a class="betyg" href="#"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span><b>5,0 / 5</b><u>(48 recensioner)</u></a>
+
+  <p class="etikett">Recensioner · stil C</p>
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Så nöjda med både service och resultat, rekommenderar starkt!!! ⭐</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Tack snälla! ✨</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">L</span>
+      <span><div class="rk-namn">Linnea Fredriksson</div><div class="rk-datum">Oktober 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Väldigt nöjd med utförd tjänst. Forsbergs fönsterputs var oerhört proffsig och tog sig tid att se till att fönstren var ordentligt rengjorda. Kommer absolut anlita honom igen. Rekommenderar varmt!</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Tusen tack, på återseende! ✨</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">J</span>
+      <span><div class="rk-namn">Jasmina Mulahusic</div><div class="rk-datum">Oktober 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Super nöjd! Vi har fönster långt upp på gaveln från garageuppfarten, löstes utan problem!</q>
+    <div class="rk-fot">
+      <span class="rk-avatar">L</span>
+      <span><div class="rk-namn">Lovisa Cooper-Love</div><div class="rk-datum">Oktober 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <q>Supernöjd, kanonfina glas och trevligt bemötande! Kan inte rekommenderas nog</q>
+    <div class="rk-fot">
+      <span class="rk-avatar">P</span>
+      <span><div class="rk-namn">Patricia Sörinder</div><div class="rk-datum">Oktober 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Tusen tack för ett fantastiskt bra jobb med våra fönster. Vi är så nöjda!<br>Kan starkt rekommendera Tommy. Han gjorde ett enastående bra jobb, proffsigt och supertrevligt bemötande och allt till ett jättebra pris.</q>
+    <div class="rk-fot">
+      <span class="rk-avatar">M</span>
+      <span><div class="rk-namn">Mariette Persson</div><div class="rk-datum">Oktober 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <q>Jättefint resultat!<br>Jag är väldigt nöjd med fönsterputsen och Tommy var en glad och trevlig putsare!</q>
+    <div class="rk-fot">
+      <span class="rk-avatar">B</span>
+      <span><div class="rk-namn">Brf Hasselbacken</div><div class="rk-datum">Oktober 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <q>Snabbt, smidigt och enkelt. Trevlig personal och suveräna resultat!</q>
+    <div class="rk-fot">
+      <span class="rk-avatar">N</span>
+      <span><div class="rk-namn">Nina Saari</div><div class="rk-datum">Oktober 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>En riktigt trevlig kille<br>Resultat blev bättre än nytt<br>Tack för det fina jobbet Tommy</q>
+    <div class="rk-fot">
+      <span class="rk-avatar">M</span>
+      <span><div class="rk-namn">Mikael Noren</div><div class="rk-datum">September 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Detta var en fantastisk upplevelse att få vårat hus rent å glasklart, högsta betyg i noggranhet, renhet. Tveka inte att boka in detta företag, Vi är såå nöjda och glada att vi hitta företagsannonsen på facebook. En återkommande fönsterputsare hos oss ✌️🤩</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Wow! Tack för dessa bilder och kommentarer!! 🤩</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">J</span>
+      <span><div class="rk-namn">Jonas Brännhult</div><div class="rk-datum">Augusti 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Så proffsig!<br>Grymt noggran och väldigt prisvärd !<br>Vi har riktigt gamla kalkiga fönster som säkert inte blivit putsade på 10 år när vi flyttade in.<br>Han gjorde ett fantastiskt jobb!<br>Kan starkt rekomendera ,ni kommer inte bli besvikna!</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Tusen tack bästa kund!!</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">C</span>
+      <span><div class="rk-namn">Camilla Brännhult</div><div class="rk-datum">Augusti 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Så väldigt nöjd! Kan rekommendera honom varm. Tommy är en stjärna, trevlig, smidig och duktig.</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Tusen tack!! Glad jag blir🤩🚀</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">J</span>
+      <span><div class="rk-namn">Johanna Talus</div><div class="rk-datum">Augusti 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Riktigt trevlig, bra service, bra pris och rent blev det! Hade en ganska krånglig balkong med fasta fönster som han löste galant. Rekommenderas starkt.</q>
+    <div class="rk-fot">
+      <span class="rk-avatar">O</span>
+      <span><div class="rk-namn">Oscar Jansson-Magnusson</div><div class="rk-datum">Augusti 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs · Lekeryd</span>
+    <q>Mycket trevligt bemötande från början till slut.<br>Så proffsigt och lätt utfört.<br>Så vi är helt enkelt super nöjda.</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Tusen tack för dom fina orden och kul att få putsa ute i Lekeryd för första gången! 😊 vi ses igen✨</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">P</span>
+      <span><div class="rk-namn">Per Anders Broman</div><div class="rk-datum">Juli 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Fönsterputs · Huskvarna</span>
+    <q>SUPER!!<br>Otroligt välförberedda; alla verktyg, stegar och rengöringsmedel var med och redo att användas direkt.<br><br>Inget duttande eller tid som spilldes bort, utan ett otroligt effektivt och strukturerat arbete från början till slut.<br><br>Förutom att fönstren blev skinande rena (inte ett spår av ränder eller fläckar!), så var Tommy som putsade fantastiskt trevlig och tillmötesgående. Det märks att han verkligen bryr sig om sina kunder.</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Stort tack, Larah, för dina fina ord och för ditt förtroende! Det var ett nöje att få hjälpa dig med fönsterputsningen i Huskvarna. Jag är väldigt glad att du uppskattade både resultatet och servicen. Tack också för att du rekommenderat Forsbergs Fönsterputs Jönköping vidare – det betyder otroligt mycket för ett lokalt företag. Varmt välkommen att boka fönsterputs igen när det är dags!😊😊</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">L</span>
+      <span><div class="rk-namn">Larah Younan</div><div class="rk-datum">Juli 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Otroligt nöjd med fönsterputsen! Han var väldigt duktig, professionell och noggrann in i minsta detalj. Dessutom var han otroligt trevlig och kom med en så härlig och positiv energi. Det märks verkligen att han bryr sig om sitt arbete och vill att resultatet ska bli perfekt.<br><br>Mina fönster har helt ärligt aldrig sett så här fina och rena ut! ✨ Kan varmt rekommendera honom och kommer definitivt att anlita honom igen. Stort tack för ett fantastiskt jobb! 🙌</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Men gud vad fint skrivet! Tusen tack emma! på starkt återseende! Mvh</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">E</span>
+      <span><div class="rk-namn">Emma</div><div class="rk-datum">Augusti 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Fantastiskt utfört arbete av en mycket skicklig och kunnig fönsterputsare. Kan varmt rekommendera Tommy till andra kunder. Detta var första gången vi anlitade honom, men det kommer inte bli den sista.</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Tusen tack för ett trevligt bemötande och ett gott samarbete!😀</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">A</span>
+      <span><div class="rk-namn">Andreas Elg</div><div class="rk-datum">Augusti 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Proffsigt och mycket bra jobb, väldigt trevligt bemötande! Vi är supernöjda!</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Tack för trevligt bemött och för fikat☺️</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">S</span>
+      <span><div class="rk-namn">Simon Isaksson</div><div class="rk-datum">Augusti 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Fönsterputs</span>
+    <q>Tommy was very helpful and accommodating. We have a few impossibly unreachable windows that have been a big problem to clean. He went above and beyond to make a plan in order to achieve the impossible! The result, communication and price was great. Thanks, until next time!</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Thank you! Was really fun :D</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">R</span>
+      <span><div class="rk-namn">Rhelda Arvidsson</div><div class="rk-datum">Augusti 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <q>Väldigt nöjd! Noggrant och blev rent och fint.</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Tusen tack hoppas på återseende!☺️</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">F</span>
+      <span><div class="rk-namn">Fatima Bergendal</div><div class="rk-datum">Augusti 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <q>Vi har originalfönster från 1932, okopplade, bökigt att komma åt och tidskrävande. Nu är de gnistrande rena och vackra igen. Tack Tommy för ett makalöst resultat och trevligt bemötande, vi ses i höst igen!</q>
+    <div class="rk-fot">
+      <span class="rk-avatar">I</span>
+      <span><div class="rk-namn">Isabella Cederlöf</div><div class="rk-datum">Juni 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Fönsterputs · Gränna</span>
+    <q>Mycket proffsigt utförande och ett trevligt bemötande från start till mål. Fönsterputsningen utfördes på vår gård i Gränna med gamla fönster, och resultatet blev över förväntan. Det märks att Tommy verkligen gör allt för att kunden ska bli nöjd. Kan varmt rekommenderas! 😊<br>Inca</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Bästa kund! 🙏✨✨</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">I</span>
+      <span><div class="rk-namn">Ingrid Lindblom</div><div class="rk-datum">Juli 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Jag är mycket nöjd med fönsterputsningen. Arbetet utfördes noggrant och professionellt, och fönstren blev skinande rena utan ränder eller fläckar. Servicen var trevlig, punktlig och smidig från början till slut. Jag kan varmt rekommendera denna fönsterputsning till andra som vill ha ett riktigt bra resultat.</q>
+    <div class="rk-fot">
+      <span class="rk-avatar">K</span>
+      <span><div class="rk-namn">Kushtrim Osmani</div><div class="rk-datum">Juli 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs · Huskvarna</span>
+    <q>Tommy är väldigt duktig och professionell , serviceinriktad och mån om att göra rätt ! Vi är så nöjda , båda med utförande och bemötande.</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Tusen tack! Väldigt trevlig familj och kul att få jobba mitt inne i centrala huskvarna radhus områden 😊</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">Y</span>
+      <span><div class="rk-namn">Y K</div><div class="rk-datum">Juli 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs · Lekeryd</span>
+    <q>super trevlig kille, gjorde ett kanon jobb med våra fönster så i fortsättningen kommer jag inte putsa några fönster själv.</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Tusen tack för fått äran att putsa ditt fina hus ute i Lekeryd! Vi ses igen 😊</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">A</span>
+      <span><div class="rk-namn">Andreas Julsgård</div><div class="rk-datum">Juli 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+
+  <figure class="rk-a rk-c">
+    <span class="rk-tagg">Invändig &amp; utvändig fönsterputs</span>
+    <q>Toppen.Noggrann o trevlig!!</q>
+    <div class="rk-svar"><small>Svar från Forsbergs Fönsterputs</small>Stort tack Charlotta! Vad roligt att du blev nöjd. Tack för förtroendet och hoppas du får glädje av de skinande fönstren länge! 😊</div>
+    <div class="rk-fot">
+      <span class="rk-avatar">C</span>
+      <span><div class="rk-namn">Charlotta Björgaas</div><div class="rk-datum">Augusti 2026</div></span>
+      <span class="rk-g"><svg class="g"><use href="#g"/></svg><span class="stj">★★★★★</span></span>
+    </div>
+  </figure>
+</main>
+</body>
+</html>

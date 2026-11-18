@@ -1,5 +1,5 @@
 /* Sidfoten från den nya versionen (css/tema.css), utan body.tema så den fungerar på de nuvarande sidorna. */
-footer.sidfot { --night: #121417; --red: #D1101F; --wrap: 1382px; --gutter: clamp(16px, 5vw, 77px);
+footer.sidfot { --night: #0F1E2E; --red: #D1101F; --wrap: 1382px; --gutter: clamp(16px, 5vw, 77px);
   background: var(--night); color: rgba(255,255,255,.62); padding: 72px var(--gutter) 32px; border-top: 4px solid var(--red); font-family: 'Montserrat', sans-serif; }
 footer.sidfot .footer-grid { max-width: var(--wrap); margin: 0 auto 28px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.1); }
 footer.sidfot .footer-logo { display: inline-flex; }
@@ -29,12 +29,12 @@ footer.sidfot .footer-copy { font-size: 12.5px; color: rgba(255,255,255,.62); }
 }
 /* Glasstil som resten av sidan: mörk grafit efter loggan (2026-10-31; blå i sidfot.blå-backup.css), ingen röd linje, textlogga */
 footer.sidfot {
-  background: linear-gradient(180deg, rgba(22, 18, 15, 0.94) 0%, #0e0b09 100%) !important;
+  background: linear-gradient(180deg, #13263A 0%, #0F1E2E 100%) !important; /* marinblå som sidan (2026-11-18) */
   border-top: 1px solid rgba(255, 255, 255, 0.22) !important; color: rgba(255, 255, 255, 0.75);
   -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
 }
 footer.sidfot .footer-col a, footer.sidfot .footer-brand-text, footer.sidfot .footer-copy, footer.sidfot .footer-hours { color: rgba(255, 255, 255, 0.75); }
-footer.sidfot .footer-col a:hover, footer.sidfot .footer-areas-row a:hover { color: #ffb3b8; }
+footer.sidfot .footer-col a:hover, footer.sidfot .footer-areas-row a:hover { color: #A9D4F5; }
 footer.sidfot .footer-areas-row a { color: rgba(255, 255, 255, 0.68); }
 footer.sidfot .footer-grid, footer.sidfot .footer-areas-row { border-bottom-color: rgba(255, 255, 255, 0.14); }
 footer.sidfot .footer-social-link { background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 12px; }
@@ -46,7 +46,7 @@ footer.sidfot .footer-logo-text {
 footer.sidfot .footer-logo-text span:first-child { color: #ececec; font-size: 20px; letter-spacing: 0.04em; }
 footer.sidfot .footer-logo-text span:last-child { color: #d1101f; font-size: 15.5px; letter-spacing: 0.05em; }
 /* Cookie-rutan i nya stilen: frostat ljust glas, marinblå knappar, textlogga (2026-10-24) */
-html body .cookie-modal-overlay { background: rgba(14, 11, 9, 0.6) !important; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+html body .cookie-modal-overlay { background: rgba(8, 16, 27, 0.6) !important; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 html body .cookie-modal { background: rgba(255, 255, 255, 0.96) !important; border: 1px solid rgba(255, 255, 255, 0.7); border-radius: 22px !important; box-shadow: 0 30px 70px -20px rgba(6, 12, 22, 0.7) !important; }
 html body .cookie-modal-logo { display: none !important; }
 html body .cookie-modal-header::before {
@@ -54,12 +54,12 @@ html body .cookie-modal-header::before {
   color: #ececec; font: 800 15px/1.05 'Montserrat', sans-serif; letter-spacing: 0.04em; text-align: left;
 }
 html body .cookie-modal-title { color: #14181b !important; }
-html body .cookie-modal-links a, html body .cookie-details-toggle { color: #16120f !important; }
+html body .cookie-modal-links a, html body .cookie-details-toggle { color: #0F1E2E !important; }
 html body :is(.cookie-btn-outline, .cookie-btn-solid) { border-radius: 999px !important; font-size: 14px !important; padding: 14px 18px !important; }
 html body .cookie-btn-solid { background: #d1101f !important; color: #fff !important; }
 html body .cookie-btn-solid:hover { background: #b00d1a !important; }
-html body .cookie-btn-outline { color: #16120f !important; border-color: rgba(22, 18, 15, 0.35) !important; }
-html body .cookie-btn-outline:hover { border-color: #16120f !important; color: #16120f !important; }
+html body .cookie-btn-outline { color: #0F1E2E !important; border-color: rgba(15, 30, 46, 0.35) !important; }
+html body .cookie-btn-outline:hover { border-color: #0F1E2E !important; color: #0F1E2E !important; }
 html body .cookie-switch input:checked ~ .cookie-switch-track { background: #d1101f !important; }
 /* Ny bildlogga (2026-11-02) */
 html body a.nav-logo-text, html body footer.sidfot a.footer-logo-text { flex-shrink: 0; padding: 0 !important; background: none !important; border-radius: 0; }

@@ -2,25 +2,25 @@
    Laddas sist i <head>. Stora innehållskort blir vitt frostat glas med mörk text så allt
    går att läsa; text direkt på bakgrunden blir vit. */
 :root {
-  --gl-navy: #16120f;
+  --gl-navy: #0e1824;
   --gl-rod: #d1101f;
   --gl-rod-2: #b00d1a;
-  --gl-navy-2: #2a2420;
+  --gl-navy-2: #1f2f42;
   --gl-mjuk: rgba(255, 255, 255, 0.82);
   --gl-ink: #14181b;
 }
 
 /* ---------- Bakgrund: suddigt solnedgångsfoto + mörk ton ---------- */
-html { background: #1a1613; }
+html { background: #0F1E2E; }
 html body { background: transparent !important; color: #fff; }
 body::before {
   content: ""; position: fixed; inset: -40px; z-index: -2; pointer-events: none;
   /* Färdigsuddad liten bild (20 kB) – ingen blur-uträkning i mobilen = mjukare scroll (2026-10-24) */
-  background: url("../images/bakgrund-suddig.jpg") 60% center / cover no-repeat;
+  background: linear-gradient(180deg, #0F1E2E 0%, #1B3247 100%); /* jämn marinblå, "nyputsat glas" (2026-11-18) */
 }
 body::after {
   content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(180deg, rgba(26, 20, 16, 0.6) 0%, rgba(14, 11, 9, 0.8) 100%);
+  background: none;
 }
 html body section, html body .chooser-section, html body #priser, html body #faq, html body #fordelar,
 html body #intro, html body #metod, html body #omraden, html body #om-omradet, html body #kommentarer,
@@ -49,7 +49,7 @@ html body .om-text blockquote, html body .om-text .om-citat { color: var(--gl-in
 /* Rullgardinsmenyn på dator: samma frostade mörka glas */
 @media (min-width: 769px) {
   html body .nav-dropdown-menu {
-    background: linear-gradient(160deg, rgba(34, 29, 25, 0.94) 0%, rgba(14, 12, 10, 0.96) 100%) !important;
+    background: linear-gradient(160deg, rgba(22, 38, 58, 0.94) 0%, rgba(9, 18, 30, 0.96) 100%) !important;
     border: 1px solid rgba(255, 255, 255, 0.5) !important;
     -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
   }
@@ -104,7 +104,7 @@ html body nav:not(.breadcrumb-nav) {
 }
 html body nav:not(.breadcrumb-nav)::before {
   content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
-  background: linear-gradient(160deg, rgba(34, 29, 25, 0.62) 0%, rgba(14, 12, 10, 0.72) 100%);
+  background: linear-gradient(160deg, rgba(22, 38, 58, 0.62) 0%, rgba(9, 18, 30, 0.72) 100%);
   -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
 }
 html body .nav-toggle { position: relative; z-index: 200; }
@@ -135,7 +135,7 @@ html body .nav-toggle span { background: #fff !important; }
   .nav-tel { display: inline-flex; }
   /* Mobilmenyn: frostat mörkt glas */
   html body .nav-links {
-    background: linear-gradient(160deg, rgba(34, 29, 25, 0.82) 0%, rgba(14, 12, 10, 0.88) 100%) !important;
+    background: linear-gradient(160deg, rgba(22, 38, 58, 0.82) 0%, rgba(9, 18, 30, 0.88) 100%) !important;
     -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%);
     border-left: 1px solid rgba(255, 255, 255, 0.45) !important;
   }
@@ -149,7 +149,7 @@ html body #hero { margin-top: -72px; padding-top: calc(72px + 60px) !important; 
 
 /* ---------- Bottenrad (mobil) ---------- */
 html body .fp-bottombar {
-  background: rgba(22, 18, 15, 0.85) !important; border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(15, 30, 46, 0.85) !important; border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
   -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
 }
 html body .fp-bb-ring { background: rgba(255, 255, 255, 0.14) !important; color: #fff !important; border: 1px solid rgba(255, 255, 255, 0.5) !important; border-radius: 999px !important; }
@@ -207,3 +207,23 @@ html:root body .media-card :is(h2, h3, p) { color: #fff !important; }
 html:root body :is(.contact-label, .contact-value, .rut-badge) { color: #fff !important; }
 html:root body .rut-badge { background: rgba(255, 255, 255, 0.16) !important; border-color: rgba(255, 255, 255, 0.35) !important; }
 html:root body section p[style*="var(--muted)"] { color: rgba(255, 255, 255, 0.82) !important; }
+
+/* Nya ljusa villabilden (2026-11-18): mörkare marinblå ton över bilden så att vit text syns */
+html body .hero-bg-img + .hero-overlay {
+  background: linear-gradient(180deg, rgba(9, 18, 30, 0.45) 0%, rgba(9, 18, 30, 0.6) 50%, rgba(9, 18, 30, 0.85) 100%) !important;
+}
+
+/* Premium-accent (2026-11-18): röda textlänkar syntes dåligt mot marinblått.
+   Textlänkar = ljus isblå från himlen i villabilden, brödsmulor vita. Röda knappar får vara kvar. */
+html body section a:not([class]):not([style*="background"]),
+html:root body :is(.fordelar-card, .faq-item, .chooser-card, .om-text, .price-panel, .book-left, .contact-card) a:not([class]):not([style*="background"]) {
+  color: #A9D4F5 !important; text-decoration-color: rgba(169, 212, 245, 0.45) !important; text-underline-offset: 3px;
+}
+html body section a:not([class]):not([style*="background"]):hover { color: #fff !important; text-decoration-color: #fff !important; }
+html body :is(section, div, header) .breadcrumb-nav a:not([class]) { color: rgba(255, 255, 255, 0.72) !important; }
+html body :is(section, div, header) .breadcrumb-nav a:not([class]):hover { text-decoration-color: #fff !important; color: #fff !important; }
+html body .breadcrumb-nav .sep { color: rgba(255, 255, 255, 0.4) !important; }
+html body .breadcrumb-nav [aria-current="page"] { color: #fff !important; font-weight: 600; }
+html body .nav-dropdown-menu a:hover { color: #A9D4F5 !important; }
+/* Röda knappar utan klass (inline-stil) behåller vit text */
+html body section a:not([class])[style*="background"] { color: #fff !important; text-decoration: none !important; }

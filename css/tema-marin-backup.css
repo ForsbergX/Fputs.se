@@ -1,0 +1,41 @@
+/* Marinblått tema (Tommy 2026-11-15, var grafit/brunt): mörk blåsvart bakgrund med svagt rött sken.
+   Laddas sist på alla sidor. Ta bort <link ... grafit.css> för att gå tillbaka. */
+html { background: #0c1220 !important; }
+html body::before {
+  background:
+    radial-gradient(ellipse 70% 45% at 15% 0%, rgba(209, 16, 31, 0.16), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 100% 55%, rgba(209, 16, 31, 0.07), transparent 70%),
+    linear-gradient(180deg, #121a2c 0%, #0c1220 45%, #080d18 100%) !important;
+}
+html body::after { background: none !important; }
+
+/* Meny, rullgardin och mobilmeny: neutralt mörkt glas */
+html body nav:not(.breadcrumb-nav)::before {
+  background: linear-gradient(160deg, rgba(24, 34, 54, 0.72) 0%, rgba(10, 16, 30, 0.82) 100%) !important;
+}
+@media (min-width: 769px) {
+  html body .nav-dropdown-menu { background: linear-gradient(160deg, rgba(24, 34, 54, 0.96) 0%, rgba(10, 16, 30, 0.98) 100%) !important; }
+}
+@media (max-width: 768px) {
+  html body .nav-links { background: linear-gradient(160deg, rgba(24, 34, 54, 0.92) 0%, rgba(10, 16, 30, 0.96) 100%) !important; }
+}
+
+/* Heron: neutral mörk ton över bilden */
+html body #hero.ns-hero::after {
+  background: linear-gradient(180deg, rgba(10, 16, 30, 0.15) 0%, rgba(10, 16, 30, 0.25) 45%, rgba(10, 16, 30, 0.85) 100%) !important;
+}
+@media (min-width: 1100px) {
+  html body section#hero.ns-hero::after {
+    background: linear-gradient(90deg, rgba(10, 16, 30, 0.8) 0%, rgba(10, 16, 30, 0.55) 38%, rgba(10, 16, 30, 0.15) 68%, rgba(10, 16, 30, 0.05) 100%),
+                linear-gradient(180deg, rgba(10, 16, 30, 0.25) 0%, rgba(10, 16, 30, 0) 30%, rgba(10, 16, 30, 0) 70%, rgba(10, 16, 30, 0.8) 100%) !important;
+  }
+  html body #hero:has(.hero-sm-video) { background: radial-gradient(ellipse at 75% 50%, rgba(209, 16, 31, 0.18), transparent 60%), #121a2c !important; }
+}
+
+/* Kort och rutor med varm ton -> neutral */
+html body section#hero .gk { background: linear-gradient(160deg, rgba(24, 34, 54, 0.66), rgba(10, 16, 30, 0.5)) !important; }
+html body .sm-skylt, html body .om-bil-text { background: rgba(10, 16, 30, 0.75) !important; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html body .ns-kort, html body .gl-ikon, html body .ns-ref, html body .ns-om > div { background: rgba(24, 34, 54, 0.86) !important; }
+}
+html body footer.sidfot { background: #080d18 !important; }

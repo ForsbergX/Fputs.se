@@ -1,0 +1,111 @@
+/* Ljust tema (Tommy 2026-11-15): vit bakgrund, rött som enda accent – som branschen (Putsa m.fl.).
+   Laddas sist på alla sidor. Mörka backuper: tema-kol-backup.css, tema-marin-backup.css. */
+:root { --lj-bg: #f6f7f9; --lj-kort: #ffffff; --lj-kant: #e4e6eb; --lj-text: #16181d; --lj-mjuk: #4b5160; --lj-rod: #d1101f; }
+html { background: var(--lj-bg) !important; }
+html body { color: var(--lj-text) !important; }
+html body::before { background: var(--lj-bg) !important; }
+html body::after { background: none !important; }
+
+/* Meny: svart rad med vit logga (Tommy 2026-11-16) */
+html body nav:not(.breadcrumb-nav) { border-color: #111318 !important; box-shadow: 0 10px 30px -18px rgba(16, 24, 40, 0.45) !important; }
+html body nav:not(.breadcrumb-nav)::before { background: #111318 !important; }
+html body nav:not(.breadcrumb-nav) .nav-logo img { content: url("../images/logo-forsbergs-ren.png"); }
+html body nav:not(.breadcrumb-nav) .nav-tel { color: #fff !important; text-shadow: none !important; }
+html body .nav-toggle span { background: #fff !important; }
+@media (min-width: 769px) {
+  html body .nav-links > li > a:not(.nav-cta) { color: #fff !important; text-shadow: none !important; }
+  html body .nav-dropdown-menu { background: #fff !important; border-color: var(--lj-kant) !important; }
+  html body .nav-dropdown-menu a { color: var(--lj-text) !important; }
+}
+@media (max-width: 768px) {
+  /* Hamburgermenyn: svart (Tommy 2026-11-16) */
+  html body .nav-links { background: #111318 !important; border-left-color: #111318 !important; }
+  html body .nav-links a, html body .nav-dropdown-menu a { color: #fff !important; text-shadow: none !important; }
+  html body .nav-links > li { border-bottom-color: rgba(255, 255, 255, 0.15) !important; }
+  html body .nav-links > li.nav-dropdown > a::after { border-color: rgba(255, 255, 255, 0.75) !important; }
+  html body .nav-toggle.open span { background: #fff !important; }
+}
+
+/* Rubriker och text utanför heron */
+html body .ns-rubrik, html body .ns-om .ns-rubrik, html body .section-title, html body h2, html body h3 { color: var(--lj-text) !important; text-shadow: none !important; }
+html body .ns-ref-sub, html body .section-sub, html body .ns-om p, html body .sm-p { color: var(--lj-mjuk) !important; }
+html body .sm-p strong, html body .sm-punkter li { color: var(--lj-text) !important; }
+html body .section-label, html body .sm-kicker { color: var(--lj-rod) !important; }
+html body .sm-kicker { background: rgba(209, 16, 31, 0.08) !important; }
+
+/* Kort: vita med mjuk skugga */
+html body .ns-kort, html body .gl-ikon, html body .ns-ref, html body .ns-om > div, html body .fq, html body .karta-box,
+html body .faq-item, html body .fordelar-card, html body .rk-kort {
+  background: var(--lj-kort) !important; border: 1px solid var(--lj-kant) !important; color: var(--lj-text) !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+  box-shadow: 0 14px 34px -24px rgba(16, 24, 40, 0.28) !important;
+}
+html body .ns-kort h3, html body .ns-kort-lank, html body .ns-kort p.ns-kort-hemma, html body .ns-ref figcaption,
+html body .fq-fraga, html body .fq-alla, html body .gl-ikon strong { color: var(--lj-text) !important; }
+html body .ns-kort p, html body .gl-ikon span:not(.ns-ikon), html body .fq p { color: var(--lj-mjuk) !important; }
+html body .ns-om .ns-knapp { background: var(--lj-text) !important; color: #fff !important; }
+
+/* Trygghetsrutan (inline-stilar med vit text) */
+html body #trygg h2, html body #trygg strong { color: var(--lj-text) !important; }
+html body #trygg p, html body #trygg div > span > span { color: var(--lj-mjuk) !important; }
+html body #trygg > div > div > div { background: #fff !important; border-color: var(--lj-kant) !important; box-shadow: 0 14px 34px -24px rgba(16, 24, 40, 0.28); }
+html body #trygg a { color: var(--lj-rod) !important; }
+
+/* Kartrutan */
+html body #karta .karta-box { background: #fff !important; }
+html body #karta .karta-info-text strong { color: var(--lj-text) !important; }
+html body #karta .karta-info-text > span { color: var(--lj-mjuk) !important; }
+html body #karta .karta-btn:not(.karta-btn-solid) { color: var(--lj-text) !important; border-color: var(--lj-kant) !important; }
+
+/* Heron: fotot behåller mörk ton och vit text (som Putsa) */
+html body #hero.ns-hero::after { background: linear-gradient(180deg, rgba(10, 12, 16, 0.25) 0%, rgba(10, 12, 16, 0.35) 45%, rgba(10, 12, 16, 0.8) 100%) !important; }
+@media (min-width: 1100px) {
+  html body section#hero.ns-hero::after {
+    background: linear-gradient(90deg, rgba(10, 12, 16, 0.78) 0%, rgba(10, 12, 16, 0.5) 40%, rgba(10, 12, 16, 0.12) 70%, rgba(10, 12, 16, 0.05) 100%),
+                linear-gradient(180deg, rgba(10, 12, 16, 0.2) 0%, rgba(10, 12, 16, 0) 30%, rgba(10, 12, 16, 0) 70%, rgba(10, 12, 16, 0.6) 100%) !important;
+  }
+}
+html body #hero h1, html body #hero h2, html body #hero .hero-title { color: #fff !important; }
+html body section#hero .gk { background: rgba(14, 16, 20, 0.6) !important; }
+
+/* Områdessidornas hero med stående video */
+@media (min-width: 900px) {
+  html body #hero:has(.hero-sm-video) { background: radial-gradient(ellipse at 75% 50%, rgba(209, 16, 31, 0.14), transparent 60%), #15171c !important; }
+}
+
+/* Sidfot: mörk, som de flesta i branschen */
+html body footer.sidfot { background: #111318 !important; }
+html body footer.sidfot h2, html body footer.sidfot h3 { color: #fff !important; }
+
+/* Recensioner (css/recensioner.css har vit text på glas) – ej i hero */
+html body :not(#hero) > .rk-rubrik, html body .rk-sektion .rk-rubrik { color: var(--lj-text) !important; }
+html body .rk-kort, html body .rk-summa, html body .rk-topp { background: #fff !important; border: 1px solid var(--lj-kant) !important; color: var(--lj-text) !important; box-shadow: 0 14px 34px -24px rgba(16, 24, 40, 0.28) !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+html body .rk-kort q { color: var(--lj-mjuk) !important; }
+html body .rk-kort q strong, html body .rk-tal, html body .rk-topp-citat { color: var(--lj-text) !important; }
+html body .rk-summa-mitt, html body .rk-datum, html body .rk-oversatt, html body .rk-raknare, html body .rk-topp-vem, html body .rk-svar small { color: var(--lj-mjuk) !important; }
+html body .rk-svar { border-left-color: var(--lj-rod) !important; background: #f3f4f6 !important; color: var(--lj-text) !important; }
+html body .rk-avatar { background: #eef0f3 !important; color: var(--lj-text) !important; }
+html body .rk-tagg { background: #f3f4f6 !important; border-color: var(--lj-kant) !important; color: var(--lj-text) !important; }
+html body .rk-pil, html body .rk-topp-pil, html body .rk-fler { background: #fff !important; border-color: var(--lj-kant) !important; color: var(--lj-text) !important; }
+html body .rk-topp-prickar button { background: #cfd3da !important; }
+html body .rk-alla, html body .rk-sektion .rk-betyg, html body .rk-rad-betyg, html body .rk-rad-betyg span:last-child { color: var(--lj-text) !important; }
+html body #hero .rk-betyg, html body #hero .rk-rubrik { color: #fff !important; }
+
+/* Undersidor (glas-sidor.css har vit text): mörk text i allt innehåll utanför hero/sidfot */
+html body section:not(#hero) :is(h1, h2, h3, h4, strong, li, td, th, label, span, div, small, button:not([class*="rod"]):not([class*="primary"])) { color: var(--lj-text); }
+html body section:not(#hero) :is(p, .faq-answer, .section-sub, .metod-text, .rut-note) { color: var(--lj-mjuk) !important; }
+html body section:not(#hero) a:not([class*="knapp"]):not([class*="btn-primary"]):not(.karta-btn-solid):not([style*="#d1101f"]) { color: var(--lj-text); }
+html body section:not(#hero) :is(.faq-item, .fordelar-card, .metod-card, .panel, .contact-card, .btn-outline, .om-highlight) { background: #fff !important; border-color: var(--lj-kant) !important; color: var(--lj-text) !important; }
+html body h1:not(#hero h1) { color: var(--lj-text) !important; }
+
+/* Ikoner och plus-knappar syntes inte (vitt på vitt) – röda ikoner på ljusröd platta (2026-11-16) */
+html body .ns-kort .ns-ikon, html body .gl-ikon .ns-ikon { background: rgba(209, 16, 31, 0.08) !important; box-shadow: none !important; }
+html body .ns-kort .ns-ikon svg, html body .gl-ikon .ns-ikon svg { stroke: var(--lj-rod) !important; }
+html body .fq-knapp { border-color: var(--lj-kant) !important; }
+html body .fq-knapp svg { stroke: var(--lj-text) !important; }
+html body .fq[open] .fq-knapp { background: var(--lj-text) !important; border-color: var(--lj-text) !important; }
+html body .fq[open] .fq-knapp svg { stroke: #fff !important; }
+
+/* Heronfotot: ljusare och mindre gult (Tommy 2026-11-16) */
+html body #hero .ns-hero-bild { filter: brightness(1.3) saturate(0.55) contrast(0.95); }
+html body #hero.ns-hero::after { background: linear-gradient(180deg, rgba(10, 12, 16, 0.12) 0%, rgba(10, 12, 16, 0.22) 45%, rgba(10, 12, 16, 0.62) 100%) !important; }

@@ -134,7 +134,7 @@
 <div class="page-wrap">
 <div class="nav-overlay" id="navOverlay"></div>
 <section id="hero" class="kt-hero">
-  <div class="hero-bg-img" style="background-image:url('images/hero-villa.jpg');background-size:cover;background-position:center 60%;"></div>
+  <div class="hero-bg-img" style="background-image:url('images/hero-villa-sjo.webp');background-size:cover;background-position:center 60%;"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="section-label" style="justify-content:center;display:flex;">Kontakt</div>
@@ -595,6 +595,9 @@
   // Förvälj tjänst när kunden kommer från ett tjänstekort på startsidan (?typ=Företag osv.)
   (function () {
     var typ = new URLSearchParams(location.search).get('typ');
+    // Lägenhet och solcellstvätt bokas i nya bokningen (Tommy 2026-11-18)
+    if (typ === 'Lägenhet') { location.replace('/boka#lagenhet'); return; }
+    if (typ === 'Solcellstvätt') { location.replace('/boka#sol'); return; }
     var sel = document.querySelector('form[data-enkel-form] select[name=bostadstyp]');
     if (typ && sel && [].some.call(sel.options, function (o) { return o.value === typ; })) {
       sel.value = typ; sel.dispatchEvent(new Event('change'));

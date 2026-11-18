@@ -1,0 +1,166 @@
+/* Bokningen i samma stil som valrutan "Vad gäller det?" som Tommy gillade (2026-11-18):
+   ljusgrå bakgrund, vita kort utan kant med mjuk skugga, val som chips (Beauty Booking-exemplet).
+   Rött bara på huvudknappen och det som är valt. Laddas efter boka.css. */
+:root {
+  --lj-text: #0F1E2E; --lj-mjuk: #64748B; --lj-sida: #F7F8FA; --lj-linje: #E2E8F0;
+  --lj-rod: #d1101f; --lj-rod-mork: #b00d1a; --lj-rod-ljus: #FDECEE; --lj-ring: rgba(209, 16, 31, .18);
+  --lj-skugga: 0 1px 3px rgba(15, 30, 46, .08); --lj-skugga-upp: 0 6px 18px rgba(15, 30, 46, .12);
+}
+html { background: var(--lj-sida); }
+body.bk { background: var(--lj-sida); color: var(--lj-text); }
+
+/* Toppen: bakåt vänster, rubrik i mitten, X höger */
+.bk-topp { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; max-width: 480px; margin: 0 auto; padding: 14px 16px 6px; }
+.bk-topp-titel { margin: 0; text-align: center; font-size: 17px; font-weight: 700; color: var(--lj-text); }
+.bk-rund { width: 40px; height: 40px; border: 0; background: #fff; color: var(--lj-text); box-shadow: var(--lj-skugga); }
+.bk-rund:hover { box-shadow: var(--lj-skugga-upp); }
+
+/* En kolumn, max 480px. Gamla rubriker, säljpunkter och sidorutan bort – rubriken står överst. */
+.bk-sida { display: block; max-width: 480px; margin: 0 auto; padding: 10px 16px 130px; }
+.bk-hoger, .bk-sida h1, .bk-sida .bk-bockar, .bk-sida .bk-ingress, .bk-sida .bk-h2, .bk-linje { display: none !important; }
+.bk-fraga { margin: 22px 0 10px; font-size: 15px; font-weight: 700; color: var(--lj-text); }
+.bk-hjalp { color: var(--lj-mjuk); font-size: 14px; }
+.bk-fel { color: var(--lj-rod-mork); font-weight: 600; }
+
+/* Steg 1: samma kort som valrutan */
+.bk-kort-val, .bk .bk-val.bk-kort-val {
+  display: flex; align-items: center; gap: 14px; width: 100%; margin: 0 0 10px; padding: 10px 44px 10px 10px; position: relative;
+  background: #fff; border: 0; border-radius: 16px; color: var(--lj-text); box-shadow: var(--lj-skugga);
+  font: inherit; text-align: left; text-decoration: none; cursor: pointer; transition: box-shadow .15s ease, transform .15s ease;
+}
+.bk-kort-val:hover { box-shadow: var(--lj-skugga-upp); }
+.bk-kort-val:active { transform: scale(.99); }
+.bk-kort-val img { flex: none; width: 76px; height: 76px; border-radius: 12px; object-fit: cover; }
+.bk-kort-val > span { flex: 1; min-width: 0; }
+.bk-kort-val strong { display: block; font-size: 17px; font-weight: 700; }
+.bk-kort-val small { display: block; font-size: 14px; color: var(--lj-mjuk); margin-top: 2px; }
+.bk-kort-val .bk-pil { position: absolute; right: 14px; width: 20px; height: 20px; stroke: var(--lj-text); }
+
+/* Profilkortet överst (Tommy) */
+.bk-profil { display: flex; align-items: center; gap: 14px; padding: 12px; margin: 4px 0 6px; background: #fff; border-radius: 16px; box-shadow: var(--lj-skugga); }
+.bk-profil img { flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+.bk-profil strong { display: block; font-size: 16px; font-weight: 700; }
+.bk-profil small { display: block; font-size: 13px; color: var(--lj-mjuk); }
+.bk-profil em { display: block; margin-top: 2px; font-style: normal; font-size: 13px; font-weight: 700; color: #F5A524; }
+.bk-profil em i { font-style: normal; font-weight: 500; color: var(--lj-mjuk); }
+
+/* Fönstertyperna: vita kort med kompakt räknare */
+.bk-rader { display: grid; gap: 10px; }
+.bk-rad, .bk-rad.aktiv { background: #fff; border: 0; border-radius: 16px; margin: 0; box-shadow: var(--lj-skugga); }
+.bk-rad.aktiv { box-shadow: 0 0 0 2px var(--lj-rod), var(--lj-skugga); }
+.bk-rad-topp, .bk-rad.aktiv .bk-rad-topp { min-height: 64px; padding: 10px 12px 10px 16px; background: transparent; border-bottom: 0; }
+.bk-rad-namn strong { font-size: 16px; font-weight: 600; }
+.bk-steg { gap: 8px; }
+.bk-steg button { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--lj-linje); background: #fff; color: var(--lj-text); font-size: 22px; transition: background-color .15s ease, border-color .15s ease; }
+.bk-steg button[data-steg="1"] { border-color: var(--lj-rod); background: var(--lj-rod); color: #fff; }
+.bk-steg button[data-steg="1"]:hover { background: var(--lj-rod-mork); border-color: var(--lj-rod-mork); }
+.bk-steg button:disabled { background: #fff; border-color: var(--lj-linje); color: #CBD5E1; }
+.bk-steg output, .bk-rad.aktiv .bk-steg output { width: 26px; height: auto; border: 0; background: transparent; font-size: 18px; font-weight: 700; color: var(--lj-text); }
+
+/* Valen inne i en fönstertyp: chips */
+.bk-rad-panel { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 14px; }
+.bk-rad-panel p { flex-basis: 100%; margin: 4px 0 0; font-size: 13px; color: var(--lj-mjuk); }
+.bk-rad-panel p.bk-notis { padding: 10px 12px; background: var(--lj-sida); border: 0; border-radius: 12px; color: var(--lj-text); }
+.bk-rad-panel .bk-radio { position: relative; display: inline-flex; flex-direction: row; align-items: center; margin: 0; padding: 8px 14px; border: 1px solid var(--lj-linje); border-radius: 999px; background: #fff; box-shadow: none; cursor: pointer; transition: background-color .15s ease, border-color .15s ease; }
+.bk-rad-panel .bk-radio input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.bk-rad-panel .bk-radio strong { font-size: 14px; font-weight: 600; }
+.bk-rad-panel .bk-radio small { display: inline; margin: 0 0 0 4px; font-size: 13px; color: var(--lj-mjuk); }
+.bk-rad-panel .bk-radio:has(input:checked) { background: var(--lj-rod); border-color: var(--lj-rod); box-shadow: none; }
+.bk-rad-panel .bk-radio:has(input:checked) :is(strong, small) { color: #fff; }
+.bk-rad-panel .bk-radio:has(input:focus-visible) { box-shadow: 0 0 0 3px var(--lj-ring); }
+
+/* Specialfönster Ja/Nej och tillval: vita kort, valt = röd kant + ljusröd bakgrund */
+.bk-radio, .bk-check { background: #fff; border: 0; border-radius: 16px; padding: 14px 16px; margin: 0 0 10px; box-shadow: var(--lj-skugga); color: var(--lj-text); transition: box-shadow .15s ease, background-color .15s ease; }
+.bk-radio strong, .bk-check strong { font-size: 16px; }
+.bk-radio small, .bk-check small { color: var(--lj-mjuk); font-size: 14px; }
+.bk-radio:has(input:checked), .bk-check:has(input:checked) { background: var(--lj-rod-ljus); box-shadow: 0 0 0 2px var(--lj-rod); }
+.bk-radio input, .bk-check input { accent-color: var(--lj-rod); }
+
+/* Fält: vita på grått, ingen kant, radie 14px, 52px, röd fokusring */
+.bk textarea, .bk-falt input { min-height: 52px; padding: 14px 16px; border: 0; border-radius: 14px; background: #fff; color: var(--lj-text); box-shadow: var(--lj-skugga); transition: box-shadow .15s ease; }
+.bk-falt input { height: 52px; }
+.bk textarea { min-height: 96px; }
+.bk textarea:focus, .bk-falt input:focus { outline: none; box-shadow: 0 0 0 2px var(--lj-rod), 0 0 0 5px var(--lj-ring); }
+.bk-falt span { font-size: 14px; font-weight: 600; color: var(--lj-text); }
+.bk .fpk { margin: 4px 0 18px; }
+
+/* Sammanställningen på sista skärmen */
+.bk-samman-kort { margin: 18px 0 0; padding: 16px; background: #fff; border-radius: 16px; box-shadow: var(--lj-skugga); }
+.bk-samman-kort h2 { margin: 0 0 12px; font-size: 16px; font-weight: 700; }
+.bk-samman-kort .bk-srad { font-size: 14px; margin: 0 0 8px; color: var(--lj-text); }
+.bk-samman-kort hr { border: 0; border-top: 1px solid var(--lj-linje); margin: 12px 0; }
+.bk-samman-kort .bk-total { font-size: 17px; font-weight: 700; color: var(--lj-text); }
+.bk-samman-kort .bk-liten { font-size: 12.5px; color: var(--lj-mjuk); }
+
+/* Stegens egna knappar ersätts av bottenraden (fel och hjälptext står kvar) */
+.bk-fortsatt-rad { padding-top: 14px; text-align: left; }
+.bk-fortsatt-rad .bk-fortsatt { display: none; }
+.bk-fortsatt-rad .bk-hjalp { margin: 0; font-size: 13px; }
+.bk-tack .bk-fortsatt { display: inline-block; border: 0; border-radius: 999px; background: var(--lj-rod); color: #fff; text-transform: none; }
+
+/* Bottenraden: pris vänster, röd knapp höger, centrerad som kolumnen */
+.bk-detaljbar:not([hidden]) {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 12px;
+  position: fixed; left: 50%; bottom: 0; transform: translateX(-50%); z-index: 50;
+  width: min(480px, 100%); padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: #fff; color: var(--lj-text); border-radius: 18px 18px 0 0; box-shadow: 0 -8px 24px rgba(15, 30, 46, .08);
+}
+body:has(.bk-detaljbar:not([hidden])) { padding-bottom: 0; }
+.bk-detalj-knapp { display: flex; flex-direction: column-reverse; align-items: flex-start; justify-content: center; gap: 2px; min-height: 52px; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.bk-detalj-knapp > span { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: var(--lj-mjuk); }
+.bk-detalj-knapp svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s; }
+.bk-detalj-knapp b { font-size: 20px; font-weight: 800; white-space: nowrap; color: var(--lj-text); }
+.bk-detalj-knapp b.tom { font-size: 15px; font-weight: 700; color: var(--lj-mjuk); }
+.bk-detaljbar.oppen .bk-detalj-knapp b { display: block; }
+.bk-detaljbar.oppen .bk-detalj-knapp svg { transform: rotate(180deg); }
+.bk-bar-fortsatt { min-height: 52px; padding: 0 24px; border: 0; border-radius: 999px; background: var(--lj-rod); color: #fff; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background-color .15s ease, transform .15s ease; }
+.bk-bar-fortsatt:hover { background: var(--lj-rod-mork); }
+.bk-bar-fortsatt:active { transform: scale(.98); }
+.bk-detalj-panel { grid-column: 1 / -1; max-height: 60vh; overflow-y: auto; margin-top: 10px; padding: 16px 0 6px; border-top: 1px solid var(--lj-linje); }
+.bk-detalj-panel[hidden] { display: none; }
+.bk-detalj-panel h2 { margin: 0 0 14px; font-size: 18px; color: var(--lj-text); }
+.bk-detalj-panel .bk-srad, .bk-detalj-panel .bk-total { color: var(--lj-text); }
+.bk-detalj-panel .bk-liten { color: var(--lj-mjuk); }
+.bk-detalj-panel hr { border: 0; border-top: 1px solid var(--lj-linje); margin: 14px 0; }
+.bk-mobilpris { display: none !important; }
+
+/* ===== Proffsig checkout-stil som Amazon/IKEA/Google (Tommy 2026-11-18) =====
+   Vit sida, raka listor med tunna linjer, fält med tydlig kant, radioknappar, lite text. */
+html, body.bk { background: #fff; }
+.bk-rund { background: #fff; box-shadow: none; border: 1px solid #D5DAE1; }
+.bk-topp { border-bottom: 1px solid #EDF0F3; max-width: none; padding: 12px max(16px, calc((100% - 560px) / 2)) 12px; }
+.bk-sida { max-width: 560px; }
+.bk-fraga { margin: 28px 0 10px; font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+
+/* Profil: enkel rad med tunn ram */
+.bk-profil { box-shadow: none; border: 1px solid #E3E7EC; border-radius: 12px; }
+
+/* Steg 1-korten: lista med tunna linjer */
+.bk-kort-val, .bk .bk-val.bk-kort-val { box-shadow: none; border: 1px solid #E3E7EC; border-radius: 12px; }
+.bk-kort-val:hover { box-shadow: none; border-color: #0F1E2E; }
+
+/* Fönstertyperna: en sammanhängande lista med linjer mellan raderna */
+.bk-rader { gap: 0; border: 1px solid #E3E7EC; border-radius: 12px; overflow: hidden; }
+.bk-rad, .bk-rad.aktiv { border-radius: 0; box-shadow: none; border-bottom: 1px solid #E3E7EC; }
+.bk-rad:last-child { border-bottom: 0; }
+.bk-rad.aktiv { box-shadow: inset 4px 0 0 var(--lj-rod); background: #FFF8F8; }
+.bk-steg button { width: 36px; height: 36px; font-size: 20px; border-color: #C9D0D8; }
+
+/* Ja/Nej och tillval: radiolista med tunna linjer */
+.bk-radio, .bk-check { box-shadow: none; border: 1px solid #E3E7EC; border-radius: 12px; margin: 0 0 8px; }
+.bk-radio:has(input:checked), .bk-check:has(input:checked) { background: #FFF8F8; box-shadow: none; border: 2px solid var(--lj-rod); padding: 13px 15px; }
+.bk-radio input, .bk-check input { width: 20px; height: 20px; }
+
+/* Fält: vit bakgrund, tydlig grå kant, etikett ovanför */
+.bk textarea, .bk-falt input { background: #fff; border: 1px solid #C9D0D8; border-radius: 8px; box-shadow: none; }
+.bk textarea:hover, .bk-falt input:hover { border-color: #8A94A3; }
+.bk textarea:focus, .bk-falt input:focus { border-color: #0F1E2E; box-shadow: 0 0 0 3px rgba(15, 30, 46, .12); }
+.bk-falt span { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+
+/* Kalender och sammanställning: tunn ram i stället för skugga */
+.bk .fpk-kal, .bk-samman-kort { box-shadow: none; border: 1px solid #E3E7EC; border-radius: 12px; }
+
+/* Bottenraden: rak, tunn linje ovanför, bred knapp */
+.bk-detaljbar:not([hidden]) { border-radius: 0; box-shadow: none; border-top: 1px solid #E3E7EC; width: 100%; }
+.bk-detaljbar:not([hidden]) { padding-left: max(16px, calc((100% - 560px) / 2)); padding-right: max(16px, calc((100% - 560px) / 2)); }
+.bk-bar-fortsatt { min-width: 160px; border-radius: 999px; }

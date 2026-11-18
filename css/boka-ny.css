@@ -1,0 +1,226 @@
+/* Ny bokning från noll (Tommy 2026-11-18). Ren app-stil: vit sida, stora val, en sak per skärm. */
+:root {
+  --t: #0F1E2E; --m: #64748B; --l: #E5E7EB; --bg: #fff; --yta: #F6F7F9;
+  --r: #d1101f; --r2: #b00d1a; --rl: #FFF4F5; --ring: rgba(209, 16, 31, .16);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--t); font-family: Montserrat, system-ui, sans-serif; -webkit-text-size-adjust: 100%; }
+[hidden] { display: none !important; }
+button, a, input, textarea { font: inherit; touch-action: manipulation; }
+.nf { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* Toppen: pil, progress, kryss */
+.nf-topp { position: sticky; top: 0; z-index: 20; display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; gap: 14px; padding: 12px max(16px, calc((100% - 520px) / 2)); background: rgba(255, 255, 255, .92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.nf-ikon { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--yta); color: var(--t); display: grid; place-items: center; cursor: pointer; text-decoration: none; transition: background .15s ease; }
+.nf-ikon:hover { background: #ECEEF2; }
+.nf-ikon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.nf-progress { height: 6px; border-radius: 99px; background: #EEF0F3; overflow: hidden; }
+.nf-progress b { display: block; height: 100%; width: 0; border-radius: 99px; background: var(--r); transition: width .35s ease; }
+
+/* Innehåll */
+.nf-innehall { flex: 1; width: 100%; max-width: 520px; margin: 0 auto; padding: 12px 20px 140px; }
+.nf-skarm { animation: nfIn .28s ease both; }
+@keyframes nfIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.nf-steg { margin: 8px 0 6px; font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--r); }
+.nf h1 { margin: 0 0 8px; font-size: 32px; line-height: 1.12; font-weight: 800; letter-spacing: -0.03em; }
+.nf-under { margin: 0 0 26px; font-size: 16px; line-height: 1.5; color: var(--m); }
+.nf-lista { display: grid; gap: 12px; }
+.nf-fel { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; background: var(--rl); color: var(--r2); font-size: 14px; font-weight: 600; }
+.nf-liten { margin: 16px 0 0; font-size: 13px; line-height: 1.5; color: var(--m); }
+
+/* Bildkort (steg 1) */
+.nf-bild { position: relative; display: flex; align-items: center; gap: 16px; width: 100%; padding: 12px 48px 12px 12px; border: 0; border-radius: 20px; background: var(--yta); color: var(--t); text-align: left; text-decoration: none; cursor: pointer; transition: transform .15s ease, background .15s ease; }
+.nf-bild:hover { background: #EEF0F3; }
+.nf-bild:active { transform: scale(.985); }
+.nf-bild img { flex: none; width: 84px; height: 84px; border-radius: 14px; object-fit: cover; }
+.nf-bild strong { display: block; font-size: 18px; font-weight: 700; }
+.nf-bild small { display: block; margin-top: 3px; font-size: 14px; color: var(--m); }
+.nf-pil { position: absolute; right: 22px; top: 50%; width: 10px; height: 10px; border-top: 2.5px solid var(--t); border-right: 2.5px solid var(--t); transform: translateY(-50%) rotate(45deg); }
+
+/* Fönstertyper */
+.nf-typer { display: grid; gap: 12px; }
+.nf-typ { padding: 16px 16px 16px 18px; border-radius: 20px; background: var(--yta); transition: background .15s ease, box-shadow .15s ease; }
+.nf-typ.aktiv { background: #fff; box-shadow: 0 0 0 2px var(--r), 0 8px 24px rgba(15, 30, 46, .08); }
+.nf-typ-topp { display: flex; align-items: center; gap: 12px; }
+.nf-typ-namn { flex: 1; min-width: 0; font-size: 17px; font-weight: 700; line-height: 1.3; }
+.nf-raknare { display: flex; align-items: center; gap: 6px; padding: 4px; border-radius: 99px; background: #fff; box-shadow: inset 0 0 0 1px var(--l); }
+.nf-typ.aktiv .nf-raknare { box-shadow: inset 0 0 0 1px #F1D5D8; }
+.nf-raknare button { width: 40px; height: 40px; border-radius: 50%; border: 0; background: transparent; color: var(--t); font-size: 22px; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .15s ease, color .15s ease; }
+.nf-raknare button[data-steg="1"] { background: var(--r); color: #fff; }
+.nf-raknare button[data-steg="1"]:hover { background: var(--r2); }
+.nf-raknare button[data-steg="-1"]:hover:not(:disabled) { background: var(--yta); }
+.nf-raknare button:disabled { color: #CBD5E1; cursor: default; }
+.nf-raknare output { min-width: 26px; text-align: center; font-size: 18px; font-weight: 800; }
+.nf-chips-rubrik { margin: 14px 0 8px; font-size: 13px; font-weight: 600; color: var(--m); }
+.nf-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.nf-chip { padding: 10px 16px; border: 0; border-radius: 99px; background: var(--yta); color: var(--t); font-size: 14px; font-weight: 600; cursor: pointer; transition: background .15s ease, color .15s ease; }
+.nf-chip:hover { background: #ECEEF2; }
+.nf-chip.vald { background: var(--t); color: #fff; }
+.nf-notis { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; background: var(--yta); font-size: 13.5px; line-height: 1.5; color: var(--m); }
+
+/* Stora valrutor */
+.nf-tva { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.nf-val { position: relative; display: block; width: 100%; padding: 20px 18px; border: 0; border-radius: 20px; background: var(--yta); color: var(--t); text-align: left; cursor: pointer; transition: background .15s ease, box-shadow .15s ease; }
+.nf-val:hover { background: #EEF0F3; }
+.nf-val strong { display: block; font-size: 18px; font-weight: 700; }
+.nf-val small { display: block; margin-top: 4px; font-size: 14px; color: var(--m); }
+.nf-val::after { content: ""; position: absolute; top: 16px; right: 16px; width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 2px #CBD5E1; background: #fff; }
+.nf-val.vald { background: #fff; box-shadow: 0 0 0 2px var(--r), 0 8px 24px rgba(15, 30, 46, .08); }
+.nf-val.vald::after { box-shadow: none; background: var(--r) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 14px no-repeat; }
+.nf-val-rad { margin-bottom: 12px; padding-right: 54px; }
+
+/* Fält */
+.nf-falt { display: block; margin: 0 0 16px; }
+.nf-falt span { display: block; margin: 0 0 8px; font-size: 14px; font-weight: 700; }
+.nf-falt em { font-style: normal; font-weight: 500; color: var(--m); }
+.nf-falt input, .nf-falt textarea { width: 100%; min-height: 56px; padding: 15px 16px; border: 0; border-radius: 16px; background: var(--yta); color: var(--t); font-size: 16px; outline: none; box-shadow: inset 0 0 0 1px transparent; transition: background .15s ease, box-shadow .15s ease; }
+.nf-falt textarea { resize: vertical; min-height: 110px; }
+.nf-falt input:focus, .nf-falt textarea:focus { background: #fff; box-shadow: inset 0 0 0 2px var(--r), 0 0 0 4px var(--ring); }
+.nf-rad2 { display: grid; grid-template-columns: 1fr 1.3fr; gap: 12px; }
+
+/* Kalendern i samma stil */
+.nf .fpk-kal { padding: 16px 12px 12px; border-radius: 20px; background: var(--yta); box-shadow: none; border: 0; }
+.nf .fpk-nav { background: #fff; }
+.nf .fpk-dag:not(.fpk-av):hover { background: #fff; }
+.nf .fpk-tid { border: 0; background: var(--yta); border-radius: 16px; padding: 14px 10px; }
+.nf .fpk-tid.fpk-vald { background: var(--t); }
+
+/* Översikt */
+.nf-oversikt { border-radius: 20px; background: var(--yta); padding: 6px 18px; }
+.nf-o-rad { display: flex; justify-content: space-between; gap: 14px; padding: 14px 0; border-bottom: 1px solid #E7EAEE; font-size: 15px; }
+.nf-o-rad:last-child { border-bottom: 0; }
+.nf-o-rad span { color: var(--m); }
+.nf-o-rad b { font-weight: 700; text-align: right; }
+.nf-o-total { font-size: 18px; }
+.nf-o-total span { color: var(--t); font-weight: 700; }
+.nf-o-total b { font-size: 22px; font-weight: 800; }
+
+/* Tack */
+.nf-tack { text-align: center; padding-top: 48px; }
+.nf-bock { width: 84px; height: 84px; margin: 0 auto 22px; border-radius: 50%; background: var(--r); display: grid; place-items: center; }
+.nf-bock svg { width: 40px; height: 40px; fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Bottenraden */
+.nf-botten { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: flex; align-items: center; gap: 14px; padding: 14px max(20px, calc((100% - 520px) / 2 + 20px)) calc(14px + env(safe-area-inset-bottom)); background: rgba(255, 255, 255, .96); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 -1px 0 #EEF0F3; }
+.nf-pris { flex: 1; min-width: 0; }
+.nf-pris small { display: block; font-size: 12.5px; font-weight: 600; color: var(--m); }
+.nf-pris b { display: block; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+.nf-pris b.tom { font-size: 15px; font-weight: 700; color: var(--m); }
+.nf-knapp { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 56px; padding: 0 30px; border: 0; border-radius: 99px; background: var(--r); color: #fff; font-size: 17px; font-weight: 700; text-decoration: none; cursor: pointer; transition: background .15s ease, transform .15s ease; }
+.nf-knapp:hover { background: var(--r2); }
+.nf-knapp:active { transform: scale(.98); }
+.nf-knapp:disabled { opacity: .6; cursor: wait; }
+.nf-knapp::after { content: "→"; font-size: 18px; }
+.nf-tack .nf-knapp::after { content: none; }
+
+/* Lägenhet: storlek vänster, pris höger */
+.nf-val-pris { display: flex; align-items: center; justify-content: space-between; margin: 0; padding: 20px 56px 20px 20px; }
+.nf-val-pris b { font-size: 17px; font-weight: 800; }
+.nf-val-pris::after { top: 50%; transform: translateY(-50%); }
+.nf-lgh-rubrik { margin: 28px 0 10px; font-size: 16px; font-weight: 700; color: var(--t); }
+.nf-lgh-rubrik em { font-style: normal; font-weight: 500; color: var(--m); }
+.nf-typ-namn small { display: block; margin-top: 2px; font-size: 13px; font-weight: 500; color: var(--m); }
+
+/* ===== Tommys svar 2026-11-18: mörkblå bakgrund som sajten, en fråga per skärm,
+   stora vita kort med bild, det valda markeras mörkblått. ===== */
+:root { --navy: #0F1E2E; --navy2: #1B3247; --valt: #1B3247; }
+html, body { background: var(--navy); }
+.nf { background: linear-gradient(180deg, #0F1E2E 0%, #1B3247 100%); background-attachment: fixed; color: #fff; }
+.nf-topp { background: rgba(15, 30, 46, .85); }
+.nf-ikon { background: rgba(255, 255, 255, .12); color: #fff; }
+.nf-ikon:hover { background: rgba(255, 255, 255, .2); }
+.nf-progress { background: rgba(255, 255, 255, .15); }
+.nf-progress b { background: #fff; }
+.nf-steg { color: rgba(255, 255, 255, .7); }
+.nf h1 { color: #fff; }
+.nf-under, .nf-liten { color: rgba(255, 255, 255, .75); }
+.nf-lgh-rubrik, .nf-chips-rubrik { color: #fff; }
+.nf-lgh-rubrik em { color: rgba(255, 255, 255, .7); }
+.nf-fel { background: #fff; color: var(--r2); }
+
+/* Stora vita kort */
+.nf-bild, .nf-val, .nf-typ { background: #fff; color: var(--navy); box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .5); }
+.nf-bild:hover, .nf-val:hover { background: #fff; transform: translateY(-2px); }
+.nf-bild img { width: 92px; height: 92px; }
+.nf-pil { border-color: var(--navy); }
+
+/* Valt = mörkblått: tjock mörkblå ram + mörkblå bock */
+.nf-val.vald, .nf-typ.aktiv { background: #fff; box-shadow: 0 0 0 4px #7FA6CF, inset 0 0 0 3px var(--valt), 0 10px 30px -12px rgba(0, 0, 0, .5); }
+.nf-val.vald::after { background-color: var(--valt); }
+.nf-val:not(.vald)::after { box-shadow: inset 0 0 0 2px #CBD5E1; }
+
+/* Bild/ikon i varje valkort */
+.nf-kortbild { flex: none; width: 72px; height: 72px; border-radius: 16px; background: #EEF3F8; display: grid; place-items: center; color: var(--navy2); }
+.nf-kortbild svg { width: 46px; height: 46px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.nf-kortbild.text { font-size: 24px; font-weight: 800; color: var(--navy); }
+.nf-typ-topp { gap: 14px; }
+.nf-typ-namn { font-size: 17px; }
+.nf-val { display: flex; align-items: center; gap: 16px; padding: 14px 56px 14px 14px; }
+.nf-val > span { display: block; }
+.nf-tva { grid-template-columns: 1fr; }
+.nf-val-pris { padding: 14px 56px 14px 14px; }
+.nf-val-pris > span { flex: 1; }
+.nf-val-pris strong { font-size: 18px; }
+.nf-val-pris b { font-size: 18px; margin-right: 4px; }
+
+/* Räknare: plus mörkblå */
+.nf-raknare { background: #F1F5F9; box-shadow: none; }
+.nf-raknare button[data-steg="1"] { background: var(--valt); }
+.nf-raknare button[data-steg="1"]:hover { background: var(--navy); }
+.nf-chip { background: #F1F5F9; }
+.nf-chip.vald { background: var(--valt); color: #fff; }
+
+/* Fält */
+.nf-falt span { color: #fff; }
+.nf-falt em { color: rgba(255, 255, 255, .7); }
+.nf-falt input, .nf-falt textarea { background: #fff; color: var(--navy); }
+.nf-falt input:focus, .nf-falt textarea:focus { box-shadow: inset 0 0 0 3px var(--valt), 0 0 0 4px rgba(127, 166, 207, .6); }
+
+/* Kalender och tider som stora vita kort */
+.nf .fpk-kal { background: #fff; box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .5); }
+.nf .fpk-dag { color: var(--navy); }
+.nf .fpk-dag.fpk-vald { background: var(--valt); color: #fff; }
+.nf .fpk-dag:not(.fpk-av):hover { background: #EEF3F8; }
+.nf .fpk-tider-titel { color: #fff; }
+.nf .fpk-tider { gap: 10px; }
+.nf .fpk-tid { background: #fff; padding: 18px 12px; box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .5); }
+.nf .fpk-tid strong { color: var(--navy); font-size: 15px; }
+.nf .fpk-tid.fpk-vald { background: #fff; box-shadow: 0 0 0 4px #7FA6CF, inset 0 0 0 3px var(--valt); }
+.nf .fpk-tid.fpk-vald strong { color: var(--navy); }
+.nf .fpk-tid.fpk-vald span { color: var(--m); }
+html body .nf .fpk-tider-titel { color: #fff; }
+
+/* Översikt och tack */
+.nf-oversikt { background: #fff; color: var(--navy); }
+.nf-bock { background: #fff; }
+.nf-bock svg { stroke: var(--navy); }
+.nf-val::after { top: 50%; transform: translateY(-50%); }
+.nf-botten { color: var(--navy); }
+.nf-pris b { color: var(--navy); }
+.nf-pris b.tom { color: var(--m); }
+.nf-typ .nf-chips-rubrik { color: var(--m); }
+.nf-typ .nf-notis { background: #F1F5F9; color: var(--m); }
+.nf-typ.aktiv .nf-raknare { box-shadow: none; }
+.nf-val > .nf-kortbild { display: grid; }
+.nf .fpk-grid { justify-items: center; gap: 4px 2px; }
+.nf .fpk-dag { width: 42px; height: 42px; min-height: 0; border: 0; border-radius: 50%; background: transparent; font-weight: 700; }
+.nf .fpk-dag:not(.fpk-av) { background: #EEF3F8; }
+.nf .fpk-dag.fpk-av { background: transparent; color: #CBD5E1; }
+.nf .fpk-dag.fpk-vald { background: var(--valt); color: #fff; border: 0; }
+.nf .fpk-dag small { display: none; }
+.nf .fpk-nav { border: 0; border-radius: 50%; background: #EEF3F8; }
+.nf .fpk-kal { padding: 16px 14px 14px; }
+.nf .fpk-tider { grid-template-columns: 1fr 1fr; }
+.nf .fpk-tider-titel { grid-column: 1 / -1; }
+.nf .fpk-tid { border: 0; text-align: center; }
+
+/* Riktiga bilder i korten i stället för ritade ikoner (Tommy 2026-11-18) */
+.nf-kortbild.foto { overflow: hidden; padding: 0; background: #EEF3F8; }
+.nf-kortbild.foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Kort med foto: bilden överst i full bredd, namn och −/+ under (Tommy 2026-11-19) */
+.nf-typ:has(.nf-kortbild.foto) { padding: 10px 10px 14px; }
+.nf-typ-topp:has(.nf-kortbild.foto) { flex-wrap: wrap; row-gap: 12px; }
+.nf-typ-topp .nf-kortbild.foto { flex: 0 0 100%; width: 100%; height: auto; aspect-ratio: 4 / 3; border-radius: 14px; }
+.nf-typ-topp .nf-kortbild.foto { position: relative; }
+.nf-typ-topp .nf-kortbild.foto img { position: absolute; inset: 0; object-position: 50% 85%; } /* visa nedre delen: golv eller mur */
+.nf-typ-topp:has(.nf-kortbild.foto) .nf-typ-namn { padding-left: 6px; }

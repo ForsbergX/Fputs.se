@@ -1,10 +1,10 @@
 /* Glastema som Gotenstam (Tommy 2026-10-23): solnedgångsfoto bakom hela sidan,
    frostade glaskort, rundade knappar. Svart/rött efter loggan (Tommy 2026-10-31, blå version i glas-tema.blå-backup.css). Ta bort länken i index.html för att stänga av. */
 :root {
-  --gl-navy: #16120f;
+  --gl-navy: #0e1824;
   --gl-rod: #d1101f;
   --gl-rod-2: #b00d1a;
-  --gl-navy-2: #2a2420;
+  --gl-navy-2: #1f2f42;
   --gl-glas: rgba(255, 255, 255, 0.13);
   --gl-glas-stark: rgba(255, 255, 255, 0.2);
   --gl-kant: rgba(255, 255, 255, 0.3);
@@ -13,16 +13,16 @@
 }
 
 /* ---------- Fotot bakom hela sidan ---------- */
-html { background: #1a1613; }
+html { background: #0F1E2E; }
 html body { background: transparent !important; color: var(--gl-text); }
 body::before {
   content: ""; position: fixed; inset: -40px; z-index: -2; pointer-events: none;
   /* Färdigsuddad liten bild (20 kB) – ingen blur-uträkning i mobilen = mjukare scroll (2026-10-24) */
-  background: url("../images/bakgrund-suddig.jpg") 60% center / cover no-repeat;
+  background: linear-gradient(180deg, #0F1E2E 0%, #1B3247 100%); /* jämn marinblå, "nyputsat glas" (2026-11-18) */
 }
 body::after {
   content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(180deg, rgba(26, 20, 16, 0.58) 0%, rgba(14, 11, 9, 0.78) 100%);
+  background: none;
 }
 html body #om-mig, html body #karta, .ns-sektion { background: transparent !important; }
 
@@ -46,7 +46,7 @@ html body nav:not(.breadcrumb-nav) {
 }
 html body nav:not(.breadcrumb-nav)::before {
   content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
-  background: linear-gradient(160deg, rgba(34, 29, 25, 0.62) 0%, rgba(14, 12, 10, 0.72) 100%);
+  background: linear-gradient(160deg, rgba(22, 38, 58, 0.62) 0%, rgba(9, 18, 30, 0.72) 100%);
   -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
 }
 html body nav:not(.breadcrumb-nav) .nav-tel { color: #fff; text-shadow: 0 1px 6px rgba(20, 35, 55, 0.35); }
@@ -57,7 +57,7 @@ html body .nav-toggle span { background: #fff !important; }
 /* Rullgardinsmenyn på dator: frostat mörkt glas */
 @media (min-width: 769px) {
   html body .nav-dropdown-menu {
-    background: linear-gradient(160deg, rgba(34, 29, 25, 0.94) 0%, rgba(14, 12, 10, 0.96) 100%) !important;
+    background: linear-gradient(160deg, rgba(22, 38, 58, 0.94) 0%, rgba(9, 18, 30, 0.96) 100%) !important;
     border: 1px solid rgba(255, 255, 255, 0.5) !important;
     -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
   }
@@ -67,7 +67,7 @@ html body .nav-toggle span { background: #fff !important; }
 @media (max-width: 768px) {
   /* Samma frostade mörka glas som menyraden */
   html body .nav-links {
-    background: linear-gradient(160deg, rgba(34, 29, 25, 0.82) 0%, rgba(14, 12, 10, 0.88) 100%) !important;
+    background: linear-gradient(160deg, rgba(22, 38, 58, 0.82) 0%, rgba(9, 18, 30, 0.88) 100%) !important;
     -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%);
     border-left: 1px solid rgba(255, 255, 255, 0.45) !important;
     box-shadow: -20px 0 40px -20px rgba(8, 14, 24, 0.55), inset 1px 0 0 rgba(255, 255, 255, 0.25);
@@ -90,9 +90,9 @@ html body .nav-toggle span { background: #fff !important; }
 
 /* ---------- Hero ---------- */
 #hero.ns-hero { background: transparent !important; align-items: flex-end; }
-#hero .ns-hero-bild { object-position: 58% 50%; }
+#hero .ns-hero-bild { object-position: 72% 50%; } /* nya villabilden med Vättern (2026-11-18): huset står till höger */
 #hero.ns-hero::after {
-  background: linear-gradient(180deg, rgba(22, 17, 14, 0.15) 0%, rgba(22, 17, 14, 0.25) 45%, rgba(18, 14, 12, 0.78) 100%);
+  background: linear-gradient(180deg, rgba(12, 24, 38, 0.15) 0%, rgba(12, 24, 38, 0.25) 45%, rgba(9, 18, 30, 0.78) 100%);
 }
 .ns-hero h1 { font-size: clamp(36px, 9.5vw, 60px); line-height: 1.05; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.35); }
 .ns-hero-p { color: var(--gl-mjuk); }
@@ -116,7 +116,7 @@ html body .nav-toggle span { background: #fff !important; }
 .ns-kort p { color: var(--gl-mjuk); }
 .ns-kort-lank { color: #fff; opacity: 0.9; }
 .ns-kort p.ns-kort-hemma { margin-top: -6px; font-size: 14.5px; font-weight: 700; color: #fff; }
-.ns-kort .ns-ikon { background: rgba(255, 255, 255, 0.16); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18); }
+.ns-kort .ns-ikon { background: var(--gl-rod); box-shadow: none; } /* röd som Trygg att anlita (2026-11-18) */
 .ns-kort .ns-ikon svg { stroke: #fff; }
 
 /* ---------- Referenser ---------- */
@@ -166,11 +166,12 @@ html body .nav-toggle span { background: #fff !important; }
   .ns-kort:hover, .gl-ikon:hover { translate: 0 -6px; scale: 1.03; background: rgba(255, 255, 255, 0.2) !important; }
   .ns-ref:hover { scale: 1.02; }
   .ns-ikon { transition: scale .25s cubic-bezier(.34, 1.56, .64, 1), background .25s ease; }
-  .ns-kort:hover .ns-ikon, .gl-ikon:hover .ns-ikon { scale: 1.2; background: rgba(255, 255, 255, 0.28) !important; }
+  .gl-ikon:hover .ns-ikon { scale: 1.2; background: rgba(255, 255, 255, 0.28) !important; }
+  .ns-kort:hover .ns-ikon { scale: 1.2; background: var(--gl-rod-2) !important; }
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .ns-kort, .gl-ikon, .ns-ref, .ns-om > div { background: rgba(28, 23, 20, 0.82) !important; }
+  .ns-kort, .gl-ikon, .ns-ref, .ns-om > div { background: rgba(16, 30, 46, 0.82) !important; }
 }
 
 /* ---------- Tjänster som rutor, 2 i bredd (som smile.se, Tommy 2026-10-24) ----------
@@ -212,14 +213,34 @@ html body .nav-toggle span { background: #fff !important; }
 /* Citatikonen i recensionerna: röd som loggan i stället för gul (stjärnorna får vara gula) */
 .rk-topp-tecken { background: var(--gl-rod) !important; color: #fff !important; }
 
-/* Få offert: rutan "Vad gäller det?" – vita rena kort som i bokningen (Tommy 2026-10-31) */
-.ov { position: fixed; inset: 0; margin: auto; height: fit-content; max-height: calc(100% - 32px); overflow: auto; width: min(440px, calc(100% - 32px)); padding: 0; border: 0; border-radius: 20px; background: #fff; color: #1d1a16; box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .7); }
-.ov::backdrop { background: rgba(14, 11, 9, .6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-.ov-ruta { position: relative; padding: 26px 18px 18px; }
-.ov h2 { margin: 0 0 16px; font-size: 22px; font-weight: 800; color: #1d1a16; }
-.ov-stang { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid #1d1a16; background: #fff; color: #1d1a16; font-size: 22px; line-height: 1; cursor: pointer; }
-.ov-val { display: block; padding: 16px 44px 16px 16px; margin: 0 0 10px; border: 1px solid #e2ded8; border-radius: 12px; color: #1d1a16; text-decoration: none; position: relative; }
-.ov-val::after { content: "›"; position: absolute; right: 16px; top: 50%; transform: translateY(-52%); font-size: 26px; color: #1d1a16; }
-.ov-val:hover { border-color: #1d1a16; background: #f3f2f0; }
-.ov-val strong { display: block; font-size: 17px; font-weight: 700; }
-.ov-val span { display: block; font-size: 14px; color: #55585c; margin-top: 2px; }
+/* Få offert: "Vad gäller det?" – C1 (Tommy 2026-11-18): vitt ark som glider upp underifrån på mobil,
+   lista med bild till vänster, bara marinblått + vitt (inget rött). Ruta i mitten på dator. */
+.ov { position: fixed; inset: auto 0 0 0; margin: 0; width: 100%; max-width: 100%; height: fit-content; max-height: 92svh; overflow: auto; padding: 0; border: 0; border-radius: 24px 24px 0 0; background: #fff; color: #0F1E2E; box-shadow: 0 -20px 60px -20px rgba(0, 0, 0, .5); }
+.ov[open] { animation: ovUpp .32s cubic-bezier(.2, .8, .2, 1); }
+@keyframes ovUpp { from { transform: translateY(100%); } to { transform: none; } }
+.ov::backdrop { background: rgba(8, 16, 27, .6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.ov-ruta { position: relative; padding: 12px 20px calc(18px + env(safe-area-inset-bottom)); }
+.ov-ruta::before { content: ""; display: block; width: 42px; height: 4px; margin: 0 auto 16px; border-radius: 4px; background: #D5DBE2; }
+.ov-steg { display: grid; gap: 8px; margin: 0 52px 14px 0; font-size: 13px; font-weight: 600; color: #5B6B7C; }
+.ov-steg i { display: block; height: 3px; border-radius: 99px; background: #E8ECF0; overflow: hidden; }
+.ov-steg b { display: block; height: 100%; border-radius: 99px; background: #0F1E2E; }
+.ov h2 { margin: 0 0 6px; font-size: 25px; font-weight: 800; letter-spacing: -0.02em; color: #0F1E2E; }
+.ov-stang { position: absolute; top: 26px; right: 16px; width: 38px; height: 38px; border-radius: 50%; border: 0; background: #F1F4F7; color: #0F1E2E; font-size: 22px; line-height: 1; cursor: pointer; }
+.ov-val { display: flex; align-items: center; gap: 14px; padding: 12px 34px 12px 0; margin: 0; border-bottom: 1px solid #E8ECF0; color: #0F1E2E; text-decoration: none; position: relative; transition: background .15s ease; }
+.ov-val:last-child { border-bottom: 0; }
+.ov-val img { flex: none; width: 64px; height: 64px; border-radius: 14px; object-fit: cover; }
+.ov-val::after { content: ""; position: absolute; right: 8px; top: 50%; width: 8px; height: 8px; border-top: 2px solid #0F1E2E; border-right: 2px solid #0F1E2E; transform: translateY(-50%) rotate(45deg); transition: right .15s ease; }
+.ov-val:hover::after { right: 4px; }
+.ov-val:active { background: #F7F9FB; }
+.ov-text { display: block; min-width: 0; }
+.ov-val strong { display: block; font-size: 17px; font-weight: 700; color: #0F1E2E; }
+.ov-val .ov-text span { display: block; font-size: 14px; color: #5B6B7C; margin-top: 2px; }
+@media (min-width: 760px) {
+  .ov { inset: 0; margin: auto; width: min(460px, calc(100% - 32px)); border-radius: 22px; box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .55); }
+  .ov[open] { animation: ovIn .22s ease; }
+  @keyframes ovIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .ov-ruta { padding: 22px 22px 14px; }
+  .ov-ruta::before { display: none; }
+  .ov-stang { top: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .ov[open] { animation: none; } }

@@ -1,0 +1,171 @@
+/* Offertformuläret på /kontakta-mig i ljus städapp-stil (Tommy 2026-11-18).
+   Gäller bara #formular och prisraden längst ner. Resten av sidan är orörd. */
+#formular {
+  --lj-text: #0F1E2E; --lj-mjuk: #64748B; --lj-sida: #F7F8FA; --lj-linje: #EEF1F5; --lj-kant: #CBD5E1;
+  --lj-rod: #d1101f; --lj-rod-mork: #b00d1a; --lj-rod-ljus: #FDECEE; --lj-ring: rgba(209, 16, 31, .18);
+  scroll-margin-top: 100px;
+}
+#formular-kort { scroll-margin-top: 100px; }
+
+/* Ett vitt kort, inga ramar eller glas runt om */
+html body #formular .ns-form-kort {
+  max-width: 480px; margin: 0 auto; padding: 24px 20px;
+  background: #fff !important; border: 0 !important; border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(15, 30, 46, .04), 0 12px 32px rgba(15, 30, 46, .10) !important;
+  -webkit-backdrop-filter: none; backdrop-filter: none; color: var(--lj-text);
+}
+html body #formular .ns-form-kort h2 { color: var(--lj-text) !important; font-size: 24px; font-weight: 800; }
+html body #formular .ns-form-kort .ns-form-sub { color: var(--lj-mjuk) !important; font-size: 15px; }
+html body #formular .ns-form { gap: 16px; }
+html body #formular .ns-falt { gap: 6px; }
+html body #formular .ns-falt > span { color: var(--lj-text) !important; font-size: 14px; font-weight: 600; }
+
+/* Fält: 52px, ljusgrå, ingen kant, radie 14px, röd fokusring */
+html body #formular .ns-form .ns-falt :is(input, select, textarea) {
+  min-height: 52px; padding: 14px 16px; border: 0 !important; border-radius: 14px !important;
+  background-color: var(--lj-sida) !important; color: var(--lj-text); box-shadow: none;
+  transition: box-shadow .15s ease, background-color .15s ease;
+}
+html body #formular .ns-form .ns-falt :is(input, select) { height: 52px; padding-top: 0; padding-bottom: 0; }
+html body #formular .ns-form .ns-falt select { padding-right: 42px; }
+html body #formular .ns-form .ns-falt textarea { min-height: 110px; }
+html body #formular .ns-form .ns-falt :is(input, textarea)::placeholder { color: #94A3B8; }
+html body #formular .ns-form .ns-falt :is(input, select, textarea):focus {
+  outline: none; background-color: #fff !important; box-shadow: 0 0 0 2px var(--lj-rod), 0 0 0 5px var(--lj-ring);
+}
+
+/* Lägenhet: ingen ruta i rutan – bara rader */
+html body #formular .ns-lgh { padding: 0 !important; background: transparent !important; border: 0 !important; border-radius: 0; gap: 10px; }
+html body #formular .ns-lgh.saknas .ns-lgh-storlek { outline: 0; }
+html body #formular .ns-lgh.saknas .ns-lgh-rubrik { color: var(--lj-rod-mork) !important; }
+html body #formular .ns-lgh .ns-lgh-rubrik { font-size: 14px; font-weight: 600; color: var(--lj-text) !important; }
+html body #formular .ns-lgh .ns-lgh-rubrik small { color: var(--lj-mjuk) !important; }
+
+/* Storlekarna: rader i full bredd, storlek vänster, pris höger (från knappens data-apt/data-price) */
+html body #formular .ns-lgh-storlek { grid-template-columns: 1fr; gap: 8px; }
+html body #formular .ns-lgh-storlek button {
+  display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0 18px;
+  border: 1px solid var(--lj-linje) !important; border-radius: 14px; background: #fff !important;
+  font-size: 0 !important; color: var(--lj-text) !important; cursor: pointer;
+  transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+html body #formular .ns-lgh-storlek button::before { content: attr(data-apt); font: 600 16px 'Montserrat', sans-serif; color: var(--lj-text); }
+html body #formular .ns-lgh-storlek button::after { content: attr(data-price) " kr"; font: 700 16px 'Montserrat', sans-serif; color: var(--lj-text); }
+html body #formular .ns-lgh-storlek button:hover { border-color: var(--lj-kant) !important; }
+html body #formular .ns-lgh-storlek button.vald {
+  border-color: var(--lj-rod) !important; box-shadow: inset 0 0 0 1px var(--lj-rod); background: var(--lj-rod-ljus) !important;
+}
+html body #formular .ns-lgh-storlek button.vald::before, html body #formular .ns-lgh-storlek button.vald::after { color: var(--lj-rod); }
+html body #formular .ns-lgh .ns-lgh-ingar { color: var(--lj-mjuk) !important; font-size: 13.5px; margin: 0 0 6px; }
+
+/* Balkongrader med runda +/- 40px: minus grå kant, plus röd fylld */
+html body #formular .ns-lgh-rad { padding: 12px 0; border: 0; border-bottom: 1px solid var(--lj-linje); border-radius: 0; background: transparent; }
+html body #formular .ns-lgh .ns-lgh-rad strong { color: var(--lj-text) !important; font-weight: 600; }
+html body #formular .ns-lgh .ns-lgh-rad span { color: var(--lj-mjuk) !important; }
+html body #formular .ns-lgh-steg { gap: 10px; }
+html body #formular .ns-lgh-steg button { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--lj-kant); background: #fff; color: var(--lj-text); font-size: 22px; transition: background-color .15s ease, border-color .15s ease; }
+html body #formular .ns-lgh-steg button[data-steg="1"] { border-color: var(--lj-rod); background: var(--lj-rod); color: #fff; }
+html body #formular .ns-lgh-steg button[data-steg="1"]:hover { background: var(--lj-rod-mork); border-color: var(--lj-rod-mork); }
+html body #formular .ns-lgh .ns-lgh-steg output { min-width: 24px; color: var(--lj-text) !important; font-size: 18px; font-weight: 700; }
+html body #formular .ns-lgh .ns-lgh-pris span { color: var(--lj-mjuk) !important; }
+html body #formular .ns-lgh .ns-lgh-pris :is(strong, b) { color: var(--lj-text) !important; }
+
+/* Kalendern ligger direkt i kortet */
+html body #formular .fpk { margin: 4px 0 0; }
+
+/* Huvudknappen: röd, rundad */
+html body #formular .ns-form-kort .ns-skicka { height: 56px; border-radius: 999px; background: var(--lj-rod) !important; color: #fff !important; font-weight: 700; transition: background-color .15s ease, transform .15s ease; }
+html body #formular .ns-form-kort .ns-skicka:hover { background: var(--lj-rod-mork) !important; }
+html body #formular .ns-form-kort .ns-fel { color: var(--lj-rod-mork) !important; }
+
+/* Prisraden längst ner (mobil, lägenhet): pris vänster, röd knapp höger */
+.kt-bar-skicka { display: none; }
+@media (max-width: 900px) {
+  html body .kt-detaljbar:not([hidden]) {
+    display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 12px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: #fff; color: #0F1E2E;
+    border-radius: 18px 18px 0 0; box-shadow: 0 -8px 24px rgba(15, 30, 46, .08);
+  }
+  html body .kt-detalj-knapp { flex-direction: column-reverse; align-items: flex-start; justify-content: center; gap: 2px; min-height: 52px; padding: 0; }
+  html body .kt-detalj-knapp > span { font-size: 13px; color: #64748B; }
+  html body .kt-detalj-knapp b { font-size: 20px; font-weight: 800; color: #0F1E2E; }
+  html body .kt-detalj-knapp b.tom { font-size: 16px; font-weight: 700; color: #64748B; }
+  html body .kt-detaljbar.oppen .kt-detalj-knapp { border-bottom: 0; }
+  html body .kt-detaljbar.oppen .kt-detalj-knapp b { display: block; }
+  .kt-bar-skicka { display: block; min-height: 52px; padding: 0 24px; border: 0; border-radius: 999px; background: #d1101f; color: #fff; font: 700 16px 'Montserrat', sans-serif; cursor: pointer; white-space: nowrap; }
+  .kt-bar-skicka:hover { background: #b00d1a; }
+  html body .kt-detalj-panel { grid-column: 1 / -1; margin-top: 10px; padding: 16px 0 6px; border-top: 1px solid #EEF1F5; }
+}
+
+/* Håll formuläret inom skärmen (grid-kolumnerna fick annars innehållets bredd) */
+html body #formular { min-width: 0; max-width: 100%; }
+html body #formular .ns-form-kort { width: 100%; box-sizing: border-box; }
+html body #formular :is(.ns-form, .ns-lgh, .ns-lgh-storlek) { grid-template-columns: minmax(0, 1fr); }
+
+/* ===== Samma stil som valrutan och /boka (Tommy 2026-11-18): ljusgrå yta, vita kort med mjuk skugga ===== */
+html body #formular .ns-form-kort { background: #F7F8FA !important; box-shadow: 0 12px 32px rgba(0, 0, 0, .25) !important; }
+html body #formular .ns-form .ns-falt :is(input, select, textarea) { background-color: #fff !important; box-shadow: 0 1px 3px rgba(15, 30, 46, .08); }
+html body #formular .ns-form .ns-falt :is(input, select, textarea):focus { box-shadow: 0 0 0 2px #d1101f, 0 0 0 5px rgba(209, 16, 31, .18); }
+html body #formular .ns-lgh-storlek button { border: 0 !important; border-radius: 16px; box-shadow: 0 1px 3px rgba(15, 30, 46, .08); }
+html body #formular .ns-lgh-storlek button:hover { box-shadow: 0 6px 18px rgba(15, 30, 46, .12); }
+html body #formular .ns-lgh-storlek button.vald { box-shadow: 0 0 0 2px #d1101f; background: #FDECEE !important; }
+html body #formular .ns-lgh-rad { margin: 0 0 2px; padding: 10px 12px 10px 16px; border: 0; border-radius: 16px; background: #fff; box-shadow: 0 1px 3px rgba(15, 30, 46, .08); }
+html body #formular .ns-lgh-steg button { border-color: #E2E8F0; }
+html body #formular .ns-lgh-steg button[data-steg="1"] { border-color: #d1101f; }
+
+/* ===== Från valrutan (?typ=…): sidan ser ut exakt som /boka (Tommy 2026-11-18) =====
+   Grå bakgrund, rubrik överst med bakåt och X, bara formuläret. Ingen meny, hero, recensioner eller sidfot. */
+.kt-flodtopp { display: none; }
+html.bara-formular, html.bara-formular body { background: #F7F8FA !important; }
+html.bara-formular body::before, html.bara-formular body::after { display: none !important; }
+html.bara-formular nav:not(.breadcrumb-nav), html.bara-formular #hero, html.bara-formular .rk-sektion,
+html.bara-formular footer, html.bara-formular #karta, html.bara-formular .kt-info, html.bara-formular .nav-overlay { display: none !important; }
+html.bara-formular .kt-flodtopp { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; max-width: 480px; margin: 0 auto; padding: 14px 16px 6px; }
+html.bara-formular .kt-flodtitel { margin: 0; text-align: center; font: 700 17px 'Montserrat', sans-serif; color: #0F1E2E; }
+html.bara-formular .kt-rund { width: 40px; height: 40px; border-radius: 50%; background: #fff; color: #0F1E2E; display: grid; place-items: center; box-shadow: 0 1px 3px rgba(15, 30, 46, .08); }
+html.bara-formular .kt-rund svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+html.bara-formular .kt-sektion { padding: 6px 16px 130px !important; background: transparent !important; }
+html.bara-formular .kt-layout { max-width: 480px !important; gap: 0; }
+html.bara-formular body #formular .ns-form-kort { padding: 6px 0 0; background: transparent !important; box-shadow: none !important; border-radius: 0; }
+html.bara-formular body #formular .ns-form-kort h2 { font-size: 22px; }
+html.bara-formular .kt-detaljbar:not([hidden]) { left: 50% !important; right: auto !important; transform: translateX(-50%); width: min(480px, 100%); }
+
+/* ===== Proffsig checkout-stil som Amazon/IKEA/Google (Tommy 2026-11-18) ===== */
+html.bara-formular, html.bara-formular body { background: #fff !important; }
+html.bara-formular .kt-flodtopp { max-width: none; padding: 12px max(16px, calc((100% - 560px) / 2)); border-bottom: 1px solid #EDF0F3; }
+html.bara-formular .kt-rund { box-shadow: none; border: 1px solid #D5DAE1; }
+html.bara-formular .kt-layout { max-width: 560px !important; }
+/* Rubriken står redan överst och tjänsten är redan vald – mindre text */
+html.bara-formular #formular .ns-form-kort > h2, html.bara-formular #formular .ns-form-sub { display: none; }
+html.bara-formular #formular .ns-falt:has(#nsTjanst) { display: none; }
+html.bara-formular #formular .ns-form-kort { padding-top: 18px !important; }
+
+/* Fält: vit bakgrund, tydlig grå kant, etikett ovanför */
+html body #formular .ns-form .ns-falt :is(input, select, textarea) { background-color: #fff !important; border: 1px solid #C9D0D8 !important; border-radius: 8px !important; box-shadow: none; }
+html body #formular .ns-form .ns-falt :is(input, select, textarea):hover { border-color: #8A94A3 !important; }
+html body #formular .ns-form .ns-falt :is(input, select, textarea):focus { border-color: #0F1E2E !important; box-shadow: 0 0 0 3px rgba(15, 30, 46, .12); }
+html body #formular .ns-falt > span, html body #formular .ns-lgh .ns-lgh-rubrik { font-size: 15px !important; font-weight: 700 !important; }
+
+/* Storlekar: en lista med radioknapp, namn vänster, pris höger */
+html body #formular .ns-lgh-storlek { gap: 0; border: 1px solid #E3E7EC; border-radius: 12px; overflow: hidden; }
+html body #formular .ns-lgh-storlek button { min-height: 56px; padding: 0 18px 0 52px; border: 0 !important; border-bottom: 1px solid #E3E7EC !important; border-radius: 0; box-shadow: none !important; position: relative;
+  background: #fff radial-gradient(circle, #fff 0 0) no-repeat !important; }
+html body #formular .ns-lgh-storlek button:last-child { border-bottom: 0 !important; }
+html body #formular .ns-lgh-storlek button:hover { background-color: #F8FAFC !important; }
+html body #formular .ns-lgh-storlek button::before { position: relative; }
+html body #formular .ns-lgh-storlek button { --ring: #9AA4B2; }
+html body #formular .ns-lgh-storlek button { box-shadow: inset 0 0 0 0 transparent !important; }
+html body #formular .ns-lgh-storlek button { background-image: radial-gradient(circle at 28px 50%, #fff 0 8px, var(--ring) 8px 10px, transparent 10.5px) !important; }
+html body #formular .ns-lgh-storlek button.vald { --ring: #d1101f; background-color: #FFF8F8 !important; box-shadow: inset 4px 0 0 #d1101f !important;
+  background-image: radial-gradient(circle at 28px 50%, #d1101f 0 5px, #fff 5.5px 8px, #d1101f 8px 10px, transparent 10.5px) !important; }
+html body #formular .ns-lgh-storlek button.vald::before, html body #formular .ns-lgh-storlek button.vald::after { color: #0F1E2E; }
+
+/* Balkongrader: samma lista */
+html body #formular .ns-lgh-rad { border: 1px solid #E3E7EC; border-radius: 12px; box-shadow: none; margin: 0; }
+html body #formular .ns-lgh-steg button { width: 36px; height: 36px; font-size: 20px; border-color: #C9D0D8; }
+
+/* Kalendern: tunn ram */
+html body #formular .fpk-kal { box-shadow: none; border: 1px solid #E3E7EC; border-radius: 12px; }
+
+/* Bottenraden: rak med tunn linje */
+html.bara-formular .kt-detaljbar:not([hidden]) { border-radius: 0 !important; box-shadow: none !important; border-top: 1px solid #E3E7EC; width: 100% !important; padding-left: max(16px, calc((100% - 560px) / 2)) !important; padding-right: max(16px, calc((100% - 560px) / 2)) !important; }

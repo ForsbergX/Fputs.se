@@ -11,184 +11,154 @@
     gtag('config', 'AW-18225187055');
     gtag('config', 'G-DX43GW5J1M');
   </script>
-
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Boka fönsterputs – Forsbergs Fönsterputs</title>
   <meta name="description" content="Boka fönsterputs i Jönköping med omnejd. Räkna ut ditt fasta pris och välj dag och tid." />
   <link rel="canonical" href="https://fputs.se/boka" />
   <link rel="icon" href="favicon.ico?v=4" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=4" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/kalender.css" />
-  <link rel="stylesheet" href="css/boka.css?v=20261107a" />
-  <link rel="stylesheet" href="css/boka-glas.css?v=20261031k" />
+  <link rel="stylesheet" href="css/kalender.css?v=3" />
+  <link rel="stylesheet" href="css/boka-ny.css?v=10" />
 </head>
-<body class="bk">
+<body>
+<!-- Ny bokning byggd från noll (Tommy 2026-11-18): en sak per skärm, stora val, knappen längst ner. -->
+<form id="nf" class="nf" novalidate>
+  <input type="hidden" name="onskat_datum_1" value="" />
+  <input type="hidden" name="onskad_tid" value="" />
 
-<!-- Bokningen i Hemfrid-stil (Tommy 2026-10-28): 1. en gång / abonnemang, 2. fönster och val, 3. dag, tid och uppgifter -->
-<div class="bk-topp">
-  <button type="button" class="bk-rund" id="bkTillbaka" aria-label="Tillbaka"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
-  <a class="bk-rund" href="/" aria-label="Stäng"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></a>
-</div>
+  <header class="nf-topp">
+    <button type="button" class="nf-ikon" id="nfTillbaka" aria-label="Tillbaka"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button>
+    <div class="nf-progress" aria-hidden="true"><b id="nfProgress"></b></div>
+    <a class="nf-ikon" href="/" aria-label="Stäng"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></a>
+  </header>
 
-<!-- Steg 0: postnummer (Hemfrids första sida) – nås via Få offert och Villa -->
-<main class="bk-start" id="steg-start" hidden>
-  <div class="bk-start-text">
-    <p class="bk-etikett">Fönsterputs i Jönköping</p>
-    <h1>Dags för fönsterputs?</h1>
-    <p class="bk-start-under">Fast pris. Noggrant. Enkelt. Med fokus på kvalitet.</p>
-    <div class="bk-start-form">
-      <label for="bkStartPostnr">Ange ditt postnummer</label>
-      <input id="bkStartPostnr" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="T.ex. 561 31" />
-      <button type="button" id="bkStartFortsatt">Fortsätt</button>
-      <p class="bk-fel" id="bkStartFel" role="alert" hidden></p>
-    </div>
-    <ul class="bk-bockar bk-bockar-lista">
-      <li>Fast pris efter RUT</li><li>5,0 i betyg på Google</li><li>Ingen bindningstid</li>
-    </ul>
-  </div>
-  <div class="bk-start-bild"><img src="images/hero-villa.jpg" alt="Villa med stora fönster i solnedgång" width="1672" height="941" /></div>
-</main>
-
-<!-- Steg 1: välj engångsputs eller abonnemang -->
-<main class="bk-sida" id="steg-val">
-  <div class="bk-vanster">
-    <h1>Boka fönsterputs</h1>
-    <p class="bk-ingress">Räkna ut ditt fasta pris och välj dag och tid.</p>
-    <ul class="bk-bockar">
-      <li>Alltid fast pris</li><li>Försäkring ingår</li><li>Det är alltid jag som kommer</li>
-    </ul>
-    <button type="button" class="bk-val" data-val="engang">
-      <span>
-        <strong>Fönsterputs – alla sidor</strong>
-        <ul class="bk-bockar bk-bockar-lista"><li>Invändigt, utvändigt &amp; mellan glasen</li><li>Alltid fast pris</li><li>Ingen bindningstid</li><li>Betala enkelt med Swish efteråt</li></ul>
-        <small>Komplett fönsterputs av bostadens fönster – enkelt och tydligt.</small>
-      </span>
-      <svg class="bk-pil" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-    </button>
-  </div>
-  <aside class="bk-hoger">
-    <div class="bk-ruta">
-      <h2>Fönsterputs med kvalitet och trygghet.</h2>
-      <p class="bk-citat rk-citat-rull">”Mina fönster har helt ärligt aldrig sett så här fina och rena ut! Kan varmt rekommendera honom och kommer definitivt att anlita honom igen.” – <b>Emma</b></p>
-      <hr />
-      <p>Mina kunder uppskattar mig för noggrant arbete och fast pris. 5,0 av 5 i betyg på Google från 51 recensioner. Du betalar enkelt med Swish efter jobbet.</p>
-    </div>
-  </aside>
-</main>
-
-<form id="bkForm" novalidate>
-  <input type="hidden" name="kalla" value="Bokning (boka.html)" />
-  <input type="hidden" name="bostadstyp" value="" />
-  <input type="hidden" name="kalkyl" value="" />
-  <input type="hidden" name="antal_fonster" value="" />
-  <input type="hidden" name="antal_balkongrutor" value="" />
-  <input type="hidden" name="uppskattat_pris" value="" />
-  <input type="hidden" name="pris_fore_rut" value="" />
-
-  <!-- Steg 2: fönster och val -->
-  <main class="bk-sida" id="steg-fonster" hidden>
-    <div class="bk-vanster">
-      <h1 class="bk-rubrik-engang">Fönsterputs</h1>
-      <h1 class="bk-rubrik-abo">In- &amp; utvändig fönsterputs – abonnemang</h1>
-      <p class="bk-ingress bk-rubrik-abo">Med återkommande fönsterputs ser jag till att dina fönster alltid är skinande rena, utan att du behöver lyfta ett finger.</p>
-      <ul class="bk-bockar bk-rubrik-engang"><li>Alltid fast pris</li><li>Försäkring ingår</li><li>Det är alltid jag som kommer</li></ul>
-      <ul class="bk-bockar bk-rubrik-abo"><li>Alltid rena fönster</li><li>Jag hör av mig</li><li>Ingen bindningstid</li></ul>
-
-      <h2 class="bk-h2">Fönsterinformation</h2>
-      <p class="bk-fraga">Ange antalet fönster*</p>
-      <p class="bk-mobilpris"><span id="bkMobilText">Totalt efter RUT</span><b id="bkMobilpris">0 kr</b></p>
-      <div class="bk-rader" id="bkRader"></div>
-      <p class="bk-fel" id="bkFelFonster" hidden>Ange alla fönster som ska putsas för att fortsätta.</p>
-
-      <p class="bk-fraga">Har du några specialfönster?*</p>
-      <label class="bk-radio bk-radio-stor"><input type="radio" name="special" value="Ja" /><span><strong>Ja</strong><small>Med specialfönster menar jag fönster som öppnas utåt, är svåra att nå eller inte går att öppna.</small></span></label>
-      <label class="bk-radio"><input type="radio" name="special" value="Nej" /><span><strong>Nej</strong></span></label>
-      <p class="bk-fel" id="bkFelSpecial" hidden>Välj Ja eller Nej.</p>
-      <div id="bkSpecial" hidden>
-        <p class="bk-fraga">Ange vilka specialfönster du har*</p>
-        <label class="bk-check"><input type="checkbox" name="special_utat" value="Ja" /><span><strong>Jag har fönster som öppnas utåt</strong><small>Utåtgående fönster putsas på 4 sidor och räknas därför som 4 sidor i priset.</small></span></label>
-        <label class="bk-check"><input type="checkbox" name="special_hoga" value="Ja" /><span><strong>Jag har fönster som är svåra att nå</strong><small>Höga fönster tar jag med stege eller renvattensystem.</small></span></label>
-        <label class="bk-check"><input type="checkbox" name="special_fasta" value="Ja" /><span><strong>Jag har fönster som inte går att öppna</strong></span></label>
+  <main class="nf-innehall">
+    <!-- 1 -->
+    <section class="nf-skarm" data-skarm="typ">
+      <p class="nf-steg">Steg 1 av 6</p>
+      <h1>Vad ska putsas?</h1>
+      <p class="nf-under">Välj det som passar dig.</p>
+      <div class="nf-lista">
+        <button type="button" class="nf-bild" data-villa><img src="images/val-villa.jpg" alt="" width="120" height="120" /><span><strong>Villa &amp; radhus</strong><small>Fast pris direkt – boka här</small></span><i class="nf-pil"></i></button>
+        <button type="button" class="nf-bild" data-lgh><img src="images/val-lagenhet.jpg" alt="" width="120" height="120" /><span><strong>Lägenhet</strong><small>Fast pris direkt – boka här</small></span><i class="nf-pil"></i></button>
+        <a class="nf-bild" href="/foretag"><img src="images/val-foretag.jpg" alt="" width="120" height="120" /><span><strong>Företag</strong><small>Kontor, butik och lokaler</small></span><i class="nf-pil"></i></a>
+        <button type="button" class="nf-bild" data-sol><img src="images/val-solceller.jpg" alt="" width="120" height="120" /><span><strong>Solcellstvätt</strong><small>Rena paneler med renvatten</small></span><i class="nf-pil"></i></button>
       </div>
+    </section>
 
-      <h2 class="bk-h2">Tilläggstjänster</h2>
-      <p class="bk-fraga">Vill du lägga till något mer?</p>
-      <label class="bk-check"><input type="checkbox" name="karmtvatt" value="Ja" /><span><strong>Ja, jag vill lägga till karmtvätt</strong><small>För bästa resultat rekommenderar jag att du lägger till karmtvätt (inkluderar även fönsterbågar).</small></span></label>
+    <!-- 2 -->
+    <section class="nf-skarm" data-skarm="fonster" hidden>
+      <p class="nf-steg">Steg 2 av 6</p>
+      <h1>Hur många fönster?</h1>
+      <p class="nf-under">Räkna fönster, inte rutor. Priset räknas ut direkt.</p>
+      <div class="nf-typer" id="nfTyper"></div>
+      <p class="nf-fel" id="nfFelFonster" hidden>Lägg till minst ett fönster.</p>
+    </section>
 
-      <p class="bk-fraga">Är det något mer jag behöver veta?</p>
-      <p class="bk-hjalp">Ange om du har några specialfönster eller annat som är bra för mig att veta.</p>
-      <textarea name="meddelande" rows="2"></textarea>
-
-      <hr class="bk-linje" />
-      <div class="bk-fortsatt-rad">
-        <button type="button" class="bk-fortsatt" id="bkTillUppgifter">Fortsätt</button>
-        <p class="bk-hjalp">*Fyll i dessa fält för att fortsätta</p>
+    <!-- Lägenhet -->
+    <section class="nf-skarm" data-skarm="lagenhet" hidden>
+      <p class="nf-steg"></p>
+      <h1>Hur stor är lägenheten?</h1>
+      <p class="nf-under">Ett fönster per rum och balkongdörren ingår – ut, in och emellan.</p>
+      <div class="nf-lista" id="nfLghStorlek">
+        <button type="button" class="nf-val nf-val-pris" data-apt="1:a" data-price="475"><span class="nf-kortbild text" aria-hidden="true">1</span><span><strong>1:a</strong><small>1 rum och kök</small></span><b>475 kr</b></button>
+        <button type="button" class="nf-val nf-val-pris" data-apt="2:a" data-price="500"><span class="nf-kortbild text" aria-hidden="true">2</span><span><strong>2:a</strong><small>2 rum och kök</small></span><b>500 kr</b></button>
+        <button type="button" class="nf-val nf-val-pris" data-apt="3:a" data-price="525"><span class="nf-kortbild text" aria-hidden="true">3</span><span><strong>3:a</strong><small>3 rum och kök</small></span><b>525 kr</b></button>
+        <button type="button" class="nf-val nf-val-pris" data-apt="4:a" data-price="550"><span class="nf-kortbild text" aria-hidden="true">4</span><span><strong>4:a</strong><small>4 rum och kök</small></span><b>550 kr</b></button>
+        <button type="button" class="nf-val nf-val-pris" data-apt="5:a" data-price="575"><span class="nf-kortbild text" aria-hidden="true">5</span><span><strong>5:a</strong><small>5 rum och kök</small></span><b>575 kr</b></button>
       </div>
-    </div>
-    <aside class="bk-hoger"><div class="bk-ruta bk-samman" data-samman></div></aside>
-  </main>
+      <p class="nf-chips-rubrik nf-lgh-rubrik">Inglasad balkong <em>(valfritt)</em></p>
+      <div class="nf-typer" id="nfLghBalkong">
+        <div class="nf-typ" data-lghb="golv"><div class="nf-typ-topp"><span class="nf-kortbild foto" aria-hidden="true"><img src="images/balkong-golv-tak.webp" alt="" width="144" height="144" /></span><span class="nf-typ-namn">Golv till tak<small>40 kr per ruta</small></span><div class="nf-raknare"><button type="button" data-steg="-1" aria-label="Minska golv till tak" disabled>−</button><output>0</output><button type="button" data-steg="1" aria-label="Öka golv till tak">+</button></div></div></div>
+        <div class="nf-typ" data-lghb="tak"><div class="nf-typ-topp"><span class="nf-kortbild foto" aria-hidden="true"><img src="images/balkong-racke.webp" alt="" width="144" height="144" /></span><span class="nf-typ-namn">Räcke till tak<small>20 kr per ruta</small></span><div class="nf-raknare"><button type="button" data-steg="-1" aria-label="Minska räcke till tak" disabled>−</button><output>0</output><button type="button" data-steg="1" aria-label="Öka räcke till tak">+</button></div></div></div>
+      </div>
+      <p class="nf-fel" id="nfFelLgh" hidden>Välj storlek på lägenheten.</p>
+    </section>
 
-  <!-- Steg 3: dag, tid och uppgifter -->
-  <main class="bk-sida" id="steg-uppgifter" hidden>
-    <div class="bk-vanster">
-      <h1 class="bk-rubrik-engang">Välj dag och tid</h1>
-      <h1 class="bk-rubrik-abo">Välj startdatum</h1>
+    <!-- 3 -->
+    <section class="nf-skarm" data-skarm="special" hidden>
+      <p class="nf-steg">Steg 3 av 6</p>
+      <h1>Några specialfönster?</h1>
+      <p class="nf-under">Fönster som öppnas utåt, sitter högt eller inte går att öppna.</p>
+      <div class="nf-tva">
+        <button type="button" class="nf-val" data-special="Nej"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="5" width="32" height="38" rx="2"/><path d="M24 5v38"/></svg></span><span><strong>Nej</strong><small>Vanliga fönster</small></span></button>
+        <button type="button" class="nf-val" data-special="Ja"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M14 44 22 4M34 44 26 4M16 34h16M18 24h12M20 14h8"/></svg></span><span><strong>Ja</strong><small>Jag har några sådana</small></span></button>
+      </div>
+      <div class="nf-lista" id="nfSpecialLista" hidden>
+        <button type="button" class="nf-val nf-val-rad" data-check="utat"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="6" y="5" width="22" height="38" rx="2"/><path d="M28 5l14 6v34l-14-2"/></svg></span><span><strong>Öppnas utåt</strong><small>Räknas som 4 sidor</small></span></button>
+        <button type="button" class="nf-val nf-val-rad" data-check="hoga"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M12 44 20 4M32 44 24 4M14 34h16M16 24h12M18 14h8"/><path d="M38 14v-8M35 9l3-3 3 3"/></svg></span><span><strong>Svåra att nå</strong><small>Stege eller renvattensystem</small></span></button>
+        <button type="button" class="nf-val nf-val-rad" data-check="fasta"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="5" width="32" height="38" rx="2"/><rect x="18" y="20" width="12" height="10" rx="1.5"/><path d="M20 20v-3a4 4 0 0 1 8 0v3"/></svg></span><span><strong>Går inte att öppna</strong><small>Fasta fönster</small></span></button>
+      </div>
+      <p class="nf-fel" id="nfFelSpecial" hidden>Välj Ja eller Nej.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="nf-skarm" data-skarm="extra" hidden>
+      <p class="nf-steg">Steg 4 av 6</p>
+      <h1>Något mer?</h1>
+      <p class="nf-under">Valfritt. Tryck Fortsätt om inget behövs.</p>
+      <button type="button" class="nf-val nf-val-rad" data-check="karm" id="nfKarm"><span class="nf-kortbild" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="6" y="5" width="36" height="38" rx="3"/><rect x="12" y="11" width="24" height="26" rx="1"/><path d="M38 40l6-6"/></svg></span><span><strong>Karmtvätt</strong><small>Rena karmar och bågar · +15 %</small></span></button>
+      <p class="nf-fel" id="nfFelExtra" hidden>Skriv några ord om jobbet.</p>
+      <label class="nf-falt"><span>Meddelande till mig</span><textarea name="meddelande" rows="3" placeholder="T.ex. portkod, husdjur eller annat jag bör veta"></textarea></label>
+    </section>
+
+    <!-- 5 -->
+    <section class="nf-skarm" data-skarm="tid" hidden>
+      <p class="nf-steg">Steg 5 av 6</p>
+      <h1>När passar det?</h1>
+      <p class="nf-under">Välj när det skulle passa dig. Det är en önskad tid – jag hör av mig och bestämmer den slutliga tiden.</p>
       <div class="fpk" data-fp-kalender>
-        <p class="fpk-titel">Önskad dag och tid</p>
-        <p class="fpk-sub">Välj en dag och en tid som passar. Jag bekräftar den slutliga tiden via SMS.</p>
         <div class="fpk-kal"></div>
         <div class="fpk-tider"></div>
-        <p class="fpk-fel" hidden>Välj dag och tid i kalendern.</p>
-        <input type="hidden" name="onskat_datum_1" value="" />
-        <input type="hidden" name="onskad_tid" value="" />
+        <p class="fpk-fel" hidden>Välj dag och tid.</p>
       </div>
+    </section>
 
-      <hr class="bk-linje" />
-      <h2 class="bk-h2">Dina uppgifter</h2>
-      <label class="bk-falt"><span>Namn*</span><input type="text" name="namn" autocomplete="name" required /></label>
-      <label class="bk-falt"><span>Telefon*</span><input type="tel" name="telefon" autocomplete="tel" required /></label>
-      <label class="bk-falt"><span>Adress*</span><input type="text" name="adress" autocomplete="street-address" placeholder="Gata och nummer" required /></label>
-      <div class="bk-falt-rad">
-        <label class="bk-falt"><span>Postnummer*</span><input type="text" name="postnummer" inputmode="numeric" autocomplete="postal-code" required /></label>
-        <label class="bk-falt"><span>Ort*</span><input type="text" name="ort" autocomplete="address-level2" required /></label>
+    <!-- 6 -->
+    <section class="nf-skarm" data-skarm="uppgifter" hidden>
+      <p class="nf-steg">Steg 6 av 6</p>
+      <h1>Vart ska jag komma?</h1>
+      <p class="nf-under">Så jag kan nå dig med den slutliga tiden.</p>
+      <label class="nf-falt"><span>Namn</span><input type="text" name="namn" autocomplete="name" required /></label>
+      <label class="nf-falt"><span>Telefon</span><input type="tel" name="telefon" autocomplete="tel" required /></label>
+      <label class="nf-falt"><span>Gatuadress</span><input type="text" name="gata" autocomplete="street-address" required /></label>
+      <div class="nf-rad2">
+        <label class="nf-falt"><span>Postnummer</span><input type="text" name="postnummer" inputmode="numeric" autocomplete="postal-code" required /></label>
+        <label class="nf-falt"><span>Ort</span><input type="text" name="ort" autocomplete="address-level2" required /></label>
       </div>
-      <label class="bk-falt"><span>E-post</span><input type="email" name="email" autocomplete="email" /></label>
-      <p class="bk-fel" id="bkFelUppgifter" hidden>Fyll i namn, telefon och adress.</p>
+      <label class="nf-falt"><span>E-post <em>(valfritt)</em></span><input type="email" name="email" autocomplete="email" /></label>
+      <p class="nf-fel" id="nfFelUppgifter" hidden></p>
+    </section>
 
-      <hr class="bk-linje" />
-      <div class="bk-fortsatt-rad">
-        <button type="submit" class="bk-fortsatt bk-skicka" id="bkSkicka">Skicka bokning</button>
-        <p class="bk-hjalp">Bokningen är inte bindande förrän jag har bekräftat tiden via SMS.</p>
-        <p class="bk-fel" id="bkFelSkicka" hidden>Något gick fel. Prova igen, eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
-      </div>
-    </div>
-    <aside class="bk-hoger"><div class="bk-ruta bk-samman" data-samman></div></aside>
+    <!-- Översikt -->
+    <section class="nf-skarm" data-skarm="oversikt" hidden>
+      <p class="nf-steg">Klart att boka</p>
+      <h1>Stämmer allt?</h1>
+      <div class="nf-oversikt" id="nfOversikt"></div>
+      <p class="nf-liten">Tiden du valt är en önskad tid. Jag hör av mig via SMS med den slutliga tiden. Inställelseavgiften är ej RUT-berättigad.</p>
+      <p class="nf-fel" id="nfFelSkicka" hidden>Något gick fel. Prova igen eller ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
+    </section>
+
+    <!-- Tack -->
+    <section class="nf-skarm nf-tack" data-skarm="tack" hidden>
+      <div class="nf-bock"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h1>Tack för din bokning!</h1>
+      <p class="nf-under">Jag har fått din önskade tid och hör av mig via SMS med den slutliga tiden, oftast samma dag.</p>
+      <a class="nf-knapp" href="/">Till startsidan</a>
+    </section>
   </main>
+
+  <footer class="nf-botten" id="nfBotten" hidden>
+    <div class="nf-pris"><small>Totalt efter RUT</small><b id="nfPris">–</b></div>
+    <button type="button" class="nf-knapp" id="nfNasta">Fortsätt</button>
+  </footer>
 </form>
-
-<!-- Mobil: fast rad längst ner med "Visa detaljer" + pris, som Hemfrid (Tommy 2026-11-07) -->
-<div class="bk-detaljbar" id="bkDetaljbar" hidden>
-  <button type="button" class="bk-detalj-knapp" id="bkDetaljKnapp" aria-expanded="false" aria-controls="bkDetaljPanel"><span><span id="bkDetaljText">Visa detaljer</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span><b id="bkBarPris">0 kr</b></button>
-  <div class="bk-detalj-panel" id="bkDetaljPanel" hidden><div class="bk-samman" data-samman></div></div>
-</div>
-
-<!-- Tack -->
-<main class="bk-sida bk-tack" id="steg-tack" hidden>
-  <div class="bk-vanster">
-    <h1>Tack för din bokning!</h1>
-    <p class="bk-ingress">Jag har fått din förfrågan och bekräftar tiden via SMS, oftast samma dag.</p>
-    <a class="bk-fortsatt" href="/">Till startsidan</a>
-  </div>
-</main>
 
 <script src="js/postnummer.js"></script>
 <script src="js/kalender.js"></script>
-<script src="js/boka.js?v=20261115a"></script>
-<script src="js/recensioner.js?v=20261103"></script>
+<script src="js/boka-ny.js?v=7"></script>
 </body>
 </html>

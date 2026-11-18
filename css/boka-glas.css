@@ -13,15 +13,15 @@
 }
 
 /* Bakgrund: samma suddiga solnedgångsfoto + mörk ton */
-html { background: #1a1613; }
+html { background: #0F1E2E; }
 body.bk { background: transparent; color: #fff; }
 body.bk::before {
   content: ""; position: fixed; inset: -40px; z-index: -2; pointer-events: none;
-  background: url("../images/bakgrund-suddig.jpg") 60% center / cover no-repeat;
+  background: linear-gradient(180deg, #0F1E2E 0%, #1B3247 100%); /* jämn marinblå, "nyputsat glas" (2026-11-18) */
 }
 body.bk::after {
   content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(180deg, rgba(26, 20, 16, 0.6) 0%, rgba(14, 11, 9, 0.8) 100%);
+  background: none;
 }
 
 /* Text */
