@@ -285,6 +285,7 @@
   // ---- Skärmarna ----
   var nu = 'typ';
   function visa(id) {
+    if (id === 'sol') { location.replace('/kontakta-mig?typ=Solcellstv%C3%A4tt#formular'); return; }
     if (id === 'sol') { typ = 'sol'; id = 'extra'; }
     if (id === 'lagenhet') typ = 'lgh'; else if (id === 'fonster') typ = 'villa';
     var exH = document.querySelector('[data-skarm="extra"] h1'), exP = document.querySelector('[data-skarm="extra"] .nf-under');
@@ -313,7 +314,7 @@
   window.addEventListener('hashchange', function () { visa(location.hash.slice(1)); });
 
   document.querySelector('[data-villa]').addEventListener('click', function () { typ = 'villa'; ga('fonster'); });
-  document.querySelector('[data-sol]').addEventListener('click', function () { typ = 'sol'; ga('sol'); });
+  // Solcellstvätt går till vanliga offertformuläret (Tommy 2026-11-19)
   document.querySelector('[data-lgh]').addEventListener('click', function () { typ = 'lgh'; ga('lagenhet'); });
   document.querySelectorAll('[data-apt]').forEach(function (k) {
     k.addEventListener('click', function () {

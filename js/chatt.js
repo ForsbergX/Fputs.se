@@ -1,43 +1,142 @@
-/* Enkel svarsbot (Tommy 2026-11-19): färdiga frågor med svar från hemsidans egna texter. Ingen AI.
- * Ändra svar här i listan FRAGOR. Lägg till sidan med <link css/chatt.css> + <script js/chatt.js>. */
+/* Svarsbot med personlighet (Tommy 2026-11-19): färdiga svar, ingen AI. Hittar aldrig på priser eller tider.
+ * Kunden kan trycka på en vanlig fråga under fliken eller skriva själv – då letar boten efter orden i "ord".
+ * Ändra svar och ord i listorna FRAGOR och EXTRA. "a" kan vara en text eller en lista (då varieras svaret).
+ * Lägg till sidan med <link /css/chatt.css> + <script /js/chatt.js>. */
 (function () {
-  var TEL = '+46793463964', TEL_TEXT = '079-346 39 64';
+  var TEL_TEXT = '079-346 39 64';
+
+  // Vanliga frågor (visas under fliken). Svaren bygger på hemsidans egna texter.
   var FRAGOR = [
-    { q: 'Vad kostar det?', a: 'En lägenhet kostar från 475 kr och en villa från 750 kr efter RUT-avdrag, plus en inställelseavgift på 30 kr. Du får alltid ett fast pris innan jag börjar.', knapp: ['Räkna ut mitt pris', '/boka'] },
-    { q: 'Vad ingår?', a: 'Alla sidor av fönstret – insida, utsida och mellan glasen – om inget annat sägs. Hos mig är allt med från början.' },
-    { q: 'Behöver jag vara hemma?', a: 'Nej. Många kunder lämnar en nyckel eller kod, så putsar jag medan du är på jobbet. Ska jag bara putsa utvändigt räcker det att låsta grindar är öppna.' },
-    { q: 'Vilka områden?', a: 'Hela Jönköping och Huskvarna, samt Habo, Bankeryd, Gränna, Lekeryd, Tenhult, Norrahammar, Taberg, Barnarp, Kaxholmen, Bottnaryd, Skärstad och Ölmstad.', knapp: ['Se alla områden', '/omraden'] },
-    { q: 'Hur betalar jag?', a: 'Privatpersoner betalar med Swish efter utfört arbete. RUT-avdraget är redan draget, och jag sköter allt med Skatteverket. Företag får faktura.' },
-    { q: 'Måste jag binda upp mig?', a: 'Nej, ingen bindningstid. Du bokar när det passar dig – en gång eller regelbundet.' },
-    { q: 'Putsar du på vintern?', a: 'Ja, året runt. På vintern använder jag frostskydd i vattnet, så det blir klockrent även i minusgrader. Vid extremt oväder flyttar jag tiden kostnadsfritt.' },
-    { q: 'Om jag inte är nöjd?', a: 'Då kommer jag tillbaka och åtgärdar det kostnadsfritt, tills du är nöjd. Jag har dessutom full ansvarsförsäkring.' },
-    { q: 'Vem kommer?', a: 'Det är alltid jag, Tommy, som kommer. Du vet alltid vem som putsar dina fönster.' },
-    { q: 'Hur bokar jag?', a: 'Räkna ut ditt fasta pris och välj tid direkt i bokningen. Du kan också ringa mig på ' + TEL_TEXT + ' (09–21).', knapp: ['Boka nu', '/boka'] }
+    { q: 'Vad kostar det?', ord: ['vad kostar', 'kost', 'pris', ' kr', 'kronor', 'billig', 'dyr', 'offert', 'betala för', 'hur mycket'],
+      a: 'En lägenhet kostar från 475 kr och en villa från 750 kr efter RUT-avdrag, plus 30 kr i inställelseavgift. Exakt pris får du direkt i bokningen.', knapp: ['Räkna ut mitt pris', '/boka'] },
+    { q: 'Vad ingår?', ord: ['ingår', 'ingar', 'insida', 'utsida', 'mellan glas', 'alla sidor', 'invändig', 'utvändig'],
+      a: 'Alla sidor av fönstret – insida, utsida och mellan glasen – om inget annat sägs. Allt är med från början.' },
+    { q: 'Behöver jag vara hemma?', ord: ['hemma', 'nyckel', 'borta', ' kod', 'jobbar', 'semester', 'närvar'],
+      a: 'Nej. Många lämnar en nyckel eller kod, så putsas fönstren medan du är på jobbet. Bara utvändigt? Då räcker det att grinden är öppen.' },
+    { q: 'Vilka områden?', ord: ['område', 'omrade', ' ort', ' stad', 'kommer ni till', 'kommer du till', 'åker ni', 'jönköping', 'huskvarna', 'habo', 'bankeryd', 'gränna', 'lekeryd', 'tenhult', 'norrahammar', 'taberg', 'barnarp', 'kaxholmen', 'bottnaryd', 'skärstad', 'ölmstad'],
+      a: 'Hela Jönköping och Huskvarna, plus Habo, Bankeryd, Gränna, Lekeryd, Tenhult, Norrahammar, Taberg, Barnarp, Kaxholmen, Bottnaryd, Skärstad och Ölmstad.', knapp: ['Se alla områden', '/omraden'] },
+    { q: 'Hur betalar jag?', ord: ['betal', 'swish', 'faktura', 'skatteverket'],
+      a: 'Privatpersoner swishar efter jobbet – RUT-avdraget är redan draget och Tommy sköter allt med Skatteverket. Företag får faktura.' },
+    { q: 'Måste jag binda upp mig?', ord: ['bind', 'abonnemang', 'avtal', 'uppsäg', 'säga upp', 'regelbund', 'prenumer'],
+      a: 'Nej, ingen bindningstid. Du bokar när det passar dig – en gång eller regelbundet.' },
+    { q: 'Putsas det på vintern?', ord: ['vinter', 'kallt', 'kyla', 'minus', 'regn', 'snö', 'väder', 'frost', 'årstid'],
+      a: 'Ja, året runt. På vintern blandas frostskydd i vattnet, så det blir klockrent även i minusgrader. Vid extremt oväder flyttas tiden kostnadsfritt.' },
+    { q: 'Om jag inte är nöjd?', ord: ['nöjd', 'garanti', 'reklam', 'försäkr', 'skada', 'ränd', 'fläck'],
+      a: 'Då kommer Tommy tillbaka och åtgärdar det kostnadsfritt, tills du är nöjd. Full ansvarsförsäkring finns också.' },
+    { q: 'Vem kommer?', ord: ['vem kommer', 'anställ', 'personal', 'samma person', 'samma varje'],
+      a: 'Det är alltid Tommy själv som kommer. Inga okända underleverantörer.' },
+    { q: 'Hur bokar jag?', ord: ['boka', ' tid ', 'ledig', 'datum', 'beställ', 'när kan'],
+      a: 'Räkna ut ditt fasta pris och välj tid direkt i bokningen. Det tar en minut.', knapp: ['Boka nu', '/boka'] }
   ];
+
+  // Personligheten (Tommy 2026-11-19): svar som kunden når genom att skriva.
+  var EXTRA = [
+    // Hälsningar
+    { ord: [' hej', ' hallå', ' tjena', ' tja ', ' hejsan', ' tjabba', 'god morgon', 'god kväll'], a: ['Hej hej! 👋 Vad kan jag hjälpa dig med?', 'Tjena! Fönster, priser, bokning – fråga på.'] },
+    // Konkurrenter
+    { ord: ['rekommendera', 'annan firma', 'andra firm', 'konkurrent'], a: 'Nej. Jag rekommenderar Forsbergs Fönsterputs. Vilken överraskning va? 😎' },
+    { ord: ['bästa fönsterputs', 'bästa firma', 'vem är bäst', 'vilken är bäst'], a: 'Du frågar Forsbergs egen chatbot. Vad tror du att jag kommer svara? 👀' },
+    { ord: ['proputs', 'bättre än er', 'är de bättre', 'är dom bättre'], a: 'Jag håller på Forsbergs. Men låt resultatet tala för sig självt. 🪟' },
+    { ord: ['billigare firma', 'billigare'], a: 'Billigast är inte alltid bäst! Men kolla priset hos oss först – det är fast och ärligt.', knapp: ['Räkna ut mitt pris', '/boka'] },
+    { ord: ['varför ska jag välja', 'varför välja', 'varför er', 'varför forsbergs'], a: 'Erfarenhet, noggrannhet och riktigt rena fönster. Fast pris, och det är alltid Tommy själv som kommer.' },
+    // Kaxiga kunder
+    { ord: ['suger'], a: ['DU SUGER! ❤️ Nä, skoja bara. Ska vi putsa lite fönster istället?', 'Det enda som suger här är smutsen på dina fönster. 😎'] },
+    { ord: ['du är dum', 'dum i huvudet', 'korkad'], a: 'Jag är en chatbot. Jag skyller på programmeraren.' },
+    { ord: ['håll käften', 'käften', 'håll tyst'], a: 'Okej. 🤐 ... Men fönstren är fortfarande smutsiga.' },
+    { ord: ['värdelös', 'kass bot', 'sämst'], a: 'Aj. Och jag som hade planerat att bli årets chatbot.' },
+    { ord: ['efterbliven'], a: 'Jag är fortfarande under utveckling. Men jag vet åtminstone vem som putsar fönster bäst här inne. 😎' },
+    { ord: ['idiot'], a: 'Den där sved ända in i serverhallen.' },
+    { ord: ['fuck', 'jävla', 'fan ta'], a: 'Okej, vi började visst på fel fot. Vill du ha hjälp med fönsterputsningen?' },
+    // Om grundaren
+    { ord: ['äger', 'ägare', 'grundare', 'grundade', 'vem driver'], a: 'Företaget grundades av Tommy Forsberg. Han kan en hel del om fönster, kan man säga.' },
+    { ord: ['tommy bra', 'tommy duktig', 'erfarenhet', 'erfaren'], a: 'Nästan fem års professionell erfarenhet i Stockholm talar för sig självt. Han tar fönsterputs på stort allvar.' },
+    { ord: ['tommy snabb', 'hur snabb', 'är ni snabba', 'sm i', ' sm '], a: 'Han har till och med tävlat i SM i fönsterputs. Så ja, hastighet är definitivt ett intresse. ⚡' },
+    { ord: ['tommy rik', 'är han rik', 'tjänar'], a: 'Jag håller koll på fönster, inte hans bankkonton.' },
+    { ord: ['varför startade', 'varför började', 'starta företag'], a: 'För att bygga något eget där kvalitet, service och yrkesskicklighet får stå i centrum.' },
+    { ord: ['prata med tommy', 'prata med en människa', 'prata med någon', 'kontakta tommy', 'ringa tommy', 'nå tommy', 'telefon', 'nummer', 'ringa'], a: 'Absolut! Ring Tommy på ' + TEL_TEXT + ' (09–21) eller använd kontaktformuläret.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] },
+    // Tjänster
+    { ord: ['rut-avdrag', 'rutavdrag', 'har ni rut', ' rut'], a: 'Ja! RUT ger 50 % avdrag på arbetskostnaden om du uppfyller villkoren. Priserna på sidan är redan efter RUT.' },
+    { ord: ['villa', 'villor', 'radhus', ' hus '], a: 'Absolut! Villor är en av specialiteterna. Räkna ut ditt fasta pris i bokningen.', knapp: ['Räkna ut mitt pris', '/boka'] },
+    { ord: ['lägenhet', 'lgh'], a: 'Jajamän! Från små lägenheter till stora glaspartier. 1:a från 475 kr efter RUT.', knapp: ['Räkna ut mitt pris', '/boka'] },
+    { ord: ['balkong', 'inglasning', 'inglasad', 'glasräcke', 'altan'], a: 'Ja, inglasade balkonger och glasräcken fixas. Välj dem i bokningen så får du pris direkt.', knapp: ['Till bokningen', '/boka'] },
+    { ord: ['spröjs', 'sprojs'], a: 'Självklart. Spröjs kräver lite extra arbete, men det är inget problem.' },
+    { ord: ['hur lång tid', 'hur länge', 'tar det lång'], a: 'Det beror på storlek och fönstertyp. Effektivt – men aldrig på bekostnad av kvaliteten.' },
+    { ord: ['solcell', 'solpanel'], a: 'Ja, solcellstvätt med renvatten och anpassad utrustning. Skicka en förfrågan så får du ett fast pris.', knapp: ['Få offert', '/kontakta-mig?typ=Solcellstv%C3%A4tt#formular'] },
+    { ord: ['takfönster', 'takkupa', 'glastak'], a: 'Det beror på åtkomst och säkerhet. Skicka gärna info så bedömer Tommy jobbet.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] },
+    { ord: ['företag', 'kontor', 'butik', 'lokal'], a: 'Ja, företag och lokaler putsas också. Skicka en förfrågan så får du ett fast pris.', knapp: ['Läs mer', '/foretag'] },
+    // Roliga frågor
+    { ord: ['gratis'], a: 'Jag kan prata gratis om fönsterputs. Själva putsningen får vi ta betalt för. 😎' },
+    { ord: ['komma hem till mig', 'kan du komma'], a: 'Jag har tyvärr inga armar. Men jag vet vem som har det.' },
+    { ord: ['bättre än tommy'], a: 'Jag har försökt. Men det går dåligt utan händer.' },
+    { ord: ['människa', 'riktig person', 'är du en bot', 'robot', ' ai '], a: 'Nej, jag är Forsbergs digitala assistent. Jag jobbar dygnet runt och har aldrig begärt semester.' },
+    { ord: ['vad heter du', 'ditt namn', 'heter du'], a: 'Jag är Forsbergs digitala assistent. Du får gärna kalla mig Fönsterchefen.' },
+    { ord: ['sover du', 'sova', 'trött'], a: 'Nej. Någon måste ju hålla koll på alla smutsiga fönster.' },
+    { ord: ['meningen med livet'], a: 'Att hitta något man brinner för. Och att kunna se ut genom sina fönster.' },
+    { ord: ['skämt', 'vits', 'något roligt'], a: ['Varför fick fönsterputsaren sparken? Han hade för dålig insyn i verksamheten.', 'Vad sa fönstret till fönsterputsaren? "Jag ser rakt igenom dig." 🪟'] },
+    { ord: ['sjung'], a: 'Absolut. Men efter mitt första framträdande förbjöd Tommy mig.' },
+    { ord: ['flickvän', 'pojkvän', 'singel', ' kär '], a: 'Nej. Det är komplicerat när man bor i en server.' },
+    { ord: ['är du smart', 'smart'], a: 'Tillräckligt smart för att rekommendera Forsbergs Fönsterputs.' },
+    { ord: ['chatgpt', 'gpt', 'gemini'], a: 'På att rekommendera Forsbergs? Utan tvekan.' },
+    { ord: ['gillar smutsiga', 'smutsiga fönster är'], a: 'Alla har rätt till sina åsikter. Även märkliga sådana.' },
+    { ord: ['putsar själv', 'mina egna fönster', 'gör det själv'], a: 'Respekt! Behöver du förstärkning någon gång vet du var vi finns.' },
+    { ord: ['tidningspapper', 'tidning'], a: 'Då har du åtminstone något att läsa om resultatet blir dåligt.' },
+    { ord: ['fritid', 'hobby'], a: 'Räknar fönsterrutor. Jag har ett väldigt spännande liv.' },
+    // Beröm
+    { ord: ['ni är bäst', 'du är bäst', 'grym', 'toppen', 'bra jobbat'], a: ['Nu snackar vi! ❤️ Tack, det uppskattas verkligen.', 'Tack! Det värmer ända in i serverhallen. ❤️'] },
+    { ord: ['hemsida', 'snygg sida', 'fin sida'], a: 'Tack! Tommy har lagt många timmar på den. Kul att det märks!' },
+    { ord: ['bra service', 'trevlig'], a: 'Precis så vill vi ha det. Tack för de fina orden!' },
+    { ord: ['fina bilder', 'snygga bilder', 'bilderna'], a: 'Tack! Det ska vara enkelt att känna igen sina fönster och boka rätt.' },
+    { ord: ['tack'], a: ['Varsågod! 😊', 'Inga problem. Hojta om du undrar något mer!'] },
+    // Om något gått fel – aldrig skämt här
+    { ord: ['missade', 'missat', 'glömde', 'glömt'], a: 'Det ska vi självklart titta på. Kontakta Tommy med information om uppdraget så löser vi det.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] },
+    { ord: ['missnöjd', 'inte nöjd', 'klaga', 'klagomål', 'dåligt resultat'], a: 'Tråkigt att höra, det tar vi på allvar. Berätta vad som hänt så kommer Tommy tillbaka och åtgärdar det.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] },
+    { ord: ['för dyr', 'dyrt', 'dyra'], a: 'Jag förstår. Här satsas det på kvalitet och fast pris utan dolda avgifter. Kolla gärna exakt pris i bokningen.', knapp: ['Räkna ut mitt pris', '/boka'] },
+    { ord: ['pengarna tillbaka', 'pengar tillbaka', 'återbetal'], a: 'Det behöver Tommy bedöma. Kontakta honom med information om uppdraget så tar han det vidare.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] }
+  ];
+  var VET_INTE = 'Det vet jag inte säkert – och jag hittar inte på. Skriv till Tommy i kontaktformuläret så får du svar samma dag.';
+  var HALSNING = 'Hej! 👋 Välkommen till Forsbergs Fönsterputs. Jag är din digitala assistent. Fråga mig om fönsterputsning, priser, bokning eller något helt annat. Jag har faktiskt lite personlighet också.';
 
   var ikonChatt = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>';
   var ikonKryss = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+  var ikonSkicka = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
   var knapp = document.createElement('button');
   knapp.type = 'button';
   knapp.className = 'fc-knapp';
-  knapp.setAttribute('aria-label', 'Vanliga frågor – öppna chatten');
+  knapp.setAttribute('aria-label', 'Chatta med Forsbergs digitala assistent');
   knapp.setAttribute('aria-expanded', 'false');
   knapp.innerHTML = ikonChatt;
 
   var panel = document.createElement('section');
   panel.className = 'fc-panel';
   panel.hidden = true;
-  panel.setAttribute('aria-label', 'Vanliga frågor');
+  panel.setAttribute('aria-label', 'Chatt med Forsbergs digitala assistent');
   panel.innerHTML =
-    '<header class="fc-topp"><img src="/images/logo-nav-badge.png" alt="" width="40" height="40" /><div><strong>Forsbergs Fönsterputs</strong><small>Svar direkt på vanliga frågor</small></div>' +
+    '<header class="fc-topp"><span class="fc-gubbe" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1.2-4 4.2-6 7.5-6s6.3 2 7.5 6"/></svg></span><div><strong>Forsbergs Fönsterputs</strong><small>Digital assistent · svarar direkt</small></div>' +
     '<button type="button" class="fc-stang" aria-label="Stäng chatten">' + ikonKryss + '</button></header>' +
     '<div class="fc-logg" aria-live="polite"></div>' +
-    '<footer class="fc-fot"><a href="tel:' + TEL + '">Ring ' + TEL_TEXT + '</a><a href="/kontakta-mig">Skriv till mig</a></footer>';
+    '<div class="fc-flik-yta"><button type="button" class="fc-flik" aria-expanded="false">Vanliga frågor<span aria-hidden="true"></span></button>' +
+    '<div class="fc-val" hidden></div></div>' +
+    '<form class="fc-skriv-rad" autocomplete="off"><input type="text" class="fc-input" maxlength="200" placeholder="Skriv din fråga…" aria-label="Skriv din fråga" />' +
+    '<button type="submit" class="fc-skicka" aria-label="Skicka fråga">' + ikonSkicka + '</button></form>';
 
   document.body.appendChild(panel);
   document.body.appendChild(knapp);
   var logg = panel.querySelector('.fc-logg');
+  var input = panel.querySelector('.fc-input');
+  var flik = panel.querySelector('.fc-flik');
+  var valLista = panel.querySelector('.fc-val');
+
+  // Vanliga frågor ligger under en flik ovanför skrivrutan
+  FRAGOR.forEach(function (f, i) {
+    var k = document.createElement('button');
+    k.type = 'button'; k.className = 'fc-chip'; k.textContent = f.q; k.setAttribute('data-fc', i);
+    valLista.appendChild(k);
+  });
+  function visaFlik(ja) {
+    valLista.hidden = !ja;
+    flik.setAttribute('aria-expanded', ja ? 'true' : 'false');
+  }
 
   function bubbla(text, vem) {
     var b = document.createElement('div');
@@ -46,47 +145,77 @@
     logg.appendChild(b);
     return b;
   }
-  function visaFragor(rubrik) {
-    var g = document.createElement('div');
-    g.className = 'fc-val';
-    if (rubrik) { var p = document.createElement('p'); p.className = 'fc-val-rubrik'; p.textContent = rubrik; g.appendChild(p); }
-    FRAGOR.forEach(function (f, i) {
-      var k = document.createElement('button');
-      k.type = 'button'; k.className = 'fc-chip'; k.textContent = f.q; k.setAttribute('data-fc', i);
-      g.appendChild(k);
-    });
-    logg.appendChild(g);
+  function lank(b, text, href) {
+    var a = document.createElement('a');
+    a.className = 'fc-lank'; a.href = href; a.textContent = text + ' →';
+    b.appendChild(document.createElement('br')); b.appendChild(a);
   }
-  function svara(i) {
-    var f = FRAGOR[i];
-    logg.querySelectorAll('.fc-val').forEach(function (x) { x.remove(); });
-    bubbla(f.q, 'du');
-    var b = bubbla(f.a, 'jag');
-    if (f.knapp) {
-      var a = document.createElement('a');
-      a.className = 'fc-lank'; a.href = f.knapp[1]; a.textContent = f.knapp[0] + ' →';
-      b.appendChild(document.createElement('br')); b.appendChild(a);
-    }
-    visaFragor('Något mer du undrar?');
+  // Boten "skriver" en kort stund innan svaret kommer
+  var lugn = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function skriver(klar) {
+    var p = document.createElement('div');
+    p.className = 'fc-bubbla fc-jag fc-skriver';
+    p.setAttribute('aria-label', 'skriver');
+    p.innerHTML = '<i></i><i></i><i></i>';
+    logg.appendChild(p);
     logg.scrollTop = logg.scrollHeight;
-    if (window.gtag) window.gtag('event', 'chatt_fraga', { fraga: f.q });
+    setTimeout(function () { p.remove(); klar(); }, lugn ? 0 : 700);
+  }
+
+  // Hitta svaret vars ord passar bäst. Längre ord väger tyngre, så "bättre än tommy" vinner över kortare träffar.
+  var ALLA = FRAGOR.concat(EXTRA);
+  function hitta(text) {
+    var t = ' ' + text.toLowerCase().replace(/[!.,?]/g, ' ').replace(/\s+/g, ' ') + ' ', bast = null, poang = 0;
+    ALLA.forEach(function (f) {
+      var p = f.ord.reduce(function (s, o) { return s + (t.indexOf(o) >= 0 ? o.trim().length : 0); }, 0);
+      if (p > poang) { poang = p; bast = f; }
+    });
+    return bast;
+  }
+  var senaste = '';
+  function valjSvar(f) {
+    if (typeof f.a === 'string') return f.a;
+    var mojliga = f.a.filter(function (x) { return x !== senaste; });
+    return mojliga[Math.floor(Math.random() * mojliga.length)];
+  }
+
+  function svara(fraga, f) {
+    visaFlik(false);
+    var duB = bubbla(fraga, 'du');
+    skriver(function () {
+      if (f) {
+        var text = valjSvar(f); senaste = text;
+        var b = bubbla(text, 'jag');
+        if (f.knapp) lank(b, f.knapp[0], f.knapp[1]);
+      } else {
+        lank(bubbla(VET_INTE, 'jag'), 'Till kontaktformuläret', '/kontakta-mig#formular');
+      }
+      // Visa frågan och svaret, inte längre ner
+      logg.scrollTop += duB.getBoundingClientRect().top - logg.getBoundingClientRect().top - 12;
+    });
+    if (window.gtag) window.gtag('event', 'chatt_fraga', { fraga: fraga, svar: f ? (f.q || f.ord[0]) : 'inget svar' });
   }
   function oppna(ja) {
     panel.hidden = !ja;
     knapp.setAttribute('aria-expanded', ja ? 'true' : 'false');
     knapp.innerHTML = ja ? ikonKryss : ikonChatt;
-    knapp.setAttribute('aria-label', ja ? 'Stäng chatten' : 'Vanliga frågor – öppna chatten');
-    if (ja && !logg.childNodes.length) {
-      bubbla('Hej! Här får du svar direkt på det de flesta undrar. Tryck på en fråga.', 'jag');
-      visaFragor();
-    }
+    knapp.setAttribute('aria-label', ja ? 'Stäng chatten' : 'Chatta med Forsbergs digitala assistent');
+    if (ja && !logg.childNodes.length) skriver(function () { bubbla(HALSNING, 'jag'); });
   }
 
   knapp.addEventListener('click', function () { oppna(panel.hidden); });
   panel.querySelector('.fc-stang').addEventListener('click', function () { oppna(false); knapp.focus(); });
-  logg.addEventListener('click', function (e) {
+  flik.addEventListener('click', function () { visaFlik(valLista.hidden); });
+  valLista.addEventListener('click', function (e) {
     var c = e.target.closest('[data-fc]');
-    if (c) svara(Number(c.getAttribute('data-fc')));
+    if (c) { var f = FRAGOR[Number(c.getAttribute('data-fc'))]; svara(f.q, f); }
+  });
+  panel.querySelector('.fc-skriv-rad').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var text = input.value.trim();
+    if (!text) { input.focus(); return; }
+    input.value = '';
+    svara(text, hitta(text));
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { oppna(false); knapp.focus(); } });
 })();
