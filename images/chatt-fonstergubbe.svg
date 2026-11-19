@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Fönstergubben: Forsbergs fyrrutiga fönster som glad chattfigur -->
+  <circle cx="48" cy="48" r="48" fill="#0F1E2E"/>
+  <g transform="translate(48 48) scale(1.22) translate(-48 -47)">
+  <!-- fönsterkarm -->
+  <rect x="20" y="18" width="56" height="58" rx="7" fill="#E10600"/>
+  <!-- fyra rutor -->
+  <rect x="25" y="23" width="21" height="22" rx="3" fill="#EAF4FB"/>
+  <rect x="50" y="23" width="21" height="22" rx="3" fill="#EAF4FB"/>
+  <rect x="25" y="49" width="21" height="22" rx="3" fill="#EAF4FB"/>
+  <rect x="50" y="49" width="21" height="22" rx="3" fill="#EAF4FB"/>
+  <!-- ögon -->
+  <circle cx="36" cy="36" r="4.2" fill="#0F1E2E"/>
+  <circle cx="61" cy="36" r="4.2" fill="#0F1E2E"/>
+  <circle cx="37.4" cy="34.6" r="1.4" fill="#fff"/>
+  <circle cx="62.4" cy="34.6" r="1.4" fill="#fff"/>
+  <!-- leende över de nedre rutorna -->
+  <path d="M33 55 Q48 70 63 55" fill="none" stroke="#0F1E2E" stroke-width="4" stroke-linecap="round"/>
+  <!-- blänk: nyputsat glas -->
+  <path d="M66 52 l1.6 3.6 3.6 1.6 -3.6 1.6 -1.6 3.6 -1.6 -3.6 -3.6 -1.6 3.6 -1.6z" fill="#fff"/>
+  <line x1="28" y1="42" x2="31" y2="34" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".9"/>
+</g>
+</svg>

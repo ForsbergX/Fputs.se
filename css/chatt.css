@@ -57,7 +57,8 @@ html body section.fc-panel form.fc-skriv-rad input.fc-input[type=text] { backgro
 .fc-skriver i:nth-child(3) { animation-delay: .3s; }
 @keyframes fcPrick { 0%, 60%, 100% { opacity: .3; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
 /* Tommys chattrobot – bara huvudet ur images/chatt-robot.webp (Tommy 2026-11-19) */
-.fc-robot { flex: none; width: 42px; height: 42px; border-radius: 50%; background: #fff url("/images/chatt-skata.png") no-repeat center / cover; box-shadow: none; } /* Skatan med hörlurar – Tommys bild (2026-11-19) */
+.fc-robot { flex: none; width: 42px; height: 42px; border-radius: 50%; background: #0F1E2E url("/images/chatt-fonstergubbe.svg") no-repeat center / cover; box-shadow: none; } /* Fönstergubben – det fyrrutiga fönstret som glad figur (2026-11-19) */
+.fc-topp .fc-robot { box-shadow: 0 0 0 2px rgba(255, 255, 255, .85); } /* vit ring så fönstergubben syns mot den mörka toppen */
 /* Vinkande maskot: Tommys GIF (Animerad vinkande maskotfigur) uppdelad i 4 skarpa bilder (180 ms var), spelas med CSS */
 @keyframes fc-vinka { to { background-position: 133.333% 0; } }
 @media (prefers-reduced-motion: reduce) { .fc-robot { animation: none; } }
