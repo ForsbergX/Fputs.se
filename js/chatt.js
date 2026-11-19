@@ -53,7 +53,7 @@
     { ord: ['billigare firma', 'billigare'], a: 'Billigast är inte alltid bäst! Men kolla priset hos oss först – det är fast och ärligt.', knapp: ['Räkna ut mitt pris', '/boka'] },
     { ord: ['varför ska jag välja', 'varför välja', 'varför er', 'varför forsbergs', 'varför är ni bättre'], a: ['Erfarenhet, noggrannhet och riktigt rena fönster. Fast pris, och det är alltid Tommy själv som kommer.', 'Erfarenhet, noggrannhet och service. Kunden ska bli riktigt nöjd, inte bara få jobbet avklarat.'] },
     // Kaxiga kunder
-    { ord: ['suger'], a: ['DU SUGER! ❤️ Nä, skoja bara. Ska vi putsa lite fönster istället?', 'DU SUGER! ❤️ Okej, nu är vi kvitt. Ska vi boka fönsterputs?', 'DU SUGER! ❤️ Nä, nu kramas vi digitalt och pratar fönster.', 'DU SUGER! ❤️ Nä, skoja bara. Ska vi bli vänner och fixa lite fönster?', 'Det enda som suger här är smutsen på dina fönster. 😎'] },
+    { ord: ['suger'], a: ['Aj, det där sved lite! 😅 Men jag bjuder på ett leende ändå. Ska vi prata fönster?', 'Oj då! Jag tar det med ett leende. 😊 Kan jag hjälpa dig med något?', 'Det enda som suger här är smutsen på fönstren. 😄 Den kan Tommy fixa!'] },
     { ord: ['du är dum', 'dum i huvudet', 'korkad'], a: 'Jag är en chatbot. Jag skyller på programmeraren.' },
     { ord: ['håll käften', 'käften', 'håll tyst'], a: ['Okej. 🤐 ... Men fönstren är fortfarande smutsiga.', '🤐 ... Jag kan vara tyst. Men smutsen på dina fönster försvinner inte av sig själv.'] },
     { ord: ['värdelös', 'kass bot', 'sämst'], a: ['Aj. Och jag som hade planerat att bli årets chatbot.', 'Det var hårt. Jag ska genast uppdatera mitt självförtroende till version 2.0.'] },
@@ -107,15 +107,15 @@
     { ord: ['pengarna tillbaka', 'pengar tillbaka', 'återbetal'], a: 'Det behöver Tommy bedöma. Kontakta honom med information om uppdraget så tar han det vidare.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] },
     // ---- 80 roliga frågor och svar (Tommy 2026-11-19) ----
     // Hälsningar
-    { ord: [' yo ', ' yoo ', ' yooo '], a: 'YOOOO! 😎 Är du här för att snacka eller ska vi göra något åt dina fönster?' },
-    { ord: [' tjena', ' tjenare'], a: 'TJENARE CHEFEN! 🫡 Hur står det till med fönstren där hemma?' },
-    { ord: [' hallå'], a: 'HALLÅ DÄR! 👀 Jag ser dig. Men ser du ut genom dina fönster?' },
+    { ord: [' yo ', ' yoo ', ' yooo '], a: ['Hej hej! 😊 Kul att du tittar in. Hur ser det ut med fönstren där hemma?', 'Tjena! 👋 Vad kan jag hjälpa dig med idag?'] },
+    { ord: [' tjena', ' tjenare'], a: 'Tjenare! 👋 Hur står det till med fönstren där hemma?' },
+    { ord: [' hallå'], a: ['Hallå där! 😊 Vad kan jag hjälpa dig med?', 'Hallå! 👋 Trevligt att du hör av dig. Vad funderar du på?'] },
     { ord: [' hej ', ' hejsan', ' hej hej', ' hejhej'], a: ['Hej hej! ❤️ Välkommen till Forsbergs. Ska vi fixa lite rena rutor?', 'Hej! 👋 Vad kan jag hjälpa dig med?'] },
-    { ord: ['wazzup', 'wassup', 'whats up'], a: 'WAZZUUUP! 🔥 Bara glas och goda vibbar här. Behöver du fönsterputs?' },
-    { ord: ['läget', 'hur mår du', 'allt bra'], a: 'Stabilt! Servern går varm och fönstren väntar på att bli putsade.' },
-    { ord: [' tja ', 'tja mannen'], a: 'Tja legend! 😎 Vad säger vi, dags att ge fönstren lite kärlek?' },
-    { ord: ['god morgon', 'godmorgon'], a: 'God morgon! ☀️ Perfekt dag att upptäcka hur smutsiga fönstren faktiskt är.' },
-    { ord: ['god natt', 'godnatt'], a: 'Sov gott! Jag vakar över internet tills du är redo att boka fönsterputs.' },
+    { ord: ['wazzup', 'wassup', 'whats up'], a: 'Hej! 😊 Här är allt lugnt och fönstren väntar. Vad kan jag hjälpa dig med?' },
+    { ord: ['läget', 'hur mår du', 'allt bra'], a: ['Bara bra, tack som frågar! 😊 Och du?', 'Riktigt bra! Det är alltid en fin dag när någon hör av sig. Hur är läget själv?'] },
+    { ord: [' tja ', 'tja mannen'], a: 'Tja! 😊 Vad säger vi, dags att ge fönstren lite kärlek?' },
+    { ord: ['god morgon', 'godmorgon'], a: ['God morgon! ☀️ Hoppas du har fått i dig kaffet. Vad kan jag hjälpa dig med?', 'God morgon! ☀️ Ett bra sätt att börja dagen – vad funderar du på?'] },
+    { ord: ['god natt', 'godnatt'], a: ['Sov gott! 🌙 Jag finns här i morgon också.', 'God natt och sov så gott! 🌙'] },
     { ord: [' ey ', ' eyy'], a: 'EY EY EY! 🔥 Här är det full fart. Vad behöver du hjälp med?' },
     // Testar boten
     { ord: ['är du dum'], a: 'Jag har mina stunder. Men jag glömmer aldrig att rekommendera fönsterputs.' },
@@ -210,7 +210,7 @@
     { ord: ['hmmmm'], a: 'Det där var ett långt hmm. Jag börjar bli nervös.' },
     { ord: ['okej kanske', 'ok kanske'], a: 'Nu har vi framsteg! Ska jag visa vägen till prisberäkningen?', knapp: ['Räkna ut mitt pris', '/boka'] },
     // När kunden säger nej
-    { ord: [' nej '], a: 'OKEJ CHEFEN! 🫡 Jag lägger skrapan åt sidan.' },
+    { ord: [' nej '], a: 'Okej, uppfattat! Jag lägger skrapan åt sidan.' },
     { ord: [' nope'], a: 'Nope mottaget! Jag återgår till mitt digitala högkvarter.' },
     { ord: [' aldrig '], a: 'Aldrig är en väldigt lång tid. Men jag respekterar beslutet!' },
     { ord: ['nej tack'], a: 'Inga problem! Du vet var jag finns.' },
@@ -244,7 +244,7 @@
     { ord: ['du fattar inget', 'fattar inget'], a: 'Jag fattar åtminstone en sak: rena fönster gör skillnad.' },
     { ord: ['du är ful', ' ful '], a: 'VA?! 😭 Jag som precis fick en ny profilbild!' },
     { ord: ['robotjävel', 'robotjävla'], a: 'RAPPORTERAR FÖR TJÄNSTGÖRING! 🫡' },
-    { ord: ['skärp dig'], a: 'JA CHEFEN! Professionellt läge aktiverat.' },
+    { ord: ['skärp dig'], a: 'Absolut! Professionellt läge aktiverat.' },
     { ord: ['smartare än dig', 'smartare än du'], a: 'Möjligt! Men kan du sälja fönsterputs klockan tre på natten?' },
     { ord: ['claude'], a: 'Claude är säkert duktig. Men jag är specialiserad på en sak: Forsbergs Fönsterputs. 😎' },
     // Galna frågor
@@ -279,16 +279,16 @@
     { forklara: true, ord: [' va ', 'hur då', 'vad menar du', 'förstår inte', 'fattar inte', ' varför '], a: 'Jag menar att jag gärna hjälper dig med fönsterputs. Fråga på!' },
     // ---- Putsbot 3000 del 3 (Tommy 2026-11-19) ----
     // Yo, tjena och slang
-    { ord: ['yooooo'], a: 'YOOOOOOOO! 🚀 Kundservice rapporterar för tjänstgöring! Vad har vi för fönsterläge, chefen?' },
-    { ord: ['tjabba'], a: 'TJABBA TJENA HALLÅ! Här är det full fart och noll smuts på schemat!' },
-    { ord: [' sho '], a: 'SHOOOO! 😎 Vad händer? Ska vi snacka skit eller putsa bort den?' },
+    { ord: ['yooooo'], a: 'Hej hej! 😊 Vilken energi! Vad kan jag hjälpa dig med?' },
+    { ord: ['tjabba'], a: 'Tjabba! 😄 Trevligt att du tittar in. Vad funderar du på?' },
+    { ord: [' sho '], a: 'Hej! 😊 Vad kan jag hjälpa dig med idag?' },
     { ord: [' wsg'], a: 'Allt är stabilt i serverhallen! Hur är läget med dina fönster?' },
     { ord: [' sup '], a: 'Just chilling in the cloud. ☁️ Du då? Behöver glasen lite kärlek?' },
-    { ord: ['tjenixen'], a: 'TJENIXEN PIXEN! Jag har väntat hela dagen på att någon ska skriva det där!' },
-    { ord: ['halloj'], a: 'HALLOJ! 🫡 Välkommen till Jönköpings kanske mest fönsterfixerade robot.' },
-    { ord: [' ayo'], a: 'AYOOOO! 🤖 Har vi en framtida kund på tråden eller en hemlig robotinspektör?' },
+    { ord: ['tjenixen'], a: 'Tjenixen! 😄 Det var ett gott humör det. Vad kan jag göra för dig?' },
+    { ord: ['halloj'], a: 'Halloj! 👋 Välkommen till Forsbergs. Vad funderar du på?' },
+    { ord: [' ayo'], a: 'Hej! 😊 Vad kan jag hjälpa dig med?' },
     { ord: ['vad händer'], a: 'Jag sitter och planerar mitt globala fönsterputsimperium. Tommy vet inget ännu.' },
-    { ord: ['tja botten', 'tja boten', 'tja bot', 'tja robot'], a: 'TJA MÄNNISKAN! 👽 Jag kommer i fred. Och för att sälja fönsterputs.' },
+    { ord: ['tja botten', 'tja boten', 'tja bot', 'tja robot'], a: 'Tja! 😊 Här är jag – Tommys digitala hjälpreda. Vad kan jag göra för dig?' },
     // När kunden driver med roboten
     { ord: ['du är en potatis'], a: 'En potatis?! Jag är åtminstone en premium-potatis med kundservice.' },
     { ord: ['brödrost'], a: 'RESPEKTLÖST! Jag har betydligt fler funktioner. Typ två till.' },
@@ -857,7 +857,7 @@
     { ord: ['motivera mig', 'ge mig energi', 'inspirera mig'], a: ['Du klarar mer än du tror! Ta en sak i taget – och låt de saker som andra kan göra åt dig vara just det. Fönstren, till exempel. 😉💪', 'Varje dag är en ny chans. Öppna fönstret, andas in, och kör! (Helst ett rent fönster.) ☀️'] },
     { ord: ['vad tänker du på', 'vad funderar du på'], a: ['Jag funderar på hur många fönster det finns i Jönköping. Många! Och Tommy vill gärna putsa dem alla. 😄', 'Jag tänker på dig och dina fönster. Ska vi räkna ut vad det skulle kosta?'], val: ['Vad kostar det?'] },
     // Svordomar och utrop: lite humor och tillbaka till fönstren (Tommy 2026-11-19)
-    { ord: [' shit ', ' fan ', 'fan också', 'fy fan', 'jävlar', 'helvete', ' skit ', 'satan', 'attans', 'tusan', 'sjutton också', ' damn '], a: ['Oj då! 😅 Har fönstren retat upp dig? Det kan vi fixa – smutsiga rutor får vem som helst att svära.', 'Hoppsan! 🙊 Låter som en sån dag. Vet du vad som brukar hjälpa? Rena fönster och mer ljus. ☀️', 'Oj, starka ord! 😄 Jag föreslår att vi byter fokus till något trevligare – som skinande rena fönster?', 'Det där låter frustrerat! 💙 Kan jag göra något för att din dag ska bli bättre – kanske räkna ut ett pris på fönsterputs?'], val: ['Vad kostar det?', 'Dra ett skämt'] },
+    { ord: [' shit ', ' fan ', 'fan också', 'fy fan', 'jävlar', 'helvete', ' skit ', 'satan', 'attans', 'tusan', 'sjutton också', ' damn ', 'förjävl', 'jävlig', 'skitjobbig', 'skitdålig', 'åt helvete'], a: ['Oj då! 😅 Har fönstren retat upp dig? Det kan vi fixa – smutsiga rutor får vem som helst att svära.', 'Hoppsan! 🙊 Låter som en sån dag. Vet du vad som brukar hjälpa? Rena fönster och mer ljus. ☀️', 'Oj, starka ord! 😄 Jag föreslår att vi byter fokus till något trevligare – som skinande rena fönster?', 'Det där låter frustrerat! 💙 Kan jag göra något för att din dag ska bli bättre – kanske räkna ut ett pris på fönsterputs?'], val: ['Vad kostar det?', 'Dra ett skämt'] },
   ];
   var ROLIGA_RESERV = [
     'Oj! Nu fick mina robotkretsar jobba övertid. Kan du formulera om det?',
@@ -922,7 +922,16 @@
     flik.setAttribute('aria-expanded', ja ? 'true' : 'false');
   }
 
+  // ---- Charm-filter (Tommy 2026-11-19: "den ska vara charmig") ----
+  // Skrikande versaler blir vanlig text och utdragna bokstäver kortas. Förkortningar (RUT, SMS…) behålls.
+  var BEHALL_VERSAL = { RUT: 1, ROT: 1, SMS: 1, SM: 1, VM: 1, FAQ: 1, VIP: 1, GDPR: 1, HV: 1, ID: 1, AI: 1, OK: 1 };
+  function charm(s) {
+    s = String(s).replace(/([A-Za-zÅÄÖåäö])\1{2,}/g, '$1');
+    s = s.replace(/(^|[^A-Za-zÅÄÖåäö0-9-])([A-ZÅÄÖ]{2,})(?=$|[^A-Za-zÅÄÖåäö0-9-])/g, function (m, fore, ord) { return BEHALL_VERSAL[ord] ? m : fore + ord.toLowerCase(); });
+    return s.replace(/(^|[.!?…]\s+|§§|\n)([\s\p{Extended_Pictographic}️"«(]*)([a-zåäö])/gu, function (m, f, mitt, b) { return f + mitt + b.toUpperCase(); });
+  }
   function bubbla(text, vem) {
+    if (vem === 'jag') text = charm(text);
     var b = document.createElement('div');
     b.className = 'fc-bubbla fc-' + vem;
     b.textContent = text;
@@ -1043,9 +1052,9 @@
 
   // Svarspooler – många varianter så boten inte låter likadant
   var POOLER = {
-    hals: ['YOOOO! 🔥 Kundservice rapporterar för tjänstgöring!', 'EY CHEFEN! 😎 Hur ser fönsterläget ut?', 'YOOOOOO! 🤖 Äntligen lite action i serverhallen!', 'TJA LEGEND! Är du här för att snacka eller boka putsning?', 'YO YO YO! Jag känner redan doften av en ny bokning!', 'HALLÅ DÄR! 👀 Jag såg dig komma. Mina sensorer är på topp!', 'Tjenare! 👋 Vad kan jag hjälpa dig med idag?', 'Hallå hallå! Kundservice är online. 🤖', 'Hej hej! Fönster, priser eller bara snack?', 'Välkommen! Mina sensorer säger att du är här av en anledning. 👀'],
-    jaBoka: ['SÅJA! 🔥 Då kör vi! Klicka vidare till bokningssystemet.', 'YES! 😎 Bokningen står redo – räkna dina fönster så får du priset direkt.', 'NU SNACKAR VI! 🚀 Här är bokningen.', 'Där satt den! 🔥 Ett klick bort från rena rutor.', 'JAJAMÄN! 🫡 Bokningssystemet, varsågod!', 'Tommy kommer bli så stolt. 🥹 Här är bokningen!'],
-    nejBoka: ['Uppfattat chefen! 🫡 Jag lägger undan skrapan.', 'Helt okej! Jag slutar tjata – för nu. 😎', 'Inga problem. Du vet var jag finns när solen avslöjar smutsen.', 'Noterat! Säljläge pausat.', 'Okej okej! Roboten backar långsamt. 🤖', 'Respekt. Vi kan prata om något annat.'],
+    hals: ['Hej hej! 😊 Kul att du tittar in. Vad kan jag hjälpa dig med?', 'Hej! 👋 Trevligt att du hör av dig. Fråga mig om pris, lediga tider eller något annat.', 'Hallå där! 😊 Vad funderar du på idag?', 'Tjena! 👋 Hur står det till med fönstren där hemma?', 'Hej och välkommen! 😊 Jag är Tommys digitala hjälpreda – fråga på!', 'Hejsan! Vad roligt att du tittar in. ☀️ Vad kan jag göra för dig?'],
+    jaBoka: ['Härligt! 😊 Här är bokningen – räkna dina fönster så ser du priset direkt.', 'Vad roligt! Bokningen står redo, varsågod.', 'Toppen! 🎉 Ett klick bort från rena rutor.', 'Underbart! Tommy blir glad. Här är bokningen.'],
+    nejBoka: ['Uppfattat! 👍 Jag lägger undan skrapan.', 'Helt okej! Jag slutar tjata – för nu. 😎', 'Inga problem. Du vet var jag finns när solen avslöjar smutsen.', 'Noterat! Säljläge pausat.', 'Okej okej! Roboten backar långsamt. 🤖', 'Respekt. Vi kan prata om något annat.'],
     tvek: ['Ingen stress! Du kan kika på priset utan att boka något.', 'Fundera i lugn och ro. Jag putsar mina kretsar så länge. 🤖', 'Kanske är en bra början! Vill du se priset först?', 'Helt förståeligt. Har du någon fråga jag kan svara på?', 'Ta den tid du behöver – smutsen springer ingenstans. Tyvärr.'],
     reakt: ['Haha, äntligen någon som fattar min humor! 😎', 'Tack tack, jag är här hela veckan! 🎤', 'Jag visste att du skulle gilla den. Mina skämt är lika klara som Forsbergs fönster.', 'Ser du, jag är inte bara en säljrobot. Jag är en underhållningsrobot också!', 'Okej, nu blir jag blyg. 🤖❤️', 'Den här publiken är fantastisk!', 'Jag skriver upp det som ett bra skämt i loggen.', 'Glad att jag får dig att le! Fönster blir också gladare när de är rena.'],
     forklara: ['Enkelt uttryckt: ', 'Kort sagt: ', 'Jag menar så här: ', 'Okej, enklare: '],
@@ -1633,6 +1642,7 @@
   }
   function kalkTyp(s) {
     if (/spröjs|småspröjs|små rutor/.test(s)) return 'S';
+    if (/dörr/.test(s)) return 'L1'; // altandörr/glasdörr före altan-kollen (räknas som ett fönster)
     if (/panorama|fast glas|stort glas|stora glas|fönsterparti/.test(s)) return 'P';
     if (/överligg|överljus/.test(s)) return 'O';
     if (/underligg/.test(s)) return 'U';
@@ -1648,13 +1658,13 @@
 
   // Humor – många varianter så det inte låter likadant
   var K_SKAMT = {
-    villa: ['Villa! 🏡 Mina sensorer gillar redan det här.', 'En villa! Nu snackar vi riktigt uppdrag. 💪', 'Villa, check! ✅ Kalkylatorn värmer upp.'],
+    villa: ['Villa! 🏡 Härligt, då kör vi.', 'En villa! Nu snackar vi riktigt uppdrag. 💪', 'Villa, perfekt! ✅'],
     lgh: ['Lägenhet! 🏢 Det går snabbt – två frågor, sen har du priset.', 'Lägenhet, smidigt! Det här blir den snabbaste kalkylen i världshistorien. Typ.'],
-    nasta: ['Inlagt! ✅', 'Noterat i min högteknologiska anteckningsbok. 📒', 'Check! ✔️', 'Inräknat – mina kretsar hänger med! 🤖', 'Sparat! Tommy hade varit stolt över den här räkningen.'],
+    nasta: ['Inlagt! ✅', 'Noterat! 📒', 'Check! ✔️', 'Inräknat! ✅', 'Sparat! Tommy hade varit stolt över den här räkningen.'],
     merFraga: ['Något mer? Välj nästa sort, eller tryck Klar så trollar jag fram priset.', 'Finns det fler glas som väntar på kärlek? Annars: Klar!', 'Fler fönster, eller ska vi se vad det landar på?'],
-    intro: ['🥁 Trumvirvel... kalkylen är klar!', 'BEEP BOOP – räknat och klart! 🤖', 'Mina kretsar har räknat så de ångar. Här är det:', 'Siffrorna är putsade och klara! ✨'],
+    intro: ['🥁 Trumvirvel... kalkylen är klar!', 'Så, nu är det klart! ✨', 'Här kommer ditt pris! 😊', 'Siffrorna är putsade och klara! ✨'],
     outro: ['Och du slipper göra jobbet själv. 😌', 'Tänk på alla ränder du slipper. ✨', 'Rena fönster, bättre humör. Vetenskapligt bevisat av mig, just nu.', 'Solen kommer tacka dig. ☀️'],
-    miss: ['Hoppsan, det där fattade inte min kalkylator. 🧮', 'Mina kugghjul snurrade fel håll där.', 'Det svaret fanns inte i min manual. 🤖', 'Kalkylatorn kliade sig i huvudet.'],
+    miss: ['Hoppsan, det där förstod jag inte. 😊', 'Oj, det där hängde jag inte riktigt med på. 😊', 'Det där fick jag inte riktigt ihop. 😅', 'Hmm, det där förstod jag inte riktigt.'],
     avbryt: ['Kalkylatorn går och lägger sig. 🧮💤 Skriv "vad kostar" när du vill räkna igen.', 'Okej, räkningen avbruten! Jag sparar inget. Skriv "vad kostar" om du ångrar dig.']
   };
   function antalSkamt(n) {
@@ -1704,7 +1714,7 @@
     } else {
       k.rader.forEach(function (r) {
         var x = r.typ === 'S' ? ' (' + r.rutor + ' rutor)' : r.typ === 'P' ? ' (' + K.PANORAMA[r.storlek].text + ')' : '';
-        rader.push(r.antal + ' st ' + K.TYP[r.typ].namn + x + (r.typ === 'P' ? '' : ', ' + (k.utat ? 4 : r.sidor) + ' sidor'));
+        rader.push(r.antal + ' st ' + radNamn(r) + x + (r.typ === 'P' ? '' : ', ' + (k.utat ? 4 : r.sidor) + ' sidor'));
       });
       k.glas.forEach(function (g) { rader.push(g.namn + ', ' + g.antal + ' glas: ' + krr(g.antal * g.kr)); });
       var sp = [];
@@ -1745,6 +1755,14 @@
       if (r.tri) k.glas.push({ namn: rum.namn + ': små fönster och trianglar', antal: r.tri, kr: rum.tri });
     } else if (r.antal) k.rader.push(r);
     if (k.ko && k.ko.length) { k.nu = k.ko.shift(); return nastaForTyp(k, prefix); }
+    if (k.direkt) {
+      // Kunden skrev allt i ett meddelande: räkna direkt (utan specialfönster/karmtvätt – kan läggas till)
+      k.direkt = false; k.nu = null; k.karm = k.karm || false;
+      var o = kalkResultat(k);
+      o.text = (prefix ? prefix + DELA : '') + o.text + DELA + 'Jag har räknat utan specialfönster och karmtvätt. Säg till om något fönster sitter högt, öppnas utåt – eller om du vill ha karmtvätt.';
+      o.val = ['Skicka förfrågan till Tommy', 'Lägg till karmtvätt', 'Lägg till mer', 'Räkna om från början'];
+      return o;
+    }
     k.nu = null; k.steg = 'typ';
     return kalkFraga(k, (prefix ? prefix + ' ' : '') + ton('nasta'));
   }
@@ -1807,6 +1825,7 @@
     switch (k.steg) {
       case 'bostad':
         b = kalkBostad(s);
+        if (!b) { var flx = tolkaFlera(s); if (flx.length) { k.bostad = 'villa'; k.steg = 'typ'; return startKo(k, flx, pre ? pre.split(DELA).join(' ').trim() : ''); } }
         if (b === 'villa') { k.bostad = 'villa'; k.steg = 'typ'; var flb = tolkaFlera(s); if (flb.length) return startKo(k, flb, pre ? pre.split(DELA).join(' ').trim() : ''); return kalkFraga(k, pre + ton('villa')); }
         if (b === 'lgh') { k.bostad = 'lgh'; k.steg = 'lgh'; return kalkFraga(k, pre + ton('lgh')); }
         if (b === 'sol') { minne.kalk = null; var o1 = kalkSvarObj(pre + 'Solcellstvätt! ☀️ Där räknar Tommy fram ett fast pris själv, eftersom tak och paneler är så olika. Skicka antal paneler och adress så får du pris samma dag.'); o1.knapp = ['Få offert', '/kontakta-mig?typ=Solcellstv%C3%A4tt#formular']; return o1; }
@@ -1861,13 +1880,13 @@
         r.antal = n;
         return nastaForTyp(k, antalSkamt(n));
       case 'sidor':
-        if (/ 4 | fyra | dubbel| emellan | mellan /.test(s)) { r.sidor = 4; return nastaForTyp(k, '4 sidor – nu blir det grundligt! 🧽'); }
-        if (/ 2 | två | enkel| in och ut | in- och ut/.test(s)) { r.sidor = 2; return nastaForTyp(k); }
+        if (/ 4 | fyra | dubbel| emellan | mellan /.test(s)) { r.sidor = 4; (k.ko || []).forEach(function (x) { if (!x.sidor && x.typ !== 'P') x.sidor = 4; }); return nastaForTyp(k, '4 sidor – nu blir det grundligt! 🧽'); }
+        if (/ 2 | två | enkel| in och ut | in- och ut/.test(s)) { r.sidor = 2; (k.ko || []).forEach(function (x) { if (!x.sidor && x.typ !== 'P') x.sidor = 2; }); return nastaForTyp(k); }
         if (/vet inte|osäker|ingen aning/.test(s)) return kalkSvarObj('Testa så här: öppna fönstret. Går bågen att vika isär så du ser två glas med luft emellan? Då är det 4 sidor. Är det bara ett glas (eller en tät glasruta) är det 2 sidor.', ['2 sidor', '4 sidor']);
         return null;
       case 'rutor':
         n = kalkTal(s);
-        if (n !== null && K.SPROJS_MIN[n]) { r.rutor = n; return nastaForTyp(k, n >= 6 ? n + ' rutor per båge – det är många små glas att älska! 😅' : ''); }
+        if (n !== null && K.SPROJS_MIN[n]) { r.rutor = n; (k.ko || []).forEach(function (x) { if (x.typ === 'S' && !x.rutor) x.rutor = n; }); return nastaForTyp(k, n >= 6 ? n + ' rutor per båge – det är många små glas att älska! 😅' : ''); }
         if (/vet inte|osäker/.test(s)) return kalkSvarObj('Räkna de små rutorna i EN båge – alltså delen som går att öppna. Jag räknar med 2, 3, 4, 6 eller 8.', ['2', '3', '4', '6', '8']);
         if (n !== null) return kalkSvarObj(n + ' rutor finns inte i kalkylen. Välj det som ligger närmast: 2, 3, 4, 6 eller 8.', ['2', '3', '4', '6', '8']);
         return null;
@@ -1903,6 +1922,9 @@
         if (/ nej | nä | nope | inte /.test(s)) { k.karm = false; return kalkResultat(k); }
         return null;
       case 'klar':
+        if (/karmtvätt/.test(s)) { k.karm = true; return kalkResultat(k); }
+        if (/högt|svåra att nå|stege/.test(s)) { k.hoga = true; return kalkResultat(k); }
+        if (/utåt/.test(s)) { k.utat = true; return kalkResultat(k); }
         if (/lägg till|fler fönster|mer glas/.test(s)) { k.steg = k.bostad === 'lgh' ? 'lghBalk' : 'typ'; return kalkFraga(k, 'Mer glas, mer kärlek! 💙'); }
         return null;
     }
@@ -1961,7 +1983,7 @@
 
   var TID_START = /när kan (du|ni)|lediga tider|ledig tid|nästa lediga|första lediga|vilka tider|vilken tid|när har (du|ni) tid|har (du|ni) tid|kan (du|ni) komma|boka (en )?tid|föreslå (en )?tid|rekommendera (en )?tid|när finns|när passar|hur snabbt kan|när är (du|ni) ledig|tider/;
   var T_SKAMT = {
-    intro: ['Jag har kikat i Tommys kalender! 📅', 'Kalendern är skannad – mina sensorer har talat. 📅', 'Jag smög in i kalendern (med lov). 🕵️', 'BEEP BOOP, kalendern laddad! 📅'],
+    intro: ['Jag har kikat i Tommys kalender! 📅', 'Jag har kollat Tommys kalender. 📅', 'Jag har tittat i Tommys kalender. 📅', 'Här är kalendern! 📅'],
     outro: ['Snabbast vinner – tiderna går åt. 😎', 'Säg vilken som passar när du bokar, så fixar Tommy resten. 🧽', 'Tider går åt fortare än smuts på ett fönster efter regn.', 'Boka, luta dig tillbaka och njut av utsikten snart. ✨']
   };
   // Önskemål ur texten: vardag/helg, förmiddag/eftermiddag, veckodag, nästa vecka
@@ -2215,18 +2237,20 @@
 
   // ---- 6. Pris i ett enda meddelande: "10 tvåluft och 4 spröjs med 4 rutor, alla 4 sidor" ----
   var TAL_ORD2 = { två: 2, tre: 3, fyra: 4, fem: 5, sex: 6, sju: 7, åtta: 8, nio: 9, tio: 10, elva: 11, tolv: 12, femton: 15, tjugo: 20 };
+  // Sidor kan skrivas "2 sid", "2 sidor", "två sidor" – men inte "12 sidor" (det är totalen)
+  var SID_RE = / ([24]|två|fyra) ?sid(or|a)?\b/;
   function tolkaFlera(s) {
-    var glob = s.match(/ ([24]|två|fyra) sidor/), globSidor = glob ? (/4|fyra/.test(glob[1]) ? 4 : 2) : 0;
+    var glob = s.match(SID_RE), globSidor = glob ? (/4|fyra/.test(glob[1]) ? 4 : 2) : 0;
     var rader = [];
     s.split(/,| och | samt | plus | \+ /).forEach(function (del) {
       var d = ' ' + del.trim() + ' ', typ = kalkTyp(d);
       if (!typ || typ === 'VET' || typ === 'KLAR' || typ === 'B' || typ === 'UT' || typ === 'VH') return;
-      var ren = d.replace(/(1|2|en|ett|två) ?-? ?luft\S*|(1|2|en|två) bågar?|([24]|två|fyra) sidor|\d+ rutor/g, ' ');
+      var ren = d.replace(/(1|2|en|ett|två) ?-? ?luft\S*|(1|2|en|två) bågar?|\d+ ?sid(or|a)?\b|\d+ rutor/g, ' ');
       var m = ren.match(/\d+/), antal = m ? Number(m[0]) : null;
       if (antal === null) Object.keys(TAL_ORD2).forEach(function (w) { if (antal === null && ren.indexOf(' ' + w + ' ') >= 0) antal = TAL_ORD2[w]; });
       if (!antal || antal > 99) return;
-      var sid = d.match(/ ([24]|två|fyra) sidor/), rut = d.match(/ ([2-8]) rutor/);
-      var r = { typ: typ, antal: antal, sidor: typ === 'P' ? 0 : (sid ? (/4|fyra/.test(sid[1]) ? 4 : 2) : globSidor), rutor: 0, storlek: '' };
+      var sid = d.match(SID_RE), rut = d.match(/ ([2-8]) rutor/);
+      var r = { dorr: /dörr/.test(d), typ: typ, antal: antal, sidor: typ === 'P' ? 0 : (sid ? (/4|fyra/.test(sid[1]) ? 4 : 2) : globSidor), rutor: 0, storlek: '' };
       if (typ === 'S') { var rr = rut || s.match(/ ([2-8]) rutor/); if (rr && K.SPROJS_MIN[rr[1]]) r.rutor = Number(rr[1]); }
       rader.push(r);
     });
@@ -2235,12 +2259,14 @@
   // Lägger in raderna; frågar bara det som saknas (sidor, rutor, storlek) – en rad i taget
   function startKo(k, rader, prefix) {
     k.bostad = k.bostad || 'villa';
-    var namn = rader.map(function (r) { return r.antal + ' st ' + K.TYP[r.typ].namn; }).join(' och ');
+    var namn = rader.map(function (r) { return r.antal + ' st ' + radNamn(r); }).join(' och ');
     k.ko = rader.slice(1);
     k.nu = rader[0];
+    k.direkt = true; // när allt är besvarat visas priset direkt
     return nastaForTyp(k, (prefix ? prefix + DELA : '') + 'Uppfattat: ' + namn + '. 👍');
   }
 
+  function radNamn(r) { return r.dorr ? (r.typ === 'S' ? 'glasdörrar med spröjs' : 'glasdörrar') : K.TYP[r.typ].namn; }
   // ---- 8. Postnummer → kommer Tommy dit? ----
   function laddaPostnummer() {
     if (window.fpOmrade || document.querySelector('script[data-fc-postnr]')) return;
@@ -2367,7 +2393,7 @@
         else if (skamt && niva < 2 && minne.ton !== 'formell') text = humorPrefix(t) + text;
         if (skamt && niva < 2 && minne.lageKvar > 0) { text += LAGE_TILLAGG[minne.lage] || ''; minne.lageKvar--; }
         // Säljfras ibland – högst var tredje svar, max tre per samtal, aldrig efter nej
-        if (skamt && niva < 2 && minne.ton !== 'formell' && !f.knapp && !stilla && !minne.saljStopp && !minne.saljPaus && (minne.sedanSalj >= 3 || minne.lage === 'salj') && minne.antalSalj < 3 && text.indexOf('?') < 0 && Math.random() < 0.5) {
+        if (skamt && niva < 2 && minne.ton !== 'formell' && f.pool !== 'hals' && !f.knapp && !stilla && !minne.saljStopp && !minne.saljPaus && (minne.sedanSalj >= 3 || minne.lage === 'salj') && minne.antalSalj < 3 && text.indexOf('?') < 0 && Math.random() < 0.5) {
           senasteFras = valjFran(SALJFRASER.filter(function (x) { return x !== senasteFras; }));
           text += ' ' + senasteFras;
           minne.antalSalj++; minne.sedanSalj = 0;
