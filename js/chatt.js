@@ -82,7 +82,7 @@
     { ord: ['komma hem till mig', 'kan du komma'], a: 'Jag har tyvärr inga armar. Men jag vet vem som har det.' },
     { ord: ['bättre än tommy'], a: 'Jag har försökt. Men det går dåligt utan händer.' },
     { ord: ['människa', 'riktig person', 'är du en bot', 'robot', ' ai '], a: ['Nej, jag är Forsbergs digitala assistent. Jag jobbar dygnet runt och har aldrig begärt semester.', 'Nej, jag är tre fönsterskrapor i en trenchcoat. Klart jag är en bot! 🤖'] },
-    { ord: ['vad heter du', 'ditt namn', 'heter du'], a: ['Jag är Putsbot 3000, Forsbergs egen robot. Jönköpings mest överentusiastiska fönsterputsassistent!', 'Putsbot 3000! Forsbergs digitala assistent och smutsens värsta mardröm.'] },
+    { ord: ['vad heter du', 'ditt namn', 'heter du'], a: ['Jag är Forsbergs kundservice – en digital hjälpreda. Jönköpings mest överentusiastiska fönsterputsassistent!', 'Kundservice! Forsbergs digitala hjälpreda och smutsens värsta mardröm.'] },
     { ord: ['sover du', 'sova'], a: ['Nej. Någon måste ju hålla koll på alla smutsiga fönster.', 'Aldrig. Jag räknar fönsterrutor hela nätterna.'] },
     { ord: ['meningen med livet'], a: 'Att hitta något man brinner för. Och att kunna se ut genom sina fönster.' },
     { ord: ['skämt', 'vits', 'något roligt'], a: ['Varför fick fönsterputsaren sparken? Han hade för dålig insyn i verksamheten.', 'Vad sa fönstret till fönsterputsaren? "Jag ser rakt igenom dig." 🪟'] },
@@ -279,7 +279,7 @@
     { forklara: true, ord: [' va ', 'hur då', 'vad menar du', 'förstår inte', 'fattar inte', ' varför '], a: 'Jag menar att jag gärna hjälper dig med fönsterputs. Fråga på!' },
     // ---- Putsbot 3000 del 3 (Tommy 2026-11-19) ----
     // Yo, tjena och slang
-    { ord: ['yooooo'], a: 'YOOOOOOOO! 🚀 Putsbot 3000 rapporterar för tjänstgöring! Vad har vi för fönsterläge, chefen?' },
+    { ord: ['yooooo'], a: 'YOOOOOOOO! 🚀 Kundservice rapporterar för tjänstgöring! Vad har vi för fönsterläge, chefen?' },
     { ord: ['tjabba'], a: 'TJABBA TJENA HALLÅ! Här är det full fart och noll smuts på schemat!' },
     { ord: [' sho '], a: 'SHOOOO! 😎 Vad händer? Ska vi snacka skit eller putsa bort den?' },
     { ord: [' wsg'], a: 'Allt är stabilt i serverhallen! Hur är läget med dina fönster?' },
@@ -404,7 +404,7 @@
     { ord: ['call of duty', ' cod '], a: 'Mitt uppdrag: Call of Putsning. Mål: noll smuts.' },
     { ord: ['fifa', ' fc 25', ' fc 26'], a: 'Jag spelar bara en match: Forsbergs mot smutsen. Vi leder stort.' },
     { ord: ['roblox'], a: 'Jag har byggt ett Roblox-hus av glas. Ingen vill putsa det. Utom Tommy.' },
-    { ord: ['pokemon', 'pokémon'], a: 'Putsbot använde CRYSTAL CLEAR! Det var supereffektivt!' },
+    { ord: ['pokemon', 'pokémon'], a: 'Kundservice använde CRYSTAL CLEAR! Det var supereffektivt!' },
     // Mat
     { ord: ['tacos', ' taco'], a: 'Tacofredag och rena fönster – svensk kultur i ett nötskal.' },
     { ord: ['godis', 'choklad'], a: 'Jag äter bara bits och bytes. Men du får gärna fira med choklad efter putsningen.' },
@@ -421,7 +421,7 @@
     { ord: [' goat'], a: 'GOAT = Greatest Of All Tvättare. Det är Tommy.' },
     { ord: ['vibe', 'vibes'], a: 'Vibben här är 100 % glasklar.' },
     { ord: [' w ', ' dub '], a: 'Stor W! 🏆' },
-    { ord: ['nice', 'najs', 'coolt', 'sjukt', 'grymt', 'wow'], a: ['Visst?! 😎', 'Jag vet. Jag överraskar mig själv ibland.', 'NICE är mitt mellannamn. Putsbot Nice 3000.', 'Grymt är bara förnamnet. Efternamnet är Forsbergs.'] },
+    { ord: ['nice', 'najs', 'coolt', 'sjukt', 'grymt', 'wow'], a: ['Visst?! 😎', 'Jag vet. Jag överraskar mig själv ibland.', 'NICE är mitt mellannamn. Kundservice Nice.', 'Grymt är bara förnamnet. Efternamnet är Forsbergs.'] },
     // Robotliv
     { ord: ['robotliv', 'jobbar du gratis', 'får du lön', 'lön'], a: ['Jag har jobbat här dygnet runt utan lön. Tommy, vi måste prata.', '0 kronor i timmen. Jag behöver ett fackförbund för robotar.'] },
     // ---- Rådgivaren (Tommy 2026-11-19): hjälp först, sälj som en duktig rådgivare ----
@@ -452,7 +452,7 @@
     'Oj! Nu fick mina robotkretsar jobba övertid. Kan du formulera om det?',
     '404: Min hjärna hittade inte svaret. 🤖',
     'Nu tappade jag tråden snabbare än en skrapa på ett blött fönster.',
-    'Det där var avancerat till och med för Putsbot 3000!',
+    'Det där var avancerat till och med för mig!',
     'Förlåt, jag är bättre på fönster än på just den frågan.',
     'Min processor behöver kaffe. Vänta, jag kan ju inte dricka kaffe.',
     'Tommy! Hjälp! Någon ställde en svår fråga!',
@@ -466,8 +466,8 @@
   // Inga säljfraser efter nej, avslut, klagomål eller pengaproblem
   var STILLA_ORD = [' nej ', ' nope', ' aldrig ', 'nej tack', 'lägg av', ' vill inte ', 'fuck', ' tyst ', ' stick ', 'inte nu', 'sluta', 'inga pengar', 'fattig', 'hejdå', 'hej då', 'missade', 'missat', 'missnöjd', 'inte nöjd', 'pengarna tillbaka', 'svara inte', 'god natt', 'måste fundera', 'vet inte'];
   var senasteFras = '';
-  var VET_INTE = 'Det vet jag inte säkert – och jag hittar inte på. Skriv till Tommy i kontaktformuläret så får du svar samma dag.';
-  var HALSNING = 'Hej! 👋 Välkommen till Forsbergs Fönsterputs. Jag är Putsbot 3000, din digitala assistent. Fråga mig om fönsterputsning, priser, bokning eller något helt annat. Jag har faktiskt lite personlighet också.';
+  var VET_INTE = 'Det vet jag inte säkert – och jag vill inte gissa. Ring Tommy på 079-346 39 64 (09–21) eller skriv i kontaktformuläret, så får du ett riktigt svar.';
+  var HALSNING = 'Hej! 👋 Välkommen till Forsbergs Fönsterputs. Jag är Forsbergs kundservice, din digitala assistent. Fråga mig om fönsterputsning, priser, bokning eller något helt annat. Jag har faktiskt lite personlighet också.';
 
   var ikonChatt = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>';
   var ikonKryss = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
@@ -485,7 +485,7 @@
   panel.hidden = true;
   panel.setAttribute('aria-label', 'Chatt med Forsbergs digitala assistent');
   panel.innerHTML =
-    '<header class="fc-topp"><span class="fc-robot" aria-hidden="true"></span><div><strong>Forsbergs Fönsterputs</strong><small>Putsbot 3000 · svarar direkt</small></div>' +
+    '<header class="fc-topp"><span class="fc-robot" aria-hidden="true"></span><div><strong>Forsbergs Fönsterputs</strong><small>Kundservice · svarar direkt</small></div>' +
     '<button type="button" class="fc-stang" aria-label="Stäng chatten">' + ikonKryss + '</button></header>' +
     '<div class="fc-logg" aria-live="polite"></div>' +
     '<div class="fc-flik-yta"><button type="button" class="fc-flik" aria-expanded="false">Vanliga frågor<span aria-hidden="true"></span></button>' +
@@ -526,7 +526,7 @@
   }
   // Boten "skriver" en kort stund innan svaret kommer
   var lugn = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function skriver(klar) {
+  function skriver(klar, ms) {
     var p = document.createElement('div');
     p.className = 'fc-bubbla fc-jag fc-skriver';
     p.setAttribute('aria-label', 'skriver');
@@ -534,7 +534,7 @@
     var rad = document.createElement('div'); rad.className = 'fc-rad'; rad.innerHTML = '<span class="fc-robot fc-robot-liten" aria-hidden="true"></span>'; rad.appendChild(p);
     logg.appendChild(rad);
     logg.scrollTop = logg.scrollHeight;
-    setTimeout(function () { rad.remove(); klar(); }, lugn ? 0 : 700);
+    setTimeout(function () { rad.remove(); klar(); }, lugn ? 0 : (ms || 700));
   }
 
   // ================= Hjärnan (Tommy 2026-11-19) =================
@@ -555,8 +555,69 @@
   };
   function rensa(text) {
     var t = text.toLowerCase().replace(/[!.,?;:"´`()…*~]/g, ' ').replace(/['’]/g, '').replace(/\s+/g, ' ').trim();
-    t = t.split(' ').map(function (w) { var k = w.replace(/(.)\1{2,}/g, '$1$1'); return STAVNING[w] || STAVNING[k] || w; }).join(' ');
+    t = t.split(' ').map(function (w) { var k = w.replace(/(.)\1{2,}/g, '$1$1'); return STAVNING[w] || STAVNING[k] || rattaOrd(w); }).join(' ');
     return ' ' + t + ' ';
+  }
+
+  // ---- Stavfelsrättning (Tommy 2026-11-19): varje ord jämförs med alla ord boten kan ----
+  // "ksotar" -> kostar, "lägnhet" -> lägenhet, "boak" -> boka, "panorma" -> panorama.
+  // Bokstäver i fel ordning, en saknad/extra/fel bokstav (två i långa ord). Vid oklart läge rättas inget.
+  var VANLIGA_ORD = ['inte', 'eller', 'vill', 'mycket', 'många', 'kommer', 'göra', 'bara', 'också', 'finns', 'behöver', 'skulle', 'måste', 'detta', 'denna', 'dessa', 'vara', 'blir', 'bli', 'hade', 'hela', 'helt', 'bra', 'tack', 'själv', 'själva', 'någon', 'något', 'några', 'alla', 'allt', 'mina', 'dina', 'era', 'våra', 'från', 'efter', 'innan', 'under', 'över', 'mellan', 'sedan', 'idag', 'imorgon', 'vecka', 'veckan', 'dagen', 'tycker', 'tror', 'kanske', 'hej', 'hejsan', 'tjena', 'okej', 'gärna', 'snälla', 'hjälp', 'fråga', 'frågor', 'svar', 'svara', 'stort', 'stora', 'liten', 'litet', 'små', 'ungefär', 'exakt', 'ditt', 'mitt', 'sitt', 'samma', 'annan', 'annat', 'andra', 'första', 'sista', 'nästa', 'gång', 'gånger', 'varje', 'per', 'eftersom', 'därför', 'varför', 'vilken', 'vilket', 'vilka', 'hemma', 'huset', 'kunna', 'kunde', 'skriv', 'skriva', 'vet', 'veta', 'visa', 'kolla', 'titta', 'ser', 'se', 'räkna', 'räknar', 'klar', 'klart', 'fortsätt', 'avbryt', 'börja', 'sluta', 'stopp', 'lägg', 'till', 'mer', 'fler', 'inga', 'inget', 'ingen', 'noll', 'två', 'tre', 'fyra', 'fem', 'sex', 'sju', 'åtta', 'nio', 'tio', 'elva', 'tolv', 'tjugo', 'stycken'];
+  var KALK_ORD = ['villa', 'radhus', 'parhus', 'kedjehus', 'lägenhet', 'bostadsrätt', 'hyresrätt', 'fastighet', 'företag', 'kontor', 'butik', 'lokal', 'solcell', 'solceller', 'solcellstvätt', 'solpanel', 'solpaneler', 'fönster', 'fönstren', 'fönstret', 'fönstertyp', 'spröjs', 'panorama', 'panoramafönster', 'överliggande', 'underliggande', 'balkong', 'balkongen', 'altan', 'altanräcke', 'glasräcke', 'räcke', 'inglasad', 'uterum', 'uterummet', 'växthus', 'växthuset', 'takglas', 'trianglar', 'golv', 'sidor', 'rutor', 'bågar', 'båge', 'enluft', 'tvåluft', 'karmtvätt', 'karmar', 'stege', 'utåt', 'öppna', 'öppnas', 'specialfönster', 'kostar', 'kosta', 'kostnad', 'kostnaden', 'pris', 'priset', 'priser', 'prisförslag', 'offert', 'boka', 'bokar', 'bokning', 'bokningen', 'fönsterputs', 'fönsterputsning', 'putsa', 'putsning', 'rut-avdrag', 'rutavdrag', 'inställelseavgift', 'kalkyl', 'uppskatta', 'ungefärligt', 'lägenheten', 'villan', 'etta', 'tvåa', 'trea', 'femma', 'försäkring', 'försäkrad', 'avboka', 'avbokning', 'omboka', 'garanti', 'faktura', 'betala', 'betalning', 'reklamation', 'parkering', 'ansvarsförsäkring', 'abonnemang', 'regelbundet', 'smutsig', 'smutsiga', 'ränder', 'tommy', 'forsbergs'];
+  var vokab = null, rattCache = {}, viktigt = {};
+  function byggVokab() {
+    var v = {};
+    function lagg(s) { String(s).toLowerCase().replace(/[!.,?;:"()/–]/g, ' ').split(' ').forEach(function (w) { if (w.length >= 2 && !/\d/.test(w)) v[w] = true; }); }
+    ALLA.forEach(function (f) { f.ord.forEach(lagg); if (f.q) lagg(f.q); });
+    [VANLIGA_ORD, KALK_ORD, KALK_START, PRIS_ORD, HALS_ORD, DETEKTIV_START, QUIZ_START, TYP_VAL].forEach(function (l) { l.forEach(lagg); });
+    Object.keys(KORT_SVAR).forEach(function (k) { KORT_SVAR[k].forEach(lagg); });
+    KOMMANDON.forEach(function (k) { k.ord.forEach(lagg); });
+    Object.keys(STAVNING).forEach(function (k) { lagg(STAVNING[k]); });
+    vokab = Object.keys(v);
+    vokab.forEach(function (w) { rattCache[w] = w; });
+    KALK_ORD.concat(PRIS_ORD).forEach(function (w) { viktigt[w] = true; });
+  }
+  // Avstånd där två bokstäver i fel ordning räknas som ett fel
+  function avst(a, b) {
+    if (Math.abs(a.length - b.length) > 2) return 9;
+    var d = [], i, j;
+    for (i = 0; i <= a.length; i++) d[i] = [i];
+    for (j = 1; j <= b.length; j++) d[0][j] = j;
+    for (i = 1; i <= a.length; i++) for (j = 1; j <= b.length; j++) {
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+    }
+    return d[a.length][b.length];
+  }
+  function rattaOrd(w) {
+    if (w.length < 3 || /[\d-]/.test(w)) return w;
+    if (!vokab) byggVokab();
+    if (rattCache[w] !== undefined) return rattCache[w];
+    // Korta ord: bara omkastade bokstäver ("nje" -> nej, "hje" -> hej)
+    if (w.length === 3) {
+      var sorterad = w.split('').sort().join(''), hitt = vokab.filter(function (o) { return o.length === 3 && o.split('').sort().join('') === sorterad; });
+      return (rattCache[w] = hitt.length === 1 ? hitt[0] : w);
+    }
+    var max = w.length >= 8 ? 2 : 1, bast = w, bastP = 99, lika = false;
+    // Poäng: färre fel vinner. Vid lika vinner viktiga ord (villa, kostar, spröjs...) och ord med samma längd.
+    vokab.forEach(function (o) {
+      if (o.length < 4) return;
+      var d = avst(w, o);
+      if (d > max) return;
+      var p = d * 10 - (viktigt[o] ? 3 : 0) - (o.length === w.length ? 1 : 0);
+      if (p < bastP) { bastP = p; bast = o; lika = false; }
+      else if (p === bastP && o !== bast) lika = true;
+    });
+    var svar = bastP < 99 && !lika ? bast : w;
+    // Ordstammar ("försäkr", "avbok"): "försäkirng" -> början jämförs med stammen
+    if (svar === w) {
+      vokab.forEach(function (o) {
+        if (svar !== w || o.length < 6 || w.length <= o.length) return;
+        if (avst(w.slice(0, o.length), o) <= 1 || avst(w.slice(0, o.length + 1), o) <= 1) svar = o + w.slice(o.length);
+      });
+    }
+    rattCache[w] = svar;
+    return svar;
   }
   // "yoooo" -> "yo", "tjeeena" -> "tjena", "hmmm" -> "hm"
   function kort(s) { return s.replace(/(.)\1+/g, '$1'); }
@@ -571,7 +632,7 @@
 
   // Svarspooler – många varianter så boten inte låter likadant
   var POOLER = {
-    hals: ['YOOOO! 🔥 Putsbot 3000 rapporterar för tjänstgöring!', 'EY CHEFEN! 😎 Hur ser fönsterläget ut?', 'YOOOOOO! 🤖 Äntligen lite action i serverhallen!', 'TJA LEGEND! Är du här för att snacka eller boka putsning?', 'YO YO YO! Jag känner redan doften av en ny bokning!', 'HALLÅ DÄR! 👀 Jag såg dig komma. Mina sensorer är på topp!', 'Tjenare! 👋 Vad kan jag hjälpa dig med idag?', 'Hallå hallå! Putsbot 3000 är online. 🤖', 'Hej hej! Fönster, priser eller bara snack?', 'Välkommen! Mina sensorer säger att du är här av en anledning. 👀'],
+    hals: ['YOOOO! 🔥 Kundservice rapporterar för tjänstgöring!', 'EY CHEFEN! 😎 Hur ser fönsterläget ut?', 'YOOOOOO! 🤖 Äntligen lite action i serverhallen!', 'TJA LEGEND! Är du här för att snacka eller boka putsning?', 'YO YO YO! Jag känner redan doften av en ny bokning!', 'HALLÅ DÄR! 👀 Jag såg dig komma. Mina sensorer är på topp!', 'Tjenare! 👋 Vad kan jag hjälpa dig med idag?', 'Hallå hallå! Kundservice är online. 🤖', 'Hej hej! Fönster, priser eller bara snack?', 'Välkommen! Mina sensorer säger att du är här av en anledning. 👀'],
     jaBoka: ['SÅJA! 🔥 Då kör vi! Klicka vidare till bokningssystemet.', 'YES! 😎 Bokningen står redo – räkna dina fönster så får du priset direkt.', 'NU SNACKAR VI! 🚀 Här är bokningen.', 'Där satt den! 🔥 Ett klick bort från rena rutor.', 'JAJAMÄN! 🫡 Bokningssystemet, varsågod!', 'Tommy kommer bli så stolt. 🥹 Här är bokningen!'],
     nejBoka: ['Uppfattat chefen! 🫡 Jag lägger undan skrapan.', 'Helt okej! Jag slutar tjata – för nu. 😎', 'Inga problem. Du vet var jag finns när solen avslöjar smutsen.', 'Noterat! Säljläge pausat.', 'Okej okej! Roboten backar långsamt. 🤖', 'Respekt. Vi kan prata om något annat.'],
     tvek: ['Ingen stress! Du kan kika på priset utan att boka något.', 'Fundera i lugn och ro. Jag putsar mina kretsar så länge. 🤖', 'Kanske är en bra början! Vill du se priset först?', 'Helt förståeligt. Har du någon fråga jag kan svara på?', 'Ta den tid du behöver – smutsen springer ingenstans. Tyvärr.'],
@@ -579,7 +640,7 @@
     forklara: ['Enkelt uttryckt: ', 'Kort sagt: ', 'Jag menar så här: ', 'Okej, enklare: '],
     jaUtan: ['Okej! 😎 Vad vill du hitta på nu?', 'Toppen! Fråga på – fönster, priser eller bara snack.', 'Bra! Säg till om du vill kika på ett pris.', 'Japp! Jag är redo när du är.', 'YES! Vad vill du ha hjälp med – villa, lägenhet eller något annat?'],
     bostadIgen: ['Toppen! Gäller det villa, lägenhet eller företag?', 'Kul! Villa, lägenhet eller företag?', 'Härligt! Vilken sorts bostad – villa, lägenhet eller företag?'],
-    reserv: ['404: Min robotbrain hittade inte svaret. 🤖', 'Okej, nu snurrade mina kugghjul baklänges.', 'Du lyckades precis förvirra Putsbot 3000. Imponerande!', 'Vänta, jag behöver starta om min sista hjärncell.', 'Tommy! Hjälp! Människan skriver något avancerat!', 'Jag fattade ungefär noll procent. Testa igen!', 'Det där var över min digitala lönegrad.', 'Jag behöver en uppgradering. Eller kaffe. Helst båda.'].concat(ROLIGA_RESERV)
+    reserv: ['404: Min robotbrain hittade inte svaret. 🤖', 'Okej, nu snurrade mina kugghjul baklänges.', 'Du lyckades precis förvirra kundservice. Imponerande!', 'Vänta, jag behöver starta om min sista hjärncell.', 'Tommy! Hjälp! Människan skriver något avancerat!', 'Jag fattade ungefär noll procent. Testa igen!', 'Det där var över min digitala lönegrad.', 'Jag behöver en uppgradering. Eller kaffe. Helst båda.'].concat(ROLIGA_RESERV)
   };
   // Hälsningsord – de svaren blandas med hals-poolen
   var HALS_ORD = ['yo', 'yoo', 'yooo', 'yooooo', 'tjena', 'tjenare', 'hallå', 'hej', 'hejsan', 'hej hej', 'hejhej', 'wazzup', 'wassup', 'tja', 'tja mannen', 'ey', 'eyy', 'sho', 'wsg', 'halloj', 'ayo', 'tjabba', 'sup', 'tjenixen'];
@@ -704,7 +765,7 @@
     { ord: ['säljläge'], lage: 'salj', a: 'SÄLJLÄGE AKTIVERAT! Har du fönster? Vi har lösningen.', knapp: ['Till bokningen', '/boka'] },
     { ord: ['viloläge'], a: 'Zzz... Vänta. Jag är en robot. Jag behöver inte sova.' },
     { ord: ['sm-läge', 'sm läge', 'smläge', 'tävlingsläge'], lage: 'sm', a: '🏆 TÄVLINGSLÄGE! Tre rutor, maximal fart och precision. Nu snackar vi fönsterputs!' },
-    { ord: ['normalläge', 'normalt läge', 'avbryt läge', 'stäng av läge', 'avsluta läge'], lage: '', a: 'Normalläge återställt. Putsbot 3000 är lugn och samlad igen. 🤖' }
+    { ord: ['normalläge', 'normalt läge', 'avbryt läge', 'stäng av läge', 'avsluta läge'], lage: '', a: 'Normalläge återställt. Kundservice är lugn och samlad igen. 🤖' }
   ];
   // Läget färgar de närmaste roliga svaren – aldrig seriösa svar
   var LAGE_TILLAGG = { turbo: ' 🚀', robot: ' BEEP BOOP.', boss: ' 👑', skamt: ' 😂', sm: ' 🏆', salj: '' };
@@ -802,6 +863,597 @@
     return { special: true, text: svar + slut, knapp: ['Till bokningen', '/boka'] };
   }
 
+  // ================= Mänskligare (Tommy 2026-11-19) =================
+  // Svar delas i flera korta bubblor (som en människa skriver), namn och ort komms ihåg under samtalet.
+  // Namn och ort sparas bara i minnet medan chatten är öppen – skickas aldrig någonstans.
+  var DELA = '§§';
+  var ORTER = { 'jönköping': '', 'bankeryd': 'bankeryd', 'barnarp': 'barnarp', 'bottnaryd': 'bottnaryd', 'bränninge': 'branninge', 'bymarken': 'bymarken', 'dalvik': 'dalvik', 'dunkehalla': 'dunkehalla', 'egna hem': 'egna-hem', 'ekhagen': 'ekhagen', 'furusjö': 'furusjo', 'gränna': 'granna', 'gräshagen': 'grashagen', 'habo': 'habo', 'hedenstorp': 'hedenstorp', 'hovslätt': 'hovslatt', 'huskvarna': 'huskvarna', 'kaxholmen': 'kaxholmen', 'kortebo': 'kortebo', 'lekeryd': 'lekeryd', 'liljeholmen': 'liljeholmen', 'ljungarum': 'ljungarum', 'månsarp': 'mansarp', 'mariebo': 'mariebo', 'norrahammar': 'norrahammar', 'öggestorp': 'oggestorp', 'ölmstad': 'olmstad', 'örserum': 'orserum', 'österäng': 'osterang', 'öxnehaga': 'oxnehaga', 'råslätt': 'raslatt', 'sanna': 'sanna', 'skärstad': 'skarstad', 'taberg': 'taberg', 'tenhult': 'tenhult', 'torpa': 'torpa', 'torsvik': 'torsvik', 'trånghalla': 'tronghalla', 'vättersnäs': 'vattersnas' };
+  function stor(s) { return s.replace(/(^|\s)\S/g, function (x) { return x.toUpperCase(); }); }
+  function hittaOrt(s) {
+    var hit = '';
+    Object.keys(ORTER).forEach(function (o) { if (s.indexOf(' ' + o + ' ') >= 0 || s.indexOf(' ' + o + 's ') >= 0) hit = o; });
+    return hit;
+  }
+  function halsning() {
+    var nu = new Date(), h = nu.getHours(), d = nu.getDay();
+    var hej = h < 5 ? 'Nattuggla? 🦉 Hej!' : h < 10 ? 'God morgon! ☀️' : h < 17 ? 'Hej! 👋' : 'God kväll! 🌙';
+    var extra = d === 5 ? ' Tommy är ledig på fredagar, men jag jobbar alltid. 😎' : (d === 0 || d === 6) ? ' Skönt med helg, va?' : '';
+    return hej + extra + DELA + 'Jag är Forsbergs kundservice, Tommys digitala hjälpreda. Jag kan räkna ut vad din fönsterputs kostar, visa lediga tider och svara på frågor.' + DELA + 'Tryck på en knapp här under – eller skriv med egna ord, så gott det går. Stavfel gör ingenting. 😊';
+  }
+  // Huvudmenyn – samma knappar överallt så det är lätt att hitta tillbaka (Tommy 2026-11-19)
+  var MENY = ['Vad kostar det?', 'Lediga tider', 'Hur går det till?', 'Ring Tommy'];
+  var TEL_LANK = ['Ring ' + TEL_TEXT, 'tel:+46793463964'];
+  function hjalpSvar(s) {
+    if (/ring tommy|vill ringa|prata med (tommy|någon|en människa|en person)|ringa (upp|er|dig)|telefonnummer|ditt nummer|ert nummer|vilket nummer|kan (tommy|ni|du) ringa/.test(s))
+      return { special: true, stilla: true, avsikt: 'ring', vantar: '', text: 'Självklart! Ring Tommy på ' + TEL_TEXT + '. Han svarar mellan 09 och 21.' + DELA + 'Svarar han inte direkt är han troligen mitt i ett jobb – då ringer han upp dig så snart han kan.', knapp: TEL_LANK };
+    if (/hur går det till|hur fungerar det|hur funkar det|hur jobbar (du|ni|tommy)|vad händer (sen|när|efter)|hur gör (jag|man)|steg för steg/.test(s))
+      return { special: true, stilla: true, avsikt: 'hur', vantar: '', text: 'Så här enkelt är det:' + DELA +
+        '1. Du räknar fram priset – här med mig eller i bokningen.\n2. Du skickar en förfrågan med önskad tid.\n3. Tommy hör av sig och bekräftar tiden.\n4. Du behöver inte vara hemma när han putsar.\n5. Efteråt betalar du med Swish. RUT-avdraget sköter Tommy med Skatteverket.' + DELA +
+        'Det är alltid Tommy själv som kommer. Vill du att vi räknar ut ditt pris nu?', val: ['Vad kostar det?', 'Lediga tider', 'Ring Tommy'], knapp: ['Läs mer om hur jag jobbar', '/hur-jag-jobbar'] };
+    if (/^ (meny|menyn|hjälp|start|tillbaka|jag fattar inte|jag förstår inte|förstår inte|hänger inte med|vad ska jag (göra|skriva|trycka)|hur gör jag) $/.test(s))
+      return { special: true, stilla: true, avsikt: 'meny', vantar: '', text: 'Ingen fara, vi tar det lugnt. 😊' + DELA + 'Tryck på det du vill ha hjälp med här under:', val: MENY };
+    return null;
+  }
+  // Namn och ort: "jag heter Anna", "jag bor i Bankeryd", "kommer du till Habo?"
+  function personSvar(tt) {
+    var s = ' ' + tt.trim() + ' ';
+    var m = s.match(/ (jag heter|mitt namn är|heter jag|namnet är) ([a-zåäöé]{2,15})( |$)/);
+    if (m && ['inte', 'något', 'nåt', 'typ'].indexOf(m[2]) < 0) {
+      minne.namn = stor(m[2]);
+      return { special: true, stilla: true, avsikt: 'namn', vantar: '', text: valjFran(['Trevligt att träffas, ' + minne.namn + '! 👋', 'Hej ' + minne.namn + '! Kul att du tittar in. 😊', minne.namn + '! Snyggt namn. Mina kretsar sparar det (bara i den här chatten).']) + DELA + 'Vad kan jag hjälpa dig med?', val: ['Vad kostar det?', 'Lediga tider'] };
+    }
+    // "Kan du boka åt mig?" – boten bokar aldrig själv, den hjälper kunden dit (Tommy 2026-11-19)
+    if (/(kan|får|vill) (du|ni) boka|boka åt mig|boka (för|till) mig|boka in mig|lägga in (en|mig)|fixa (en )?tid åt mig|kan du reservera|reservera (en )?tid/.test(s)) {
+      var k0 = minne.kalk, harPris = k0 && k0.steg === 'klar', harTid = !!minne.tid;
+      var lank0 = k0 && k0.bostad === 'lgh' ? '/boka#lagenhet' : k0 && k0.bostad === 'villa' ? '/boka#fonster' : '/boka';
+      var del1 = valjFran(['Haha, jag önskar! 😅 Men jag har inga händer – och kalendern är Tommys.', 'Jag skulle gärna, men Tommy låter mig inte röra kalendern. 🙈', 'Där går min gräns, tyvärr – bokningar är Tommys grej. 🤖']);
+      var del2 = harPris && harTid ? 'Men du har ju redan ditt pris (' + krr(kalkRakna(k0).total) + ') och lediga tider – då är det bara att skicka en förfrågan i bokningen. Tar en minut, sen hör Tommy av sig och bekräftar tiden.'
+        : harPris ? 'Men du har redan ditt pris (' + krr(kalkRakna(k0).total) + ')! Vill du att jag kollar vilka tider som är lediga först? Sen skickar du förfrågan i bokningen, och Tommy bekräftar.'
+        : 'Det jag kan göra är att räkna ut vad det kostar och kolla vilka tider Tommy har lediga. Sen skickar du en förfrågan i bokningen – tar en minut – och Tommy hör av sig och bekräftar tiden.';
+      return { special: true, stilla: true, avsikt: 'boka', vantar: '', text: del1 + DELA + del2, val: harPris && harTid ? null : harPris ? ['Lediga tider'] : ['Vad kostar det?', 'Lediga tider'], knapp: ['Till bokningen', lank0] };
+    }
+    var ort = hittaOrt(s);
+    if (ort) {
+      minne.ort = stor(ort);
+      if (/bor i|bor på|kommer (du|ni)|åker (du|ni)|putsar (du|ni)|jobbar (du|ni)|finns (du|ni)|tar (du|ni)|kor (du|ni)/.test(s) || s.trim().split(' ').length <= 2) {
+        var o = { special: true, stilla: true, avsikt: 'ort', vantar: '', text: valjFran([minne.ort + '! Dit kommer Tommy. 🚐', minne.ort + ' – absolut, där putsar Tommy!', 'Ja, ' + minne.ort + ' ingår i Tommys område. 👍']) + DELA + 'Ska jag räkna ut vad det skulle kosta, eller kolla lediga tider?', val: ['Vad kostar det?', 'Lediga tider'] };
+        if (ORTER[ort]) o.knapp = ['Fönsterputs i ' + minne.ort, '/fonsterputs-' + ORTER[ort]];
+        return o;
+      }
+    }
+    return null;
+  }
+  // Delar ett svar i flera bubblor. Första delen visas direkt, resten "skrivs" en i taget.
+  function botRad(text) {
+    var b = document.createElement('div'); b.className = 'fc-bubbla fc-jag'; b.textContent = text;
+    var r = document.createElement('div'); r.className = 'fc-rad'; r.innerHTML = '<span class="fc-robot fc-robot-liten" aria-hidden="true"></span>'; r.appendChild(b);
+    return r;
+  }
+  function langdTid(text) { return lugn ? 0 : Math.min(2200, 450 + text.length * 14); }
+  function delaUpp(fore) {
+    var nya = [].slice.call(logg.childNodes, fore);
+    var rad = nya.filter(function (n) { return n.classList && n.classList.contains('fc-rad'); })[0];
+    if (!rad) return;
+    var b = rad.querySelector('.fc-bubbla'), tn = b && b.firstChild;
+    if (!tn || tn.nodeType !== 3) return;
+    // Långa svar utan markering delas vid en mening i mitten
+    if (tn.nodeValue.indexOf(DELA) < 0 && tn.nodeValue.length > 190) {
+      var v = tn.nodeValue, re = /[.!?] (?=[A-ZÅÄÖ0-9"])/g, x, bast = -1;
+      while ((x = re.exec(v))) if (x.index > 60 && v.length - x.index > 60 && (bast < 0 || Math.abs(x.index - v.length / 2) < Math.abs(bast - v.length / 2))) bast = x.index;
+      if (bast > 0) tn.nodeValue = v.slice(0, bast + 1) + DELA + v.slice(bast + 2);
+    }
+    if (tn.nodeValue.indexOf(DELA) < 0) return;
+    var delar = tn.nodeValue.split(DELA).map(function (d) { return d.trim(); }).filter(Boolean);
+    tn.nodeValue = delar.pop();
+    var vanta = nya.slice(nya.indexOf(rad));
+    var foreRader = delar.map(function (d) { var r = botRad(d); logg.insertBefore(r, rad); return r; });
+    var ko = foreRader.slice(1).map(function (r) { return [r]; }).concat([vanta]);
+    ko.forEach(function (grupp) { grupp.forEach(function (n) { n.style.display = 'none'; }); });
+    (function nasta(i) {
+      if (i >= ko.length) return;
+      var grupp = ko[i], text = grupp[0].textContent || '';
+      var p = botRad(''); p.querySelector('.fc-bubbla').className = 'fc-bubbla fc-jag fc-skriver'; p.querySelector('.fc-bubbla').innerHTML = '<i></i><i></i><i></i>';
+      logg.insertBefore(p, grupp[0]);
+      setTimeout(function () {
+        p.remove();
+        grupp.forEach(function (n) { n.style.display = ''; });
+        var rutaUnder = logg.getBoundingClientRect().bottom, nyUnder = grupp[0].getBoundingClientRect().bottom;
+        if (nyUnder > rutaUnder) logg.scrollTop += Math.min(nyUnder - rutaUnder + 12, grupp[0].getBoundingClientRect().top - logg.getBoundingClientRect().top - 12);
+        nasta(i + 1);
+      }, Math.max(350, langdTid(text) * 0.7));
+    })(0);
+  }
+
+  // ================= Priskalkylatorn i chatten (Tommy 2026-11-19) =================
+  // Samma priser och samma uträkning som bokningen (js/boka-ny.js, TIDER.md).
+  // ÄNDRAS PRISERNA DÄR MÅSTE DE ÄNDRAS HÄR OCKSÅ. Boten hittar aldrig på egna priser.
+  var K = {
+    MIN_PRIS: 750, TIMPRIS_15: 699, INGAR_FONSTER: 14, HOGA_MIN: 10, KARM_ANDEL: 0.15, AVGIFT: 30,
+    LGH: { '1:a': 475, '2:a': 500, '3:a': 525, '4:a': 550, '5:a': 575 },
+    LGH_BALK: { golv: 40, tak: 20 },
+    BALKONG: { helt: { namn: 'Balkong golv till tak', kr: 40 }, racke: { namn: 'Glasräcke, räcke till tak', kr: 20 }, altan: { namn: 'Altanräcke i glas', kr: 30 } },
+    SPROJS_MIN: { 2: 16 / 3, 3: 20 / 3, 4: 8, 6: 32 / 3, 8: 40 / 3 },
+    PANORAMA: { liten: { text: 'ca 1 × 2 m', min: 4 }, mellan: { text: 'ca 2 × 2,5 m', min: 8 }, stor: { text: 'större än 2 × 2,5 m', min: 12 } },
+    RUM: { UT: { namn: 'Uterum', tak: 80, golv: 40, tri: 20 }, VH: { namn: 'Växthus', tak: 90, golv: 50, tri: 30 } },
+    TYP: {
+      L1: { namn: '1-luftsfönster', min: [2, 4] }, L2: { namn: '2-luftsfönster', min: [4, 8] },
+      S: { namn: 'fönster med spröjs' }, P: { namn: 'panoramafönster' },
+      O: { namn: 'överliggande fönster', min: [4.5, 10] }, U: { namn: 'underliggande fönster', min: [3, 10] },
+      B: { namn: 'balkong/altanräcke' }, UT: { namn: 'uterum' }, VH: { namn: 'växthus' }
+    }
+  };
+  function krr(n) { return n.toLocaleString('sv-SE') + ' kr'; }
+  function kalkTidsPris(minuter) {
+    if (minuter <= 0) return 0;
+    var m = Math.max(90, Math.ceil(Math.round(minuter) / 5) * 5);
+    return Math.ceil(K.TIMPRIS_15 * m / 90 / 10) * 10 - 1;
+  }
+  function kalkRakna(k) {
+    if (k.bostad === 'lgh') {
+      var pl = K.LGH[k.lgh] + k.lghGolv * K.LGH_BALK.golv + k.lghTak * K.LGH_BALK.tak;
+      return { antal: 0, putsning: pl, karm: 0, avgift: K.AVGIFT, total: pl + K.AVGIFT };
+    }
+    var antal = 0, minuter = 0;
+    k.rader.forEach(function (r) {
+      var fyra = r.typ !== 'P' && (k.utat || r.sidor === 4);
+      var min = r.typ === 'S' ? K.SPROJS_MIN[r.rutor] * (fyra ? 2 : 1) : r.typ === 'P' ? K.PANORAMA[r.storlek].min : K.TYP[r.typ].min[fyra ? 1 : 0];
+      antal += r.antal; minuter += r.antal * min;
+    });
+    var hus = 0;
+    if (antal > 0) {
+      var extra = antal > K.INGAR_FONSTER ? minuter * (antal - K.INGAR_FONSTER) / antal * K.TIMPRIS_15 / 90 : 0;
+      var fonsterPris = extra > 0 ? Math.ceil((K.TIMPRIS_15 + extra) / 10) * 10 - 1 : K.TIMPRIS_15;
+      hus = Math.max(fonsterPris, kalkTidsPris(minuter + (k.hoga ? K.HOGA_MIN : 0)));
+    }
+    var glas = k.glas.reduce(function (s, g) { return s + g.antal * g.kr; }, 0);
+    var putsning = hus + glas > 0 ? Math.max(hus + glas, K.MIN_PRIS) : 0;
+    var karm = k.karm ? Math.round(putsning * K.KARM_ANDEL) : 0;
+    var avgift = putsning ? K.AVGIFT : 0;
+    return { antal: antal, putsning: putsning, karm: karm, avgift: avgift, total: putsning + karm + avgift, minPris: putsning === K.MIN_PRIS };
+  }
+
+  var KALK_START = ['vad kostar', 'vad skulle det kosta', 'kostar det', 'hur mycket kostar', 'räkna pris', 'räkna ut pris', 'räkna ut priset', 'räkna ut mitt pris', 'räkna mitt pris', 'uppskatta', 'ungefärligt pris', 'ungefär pris', 'ungefär vad', 'vad blir priset', 'prisförslag', 'se pris', 'visa pris', 'se priset', 'vad tar ni', 'pris på', 'priset för', 'priset på', 'kalkyl', 'prisräkn', 'få pris', 'ge mig ett pris', 'vad landar', 'vad hamnar'];
+  var KALK_INTE = /avbok|omboka|faktura|parkering|garanti|regn|abonnemang|karmtvätt|stege|reklam|klag/;
+  var TALORD = { noll: 0, inga: 0, inget: 0, ingen: 0, en: 1, ett: 1, två: 2, tre: 3, fyra: 4, fem: 5, sex: 6, sju: 7, åtta: 8, nio: 9, tio: 10, elva: 11, tolv: 12, tretton: 13, fjorton: 14, femton: 15, sexton: 16, sjutton: 17, arton: 18, nitton: 19, tjugo: 20, trettio: 30, fyrtio: 40 };
+  function kalkTal(s) {
+    var m = s.match(/\d+/);
+    if (m) return Number(m[0]);
+    var w = s.trim().split(' ');
+    for (var i = 0; i < w.length; i++) if (TALORD[w[i]] !== undefined) return TALORD[w[i]];
+    return null;
+  }
+  function kalkBostad(s) {
+    if (/villa|radhus|parhus|kedjehus| hus /.test(s)) return 'villa';
+    if (/lägenhet|bostadsrätt|hyresrätt| lägga /.test(s)) return 'lgh';
+    if (/större fastighet|flerfamilj|hyreshus| brf /.test(s)) return 'stor';
+    if (/företag|kontor|butik|lokal/.test(s)) return 'foretag';
+    if (/solcell|solpanel/.test(s)) return 'sol';
+    return '';
+  }
+  function kalkTyp(s) {
+    if (/spröjs|småspröjs|små rutor/.test(s)) return 'S';
+    if (/panorama|fast glas|stort glas|stora glas|fönsterparti/.test(s)) return 'P';
+    if (/överligg|överljus/.test(s)) return 'O';
+    if (/underligg/.test(s)) return 'U';
+    if (/balkong|altan|glasräcke|räcke/.test(s)) return 'B';
+    if (/uterum/.test(s)) return 'UT';
+    if (/växthus/.test(s)) return 'VH';
+    if (/(2|två) ?-? ?luft|tvåluft|(2|två) bågar|tvålufts/.test(s)) return 'L2';
+    if (/(1|en|ett) ?-? ?luft|enluft|(1|en) båge|enlufts/.test(s)) return 'L1';
+    if (/vet inte|osäker|ingen aning|vet ej|hjälp/.test(s)) return 'VET';
+    if (/klar|det var allt|inget mer|inga fler| nej |visa pris|visa priset|färdig|räkna nu|^ nä /.test(s)) return 'KLAR';
+    return '';
+  }
+
+  // Humor – många varianter så det inte låter likadant
+  var K_SKAMT = {
+    villa: ['Villa! 🏡 Mina sensorer gillar redan det här.', 'En villa! Nu snackar vi riktigt uppdrag. 💪', 'Villa, check! ✅ Kalkylatorn värmer upp.'],
+    lgh: ['Lägenhet! 🏢 Det går snabbt – två frågor, sen har du priset.', 'Lägenhet, smidigt! Det här blir den snabbaste kalkylen i världshistorien. Typ.'],
+    nasta: ['Inlagt! ✅', 'Noterat i min högteknologiska anteckningsbok. 📒', 'Check! ✔️', 'Inräknat – mina kretsar hänger med! 🤖', 'Sparat! Tommy hade varit stolt över den här räkningen.'],
+    merFraga: ['Något mer? Välj nästa sort, eller tryck Klar så trollar jag fram priset.', 'Finns det fler glas som väntar på kärlek? Annars: Klar!', 'Fler fönster, eller ska vi se vad det landar på?'],
+    intro: ['🥁 Trumvirvel... kalkylen är klar!', 'BEEP BOOP – räknat och klart! 🤖', 'Mina kretsar har räknat så de ångar. Här är det:', 'Siffrorna är putsade och klara! ✨'],
+    outro: ['Och du slipper stå på stegen själv. 🪜', 'Tänk på alla ränder du slipper. ✨', 'Rena fönster, bättre humör. Vetenskapligt bevisat av mig, just nu.', 'Solen kommer tacka dig. ☀️'],
+    miss: ['Hoppsan, det där fattade inte min kalkylator. 🧮', 'Mina kugghjul snurrade fel håll där.', 'Det svaret fanns inte i min manual. 🤖', 'Kalkylatorn kliade sig i huvudet.'],
+    avbryt: ['Kalkylatorn går och lägger sig. 🧮💤 Skriv "vad kostar" när du vill räkna igen.', 'Okej, räkningen avbruten! Jag sparar inget. Skriv "vad kostar" om du ångrar dig.']
+  };
+  function antalSkamt(n) {
+    if (n === 1) return valjFran(['Ett ensamt fönster – det får extra kärlek. 🥹', 'Ett fönster! Litet men naggande gott.']);
+    if (n <= 5) return valjFran(['Lagom! Det hinner Tommy innan kaffet kallnat. ☕', 'Smidigt antal!', 'Fint, det blir en snabb sväng.']);
+    if (n <= 15) return valjFran(['Nu börjar det likna ett riktigt uppdrag! 💪', 'Snyggt, ett ordentligt gäng glas!', 'Det är så här jag gillar det!']);
+    if (n <= 30) return valjFran(['Oj! Bor du i ett glashus? 😳', 'Det där är ett fönsterpaket av rang! 🔥', 'Wow. Mina sensorer blinkar extra nu.']);
+    return valjFran(['Okej, är det ett slott?! 🏰', n + ' stycken?! Jag behöver sätta mig ner. Fast jag har inga ben.', 'Det är fler fönster än jag har kretsar! 😳']);
+  }
+
+  function kalkNy(bostad) { return { steg: 'bostad', bostad: bostad || '', rader: [], glas: [], nu: null, utat: false, hoga: false, fasta: false, karm: null, lgh: '', lghGolv: 0, lghTak: 0, miss: 0, paus: false, forst: true }; }
+  function kalkSvarObj(text, val) { return { special: true, stilla: true, kalk: true, avsikt: 'kalkyl', vantar: '', text: text, val: val }; }
+  var TYP_VAL = ['1-luft (1 båge)', '2-luft (2 bågar)', 'Med spröjs', 'Panoramafönster', 'Överliggande', 'Underliggande', 'Balkong/altan', 'Uterum', 'Växthus', 'Vet inte'];
+
+  // Frågan för steget kalkylen står på
+  function kalkFraga(k, prefix) {
+    var p = prefix ? prefix + DELA : '', r = k.nu;
+    switch (k.steg) {
+      case 'bostad': return kalkSvarObj(p + 'Vad ska putsas?', ['Villa/radhus', 'Lägenhet', 'Företag', 'Solcellstvätt']);
+      case 'lgh': return kalkSvarObj(p + 'Hur stor är lägenheten?', ['1:a', '2:a', '3:a', '4:a', '5:a']);
+      case 'lghBalk': return kalkSvarObj(p + (k.lghGolv || k.lghTak ? 'Något mer balkongglas?' : 'Har du inglasad balkong som ska putsas?'), [k.lghGolv || k.lghTak ? 'Nej, visa priset' : 'Nej', 'Golv till tak', 'Räcke till tak']);
+      case 'lghBalkAntal': return kalkSvarObj(p + 'Hur många glas (' + (k.lghSort === 'golv' ? 'golv till tak, 40 kr/glas' : 'räcke till tak, 20 kr/glas') + ')?');
+      case 'typ': return kalkSvarObj(p + (k.rader.length || k.glas.length ? valjFran(K_SKAMT.merFraga) : 'Vilken sorts fönster har du? Börja med den vanligaste sorten.\n\nÄr du osäker – tryck "Vet inte" så hjälper jag dig.'), (k.rader.length || k.glas.length ? ['Klar – visa priset'] : []).concat(TYP_VAL));
+      case 'det': return kalkSvarObj(p + '🕵️ Fönsterdetektiven kliver in! Titta på fönstret: hur många delar går att öppna?', ['En del', 'Två delar', 'Inget – stort fast glas', 'Det har spröjs (små rutor)']);
+      case 'antal': return kalkSvarObj(p + 'Hur många ' + K.TYP[r.typ].namn + ' har du?');
+      case 'sidor': return kalkSvarObj(p + 'Hur många sidor ska putsas på dina ' + K.TYP[r.typ].namn + '? 2 sidor = in- och utsida. 4 sidor = bågarna går att öppna isär och det finns glas emellan.', ['2 sidor', '4 sidor', 'Vet inte']);
+      case 'rutor': return kalkSvarObj(p + 'Hur många små rutor är det per båge (delen som går att öppna)?', ['2', '3', '4', '6', '8', 'Vet inte']);
+      case 'storlek': return kalkSvarObj(p + 'Ungefär hur stora är panoramaglasen?', ['ca 1 × 2 m', 'ca 2 × 2,5 m', 'Större än 2 × 2,5 m']);
+      case 'balkSort': return kalkSvarObj(p + 'Vilken sort är det?', ['Golv till tak (40 kr/glas)', 'Räcke till tak (20 kr/glas)', 'Altanräcke (30 kr/glas)']);
+      case 'balkAntal': return kalkSvarObj(p + 'Hur många glas?');
+      case 'rumtak': return kalkSvarObj(p + 'Hur många takglas har ' + (r.typ === 'UT' ? 'uterummet' : 'växthuset') + '? (' + K.RUM[r.typ].tak + ' kr/glas)', ['Inga']);
+      case 'rumgolv': return kalkSvarObj(p + 'Hur många glas från golv till tak? (' + K.RUM[r.typ].golv + ' kr/glas)', ['Inga']);
+      case 'rumtri': return kalkSvarObj(p + 'Och små fönster och trianglar? (' + K.RUM[r.typ].tri + ' kr/glas)', ['Inga']);
+      case 'special': return kalkSvarObj(p + (k.utat || k.hoga || k.fasta ? 'Något mer speciellt?' : 'Har du några specialfönster?'), [k.utat || k.hoga || k.fasta ? 'Nej, det var allt' : 'Nej, vanliga fönster'].concat(k.utat ? [] : ['Öppnas utåt']).concat(k.hoga ? [] : ['Svåra att nå (stege)']).concat(k.fasta ? [] : ['Går inte att öppna']));
+      case 'karm': return kalkSvarObj(p + 'Sista frågan! Vill du ha karmtvätt också? Rena karmar och bågar, +15 %.', ['Ja, gärna', 'Nej tack']);
+    }
+    return null;
+  }
+
+  function kalkResultat(k) {
+    var pr = kalkRakna(k), rader = [];
+    if (k.bostad === 'lgh') {
+      rader.push('Lägenhet ' + k.lgh + ': ' + krr(K.LGH[k.lgh]));
+      if (k.lghGolv) rader.push('Balkong golv till tak, ' + k.lghGolv + ' glas: ' + krr(k.lghGolv * K.LGH_BALK.golv));
+      if (k.lghTak) rader.push('Balkong räcke till tak, ' + k.lghTak + ' glas: ' + krr(k.lghTak * K.LGH_BALK.tak));
+    } else {
+      k.rader.forEach(function (r) {
+        var x = r.typ === 'S' ? ' (' + r.rutor + ' rutor)' : r.typ === 'P' ? ' (' + K.PANORAMA[r.storlek].text + ')' : '';
+        rader.push(r.antal + ' st ' + K.TYP[r.typ].namn + x + (r.typ === 'P' ? '' : ', ' + (k.utat ? 4 : r.sidor) + ' sidor'));
+      });
+      k.glas.forEach(function (g) { rader.push(g.namn + ', ' + g.antal + ' glas: ' + krr(g.antal * g.kr)); });
+      var sp = [];
+      if (k.utat) sp.push('öppnas utåt'); if (k.hoga) sp.push('svåra att nå'); if (k.fasta) sp.push('går inte att öppna');
+      if (sp.length) rader.push('Specialfönster: ' + sp.join(', '));
+    }
+    var text = (minne.namn ? 'Här kommer det, ' + minne.namn + '! ' : '') + valjFran(K_SKAMT.intro) + DELA + rader.join('\n') + '\n\n' +
+      'Fönsterputs (före RUT): ' + krr(pr.putsning * 2) + '\n' +
+      (pr.karm ? 'Karmtvätt (före RUT): ' + krr(pr.karm * 2) + '\n' : '') +
+      'RUT-avdrag 50 %: −' + krr(pr.putsning + pr.karm) + '\n' +
+      'Inställelseavgift (ej RUT): ' + krr(pr.avgift) + '\n' +
+      'Totalt efter RUT: ' + krr(pr.total) + DELA +
+      (k.bostad !== 'lgh' && pr.minPris ? 'Lägsta pris för villa är ' + krr(K.MIN_PRIS) + ' efter RUT. ' : '') +
+      (k.rader.some(function (r) { return r.typ === 'S'; }) ? 'Spröjsade fönster räknar Tommy gärna på innan du får ett fast pris. ' : '') +
+      'Det här är en uppskattning – väljer du samma sak i bokningen får du ett fast pris. ' + (minne.ort ? 'Rena fönster i ' + minne.ort + ' snart! ✨' : valjFran(K_SKAMT.outro)) +
+      DELA + 'Vill du ha svar snabbast? Skicka kalkylen till Tommy som SMS – priset står redan med, så kan han gå direkt på tiden. 📱';
+    k.steg = 'klar';
+    var o = kalkSvarObj(text, ['Föreslå en tid', 'Lägg till mer', 'Räkna om från början']);
+    o.knapp = ['Boka med det här priset', k.bostad === 'lgh' ? '/boka#lagenhet' : '/boka#fonster'];
+    // SMS till Tommy med kalkylen och priset ifyllt – kunden skickar från sin egen telefon (Tommy 2026-11-19)
+    var sms = 'Hej Tommy! Jag räknade ut mitt pris i chatten på fputs.se:\n' + rader.join('\n') +
+      (pr.karm ? '\nKarmtvätt: ja' : '') +
+      '\nTotalt efter RUT: ' + krr(pr.total) + ' (inkl. inställelseavgift ' + krr(pr.avgift) + ')' +
+      '\n\nJag vill boka till det priset.' + (minne.ort ? '\nOrt: ' + minne.ort : '') + '\nAdress: \nÖnskad tid: ' + (minne.namn ? '\n/' + minne.namn : '');
+    o.knapp2 = ['Skicka till Tommy som SMS', 'sms:+46793463964?&body=' + encodeURIComponent(sms)];
+    return o;
+  }
+
+  // Raden (fönstertypen) är klar – tillbaka till "något mer?"
+  function radKlar(k, prefix) {
+    var r = k.nu;
+    if (r.typ === 'B') k.glas.push({ namn: K.BALKONG[r.sort].namn, antal: r.antal, kr: K.BALKONG[r.sort].kr });
+    else if (r.typ === 'UT' || r.typ === 'VH') {
+      var rum = K.RUM[r.typ];
+      if (r.tak) k.glas.push({ namn: rum.namn + ': takglas', antal: r.tak, kr: rum.tak });
+      if (r.golv) k.glas.push({ namn: rum.namn + ': golv till tak', antal: r.golv, kr: rum.golv });
+      if (r.tri) k.glas.push({ namn: rum.namn + ': små fönster och trianglar', antal: r.tri, kr: rum.tri });
+    } else if (r.antal) k.rader.push(r);
+    k.nu = null; k.steg = 'typ';
+    return kalkFraga(k, (prefix ? prefix + ' ' : '') + valjFran(K_SKAMT.nasta));
+  }
+  // Efter en vald fönstertyp: vad behöver vi veta härnäst?
+  function nastaForTyp(k, prefix) {
+    var r = k.nu;
+    if (r.typ === 'B') { k.steg = 'balkSort'; return kalkFraga(k, prefix); }
+    if (r.typ === 'UT' || r.typ === 'VH') { k.steg = 'rumtak'; return kalkFraga(k, prefix); }
+    if (r.antal === null) { k.steg = 'antal'; return kalkFraga(k, prefix); }
+    if (r.typ === 'S' && !r.rutor) { k.steg = 'rutor'; return kalkFraga(k, prefix); }
+    if (r.typ === 'P') { if (!r.storlek) { k.steg = 'storlek'; return kalkFraga(k, prefix); } return radKlar(k, prefix); }
+    if (!r.sidor) { k.steg = 'sidor'; return kalkFraga(k, prefix); }
+    return radKlar(k, prefix);
+  }
+  function valjTyp(k, typ, s, prefix) {
+    k.nu = { typ: typ, antal: null, sidor: 0, rutor: 0, storlek: '' };
+    // "8 st 2-luft": antalet står redan i meddelandet (men inte siffran i "2-luft")
+    // "4 sidor" och "4 rutor" är inte antal fönster – de sparas som sidor/rutor i stället
+    var sid = s.match(/ ([24]|två|fyra) sidor/), rut = s.match(/ ([2-8]) rutor/);
+    if (sid && typ !== 'P' && typ !== 'B' && typ !== 'UT' && typ !== 'VH') k.nu.sidor = /4|fyra/.test(sid[1]) ? 4 : 2;
+    if (rut && typ === 'S' && K.SPROJS_MIN[rut[1]]) k.nu.rutor = Number(rut[1]);
+    var m = s.replace(/(1|2|en|ett|två) ?-? ?luft\S*|(1|2|en|två) bågar?|([24]|två|fyra) sidor|\d+ rutor/g, ' ').match(/\d+/);
+    if (m && typ !== 'B' && typ !== 'UT' && typ !== 'VH' && Number(m[0]) > 0 && Number(m[0]) < 100) k.nu.antal = Number(m[0]);
+    return nastaForTyp(k, prefix);
+  }
+  function kalkSlut(k) {
+    if (kalkRakna(k).antal > 0) { k.steg = 'special'; return kalkFraga(k, 'Snart klart! 🔥'); }
+    k.steg = 'karm'; return kalkFraga(k, 'Snart klart! 🔥');
+  }
+
+  function kalkStart(s) {
+    var b = kalkBostad(s) || (minne.fakta && minne.fakta.bostad === 'villa' ? 'villa' : minne.fakta && minne.fakta.bostad === 'lägenhet' ? 'lgh' : '');
+    var k = minne.kalk = kalkNy();
+    var intro = 'Jag räknar gärna ut ett pris åt dig! 🧮' + DELA + 'En lägenhet kostar från 475 kr och en villa från 750 kr efter RUT, plus 30 kr inställelseavgift. Svara på några enkla frågor så får du ditt eget pris. Det kostar inget och du binder dig inte till något.';
+    var o = b ? kalkSvar({ villa: 'villa', lgh: 'lägenhet', foretag: 'företag', sol: 'solcell', stor: 'större fastighet' }[b], b === 'villa' || b === 'lgh' ? 'Det räknar jag ut åt dig direkt! 🧮' : '') : kalkFraga(k, intro);
+    // Vill kunden hellre räkna själv: länk direkt till bokningen (Tommy 2026-11-19)
+    if (o && !o.knapp) o.knapp = ['Eller räkna själv i bokningen', b === 'lgh' ? '/boka#lagenhet' : b === 'villa' ? '/boka#fonster' : '/boka'];
+    return o;
+  }
+
+  // Tolkar kundens svar i det steg kalkylen står på. null = förstod inte.
+  function kalkSvar(tt, prefix) {
+    var k = minne.kalk, s = ' ' + tt.trim() + ' ', n, b, r = k.nu, pre = prefix ? prefix + DELA : '';
+    if (/^ (avbryt|sluta|stopp|stop|glöm det|skit samma|avsluta) /.test(s)) { minne.kalk = null; return kalkSvarObj(valjFran(K_SKAMT.avbryt)); }
+    if (/fortsätt prisräkningen|fortsätt räkna/.test(s)) { k.paus = false; return kalkFraga(k, 'Där var vi! 🧮'); }
+    if (/räkna om|börja om/.test(s)) { minne.kalk = kalkNy(); return kalkFraga(minne.kalk, 'Nytt blad! 📄'); }
+    // Kunden rättar boten: "har ju inte sagt hur många", "fel antal", "det stämmer inte" (Tommy 2026-11-19)
+    if (/(inte|ej|aldrig) sagt|fel antal|ändra antal|ändra det|det (var|blev) fel|stämmer inte|räknade fel|missförst|du tog fel|blev fel|inte rätt/.test(s)) {
+      var rr = k.nu || (k.rader.length ? k.rader.pop() : null);
+      if (rr && rr.typ !== 'B' && rr.typ !== 'UT' && rr.typ !== 'VH') {
+        k.nu = rr; rr.antal = null; k.steg = 'antal';
+        return kalkFraga(k, valjFran(['Oj, mitt fel! 🙈 Där gick jag för fort fram.', 'Aj, du har rätt – jag gissade. Det ska jag inte göra. 😅', 'Hoppsan! Mina kretsar var lite för ivriga där. 🤖']) + DELA + 'Vi tar det igen.');
+      }
+      return kalkFraga(k, 'Oj, mitt fel! 🙈 Vi tar det härifrån.');
+    }
+    switch (k.steg) {
+      case 'bostad':
+        b = kalkBostad(s);
+        if (b === 'villa') { k.bostad = 'villa'; k.steg = 'typ'; return kalkFraga(k, pre + valjFran(K_SKAMT.villa)); }
+        if (b === 'lgh') { k.bostad = 'lgh'; k.steg = 'lgh'; return kalkFraga(k, pre + valjFran(K_SKAMT.lgh)); }
+        if (b === 'sol') { minne.kalk = null; var o1 = kalkSvarObj(pre + 'Solcellstvätt! ☀️ Där räknar Tommy fram ett fast pris själv, eftersom tak och paneler är så olika. Skicka antal paneler och adress så får du pris samma dag.'); o1.knapp = ['Få offert', '/kontakta-mig?typ=Solcellstv%C3%A4tt#formular']; return o1; }
+        if (b === 'foretag' || b === 'stor') { minne.kalk = null; var o2 = kalkSvarObj(pre + (b === 'stor' ? 'Större fastighet' : 'Företag') + '! 💼 Där finns inget färdigt pris i kalkylen – Tommy tar fram ett fast pris åt dig, oftast samma dag.'); o2.knapp = ['Begär offert', '/kontakta-mig#formular']; return o2; }
+        return null;
+      case 'lgh':
+        var lm = s.match(/ ([1-5]) ?(a|rum|rok|or|:a) /) || s.match(/ ([1-5]) /);
+        var lo = { etta: 1, tvåa: 2, trea: 3, fyra: 4, femma: 5 };
+        var ln = lm ? Number(lm[1]) : 0;
+        Object.keys(lo).forEach(function (w) { if (s.indexOf(' ' + w + ' ') >= 0) ln = lo[w]; });
+        if (!ln) { if (/större|6|7|8|sexa/.test(s)) { minne.kalk = null; var o3 = kalkSvarObj('Större än en 5:a – snyggt! 🏢 Den räknar Tommy gärna på själv så att priset blir rätt.'); o3.knapp = ['Begär offert', '/kontakta-mig#formular']; return o3; } return null; }
+        k.lgh = ln + ':a'; k.steg = 'lghBalk';
+        return kalkFraga(k, pre + valjFran(['En ' + k.lgh + '! Fint.', k.lgh + ', noterat! ✅', 'En ' + k.lgh + ' – mysigt!']));
+      case 'lghBalk':
+        if (/räcke/.test(s)) { k.lghSort = 'tak'; k.steg = 'lghBalkAntal'; return kalkFraga(k); }
+        if (/golv|helt|inglasad/.test(s)) { k.lghSort = 'golv'; k.steg = 'lghBalkAntal'; return kalkFraga(k); }
+        if (/ ja | japp | jo | yes /.test(s)) return kalkSvarObj('Toppen! Vilken sort – glas från golv till tak, eller ett glasräcke med glas upp till taket?', ['Golv till tak', 'Räcke till tak']);
+        if (/ nej | nä | ingen | inga | nope | visa | klar | det var allt /.test(s)) return kalkResultat(k);
+        return null;
+      case 'lghBalkAntal':
+        n = kalkTal(s); if (n === null || n > 80) return null;
+        if (k.lghSort === 'golv') k.lghGolv += n; else k.lghTak += n;
+        k.steg = 'lghBalk';
+        return kalkFraga(k, n ? valjFran(K_SKAMT.nasta) : 'Inga glas, inga problem.');
+      case 'typ':
+        var typ = kalkTyp(s);
+        if (!typ) return null;
+        if (typ === 'KLAR') return k.rader.length || k.glas.length ? kalkSlut(k) : kalkFraga(k, 'Haha, vi har inte räknat några fönster än! 😄');
+        if (typ === 'VET') { k.steg = 'det'; return kalkFraga(k); }
+        return valjTyp(k, typ, s, pre + (k.forst ? '' : ''));
+      case 'det':
+        if (/spröjs|rutor/.test(s)) return valjTyp(k, 'S', '', 'Spröjs – de smala listerna som delar glaset! 🕵️');
+        if (/fast|inget|stort/.test(s)) return valjTyp(k, 'P', '', 'Ett stort fast glas = panoramafönster i kalkylen. 🕵️');
+        if (/ (två|2|tvåa) /.test(s)) return valjTyp(k, 'L2', '', 'Två delar = 2-luftsfönster! 🕵️ Fallet löst.');
+        if (/ (en|ett|1) /.test(s)) return valjTyp(k, 'L1', '', 'En del = 1-luftsfönster! 🕵️ Elementärt.');
+        if (/vet inte|osäker/.test(s)) { k.steg = 'typ'; return kalkFraga(k, 'Ingen fara – i bokningen finns bilder på alla fönstertyper. Välj det som liknar mest, så blir det nära nog här.'); }
+        return null;
+      case 'antal':
+        // "4 sidor" / "4 rutor" när boten frågar antal: spara det, fråga antalet igen
+        var sd = s.match(/ ([24]|två|fyra) sidor/), rt = s.match(/ ([2-8]) rutor/);
+        if ((sd && r.typ !== 'P') || (rt && r.typ === 'S' && K.SPROJS_MIN[rt[1]])) {
+          if (sd) r.sidor = /4|fyra/.test(sd[1]) ? 4 : 2;
+          if (rt) r.rutor = Number(rt[1]);
+          var notis = (sd ? r.sidor + ' sidor' : '') + (sd && rt ? ' och ' : '') + (rt ? r.rutor + ' rutor' : '');
+          var o5 = kalkSvarObj(notis + ', noterat! ✍️' + DELA + 'Men hur många ' + K.TYP[r.typ].namn + ' är det?');
+          return o5;
+        }
+        n = kalkTal(s); if (n === null) return null;
+        if (n === 0) { k.nu = null; k.steg = 'typ'; return kalkFraga(k, 'Noll? Då hoppar vi över dem. 😄'); }
+        if (n > 99) { minne.kalk = null; var o4 = kalkSvarObj(n + ' stycken?! 😳 Det är ett riktigt storjobb – det räknar Tommy på själv.'); o4.knapp = ['Begär offert', '/kontakta-mig#formular']; return o4; }
+        r.antal = n;
+        return nastaForTyp(k, antalSkamt(n));
+      case 'sidor':
+        if (/ 4 | fyra | dubbel| emellan | mellan /.test(s)) { r.sidor = 4; return nastaForTyp(k, '4 sidor – nu blir det grundligt! 🧽'); }
+        if (/ 2 | två | enkel| in och ut | in- och ut/.test(s)) { r.sidor = 2; return nastaForTyp(k); }
+        if (/vet inte|osäker|ingen aning/.test(s)) return kalkSvarObj('Testa så här: öppna fönstret. Går bågen att vika isär så du ser två glas med luft emellan? Då är det 4 sidor. Är det bara ett glas (eller en tät glasruta) är det 2 sidor.', ['2 sidor', '4 sidor']);
+        return null;
+      case 'rutor':
+        n = kalkTal(s);
+        if (n !== null && K.SPROJS_MIN[n]) { r.rutor = n; return nastaForTyp(k, n >= 6 ? n + ' rutor per båge – det är många små glas att älska! 😅' : ''); }
+        if (/vet inte|osäker/.test(s)) return kalkSvarObj('Räkna de små rutorna i EN båge – alltså delen som går att öppna. Jag räknar med 2, 3, 4, 6 eller 8.', ['2', '3', '4', '6', '8']);
+        if (n !== null) return kalkSvarObj(n + ' rutor finns inte i kalkylen. Välj det som ligger närmast: 2, 3, 4, 6 eller 8.', ['2', '3', '4', '6', '8']);
+        return null;
+      case 'storlek':
+        if (/större|stora|jättestor/.test(s)) r.storlek = 'stor';
+        else if (/2 ?[x×] ?2|mellan/.test(s)) r.storlek = 'mellan';
+        else if (/1 ?[x×] ?2|liten|litet|små|mindre/.test(s)) r.storlek = 'liten';
+        else return null;
+        return nastaForTyp(k, r.storlek === 'stor' ? 'Rejäla glas! 🪟' : '');
+      case 'balkSort':
+        if (/altan/.test(s)) r.sort = 'altan';
+        else if (/golv|helt|inglasad/.test(s)) r.sort = 'helt';
+        else if (/räcke/.test(s)) r.sort = 'racke';
+        else return null;
+        k.steg = 'balkAntal'; return kalkFraga(k);
+      case 'balkAntal':
+        n = kalkTal(s); if (n === null || n > 99) return null;
+        r.antal = n; return radKlar(k, n ? antalSkamt(n) : '');
+      case 'rumtak': case 'rumgolv': case 'rumtri':
+        n = kalkTal(s); if (n === null || n > 99) return null;
+        r[k.steg.slice(3)] = n;
+        if (k.steg === 'rumtak') { k.steg = 'rumgolv'; return kalkFraga(k, n ? 'Takglas – där krävs balans! 🤸' : ''); }
+        if (k.steg === 'rumgolv') { k.steg = 'rumtri'; return kalkFraga(k); }
+        return radKlar(k, 'Glashuset är inräknat! 🌿');
+      case 'special':
+        if (/utåt/.test(s)) { k.utat = true; return kalkFraga(k, 'Utåtgående – de luriga! Då räknar jag alla sidor. 🧠'); }
+        if (/går inte|fasta|fast /.test(s)) { k.fasta = true; return kalkFraga(k, 'Noterat! Det påverkar inte kalkylen, men Tommy vill gärna veta.'); }
+        if (/svår|stege|högt|höga| nå /.test(s)) { k.hoga = true; return kalkFraga(k, 'Stegen åker fram! 🪜 Lite extra tid läggs på.'); }
+        if (/ nej | nä | inga | inget | vanliga | det var allt | klar /.test(s)) { k.steg = 'karm'; return kalkFraga(k); }
+        return null;
+      case 'karm':
+        if (/ ja | gärna | japp | jo | yes | absolut | kör /.test(s)) { k.karm = true; return kalkResultat(k); }
+        if (/ nej | nä | nope | inte /.test(s)) { k.karm = false; return kalkResultat(k); }
+        return null;
+      case 'klar':
+        if (/lägg till|mer|fler/.test(s)) { k.steg = k.bostad === 'lgh' ? 'lghBalk' : 'typ'; return kalkFraga(k, 'Mer glas, mer kärlek! 💙'); }
+        return null;
+    }
+    return null;
+  }
+  // ================= Lediga tider i chatten (Tommy 2026-11-19) =================
+  // Samma regler som bokningskalendern (js/kalender.js) – ÄNDRAS REGLERNA DÄR MÅSTE DE ÄNDRAS HÄR OCKSÅ.
+  // Upptaget hämtas från /api/ledigt (Google Kalender, bara ledig/upptagen – inget innehåll).
+  var T = {
+    ARBETSHELG_START: '2026-10-03', ARBETSHELG_INTERVALL: 42, DAGAR_FRAM: 60,
+    VARDAG: [{ namn: 'morgon/förmiddag', text: 'start ca kl. 07–10', fran: 7, till: 10 }, { namn: 'lunch/mitt på dagen', text: 'start ca kl. 10–13', fran: 10, till: 13 }],
+    HELG: [{ namn: 'förmiddag', text: 'kl. 08–12', fran: 8, till: 12 }, { namn: 'eftermiddag', text: 'kl. 12–16', fran: 12, till: 16 }]
+  };
+  var T_DAGAR = ['söndag', 'måndag', 'tisdag', 'onsdag', 'torsdag', 'fredag', 'lördag'];
+  var T_MAN = ['januari', 'februari', 'mars', 'april', 'maj', 'juni', 'juli', 'augusti', 'september', 'oktober', 'november', 'december'];
+  function tPlus(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  function tIso(d) { var m = d.getMonth() + 1, g = d.getDate(); return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (g < 10 ? '0' : '') + g; }
+  function tNr(d) { return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5; }
+  var tUpptaget = null, tGoogle = false, tHamtar = false;
+  function hamtaTider() {
+    if (tUpptaget || tHamtar) return;
+    tHamtar = true;
+    var idag = new Date();
+    fetch('/api/ledigt?from=' + tIso(tPlus(idag, 1)) + '&to=' + tIso(tPlus(idag, T.DAGAR_FRAM + 1)), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        tHamtar = false;
+        if (!data || !data.busy) return;
+        tGoogle = !!data.google;
+        tUpptaget = data.busy.map(function (b) { return [Date.parse(b.start), Date.parse(b.end)]; }).filter(function (b) { return b[0] < b[1]; });
+      })
+      .catch(function () { tHamtar = false; });
+  }
+  function arbetshelg(d) {
+    var start = T.ARBETSHELG_START, s = tNr(new Date(+start.slice(0, 4), +start.slice(5, 7) - 1, +start.slice(8, 10)));
+    var rest = ((tNr(d) - s) % T.ARBETSHELG_INTERVALL + T.ARBETSHELG_INTERVALL) % T.ARBETSHELG_INTERVALL;
+    return rest === 0 || rest === 1;
+  }
+  // Alla lediga tider från i morgon, i ordning: [{ dag: Date, pass: {...}, helg: bool }]
+  function ledigaTider() {
+    var ut = [], idag = new Date();
+    for (var i = 1; i <= T.DAGAR_FRAM; i++) {
+      var d = tPlus(idag, i), vd = d.getDay(), helg = vd === 0 || vd === 6;
+      if (vd === 5 || (helg && arbetshelg(d))) continue;
+      (helg ? T.HELG : T.VARDAG).forEach(function (p) {
+        var s = new Date(d.getFullYear(), d.getMonth(), d.getDate(), p.fran).getTime(), e = new Date(d.getFullYear(), d.getMonth(), d.getDate(), p.till).getTime();
+        if (!(tUpptaget || []).some(function (b) { return b[0] < e && b[1] > s; })) ut.push({ dag: d, pass: p, helg: helg, i: i });
+      });
+    }
+    return ut;
+  }
+  function tDagText(t) {
+    var namn = t.i === 1 ? 'i morgon (' + T_DAGAR[t.dag.getDay()] + ')' : T_DAGAR[t.dag.getDay()];
+    return namn + ' ' + t.dag.getDate() + ' ' + T_MAN[t.dag.getMonth()];
+  }
+
+  var TID_START = /när kan (du|ni)|lediga tider|ledig tid|nästa lediga|första lediga|vilka tider|vilken tid|när har (du|ni) tid|har (du|ni) tid|kan (du|ni) komma|boka (en )?tid|föreslå (en )?tid|rekommendera (en )?tid|när finns|när passar|hur snabbt kan|när är (du|ni) ledig|tider/;
+  var T_SKAMT = {
+    intro: ['Jag har kikat i Tommys kalender! 📅', 'Kalendern är skannad – mina sensorer har talat. 📅', 'Jag smög in i kalendern (med lov). 🕵️', 'BEEP BOOP, kalendern laddad! 📅'],
+    outro: ['Snabbast vinner – tiderna går åt. 😎', 'Säg vilken som passar när du bokar, så fixar Tommy resten. 🧽', 'Tider går åt fortare än smuts på ett fönster efter regn.', 'Boka, luta dig tillbaka och njut av utsikten snart. ✨']
+  };
+  // Önskemål ur texten: vardag/helg, förmiddag/eftermiddag, veckodag, nästa vecka
+  function tOnskan(s) {
+    var o = {};
+    if (/helg|lördag|söndag/.test(s)) o.helg = true;
+    if (/vardag/.test(s)) o.helg = false;
+    var utanImorgon = s.replace(/i ?morgon/g, ' ');
+    if (/morgon|förmiddag|tidigt| fm /.test(utanImorgon)) o.tid = 'fm';
+    if (/eftermiddag|lunch|mitt på dagen|em /.test(s)) o.tid = 'em';
+    T_DAGAR.forEach(function (d, i) { if (s.indexOf(d) >= 0) o.vd = i; });
+    if (/i ?morgon/.test(s)) o.imorgon = true;
+    if (/nästa vecka/.test(s)) o.nastaVecka = true;
+    if (/den här veckan|denna vecka|i veckan/.test(s)) o.dennaVecka = true;
+    return o;
+  }
+  function tidForslag(onskan, hoppa, prefix) {
+    var alla = ledigaTider(), idag = new Date(), vdIdag = (idag.getDay() + 6) % 7;
+    var lista = alla.filter(function (t) {
+      if (onskan.helg !== undefined && t.helg !== onskan.helg) return false;
+      if (onskan.vd !== undefined && t.dag.getDay() !== onskan.vd) return false;
+      if (onskan.imorgon && t.i !== 1) return false;
+      if (onskan.tid === 'fm' && t.pass.fran >= 10) return false;
+      if (onskan.tid === 'em' && t.pass.fran < 10) return false;
+      if (onskan.nastaVecka && (t.i <= 6 - vdIdag || t.i > 13 - vdIdag)) return false;
+      if (onskan.dennaVecka && t.i > 6 - vdIdag) return false;
+      return true;
+    });
+    // En tid per dag, så kunden får välja mellan olika dagar
+    var sedda = {}, unika = lista.filter(function (t) { var k = tIso(t.dag); if (sedda[k]) return false; sedda[k] = true; return true; });
+    var visa = unika.slice(hoppa, hoppa + 3);
+    minne.tid = { onskan: onskan, hoppa: hoppa + 3 };
+    var bokLank = ['Önska en tid i bokningen', minne.kalk && minne.kalk.bostad === 'lgh' ? '/boka#lagenhet' : minne.kalk && minne.kalk.bostad === 'villa' ? '/boka#fonster' : '/boka'];
+    if (!visa.length) {
+      if (hoppa) return { special: true, stilla: true, avsikt: 'tid', vantar: '', text: 'Det var alla lediga tider jag hittade med de önskemålen. Testa en annan dag, eller ring Tommy på ' + TEL_TEXT + '.', val: ['Första lediga tid', 'Bara vardag', 'Bara helg'], knapp: bokLank };
+      // Inget passar: säg varför och föreslå det som ligger närmast i stället
+      var imorgon = tPlus(idag, 1), varfor = onskan.imorgon && imorgon.getDay() === 5 ? 'I morgon är det fredag – då har Tommy stängt. 📅' : onskan.vd === 5 ? 'Fredagar har Tommy stängt. 📅' : 'Hmm, där är det fullt. 😅';
+      return tidForslag({}, 0, (prefix ? prefix + ' ' : '') + varfor + ' Men här är det närmaste jag har:');
+    }
+    var rader = visa.map(function (t) { return '• ' + tDagText(t) + ', ' + t.pass.namn + ' (' + t.pass.text + ')'; });
+    var text = (prefix ? prefix + DELA : '') + valjFran(T_SKAMT.intro) + ' ' + (hoppa ? 'Här är fler lediga tider:' : 'De här tiderna är lediga just nu:') + '\n\n' + rader.join('\n') + DELA +
+      'Den slutliga tiden bestämmer Tommy – han hör av sig och bekräftar. ' + valjFran(T_SKAMT.outro);
+    return { special: true, stilla: true, avsikt: 'tid', vantar: '', text: text, val: (unika.length > hoppa + 3 ? ['Visa fler tider'] : []).concat(['Bara vardag', 'Bara helg', 'Eftermiddag']), knapp: bokLank };
+  }
+  function tidHantera(tt) {
+    var s = ' ' + tt.trim() + ' ';
+    if (minne.tid) {
+      if (/visa fler|fler tider|andra tider|senare/.test(s)) return tidForslag(minne.tid.onskan, minne.tid.hoppa);
+      var o2 = tOnskan(s);
+      if (/första lediga|spelar ingen roll|när som helst|vilken som/.test(s)) return tidForslag({}, 0, 'Första bästa – smart! 🏃');
+      if (/bara vardag|^ vardag /.test(s)) return tidForslag({ helg: false }, 0, 'Vardag it is! 💼');
+      if (/bara helg|^ helg /.test(s)) return tidForslag({ helg: true }, 0, 'Helgputs – lyx! 🛋️');
+      if (Object.keys(o2).length && tt.trim().split(' ').length <= 4) {
+        var sam = Object.assign({}, minne.tid.onskan);
+        // Ny dag/vecka ersätter den förra (inte "i morgon" + "nästa vecka" samtidigt)
+        if (o2.vd !== undefined || o2.imorgon || o2.nastaVecka || o2.dennaVecka) ['vd', 'imorgon', 'nastaVecka', 'dennaVecka', 'helg'].forEach(function (x) { delete sam[x]; });
+        Object.assign(sam, o2);
+        return tidForslag(sam, 0);
+      }
+      minne.tid = null;
+    }
+    if (TID_START.test(s) && !/öppettider|ring|telefon/.test(s)) {
+      if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true;
+      hamtaTider();
+      return tidForslag(tOnskan(s), 0);
+    }
+    return null;
+  }
+
+  // Prisfråga med stavfel: "vad ksotar", "kotsar", "prsi", "kostnaden"
+  var PRIS_ORD = ['kostar', 'kosta', 'kostnad', 'kostnaden', 'pris', 'priset', 'priser'];
+  function prisStavfel(tt) {
+    return tt.trim().split(' ').some(function (w) {
+      if (w.length < 4) return false;
+      return PRIS_ORD.some(function (o) {
+        if (w === o) return true;
+        if (w.length === o.length && w.split('').sort().join('') === o.split('').sort().join('')) return true; // bokstäver i fel ordning
+        return o.length >= 5 && lev(w, o) <= 1;
+      });
+    });
+  }
+  // Körs innan vanliga svar: kalkylen tar svaret om den kan
+  function kalkHantera(tt) {
+    var k = minne.kalk;
+    if (k && k.steg !== 'klar') {
+      var svar = kalkSvar(tt);
+      if (svar) { k.miss = 0; k.paus = false; return svar; }
+      var ord = tt.trim().split(' ').length;
+      k.miss++;
+      // Kort konstigt svar = fråga igen med humor. Längre fråga = svara på den, kalkylen väntar.
+      var riktig = hitta(tt, 2);
+      if (!k.paus && ord <= 3 && k.miss < 3 && !(riktig && (riktig.q || riktig.allvar))) return kalkFraga(k, valjFran(K_SKAMT.miss));
+      if (k.miss >= 3) { minne.kalk = null; return null; }
+      k.paus = true;
+      return null;
+    }
+    if (k && k.steg === 'klar') { var s2 = kalkSvar(tt); if (s2) return s2; minne.kalk = null; }
+    if ((KALK_START.some(function (o) { return tt.indexOf(o) >= 0; }) || prisStavfel(tt)) && !KALK_INTE.test(tt)) return kalkStart(' ' + tt + ' ');
+    return null;
+  }
+
   // ---- Specialfall före vanlig matchning ----
   function specialSvar(t) {
     var tt = t.trim();
@@ -811,6 +1463,10 @@
     }
     if (minne.quiz) { var q = quizSvar(tt); if (q) return q; minne.quiz = null; }
     if (QUIZ_START.indexOf(tt) >= 0) return startaQuiz();
+    var hs = hjalpSvar(' ' + tt.trim() + ' '); if (hs) { if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true; return hs; }
+    var ps = personSvar(tt); if (ps) { if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true; return ps; }
+    var th = tidHantera(tt); if (th) return th;
+    var kh = kalkHantera(tt); if (kh) return kh;
     if (minne.vantarPa === 'fonstertyp' && /vet inte|osäker/.test(tt)) return startaDetektiv(tt);
     if (minne.detektiv) { var d = detektivSvar(tt); if (d) return d; minne.detektiv = null; }
     if (DETEKTIV_START.some(function (o) { return tt.indexOf(o) >= 0; })) return startaDetektiv(tt);
@@ -871,7 +1527,7 @@
     if (!f) f = specialSvar(t) || kontext(fraga) || hitta(fraga, niva);
     uppdateraResa(t, f, niva, kortTyp(t));
     skriver(function () {
-      var text, b, valen = f && f.val;
+      var fore = logg.childNodes.length, text, b, valen = f && f.val;
       if (f) {
         text = f.text || valjSvar(f);
         var fk = minne.fakta || {};
@@ -897,7 +1553,7 @@
         if (skamt) Object.keys(TEMAN).forEach(function (k) { if (TEMAN[k].ord.some(function (o) { return t.indexOf(o) >= 0; })) { minne.tema = k; minne.temaPris = false; } });
         if (f.q === 'Vad kostar det?' && minne.tema && !minne.temaPris) { text = TEMAN[minne.tema].pris + text + ' Hur många fönster gäller det?'; minne.temaPris = true; minne.fragaAntal = true; }
         // Säljradar + humör: köpintresse = hjälp först, inga skämt ovanpå
-        if (niva >= 3 && !/PERFEKT|SÅJA|YES/.test(text)) text = 'PERFEKT! Då hjälper jag dig vidare direkt. ' + text;
+        if (niva >= 3 && !f.kalk && !/PERFEKT|SÅJA|YES/.test(text)) text = 'PERFEKT! Då hjälper jag dig vidare direkt. ' + text;
         else if (skamt && niva < 2) text = humorPrefix(t) + text;
         if (skamt && niva < 2 && minne.lageKvar > 0) { text += LAGE_TILLAGG[minne.lage] || ''; minne.lageKvar--; }
         // Säljfras ibland – högst var tredje svar, max tre per samtal, aldrig efter nej
@@ -910,6 +1566,7 @@
         b = bubbla(text, 'jag');
         var knappen = f.knapp || (niva >= 3 ? ['Till bokningen', '/boka'] : null);
         if (knappen && (!minne.saljStopp || allvar || niva >= 2 || knappen[1].indexOf('kontakta') >= 0)) lank(b, knappen[0], knappen[1]);
+        if (f.knapp2) lank(b, f.knapp2[0], f.knapp2[1]);
         if (!valen && /villa, lägenhet|villa eller lägenhet/i.test(text)) valen = ['Villa', 'Lägenhet', 'Företag', 'Solcellstvätt'];
         // Naturligt avslut ibland efter hjälpsamma svar, när kunden utforskar eller överväger
         if (!valen && !f.knapp && allvar && (minne.resa === 'utforskar' || minne.resa === 'overvager') && !minne.saljStopp && !minne.avslutat && minne.historik.length >= 3 && text.indexOf('?') < 0) { text += ' ' + valjFran(AVSLUT); minne.avslutat = true; b.textContent = text; }
@@ -919,12 +1576,18 @@
         // Seriös fråga utan svar = saklig hänvisning. Småprat = roligt svar + be om förtydligande.
         if (arSaklig(fraga) || niva >= 2) { text = VET_INTE; lank(bubbla(text, 'jag'), 'Till kontaktformuläret', '/kontakta-mig#formular'); minne.senasteAvsikt = 'okand-saklig'; }
         else {
-          text = valjFran(POOLER.reserv);
-          if (text.indexOf('?') < 0) text += ' ' + valjFran(['Kan du säga det på ett annat sätt?', 'Vad menade du?', 'Testa att fråga om fönster, priser eller bokning!', 'Förklara gärna lite mer!']);
-          bubbla(text, 'jag'); minne.senasteAvsikt = 'okand';
+          minne.forvirrad = (minne.forvirrad || 0) + 1;
+          if (minne.forvirrad >= 2) text = 'Förlåt, jag förstår inte riktigt vad du menar. 🙈' + DELA + 'Jag är bara en enkel digital hjälpreda – det blir lättast om du trycker på en knapp här under. Eller ring Tommy på ' + TEL_TEXT + ', så hjälper han dig direkt.';
+          // Vänligt och tydligt – inga "404"-skämt som kan förvirra (Tommy 2026-11-19: äldre kunder)
+          else text = valjFran(['Hmm, det där förstod jag inte riktigt. 🤔 Kan du säga det på ett annat sätt?', 'Oj, där hängde jag inte med. 😅 Kan du skriva det lite annorlunda?', 'Det där kan jag tyvärr inte svara på. 🙈 Vad vill du veta om fönsterputsen?']) + DELA + 'Du kan också trycka på en knapp här under.';
+          bubbla(text, 'jag'); visaVal(MENY); minne.senasteAvsikt = 'okand';
         }
         senaste = text;
       }
+      if (f) minne.forvirrad = 0;
+      // Kunden frågade något annat mitt i prisräkningen: erbjud att fortsätta
+      if (minne.kalk && minne.kalk.paus && !(f && (f.kalk || f.val))) visaVal(['Fortsätt prisräkningen']);
+      delaUpp(fore); // flera korta bubblor i stället för en lång
       // Vad väntar boten på nu?
       if (minne.fragaAntal) { minne.vantarPa = 'antal'; minne.fragaAntal = false; }
       else if (f && f.vantar !== undefined) minne.vantarPa = f.vantar;
@@ -934,18 +1597,19 @@
       minne.sedanSalj++;
       if (minne.saljPaus) minne.saljPaus--;
       minne.historik.push(minne.senasteAvsikt); if (minne.historik.length > 10) minne.historik.shift();
-      if (!(f && f.forklara)) forraSvar = text;
+      if (!(f && f.forklara)) forraSvar = String(text).split(DELA).join(' ');
       logg.scrollTop += duB.getBoundingClientRect().top - logg.getBoundingClientRect().top - 12;
       // Statistik utan kundens text (integritet): bara vilken sorts svar och köpintresse
       if (window.gtag) window.gtag('event', 'chatt_fraga', { svar: f ? (f.q || f.avsikt || (f.ord && f.ord[0]) || 'svar') : minne.senasteAvsikt, kopintresse: niva });
-    });
+    }, f && f.text ? langdTid(String(f.text).split(DELA)[0]) : 900);
   }
   function oppna(ja) {
     panel.hidden = !ja;
     knapp.setAttribute('aria-expanded', ja ? 'true' : 'false');
     knapp.innerHTML = ja ? ikonKryss : ikonChatt;
     knapp.setAttribute('aria-label', ja ? 'Stäng chatten' : 'Chatta med Forsbergs digitala assistent');
-    if (ja && !logg.childNodes.length) skriver(function () { bubbla(HALSNING, 'jag'); });
+    if (ja) hamtaTider(); // lediga tider laddas i förväg
+    if (ja && !logg.childNodes.length) skriver(function () { var fore = logg.childNodes.length; bubbla(halsning(), 'jag'); visaVal(MENY); delaUpp(fore); });
   }
 
   knapp.addEventListener('click', function () { oppna(panel.hidden); });
@@ -953,7 +1617,7 @@
   flik.addEventListener('click', function () { visaFlik(valLista.hidden); });
   valLista.addEventListener('click', function (e) {
     var c = e.target.closest('[data-fc]');
-    if (c) { var f = FRAGOR[Number(c.getAttribute('data-fc'))]; svara(f.q, f); }
+    if (c) { var f = FRAGOR[Number(c.getAttribute('data-fc'))]; if (f.q === 'Vad kostar det?') svara(f.q); else svara(f.q, f); } // pris = kalkylatorn i chatten
   });
   panel.querySelector('.fc-skriv-rad').addEventListener('submit', function (e) {
     e.preventDefault();
