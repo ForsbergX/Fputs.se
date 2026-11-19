@@ -14,7 +14,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preload" as="image" href="images/hero-bil-svart.jpg" />
+  <link rel="preload" as="image" href="images/hero-bil-loop-poster.jpg" media="(max-width: 899px)" />
   <title>Forsbergs Fönsterputs Jönköping – fast pris efter RUT</title>
   <link rel="canonical" href="https://fputs.se/" />
   <link rel="icon" href="favicon.ico?v=4" sizes="any" />
@@ -1617,11 +1617,11 @@
 <div class="page-wrap">
 <div class="nav-overlay" id="navOverlay"></div>
 <section class="ns-hero" id="hero">
-  <img class="ns-hero-bild hero-photo hero-loop" src="images/hero-villa-sjo.webp" alt="Vit villa med stora fönster och utsikt över Vättern" width="1672" height="941" fetchpriority="high" />
+  <picture><source media="(max-width: 899px)" srcset="images/hero-bil-loop-poster.jpg" /><img class="ns-hero-bild hero-photo hero-loop" src="images/hero-villa-sjo.webp" alt="Vit villa med stora fönster och utsikt över Vättern" width="1672" height="941" fetchpriority="high" /></picture>
   <!-- TEST (Tommy 2026-11-19): Tommys cinematic bilvideo som hero. Villabilden ovan ligger kvar under som reserv. -->
   <!-- Bara mobil: Tommys bilvideo. På dator syns villabilden ovan och videon laddas aldrig ner. -->
-  <video class="ns-hero-bild hero-video-bil" data-src="images/hero-bil-loop.mp4?v=2" data-poster="images/hero-bil-loop-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
-  <script>(function () { var v = document.currentScript.previousElementSibling; if (!window.matchMedia('(max-width: 899px)').matches) { v.remove(); return; } v.poster = v.getAttribute('data-poster'); v.muted = true; v.defaultMuted = true; v.playsInline = true; v.setAttribute('webkit-playsinline', ''); v.addEventListener('error', function () { v.remove(); }, true); v.src = v.getAttribute('data-src'); v.preload = 'auto'; v.autoplay = true; var spela = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); }; spela(); v.addEventListener('loadeddata', spela); document.addEventListener('touchstart', spela, { once: true, passive: true }); })();</script>
+  <video class="ns-hero-bild hero-video-bil" data-src="images/hero-bil-loop.mp4?v=3" data-poster="images/hero-bil-loop-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <script>(function () { var v = document.currentScript.previousElementSibling; if (!window.matchMedia('(max-width: 899px)').matches) { v.remove(); return; } v.poster = v.getAttribute('data-poster'); v.muted = true; v.defaultMuted = true; v.playsInline = true; v.setAttribute('webkit-playsinline', ''); v.addEventListener('error', function () { v.remove(); }, true); v.src = v.getAttribute('data-src'); v.preload = 'auto'; var startad = false; var spela = function () { startad = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); }; v.addEventListener('canplaythrough', spela, { once: true }); setTimeout(function () { if (!startad) spela(); }, 2500); v.load(); document.addEventListener('touchstart', spela, { once: true, passive: true }); })();</script>
   <div class="ns-hero-text">
     <h1 class="h1-namn osynlig-rubrik"><span>Forsbergs Fönsterputs</span> <span>Jönköping</span></h1>
     <div class="ns-hero-knappar">
@@ -1655,21 +1655,29 @@
       <a class="ns-knapp ns-knapp-rod sm-knapp" href="/boka" data-offert-val>Få offert av mig →</a>
     </div>
     <figure class="sm-video-wrap">
-      <video class="ns-sm-video" id="smVideo" src="images/sm-2026.mp4" poster="images/sm-2026-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Tommy Forsberg tävlar i SM i fönsterputs 2026"></video>
+      <video class="ns-sm-video" id="smVideo" src="images/sm-2026.mp4" poster="images/sm-2026-poster.jpg" muted loop playsinline preload="none" aria-label="Tommy Forsberg tävlar i SM i fönsterputs 2026"></video>
       <figcaption class="sm-skylt"><span class="sm-prick"></span><span>Tommy Forsberg · SM i fönsterputs 2026<small>Kistamässan, Stockholm</small></span></figcaption>
     </figure>
   </div>
 </section>
 <script>
-  // SM-videon: ladda direkt och starta så fort den närmar sig skärmen
+  // SM-videon: laddas efter hero-videon och startar så fort den närmar sig skärmen
   (function () {
     var v = document.getElementById("smVideo");
     if (!v) return;
     v.muted = true;
     function spela() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (e) { e.forEach(function (x) { if (x.isIntersecting) spela(); }); }, { rootMargin: "400px 0px" }).observe(v);
-    } else { spela(); }
+    function starta() {
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (e) { e.forEach(function (x) { if (x.isIntersecting) spela(); }); }, { rootMargin: "400px 0px" }).observe(v);
+      } else { spela(); }
+    }
+    // Mobil: låt hero-bilvideon få all bandbredd först, så den flyter direkt
+    var hero = document.querySelector(".hero-video-bil");
+    if (hero) {
+      var klar = false; var kor = function () { if (!klar) { klar = true; starta(); } };
+      hero.addEventListener("playing", kor, { once: true }); setTimeout(kor, 3000);
+    } else { starta(); }
   })();
 </script>
 
