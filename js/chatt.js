@@ -563,7 +563,7 @@
   // "ksotar" -> kostar, "lägnhet" -> lägenhet, "boak" -> boka, "panorma" -> panorama.
   // Bokstäver i fel ordning, en saknad/extra/fel bokstav (två i långa ord). Vid oklart läge rättas inget.
   var VANLIGA_ORD = ['inte', 'eller', 'vill', 'mycket', 'många', 'kommer', 'göra', 'bara', 'också', 'finns', 'behöver', 'skulle', 'måste', 'detta', 'denna', 'dessa', 'vara', 'blir', 'bli', 'hade', 'hela', 'helt', 'bra', 'tack', 'själv', 'själva', 'någon', 'något', 'några', 'alla', 'allt', 'mina', 'dina', 'era', 'våra', 'från', 'efter', 'innan', 'under', 'över', 'mellan', 'sedan', 'idag', 'imorgon', 'vecka', 'veckan', 'dagen', 'tycker', 'tror', 'kanske', 'hej', 'hejsan', 'tjena', 'okej', 'gärna', 'snälla', 'hjälp', 'fråga', 'frågor', 'svar', 'svara', 'stort', 'stora', 'liten', 'litet', 'små', 'ungefär', 'exakt', 'ditt', 'mitt', 'sitt', 'samma', 'annan', 'annat', 'andra', 'första', 'sista', 'nästa', 'gång', 'gånger', 'varje', 'per', 'eftersom', 'därför', 'varför', 'vilken', 'vilket', 'vilka', 'hemma', 'huset', 'kunna', 'kunde', 'skriv', 'skriva', 'vet', 'veta', 'visa', 'kolla', 'titta', 'ser', 'se', 'räkna', 'räknar', 'klar', 'klart', 'fortsätt', 'avbryt', 'börja', 'sluta', 'stopp', 'lägg', 'till', 'mer', 'fler', 'inga', 'inget', 'ingen', 'noll', 'två', 'tre', 'fyra', 'fem', 'sex', 'sju', 'åtta', 'nio', 'tio', 'elva', 'tolv', 'tjugo', 'stycken'];
-  var KALK_ORD = ['villa', 'radhus', 'parhus', 'kedjehus', 'lägenhet', 'bostadsrätt', 'hyresrätt', 'fastighet', 'företag', 'kontor', 'butik', 'lokal', 'solcell', 'solceller', 'solcellstvätt', 'solpanel', 'solpaneler', 'fönster', 'fönstren', 'fönstret', 'fönstertyp', 'spröjs', 'panorama', 'panoramafönster', 'överliggande', 'underliggande', 'balkong', 'balkongen', 'altan', 'altanräcke', 'glasräcke', 'räcke', 'inglasad', 'uterum', 'uterummet', 'växthus', 'växthuset', 'takglas', 'trianglar', 'golv', 'sidor', 'rutor', 'bågar', 'båge', 'enluft', 'tvåluft', 'karmtvätt', 'karmar', 'stege', 'utåt', 'öppna', 'öppnas', 'specialfönster', 'kostar', 'kosta', 'kostnad', 'kostnaden', 'pris', 'priset', 'priser', 'prisförslag', 'offert', 'boka', 'bokar', 'bokning', 'bokningen', 'fönsterputs', 'fönsterputsning', 'putsa', 'putsning', 'rut-avdrag', 'rutavdrag', 'inställelseavgift', 'kalkyl', 'uppskatta', 'ungefärligt', 'lägenheten', 'villan', 'etta', 'tvåa', 'trea', 'femma', 'försäkring', 'försäkrad', 'avboka', 'avbokning', 'omboka', 'garanti', 'faktura', 'betala', 'betalning', 'reklamation', 'parkering', 'ansvarsförsäkring', 'abonnemang', 'regelbundet', 'smutsig', 'smutsiga', 'ränder', 'tommy', 'forsbergs'];
+  var KALK_ORD = ['villa', 'radhus', 'parhus', 'kedjehus', 'lägenhet', 'bostadsrätt', 'hyresrätt', 'fastighet', 'företag', 'kontor', 'butik', 'lokal', 'solcell', 'solceller', 'solcellstvätt', 'solpanel', 'solpaneler', 'fönster', 'fönstren', 'fönstret', 'fönstertyp', 'spröjs', 'panorama', 'panoramafönster', 'överliggande', 'underliggande', 'balkong', 'balkongen', 'altan', 'altanräcke', 'glasräcke', 'räcke', 'inglasad', 'uterum', 'uterummet', 'växthus', 'växthuset', 'takglas', 'trianglar', 'golv', 'sidor', 'rutor', 'bågar', 'båge', 'enluft', 'tvåluft', 'karmtvätt', 'karmar', 'stege', 'utåt', 'öppna', 'öppnas', 'specialfönster', 'kostar', 'kosta', 'kostnad', 'kostnaden', 'pris', 'priset', 'priser', 'prisförslag', 'offert', 'boka', 'bokar', 'bokning', 'bokningen', 'fönsterputs', 'fönsterputsning', 'putsa', 'putsning', 'rut-avdrag', 'rutavdrag', 'inställelseavgift', 'kalkyl', 'uppskatta', 'ungefärligt', 'lägenheten', 'villan', 'etta', 'tvåa', 'trea', 'femma', 'försäkring', 'försäkrad', 'avboka', 'avbokning', 'omboka', 'garanti', 'faktura', 'betala', 'betalning', 'reklamation', 'parkering', 'ansvarsförsäkring', 'abonnemang', 'regelbundet', 'smutsig', 'smutsiga', 'ränder', 'tommy', 'forsbergs', 'renvatten', 'renvattensystem', 'kemikalier', 'miljövänligt', 'teleskopstång', 'garanti', 'recensioner', 'recension', 'betyg', 'ångerrätt', 'erfarenhet', 'bakgrund', 'personal', 'anställda', 'fläckar', 'fönsterskrapa', 'skrapa', 'metod', 'teknik', 'utrustning', 'kvitto', 'momsregistrerad', 'våningar', 'våningen', 'husdjur', 'allergi', 'försäkrad', 'nöjd', 'missnöjd'];
   var vokab = null, rattCache = {}, viktigt = {};
   function byggVokab() {
     var v = {};
@@ -964,6 +964,55 @@
     })(0);
   }
 
+  // ================= Kunskap från hemsidan (Tommy 2026-11-19) =================
+  // Svaren kommer från sidorna "Hur jag jobbar" och "Om mig" – boten hittar inte på något eget.
+  // Ändras texten på sajten bör den ändras här också. Ordningen spelar roll: första träffen vinner.
+  // EJ inlagt än (motsäger bokningen, väntar på Tommy): "alltid fyra sidor och karmar", "fast pris samma dag".
+  var HUR = ['Läs mer om hur jag jobbar', '/hur-jag-jobbar'], OM = ['Läs mer om Tommy', '/om-oss'];
+  var KUNSKAP = [
+    { id: 'garanti', allvar: true, ord: /inte nöjd|missnöjd|garanti|blev inte bra|blev dåligt|inte rent|smutsigt efteråt|ränder kvar|reklamera|reklamation/,
+      a: 'Det ska du absolut inte behöva vara. Tommy har nöjd kund-garanti.' + '§§' + 'Är du inte helt nöjd kommer han tillbaka och åtgärdar det kostnadsfritt – helt enkelt tills du är nöjd. Hör av dig till honom, så löser ni det.',
+      knapp: ['Ring ' + '079-346 39 64', 'tel:+46793463964'], knapp2: ['Skriv till Tommy', '/kontakta-mig#formular'] },
+    { id: 'forsakring', allvar: true, ord: /försäkr|ansvarsförsäkring|går sönder|om något händer|om han skadar|skada på|trygg-hansa|trygghansa/,
+      a: 'Ja, du kan känna dig trygg. Tommy är försäkrad hos Trygg-Hansa med ansvarsförsäkring.' + '§§' + 'Den täcker skador han skulle orsaka på din egendom i samband med arbetet.', knapp: OM },
+    { id: 'renvatten', ord: /renvatten|rent vatten|filtrerat vatten|filtrerar|teleskop|stång|vattenstång/,
+      a: 'Bra fråga! Vanligt kranvatten innehåller kalk och mineraler – det är de som lämnar fläckar när rutan torkar.' + '§§' + 'I renvattensystemet filtreras vattnet tills det är helt rent. Det löser upp smutsen, sköljer bort den och torkar utan märken. Ramar och karmar blir rena på köpet.' + '§§' + 'Och det är helt utan kemikalier. 💧', val: ['Hur högt når du?', 'Vad kostar det?'], knapp: HUR },
+    { id: 'hojd', ord: /hur högt|höga fönster|högt upp|andra våningen|tredje våningen|övervåning|våningar|stege|når (du|ni|han)|takfönster|svåra att nå/,
+      a: 'Inga problem! För höga fönster använder Tommy renvattensystem med teleskopstång.' + '§§' + 'Den når upp till 13 meter – ungefär 4 våningar – och han står tryggt på marken hela tiden. Ingen stege mot din fasad.', val: ['Vad är renvatten?', 'Vad kostar det?'], knapp: HUR },
+    { id: 'kemikalier', ord: /kemikal|miljövänlig|giftig|allergi|(hund|katt|husdjur|barn|växter|blommor).{0,25}(säker|farlig|tål|skadl|okej)|(säker|farlig|skadl).{0,25}(hund|katt|husdjur|barn|växter|blommor)/,
+      a: 'Renvattensystemet använder inga kemikalier alls – bara rent vatten.' + '§§' + 'Det är skonsamt för både växter och djur. 🌿', val: ['Vad är renvatten?', 'Vad kostar det?'], knapp: HUR },
+    { id: 'metod', ord: /vilken metod|hur putsar (du|ni|han)|teknik|vilken utrustning|vad använder (du|ni|han)|skrapa|fönsterskrapa|hur gör (du|ni|han) rent/,
+      a: 'Tommy kombinerar två metoder och väljer alltid det som ger bäst resultat för just dina fönster:' + '§§' + '• Renvattensystem för höga och svåra fönster – ingen stege, inga kemikalier.\n• Klassisk skrapteknik för vanliga rutor – precision och randfritt resultat.', val: ['Vad är renvatten?', 'Vad kostar det?'], knapp: HUR },
+    { id: 'ranter', ord: /ränder|randigt|randfritt|fläckar|märken på|strimmor/,
+      a: 'Nej, det är hela poängen! 😊 Renvattnet torkar fläckfritt, och skrapan ger ett randfritt resultat.' + '§§' + 'Och skulle du ändå inte bli nöjd kommer Tommy tillbaka kostnadsfritt.', knapp: HUR },
+    { id: 'vemkommer', ord: /vem kommer|anställda|personal|skickar (du|ni) någon|kommer (du|tommy) själv|underleverantör|främling|okänd person/,
+      a: 'Det är alltid Tommy själv som kommer. 👋' + '§§' + 'Ingen anonym personal – du vet vem som är hemma hos dig, från bokning till färdigt jobb.', val: ['Vem är Tommy?', 'Vad kostar det?'], knapp: OM },
+    { id: 'fastpris', ord: /blir det dyrare|tar längre tid|dolda avgifter|extra kostnad|kostar det extra|tillkommer|överraskning|fast pris|minusgrader/,
+      a: 'Priset ni kommer överens om är det du betalar – även om jobbet tar längre tid, och oavsett väder eller minusgrader.' + '§§' + 'Inga dolda avgifter. Det enda som läggs till är inställelseavgiften på 30 kr, och den syns redan när du räknar ut priset. Alla priser är inklusive moms.', val: ['Vad kostar det?'] },
+    { id: 'fskatt', ord: /f-skatt|fskatt|f skatt|faktura|moms|kvitto|registrerat företag|seriös|oseriös|svart/,
+      a: 'Allt är ordnat och korrekt. ✅' + '§§' + 'Tommy är godkänd för F-skatt och momsregistrerad, så du får alltid en riktig faktura. Alla priser är inklusive moms, och RUT-avdraget dras direkt – Tommy sköter allt med Skatteverket.', knapp: OM },
+    { id: 'anger', ord: /ångerrätt|ångra (mig|bokningen)|ångrar mig|ändra mig|14 dagar/,
+      a: 'Bokar du på distans har du enligt lag 14 dagars ångerrätt.' + '§§' + 'Allt står i de allmänna villkoren. Vill du ändra eller avboka en tid kan du också bara ringa Tommy.', knapp: ['Allmänna villkor', '/allmanna-villkor'] },
+    { id: 'vemartommy', ord: /vem är tommy|vem är du|vem är ägaren|bakgrund|erfarenhet|hur länge har|var har (du|han) jobbat|utbildad|kan (du|han) det här|proffs|jimmy/,
+      a: 'Tommy Forsberg driver Forsbergs Fönsterputs. Han började i Stockholm och jobbade där i nästan fem år – med allt från lägenheter och villor till exklusiva fastigheter och stora glaspartier.' + '§§' + 'Hans mentor var Jimmy Ström, flerfaldig medaljör i SM och VM i fönsterputs. Nu bygger Tommy upp företaget i Jönköping, och 2026 tävlade han i SM i fönsterputs på Kistamässan. 🏆', val: ['Vad kostar det?', 'Lediga tider'], knapp: OM },
+    { id: 'recensioner', ord: /recension|omdöme|betyg|vad tycker kunder|andra kunder|google-betyg|stjärnor|rekommender/,
+      a: '5,0 på Google, med 51 recensioner – alla med högsta betyg. ⭐⭐⭐⭐⭐', knapp: ['Läs recensionerna', '/recensioner'] },
+    { id: 'bilder', ord: /skicka (en )?bild|skicka foto|ta (en )?bild|bilder på|fotografera|mms/,
+      a: 'Absolut! Skicka bilder på fönstren, din adress och lite om bostaden till Tommy – så räknar han ut ett pris och ringer upp dig.' + '§§' + 'Vill du hellre räkna själv går det fint här med mig också. 🧮', knapp: ['Skicka SMS till Tommy', 'sms:+46793463964'], val: ['Vad kostar det?'] }
+  ];
+  function kunskapSvar(s) {
+    for (var i = 0; i < KUNSKAP.length; i++) {
+      var k = KUNSKAP[i];
+      if (!k.ord.test(s)) continue;
+      // "Recensioner" stämmer bara om det inte är en prisfråga – annars får kalkylatorn ta den
+      if (k.id === 'fastpris' && /vad kostar|räkna/.test(s)) continue;
+      var val = (k.val || []).slice();
+      if (minne.kalk && minne.kalk.steg !== 'klar') { minne.kalk.paus = true; val = ['Fortsätt prisräkningen'].concat(val.filter(function (v) { return v !== 'Vad kostar det?'; })); }
+      return { special: true, stilla: true, allvar: !!k.allvar, avsikt: 'fakta-' + k.id, vantar: '', text: k.a.split('§§').join(DELA), val: val.length ? val : null, knapp: k.knapp, knapp2: k.knapp2 };
+    }
+    return null;
+  }
+
   // ================= Priskalkylatorn i chatten (Tommy 2026-11-19) =================
   // Samma priser och samma uträkning som bokningen (js/boka-ny.js, TIDER.md).
   // ÄNDRAS PRISERNA DÄR MÅSTE DE ÄNDRAS HÄR OCKSÅ. Boten hittar aldrig på egna priser.
@@ -1286,7 +1335,7 @@
       case 'special':
         if (/utåt/.test(s)) { k.utat = true; return kalkFraga(k, 'Utåtgående – de luriga! Då räknar jag alla sidor. 🧠'); }
         if (/går inte|fasta|fast /.test(s)) { k.fasta = true; return kalkFraga(k, 'Noterat! Det påverkar inte kalkylen, men Tommy vill gärna veta.'); }
-        if (/svår|stege|högt|höga| nå /.test(s)) { k.hoga = true; return kalkFraga(k, 'Stegen åker fram! 🪜 Lite extra tid läggs på.'); }
+        if (/svår|stege|högt|höga| nå /.test(s)) { k.hoga = true; return kalkFraga(k, 'Inga problem – där tar Tommy fram teleskopstången. Lite extra tid läggs på.'); }
         if (/ nej | nä | inga | inget | vanliga | det var allt | klar /.test(s)) { k.steg = 'karm'; return kalkFraga(k); }
         return null;
       case 'karm':
@@ -1444,7 +1493,7 @@
       k.miss++;
       // Kort konstigt svar = fråga igen med humor. Längre fråga = svara på den, kalkylen väntar.
       var riktig = hitta(tt, 2);
-      if (!k.paus && ord <= 3 && k.miss < 3 && !(riktig && (riktig.q || riktig.allvar))) return kalkFraga(k, valjFran(K_SKAMT.miss));
+      if (!k.paus && ord <= 3 && k.miss < 3 && !(riktig && (riktig.q || riktig.allvar)) && !KUNSKAP.some(function (x) { return x.ord.test(' ' + tt.trim() + ' '); })) return kalkFraga(k, valjFran(K_SKAMT.miss));
       if (k.miss >= 3) { minne.kalk = null; return null; }
       k.paus = true;
       return null;
@@ -1467,6 +1516,7 @@
     var ps = personSvar(tt); if (ps) { if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true; return ps; }
     var th = tidHantera(tt); if (th) return th;
     var kh = kalkHantera(tt); if (kh) return kh;
+    var ks = kunskapSvar(' ' + tt.trim() + ' '); if (ks) return ks;
     if (minne.vantarPa === 'fonstertyp' && /vet inte|osäker/.test(tt)) return startaDetektiv(tt);
     if (minne.detektiv) { var d = detektivSvar(tt); if (d) return d; minne.detektiv = null; }
     if (DETEKTIV_START.some(function (o) { return tt.indexOf(o) >= 0; })) return startaDetektiv(tt);
