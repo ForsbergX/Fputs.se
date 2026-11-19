@@ -1496,7 +1496,7 @@
     .h1-namn { width: fit-content; max-width: 100%; }
     .h1-namn span + span { font-weight: 600; opacity: .92; text-align: center; }
     .ns-hero h1.h1-namn { text-shadow: 0 2px 16px rgba(0,0,0,0.45); }
-    @media (max-width: 759px) { section#hero.ns-hero { padding-top: 104px; align-items: flex-start; min-height: 640px; } section#hero .ns-hero-knappar { margin-top: 206px; display: flex; justify-content: center; } section#hero .ns-hero-knappar .ns-knapp-rod { min-width: 240px; min-height: 64px; font-size: 19px; } /* samma höjd och knapplägen som när Tommy-texten fanns (2026-11-18) */ }
+    @media (max-width: 759px) { section#hero.ns-hero { padding-top: 104px; padding-bottom: calc(22px + env(safe-area-inset-bottom)); padding-left: 14px; align-items: flex-end; min-height: min(640px, 100svh); } section#hero .ns-hero-knappar { margin-top: 0; display: flex; justify-content: flex-start; } section#hero .ns-hero-knappar .ns-knapp-rod { min-width: 0; height: 56px; min-height: 56px; padding: 0 30px; font-size: 18px; } /* knappen nere till vänster, i linje med chattknappen (Tommy 2026-11-19) */ }
     /* Dator: text till vänster, Google-kortet till höger */
     @media (min-width: 1100px) {
       section#hero .ns-hero-text { display: block; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 8px; } /* en kolumn, i linje med menyn (Google-kortet flyttat 2026-11-18) */
@@ -1571,6 +1571,8 @@
     .gk-cta svg { width: 17px; height: 17px; transition: transform .2s; }
     .gk:hover .gk-cta svg { transform: translateX(3px); }
     @media (max-width: 360px) { .gk-kunder i:nth-child(n+3):not(:last-child) { display: none; } }
+    /* Namnet borttaget ur heron (Tommy 2026-11-19) – finns kvar för Google, osynligt för besökare */
+    html body h1.osynlig-rubrik { position: absolute !important; width: 1px !important; height: 1px !important; margin: -1px !important; padding: 0 !important; overflow: hidden !important; clip: rect(0 0 0 0) !important; white-space: nowrap !important; border: 0 !important; }
   </style>
   <style>#nl-badge-frame{display:none !important;}</style>
   <link rel="stylesheet" href="css/sidfot.css" />
@@ -1595,9 +1597,9 @@
   </style>
 <link rel="stylesheet" href="css/tema.css" />
 <link rel="stylesheet" href="css/ny-start.css?v=20261114" />
-<link rel="stylesheet" href="css/glas-tema.css?v=20261118d" />
+<link rel="stylesheet" href="css/glas-tema.css?v=20261119d" />
 <link rel="stylesheet" href="css/recensioner.css" />
-<link rel="stylesheet" href="/css/chatt.css?v=10" />
+<link rel="stylesheet" href="/css/chatt.css?v=11" />
 </head>
 <body>
 <!-- NAV -->
@@ -1617,7 +1619,7 @@
 <section class="ns-hero" id="hero">
   <img class="ns-hero-bild hero-photo hero-loop" src="images/hero-villa-sjo.webp" alt="Vit villa med stora fönster och utsikt över Vättern" width="1672" height="941" fetchpriority="high" />
   <div class="ns-hero-text">
-    <h1 class="h1-namn"><span>Forsbergs Fönsterputs</span> <span>Jönköping</span></h1>
+    <h1 class="h1-namn osynlig-rubrik"><span>Forsbergs Fönsterputs</span> <span>Jönköping</span></h1>
     <div class="ns-hero-knappar">
       <a class="ns-knapp ns-knapp-rod" href="/boka" data-offert-val>Få offert <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
@@ -1638,7 +1640,6 @@
         </span>
         <span class="gk-cta">Se min profil på Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <span class="sm-kicker">Det är jag i videon</span>
       <h2 class="ns-rubrik">SM i fönsterputs 2026</h2>
       <p class="sm-p">Jag heter <strong>Tommy Forsberg</strong> och driver Forsbergs Fönsterputs Jönköping. I videon tävlar jag i SM i fönsterputs 2026 – mot några av Sveriges snabbaste fönsterputsare.</p>
       <p class="sm-p">Hemma hos dig är det ingen tävling – där är det hantverk. Jag tar det lugnt och noggrant, fönster för fönster, tills allt är randfritt. Fast pris och inga överraskningar.</p>
@@ -1667,6 +1668,26 @@
     } else { spela(); }
   })();
 </script>
+
+<!-- Tjänsterna direkt efter SM-videon (Tommy 2026-11-19) -->
+<!-- Fyra bra saker precis innan tjänsterna (Tommy 2026-11-19) -->
+<section class="ns-sektion" id="fyra-bra">
+  <div class="ns-inner">
+    <ul class="bockrad"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Alltid jag, Tommy, som kommer</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Fast pris, inga dolda avgifter</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Försäkrad hos Trygg-Hansa</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Nöjd kund-garanti</li></ul>
+  </div>
+</section>
+<section class="ns-sektion" id="tjanster">
+  <div class="ns-inner">
+    <h2 class="ns-rubrik">Mina tjänster</h2>
+    <!-- Samma bildkort som i bokningen (Tommy 2026-11-19) -->
+    <div class="ns-tjanster-lista">
+      <a class="ns-kort tj-kort" href="/boka#fonster"><img src="images/val-villa.jpg" alt="" width="120" height="120" loading="lazy" /><span class="tj-text"><h3>Villa &amp; radhus</h3><small>Fast pris direkt – boka här</small></span><i class="tj-pil" aria-hidden="true"></i></a>
+      <a class="ns-kort tj-kort" href="/boka#lagenhet"><img src="images/val-lagenhet-hus.webp" alt="" width="120" height="120" loading="lazy" /><span class="tj-text"><h3>Lägenhet</h3><small>Fast pris direkt – boka här</small></span><i class="tj-pil" aria-hidden="true"></i></a>
+      <a class="ns-kort tj-kort" href="/foretag"><img src="images/val-foretag-lokal.webp" alt="" width="120" height="120" loading="lazy" /><span class="tj-text"><h3>Företag</h3><small>Kontor, butik och lokaler</small></span><i class="tj-pil" aria-hidden="true"></i></a>
+      <a class="ns-kort tj-kort ns-kort-sol" href="/kontakta-mig?typ=Solcellstv%C3%A4tt#formular"><img src="images/val-solceller.jpg" alt="" width="120" height="120" loading="lazy" /><span class="tj-text"><h3>Solcellstvätt</h3><small>Rena paneler med renvatten</small></span><i class="tj-pil" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
 
 <section class="rk-topp-block" aria-label="Vad kunderna säger"></section>
 
@@ -1699,38 +1720,7 @@
 </section>
 
 
-<section class="ns-sektion" id="tjanster">
-  <div class="ns-inner">
-    <h2 class="ns-rubrik">Mina tjänster</h2>
-    <div class="ns-tjanster-lista">
-      <a class="ns-kort" href="/boka">
-        <span class="ns-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span>
-        <h3>Villa &amp; radhus</h3>
-        <p>Insida, utsida och mellan glasen. Du får ett fast pris innan jag börjar.</p>
-        <p class="ns-kort-hemma">✓ Du behöver inte vara hemma</p>
-        <span class="ns-kort-lank">Få offert →</span>
-      </a>
-      <a class="ns-kort" href="/kontakta-mig?typ=L%C3%A4genhet#formular">
-        <span class="ns-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg></span>
-        <h3>Lägenhet</h3>
-        <p>Fönster och balkongdörr, in och ut. Snabbt och smidigt.</p>
-        <span class="ns-kort-lank">Få offert →</span>
-      </a>
-      <a class="ns-kort" href="/foretag">
-        <span class="ns-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></span>
-        <h3>Företag</h3>
-        <p>Skyltfönster, kontor och lokaler. Fast pris och tider som passar er verksamhet.</p>
-        <span class="ns-kort-lank">Få offert →</span>
-      </a>
-      <a class="ns-kort ns-kort-sol" href="/kontakta-mig?typ=Solcellstv%C3%A4tt#formular">
-        <span class="ns-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l2-10h12l2 10z"/><path d="M5 13h14M10 8l-1 10M14 8l1 10"/><path d="M12 2v2M5 4l1 1.5M19 4l-1 1.5"/></svg></span>
-        <h3>Solcellstvätt</h3>
-        <p>Rena paneler ger mer el. Skonsamt med renvatten.</p>
-        <span class="ns-kort-lank">Få offert →</span>
-      </a>
-    </div>
-  </div>
-</section>
+
 
 <section class="ns-sektion" id="referenser">
   <div class="ns-inner">
@@ -2313,7 +2303,7 @@
   </div>
 </dialog>
 <script src="js/offert-val.js?v=20261031"></script>
-<script src="/js/chatt.js?v=11"></script>
+<script src="/js/chatt.js?v=14"></script>
 <script src="js/glid.js"></script>
 <script src="js/recensioner.js"></script>
 </body>

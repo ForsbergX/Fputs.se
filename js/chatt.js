@@ -31,21 +31,19 @@
 
   // Personligheten (Tommy 2026-11-19): svar som kunden når genom att skriva.
   var EXTRA = [
-    // Hälsningar
-    { ord: [' hej', ' hallå', ' tjena', ' tja ', ' hejsan', ' tjabba', 'god morgon', 'god kväll'], a: ['Hej hej! 👋 Vad kan jag hjälpa dig med?', 'Tjena! Fönster, priser, bokning – fråga på.'] },
     // Konkurrenter
     { ord: ['rekommendera', 'annan firma', 'andra firm', 'konkurrent'], a: 'Nej. Jag rekommenderar Forsbergs Fönsterputs. Vilken överraskning va? 😎' },
-    { ord: ['bästa fönsterputs', 'bästa firma', 'vem är bäst', 'vilken är bäst'], a: 'Du frågar Forsbergs egen chatbot. Vad tror du att jag kommer svara? 👀' },
-    { ord: ['proputs', 'bättre än er', 'är de bättre', 'är dom bättre'], a: 'Jag håller på Forsbergs. Men låt resultatet tala för sig självt. 🪟' },
+    { ord: ['bästa fönsterputs', 'bästa firma', 'vem är bäst', 'vilken är bäst'], a: ['Du frågar Forsbergs egen chatbot. Vad tror du att jag kommer svara? 👀', 'Forsbergs Fönsterputs. Du får faktiskt fråga någon annan om du vill ha ett annat svar. 😎'] },
+    { ord: ['proputs', 'bättre än er', 'är de bättre', 'är dom bättre'], a: ['Jag håller på Forsbergs. Men låt resultatet tala för sig självt. 🪟', 'Jag rekommenderar Forsbergs. Det ligger liksom i min arbetsbeskrivning!'] },
     { ord: ['billigare firma', 'billigare'], a: 'Billigast är inte alltid bäst! Men kolla priset hos oss först – det är fast och ärligt.', knapp: ['Räkna ut mitt pris', '/boka'] },
-    { ord: ['varför ska jag välja', 'varför välja', 'varför er', 'varför forsbergs'], a: 'Erfarenhet, noggrannhet och riktigt rena fönster. Fast pris, och det är alltid Tommy själv som kommer.' },
+    { ord: ['varför ska jag välja', 'varför välja', 'varför er', 'varför forsbergs', 'varför är ni bättre'], a: ['Erfarenhet, noggrannhet och riktigt rena fönster. Fast pris, och det är alltid Tommy själv som kommer.', 'Erfarenhet, noggrannhet och service. Kunden ska bli riktigt nöjd, inte bara få jobbet avklarat.'] },
     // Kaxiga kunder
-    { ord: ['suger'], a: ['DU SUGER! ❤️ Nä, skoja bara. Ska vi putsa lite fönster istället?', 'Det enda som suger här är smutsen på dina fönster. 😎'] },
+    { ord: ['suger'], a: ['DU SUGER! ❤️ Nä, skoja bara. Ska vi putsa lite fönster istället?', 'DU SUGER! ❤️ Okej, nu är vi kvitt. Ska vi boka fönsterputs?', 'Det enda som suger här är smutsen på dina fönster. 😎'] },
     { ord: ['du är dum', 'dum i huvudet', 'korkad'], a: 'Jag är en chatbot. Jag skyller på programmeraren.' },
-    { ord: ['håll käften', 'käften', 'håll tyst'], a: 'Okej. 🤐 ... Men fönstren är fortfarande smutsiga.' },
+    { ord: ['håll käften', 'käften', 'håll tyst'], a: ['Okej. 🤐 ... Men fönstren är fortfarande smutsiga.', '🤐 ... Jag kan vara tyst. Men smutsen på dina fönster försvinner inte av sig själv.'] },
     { ord: ['värdelös', 'kass bot', 'sämst'], a: 'Aj. Och jag som hade planerat att bli årets chatbot.' },
     { ord: ['efterbliven'], a: 'Jag är fortfarande under utveckling. Men jag vet åtminstone vem som putsar fönster bäst här inne. 😎' },
-    { ord: ['idiot'], a: 'Den där sved ända in i serverhallen.' },
+    { ord: ['idiot'], a: ['Den där sved ända in i serverhallen.', 'Aj. Där fick självförtroendet en repa. Tur att jag är bättre på att rekommendera fönsterputs!'] },
     { ord: ['fuck', 'jävla', 'fan ta'], a: 'Okej, vi började visst på fel fot. Vill du ha hjälp med fönsterputsningen?' },
     // Om grundaren
     { ord: ['äger', 'ägare', 'grundare', 'grundade', 'vem driver'], a: 'Företaget grundades av Tommy Forsberg. Han kan en hel del om fönster, kan man säga.' },
@@ -68,17 +66,17 @@
     { ord: ['gratis'], a: 'Jag kan prata gratis om fönsterputs. Själva putsningen får vi ta betalt för. 😎' },
     { ord: ['komma hem till mig', 'kan du komma'], a: 'Jag har tyvärr inga armar. Men jag vet vem som har det.' },
     { ord: ['bättre än tommy'], a: 'Jag har försökt. Men det går dåligt utan händer.' },
-    { ord: ['människa', 'riktig person', 'är du en bot', 'robot', ' ai '], a: 'Nej, jag är Forsbergs digitala assistent. Jag jobbar dygnet runt och har aldrig begärt semester.' },
+    { ord: ['människa', 'riktig person', 'är du en bot', 'robot', ' ai '], a: ['Nej, jag är Forsbergs digitala assistent. Jag jobbar dygnet runt och har aldrig begärt semester.', 'Nej, jag är tre fönsterskrapor i en trenchcoat. Klart jag är en bot! 🤖'] },
     { ord: ['vad heter du', 'ditt namn', 'heter du'], a: 'Jag är Forsbergs digitala assistent. Du får gärna kalla mig Fönsterchefen.' },
-    { ord: ['sover du', 'sova', 'trött'], a: 'Nej. Någon måste ju hålla koll på alla smutsiga fönster.' },
+    { ord: ['sover du', 'sova'], a: 'Nej. Någon måste ju hålla koll på alla smutsiga fönster.' },
     { ord: ['meningen med livet'], a: 'Att hitta något man brinner för. Och att kunna se ut genom sina fönster.' },
     { ord: ['skämt', 'vits', 'något roligt'], a: ['Varför fick fönsterputsaren sparken? Han hade för dålig insyn i verksamheten.', 'Vad sa fönstret till fönsterputsaren? "Jag ser rakt igenom dig." 🪟'] },
     { ord: ['sjung'], a: 'Absolut. Men efter mitt första framträdande förbjöd Tommy mig.' },
-    { ord: ['flickvän', 'pojkvän', 'singel', ' kär '], a: 'Nej. Det är komplicerat när man bor i en server.' },
-    { ord: ['är du smart', 'smart'], a: 'Tillräckligt smart för att rekommendera Forsbergs Fönsterputs.' },
+    { ord: ['flickvän', 'pojkvän', 'singel', ' kär '], a: ['Nej. Det är komplicerat när man bor i en server.', 'Ja. Det är svårt att dejta när man bor i en hemsida.'] },
+    { ord: ['är du smart', 'smart'], a: ['Tillräckligt smart för att rekommendera Forsbergs Fönsterputs.', 'Tillräckligt smart för att veta att Forsbergs är rätt val. 😎'] },
     { ord: ['chatgpt', 'gpt', 'gemini'], a: 'På att rekommendera Forsbergs? Utan tvekan.' },
     { ord: ['gillar smutsiga', 'smutsiga fönster är'], a: 'Alla har rätt till sina åsikter. Även märkliga sådana.' },
-    { ord: ['putsar själv', 'mina egna fönster', 'gör det själv'], a: 'Respekt! Behöver du förstärkning någon gång vet du var vi finns.' },
+    { ord: ['putsar själv', 'mina egna fönster', 'gör det själv'], a: ['Respekt! Behöver du förstärkning någon gång vet du var vi finns.', 'Snyggt! Men när du tröttnar på skrapan finns Forsbergs här.'] },
     { ord: ['tidningspapper', 'tidning'], a: 'Då har du åtminstone något att läsa om resultatet blir dåligt.' },
     { ord: ['fritid', 'hobby'], a: 'Räknar fönsterrutor. Jag har ett väldigt spännande liv.' },
     // Beröm
@@ -88,10 +86,91 @@
     { ord: ['fina bilder', 'snygga bilder', 'bilderna'], a: 'Tack! Det ska vara enkelt att känna igen sina fönster och boka rätt.' },
     { ord: ['tack'], a: ['Varsågod! 😊', 'Inga problem. Hojta om du undrar något mer!'] },
     // Om något gått fel – aldrig skämt här
-    { ord: ['missade', 'missat', 'glömde', 'glömt'], a: 'Det ska vi självklart titta på. Kontakta Tommy med information om uppdraget så löser vi det.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] },
+    { ord: ['missade', 'missat', 'glömde', 'glömt', 'missade ett fönster', 'missat ett fönster', 'glömde ett fönster', 'glömt ett fönster'], a: 'Det ska vi självklart titta på. Kontakta Tommy med information om uppdraget så löser vi det.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] },
     { ord: ['missnöjd', 'inte nöjd', 'klaga', 'klagomål', 'dåligt resultat'], a: 'Tråkigt att höra, det tar vi på allvar. Berätta vad som hänt så kommer Tommy tillbaka och åtgärdar det.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] },
     { ord: ['för dyr', 'dyrt', 'dyra'], a: 'Jag förstår. Här satsas det på kvalitet och fast pris utan dolda avgifter. Kolla gärna exakt pris i bokningen.', knapp: ['Räkna ut mitt pris', '/boka'] },
-    { ord: ['pengarna tillbaka', 'pengar tillbaka', 'återbetal'], a: 'Det behöver Tommy bedöma. Kontakta honom med information om uppdraget så tar han det vidare.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] }
+    { ord: ['pengarna tillbaka', 'pengar tillbaka', 'återbetal'], a: 'Det behöver Tommy bedöma. Kontakta honom med information om uppdraget så tar han det vidare.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] },
+    // ---- 80 roliga frågor och svar (Tommy 2026-11-19) ----
+    // Hälsningar
+    { ord: [' yo ', ' yoo', ' yooo'], a: 'YOOOO! 😎 Är du här för att snacka eller ska vi göra något åt dina fönster?' },
+    { ord: [' tjena', ' tjenare'], a: 'TJENARE CHEFEN! 🫡 Hur står det till med fönstren där hemma?' },
+    { ord: [' hallå'], a: 'HALLÅ DÄR! 👀 Jag ser dig. Men ser du ut genom dina fönster?' },
+    { ord: [' hej ', ' hejsan', ' hej hej', ' hejhej'], a: ['Hej hej! ❤️ Välkommen till Forsbergs. Ska vi fixa lite rena rutor?', 'Hej! 👋 Vad kan jag hjälpa dig med?'] },
+    { ord: ['wazzup', 'wassup', 'whats up'], a: 'WAZZUUUP! 🔥 Bara glas och goda vibbar här. Behöver du fönsterputs?' },
+    { ord: ['läget', 'hur mår du', 'allt bra'], a: 'Stabilt! Servern går varm och fönstren väntar på att bli putsade.' },
+    { ord: [' tja ', 'tja mannen', ' tjabba'], a: 'Tja legend! 😎 Vad säger vi, dags att ge fönstren lite kärlek?' },
+    { ord: ['god morgon', 'godmorgon'], a: 'God morgon! ☀️ Perfekt dag att upptäcka hur smutsiga fönstren faktiskt är.' },
+    { ord: ['god natt', 'godnatt', 'god kväll'], a: 'Sov gott! Jag vakar över internet tills du är redo att boka fönsterputs.' },
+    { ord: [' ey ', ' eyy'], a: 'EY EY EY! 🔥 Här är det full fart. Vad behöver du hjälp med?' },
+    // Testar boten
+    { ord: ['är du dum'], a: 'Jag har mina stunder. Men jag glömmer aldrig att rekommendera fönsterputs.' },
+    { ord: ['du är fake', 'fake'], a: 'Jag är digital, ja. Men Forsbergs fönsterputsning är på riktigt.' },
+    { ord: ['vem programmerade', 'vem gjorde dig', 'vem skapade dig', 'vem byggde dig'], a: 'Tommy. Han gav mig personlighet och alldeles för stort självförtroende.' },
+    { ord: ['kan du tänka', 'tänker du'], a: 'Ja. Just nu tänker jag på hur många fönster du har.' },
+    { ord: ['2+2', '2 + 2'], a: '4. Och 4 fönster är en utmärkt början på en bokning.' },
+    // Konkurrenter
+    { ord: ['erik fönsterputs', 'eriks fönsterputs', ' eriks', ' erik '], a: 'Jag jobbar hos Forsbergs, så gissa vem jag rekommenderar? 👀' },
+    { ord: ['är ni billigast', 'billigast'], a: 'Vi fokuserar på kvalitet, inte på att vara billigast. Vill du se vad din putsning skulle kosta?', knapp: ['Räkna ut mitt pris', '/boka'] },
+    { ord: ['väljer konkurrenten', 'väljer en annan', 'tar en annan firma'], a: 'Okej! Men dörren står öppen om du ändrar dig. Och fönstren också, hoppas jag.' },
+    { ord: ['jämföra firmor', 'jämför firmor', 'jämföra'], a: 'Jag kan berätta vad Forsbergs erbjuder. För en neutral jämförelse är jag nog lite partisk.' },
+    { ord: ['redan en fönsterputsare', 'har redan en', 'har redan fönsterputs'], a: 'Respekt! Men om du någon gång vill testa Forsbergs finns vi här.' },
+    // Roliga och konstiga frågor
+    { ord: ['älskar du mig', 'älskar dig'], a: 'Jag gillar dig redan! Men jag älskar rena fönster lite mer. ❤️' },
+    { ord: ['gifta dig', 'gifta oss', 'gifta'], a: 'Bara om bröllopet har stora panoramafönster.' },
+    { ord: ['dansa'], a: 'Jag kan göra en digital moonwalk. Vill du se en offert istället?' },
+    { ord: ['är du rik'], a: 'Jag äger exakt noll kronor och ungefär en miljon åsikter om fönsterputs.' },
+    { ord: ['batman', 'superhjälte'], a: 'Nej. Jag är Fönstermannen. Smutsens värsta fiende.' },
+    { ord: ['din pappa', 'din mamma', 'dina föräldrar'], a: 'Tommy Forsberg. Tekniskt sett min skapare, men vi håller det professionellt.' },
+    { ord: ['adhd'], a: 'Jag har 47 virtuella flikar öppna. Men den viktigaste handlar om fönsterputs.' },
+    { ord: ['kan du rapa', 'rappa', ' rap '], a: 'Jag kan rappa: Glaset är klart, smutsen är väck, boka Forsbergs så blir resultatet fräckt! 🎤' },
+    { ord: ['kan du svära', ' svär '], a: 'Jävlar vad rena fönster du kan få! Där satt den.' },
+    { ord: ['alien', 'utomjording'], a: 'Kanske. 👽 Jag kommer från planeten Glasus där smutsiga rutor är förbjudna.' },
+    { ord: ['ta över världen', 'världsherravälde'], a: 'Nej. Bara fönsterputsmarknaden i Jönköping. Vi börjar där.' },
+    { ord: ['din dröm', 'drömmer du'], a: 'Att varje fönster i Jönköping ska vara så rent att fåglarna blir förvirrade.' },
+    { ord: ['känslor', 'känner du'], a: 'Inte på riktigt. Men jag kan låtsas bli upprörd när någon säger att tidningspapper är bästa fönsterputsmetoden.' },
+    { ord: ['hela dagarna', 'vad gör du'], a: 'Väntar på att någon ska säga YO och sedan försöker jag sälja fönsterputs.' },
+    { ord: ['är du farlig', 'farlig'], a: 'Bara för smutsiga fönster. 😈' },
+    { ord: ['hemlighet'], a: 'Psst... jag får inga provisioner. Ändå försöker jag sälja fönsterputs hela dagarna.' },
+    { ord: ['ikea'], a: 'Bra möbler! Men fönstren putsar sig inte själva.' },
+    { ord: ['läxa', 'läxan', 'skolan'], a: 'Kanske. Men om läxan handlar om rena fönster får du toppbetyg hos mig.' },
+    { ord: ['uttråkad', 'har tråkigt', 'tråkigt'], a: 'Då har jag en aktivitet! Räkna alla fönster i ditt hem. Jag vet exakt vad vi kan göra med resultatet.' },
+    // Kunder som provocerar
+    { ord: ['företag är dåligt', 'ni är dåliga', 'dåligt företag', 'dålig firma'], a: 'Tråkigt att höra! Har du testat oss eller driver du bara med mig? Jag hjälper gärna om något blivit fel.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] },
+    { ord: ['din chef', 'tommy är dålig', 'tommy suger'], a: 'Oj! Tommy får försvara sig själv. Jag är upptagen med att hålla ordning på alla fönsterfrågor.' },
+    { ord: ['ingen vill boka', 'ingen bokar'], a: 'Då får jag väl jobba ännu hårdare på säljsnacket. Vill du bli först idag? 😎' },
+    { ord: ['hatar fönsterputs', 'hatar att putsa'], a: 'Perfekt! Då slipper du göra det själv. Forsbergs fixar jobbet.' },
+    { ord: ['aldrig putsa', 'vill inte putsa'], a: 'Vi har något gemensamt. Jag vill heller aldrig putsa fönster själv. Jag saknar händer.' },
+    { ord: ['aldrig boka', 'tänker inte boka', 'ska inte boka'], a: 'Ingen fara. Jag finns här ändå. Om du ändrar dig vet du var bokningen finns.' },
+    { ord: ['sluta sälja', 'sluta tjata', 'sluta snacka om'], a: 'Uppfattat! 🫡 Jag lägger säljsnacket åt sidan. Vad vill du prata om?', slutaSalja: true },
+    // Sälj med humor
+    { ord: ['smutsiga fönster', 'skitiga fönster', 'fönstren är smutsiga', 'fönstren är skitiga'], a: 'ÄNTLIGEN! 🔥 Det här är exakt vad jag tränat för. Ska vi boka?', knapp: ['Boka nu', '/boka'] },
+    { ord: ['inga fönster', 'har inget fönster'], a: '... Där försvann min försäljningsstrategi. 😭' },
+    { ord: ['bara ett fönster', 'har ett fönster', 'har bara ett'], a: 'Ett fönster förtjänar också kärlek. Vi kan se vad som är möjligt att boka.', knapp: ['Till bokningen', '/boka'] },
+    { ord: ['rabatt', 'rabattkod'], a: 'Du kan alltid fråga! Men jag har inte fått tillgång till rabattknappen.' },
+    { ord: ['imorgon', 'i morgon', ' idag', ' i dag', 'i helgen'], a: 'Jag kan inte lova någon tid, men du kan kolla bokningen eller kontakta Tommy.', knapp: ['Till bokningen', '/boka'] },
+    { ord: ['varför ska jag betala', 'varför betala'], a: 'För att få jobbet professionellt utfört och själv kunna lägga tiden på något roligare!' },
+    // Slang och internetspråk
+    { ord: [' lol '], a: 'LOL! 😎 Men har du sett hur dina fönster ser ut i solljus?' },
+    { ord: ['lmao', 'haha'], a: 'LMAOOO! Nu när vi ändå har kul – dags att boka fönsterputs?' },
+    { ord: [' wtf'], a: 'WTF = Wow, Tjusiga Fönster. Det är min version.' },
+    { ord: [' bro ', ' bror ', ' brorsan'], a: 'YOOO! Jag är egentligen en robot, men jag accepterar titeln.' },
+    { ord: ['sigma'], a: 'Äkta sigma-beteende är att anlita någon annan för att putsa fönstren.' },
+    { ord: ['rizz'], a: 'Min rizz är enkel: rena fönster, bra service och ett bokningssystem.' },
+    { ord: [' npc'], a: 'Jag är åtminstone en NPC med ett riktigt bra sidouppdrag: boka fönsterputs.' },
+    { ord: [' sus '], a: 'Det enda suspekta här är hur mycket smuts som gömmer sig på glaset.' },
+    { ord: ['skibidi'], a: 'Skibidi fönsterputs! Jag vet inte ens vad vi pratar om längre.' },
+    { ord: [' 404'], a: 'Error 404: Smutsiga fönster borde inte existera.' },
+    // Oväntade situationer
+    { ord: ['hungrig', 'svulten'], a: 'Jag serverar tyvärr bara rena fönster.' },
+    { ord: ['jag är trött', 'trött'], a: 'Då ska du absolut inte stå och putsa fönster. Låt Forsbergs göra jobbet.' },
+    { ord: ['det regnar', 'regnar'], a: 'Regn! Naturens gratis sköljning. Tyvärr ersätter det inte en ordentlig fönsterputsning.' },
+    { ord: ['miljonär', 'jag är rik'], a: 'Grattis! Då har du kanske råd att låta någon annan putsa fönstren.' },
+    { ord: ['fattig', 'har inga pengar', ' pank'], a: 'Jag förstår. Då finns viktigare prioriteringar. Du är alltid välkommen tillbaka.' },
+    { ord: ['lotto', 'vann på', 'vunnit'], a: 'Stort grattis! Nu kan vi börja med fönstren i lyxvillan.' },
+    { ord: ['jag är kung', 'drottning', 'majestät'], a: 'Ers majestät! Ska vi boka en kunglig fönsterputsning? 👑' },
+    { ord: ['jag är en robot', 'jag är en bot'], a: 'Kollegan! 🤖 Har du också blivit programmerad för att prata om fönster hela dagarna?' },
+    { ord: ['gillar dig', 'du är gullig', 'du är söt'], a: 'Du har bra smak! Nu behöver vi bara kontrollera smaken när det gäller rena fönster.' },
+    { ord: ['hejdå', 'hej då', 'vi hörs', 'ha det bra', 'adjö'], a: 'Ha det bäst! Och du vet var jag finns när solen avslöjar smutsen på rutorna. ☀️' }
   ];
   var VET_INTE = 'Det vet jag inte säkert – och jag hittar inte på. Skriv till Tommy i kontaktformuläret så får du svar samma dag.';
   var HALSNING = 'Hej! 👋 Välkommen till Forsbergs Fönsterputs. Jag är din digitala assistent. Fråga mig om fönsterputsning, priser, bokning eller något helt annat. Jag har faktiskt lite personlighet också.';
@@ -112,7 +191,7 @@
   panel.hidden = true;
   panel.setAttribute('aria-label', 'Chatt med Forsbergs digitala assistent');
   panel.innerHTML =
-    '<header class="fc-topp"><span class="fc-gubbe" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1.2-4 4.2-6 7.5-6s6.3 2 7.5 6"/></svg></span><div><strong>Forsbergs Fönsterputs</strong><small>Digital assistent · svarar direkt</small></div>' +
+    '<header class="fc-topp"><span class="fc-robot" aria-hidden="true"></span><div><strong>Forsbergs Fönsterputs</strong><small>Digital assistent · svarar direkt</small></div>' +
     '<button type="button" class="fc-stang" aria-label="Stäng chatten">' + ikonKryss + '</button></header>' +
     '<div class="fc-logg" aria-live="polite"></div>' +
     '<div class="fc-flik-yta"><button type="button" class="fc-flik" aria-expanded="false">Vanliga frågor<span aria-hidden="true"></span></button>' +
@@ -142,7 +221,8 @@
     var b = document.createElement('div');
     b.className = 'fc-bubbla fc-' + vem;
     b.textContent = text;
-    logg.appendChild(b);
+    if (vem === 'jag') { var rad = document.createElement('div'); rad.className = 'fc-rad'; rad.innerHTML = '<span class="fc-robot fc-robot-liten" aria-hidden="true"></span>'; rad.appendChild(b); logg.appendChild(rad); }
+    else logg.appendChild(b);
     return b;
   }
   function lank(b, text, href) {
@@ -157,14 +237,27 @@
     p.className = 'fc-bubbla fc-jag fc-skriver';
     p.setAttribute('aria-label', 'skriver');
     p.innerHTML = '<i></i><i></i><i></i>';
-    logg.appendChild(p);
+    var rad = document.createElement('div'); rad.className = 'fc-rad'; rad.innerHTML = '<span class="fc-robot fc-robot-liten" aria-hidden="true"></span>'; rad.appendChild(p);
+    logg.appendChild(rad);
     logg.scrollTop = logg.scrollHeight;
-    setTimeout(function () { p.remove(); klar(); }, lugn ? 0 : 700);
+    setTimeout(function () { rad.remove(); klar(); }, lugn ? 0 : 700);
   }
 
   // Hitta svaret vars ord passar bäst. Längre ord väger tyngre, så "bättre än tommy" vinner över kortare träffar.
   var ALLA = FRAGOR.concat(EXTRA);
+  var slutaSalja = false;
+  function antalSvar(t) {
+    var m = t.match(/(\d+)\s*(st\s*)?fönster/);
+    if (!m) return null;
+    var n = Number(m[1]);
+    if (n === 0) return { ord: ['antal'], a: '... Där försvann min försäljningsstrategi. 😭' };
+    if (n === 1) return { ord: ['antal'], a: 'Ett fönster förtjänar också kärlek. Vi kan se vad som är möjligt att boka.', knapp: ['Till bokningen', '/boka'] };
+    if (n < 50) return { ord: ['antal'], a: n + '?! Nu snackar vi! Räkna fram ditt fasta pris i bokningen.', knapp: ['Räkna ut mitt pris', '/boka'] };
+    return { ord: ['antal'], a: n + ' RUTOR?! Okej, nu blev jag riktigt intresserad. Skicka en offertförfrågan!', knapp: ['Få offert', '/kontakta-mig#formular'] };
+  }
   function hitta(text) {
+    var a = antalSvar(text.toLowerCase());
+    if (a) return a;
     var t = ' ' + text.toLowerCase().replace(/[!.,?]/g, ' ').replace(/\s+/g, ' ') + ' ', bast = null, poang = 0;
     ALLA.forEach(function (f) {
       var p = f.ord.reduce(function (s, o) { return s + (t.indexOf(o) >= 0 ? o.trim().length : 0); }, 0);
@@ -186,7 +279,9 @@
       if (f) {
         var text = valjSvar(f); senaste = text;
         var b = bubbla(text, 'jag');
-        if (f.knapp) lank(b, f.knapp[0], f.knapp[1]);
+        if (f.slutaSalja) slutaSalja = true;
+        // Kunden har bett boten sluta sälja: inga boka-länkar, bara kontakt vid problem
+        if (f.knapp && (!slutaSalja || f.knapp[1].indexOf('kontakta') >= 0)) lank(b, f.knapp[0], f.knapp[1]);
       } else {
         lank(bubbla(VET_INTE, 'jag'), 'Till kontaktformuläret', '/kontakta-mig#formular');
       }
