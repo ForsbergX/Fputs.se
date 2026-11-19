@@ -1597,9 +1597,9 @@
   </style>
 <link rel="stylesheet" href="css/tema.css" />
 <link rel="stylesheet" href="css/ny-start.css?v=20261114" />
-<link rel="stylesheet" href="css/glas-tema.css?v=20261119d" />
+<link rel="stylesheet" href="css/glas-tema.css?v=20261119g" />
 <link rel="stylesheet" href="css/recensioner.css" />
-<link rel="stylesheet" href="/css/chatt.css?v=19" />
+<link rel="stylesheet" href="/css/chatt.css?v=20" />
 </head>
 <body>
 <!-- NAV -->
@@ -1618,6 +1618,10 @@
 <div class="nav-overlay" id="navOverlay"></div>
 <section class="ns-hero" id="hero">
   <img class="ns-hero-bild hero-photo hero-loop" src="images/hero-villa-sjo.webp" alt="Vit villa med stora fönster och utsikt över Vättern" width="1672" height="941" fetchpriority="high" />
+  <!-- TEST (Tommy 2026-11-19): Tommys cinematic bilvideo som hero. Villabilden ovan ligger kvar under som reserv. -->
+  <!-- Bara mobil: Tommys bilvideo. På dator syns villabilden ovan och videon laddas aldrig ner. -->
+  <video class="ns-hero-bild hero-video-bil" data-src="images/hero-bil-loop.mp4" data-poster="images/hero-bil-loop-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <script>(function () { var v = document.currentScript.previousElementSibling; if (!window.matchMedia('(max-width: 899px)').matches) { v.remove(); return; } v.poster = v.getAttribute('data-poster'); v.src = v.getAttribute('data-src'); v.preload = 'auto'; v.autoplay = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); })();</script>
   <div class="ns-hero-text">
     <h1 class="h1-namn osynlig-rubrik"><span>Forsbergs Fönsterputs</span> <span>Jönköping</span></h1>
     <div class="ns-hero-knappar">
@@ -2303,7 +2307,7 @@
   </div>
 </dialog>
 <script src="js/offert-val.js?v=20261031"></script>
-<script src="/js/chatt.js?v=85"></script>
+<script src="/js/chatt.js?v=86"></script>
 <script src="js/glid.js"></script>
 <script src="js/recensioner.js"></script>
 </body>

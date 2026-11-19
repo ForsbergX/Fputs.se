@@ -1689,6 +1689,7 @@
       case 'lghBalk': return kalkSvarObj(p + (k.lghGolv || k.lghTak ? 'Något mer balkongglas?' : 'Har du inglasad balkong som ska putsas?'), [k.lghGolv || k.lghTak ? 'Nej, visa priset' : 'Nej', 'Golv till tak', 'Räcke till tak']);
       case 'lghBalkAntal': return kalkSvarObj(p + 'Hur många glas (' + (k.lghSort === 'golv' ? 'golv till tak, 40 kr/glas' : 'räcke till tak, 20 kr/glas') + ')?');
       case 'typ': return kalkSvarObj(p + (k.rader.length || k.glas.length ? ton('merFraga') : 'Vilken sorts fönster har du? Börja med den vanligaste sorten.\n\nÄr du osäker – tryck "Vet inte" så hjälper jag dig.'), (k.rader.length || k.glas.length ? ['Klar – visa priset'] : []).concat(TYP_VAL));
+      case 'radtyp': return kalkSvarObj(p + 'Vilken sorts fönster är dina ' + r.antal + ' fönster?', ['1-luft (1 båge)', '2-luft (2 bågar)', 'Med spröjs', 'Panoramafönster', 'Överliggande', 'Underliggande', 'Vet inte']);
       case 'det': return kalkSvarObj(p + '🕵️ Fönsterdetektiven kliver in! Titta på fönstret: hur många delar går att öppna?', ['En del', 'Två delar', 'Inget – stort fast glas', 'Det har spröjs (små rutor)']);
       case 'antal': return kalkSvarObj(p + 'Hur många ' + K.TYP[r.typ].namn + ' har du?');
       case 'sidor': return kalkSvarObj(p + 'Hur många sidor ska putsas på dina ' + K.TYP[r.typ].namn + '? 2 sidor = in- och utsida. 4 sidor = bågarna går att öppna isär och det finns glas emellan.', ['2 sidor', '4 sidor', 'Vet inte']);
@@ -1759,7 +1760,8 @@
       // Kunden skrev allt i ett meddelande: räkna direkt (utan specialfönster/karmtvätt – kan läggas till)
       k.direkt = false; k.nu = null; k.karm = k.karm || false;
       var o = kalkResultat(k);
-      o.text = (prefix ? prefix + DELA : '') + o.text + DELA + 'Jag har räknat utan specialfönster och karmtvätt. Säg till om något fönster sitter högt, öppnas utåt – eller om du vill ha karmtvätt.';
+      var med = []; if (k.utat) med.push('öppnas utåt'); if (k.hoga) med.push('svåra att nå'); if (k.karm) med.push('karmtvätt');
+      o.text = (prefix ? prefix + DELA : '') + o.text + DELA + (med.length ? 'Med i priset: ' + med.join(', ') + '. ' : 'Jag har räknat utan specialfönster och karmtvätt. ') + 'Säg till om något fönster sitter högt, öppnas utåt – eller om du vill ha karmtvätt.';
       o.val = ['Skicka förfrågan till Tommy', 'Lägg till karmtvätt', 'Lägg till mer', 'Räkna om från början'];
       return o;
     }
@@ -1769,6 +1771,7 @@
   // Efter en vald fönstertyp: vad behöver vi veta härnäst?
   function nastaForTyp(k, prefix) {
     var r = k.nu;
+    if (r.typ === '?') { k.steg = 'radtyp'; return kalkFraga(k, prefix); }
     if (r.typ === 'B') { k.steg = 'balkSort'; return kalkFraga(k, prefix); }
     if (r.typ === 'UT' || r.typ === 'VH') { k.steg = 'rumtak'; return kalkFraga(k, prefix); }
     if (r.antal === null) { k.steg = 'antal'; return kalkFraga(k, prefix); }
@@ -1779,6 +1782,7 @@
   }
   function valjTyp(k, typ, s, prefix) {
     k.nu = { typ: typ, antal: null, sidor: 0, rutor: 0, storlek: '' };
+    if (k.behallAntal) { k.nu.antal = k.behallAntal; k.nu.sidor = k.kvarSidor || 0; k.behallAntal = 0; } // antalet från "20 st fönster" ligger kvar
     // "8 st 2-luft": antalet står redan i meddelandet (men inte siffran i "2-luft")
     // "4 sidor" och "4 rutor" är inte antal fönster – de sparas som sidor/rutor i stället
     var sid = s.match(/ ([24]|två|fyra) sidor/), rut = s.match(/ ([2-8]) rutor/);
@@ -1799,7 +1803,7 @@
     var lm0 = !/fönster/.test(s) && (s.match(/ (etta|tvåa|trea|fyra|femma) /) || s.match(/ ([1-5]) ?(a|rok|rum|:a) /));
     if (lm0) { var ln0 = { etta: 1, tvåa: 2, trea: 3, fyra: 4, femma: 5 }[lm0[1]] || Number(lm0[1]); k.bostad = 'lgh'; k.lgh = ln0 + ':a'; k.steg = 'lghBalk'; var ol = kalkFraga(k, 'En ' + k.lgh + ' kostar ' + krr(K.LGH[k.lgh]) + ' efter RUT, plus 30 kr i inställelseavgift. 🏢'); ol.knapp = ['Eller räkna själv i bokningen', '/boka#lagenhet']; return ol; }
     var fl0 = (b === 'villa' || !b) ? tolkaFlera(s) : [];
-    if (fl0.length) { k.bostad = 'villa'; k.steg = 'typ'; var o0 = startKo(k, fl0, 'Det räknar jag ut direkt! 🧮' + (b ? '' : ' (Jag räknar som villa/radhus.)')); o0.knapp = ['Eller räkna själv i bokningen', '/boka#fonster']; return o0; }
+    if (fl0.length) { k.bostad = 'villa'; k.steg = 'typ'; var o0 = startKo(k, fl0, 'Det räknar jag ut direkt! 🧮' + (b ? '' : ' (Jag räknar som villa/radhus.)'), s); o0.knapp = ['Eller räkna själv i bokningen', '/boka#fonster']; return o0; }
     var intro = 'Jag räknar gärna ut ett pris åt dig! 🧮' + DELA + 'En lägenhet kostar från 475 kr och en villa från 750 kr efter RUT, plus 30 kr inställelseavgift. Svara på några enkla frågor så får du ditt eget pris. Det kostar inget och du binder dig inte till något.';
     var o = b ? kalkSvar({ villa: 'villa', lgh: 'lägenhet', foretag: 'företag', sol: 'solcell', stor: 'större fastighet' }[b], b === 'villa' || b === 'lgh' ? 'Det räknar jag ut åt dig direkt! 🧮' : '') : kalkFraga(k, intro);
     // Vill kunden hellre räkna själv: länk direkt till bokningen (Tommy 2026-11-19)
@@ -1825,8 +1829,8 @@
     switch (k.steg) {
       case 'bostad':
         b = kalkBostad(s);
-        if (!b) { var flx = tolkaFlera(s); if (flx.length) { k.bostad = 'villa'; k.steg = 'typ'; return startKo(k, flx, pre ? pre.split(DELA).join(' ').trim() : ''); } }
-        if (b === 'villa') { k.bostad = 'villa'; k.steg = 'typ'; var flb = tolkaFlera(s); if (flb.length) return startKo(k, flb, pre ? pre.split(DELA).join(' ').trim() : ''); return kalkFraga(k, pre + ton('villa')); }
+        if (!b) { var flx = tolkaFlera(s); if (flx.length) { k.bostad = 'villa'; k.steg = 'typ'; return startKo(k, flx, pre ? pre.split(DELA).join(' ').trim() : '', s); } }
+        if (b === 'villa') { k.bostad = 'villa'; k.steg = 'typ'; var flb = tolkaFlera(s); if (flb.length) return startKo(k, flb, pre ? pre.split(DELA).join(' ').trim() : '', s); return kalkFraga(k, pre + ton('villa')); }
         if (b === 'lgh') { k.bostad = 'lgh'; k.steg = 'lgh'; return kalkFraga(k, pre + ton('lgh')); }
         if (b === 'sol') { minne.kalk = null; var o1 = kalkSvarObj(pre + 'Solcellstvätt! ☀️ Där räknar Tommy fram ett fast pris själv, eftersom tak och paneler är så olika. Skicka antal paneler och adress så får du pris samma dag.'); o1.knapp = ['Få offert', '/kontakta-mig?typ=Solcellstv%C3%A4tt#formular']; return o1; }
         if (b === 'foretag' || b === 'stor') { minne.kalk = null; var o2 = kalkSvarObj(pre + (b === 'stor' ? 'Större fastighet' : 'Företag') + '! 💼 Där finns inget färdigt pris i kalkylen – Tommy tar fram ett fast pris åt dig, oftast samma dag.'); o2.knapp = ['Begär offert', '/kontakta-mig#formular']; return o2; }
@@ -1851,13 +1855,20 @@
         k.steg = 'lghBalk';
         return kalkFraga(k, n ? ton('nasta') : 'Inga glas, inga problem.');
       case 'typ':
-        var fl = tolkaFlera(s); if (fl.length >= 2) return startKo(k, fl, pre ? pre.replace(DELA, '') : '');
+        var fl = tolkaFlera(s); if (fl.length >= 2 || (fl.length === 1 && fl[0].typ === '?')) return startKo(k, fl, pre ? pre.replace(DELA, '') : '', s);
         var typ = kalkTyp(s);
         if (!typ) return null;
         if (typ === 'KLAR') return k.rader.length || k.glas.length ? kalkSlut(k) : kalkFraga(k, 'Haha, vi har inte räknat några fönster än! 😄');
         if (typ === 'VET') { k.steg = 'det'; return kalkFraga(k); }
         return valjTyp(k, typ, s, pre + (k.forst ? '' : ''));
+      case 'radtyp':
+        var rt0 = kalkTyp(s);
+        if (rt0 === 'VET') { k.behallAntal = r.antal; k.steg = 'det'; return kalkFraga(k); }
+        if (!rt0 || rt0 === 'KLAR' || rt0 === 'B' || rt0 === 'UT' || rt0 === 'VH') return null;
+        r.typ = rt0; if (rt0 === 'P') r.sidor = 0;
+        return nastaForTyp(k, rt0 === 'S' ? '' : valjFran(['Toppen!', 'Perfekt!', 'Uppfattat!']));
       case 'det':
+        if (r && r.typ === '?') k.kvarSidor = r.sidor;
         if (/spröjs|rutor/.test(s)) return valjTyp(k, 'S', '', 'Spröjs – de smala listerna som delar glaset! 🕵️');
         if (/fast|inget|stort/.test(s)) return valjTyp(k, 'P', '', 'Ett stort fast glas = panoramafönster i kalkylen. 🕵️');
         if (/ (två|2|tvåa) /.test(s)) return valjTyp(k, 'L2', '', 'Två delar = 2-luftsfönster! 🕵️ Fallet löst.');
@@ -2244,6 +2255,8 @@
     var rader = [];
     s.split(/,| och | samt | plus | \+ /).forEach(function (del) {
       var d = ' ' + del.trim() + ' ', typ = kalkTyp(d);
+      // Antal fönster utan typ ("20 st fönster"): spara antalet, typen frågas sedan
+      if ((!typ || typ === 'KLAR') && /fönster|rutor/.test(d) && /\d/.test(d)) typ = '?';
       if (!typ || typ === 'VET' || typ === 'KLAR' || typ === 'B' || typ === 'UT' || typ === 'VH') return;
       var ren = d.replace(/(1|2|en|ett|två) ?-? ?luft\S*|(1|2|en|två) bågar?|\d+ ?sid(or|a)?\b|\d+ rutor/g, ' ');
       var m = ren.match(/\d+/), antal = m ? Number(m[0]) : null;
@@ -2257,8 +2270,16 @@
     return rader;
   }
   // Lägger in raderna; frågar bara det som saknas (sidor, rutor, storlek) – en rad i taget
-  function startKo(k, rader, prefix) {
+  function startKo(k, rader, prefix, hela) {
     k.bostad = k.bostad || 'villa';
+    if (hela) {
+      if (/utåt/.test(hela)) k.utat = true;
+      if (/svåra att nå|högt upp|höga fönster|stege|andra våningen/.test(hela)) k.hoga = true;
+      if (/går inte att öppna|fasta fönster/.test(hela)) k.fasta = true;
+      if (/karmtvätt|tvätta karmar/.test(hela)) k.karm = true;
+    }
+    // Öppnas utåt = alla sidor räknas, så sidfrågan behövs inte
+    if (k.utat) rader.forEach(function (r) { if (!r.sidor && r.typ !== 'P') r.sidor = 4; });
     var namn = rader.map(function (r) { return r.antal + ' st ' + radNamn(r); }).join(' och ');
     k.ko = rader.slice(1);
     k.nu = rader[0];
@@ -2266,7 +2287,7 @@
     return nastaForTyp(k, (prefix ? prefix + DELA : '') + 'Uppfattat: ' + namn + '. 👍');
   }
 
-  function radNamn(r) { return r.dorr ? (r.typ === 'S' ? 'glasdörrar med spröjs' : 'glasdörrar') : K.TYP[r.typ].namn; }
+  function radNamn(r) { if (r.typ === '?') return 'fönster'; return r.dorr ? (r.typ === 'S' ? 'glasdörrar med spröjs' : 'glasdörrar') : K.TYP[r.typ].namn; }
   // ---- 8. Postnummer → kommer Tommy dit? ----
   function laddaPostnummer() {
     if (window.fpOmrade || document.querySelector('script[data-fc-postnr]')) return;
