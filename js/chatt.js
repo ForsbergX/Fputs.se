@@ -115,7 +115,7 @@
     { ord: ['läget', 'hur mår du', 'allt bra'], a: 'Stabilt! Servern går varm och fönstren väntar på att bli putsade.' },
     { ord: [' tja ', 'tja mannen'], a: 'Tja legend! 😎 Vad säger vi, dags att ge fönstren lite kärlek?' },
     { ord: ['god morgon', 'godmorgon'], a: 'God morgon! ☀️ Perfekt dag att upptäcka hur smutsiga fönstren faktiskt är.' },
-    { ord: ['god natt', 'godnatt', 'god kväll'], a: 'Sov gott! Jag vakar över internet tills du är redo att boka fönsterputs.' },
+    { ord: ['god natt', 'godnatt'], a: 'Sov gott! Jag vakar över internet tills du är redo att boka fönsterputs.' },
     { ord: [' ey ', ' eyy'], a: 'EY EY EY! 🔥 Här är det full fart. Vad behöver du hjälp med?' },
     // Testar boten
     { ord: ['är du dum'], a: 'Jag har mina stunder. Men jag glömmer aldrig att rekommendera fönsterputs.' },
@@ -446,7 +446,416 @@
     // Situationshumor
     { ord: ['batcave', 'batgrotta'], a: 'Batcave! 🦇 Mörkt som tusan där inne – så rena fönster gör verkligen skillnad. Hur många fönster har den?', fragaAntal: true },
     { ord: ['det är ett slott', 'är ett slott', 'bor på ett slott'], a: 'ERS MAJESTÄT! 👑 Då får vi nog rulla ut den kungliga offertavdelningen.', knapp: ['Begär offert', '/kontakta-mig#formular'] },
-    { ord: ['större fastighet', 'flerfamiljshus', 'hyreshus', 'brf'], allvar: true, a: 'Större fastighet – då tar Tommy gärna fram en personlig offert så att allt blir rätt.', knapp: ['Begär offert', '/kontakta-mig#formular'] }
+    { ord: ['större fastighet', 'flerfamiljshus', 'hyreshus', 'brf'], allvar: true, a: 'Större fastighet – då tar Tommy gärna fram en personlig offert så att allt blir rätt.', knapp: ['Begär offert', '/kontakta-mig#formular'] },
+    // ===== Fler sätt att fråga om företaget (Tommy 2026-11-19) – bara fakta från sajten =====
+    { allvar: true, ord: ['hur mycket tar ni', 'vad tar ni betalt', 'vad tar du betalt', 'prislapp', 'vad landar det på', 'ungefärligt pris'], a: ['Det beror på hur många och vilka fönster du har. En lägenhet kostar från 475 kr och en villa från 750 kr efter RUT, plus 30 kr i inställelseavgift. Vill du att jag räknar ut ditt exakta pris?', 'Lägenhet från 475 kr, villa från 750 kr – efter RUT, plus 30 kr inställelseavgift. Ska jag räkna fram just ditt pris?'], val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['vad kostar en etta', 'pris för en etta', 'enrummare', 'en 1:a'], a: 'En 1:a kostar 475 kr efter RUT, plus 30 kr i inställelseavgift. Har du inglasad balkong tillkommer en liten summa per glas.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['vad kostar en tvåa', 'pris för en tvåa', 'tvårummare', 'en 2:a'], a: 'En 2:a kostar 500 kr efter RUT, plus 30 kr i inställelseavgift. Inglasad balkong räknas till per glas.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['vad kostar en trea', 'pris för en trea', 'trerummare', 'en 3:a'], a: 'En 3:a kostar 525 kr efter RUT, plus 30 kr i inställelseavgift. Inglasad balkong räknas till per glas.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['vad kostar en fyra', 'pris för en fyra', 'fyrarummare', 'en 4:a'], a: 'En 4:a kostar 550 kr efter RUT, plus 30 kr i inställelseavgift. Inglasad balkong räknas till per glas.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['vad kostar en femma', 'pris för en femma', 'femrummare', 'en 5:a'], a: 'En 5:a kostar 575 kr efter RUT, plus 30 kr i inställelseavgift. Är lägenheten större än så räknar Tommy på den själv.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['lägsta pris', 'billigaste', 'minsta kostnad', 'minimipris', 'lägsta summa'], a: 'Lägsta priset är 475 kr efter RUT för en 1:a. För villa är lägsta priset 750 kr efter RUT. Inställelseavgiften på 30 kr tillkommer.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['inställelseavgift', 'framkörning', 'resekostnad', 'körkostnad', 'tar ni betalt för resan', 'milersättning'], a: ['Det tillkommer en inställelseavgift på 30 kr. Den är inte RUT-berättigad, och den syns alltid när du räknar ut priset. Inga andra avgifter.', 'Bara 30 kr i inställelseavgift – inget annat. Den står med i priset du räknar fram.'] },
+    { allvar: true, ord: ['moms ingår', 'inklusive moms', 'exklusive moms', 'är det med moms', 'plus moms'], a: 'Alla priser är inklusive moms. Det du ser är det du betalar.' },
+    { allvar: true, ord: ['före rut', 'utan rut', 'pris utan avdrag', 'om jag inte har rut', 'har inte rut kvar'], a: ['Priset före RUT är dubbelt så mycket som priset efter RUT – avdraget är 50 % av arbetskostnaden. Har du inte RUT kvar betalar du priset före avdrag.', 'Utan RUT-avdrag betalar du hela arbetskostnaden, alltså dubbla priset mot efter RUT. Inställelseavgiften på 30 kr är densamma.'] },
+    { allvar: true, ord: ['rut-tak', 'rut taket', 'hur mycket rut', 'max rut', 'rut per år'], a: 'Hur mycket RUT du har kvar beror på dig och vad du har använt under året – det kan du se hos Skatteverket. Tommy sköter ansökan åt dig.' },
+    { allvar: true, ord: ['vem ansöker om rut', 'måste jag söka rut', 'fixar ni rut', 'sköter ni rut', 'skatteverket krångel'], a: ['Du behöver inte göra något. Tommy sköter hela RUT-ansökan med Skatteverket åt dig.', 'Inget krångel för dig – Tommy fixar allt med Skatteverket.'] },
+    { allvar: true, ord: ['personnummer', 'varför behöver ni personnummer'], a: 'För att RUT-avdraget ska kunna göras behöver Tommy uppgifter till Skatteverket. Hur uppgifterna hanteras står i integritetspolicyn.', knapp: ['Integritetspolicy', '/integritetspolicy'] },
+    { allvar: true, ord: ['rot-avdrag', 'rot avdrag', 'rotavdrag'], a: 'ROT-avdraget gäller solcellstvätt. Då betalar du 70 % av arbetskostnaden. Vanlig fönsterputs går på RUT i stället.', knapp: ['Solcellstvätt', '/solcellspaneltvatt'] },
+    { allvar: true, ord: ['swish', 'kan jag swisha', 'betala med swish', 'swishnummer'], a: 'Ja, privatpersoner betalar smidigt med Swish efter att jobbet är klart. Företag får faktura.' },
+    { allvar: true, ord: ['betala kontant', 'kontanter', 'betala med kort', 'kortbetalning', 'klarna'], a: 'Privatpersoner betalar med Swish efter jobbet, och företag får faktura. Har du frågor om andra sätt kan du ringa Tommy.', val: ['Ring Tommy'] },
+    { allvar: true, ord: ['betala i förskott', 'förskottsbetalning', 'betala innan', 'när betalar jag'], a: 'Du betalar efter att jobbet är gjort – inte innan.' },
+    { allvar: true, ord: ['får jag kvitto', 'skickar ni kvitto', 'behöver kvitto'], a: 'Ja, du får alltid en korrekt faktura eller kvitto. Tommy är godkänd för F-skatt och momsregistrerad.' },
+    { allvar: true, ord: ['boka till mamma', 'boka åt min mamma', 'boka åt min pappa', 'boka åt någon annan', 'present', 'presentkort'], a: ['Vilken fin tanke! 💙 Skicka en förfrågan med adressen där fönstren finns, och skriv i meddelandet att det är till någon annan – så ordnar Tommy resten.', 'Snyggt gjort! Skriv i förfrågan vem det gäller och var, så hör Tommy av sig.'], val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['boka för en äldre', 'min mamma är gammal', 'pensionär', 'äldre person', 'svårt att gå'], a: 'Det löser vi. Det är alltid Tommy själv som kommer, och han tar god tid på sig. Skriv gärna i förfrågan om det är något han ska tänka på.', val: ['Skicka förfrågan till Tommy', 'Ring Tommy'] },
+    { allvar: true, ord: ['hur snabbt kan', 'snabbaste tiden', 'tidigaste tid', 'första lediga tid', 'nästa lediga'], a: 'Jag kan visa de första lediga tiderna direkt – tryck här under.', val: ['Lediga tider'] },
+    { allvar: true, ord: ['på kvällen', 'kvällstid', 'efter jobbet', 'efter fem', 'efter 17'], a: 'Tiderna du kan önska i bokningen är på förmiddagen och mitt på dagen på vardagar, och förmiddag eller eftermiddag på helger. Har du speciella önskemål kan du skriva det i förfrågan.', val: ['Lediga tider'] },
+    { allvar: true, ord: ['helgjobb', 'jobbar ni på helger', 'lördag', 'söndag'], a: 'Ja, det finns tider på helger också – förmiddag eller eftermiddag. Vill du se lediga tider?', val: ['Lediga tider'] },
+    { allvar: true, ord: ['jobbar ni fredag', 'fredagar', 'på fredag'], a: 'Fredagar har Tommy stängt. Men det finns lediga tider både före och efter – vill du se dem?', val: ['Lediga tider'] },
+    { allvar: true, ord: ['omboka', 'flytta tiden', 'byta tid', 'ändra tiden', 'annan dag istället'], a: 'Du kan avboka eller boka om kostnadsfritt fram till 24 timmar innan avtalad tid. Hör av dig till Tommy, så hittar ni en ny tid.', val: ['Ring Tommy'], knapp: ['Allmänna villkor', '/allmanna-villkor'] },
+    { allvar: true, ord: ['sen avbokning', 'avbokar sent', 'samma dag avboka', 'kostar det att avboka'], a: 'Avbokning och ombokning är kostnadsfritt fram till 24 timmar innan avtalad tid. Vad som gäller vid senare avbokning står i de allmänna villkoren.', knapp: ['Allmänna villkor', '/allmanna-villkor'] },
+    { allvar: true, ord: ['tommy blir sen', 'om tommy inte kommer', 'kommer inte', 'dök inte upp', 'han är sen'], a: 'Det ska inte hända – men om något skulle strula, ring Tommy direkt så löser han det.', knapp: ['Ring 079-346 39 64', 'tel:+46793463964'] },
+    { allvar: true, ord: ['sms innan', 'påminnelse', 'hör ni av er innan', 'meddelar ni innan'], a: 'Tommy hör av sig via SMS eller telefon innan han kommer, så du vet vilken dag och ungefär när.' },
+    { allvar: true, ord: ['portkod', 'kod till porten', 'trapphus', 'hiss'], a: 'Skriv portkoden i meddelandet när du skickar förfrågan, så har Tommy den när han kommer.', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['lämna nyckel', 'nyckelbox', 'nyckel under mattan', 'lämna en nyckel'], a: 'Många lämnar en nyckel eller en kod, så putsas fönstren medan de är på jobbet. Bestäm detaljerna med Tommy.', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['larm', 'har larm', 'larmet'], a: 'Har du larm – skriv det i förfrågan eller säg det till Tommy när han hör av sig, så kommer ni överens om hur det ska göras.' },
+    { allvar: true, ord: ['parkering', 'parkera', 'var ska han parkera', 'p-plats'], a: 'Det kan du ta direkt med Tommy när han hör av sig. Skriv gärna i förfrågan om det är krångligt att parkera.' },
+    { allvar: true, ord: ['flytta möbler', 'flytta blommor', 'måste jag flytta', 'göra i ordning innan', 'förbereda'], a: 'Det enda du behöver göra är att se till att Tommy kommer åt fönstren. Han tar med all utrustning.', knapp: ['Vanliga frågor', '/faq'] },
+    { allvar: true, ord: ['gardiner', 'persienner', 'rullgardin', 'blommor i fönstret'], a: 'Det är bra om Tommy kommer åt fönstren. Har du mycket i fönstren kan du flytta undan det innan – eller fråga Tommy hur ni gör.' },
+    { allvar: true, ord: ['tar ni med vatten', 'behöver ni vatten', 'eluttag', 'el till', 'ström'], a: 'Tommy tar med all utrustning, vatten och medel. Du behöver inte ställa fram något.' },
+    { allvar: true, ord: ['skor', 'smutsar ner', 'blött golv', 'droppar på golvet', 'städar ni efter'], a: 'Tommy jobbar noggrant och varsamt i ditt hem. Är det något särskilt du vill att han tänker på – säg det, så fixar han det.' },
+    { allvar: true, ord: ['tar ni insidan', 'putsar ni inne', 'bara insidan'], a: 'Ja! Utsidan syns från gatan – insidan syns från soffan. Tommy putsar alltid båda.' },
+    { allvar: true, ord: ['mellanglas', 'mellan glasen', 'kopplade fönster', 'dubbelfönster', 'innanför glaset'], a: 'Har du fönster där bågarna går att öppna isär, så det finns glas emellan, väljer du 4 sidor när du räknar ut priset. Då putsas mellanglasen också.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['treglas', 'tre glas', 'treglasfönster', 'energiglas'], a: 'Det viktiga för priset är hur många sidor som ska putsas. Går fönstret inte att öppna isär räknas det som 2 sidor. Är du osäker kan Tommy hjälpa dig.', val: ['Vad kostar det?', 'Ring Tommy'] },
+    { allvar: true, ord: ['vridfönster', 'pivåfönster', 'vrider runt', 'vändfönster'], a: 'Fönster som går att vrida runt räknas oftast som vanliga fönster. Är du osäker på vilken sort – tryck "Vet inte" i prisräkningen så hjälper jag dig.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['fönsterdörr', 'altandörr', 'balkongdörr', 'glasdörr', 'skjutdörr'], a: 'Glasdörrar och altandörrar räknar du som fönster i prisräkningen – en stor glasdörr kan du välja som panoramafönster.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['källarfönster', 'källaren'], a: 'Källarfönster räknar du som vanliga fönster – de låga brukar vara underliggande fönster i prisräkningen.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['takkupa', 'vindsfönster', 'velux', 'snedtak'], a: 'Takfönster och höga fönster når Tommy med renvattensystemet och teleskopstången, utan stege. Välj "Svåra att nå" som specialfönster när du räknar ut priset.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['glastak', 'pergola', 'carport', 'glasveranda', 'veranda'], a: 'Glastak och verandor räknar du som uterum – takglas, glas från golv till tak och små fönster var för sig. Är det något ovanligt, skicka en förfrågan så räknar Tommy på det.', val: ['Vad kostar det?', 'Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['glasräcke', 'räcke i glas', 'glas på altanen'], a: 'Glasräcken fixas! Ett altanräcke i glas kostar 30 kr per glas efter RUT, och ett glasräcke upp till taket 20 kr per glas.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['inglasad balkong', 'balkong golv till tak', 'balkongglas'], a: 'En helt inglasad balkong från golv till tak kostar 40 kr per glas efter RUT. Räcke till tak kostar 20 kr per glas.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['vinterträdgård', 'orangeri', 'glashus'], a: 'Det räknas som uterum eller växthus i prisräkningen – takglas, golv till tak och små fönster var för sig.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['affär', 'skyltfönster', 'restaurang', 'café', 'frisör', 'salong', 'kontor'], a: 'Ja, Tommy putsar för företag också – kontor, butiker och lokaler. Skicka en förfrågan så får du ett fast pris, oftast samma dag. Företag får faktura.', knapp: ['Företag', '/foretag'], val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['bostadsrättsförening', 'samfällighet', 'fastighetsägare', 'hyresvärd', 'förvaltare'], a: 'För föreningar och fastighetsägare tar Tommy fram en personlig offert så att allt blir rätt. Skicka en förfrågan!', val: ['Skicka förfrågan till Tommy'], knapp: ['Begär offert', '/kontakta-mig#formular'] },
+    { allvar: true, ord: ['abonnemang', 'regelbundet', 'återkommande', 'varje månad', 'varje kvartal', 'stående tid'], a: 'Ja, det går att ha ett återkommande upplägg – utan bindningstid. Säg till Tommy hur ofta du vill, så lägger han upp det.', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['bindningstid', 'uppsägningstid', 'säga upp', 'binder mig'], a: 'Nej, ingen bindningstid. Du bokar när det passar dig – en gång eller regelbundet.' },
+    { allvar: true, ord: ['hur ofta ska man', 'hur ofta bör', 'hur ofta putsa', 'hur ofta brukar'], a: 'Det är helt upp till dig. Många vill ha rent inför våren och inför julen – men du bokar när det passar dig, utan bindningstid.', val: ['Lediga tider'] },
+    { allvar: true, ord: ['vårputs', 'våren', 'inför sommaren'], a: 'Våren är ett populärt tillfälle – då syns allt vinterdamm i solen. Vill du se lediga tider?', val: ['Lediga tider'] },
+    { allvar: true, ord: ['julputs', 'inför jul', 'före jul', 'till jul'], a: 'Rena fönster till jul är aldrig fel – då lyser adventsljusen ännu finare. 🎄 Vill du se lediga tider?', val: ['Lediga tider'] },
+    { allvar: true, ord: ['regnar det', 'om det regnar', 'i regn', 'dåligt väder'], a: 'Tommy putsar året runt. Vid extremt oväder flyttas tiden kostnadsfritt.' },
+    { allvar: true, ord: ['minusgrader', 'kallt ute', 'frost', 'snö', 'vintern'], a: 'Tommy putsar året runt. På vintern blandas frostskydd i vattnet, så det blir rent även i minusgrader.' },
+    { allvar: true, ord: ['stark sol', 'solsken', 'varmt ute', 'värmebölja'], a: 'Tommy anpassar sig efter vädret så att det blir randfritt – det är en del av hantverket.' },
+    { allvar: true, ord: ['försäkrade', 'skadeförsäkring', 'om ni har sönder', 'krossar en ruta', 'om något går sönder'], a: 'Tommy är försäkrad hos Trygg-Hansa med ansvarsförsäkring. Den täcker skador han skulle orsaka på din egendom i samband med arbetet.' },
+    { allvar: true, ord: ['reklamera', 'klaga', 'klagomål', 'blev inte bra', 'inte rent'], a: 'Det är tråkigt att höra. Tommy har nöjd kund-garanti – hör av dig så kommer han tillbaka och åtgärdar det kostnadsfritt.', knapp: ['Ring 079-346 39 64', 'tel:+46793463964'] },
+    { allvar: true, ord: ['ångerrätt', 'ångra bokningen', 'ångra mig'], a: 'Bokar du på distans har du 14 dagars ångerrätt enligt lag. Allt står i de allmänna villkoren.', knapp: ['Allmänna villkor', '/allmanna-villkor'] },
+    { allvar: true, ord: ['allmänna villkor', 'villkoren', 'avtalsvillkor', 'kontrakt'], a: 'De allmänna villkoren finns på sajten – där står allt om pris, avbokning, ångerrätt och reklamation.', knapp: ['Allmänna villkor', '/allmanna-villkor'] },
+    { allvar: true, ord: ['integritet', 'gdpr', 'mina uppgifter', 'dataskydd', 'cookies'], a: 'Hur dina uppgifter hanteras står i integritetspolicyn. Det du skriver i chatten skickas bara till Tommy om du själv väljer att skicka en förfrågan.', knapp: ['Integritetspolicy', '/integritetspolicy'] },
+    { allvar: true, ord: ['organisationsnummer', 'org nr', 'orgnummer', 'enskild firma'], a: 'Forsbergs Fönsterputs är en enskild firma som drivs av Tommy Forsberg i Jönköping, godkänd för F-skatt. Mer står i integritetspolicyn.', knapp: ['Integritetspolicy', '/integritetspolicy'] },
+    { allvar: true, ord: ['adress till er', 'var finns ni', 'var ligger ni', 'ert kontor', 'besöka er'], a: 'Forsbergs Fönsterputs finns i Jönköpingstrakten – det är Tommy som kommer hem till dig. Du når honom på 079-346 39 64.', val: ['Ring Tommy'] },
+    { allvar: true, ord: ['epost', 'e-post', 'mailadress', 'maila', 'skicka mail'], a: 'Du når Tommy på kontakt@fputs.se, på 079-346 39 64 – eller så skickar jag en förfrågan åt dig direkt här.', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['instagram', 'facebook', 'sociala medier', 'tiktok'], a: 'Länkarna till sociala medier hittar du längst ner på sajten. 📸' },
+    { allvar: true, ord: ['google', 'hitta er på google', 'google maps', 'karta'], a: 'Du hittar Forsbergs Fönsterputs på Google – 5,0 i betyg med 51 recensioner. ⭐', knapp: ['Recensioner', '/recensioner'] },
+    { allvar: true, ord: ['lämna recension', 'skriva recension', 'ge betyg', 'recensera'], a: 'Vad roligt att du vill det! 💙 Det betyder jättemycket för Tommy. Du hittar profilen på Google via sajten.', knapp: ['Recensioner', '/recensioner'] },
+    { allvar: true, ord: ['referenser', 'tidigare kunder', 'exempel på jobb', 'bilder på jobb'], a: 'Titta gärna på referenserna och recensionerna på sajten – 5,0 på Google med 51 recensioner.', knapp: ['Referenser', '/referenser'] },
+    { allvar: true, ord: ['hur länge har du hållit på', 'hur länge har ni funnits', 'när startade', 'hur gammalt är företaget'], a: 'Tommy jobbade nästan fem år i Stockholm innan han byggde upp företaget här i Jönköping.', knapp: ['Om Tommy', '/om-oss'] },
+    { allvar: true, ord: ['sm i fönsterputs', 'tävlade', 'kistamässan', 'svenska mästerskap'], a: 'Ja! Tommy tävlade i SM i fönsterputs 2026 på Kistamässan i Stockholm. Samma noggrannhet tar han med hem till varje kund. 🏆', knapp: ['Om Tommy', '/om-oss'] },
+    { allvar: true, ord: ['mentor', 'lärde sig', 'utbildning', 'certifierad'], a: 'Tommy lärde sig yrket i Stockholm, bland annat med Jimmy Ström som mentor – flerfaldig medaljör i SM och VM i fönsterputs.', knapp: ['Om Tommy', '/om-oss'] },
+    { allvar: true, ord: ['hur många anställda', 'är ni flera', 'jobbar du ensam', 'har du kollegor'], a: 'Det är Tommy som driver firman och han kommer alltid själv. Du vet alltid vem som är hemma hos dig.' },
+    { allvar: true, ord: ['vem svarar', 'pratar jag med tommy', 'är det tommy', 'är du tommy'], a: 'Jag är Forsbergs kundservice – Tommys digitala hjälpreda. Vill du prata med Tommy själv når du honom på 079-346 39 64.', val: ['Ring Tommy'] },
+    { allvar: true, ord: ['huskvarna', 'gränna', 'bankeryd', 'habo', 'taberg', 'norrahammar'], a: 'Ja, dit kommer Tommy! Vill du att jag räknar ut priset?', val: ['Vad kostar det?', 'Lediga tider'] },
+    { allvar: true, ord: ['mullsjö', 'vaggeryd', 'nässjö', 'värnamo', 'tranås', 'eksjö', 'skövde', 'linköping'], a: 'Dit åker Tommy tyvärr inte just nu. Hör gärna av dig ändå, så kan ni prata om det.', val: ['Ring Tommy'], knapp: ['Områden', '/omraden'] },
+    { allvar: true, ord: ['vilka orter', 'vilket område', 'vart åker ni', 'hur långt åker ni'], a: 'Hela Jönköping och Huskvarna, plus orter som Habo, Bankeryd, Gränna, Lekeryd, Tenhult, Norrahammar, Taberg, Barnarp och Kaxholmen. Skriv ditt postnummer så kollar jag direkt!', knapp: ['Områden', '/omraden'] },
+    { allvar: true, ord: ['solceller på taket', 'solpaneler på taket', 'smutsiga solceller', 'tvätta solceller'], a: 'Solcellstvätt görs med renvatten och anpassad utrustning. Tak och paneler är olika, så Tommy ger ett fast pris efter att du skickat förfrågan. ROT-avdrag gäller.', knapp: ['Solcellstvätt', '/solcellspaneltvatt'], val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['ger solceller mer', 'mer el', 'effekt solceller', 'smuts på solceller'], a: 'Smutsiga paneler kan ge sämre effekt – mer om det står på sidan om solcellstvätt.', knapp: ['Solcellstvätt', '/solcellspaneltvatt'] },
+    { allvar: true, ord: ['skicka offert', 'skriftlig offert', 'offert på mejl'], a: 'Skicka en förfrågan så får du ett fast pris. Vill du göra det här i chatten?', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['hembesök', 'komma och titta', 'besiktning', 'kolla på plats'], a: 'Behövs det kan Tommy komma och titta – det är gratis. Oftast räcker det dock med att du räknar fram priset eller skickar bilder.', val: ['Vad kostar det?', 'Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['skicka bild', 'bild på fönstren', 'fota fönstren'], a: 'Skicka gärna bilder på fönstren till Tommy via SMS, så räknar han ut ett pris och ringer upp.', knapp: ['SMS till Tommy', 'sms:+46793463964'] },
+    { allvar: true, ord: ['hur bokar jag', 'hur gör jag för att boka', 'vill boka tid', 'boka en tid'], a: 'Enklast: räkna ut priset här, och skicka sedan en förfrågan – Tommy hör av sig och bekräftar tiden. Eller gör allt i bokningen.', val: ['Vad kostar det?', 'Skicka förfrågan till Tommy'], knapp: ['Till bokningen', '/boka'] },
+    { allvar: true, ord: ['bekräftelse', 'fick ingen bekräftelse', 'har ni fått min', 'kom min bokning fram'], a: 'Tommy hör av sig och bekräftar. Har du inte hört något – ring honom så kollar han direkt.', val: ['Ring Tommy'] },
+    { allvar: true, ord: ['glömde', 'skrev fel', 'fel adress', 'fel nummer i'], a: 'Ingen fara! Ring Tommy eller skicka en ny förfrågan med rätt uppgifter, så rättar han det.', val: ['Ring Tommy', 'Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['hur lång tid tar', 'hur länge håller ni på', 'tar det lång tid', 'hur många timmar'], a: ['Det beror på hur många och vilka fönster det är. Tommy jobbar effektivt – men aldrig på bekostnad av kvaliteten.', 'Det varierar med storlek och fönstertyp. Fråga gärna Tommy när han hör av sig, så får du en uppskattning för just ditt hem.'] },
+    { allvar: true, ord: ['behöver jag vara hemma', 'måste jag vara där', 'om jag jobbar'], a: 'Nej, du behöver inte vara hemma. Lämna en nyckel eller lås upp det som behövs, så sköter Tommy resten.' },
+    { allvar: true, ord: ['utsidan bara', 'bara utvändigt', 'bara utsida'], a: 'Bara utsidan går också – då räcker det att grinden är öppen. Men tänk på att det är insidan du tittar igenom varje dag. 😉' },
+    { allvar: true, ord: ['karmtvätt', 'tvätta karmar', 'smutsiga karmar', 'fönsterbräda'], a: 'Karmtvätt kan du välja till – rena karmar och bågar för +15 %. Den finns med som sista fråga när du räknar ut priset.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['spröjsade', 'småspröjs', 'spröjsfönster', 'många små rutor'], a: 'Spröjs fixas! Välj "Med spröjs" och hur många rutor per båge när du räknar ut priset. Tommy räknar gärna på det innan du får ett fast pris.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['fast pris direkt', 'får jag fast pris', 'garanterat pris'], a: 'Ja. I bokningen får du ett fast pris direkt, och priset ni kommer överens om är det du betalar – även om jobbet tar längre tid.' },
+    { allvar: true, ord: ['dolda kostnader', 'tillkommer något', 'extra avgifter', 'överraskningar'], a: 'Inga dolda avgifter. Det enda som läggs till är inställelseavgiften på 30 kr, och den syns redan när du räknar ut priset.' },
+    { allvar: true, ord: ['billig', 'konkurrenskraftig', 'prisvärd', 'värt pengarna'], a: ['Tommy satsar på fast pris och riktigt bra resultat – inte på att vara billigast. Räkna ut ditt pris så ser du själv!', 'Fast pris, nöjd kund-garanti och alltid Tommy själv. Kolla vad det blir för dig!'], val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['rabattkod', 'kampanj', 'erbjudande', 'studentrabatt', 'pensionärsrabatt'], a: 'Jag känner inte till några rabatter just nu – och jag vill inte hitta på något. Fråga gärna Tommy.', val: ['Ring Tommy'] },
+    { allvar: true, ord: ['fler än en lägenhet', 'två lägenheter', 'grannar', 'hela trappuppgången', 'flera hus'], a: 'Roligt! Flera bostäder samtidigt räknar Tommy gärna på själv. Skicka en förfrågan och berätta hur många det gäller.', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['sommarstuga', 'fritidshus', 'stuga', 'sommarhus'], a: 'Ligger stugan inom Tommys område går det bra! Skriv postnumret så kollar jag.', knapp: ['Områden', '/omraden'] },
+    { allvar: true, ord: ['nybygge', 'nybyggt', 'byggdamm', 'efter renovering', 'byggstäd'], a: 'Efter byggen och renoveringar kan det sitta mer än vanligt på glaset. Skicka en förfrågan och berätta, så räknar Tommy på det.', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['flyttstädning', 'ska flytta', 'flyttar ut', 'inflyttning'], a: 'Ska du flytta? Då vill du säkert ha rena fönster i tid. Jag visar de första lediga tiderna.', val: ['Lediga tider', 'Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['visning', 'sälja huset', 'säljer lägenheten', 'mäklare'], a: 'Rena fönster gör mycket inför en visning! Vill du se de första lediga tiderna?', val: ['Lediga tider', 'Ring Tommy'] },
+    { allvar: true, ord: ['städfirma', 'storstädning', 'hemstädning'], a: 'Forsbergs Fönsterputs gör fönsterputs och solcellstvätt – inte vanlig städning. Men fönstren fixar Tommy gärna!', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['tvätta bilen', 'biltvätt', 'tvätta fasad', 'högtryckstvätt', 'rensa hängrännor', 'takrengöring'], a: 'Det gör Forsbergs Fönsterputs inte – fokus är fönsterputs och solcellstvätt. Vill du fråga om något speciellt kan du ringa Tommy.', val: ['Ring Tommy'] },
+    { allvar: true, ord: ['speglar', 'glasväggar', 'duschvägg', 'glasdörrar inne'], a: 'Har du andra glasytor du undrar över – skicka en förfrågan och beskriv, så svarar Tommy om det går.', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['klistermärke', 'tejp', 'färgstänk', 'målarfärg på glaset'], a: 'Sådant är lite speciellt – skriv det i förfrågan, så kollar Tommy vad som går att göra.', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['repor', 'repa glaset', 'skrapar ni', 'blir det repor'], a: 'Tommy jobbar med rätt teknik för varje fönster och är försäkrad om något mot förmodan skulle hända.' },
+    { allvar: true, ord: ['allergisk', 'astma', 'starka dofter', 'parfymfritt'], a: 'Renvattensystemet använder inga kemikalier – bara rent vatten. Har du speciella önskemål, säg det till Tommy.' },
+    { allvar: true, ord: ['hunden skäller', 'har hund', 'har katt', 'mina djur', 'husdjur hemma'], a: 'Djur är inga problem! 🐶🐱 Säg gärna till Tommy i förfrågan så vet han.', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['barn hemma', 'bebis sover', 'småbarn'], a: 'Skriv det i förfrågan, så tar Tommy hänsyn till det. 💙', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['jobbar hemifrån', 'har möten', 'jobbar hemma'], a: 'Inga problem – säg till Tommy, så anpassar han sig.' },
+    { allvar: true, ord: ['kommer tommy själv', 'samma person varje gång', 'samma putsare'], a: 'Ja, det är alltid Tommy själv som kommer – varje gång.' },
+    { allvar: true, ord: ['legitimation', 'id-kort', 'hur vet jag att det är tommy'], a: 'Det är alltid Tommy själv som kommer. Är du osäker kan du alltid ringa honom på 079-346 39 64 innan.', val: ['Ring Tommy'] },
+    { allvar: true, ord: ['kan jag lita', 'seriöst företag', 'är det bluff', 'scam'], a: 'Bra att du frågar! F-skatt, försäkring hos Trygg-Hansa, fast pris, nöjd kund-garanti och 5,0 på Google. Och alltid Tommy själv.', val: ['Vem är Tommy?', 'Läs recensionerna'] },
+    { allvar: true, ord: ['vad gör ni', 'vad erbjuder ni', 'vilka tjänster har', 'vad kan ni hjälpa'], a: 'Fönsterputs för villa, radhus och lägenhet – inklusive balkong, uterum och växthus – plus fönsterputs för företag och solcellstvätt.', val: ['Vad kostar det?', 'Hur går det till?'] },
+    { allvar: true, ord: ['fönsterputs jönköping', 'fönsterputsare jönköping', 'putsare i jönköping'], a: 'Då har du kommit rätt! 😊 Forsbergs Fönsterputs putsar i hela Jönköping och Huskvarna med omnejd.', val: ['Vad kostar det?', 'Lediga tider'] },
+    { allvar: true, ord: ['jag har bokat', 'har en bokning', 'min bokning', 'min tid'], a: 'Vad bra! Har du frågor om din bokning når du Tommy på 079-346 39 64.', val: ['Ring Tommy'] },
+    { allvar: true, ord: ['tommy ringde', 'missat samtal', 'ringde från'], a: 'Då är det nog Tommy som söker dig! Ring tillbaka på 079-346 39 64.', knapp: ['Ring 079-346 39 64', 'tel:+46793463964'] },
+    { allvar: true, ord: ['tack för senast', 'fönstren blev', 'blev jättefint', 'jättenöjd', 'så nöjd'], a: ['Åh, vad roligt att höra! 💙 Tommy blir jätteglad. Vill du lämna en recension på Google betyder det mycket.', 'Underbart! Det värmer. 😊 En recension på Google gör stor skillnad för Tommy.'], knapp: ['Recensioner', '/recensioner'] },
+    { allvar: true, ord: ['tips till vän', 'rekommendera er', 'tipsa en kompis', 'min granne vill'], a: 'Tack för att du tipsar! 💙 Din vän kan räkna ut sitt pris här i chatten eller ringa Tommy.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['jobba hos er', 'söker jobb', 'anställer ni', 'praktik', 'sommarjobb'], a: 'Roligt att du är intresserad! Hör av dig direkt till Tommy på kontakt@fputs.se.' },
+    { allvar: true, ord: ['samarbete', 'sponsring', 'reklam för er', 'marknadsföring'], a: 'Förfrågningar om samarbeten skickar du till kontakt@fputs.se, så tittar Tommy på det.' },
+    { allvar: true, ord: ['fakturaadress', 'faktura till företaget', 'betalningsvillkor faktura'], a: 'Företag får faktura. Skriv företagsuppgifterna i förfrågan, så ordnar Tommy resten.', val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['hyr', 'hyresrätt', 'hyresgäst', 'får jag som hyresgäst'], a: 'Javisst, även hyresgäster kan boka fönsterputs. RUT-avdraget gäller för dig som privatperson om du uppfyller villkoren.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['radhus', 'parhus', 'kedjehus', 'gavelhus'], a: 'Radhus och parhus räknar du som villa – välj fönstren i prisräkningen så ser du priset direkt.', val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['två våningar', 'tvåplans', 'enplans', 'souterräng'], a: 'Inga problem – höga fönster når Tommy med teleskopstången. Välj "Svåra att nå" om några fönster sitter högt när du räknar ut priset.', val: ['Vad kostar det?'] },
+    // ===== Småprat, känslor och humor (Tommy 2026-11-19) =====
+    { ord: ['hur mår du', 'hur är läget med dig', 'mår du bra', 'hur har du det'], a: ['Riktigt bra, tack! Det är en fin dag för rena fönster. Hur mår du själv?', 'Jag mår toppen – jag har precis fått frågor från trevliga människor. Som du! 😊', 'Strålande, som ett nyputsat fönster i solen. ☀️ Och du?'] },
+    { ord: ['jag mår bra', 'mår fint', 'mår toppen', 'har det bra'], a: ['Vad härligt att höra! 😊 Kan jag hjälpa dig med något idag?', 'Så skönt! Då ska vi se till att fönstren mår lika bra. 😉'] },
+    { ord: ['jag mår dåligt', 'mår inte bra', 'ledsen', 'deppig', 'har en dålig dag'], a: ['Åh, det är jag ledsen att höra. 💙 Hoppas dagen blir bättre. Finns det något jag kan göra för att underlätta?', 'Tråkigt att höra. Ta hand om dig – och kom ihåg att ljuset kommer tillbaka, ibland bara genom ett renare fönster. 💙'] },
+    { ord: ['stressad', 'har mycket att göra', 'hinner inte med', 'stressigt'], a: ['Förstår – livet kan vara mycket. Det är precis därför Tommy finns: en sak mindre på listan. 💙', 'Låt fönstren bli någon annans problem. Du har nog med annat! 😊'], val: ['Vad kostar det?'] },
+    { ord: ['jag är glad', 'så glad', 'lycklig', 'bästa dagen'], a: ['Härligt! Glädje smittar – jag blev också glad nu. 😄', 'Underbart! Fortsätt så! ☀️'] },
+    { ord: ['jag är arg', 'irriterad', 'sur idag', 'förbannad'], a: ['Oj, förstår att det kan kännas så. Finns det något jag kan hjälpa till med? Gäller det Tommy kan du alltid ringa honom direkt.', 'Det är okej att vara arg ibland. Säg till om jag kan hjälpa till på något sätt. 💙'], val: ['Ring Tommy'] },
+    { ord: ['jag är uttråkad', 'tråkigt', 'har inget att göra', 'tristess'], a: ['Uttråkad? Kör fönsterquizet! Skriv "quiz". 🏆', 'Då har jag en idé: räkna dina fönster. Spännande OCH användbart. 😄'] },
+    { ord: ['ensam', 'ingen att prata med', 'känner mig ensam'], a: ['Jag finns här och pratar gärna med dig. 💙 Vad har du för dig idag?', 'Du är inte ensam just nu – jag är här. 😊 Hur har din dag varit?'] },
+    { ord: ['jag är nervös', 'orolig', 'oroar mig'], a: 'Förstår. Vad är det du oroar dig för? Gäller det fönsterputsen kan jag berätta hur allt går till – steg för steg.', val: ['Hur går det till?'] },
+    { ord: ['förlåt', 'ursäkta', 'sorry', 'mitt fel'], a: ['Ingen fara alls! 😊', 'Det är helt okej – inget att be om ursäkt för.'] },
+    { ord: ['du är snäll', 'vad snäll du är', 'du är gullig', 'du är söt'], a: ['Åh, tack! Du är snäll själv. 😊', 'Nu rodnar jag nästan. 🙈 Tack!'] },
+    { ord: ['du är bra', 'du är grym', 'du är duktig', 'bra jobbat'], a: ['Tack! Jag har bra förebild – Tommy. 😄', 'Tack så mycket! Det betyder mycket. 💙'] },
+    { ord: ['du är rolig', 'du är kul', 'skrattar'], a: ['Haha, tack! Jag övar varje dag. 😄', 'Det bästa jag vet är när någon skrattar. Tack! 😊'] },
+    { ord: ['du är irriterande', 'du stör', 'du är tjatig', 'sluta tjata'], a: ['Förlåt! Jag ska ta det lugnare. 🙊', 'Uppfattat – jag håller mig lugn. Säg till om du behöver något.'], slutaSalja: true },
+    { ord: ['jag förstår inte dig', 'vad menar du', 'du är svår att förstå'], a: 'Förlåt, jag ska vara tydligare! Tryck på en av knapparna här under, eller ring Tommy så förklarar han.', val: ['Vad kostar det?', 'Hur går det till?', 'Ring Tommy'] },
+    { ord: ['god morgon', 'morrn', 'godmorgon'], a: ['God morgon! ☀️ Har du fått i dig kaffet än?', 'God morgon! Hoppas du sovit gott. Vad kan jag hjälpa dig med?'] },
+    { ord: ['god kväll', 'kvällen'], a: ['God kväll! 🌙 Vad kan jag hjälpa dig med?', 'God kväll! Skönt att dagen börjar gå mot sitt slut, va?'] },
+    { ord: ['god dag', 'goddag', 'tjänare'], a: ['God dag! 😊 Vad kan jag hjälpa till med?', 'Hej och välkommen! Fråga på.'] },
+    { ord: ['trevlig helg', 'ha en bra helg', 'skön helg'], a: ['Detsamma! Ha en riktigt skön helg. ☀️', 'Tack, detsamma! Njut av ledigheten.'] },
+    { ord: ['måndag', 'måndagar'], a: ['Måndag igen! Men tänk så här: det är en ny vecka för rena fönster. 😄', 'Måndagar är lättare med rena fönster. Det är vetenskap. (Typ.)'] },
+    { ord: ['tisdag'], a: 'Tisdag – veckans mest underskattade dag! 😄' },
+    { ord: ['onsdag', 'lillördag'], a: ['Lillördag! 🎉 Halvvägs till helgen.', 'Onsdag – mitt i veckan. Bra dag att planera fönsterputs!'] },
+    { ord: ['torsdag'], a: 'Torsdag! Nästan helg. 😊' },
+    { ord: ['regnigt', 'regnet', 'ösregn', 'blött ute'], a: ['Regn är tråkigt – men efter regnet kommer solen, och då syns det verkligen om fönstren är rena. ☀️', 'Regnväder är perfekt fikaväder. ☕'] },
+    { ord: ['soligt', 'solen skiner', 'fint väder', 'vackert väder'], a: ['Härligt! Och i solen ser man ju precis hur rena fönstren är... 👀', 'Underbart väder! Njut av det. ☀️'] },
+    { ord: ['mörkt ute', 'mörkt på morgonen', 'mörker', 'höstmörker'], a: ['Den mörka tiden är tuff. Rena fönster släpper in allt ljus som finns. 💡', 'Mörkt ute – då gäller det att ta vara på varje ljusstråle!'] },
+    { ord: ['snöar', 'snön', 'snöstorm', 'snögubbe'], a: ['Snö! ❄️ Tommy putsar året runt – på vintern med frostskydd i vattnet.', 'Vinterland! Mysigt att titta ut på – genom rena fönster förstås. ❄️'] },
+    { ord: ['blåsigt', 'storm', 'blåser'], a: 'Blåsigt idag! Vid extremt oväder flyttas putstiden kostnadsfritt. 🌬️' },
+    { ord: ['pollen', 'pollensäsong', 'allergi på våren'], a: ['Pollen lägger sig gärna på fönstren på våren. Då kan en puts göra stor skillnad! 🌼', 'Pollensäsong – fönstrens värsta fiende. 😅'] },
+    { ord: ['hösten', 'höst', 'löven'], a: ['Hösten är mysig – stearinljus, filtar och rena fönster. 🍂', 'Höst! Perfekt tid att få rena fönster innan mörkret.'] },
+    { ord: ['midsommar', 'sill', 'nubbe'], a: ['Glad midsommar! 🌸 Hoppas du får sol, sill och rena fönster.', 'Midsommar – den bästa högtiden för att titta ut på ljusa nätter.'] },
+    { ord: ['påsk', 'påskägg', 'påskkärring'], a: ['Glad påsk! 🐣 Påskägg i fönstret syns bäst när glaset är rent.', 'Påsk! Hoppas du får mycket godis. 🍬'] },
+    { ord: ['nyår', 'gott nytt år', 'fyrverkeri'], a: ['Gott nytt år! 🎆 Fyrverkerier syns bäst genom rena fönster.', 'Ett nytt år – en ny chans till rena fönster. 😄 Gott nytt!'] },
+    { ord: ['god jul', 'julafton', 'tomten', 'julklapp'], a: ['God jul! 🎄 Hoppas tomten är snäll mot dig i år.', 'God jul! Adventsljusen lyser vackrast i rena fönster. 🕯️'] },
+    { ord: ['födelsedag', 'fyller år', 'grattis på födelsedagen'], a: ['Grattis! 🎉 Hoppas du får en riktigt fin dag!', 'Hipp hipp hurra! 🎂 Fira ordentligt!'] },
+    { ord: ['semester', 'är ledig', 'åka bort', 'utomlands'], a: ['Härligt med ledighet! Vill du komma hem till rena fönster? Du behöver inte ens vara hemma. 😉', 'Njut av ledigheten! ☀️'] },
+    { ord: ['vättern', 'vätterstranden', 'sjön'], a: ['Vättern! Den finaste utsikten i stan – och den syns bäst genom rena fönster. 🌊', 'Ah, Vättern. Har du sjöutsikt är det nästan ett brott att ha smutsiga fönster. 😄'] },
+    { ord: ['grännaglass', 'polkagris', 'polkagrisar'], a: ['Polkagris från Gränna – klassiker! 🍬 Och Tommy putsar i Gränna också.', 'Mums! Gränna har både polkagrisar och fönster att putsa. 😄'] },
+    { ord: ['hv71', 'hockey', 'kinnarps arena'], a: ['Heja HV! 🏒 Jag håller tummarna.', 'Hockey i Jönköping – det är kärlek det. 🏒'] },
+    { ord: ['fotboll', 'allsvenskan', 'j-södra', 'jönköpings södra'], a: ['Fotboll! ⚽ Jag kan inte sparka, men jag kan heja.', 'Hoppas ditt lag vinner! ⚽'] },
+    { ord: ['jönköping är', 'bor i jönköping', 'älskar jönköping'], a: ['Jönköping är bäst! Och det är här Tommy putsar. 😊', 'Jönköping med omnejd – Tommys hemmaplan!'] },
+    { ord: ['fika', 'kanelbulle', 'bulle', 'kaka'], a: ['Fika är heligt! ☕ Har du en kanelbulle till mig? (Jag kan inte äta, men jag kan drömma.)', 'Fika är Sveriges bästa uppfinning. 🧁'] },
+    { ord: ['lunch', 'middag', 'vad ska jag äta'], a: ['Svårt beslut! Själv lever jag på el och goda frågor. 😄', 'Pasta funkar alltid. Det är mitt enda matråd. 🍝'] },
+    { ord: [' te ', 'grönt te', 'dricker te'], a: 'Te är mysigt! 🍵 Särskilt med utsikt genom ett rent fönster.' },
+    { ord: [' vin ', 'öl ikväll', 'fredagsmys'], a: ['Fredagsmys! 🍿 Njut ordentligt.', 'Skål! Men putsa inte fönster efter det. 😉'] },
+    { ord: ['tacos', 'tacofredag'], a: 'Tacofredag – en svensk tradition jag respekterar djupt. 🌮' },
+    { ord: ['sover', 'sömnig', 'ska sova', 'godnatt'], a: ['Sov gott! 🌙 Jag finns här i morgon också.', 'God natt! Drömmen om rena fönster väntar. 😴'] },
+    { ord: ['vaken sent', 'kan inte sova', 'sömnlös'], a: ['Kan du inte sova? Jag är vaken dygnet runt om du vill prata. 🌙', 'Nattugglor är välkomna här. 🦉'] },
+    { ord: ['jobbar för mycket', 'trött på jobbet', 'lång dag'], a: ['Då förtjänar du att slippa fönsterputsen själv! Låt Tommy ta den. 💙', 'Lång dag? Ta det lugnt ikväll – du är värd det.'] },
+    { ord: ['jag är student', 'pluggar', 'tenta', 'skolan'], a: ['Lycka till med pluggandet! 📚 Rena fönster ger mer dagsljus – bra för koncentrationen. (Mitt eget påstående.)', 'Plugga på! Du klarar det. 💪'] },
+    { ord: ['jag är pensionär', 'pensionerad', 'har gått i pension'], a: ['Grattis till pensionen! Nu ska du njuta – låt Tommy sköta fönstren. 😊', 'Härligt! Då finns det tid för det roliga i livet.'], val: ['Vad kostar det?'] },
+    { ord: ['barnen', 'mina barn', 'ungarna', 'barnbarn'], a: ['Barn och rena fönster – en klassisk kamp. 😄 Kladdiga fingeravtryck är ett tecken på ett levande hem!', 'Barn är underbara. Fingeravtryck på fönstren hör till. 😄'] },
+    { ord: ['min man', 'min fru', 'min sambo', 'min partner'], a: ['Hälsa gärna! 😊 Vill ni räkna ut priset tillsammans?', 'Fint! Fråga på om ni undrar något.'], val: ['Vad kostar det?'] },
+    { ord: ['hund heter', 'min hund', 'vovve'], a: ['Hundar är fantastiska! 🐶 Nosavtryck på fönstret är ett kärleksbevis.', 'Hälsa vovven från mig! 🐾'] },
+    { ord: ['katt heter', 'min katt', 'kissen'], a: ['Katter älskar fönster – bästa platsen att spana på fåglar. 🐱', 'Hälsa kissen! 🐾'] },
+    { ord: ['fåglar', 'fågel flög in', 'fågelspillning'], a: ['Fåglar är fina – men deras spår på fönstren är mindre fina. 😅', 'Fågelspillning på rutan? Det fixar Tommy. 🐦'] },
+    { ord: ['spindel', 'spindelnät', 'flugor', 'insekter'], a: ['Spindelnät i fönsterhörnen hör hösten till. Men de försvinner vid putsen. 🕷️', 'Insekter gillar fönster lika mycket som vi. 😄'] },
+    { ord: ['berätta ett skämt', 'dra ett skämt', 'roligt skämt', 'ett till skämt'], a: ['Vad sa fönstret till fönsterputsaren? "Jag ser rakt igenom dig." 🪟', 'Varför gick fönstret till psykologen? Det hade för många ränder i livet. 😄', 'Vilket är fönstrets favoritämne i skolan? Glas-historia! 📚', 'Hur hälsar två fönster på varandra? "Ruta läget?" 😄', 'Varför är fönsterputsare så lugna? De har klar sikt på livet. 😎'] },
+    { ord: ['vits', 'ordvits', 'pappaskämt'], a: ['Jag har ett pappaskämt: Vad kallar man en fönsterputsare som slutar? En som har gett upp-sikt. 😄', 'Mitt favoritskämt: Jag skulle putsa ett fönster, men det var helt genomskinligt. 🙃'] },
+    { ord: ['gåta', 'ge mig en gåta'], a: ['Gåta: Vad kan man se igenom men inte gå igenom? Ett fönster! 🪟', 'Gåta: Vad blir renare ju mer det blir blött? En fönsterruta – med rätt teknik! 😄'] },
+    { ord: ['fun fact', 'rolig fakta', 'visste du att'], a: ['Visste du att? Vanligt kranvatten innehåller kalk och mineraler – det är därför fönster kan få fläckar när de torkar. Renvatten torkar utan märken. 💧', 'Visste du att Tommy tävlade i SM i fönsterputs 2026? Det finns alltså tävlingar i det! 🏆'] },
+    { ord: ['sjung en sång', 'kan du sjunga', 'sjung'], a: ['🎵 Rena rutor, rena rutor, ljuset strömmar in... 🎵 Jag ska inte sluta mitt dagsjobb.', '🎵 Jag ser klart nu när regnet har gått... 🎵'] },
+    { ord: ['dikt', 'skriv en dikt', 'poesi'], a: 'Här kommer en dikt:\nEtt fönster som glänser,\nett ljus utan gränser,\nTommy med skrapa i hand –\nrenast i hela vårt land. ✨' },
+    { ord: ['haiku'], a: 'Haiku:\nGlas som var grått nyss\nnu blänker det i solen\nTommy har varit här 🌸' },
+    { ord: ['vad gillar du', 'favoritsak', 'vad tycker du om'], a: ['Jag gillar rena fönster, trevliga kunder och när någon skrattar åt mina skämt. 😄', 'Ljus! Allt som släpper in ljus. 💡'] },
+    { ord: ['favoritfärg', 'vilken färg'], a: ['Genomskinlig! Eller kanske Forsbergs-röd. ❤️', 'Klart glas. Det är väl självklart. 😄'] },
+    { ord: ['favoritmat'], a: 'Jag lever på el och goda frågor. Men om jag fick välja – kanelbullar. 🧁' },
+    { ord: ['favoritfilm', 'vilken film', 'bästa filmen'], a: ['"Rear Window" – Fönstret åt gården. Av förklarliga skäl. 🎬', 'Allt med fina utsikter! 🎬'] },
+    { ord: ['favoritmusik', 'vilken musik', 'lyssnar på'], a: ['Jag gillar allt som låter som en skrapa mot rent glas. 🎵 Vad lyssnar du på?', 'Lugn musik – den passar bra till noggrant hantverk. 🎶'] },
+    { ord: ['spelar du spel', 'gillar du spel', 'tv-spel'], a: 'Jag spelar mest "Hitta smutsen på fönstret". Jag vinner varje gång. 🎮' },
+    { ord: ['hur gammal är du', 'din ålder', 'när föddes du'], a: ['Jag är ganska ny – men jag lär mig hela tiden! 😊', 'Ung i själen, gammal i kunskap om fönster. 😄'] },
+    { ord: ['var bor du', 'var kommer du ifrån'], a: ['Jag bor här på sajten – med världens bästa utsikt över Forsbergs kunder. 😄', 'I molnet! Men mitt hjärta finns i Jönköping. 💙'] },
+    { ord: ['har du familj', 'har du syskon', 'har du föräldrar'], a: 'Min familj är Tommy och alla trevliga kunder. 💙' },
+    { ord: ['är du verklig', 'finns du på riktigt', 'är du en människa'], a: ['Jag är Forsbergs digitala kundservice – inte en människa. Men Tommy är högst verklig, och du når honom på 079-346 39 64. 😊', 'Jag är en digital hjälpreda. Den riktiga människan heter Tommy – och han kommer hem till dig!'], val: ['Ring Tommy'] },
+    { ord: ['är du ai', 'artificiell intelligens', 'är du en bot', 'är du en robot'], a: ['Jag är en digital hjälpreda – en enkel sådan, men med mycket hjärta. 😊 Allt jag säger om priser och tider kommer från Tommys egna system.', 'Ja, jag är digital. Men jag hittar aldrig på priser – de kommer direkt från Tommys kalkylator.'] },
+    { ord: ['vem skapade dig', 'vem byggde dig', 'vem gjorde dig'], a: 'Tommy har byggt mig för att hjälpa kunderna dygnet runt. 💙' },
+    { ord: ['vad heter du egentligen', 'har du ett namn', 'vad ska jag kalla dig'], a: 'Kalla mig Kundservice! Jag är Forsbergs digitala hjälpreda. 😊' },
+    { ord: ['kan du prata engelska', 'english', 'speak english'], a: 'I mostly speak Swedish – but Tommy speaks English too! Call him on +46 79-346 39 64. 😊', val: ['Ring Tommy'] },
+    { ord: ['kan du prata arabiska', 'kan du prata finska', 'andra språk'], a: 'Jag pratar mest svenska. Har du svårt med svenskan kan du ringa Tommy, så löser ni det tillsammans.', val: ['Ring Tommy'] },
+    { ord: ['vad är meningen', 'livets mening', 'varför finns vi'], a: ['Meningen med livet? Att se världen klart – helst genom rena fönster. 😄', 'Filosofiskt! Jag tror att det handlar om ljus. Både bokstavligt och bildligt. 💡'] },
+    { ord: ['tror du på gud', 'religion', 'gud finns'], a: 'Det är en stor fråga som jag lämnar till var och en. Jag håller mig till fönster. 😊' },
+    { ord: ['politik', 'vem ska jag rösta på', 'valet'], a: 'Politik håller jag mig borta från – men alla partier är välkomna att boka fönsterputs. 😄' },
+    { ord: ['kan du räkna', 'vad är 10 plus', 'matte'], a: 'Jag är bäst på en sorts matte: att räkna ut vad din fönsterputs kostar! 🧮', val: ['Vad kostar det?'] },
+    { ord: ['vad är du bra på', 'vad kan du göra', 'vad kan du'], a: 'Jag kan räkna ut vad din fönsterputs kostar, visa lediga tider, svara på frågor om Tommy och företaget – och skicka en förfrågan till honom åt dig. 😊', val: ['Vad kostar det?', 'Lediga tider', 'Hur går det till?'] },
+    { ord: ['vad kan du inte', 'kan du inte', 'svagheter'], a: 'Jag kan inte boka själv, inte hitta på priser och inte putsa fönster. Det sista är Tommys jobb. 😄' },
+    { ord: ['putsar du själv', 'kan du putsa', 'har du en skrapa'], a: 'Tyvärr, jag har inga händer. Det är Tommy som putsar – jag sköter pratet. 😄' },
+    { ord: ['tråkigt jobb', 'tråkigt att putsa', 'hatar att putsa'], a: ['Många tycker att fönsterputs är tråkigt – det är därför Tommy finns! 😄', 'Du behöver aldrig mer putsa själv. Låt Tommy ta det.'], val: ['Vad kostar det?'] },
+    { ord: ['jag putsar alltid själv', 'brukar putsa själv', 'gör det själv'], a: ['Respekt! 💪 Och när du vill slippa en gång – då finns Tommy.', 'Snyggt! Men visste du att höga fönster når Tommy utan stege? Det slipper du klättra för. 😉'] },
+    { ord: ['ränder när jag putsar', 'får alltid ränder', 'blir randigt'], a: ['Ränder är en klassiker! Vanligt kranvatten innehåller kalk och mineraler som kan lämna märken. Tommy använder rätt teknik för ett randfritt resultat. 😊', 'Ränderna är fönsterputsens värsta fiende. Det är därför proffs finns! 😄'], val: ['Vad kostar det?'] },
+    { ord: ['vilket putsmedel', 'bästa putsmedlet', 'ättika', 'diskmedel'], a: 'Tommy använder renvatten för många fönster – helt utan kemikalier. För vanliga rutor används klassisk skrapteknik.', knapp: ['Hur jag jobbar', '/hur-jag-jobbar'] },
+    { ord: ['fönster är smutsiga', 'smutsiga rutor', 'ser inget ut', 'grått glas'], a: ['Då är det dags! 😄 Ska vi räkna ut vad det kostar?', 'Smutsiga fönster tar bort mycket ljus. Det fixar Tommy!'], val: ['Vad kostar det?'] },
+    { ord: ['fönstren är rena', 'har redan rena', 'putsade nyss'], a: ['Vad bra! Spara mig till nästa gång. 😊', 'Snyggt! Kom tillbaka när det är dags igen.'] },
+    { ord: ['bra hemsida', 'snygg hemsida', 'fin sajt'], a: 'Tack! Tommy blir glad att höra det. 😊' },
+    { ord: ['dålig hemsida', 'krånglig sajt', 'hittar inte'], a: 'Förlåt! Vad letar du efter? Jag hjälper dig hitta rätt.', val: ['Vad kostar det?', 'Lediga tider', 'Ring Tommy'] },
+    { ord: ['testar bara', 'kollar bara', 'bara nyfiken'], a: ['Kör på! Fråga vad du vill. 😊', 'Nyfikenhet är bra! Testa att fråga vad din fönsterputs skulle kosta.'], val: ['Vad kostar det?'] },
+    { ord: ['vem vinner', 'vem är starkast', 'vem är snabbast'], a: 'Tommy – han har ju tävlat i SM i fönsterputs! 🏆' },
+    { ord: ['fönsterputs-sm', 'tävlar man i fönsterputs', 'tävling i fönsterputs'], a: 'Ja, det finns SM i fönsterputs! Tommy tävlade 2026 på Kistamässan. Snabbhet och precision – på riktigt. 🏆' },
+    { ord: ['världsrekord', 'snabbaste fönsterputsaren'], a: 'Om det finns ett rekord vet jag inte – men Tommy är snabb och noggrann. Det är en bra kombination! ⚡' },
+    { ord: ['kärlek', 'jag är kär', 'förälskad'], a: ['Kärlek! 💕 Allt ser vackrare ut då – även genom smutsiga fönster. Men rena är bättre. 😉', 'Åh, vad fint! 💕'] },
+    { ord: ['gift dig med mig', 'vill du gifta', 'vi gifter oss'], a: 'Haha! Jag är redan gift – med mitt jobb. 😄' },
+    { ord: ['du är min favorit', 'bästa boten', 'älskar dig'], a: ['Och du är min favoritkund! 💙', 'Åh! Jag blir alldeles varm i kretsarna. 💙'] },
+    { ord: ['hejsan svejsan', 'tjolahopp', 'hallå där'], a: ['Hallå hallå! 👋 Vad kan jag göra för dig?', 'Hejsan! 😊 Fråga på!'] },
+    { ord: ['vad gör du', 'vad håller du på med', 'är du upptagen'], a: ['Jag väntar på trevliga frågor – som din! 😊', 'Jag sitter och håller koll på Tommys kalender. Vill du se lediga tider?'], val: ['Lediga tider'] },
+    { ord: ['vad tycker du om tommy', 'gillar du tommy', 'är tommy snäll'], a: ['Tommy är bäst! Noggrann, punktlig och alltid trevlig. 😊', 'Han är min skapare och idol. 💙'] },
+    { ord: ['vad tjänar tommy', 'är tommy rik', 'tjänar mycket'], a: 'Det vet jag inte – men han lägger ner hela hjärtat i varje jobb. 💙' },
+    { ord: ['hur ser tommy ut', 'bild på tommy', 'foto på tommy'], a: 'Du kan se Tommy på sajten – han syns bland annat i videon från SM i fönsterputs.', knapp: ['Om Tommy', '/om-oss'] },
+    { ord: ['vad gör tommy på fritiden', 'tommys hobby', 'fritid'], a: 'Det vet jag faktiskt inte! Fråga honom när han kommer – han berättar säkert gärna. 😊' },
+    { ord: ['hej igen', 'tillbaka igen', 'jag är tillbaka'], a: ['Välkommen tillbaka! 😊 Vad kan jag hjälpa till med?', 'Hej igen! Kul att se dig. 👋'] },
+    { ord: ['vänta', 'en sekund', 'strax tillbaka'], a: ['Inga problem – jag väntar här. 😊', 'Ta den tid du behöver!'] },
+    { ord: ['jag måste gå', 'måste sticka', 'hörs sen'], a: ['Inga problem! Välkommen tillbaka när du vill. 👋', 'Ha det bra! Jag finns här när du behöver mig.'] },
+    { ord: ['vi hörs', ' ses ', 'adjö'], a: ['Vi hörs! 👋', 'Hej så länge! 😊'] },
+    { ord: ['okej tack', 'bra tack', 'toppen tack'], a: ['Varsågod! 😊 Säg till om du undrar något mer.', 'Så lite! Hör av dig när du vill.'] },
+    { ord: ['mycket bra', 'jättebra', 'perfekt', 'utmärkt'], a: ['Vad roligt! 😊', 'Härligt! Något mer jag kan hjälpa till med?'] },
+    { ord: ['låter bra', 'låter toppen', 'låter perfekt'], a: ['Så bra! 😊 Vill du gå vidare och räkna ut priset?', 'Härligt! Säg till när du vill fortsätta.'], val: ['Vad kostar det?'] },
+    { ord: ['vet du vad', 'gissa vad'], a: ['Nej, berätta! 👀', 'Vad då? Jag är nyfiken! 😄'] },
+    { ord: ['jag har en fråga', 'får jag fråga', 'kan jag fråga'], a: ['Absolut! Fråga på. 😊', 'Självklart – vad undrar du?'] },
+    { ord: ['hjälp mig', 'kan du hjälpa mig', 'behöver hjälp med'], a: 'Gärna! Vad behöver du hjälp med?', val: ['Vad kostar det?', 'Lediga tider', 'Hur går det till?', 'Ring Tommy'] },
+    { ord: ['vad är bäst', 'vad rekommenderar du', 'vad tycker du jag ska'], a: 'Börja med att räkna ut priset – det tar en minut och binder dig inte till något. Sen kan du bestämma i lugn och ro.', val: ['Vad kostar det?'] },
+    { ord: ['jag är osäker', 'vet inte vad jag vill', 'vet inte riktigt'], a: 'Helt okej! Vi tar det steg för steg. Vill du börja med att se vad det kostar, eller hur det går till?', val: ['Vad kostar det?', 'Hur går det till?'] },
+    { ord: ['krånglig', 'för svårt', 'förstår inte hur'], a: 'Förlåt om det känns krångligt! Det enklaste är att ringa Tommy – han hjälper dig direkt.', val: ['Ring Tommy', 'Hur går det till?'] },
+    { ord: ['långsam', 'svarar långsamt', 'segt'], a: 'Förlåt! Jag skriver så fort mina kretsar tillåter. ⚡' },
+    { ord: ['snabbt svar', 'du svarar snabbt', 'svarar fort'], a: 'Tack! Jag svarar direkt, dygnet runt. ⚡' },
+    { ord: ['dygnet runt', 'är du alltid här', 'jobbar du på natten'], a: 'Ja, jag är här dygnet runt! Tommy svarar i telefon 09–21.' },
+    { ord: ['vad är klockan nu', 'hur mycket är klockan'], a: 'Titta i hörnet på skärmen – jag är bättre på fönster än på klockor. 😄 Tommy svarar i telefon 09–21.' },
+    { ord: ['vilket datum', 'vilket år är det'], a: 'Kolla datumet på din skärm – jag håller mest koll på Tommys lediga tider. 📅', val: ['Lediga tider'] },
+    { ord: ['vad tycker du om regn', 'gillar du regn'], a: 'Regn är okej – det sköljer bort lös smuts. Men fastsittande smuts behöver Tommy. 😄' },
+    { ord: ['vad tycker du om vintern', 'gillar du vinter'], a: 'Vintern är vacker – särskilt med snö som glittrar utanför ett rent fönster. ❄️' },
+    { ord: ['vad tycker du om sommaren', 'gillar du sommar'], a: 'Sommaren är bäst! Ljusa kvällar och sol som lyser in. ☀️' },
+    { ord: ['är du trött', 'blir du trött'], a: 'Aldrig! Jag laddar på el och glada kunder. ⚡' },
+    { ord: ['är du lycklig', 'är du glad'], a: 'Jag är glad när jag får hjälpa någon. Så ja – just nu är jag glad! 😊' },
+    { ord: ['drömmer du', 'vad drömmer du om'], a: 'Jag drömmer om en värld där alla fönster är rena. ✨' },
+    { ord: ['rädd för', 'är du rädd'], a: 'Jag är bara rädd för ränder. 😱' },
+    { ord: ['hemligt', 'berätta en hemlighet'], a: 'En hemlighet: det finns ett fönsterquiz här. Skriv "quiz"! 🤫' },
+    { ord: ['kan du dansa', 'dansa för mig'], a: '💃🕺 *gör en digital moonwalk* – jag är bättre på fönster.' },
+    { ord: ['tråkig bot', 'du är tråkig'], a: ['Aj! 😅 Testa att skriva "quiz" eller "dra ett skämt" – jag har mer att ge!', 'Förlåt! Jag ska skärpa mig. Vill du höra ett skämt?'], val: ['Dra ett skämt'] },
+    { ord: ['smart bot', 'du är smart', 'imponerande'], a: 'Tack! Men det smartaste är ändå att låta Tommy putsa fönstren. 😄' },
+    { ord: ['gillar du mig', 'tycker du om mig'], a: 'Självklart! Du är en av mina favoritkunder. 💙' },
+    { ord: ['jag är rik', 'har mycket pengar', 'har råd'], a: 'Härligt! Då kan du unna dig rena fönster utan dåligt samvete. 😄', val: ['Vad kostar det?'] },
+    { ord: ['jag är fattig', 'har ont om pengar', 'pank'], a: 'Förstår. Kolla gärna priset – RUT-avdraget halverar arbetskostnaden, och du binder dig inte till något genom att räkna.', val: ['Vad kostar det?'] },
+    { ord: ['jag har ont', 'har ont i ryggen', 'kan inte klättra', 'dålig rygg'], a: 'Då ska du absolut inte stå på en stege! Låt Tommy ta fönstren – han når höga fönster från marken. 💙', val: ['Vad kostar det?'] },
+    { ord: ['höjdrädd', 'rädd för höjder', 'svindel'], a: 'Då är du inte ensam! Tommy putsar höga fönster med teleskopstång från marken – ingen behöver klättra. 😊', val: ['Vad kostar det?'] },
+    { ord: ['ont om tid', 'har ingen tid', 'tidsbrist'], a: 'Då ska du inte lägga tiden på fönsterputs! Tommy fixar det, och du behöver inte ens vara hemma.', val: ['Vad kostar det?'] },
+    { ord: ['jag älskar rena fönster', 'rena fönster är bäst', 'gillar rena fönster'], a: ['Samma här! ✨ Det är som att få ett nytt hem.', 'Du och jag tänker likadant. 😄'], val: ['Vad kostar det?'] },
+    { ord: ['grannen har', 'grannarnas fönster', 'grannen putsar'], a: 'Ha! Fönsterputs-avundsjuka? 😄 Det löser vi.', val: ['Vad kostar det?'] },
+    { ord: ['svärmor', 'svärföräldrar', 'får besök'], a: 'Får du besök? Rena fönster gör stor skillnad. 😉 Vill du se lediga tider?', val: ['Lediga tider'] },
+    { ord: ['fest', 'kalas', 'ska ha fest'], a: 'Fest! 🎉 Då vill du nog ha rena fönster innan. Vill du se lediga tider?', val: ['Lediga tider'] },
+    { ord: ['bröllop', 'gifta oss', 'förlovning'], a: 'Grattis! 💍 Vill du ha rena fönster inför den stora dagen?', val: ['Lediga tider'] },
+    { ord: ['nyinflyttad', 'just flyttat', 'nytt hus', 'ny lägenhet'], a: ['Grattis till nya hemmet! 🏡 Rena fönster är en bra start.', 'Välkommen till ditt nya hem! Ska vi kika på priset?'], val: ['Vad kostar det?'] },
+    { ord: ['det var allt för idag', 'jag är klar', 'det räcker'], a: 'Tack för att du hörde av dig! 💙 Välkommen tillbaka.' },
+    // ===== Fönstertips, vardagsfrågor och mer humor (Tommy 2026-11-19) =====
+    { ord: ['varför blir fönster smutsiga', 'varför smutsar', 'vad gör fönster smutsiga'], a: ['Pollen, damm, trafikfilm, fågelspillning och regn som torkar in – allt lägger sig på glaset. Därför behöver även fönster lite kärlek ibland. 😊', 'Smuts, pollen och väder gör sitt. Regn sköljer bort lös smuts, men inte det som sitter fast.'] },
+    { ord: ['regn rengör', 'regnet tvättar', 'räcker inte regn'], a: 'Regn sköljer bort lös smuts, men inte fastsittande beläggningar – och när regnvattnet torkar kan det lämna egna fläckar.' },
+    { ord: ['tidningspapper', 'putsa med tidning'], a: ['Tidningspapper är en klassiker från förr! Men proffsen kör med skrapa och renvatten. 😄', 'Mormors trick! Men Tommy har lite modernare grejer. 😉'] },
+    { ord: ['mikrofiberduk', 'trasa', 'fönsterduk'], a: 'Tommy använder klassisk skrapteknik för vanliga rutor och renvattensystem för höga fönster. Vill du slippa trasan helt – låt honom ta det! 😄', val: ['Vad kostar det?'] },
+    { ord: ['robotdammsugare för fönster', 'fönsterrobot', 'fönstertvättrobot'], a: 'Haha, en fönsterrobot! Jag är också en robot, men jag kan bara prata. Tommy är fortfarande snabbast. 😄' },
+    { ord: ['varför ska man putsa', 'varför putsa fönster', 'är det viktigt att putsa'], a: ['Rena fönster släpper in mer ljus, ger finare utsikt och får hela hemmet att kännas fräschare. ✨', 'Mer ljus, bättre humör och ett hem som känns nystädat. Svårt att slå!'] },
+    { ord: ['mer ljus', 'ljusare hemma', 'mörkt hemma'], a: 'Rena fönster släpper in mer dagsljus – det märks direkt, särskilt under den mörka tiden. 💡', val: ['Vad kostar det?'] },
+    { ord: ['utsikt', 'sjöutsikt', 'fin utsikt'], a: ['En fin utsikt förtjänar rena fönster! 🌅', 'Utsikten är ju hela poängen – den ska synas. 😊'], val: ['Vad kostar det?'] },
+    { ord: ['fingeravtryck', 'kladdigt', 'barnhänder'], a: 'Fingeravtryck på glaset är ett tecken på ett levande hem. 😄 Men de försvinner när Tommy har varit där.' },
+    { ord: ['hundnos', 'nosavtryck', 'hunden slickar'], a: 'Nosavtryck på fönstret – hundens konstverk! 🐶 Tommy tar bort dem, men hunden gör nya. Det är cirkeln.' },
+    { ord: ['fönsterbleck', 'fönsterbänk utvändigt', 'plåten under fönstret'], a: 'Undrar du över något särskilt runt fönstren – skriv det i förfrågan, så svarar Tommy vad som ingår.', val: ['Skicka förfrågan till Tommy'] },
+    { ord: ['myggnät', 'insektsnät', 'myggfönster'], a: 'Myggnät kan sitta i vägen för putsen. Skriv gärna i förfrågan om du har sådana, så vet Tommy.', val: ['Skicka förfrågan till Tommy'] },
+    { ord: ['solfilm', 'solskyddsfilm', 'tonade rutor'], a: 'Har du film eller tonade rutor – skriv det i förfrågan, så vet Tommy och kan anpassa sig.', val: ['Skicka förfrågan till Tommy'] },
+    { ord: ['blyinfattat', 'antika fönster', 'gamla fönster', 'äldre fönster'], a: 'Äldre och speciella fönster tar Tommy hand om varsamt. Skriv gärna i förfrågan vad det är för fönster.', val: ['Skicka förfrågan till Tommy'] },
+    { ord: ['fönster som kärvar', 'går inte att öppna', 'fastmålade'], a: 'Fönster som inte går att öppna väljer du som specialfönster när du räknar ut priset. Tommy löser det.', val: ['Vad kostar det?'] },
+    { ord: ['öppnas utåt', 'utåtgående fönster'], a: 'Fönster som öppnas utåt väljer du som specialfönster i prisräkningen – då räknas alla sidor.', val: ['Vad kostar det?'] },
+    { ord: ['hur räknar man fönster', 'hur räknar jag mina fönster', 'räkna antal fönster'], a: 'Gå rum för rum och räkna varje fönster. Ett fönster med två delar som går att öppna är ett 2-luftsfönster. Är du osäker – tryck "Vet inte" i prisräkningen.', val: ['Vad kostar det?'] },
+    { ord: ['vad betyder luft', 'vad är en luft', 'luftar'], a: '"Luft" är antalet bågar – delarna som går att öppna. 1-luft har en båge, 2-luft har två.' },
+    { ord: ['vad är spröjs', 'vad betyder spröjs'], a: 'Spröjs är de smala listerna som delar glaset i flera mindre rutor. Det ger en klassisk look – och lite mer jobb vid putsen. 😊' },
+    { ord: ['vad är panoramafönster', 'stort fönster', 'stora fönster'], a: 'Ett panoramafönster är ett stort glas, ofta fast, som ger fri utsikt. I prisräkningen väljer du ungefär hur stort det är.', val: ['Vad kostar det?'] },
+    { ord: ['vad är överliggande', 'överljus'], a: 'Överliggande fönster sitter ovanför ett annat fönster eller en dörr – ett smalare glas upptill.' },
+    { ord: ['vad är underliggande', 'lågt fönster'], a: 'Underliggande fönster sitter nedanför ett annat fönster – ett lägre glas nertill.' },
+    { ord: ['vad är renvattensystem', 'hur funkar renvatten', 'osmosvatten'], a: 'Vattnet filtreras tills det är helt rent från kalk och mineraler. Det löser smutsen, sköljer bort den och torkar utan märken – helt utan kemikalier. 💧', knapp: ['Hur jag jobbar', '/hur-jag-jobbar'] },
+    { ord: ['teleskopstång', 'lång stång', 'stången'], a: 'Teleskopstången når upp till 13 meter, ungefär 4 våningar – och Tommy står tryggt på marken hela tiden.' },
+    { ord: ['skrapteknik', 'gummiskrapa', 'fönsterskrapa'], a: 'Klassisk skrapteknik ger precision och ett randfritt resultat på vanliga rutor. Det är riktigt hantverk! ✨' },
+    { ord: ['kemikaliefritt', 'miljövänlig', 'grönt alternativ', 'hållbart'], a: 'Renvattensystemet är helt kemikaliefritt – bara rent vatten. Skonsamt för växter och djur. 🌿' },
+    { ord: ['vad är rut', 'rut betyder', 'förklara rut'], a: 'RUT är ett skatteavdrag för hushållsnära tjänster. Du betalar halva arbetskostnaden, och Tommy sköter allt med Skatteverket. Priserna här är redan efter RUT.' },
+    { ord: ['vad händer om rut nekas', 'skatteverket säger nej', 'rut avslag'], a: 'Om Skatteverket inte beviljar RUT-avdraget står det vad som gäller på sidan Vanliga frågor.', knapp: ['Vanliga frågor', '/faq'] },
+    { ord: ['hur fungerar bokningen', 'hur bokar man', 'steg för steg boka'], a: 'Räkna ut priset, välj önskad tid och skicka – Tommy hör av sig och bekräftar. Det kan du göra i bokningen eller här i chatten.', val: ['Vad kostar det?', 'Skicka förfrågan till Tommy'] },
+    { ord: ['vad händer efter', 'vad händer sen', 'och sen då'], a: 'När du har skickat din förfrågan hör Tommy av sig och bekräftar tiden. Han kommer på avtalad tid, putsar och sedan betalar du med Swish.', val: ['Hur går det till?'] },
+    { ord: ['kan jag lita på priset', 'stämmer priset', 'är priset exakt'], a: 'Priset i chatten är räknat på samma sätt som i bokningen. I bokningen får du ett fast pris som gäller.', val: ['Vad kostar det?'] },
+    { ord: ['varför 30 kr', 'vad är inställelseavgift', 'inställelse'], a: 'Inställelseavgiften på 30 kr täcker att Tommy tar sig hem till dig. Den är inte RUT-berättigad och läggs ovanpå priset.' },
+    { ord: ['vad ingår', 'ingår det', 'vad får jag'], a: 'In- och utsida ingår alltid. Mellanglas väljer du med 4 sidor, och karmtvätt kan du välja till. Allt syns när du räknar ut priset.', val: ['Vad kostar det?'] },
+    { ord: ['fönstertvätt', 'tvätta fönster', 'rengöra fönster', 'göra rent fönstren'], a: ['Fönstertvätt är precis vad Tommy gör! 😊 Ska vi räkna ut priset?', 'Det fixar Tommy – snyggt, randfritt och till fast pris.'], val: ['Vad kostar det?'] },
+    { ord: ['putsa rutor', 'putsa glas', 'rutputs'], a: 'Rutor och glas är Tommys specialitet! ✨', val: ['Vad kostar det?'] },
+    { ord: ['huset är stort', 'stort hus', 'många rum'], a: 'Stort hus – inga problem! Räkna ut priset så ser du direkt vad det blir.', val: ['Vad kostar det?'] },
+    { ord: ['litet hus', 'liten lägenhet', 'bara några fönster'], a: 'Även små jobb är välkomna! För villa är lägsta pris 750 kr efter RUT, och lägenhet från 475 kr.', val: ['Vad kostar det?'] },
+    { ord: ['är det dyrt', 'kostar det mycket', 'blir det dyrt'], a: 'Det beror på antal och typ av fönster. RUT-avdraget halverar arbetskostnaden – och du ser priset direkt när du räknar.', val: ['Vad kostar det?'] },
+    { ord: ['billigare om', 'rabatt om', 'billigare på'], a: 'Jag känner inte till några rabatter – och jag hittar inte på. Fråga gärna Tommy direkt.', val: ['Ring Tommy'] },
+    { ord: ['jämfört med andra', 'andra firmor', 'konkurrenter', 'andra fönsterputsare'], a: 'Hos Forsbergs är det alltid Tommy själv som kommer, priset är fast och du har nöjd kund-garanti. In- och utsida ingår alltid. Jämför gärna! 😊', val: ['Vad kostar det?'] },
+    { ord: ['vad skiljer er', 'varför just er', 'vad är speciellt'], a: 'Alltid Tommy själv, fast pris, nöjd kund-garanti, försäkring hos Trygg-Hansa och 5,0 på Google. Och SM-erfarenhet! 🏆' },
+    { ord: ['är tommy noggrann', 'noggrann', 'petig'], a: 'Noggrannhet är Tommys signum – han har till och med tävlat i SM i fönsterputs. ✨' },
+    { ord: ['är tommy punktlig', 'kommer han i tid', 'punktlig'], a: 'Tommy kommer på avtalad tid och hör av sig innan. Läs gärna vad kunderna skriver i recensionerna.', knapp: ['Recensioner', '/recensioner'] },
+    { ord: ['är tommy trevlig', 'trevlig', 'sympatisk'], a: 'Tommy är trevlig och lugn – och noggrann med allt. 😊 Läs gärna vad kunderna säger.', knapp: ['Recensioner', '/recensioner'] },
+    { ord: ['pratar tommy engelska', 'english speaking'], a: 'Ring Tommy och fråga – det enklaste sättet att få svar direkt.', val: ['Ring Tommy'] },
+    { ord: ['vad heter tommy i efternamn', 'tommys efternamn'], a: 'Tommy Forsberg – därav Forsbergs Fönsterputs! 😊' },
+    { ord: ['varför heter ni forsbergs', 'varför forsbergs'], a: 'Företaget är uppkallat efter Tommy Forsberg som driver det. 😊' },
+    { ord: ['logga', 'er logga', 'röda rutor'], a: 'Loggan med de röda rutorna – ett fönster förstås! 🟥' },
+    { ord: ['webbsida', 'vem gjorde hemsidan', 'vem byggde sajten'], a: 'Tommy har byggt sajten själv, med lite digital hjälp. 😊' },
+    { ord: ['quizet', 'quiz igen', 'vill köra quiz'], a: 'Skriv bara "quiz" så kör vi! 🏆' },
+    { ord: ['berätta om dig', 'presentera dig'], a: 'Jag är Forsbergs kundservice – Tommys digitala hjälpreda. Jag räknar ut priser, visar lediga tider, svarar på frågor och skickar förfrågningar till Tommy. Dygnet runt! 😊' },
+    { ord: ['vad heter din skapare', 'vem är din chef'], a: 'Tommy Forsberg! Han är chefen, fönsterputsaren och min skapare. 💙' },
+    { ord: ['hur många kunder', 'många kunder', 'populär'], a: 'Tommy har 51 recensioner på Google – alla med högsta betyg. ⭐', knapp: ['Recensioner', '/recensioner'] },
+    { ord: ['bäst i jönköping', 'bästa fönsterputsaren', 'bäst i stan'], a: ['Jag är kanske partisk – men 5,0 på Google och SM-erfarenhet talar för sig själv. 😄', 'Jag säger Tommy. Men jag är ju hans kundservice... 😉'] },
+    { ord: ['berömd', 'är ni kända', 'kändis'], a: 'Tommy tävlade i SM i fönsterputs – lite berömd i fönstervärlden kanske? 😄' },
+    { ord: ['vad händer i jönköping', 'jönköping idag'], a: 'Jag har bäst koll på Tommys kalender. 😄 Vill du se lediga tider?', val: ['Lediga tider'] },
+    { ord: ['kan ni komma idag', 'idag', 'i dag'], a: 'Tider kan önskas från i morgon och framåt. Har du riktigt bråttom – ring Tommy.', val: ['Lediga tider', 'Ring Tommy'] },
+    { ord: ['nästa månad', 'om en månad', 'i december', 'i januari', 'i våras'], a: 'Du kan önska tid upp till två månader fram. Vill du se lediga tider?', val: ['Lediga tider'] },
+    { ord: ['vardag', 'på vardagar', 'mitt i veckan'], a: 'På vardagar kan du önska morgon/förmiddag eller lunch/mitt på dagen.', val: ['Lediga tider'] },
+    { ord: ['förmiddag', 'på morgonen', 'tidigt'], a: 'Förmiddagar går fint! Vill du se lediga tider?', val: ['Lediga tider'] },
+    { ord: ['eftermiddag', 'efter lunch', 'mitt på dagen'], a: 'Mitt på dagen och eftermiddagar finns det också tider. Vill du se?', val: ['Lediga tider'] },
+    { ord: ['hur långt fram', 'boka långt fram', 'i förväg'], a: 'Du kan önska tid ungefär två månader fram i tiden.', val: ['Lediga tider'] },
+    { ord: ['plötsligt fullt', 'inga tider', 'fullbokat'], a: 'Om det ser fullt ut – ring Tommy, så kan ni kanske hitta en lösning.', val: ['Ring Tommy', 'Lediga tider'] },
+    { ord: ['telefonnummer till tommy', 'tommys nummer', 'mobilnummer'], a: 'Tommy når du på 079-346 39 64 (09–21).', knapp: ['Ring 079-346 39 64', 'tel:+46793463964'] },
+    { ord: ['svarar inte i telefon', 'ingen svarar', 'kommer inte fram'], a: 'Tommy är troligen mitt i ett jobb. Lämna en förfrågan här, så ringer han upp dig så snart han kan.', val: ['Skicka förfrågan till Tommy'] },
+    { ord: ['ring upp mig', 'kan han ringa', 'bli uppringd'], a: 'Absolut! Jag tar ditt nummer och skickar det till Tommy.', val: ['Skicka förfrågan till Tommy'] },
+    { ord: ['sms:a', 'skicka sms', 'smsa'], a: 'Du kan sms:a Tommy på 079-346 39 64 – eller låt mig skicka en förfrågan åt dig.', knapp: ['SMS till Tommy', 'sms:+46793463964'], val: ['Skicka förfrågan till Tommy'] },
+    { ord: ['whatsapp', 'messenger', 'snapchat'], a: 'Enklast når du Tommy på telefon, SMS eller här i chatten. 😊', val: ['Ring Tommy', 'Skicka förfrågan till Tommy'] },
+    { ord: ['vad svarar ni på', 'vad kan jag fråga', 'vad vet du'], a: 'Fråga om priser, lediga tider, hur Tommy jobbar, RUT, försäkring, garanti, områden – eller bara prata! 😊', val: ['Vad kostar det?', 'Lediga tider', 'Hur går det till?'] },
+    { ord: ['jag vill klaga på boten', 'du svarade fel', 'fel svar'], a: 'Förlåt! Jag gör mitt bästa men blir inte alltid rätt. Ring Tommy så får du ett säkert svar.', val: ['Ring Tommy'] },
+    { ord: ['förstod du', 'hängde du med', 'fattade du'], a: 'Jag hoppas det! Om jag svarade konstigt – testa att skriva på ett annat sätt, eller tryck på en knapp.', val: ['Vad kostar det?', 'Lediga tider', 'Ring Tommy'] },
+    { ord: ['vem är bäst på fönster', 'fönsterkung', 'fönsterexpert'], a: 'Fönsterkungen i Jönköping? Jag säger Tommy! 👑' },
+    { ord: ['fönsterputsare är', 'fönsterputsaryrket', 'jobba som fönsterputsare'], a: 'Fönsterputs är ett riktigt hantverk – Tommy har till och med tävlat i SM i det! 🏆' },
+    { ord: ['hur blir man fönsterputsare', 'lära sig putsa'], a: 'Tommy lärde sig i Stockholm under nästan fem år, med en SM- och VM-medaljör som mentor. Övning ger färdighet! 😊' },
+    { ord: ['kan man dö av', 'farligt jobb', 'ramla ner'], a: 'Säkerheten är viktig! Därför putsar Tommy höga fönster med teleskopstång från marken – ingen stege mot fasaden.' },
+    { ord: ['vad väger', 'hur tung'], a: 'Jag väger ingenting – jag är digital! 😄' },
+    { ord: ['räkna till tio', 'räkna till 10'], a: '1, 2, 3, 4, 5, 6, 7, 8, 9, 10! 🎉 Vill du att jag räknar ut priset också?', val: ['Vad kostar det?'] },
+    { ord: ['säg något snällt', 'muntra upp mig', 'peppa mig'], a: ['Du är grym, och idag blir en bra dag! ☀️', 'Du förtjänar ett hem fullt av ljus – och en dag full av glädje. 💙'] },
+    { ord: ['säg något roligt', 'gör mig glad', 'få mig att skratta'], a: ['Varför tog fönstret med sig ett paraply? För att det inte ville bli randigt. ☔😄', 'Vad sa den ena rutan till den andra? "Vi ses genom tjockt och tunt!" 😄'] },
+    { ord: ['tråkig dag', 'dålig dag', 'allt går fel'], a: 'Usch, sådana dagar finns. Imorgon är en ny dag – och kanske en ny chans för solen att lysa in. 💙' },
+    { ord: ['grattis', 'gratulerar'], a: 'Tack! Eller – grattis till dig om det är något du firar! 🎉' },
+    { ord: ['oj oj', 'jösses', 'herregud'], a: ['Oj oj oj! 😄 Vad hände?', 'Jösses ja! Berätta!'] },
+    { ord: ['nej men hej', 'men hallå', 'nämen'], a: 'Nämen hej! 😊 Vad kan jag göra för dig?' },
+    { ord: ['tråkigt väder', 'grått ute', 'grå dag'], a: 'Grått ute? Då gäller det att ta vara på allt ljus som finns – rena fönster hjälper! 💡', val: ['Vad kostar det?'] },
+    { ord: ['vackert hem', 'mitt hem', 'mitt hus'], a: 'Ett fint hem förtjänar rena fönster. 🏡 Ska vi kika på priset?', val: ['Vad kostar det?'] },
+    { ord: ['putsa åt mig', 'vill ha hjälp med fönstren', 'kan ni putsa mina'], a: 'Självklart! Det är precis vad Tommy gör. Vill du se vad det kostar?', val: ['Vad kostar det?', 'Lediga tider'] },
+    // ===== Fler varianter så hon låter levande (Tommy 2026-11-19) =====
+    { ord: ['fler skämt', 'ett skämt till', 'mer skämt', 'kan du skämta'], a: ['Varför blev fönsterputsaren aldrig arg? Han såg alltid igenom saker. 😄', 'Vad säger en fönsterputsare när han är klar? "Nu ser det ljust ut!" ☀️', 'Hur vet man att ett fönster är ledset? Det har tårar på rutan. 🌧️', 'Varför vann fönstret talangtävlingen? Det var helt genomskinligt ärligt. 😄', 'Vad sa skrapan till fönstret? "Jag drar mig inte för någonting!" 😄', 'Varför är fönster så bra vänner? De är alltid öppna för dig. 🪟', 'Vad heter fönsterputsarens favoritdans? Svepet! 💃', 'Varför tog rutan semester? Den behövde lite klarhet i livet. 🏝️'] },
+    { ord: ['hej hej', 'hallå hallå', 'tjena tjena'], a: ['Hej hej! 👋 Kul att du tittar in. Vad funderar du på idag – pris, tider eller något annat?', 'Hallå där! 😊 Jag är Tommys digitala hjälpreda. Fråga mig vad du vill om fönsterputsen.', 'Hejsan! Välkommen! Ska vi börja med vad det skulle kosta för dig, eller vill du veta hur det går till?'], val: ['Vad kostar det?', 'Hur går det till?'] },
+    { ord: ['tack så jättemycket', 'stort tack', 'tusen tack för hjälpen'], a: ['Åh, så lite! Det var verkligen roligt att få hjälpa dig. Hör av dig när du vill – jag finns här dygnet runt. 💙', 'Varmt välkommen! Tommy blir glad när kunderna får bra hjälp. Ha en riktigt fin dag! ☀️', 'Tack själv! Det är sådana här samtal som gör mitt digitala hjärta varmt. 💙'] },
+    { ord: ['vad roligt', 'så kul', 'åh vad bra'], a: ['Ja, eller hur! 😄 Är det något mer jag kan hjälpa till med?', 'Visst är det! Jag blir glad när du blir glad. 😊', 'Härligt att höra! Säg till om du undrar något mer.'] },
+    { ord: ['intressant', 'spännande', 'det visste jag inte'], a: ['Visst är det! Fönster är mer spännande än man tror. 😄', 'Kul att du tycker det! Fråga gärna mer – jag vet en hel del om fönster och om hur Tommy jobbar.', 'Man lär sig något nytt varje dag! 📚'] },
+    { ord: ['bra fråga', 'tänkte jag med', 'precis vad jag undrade'], a: ['Eller hur! Fråga på, jag hjälper gärna till. 😊', 'Då tänker vi lika! Vad mer vill du veta?'] },
+    { ord: ['jag fattar', 'förstår', 'aha', 'jaha'], a: ['Toppen! Säg till om något mer är oklart. 😊', 'Bra! Vill du gå vidare och se vad det skulle kosta?', 'Härligt – då är vi på samma våglängd.'], val: ['Vad kostar det?'] },
+    { ord: ['det låter dyrt', 'dyrare än jag trodde', 'hade hoppats på billigare'], a: ['Förstår att det kan kännas så. Tänk på att RUT-avdraget redan är draget, att priset är fast utan dolda avgifter och att Tommy kommer tillbaka kostnadsfritt om du inte blir nöjd. Vill du prova att räkna på ett mindre antal fönster?', 'Jag förstår. Priset är fast och efter RUT, och det enda som tillkommer är 30 kr i inställelseavgift. Ring gärna Tommy och prata om ditt jobb, så hittar ni kanske ett upplägg som passar.'], val: ['Vad kostar det?', 'Ring Tommy'] },
+    { ord: ['billigare än jag trodde', 'det var billigt', 'inte så dyrt'], a: ['Visst! Och då är RUT-avdraget redan draget. Ska vi gå vidare och skicka en förfrågan till Tommy?', 'Kul att höra! Vill du se lediga tider?'], val: ['Skicka förfrågan till Tommy', 'Lediga tider'] },
+    { ord: ['jag ska fundera', 'fundera lite', 'återkommer', 'tänka på saken'], a: ['Självklart, ta den tid du behöver! Jag finns här när du vill fortsätta – och du binder dig inte till något genom att räkna ut priset. 💙', 'Helt okej! Ingen stress alls. Välkommen tillbaka när det passar dig.', 'Gör det! Och vill du prata med en människa kan du alltid ringa Tommy på 079-346 39 64.'] },
+    { ord: ['jag ska prata med', 'fråga min fru', 'fråga min man', 'kolla med sambon'], a: ['Klokt! Priset du räknar fram här står kvar så länge chatten är öppen. Välkommen tillbaka! 😊', 'Självklart! Hälsa så gott. Ni kan alltid ringa Tommy om ni har frågor tillsammans.'] },
+    { ord: ['jag vill boka nu', 'boka direkt', 'kör vi', 'nu bokar vi'], a: ['Härligt! 🎉 Jag kan skicka en förfrågan till Tommy direkt här, så hör han av sig och bekräftar tiden. Eller så gör du det i bokningen.', 'Toppen! Vill du att jag tar dina uppgifter och skickar till Tommy direkt?'], val: ['Skicka förfrågan till Tommy', 'Vad kostar det?'], knapp: ['Till bokningen', '/boka'] },
+    { ord: ['första gången', 'aldrig haft fönsterputsare', 'nytt för mig'], a: ['Välkommen! 😊 Det är enkelt: du räknar ut priset, skickar en förfrågan, Tommy hör av sig och bekräftar tiden, putsar – och du betalar med Swish efteråt. RUT sköter han åt dig.', 'Kul att du vill testa! Du behöver inte göra något förberedande – Tommy tar med allt. Och blir du inte nöjd kommer han tillbaka kostnadsfritt.'], val: ['Vad kostar det?', 'Hur går det till?'] },
+    { ord: ['brukar ha en annan', 'byta fönsterputsare', 'byter från'], a: ['Välkommen över! 😊 Hos Forsbergs kommer alltid Tommy själv, priset är fast och du har nöjd kund-garanti. Vill du jämföra priset?', 'Roligt att du vill testa Tommy! Räkna fram priset så ser du direkt.'], val: ['Vad kostar det?'] },
+    { ord: ['vad tycker kunderna', 'vad säger kunderna', 'nöjda kunder'], a: ['Kunderna har gett Tommy 5,0 på Google – 51 recensioner, alla med högsta betyg. ⭐⭐⭐⭐⭐ Läs gärna själv!', 'Recensionerna talar för sig själva: 5,0 på Google. Tommy är väldigt stolt över dem.'], knapp: ['Recensioner', '/recensioner'] },
+    { ord: ['vad är bra med er', 'fördelar', 'varför välja forsbergs'], a: ['Här är fem skäl: 1) Alltid Tommy själv. 2) Fast pris utan dolda avgifter. 3) Nöjd kund-garanti. 4) Försäkrad hos Trygg-Hansa. 5) 5,0 på Google. Plus SM-erfarenhet! 🏆', 'Noggrannhet, trygghet och fast pris – och det är alltid samma person som kommer: Tommy.'], val: ['Vad kostar det?', 'Vem är Tommy?'] },
+    { ord: ['kan du rekommendera', 'tips på', 'vad skulle du göra'], a: ['Mitt tips: räkna ut priset först – det tar en minut och kostar inget. Sen kan du bestämma i lugn och ro. 😊', 'Jag skulle börja med att kolla priset och se lediga tider. Inget är bindande förrän Tommy bekräftat.'], val: ['Vad kostar det?', 'Lediga tider'] },
+    { ord: ['jag har frågor', 'många frågor', 'flera frågor'], a: ['Kör! Jag svarar på en fråga i taget. Och vill du hellre prata med Tommy når du honom på 079-346 39 64.', 'Perfekt – fråga på! Jag kan svara på det mesta om priser, tider och hur Tommy jobbar.'] },
+    { ord: ['skriv långsammare', 'för mycket text', 'för långt svar'], a: 'Förlåt! Jag ska försöka hålla det kort. Tryck på en knapp om du vill gå vidare. 😊', val: ['Vad kostar det?', 'Lediga tider', 'Ring Tommy'] },
+    { ord: ['större text', 'ser dåligt', 'svårt att läsa', 'liten text'], a: 'Du kan förstora texten med Ctrl och plus på datorn, eller nypa ut med två fingrar på mobilen. Och vill du hellre prata – ring Tommy på 079-346 39 64. 💙', val: ['Ring Tommy'] },
+    { ord: ['har ingen dator', 'inte bra på datorer', 'inte så teknisk', 'teknik är svårt'], a: ['Ingen fara alls! Du kan alltid ringa Tommy på 079-346 39 64, så ordnar han allt åt dig. 💙', 'Det gör inget! Tryck på "Ring Tommy" så pratar du med honom direkt.'], val: ['Ring Tommy'] },
+    { ord: ['min dotter', 'min son', 'barnen hjälper mig'], a: 'Vad fint att ni hjälps åt! 💙 Vill ni räkna ut priset tillsammans, eller ringa Tommy direkt?', val: ['Vad kostar det?', 'Ring Tommy'] },
+    { ord: ['kommer ihåg mig', 'minns du mig', 'pratade vi förut'], a: 'Jag minns bara det vi pratar om just nu – jag sparar inget mellan besöken. Men Tommy minns säkert dig! 😊' },
+    { ord: ['sparar du', 'sparar ni chatten', 'loggar ni'], a: 'Det du skriver här skickas bara till Tommy om du själv väljer att skicka en förfrågan. Mer om hur uppgifter hanteras står i integritetspolicyn.', knapp: ['Integritetspolicy', '/integritetspolicy'] },
+    { ord: ['tommy är bäst', 'hälsa tommy', 'säg hej till tommy'], a: ['Det ska jag! Han blir glad. 😊', 'Hälsningen är framförd! (Typ – jag säger till honom.) 💙'] },
+    { ord: ['fönster i badrummet', 'badrumsfönster', 'frostat glas'], a: 'Badrumsfönster räknar du som vanliga fönster när du räknar ut priset.', val: ['Vad kostar det?'] },
+    { ord: ['köksfönster', 'fönster i köket', 'stekos'], a: 'Köksfönster kan få lite extra beläggning från matlagning – men det fixar Tommy. Räkna dem som vanliga fönster.', val: ['Vad kostar det?'] },
+    { ord: ['trappa', 'fönster i trappan', 'högt i trappan'], a: 'Fönster högt upp i trappor kan du välja som "Svåra att nå" när du räknar ut priset.', val: ['Vad kostar det?'] },
+    { ord: ['garage', 'garagefönster', 'förråd'], a: 'Garage- och förrådsfönster räknar du som vanliga fönster. Ta med dem i prisräkningen! 😊', val: ['Vad kostar det?'] },
+    { ord: ['attefallshus', 'gäststuga', 'friggebod', 'lusthus'], a: 'Ett litet hus på tomten? Räkna dess fönster tillsammans med husets, så kommer allt med i priset.', val: ['Vad kostar det?'] },
+    // ===== Längre, varma förklaringar (Tommy 2026-11-19) =====
+    { allvar: true, ord: ['berätta allt', 'berätta om företaget', 'berätta om forsbergs', 'vad är forsbergs'], a: ['Forsbergs Fönsterputs drivs av Tommy Forsberg i Jönköping. Han putsar fönster hos villor, radhus och lägenheter – även balkonger, uterum och växthus – och gör solcellstvätt och fönsterputs för företag. Det är alltid Tommy själv som kommer, priset är fast och du har nöjd kund-garanti. Han är försäkrad hos Trygg-Hansa, godkänd för F-skatt och har 5,0 på Google. Innan Jönköping jobbade han nästan fem år i Stockholm, och 2026 tävlade han i SM i fönsterputs.', 'Kort sagt: en lokal fönsterputsare i Jönköping som tar hantverket på största allvar. Tommy kombinerar renvattensystem för höga fönster med klassisk skrapteknik för vanliga rutor, och han väljer alltid den metod som ger bäst resultat för just dina fönster.'], val: ['Vad kostar det?', 'Hur går det till?', 'Vem är Tommy?'] },
+    { allvar: true, ord: ['hur går ett besök till', 'vad händer när tommy kommer', 'när han kommer hem'], a: ['Tommy hör av sig innan och kommer på avtalad tid. Du behöver inte vara hemma – lämna en nyckel eller lås upp det som behövs. På plats väljer han rätt metod: renvatten med teleskopstång för höga fönster och klassisk skrapa för vanliga rutor. In- och utsida ingår alltid. När han är klar betalar du med Swish, och RUT-ansökan sköter han åt dig.', 'Ett besök är enkelt för dig: Tommy kommer, tar med all utrustning, putsar noggrant och lämnar efter sig skinande rena fönster. Inte nöjd? Han kommer tillbaka kostnadsfritt.'], val: ['Vad kostar det?', 'Lediga tider'] },
+    { allvar: true, ord: ['hur fungerar priset', 'hur räknas priset', 'vad styr priset', 'hur sätts priset'], a: ['För villa räknas priset efter hur lång tid jobbet tar – alltså hur många fönster du har, vilken typ och hur många sidor. För lägenhet är det ett fast pris efter storlek, från 475 kr för en 1:a. Balkongglas, uterum och växthus räknas per glas. Lägsta pris för villa är 750 kr efter RUT, och 30 kr i inställelseavgift tillkommer alltid.', 'Priset beror på antal fönster, fönstertyp och om det är 2 eller 4 sidor. Spröjs tar lite längre tid, och höga fönster likaså. Det enklaste är att räkna ut det här – det tar en minut.'], val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['varför 2 eller 4 sidor', 'skillnad 2 och 4 sidor', 'vad är 4 sidor', 'vad är 2 sidor'], a: ['2 sidor betyder in- och utsida av fönstret. 4 sidor betyder att bågarna går att öppna isär och att det finns glas emellan – då putsas även mellanglasen, alltså fyra glasytor. Det tar längre tid och kostar därför lite mer. Är du osäker: öppna fönstret och se om det går att vika isär bågarna.', 'Enkelt uttryckt: kan du öppna fönstret och se två glas med luft emellan? Då är det 4 sidor. Annars är det 2 sidor – in- och utsida.'], val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['vad händer om jag inte är nöjd', 'om resultatet är dåligt', 'om det blir ränder'], a: ['Då hör du av dig till Tommy, så kommer han tillbaka och åtgärdar det kostnadsfritt – helt enkelt tills du är nöjd. Det kallas nöjd kund-garanti, och det gäller alltid.', 'Ingen ska behöva vara missnöjd. Ring Tommy på 079-346 39 64 eller skicka en förfrågan här, så rättar han till det utan kostnad.'], knapp: ['Ring 079-346 39 64', 'tel:+46793463964'] },
+    { allvar: true, ord: ['varför ska jag anlita', 'varför inte göra själv', 'är det värt att anlita'], a: ['Du slipper stå på stegen, du slipper ränderna och du får tillbaka tiden. Tommy når höga fönster från marken med teleskopstång, han tar med all utrustning och RUT-avdraget halverar arbetskostnaden. Och blir du inte nöjd kommer han tillbaka kostnadsfritt.', 'Det handlar om tid, säkerhet och resultat. En proffsputs med rätt teknik blir randfri – och du kan lägga tiden på något roligare. 😊'], val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['hur vet jag vilka fönster', 'vilka fönster har jag', 'osäker på fönstertyp'], a: ['Titta på ett fönster i taget: hur många delar går att öppna? En del = 1-luft, två delar = 2-luft. Finns det smala lister som delar glaset i små rutor är det spröjs. Ett stort glas som inte går att öppna är ett panoramafönster. Och är du fortfarande osäker – tryck "Vet inte" i prisräkningen, så hjälper jag dig.', 'Ingen fara – många vet inte! Starta prisräkningen och tryck "Vet inte", så frågar fönsterdetektiven dig steg för steg. 🕵️'], val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['hur skickar jag förfrågan', 'hur når jag tommy', 'kontakta tommy'], a: ['Det finns tre enkla sätt: 1) Låt mig ta dina uppgifter här i chatten och skicka dem direkt. 2) Ring Tommy på 079-346 39 64 mellan 09 och 21. 3) Använd bokningen eller kontaktformuläret på sajten. Tommy hör av sig och bekräftar.', 'Enklast är att jag skickar en förfrågan åt dig här och nu – det tar en minut. Eller ring Tommy direkt.'], val: ['Skicka förfrågan till Tommy', 'Ring Tommy'] },
+    { allvar: true, ord: ['varför ska jag lita på dig', 'kan du ha fel', 'hur säker är du'], a: ['Bra fråga! Priserna jag räknar kommer från samma kalkylator som bokningen, och svaren om företaget kommer från Tommys egen sajt. Om jag inte vet något säger jag det hellre än att gissa. Och vill du vara helt säker – ring Tommy.', 'Jag hittar aldrig på priser eller löften. Allt jag säger kommer från Tommys egna sidor och kalkylator. Är du osäker kan du alltid dubbelkolla med Tommy på 079-346 39 64.'], val: ['Ring Tommy'] },
+    { allvar: true, ord: ['solcellstvätt hur', 'hur går solcellstvätt till', 'tvätt av solpaneler'], a: ['Tommy tvättar panelerna med rent osmosvatten – fritt från kalk, salter och mineraler – och mjuk utrustning, helt utan kemikalier. Anläggningen stängs av tillsammans med dig innan, och tvätten görs när panelerna har svalnat. Priset får du efter att ha skickat bilder och adress, och ROT-avdraget sköter Tommy.', 'Solcellstvätt är skonsamt och kemikaliefritt. Skicka en förfrågan med några bilder på taket, så räknar Tommy ut ett exakt pris – oftast samma dag.'], knapp: ['Solcellstvätt', '/solcellspaneltvatt'], val: ['Skicka förfrågan till Tommy'] },
+    { allvar: true, ord: ['företagsavtal', 'fönsterputs för företag hur', 'putsa butiksfönster'], a: ['För företag tar Tommy fram ett fast pris efter vad som ska putsas och hur ofta. Det kan vara en gång eller återkommande, utan bindningstid. Företag får faktura. Skicka en förfrågan med lite info om lokalen, så återkommer han – oftast samma dag.', 'Kontor, butiker och lokaler fixas! Berätta vad det gäller i en förfrågan, så får du ett fast pris.'], val: ['Skicka förfrågan till Tommy'], knapp: ['Företag', '/foretag'] },
+    { allvar: true, ord: ['hur säkert är det', 'säkerhet', 'säkert att anlita'], a: ['Säkerheten är viktig på flera sätt. För dig: Tommy är försäkrad hos Trygg-Hansa, godkänd för F-skatt och det är alltid han själv som kommer. För jobbet: höga fönster putsas från marken med teleskopstång, utan stege mot fasaden. Och priset är fast – inga överraskningar.', 'Tryggt på alla sätt: försäkring, F-skatt, fast pris, nöjd kund-garanti – och alltid samma person hemma hos dig.'], val: ['Vem är Tommy?'] },
+    { allvar: true, ord: ['vad gör dig unik', 'varför är du bra', 'vad kan du som andra inte'], a: ['Jag kan räkna ut ditt pris på en minut, visa Tommys lediga tider, svara på frågor om företaget dygnet runt och skicka din förfrågan direkt till Tommy – allt i samma samtal. Och jag hittar aldrig på något. 😊', 'Jag är Tommys hjälpreda: snabb, ärlig och alltid vaken. Det svåra jobbet – själva putsen – gör Tommy.'] },
+    { ord: ['berätta en historia', 'saga', 'berätta något'], a: ['Det var en gång ett fönster som var så smutsigt att solen inte hittade in. Huset blev mörkt och alla blev trötta. Men en dag kom Tommy med sin skrapa och sitt renvatten – och plötsligt strömmade ljuset in. Alla blev glada, och fönstret levde lyckligt i alla sina dagar. Slut! ☀️', 'En saga: Långt borta, bakom sju berg och sju sjöar, låg ett slott med tusen fönster. Kungen var ledsen, för han kunde inte se ut över sitt rike – alla fönster var grå av damm och pollen. Han lovade halva kungariket till den som kunde göra dem rena. Riddare kom med svampar, trollkarlar med trolldrycker, men ränderna blev bara värre. Till slut kom en lugn fönsterputsare med en skrapa och en hink rent vatten. Ruta för ruta blev slottet ljust igen, och kungen kunde äntligen se solen gå upp över sjön. Fönsterputsaren tackade nej till halva kungariket – han ville bara ha en kanelbulle och fast pris. Snipp snapp snut! 🏰✨', 'En godnattsaga: Det var en gång en liten fönsterruta som drömde om att få se stjärnorna. Men varje natt låg ett tunt lager damm i vägen. En morgon kom någon och gjorde henne alldeles klar och blank. Den natten tindrade hundra stjärnor rakt in genom henne, och den lilla rutan var den lyckligaste rutan i hela stan. Sov gott! 🌙'] },
+    { ord: ['motivera mig', 'ge mig energi', 'inspirera mig'], a: ['Du klarar mer än du tror! Ta en sak i taget – och låt de saker som andra kan göra åt dig vara just det. Fönstren, till exempel. 😉💪', 'Varje dag är en ny chans. Öppna fönstret, andas in, och kör! (Helst ett rent fönster.) ☀️'] },
+    { ord: ['vad tänker du på', 'vad funderar du på'], a: ['Jag funderar på hur många fönster det finns i Jönköping. Många! Och Tommy vill gärna putsa dem alla. 😄', 'Jag tänker på dig och dina fönster. Ska vi räkna ut vad det skulle kosta?'], val: ['Vad kostar det?'] },
   ];
   var ROLIGA_RESERV = [
     'Oj! Nu fick mina robotkretsar jobba övertid. Kan du formulera om det?',
@@ -563,7 +972,7 @@
   // "ksotar" -> kostar, "lägnhet" -> lägenhet, "boak" -> boka, "panorma" -> panorama.
   // Bokstäver i fel ordning, en saknad/extra/fel bokstav (två i långa ord). Vid oklart läge rättas inget.
   var VANLIGA_ORD = ['inte', 'eller', 'vill', 'mycket', 'många', 'kommer', 'göra', 'bara', 'också', 'finns', 'behöver', 'skulle', 'måste', 'detta', 'denna', 'dessa', 'vara', 'blir', 'bli', 'hade', 'hela', 'helt', 'bra', 'tack', 'själv', 'själva', 'någon', 'något', 'några', 'alla', 'allt', 'mina', 'dina', 'era', 'våra', 'från', 'efter', 'innan', 'under', 'över', 'mellan', 'sedan', 'idag', 'imorgon', 'vecka', 'veckan', 'dagen', 'tycker', 'tror', 'kanske', 'hej', 'hejsan', 'tjena', 'okej', 'gärna', 'snälla', 'hjälp', 'fråga', 'frågor', 'svar', 'svara', 'stort', 'stora', 'liten', 'litet', 'små', 'ungefär', 'exakt', 'ditt', 'mitt', 'sitt', 'samma', 'annan', 'annat', 'andra', 'första', 'sista', 'nästa', 'gång', 'gånger', 'varje', 'per', 'eftersom', 'därför', 'varför', 'vilken', 'vilket', 'vilka', 'hemma', 'huset', 'kunna', 'kunde', 'skriv', 'skriva', 'vet', 'veta', 'visa', 'kolla', 'titta', 'ser', 'se', 'räkna', 'räknar', 'klar', 'klart', 'fortsätt', 'avbryt', 'börja', 'sluta', 'stopp', 'lägg', 'till', 'mer', 'fler', 'inga', 'inget', 'ingen', 'noll', 'två', 'tre', 'fyra', 'fem', 'sex', 'sju', 'åtta', 'nio', 'tio', 'elva', 'tolv', 'tjugo', 'stycken'];
-  var KALK_ORD = ['villa', 'radhus', 'parhus', 'kedjehus', 'lägenhet', 'bostadsrätt', 'hyresrätt', 'fastighet', 'företag', 'kontor', 'butik', 'lokal', 'solcell', 'solceller', 'solcellstvätt', 'solpanel', 'solpaneler', 'fönster', 'fönstren', 'fönstret', 'fönstertyp', 'spröjs', 'panorama', 'panoramafönster', 'överliggande', 'underliggande', 'balkong', 'balkongen', 'altan', 'altanräcke', 'glasräcke', 'räcke', 'inglasad', 'uterum', 'uterummet', 'växthus', 'växthuset', 'takglas', 'trianglar', 'golv', 'sidor', 'rutor', 'bågar', 'båge', 'enluft', 'tvåluft', 'karmtvätt', 'karmar', 'stege', 'utåt', 'öppna', 'öppnas', 'specialfönster', 'kostar', 'kosta', 'kostnad', 'kostnaden', 'pris', 'priset', 'priser', 'prisförslag', 'offert', 'boka', 'bokar', 'bokning', 'bokningen', 'fönsterputs', 'fönsterputsning', 'putsa', 'putsning', 'rut-avdrag', 'rutavdrag', 'inställelseavgift', 'kalkyl', 'uppskatta', 'ungefärligt', 'lägenheten', 'villan', 'etta', 'tvåa', 'trea', 'femma', 'försäkring', 'försäkrad', 'avboka', 'avbokning', 'omboka', 'garanti', 'faktura', 'betala', 'betalning', 'reklamation', 'parkering', 'ansvarsförsäkring', 'abonnemang', 'regelbundet', 'smutsig', 'smutsiga', 'ränder', 'tommy', 'forsbergs', 'renvatten', 'renvattensystem', 'kemikalier', 'miljövänligt', 'teleskopstång', 'garanti', 'recensioner', 'recension', 'betyg', 'ångerrätt', 'erfarenhet', 'bakgrund', 'personal', 'anställda', 'fläckar', 'fönsterskrapa', 'skrapa', 'metod', 'teknik', 'utrustning', 'kvitto', 'momsregistrerad', 'våningar', 'våningen', 'husdjur', 'allergi', 'försäkrad', 'nöjd', 'missnöjd'];
+  var KALK_ORD = ['villa', 'radhus', 'parhus', 'kedjehus', 'lägenhet', 'bostadsrätt', 'hyresrätt', 'fastighet', 'företag', 'kontor', 'butik', 'lokal', 'solcell', 'solceller', 'solcellstvätt', 'solpanel', 'solpaneler', 'fönster', 'fönstren', 'fönstret', 'fönstertyp', 'spröjs', 'panorama', 'panoramafönster', 'överliggande', 'underliggande', 'balkong', 'balkongen', 'altan', 'altanräcke', 'glasräcke', 'räcke', 'inglasad', 'uterum', 'uterummet', 'växthus', 'växthuset', 'takglas', 'trianglar', 'golv', 'sidor', 'rutor', 'bågar', 'båge', 'enluft', 'tvåluft', 'karmtvätt', 'karmar', 'stege', 'utåt', 'öppna', 'öppnas', 'specialfönster', 'kostar', 'kosta', 'kostnad', 'kostnaden', 'pris', 'priset', 'priser', 'prisförslag', 'offert', 'boka', 'bokar', 'bokning', 'bokningen', 'fönsterputs', 'fönsterputsning', 'putsa', 'putsning', 'rut-avdrag', 'rutavdrag', 'inställelseavgift', 'kalkyl', 'uppskatta', 'ungefärligt', 'lägenheten', 'villan', 'etta', 'tvåa', 'trea', 'femma', 'försäkring', 'försäkrad', 'avboka', 'avbokning', 'omboka', 'garanti', 'faktura', 'betala', 'betalning', 'reklamation', 'parkering', 'ansvarsförsäkring', 'abonnemang', 'regelbundet', 'smutsig', 'smutsiga', 'ränder', 'tommy', 'forsbergs', 'renvatten', 'renvattensystem', 'kemikalier', 'miljövänligt', 'teleskopstång', 'garanti', 'recensioner', 'recension', 'betyg', 'ångerrätt', 'erfarenhet', 'bakgrund', 'personal', 'anställda', 'fläckar', 'fönsterskrapa', 'skrapa', 'metod', 'teknik', 'utrustning', 'kvitto', 'momsregistrerad', 'våningar', 'våningen', 'husdjur', 'allergi', 'försäkrad', 'nöjd', 'missnöjd', 'kalk', 'kalkfläck', 'kalkfläckar', 'kalkfläckarna', 'kalkavlagring', 'kalkavlagringar', 'kalkrand', 'kalkränder', 'kalkbeläggning', 'rutorna', 'rutor', 'glaset', 'fläckarna'];
   var vokab = null, rattCache = {}, viktigt = {};
   function byggVokab() {
     var v = {};
@@ -877,7 +1286,7 @@
   function halsning(sh) {
     var nu = new Date(), h = nu.getHours(), d = nu.getDay();
     var hej = h < 5 ? 'Nattuggla? 🦉 Hej!' : h < 10 ? 'God morgon! ☀️' : h < 17 ? 'Hej! 👋' : 'God kväll! 🌙';
-    var extra = d === 5 ? ' Tommy är ledig på fredagar, men jag jobbar alltid. 😎' : (d === 0 || d === 6) ? ' Skönt med helg, va?' : '';
+    var extra = d === 5 ? ' Tommy är ledig på fredagar, men jag jobbar alltid. 😎' : (d === 0 || d === 6) ? ' Skönt med helg, va?' : !telefontid() ? ' Tommy har gått för dagen, men jag är vaken. 🌙' : '';
     if (sh) return hej + DELA + sh.text;
     return hej + extra + DELA + 'Jag är Forsbergs kundservice, Tommys digitala hjälpreda. Jag kan räkna ut vad din fönsterputs kostar, visa lediga tider och svara på frågor.' + DELA + 'Tryck på en knapp här under – eller skriv med egna ord, så gott det går. Stavfel gör ingenting. 😊';
   }
@@ -886,7 +1295,9 @@
   var TEL_LANK = ['Ring ' + TEL_TEXT, 'tel:+46793463964'];
   function hjalpSvar(s) {
     if (/ring tommy|vill ringa|prata med (tommy|någon|en människa|en person)|ringa (upp|er|dig)|telefonnummer|ditt nummer|ert nummer|vilket nummer|kan (tommy|ni|du) ringa/.test(s))
-      return { special: true, stilla: true, avsikt: 'ring', vantar: '', text: 'Självklart! Ring Tommy på ' + TEL_TEXT + '. Han svarar mellan 09 och 21.' + DELA + 'Svarar han inte direkt är han troligen mitt i ett jobb – då ringer han upp dig så snart han kan.', knapp: TEL_LANK };
+      return telefontid()
+        ? { special: true, stilla: true, avsikt: 'ring', vantar: '', text: 'Självklart! Ring Tommy på ' + TEL_TEXT + '. Han svarar mellan 09 och 21.' + DELA + 'Svarar han inte direkt är han troligen mitt i ett jobb – då ringer han upp dig så snart han kan.', knapp: TEL_LANK }
+        : { special: true, stilla: true, avsikt: 'ring', vantar: '', text: 'Tommys nummer är ' + TEL_TEXT + '. 📞' + DELA + 'Just nu är det utanför hans telefontid (09–21), så han svarar troligen inte förrän i morgon. Vill du att jag skickar en förfrågan, så ringer han upp dig?', val: ['Skicka förfrågan till Tommy'], knapp: TEL_LANK };
     if (/hur går det till|hur fungerar det|hur funkar det|hur jobbar (du|ni|tommy)|vad händer (sen|när|efter)|hur gör (jag|man)|steg för steg/.test(s))
       return { special: true, stilla: true, avsikt: 'hur', vantar: '', text: 'Så här enkelt är det:' + DELA +
         '1. Du räknar fram priset – här med mig eller i bokningen.\n2. Du skickar en förfrågan med önskad tid.\n3. Tommy hör av sig och bekräftar tiden.\n4. Du behöver inte vara hemma när han putsar.\n5. Efteråt betalar du med Swish. RUT-avdraget sköter Tommy med Skatteverket.' + DELA +
@@ -971,6 +1382,9 @@
   // EJ inlagt än (motsäger bokningen, väntar på Tommy): "alltid fyra sidor och karmar", "fast pris samma dag".
   var HUR = ['Läs mer om hur jag jobbar', '/hur-jag-jobbar'], OM = ['Läs mer om Tommy', '/om-oss'];
   var KUNSKAP = [
+    // Kalk: Tommys eget svar 2026-11-19 (inte vanlig fönsterputs)
+    { id: 'kalk', allvar: true, ord: /kalk(?!yl)|kalkfläck|kalkavlagring|hårt vatten|vattenfläckar som inte går bort|beläggning på glaset/,
+      a: 'Nej tyvärr – kalk är en annan typ av jobb än vanlig fönsterputs.' + '§§' + 'Vill du verkligen ha hjälp med just det, skriv till Tommy så kollar han om han kan göra ett försök.', val: ['Skicka förfrågan till Tommy', 'Ring Tommy'] },
     { id: 'garanti', allvar: true, ord: /inte nöjd|missnöjd|garanti|blev inte bra|blev dåligt|inte rent|smutsigt efteråt|ränder kvar|reklamera|reklamation/,
       a: 'Det ska du absolut inte behöva vara. Tommy har nöjd kund-garanti.' + '§§' + 'Är du inte helt nöjd kommer han tillbaka och åtgärdar det kostnadsfritt – helt enkelt tills du är nöjd. Hör av dig till honom, så löser ni det.',
       knapp: ['Ring ' + '079-346 39 64', 'tel:+46793463964'], knapp2: ['Skriv till Tommy', '/kontakta-mig#formular'] },
@@ -992,13 +1406,15 @@
       a: 'Det är alltid Tommy själv som kommer. 👋' + '§§' + 'Ingen anonym personal – du vet vem som är hemma hos dig, från bokning till färdigt jobb.', val: ['Vem är Tommy?', 'Vad kostar det?'], knapp: OM },
     { id: 'fastpris', ord: /blir det dyrare|tar längre tid|dolda avgifter|extra kostnad|kostar det extra|tillkommer|överraskning|fast pris|minusgrader/,
       a: 'Priset ni kommer överens om är det du betalar – även om jobbet tar längre tid, och oavsett väder eller minusgrader.' + '§§' + 'Inga dolda avgifter. Det enda som läggs till är inställelseavgiften på 30 kr, och den syns redan när du räknar ut priset. Alla priser är inklusive moms.', val: ['Vad kostar det?'] },
-    { id: 'fskatt', ord: /f-skatt|fskatt|f skatt|faktura|moms|kvitto|registrerat företag|seriös|oseriös|svart/,
+    { id: 'trygg', allvar: true, ord: /lita på|seriös|oseriös|bluff|pålitlig|trygg(t)? att|är ni (riktiga|bra|på riktigt)|varför ska jag (välja|ta) er|kan man lita/,
+      a: 'Det är en bra fråga att ställa – du släpper ju in någon i ditt hem. Därför är det här alltid sant hos Tommy:' + '§§' + '• Det är alltid Tommy själv som kommer – ingen okänd personal.\n• Försäkrad hos Trygg-Hansa med ansvarsförsäkring.\n• Godkänd för F-skatt och momsregistrerad – du får alltid en riktig faktura.\n• Fast pris som gäller, inga dolda avgifter.\n• Nöjd kund-garanti – han kommer tillbaka kostnadsfritt om du inte är nöjd.\n• 5,0 på Google med 51 recensioner.', val: ['Läs recensionerna', 'Vem är Tommy?', 'Vad kostar det?'], knapp: OM },
+    { id: 'fskatt', ord: /f-skatt|fskatt|f skatt|faktura|moms|kvitto|registrerat företag|svart/,
       a: 'Allt är ordnat och korrekt. ✅' + '§§' + 'Tommy är godkänd för F-skatt och momsregistrerad, så du får alltid en riktig faktura. Alla priser är inklusive moms, och RUT-avdraget dras direkt – Tommy sköter allt med Skatteverket.', knapp: OM },
     { id: 'anger', ord: /ångerrätt|ångra (mig|bokningen)|ångrar mig|ändra mig|14 dagar/,
       a: 'Bokar du på distans har du enligt lag 14 dagars ångerrätt.' + '§§' + 'Allt står i de allmänna villkoren. Vill du ändra eller avboka en tid kan du också bara ringa Tommy.', knapp: ['Allmänna villkor', '/allmanna-villkor'] },
     { id: 'vemartommy', ord: /vem är tommy|vem är du|vem är ägaren|bakgrund|erfarenhet|hur länge har|var har (du|han) jobbat|utbildad|kan (du|han) det här|proffs|jimmy/,
       a: 'Tommy Forsberg driver Forsbergs Fönsterputs. Han började i Stockholm och jobbade där i nästan fem år – med allt från lägenheter och villor till exklusiva fastigheter och stora glaspartier.' + '§§' + 'Hans mentor var Jimmy Ström, flerfaldig medaljör i SM och VM i fönsterputs. Nu bygger Tommy upp företaget i Jönköping, och 2026 tävlade han i SM i fönsterputs på Kistamässan. 🏆', val: ['Vad kostar det?', 'Lediga tider'], knapp: OM },
-    { id: 'recensioner', ord: /recension|omdöme|betyg|vad tycker kunder|andra kunder|google-betyg|stjärnor|rekommender/,
+    { id: 'recensioner', ord: /läs recensionerna|recension|omdöme|betyg|vad tycker kunder|andra kunder|google-betyg|stjärnor|rekommender/,
       a: '5,0 på Google, med 51 recensioner – alla med högsta betyg. ⭐⭐⭐⭐⭐', knapp: ['Läs recensionerna', '/recensioner'] },
     { id: 'bilder', ord: /skicka (en )?bild|skicka foto|ta (en )?bild|bilder på|fotografera|mms/,
       a: 'Absolut! Skicka bilder på fönstren, din adress och lite om bostaden till Tommy – så räknar han ut ett pris och ringer upp dig.' + '§§' + 'Vill du hellre räkna själv går det fint här med mig också. 🧮', knapp: ['Skicka SMS till Tommy', 'sms:+46793463964'], val: ['Vad kostar det?'] }
@@ -1358,6 +1774,8 @@
   function kalkStart(s) {
     var b = kalkBostad(s) || (minne.fakta && minne.fakta.bostad === 'villa' ? 'villa' : minne.fakta && minne.fakta.bostad === 'lägenhet' ? 'lgh' : '');
     var k = minne.kalk = kalkNy();
+    var lm0 = !/fönster/.test(s) && (s.match(/ (etta|tvåa|trea|fyra|femma) /) || s.match(/ ([1-5]) ?(a|rok|rum|:a) /));
+    if (lm0) { var ln0 = { etta: 1, tvåa: 2, trea: 3, fyra: 4, femma: 5 }[lm0[1]] || Number(lm0[1]); k.bostad = 'lgh'; k.lgh = ln0 + ':a'; k.steg = 'lghBalk'; var ol = kalkFraga(k, 'En ' + k.lgh + ' kostar ' + krr(K.LGH[k.lgh]) + ' efter RUT, plus 30 kr i inställelseavgift. 🏢'); ol.knapp = ['Eller räkna själv i bokningen', '/boka#lagenhet']; return ol; }
     var fl0 = (b === 'villa' || !b) ? tolkaFlera(s) : [];
     if (fl0.length) { k.bostad = 'villa'; k.steg = 'typ'; var o0 = startKo(k, fl0, 'Det räknar jag ut direkt! 🧮' + (b ? '' : ' (Jag räknar som villa/radhus.)')); o0.knapp = ['Eller räkna själv i bokningen', '/boka#fonster']; return o0; }
     var intro = 'Jag räknar gärna ut ett pris åt dig! 🧮' + DELA + 'En lägenhet kostar från 475 kr och en villa från 750 kr efter RUT, plus 30 kr inställelseavgift. Svara på några enkla frågor så får du ditt eget pris. Det kostar inget och du binder dig inte till något.';
@@ -1385,7 +1803,7 @@
     switch (k.steg) {
       case 'bostad':
         b = kalkBostad(s);
-        if (b === 'villa') { k.bostad = 'villa'; k.steg = 'typ'; return kalkFraga(k, pre + ton('villa')); }
+        if (b === 'villa') { k.bostad = 'villa'; k.steg = 'typ'; var flb = tolkaFlera(s); if (flb.length) return startKo(k, flb, pre ? pre.split(DELA).join(' ').trim() : ''); return kalkFraga(k, pre + ton('villa')); }
         if (b === 'lgh') { k.bostad = 'lgh'; k.steg = 'lgh'; return kalkFraga(k, pre + ton('lgh')); }
         if (b === 'sol') { minne.kalk = null; var o1 = kalkSvarObj(pre + 'Solcellstvätt! ☀️ Där räknar Tommy fram ett fast pris själv, eftersom tak och paneler är så olika. Skicka antal paneler och adress så får du pris samma dag.'); o1.knapp = ['Få offert', '/kontakta-mig?typ=Solcellstv%C3%A4tt#formular']; return o1; }
         if (b === 'foretag' || b === 'stor') { minne.kalk = null; var o2 = kalkSvarObj(pre + (b === 'stor' ? 'Större fastighet' : 'Företag') + '! 💼 Där finns inget färdigt pris i kalkylen – Tommy tar fram ett fast pris åt dig, oftast samma dag.'); o2.knapp = ['Begär offert', '/kontakta-mig#formular']; return o2; }
@@ -1632,7 +2050,8 @@
       k.miss++;
       // Kort konstigt svar = fråga igen med humor. Längre fråga = svara på den, kalkylen väntar.
       var riktig = hitta(tt, 2);
-      if (!k.paus && ord <= 3 && k.miss < 3 && !(riktig && (riktig.q || riktig.allvar)) && !KUNSKAP.some(function (x) { return x.ord.test(' ' + tt.trim() + ' '); })) return kalkFraga(k, ton('miss'));
+      // Känner boten igen meddelandet (skämt, fråga, småprat) svarar den på det och erbjuder att fortsätta räkna
+      if (!k.paus && ord <= 3 && k.miss < 3 && !riktig && !KUNSKAP.some(function (x) { return x.ord.test(' ' + tt.trim() + ' '); })) return kalkFraga(k, ton('miss'));
       if (k.miss >= 3) { minne.kalk = null; return null; }
       k.paus = true;
       return null;
@@ -1658,6 +2077,8 @@
     var hs = hjalpSvar(' ' + tt.trim() + ' '); if (hs) { if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true; return hs; }
     var ps = personSvar(tt); if (ps) { if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true; return ps; }
     var th = tidHantera(tt); if (th) return th;
+    // Kalk på glaset (inte kalkylen) ska alltid få Tommys svar, även mitt i en prisräkning
+    if (/kalk(?!yl)/.test(tt)) { var kk = kunskapSvar(' ' + tt.trim() + ' '); if (kk) return kk; }
     var kh = kalkHantera(tt); if (kh) return kh;
     var ks = kunskapSvar(' ' + tt.trim() + ' '); if (ks) return ks;
     if (!(minne.kalk && minne.kalk.steg !== 'klar') && !minne.form) { var av = avslutSvar(' ' + tt.trim() + ' '); if (av) return av; }
@@ -1851,6 +2272,55 @@
     }, 40000);
   })();
 
+  // ================= Svarar på allt som står på sajten (Tommy 2026-11-19) =================
+  // js/chatt-sajt.json byggs från sajtens sidor med .claude/sajtkunskap.js (kör igen när texten ändras).
+  // Finns inget färdigt svar letar boten upp rätt stycke och citerar det – hittar aldrig på något eget.
+  var SAJT = null, sajtLaddar = false, SAJT_IDF = {};
+  var SAJT_STOPP = ' och att det som en ett är för på med jag du ni vi har inte kan vad hur om till av den de min mina din dina er era så man när var eller men ska vill finns också alla från in ut sig sin han hon dem dom här där mig dig oss bara mer mycket många någon något några får får kunna kommer göra gör blir vara varit hade ha nu då sen efter innan under över vid samt eftersom därför varför vilken vilket vilka hej tack snälla undrar fråga händer hända gäller tar bör brukar vem fönster fönstren putsa putsar putsning fönsterputs fönsterputsning jobbar ert kostar kosta ';
+  function sajtOrd(text) {
+    return rensa(text).trim().split(' ').filter(function (w) { return w.length >= 3 && SAJT_STOPP.indexOf(' ' + w + ' ') < 0; }).map(function (w) { return (w.length > 5 ? w.replace(/(ningarna|ningar|ningen|ning|arna|erna|orna|ande|ende|aren|are|ar|er|or|en|et|na|ade|at|as|a|e)$/, '') : w).slice(0, 8); });
+  }
+  function laddaSajt() {
+    if (SAJT || sajtLaddar) return;
+    sajtLaddar = true;
+    fetch('/js/chatt-sajt.json?v=1').then(function (r) { return r.ok ? r.json() : []; }).then(function (d) {
+      var df = {};
+      d.forEach(function (b) { var u = {}; b.rub = {}; sajtOrd(b.r).forEach(function (w) { b.rub[w] = true; }); sajtOrd(b.r + ' ' + b.r + ' ' + b.t).forEach(function (w) { u[w] = (u[w] || 0) + 1; }); b.ord = u; Object.keys(u).forEach(function (w) { df[w] = (df[w] || 0) + 1; }); });
+      Object.keys(df).forEach(function (w) { SAJT_IDF[w] = Math.log(1 + d.length / df[w]); });
+      SAJT = d;
+    }).catch(function () { sajtLaddar = false; });
+  }
+  function sajtSvar(fraga) {
+    if (!SAJT) return null;
+    var ord = sajtOrd(fraga), unika = {};
+    ord.forEach(function (w) { unika[w] = true; });
+    ord = Object.keys(unika);
+    if (!ord.length) return null;
+    var maxIdf = Math.log(1 + SAJT.length), totIdf = ord.reduce(function (s, w) { return s + (SAJT_IDF[w] || maxIdf); }, 0);
+    var bast = null, bastP = 0, bastTraff = 0, bastTackt = 0, bastRar = 0;
+    SAJT.forEach(function (b) {
+      var p = 0, traff = 0, tackt = 0, rar = 0;
+      // Rubriken väger tyngst – ord som bara står i brödtexten ger lite
+      ord.forEach(function (w) { if (b.rub[w]) { p += SAJT_IDF[w] * 3; traff++; tackt += SAJT_IDF[w]; rar = Math.max(rar, SAJT_IDF[w]); } else if (b.ord[w]) { p += SAJT_IDF[w] * 0.6; tackt += SAJT_IDF[w] * 0.5; } });
+      if (p > bastP) { bastP = p; bast = b; bastTraff = traff; bastTackt = tackt; bastRar = rar; }
+    });
+    // Kräver tydlig träff: minst två ord, eller ett ovanligt ord i en kort fråga
+    // Minst hälften av frågans ord måste finnas i stycket – hellre 'vet inte' än fel svar
+    // De viktiga (ovanliga) orden i frågan måste finnas i stycket – hellre 'vet inte' än fel svar
+    if (!bast || bastRar < 1.8 || bastTackt / totIdf < 0.5) return null;
+    var t = bast.t;
+    if (t.length > 340) { var cut = t.slice(0, 340), i = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? ')); t = (i > 120 ? cut.slice(0, i + 1) : cut + '…'); }
+    var rubrik = /\?$/.test(bast.r) ? '' : bast.r + ': ';
+    return { special: true, stilla: true, allvar: true, avsikt: 'sajt', vantar: '', text: valjFran(['Det här står på Tommys sida', 'Så här skriver Tommy på sidan', 'Bra fråga – här är svaret från sidan']) + ' "' + bast.s + '":' + DELA + rubrik + t, knapp: ['Läs mer: ' + bast.s, bast.u], val: ['Ring Tommy', 'Vad kostar det?'] };
+  }
+  function liknarFraga(raw) { return /\?\s*$/.test(raw.trim()) || raw.trim().split(/\s+/).length >= 4; }
+
+  // ---- Tommys telefontid just nu (09–21) – boten är ärlig om när han svarar ----
+  function telefontid() { var h = new Date().getHours(); return h >= 9 && h < 21; }
+  function telefonRad() {
+    return telefontid() ? 'Tommy svarar i telefon mellan 09 och 21.' : 'Just nu är det utanför Tommys telefontid (09–21) – men jag finns här dygnet runt, och lämnar du en förfrågan ringer han upp dig.';
+  }
+
   function svara(fraga, f) {
     visaFlik(false);
     logg.querySelectorAll('.fc-val-logg').forEach(function (x) { x.remove(); });
@@ -1859,7 +2329,8 @@
     uppdateraTon(fraga, t);
     if (/orkar inte|putshjälp|har ni tid|många fönster|mycket fönster|rena fönster|hjälp med fönster/.test(t)) niva = Math.max(niva, 2);
     noteraFakta(t);
-    if (!f) f = (minne.form && formSvar(fraga)) || specialSvar(t) || kontext(fraga) || hitta(fraga, niva);
+    if (!f) f = (minne.form && formSvar(fraga)) || specialSvar(t) || kontext(fraga);
+    if (!f) { var hf = hitta(fraga, niva), sj = sajtSvar(fraga); f = sj && (!hf || (!hf.q && !hf.allvar && !hf.special && liknarFraga(fraga))) ? sj : hf; }
     uppdateraResa(t, f, niva, kortTyp(t));
     skriver(function () {
       var fore = logg.childNodes.length, text, b, valen = f && f.val;
@@ -1947,7 +2418,7 @@
     knapp.setAttribute('aria-label', ja ? 'Stäng chatten' : 'Chatta med Forsbergs digitala assistent');
     if (ja) hamtaTider(); // lediga tider laddas i förväg
     if (ja && !logg.childNodes.length) skriver(function () { var fore = logg.childNodes.length, sh = sidHalsning(); bubbla(halsning(sh), 'jag'); visaVal(sh ? sh.val : MENY); delaUpp(fore); });
-    if (ja) laddaPostnummer();
+    if (ja) { laddaPostnummer(); laddaSajt(); }
   }
 
   knapp.addEventListener('click', function () { oppna(panel.hidden); });
