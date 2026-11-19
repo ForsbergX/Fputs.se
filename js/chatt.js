@@ -910,7 +910,7 @@
       var del2 = harPris && harTid ? 'Men du har ju redan ditt pris (' + krr(kalkRakna(k0).total) + ') och lediga tider – då är det bara att skicka en förfrågan i bokningen. Tar en minut, sen hör Tommy av sig och bekräftar tiden.'
         : harPris ? 'Men du har redan ditt pris (' + krr(kalkRakna(k0).total) + ')! Vill du att jag kollar vilka tider som är lediga först? Sen skickar du förfrågan i bokningen, och Tommy bekräftar.'
         : 'Det jag kan göra är att räkna ut vad det kostar och kolla vilka tider Tommy har lediga. Sen skickar du en förfrågan i bokningen – tar en minut – och Tommy hör av sig och bekräftar tiden.';
-      return { special: true, stilla: true, avsikt: 'boka', vantar: '', text: del1 + DELA + del2, val: harPris && harTid ? null : harPris ? ['Lediga tider'] : ['Vad kostar det?', 'Lediga tider'], knapp: ['Till bokningen', lank0] };
+      return { special: true, stilla: true, avsikt: 'boka', vantar: '', text: del1 + DELA + del2, val: ['Skicka förfrågan till Tommy'].concat(harPris && harTid ? [] : harPris ? ['Lediga tider'] : ['Vad kostar det?', 'Lediga tider']), knapp: ['Till bokningen', lank0] };
     }
     var ort = hittaOrt(s);
     if (ort) {
@@ -1015,6 +1015,131 @@
       return { special: true, stilla: true, allvar: !!k.allvar, avsikt: 'fakta-' + k.id, vantar: '', text: aText.split('§§').join(DELA), val: val.length ? val : null, knapp: k.knapp, knapp2: k.knapp2 };
     }
     return null;
+  }
+
+  // ================= Förfrågan via chatten (Tommy 2026-11-19) =================
+  // Kunden lämnar namn, telefon, adress och önskad tid i chatten. Boten visar en sammanfattning,
+  // och först när kunden trycker "Ja, skicka" går det till Tommy via samma funktion som bokningen
+  // (/.netlify/functions/send-email). Inget bokas – Tommy hör av sig och bekräftar.
+  // Uppgifterna finns bara i chattens minne tills de skickas, och syns aldrig i statistiken.
+  var FORM_START = /skicka (en )?förfrågan|skicka till tommy|lämna (mina )?uppgifter|ta mina uppgifter|ring mig|ringa mig|bli (upp)?ringd|kontakta mig|hör av (er|dig) till mig|vill att tommy ringer|ringa upp mig|ring upp mig/;
+  var FORM_STEG = ['namn', 'telefon', 'adress', 'tid', 'medd'];
+  function formNy() { return { steg: 'namn', namn: minne.namn || '', telefon: '', adress: '', tid: '', medd: '', andrar: false }; }
+  function formObj(text, val, extra) { var o = { special: true, stilla: true, avsikt: 'forfragan', vantar: '', text: text, val: val || null }; if (extra) Object.keys(extra).forEach(function (k) { o[k] = extra[k]; }); return o; }
+  function tidVal() {
+    var v = (minne.tid && minne.tid.senaste) ? minne.tid.senaste.slice(0, 3) : [];
+    if (!v.length) { hamtaTider(); var sedda = {}; ledigaTider().forEach(function (t) { var d = tIso(t.dag); if (v.length < 3 && !sedda[d]) { sedda[d] = true; v.push(tDagText(t) + ', ' + t.pass.namn); } }); }
+    return v.concat(['Spelar ingen roll', 'Tommy får ringa och bestämma']);
+  }
+  function formFraga(prefix) {
+    var fm = minne.form, p = prefix ? prefix + DELA : '';
+    if (fm.steg === 'namn') return formObj(p + 'Vad heter du?');
+    if (fm.steg === 'telefon') return formObj(p + 'Vilket telefonnummer kan Tommy nå dig på?');
+    if (fm.steg === 'adress') return formObj(p + 'Vilken adress gäller det? Gatuadress och ort räcker.' + (minne.ort ? ' (Du nämnde ' + minne.ort + '.)' : ''));
+    if (fm.steg === 'tid') return formObj(p + 'När passar det dig? Välj en tid, eller skriv med egna ord – t.ex. "en vardag nästa vecka".', tidVal());
+    if (fm.steg === 'medd') return formObj(p + 'Något mer Tommy ska veta? Till exempel portkod, husdjur eller hur fönstren ser ut.', ['Nej, inget mer']);
+    return formSammanfattning(p);
+  }
+  function formSammanfattning(p) {
+    var fm = minne.form, k = minne.kalk && minne.kalk.steg === 'klar' ? minne.kalk : null;
+    fm.steg = 'kolla';
+    var rader = ['Namn: ' + fm.namn, 'Telefon: ' + fm.telefon, 'Adress: ' + fm.adress, 'Önskad tid: ' + fm.tid];
+    if (fm.medd) rader.push('Meddelande: ' + fm.medd);
+    if (k) rader.push('Uppskattat pris: ' + krr(kalkRakna(k).total) + ' efter RUT');
+    return formObj((p || '') + 'Så här ser din förfrågan ut:\n\n' + rader.join('\n') + DELA + 'Stämmer det? Då skickar jag den till Tommy. Inget är bokat förrän han har hört av sig och bekräftat.', ['Ja, skicka till Tommy', 'Ändra något', 'Avbryt']);
+  }
+  function formStart() {
+    minne.form = formNy();
+    var intro = valjFran(['Gärna! Jag tar dina uppgifter och skickar dem till Tommy. 📝', 'Absolut – vi fixar det här i chatten. 📝']) + DELA +
+      'Det tar en minut. Tommy hör av sig och bekräftar tiden – inget är bokat förrän han har gjort det. Dina uppgifter skickas bara till Tommy.';
+    var o;
+    if (minne.form.namn) { minne.form.steg = 'telefon'; o = formFraga(intro + DELA + 'Jag skriver ' + minne.form.namn + ' som namn.'); }
+    else o = formFraga(intro);
+    o.knapp = ['Så hanteras dina uppgifter', '/integritetspolicy'];
+    return o;
+  }
+  function nastaFormSteg(fm) {
+    if (fm.andrar) { fm.andrar = false; return 'kolla'; }
+    var i = FORM_STEG.indexOf(fm.steg);
+    return i >= 0 && i < FORM_STEG.length - 1 ? FORM_STEG[i + 1] : 'kolla';
+  }
+  // Tar emot kundens svar (originaltexten – namn och adress ska inte stavningsrättas)
+  function formSvar(raw) {
+    var fm = minne.form, txt = raw.trim(), s = rensa(raw), fraga = /\?\s*$/.test(txt);
+    if (/^ (avbryt|sluta|stopp|glöm det|nej tack avbryt) $/.test(s) || (fm.steg === 'kolla' && /^ avbryt $/.test(s))) { minne.form = null; return formObj('Okej, jag har slängt uppgifterna – inget skickades. 👍 Säg till om du ångrar dig!', MENY); }
+    if (/fortsätt med uppgifterna/.test(s)) return formFraga('Där var vi! 📝');
+    var ok = '';
+    switch (fm.steg) {
+      case 'namn':
+        if (fraga || /\d/.test(txt) || txt.split(/\s+/).length > 4 || txt.length < 2) return null;
+        fm.namn = txt.replace(/^(jag heter|mitt namn är|det är)\s+/i, '').replace(/(^|\s)\S/g, function (x) { return x.toUpperCase(); });
+        minne.namn = minne.namn || fm.namn.split(' ')[0];
+        ok = valjFran(['Tack, ' + fm.namn.split(' ')[0] + '! 😊', 'Trevligt, ' + fm.namn.split(' ')[0] + '!']);
+        break;
+      case 'telefon':
+        var siffror = txt.replace(/[^\d+]/g, '');
+        if (siffror.replace('+', '').length < 8 || siffror.replace('+', '').length > 13) {
+          if (fraga || txt.split(/\s+/).length > 4) return null;
+          return formObj('Hmm, det där såg inte riktigt ut som ett telefonnummer. 🤔' + DELA + 'Kan du skriva det igen? Till exempel 070-123 45 67.');
+        }
+        fm.telefon = txt; ok = 'Tack! 📞';
+        break;
+      case 'adress':
+        if (fraga || txt.length < 4) return null;
+        fm.adress = txt + (minne.ort && txt.toLowerCase().indexOf(minne.ort.toLowerCase()) < 0 && !/\d{3}\s?\d{2}/.test(txt) && !/,/.test(txt) ? ', ' + minne.ort : '');
+        ok = 'Noterat! 🏠';
+        break;
+      case 'tid':
+        if (fraga && txt.split(/\s+/).length > 3) return null;
+        fm.tid = /spelar ingen roll/i.test(txt) ? 'Spelar ingen roll' : /ringa och bestämma/i.test(txt) ? 'Tommy ringer och bestämmer tid' : txt;
+        ok = 'Bra! 📅';
+        break;
+      case 'medd':
+        fm.medd = /^ (nej|nej inget mer|inget|inget mer|nä|nope) $/.test(s) ? '' : txt;
+        ok = fm.medd ? 'Det skickar jag med. ✍️' : '';
+        break;
+      case 'kolla':
+        if (/ja skicka|skicka till tommy|^ (ja|japp|stämmer|det stämmer|skicka) $/.test(s)) return formSkicka();
+        if (/ändra/.test(s)) { fm.steg = 'valj'; return formObj('Vad vill du ändra?', ['Namn', 'Telefon', 'Adress', 'Tid', 'Meddelande']); }
+        return null;
+      case 'valj':
+        var m = { namn: 'namn', telefon: 'telefon', nummer: 'telefon', adress: 'adress', tid: 'tid', meddelande: 'medd' }, vald = '';
+        Object.keys(m).forEach(function (x) { if (s.indexOf(' ' + x) >= 0) vald = m[x]; });
+        if (!vald) return null;
+        fm.steg = vald; fm.andrar = true;
+        return formFraga();
+    }
+    fm.steg = nastaFormSteg(fm);
+    return formFraga(ok);
+  }
+  // Skickar förfrågan till Tommy – samma fält och mottagare som bokningen
+  function formSkicka() {
+    var fm = minne.form, k = minne.kalk && minne.kalk.steg === 'klar' ? minne.kalk : null, data = {
+      kalla: 'Kundservice-chatten (fputs.se)', namn: fm.namn, telefon: fm.telefon, adress: fm.adress,
+      onskad_tid: fm.tid, meddelande: fm.medd, email: ''
+    };
+    if (k) {
+      var pr = kalkRakna(k);
+      data.bostadstyp = k.bostad === 'lgh' ? 'Lägenhet' : 'Villa/radhus';
+      if (k.bostad === 'lgh') data.lagenhetsstorlek = k.lgh;
+      data.kalkyl = (k.sammanfattning || []).join(' | ') + (pr.karm ? ' | Karmtvätt: ja' : '');
+      if (pr.antal) data.antal_fonster = String(pr.antal);
+      data.uppskattat_pris = krr((pr.putsning + pr.karm) * 2) + ' − ' + krr(pr.putsning + pr.karm) + ' RUT + ' + krr(pr.avgift) + ' inställelseavgift = ' + krr(pr.total);
+      data.pris_fore_rut = krr((pr.putsning + pr.karm) * 2);
+    }
+    var smsText = 'Hej Tommy! Förfrågan från chatten på fputs.se:\nNamn: ' + fm.namn + '\nTelefon: ' + fm.telefon + '\nAdress: ' + fm.adress + '\nÖnskad tid: ' + fm.tid + (fm.medd ? '\nMeddelande: ' + fm.medd : '') + (data.uppskattat_pris ? '\nPris: ' + data.uppskattat_pris : '');
+    var namn = fm.namn.split(' ')[0];
+    minne.form = null;
+    fetch('/.netlify/functions/send-email', { method: 'POST', body: JSON.stringify(data), headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' } })
+      .then(function (r) { if (!r.ok) throw new Error('send-email'); return true; })
+      .then(function () {
+        skriver(function () { var fore = logg.childNodes.length; bubbla('Klart, ' + namn + '! ✅ Tommy har fått din förfrågan.' + DELA + 'Han hör av sig på ' + data.telefon + ' och bekräftar tiden. Har du bråttom kan du ringa honom på ' + TEL_TEXT + '.' + DELA + 'Tack för att du valde Forsbergs! 💙', 'jag'); visaVal(['Hur går det till?']); delaUpp(fore); logg.scrollTop = logg.scrollHeight; }, 900);
+        if (window.gtag) { window.gtag('event', 'generate_lead', { event_category: 'contact', event_label: 'Kundservice-chatten' }); window.gtag('event', 'conversion', { send_to: 'AW-18225187055/j67gCPv6hOscEO-RufJD' }); }
+      })
+      .catch(function () {
+        skriver(function () { var b = bubbla('Hoppsan – förfrågan gick inte att skicka just nu. 😕 Inget har försvunnit: tryck här under så öppnas ett SMS till Tommy med allt ifyllt. Eller ring ' + TEL_TEXT + '.', 'jag'); lank(b, 'Skicka som SMS i stället', 'sms:+46793463964?&body=' + encodeURIComponent(smsText)); lank(b, 'Ring ' + TEL_TEXT, 'tel:+46793463964'); logg.scrollTop = logg.scrollHeight; }, 700);
+      });
+    return formObj('Skickar till Tommy… 📨');
   }
 
   // ================= Priskalkylatorn i chatten (Tommy 2026-11-19) =================
@@ -1171,9 +1296,10 @@
       (k.bostad !== 'lgh' && pr.minPris ? 'Lägsta pris för villa är ' + krr(K.MIN_PRIS) + ' efter RUT. ' : '') +
       (k.rader.some(function (r) { return r.typ === 'S'; }) ? 'Spröjsade fönster räknar Tommy gärna på innan du får ett fast pris. ' : '') +
       'Det här är en uppskattning – väljer du samma sak i bokningen får du ett fast pris. ' + (minne.ort ? 'Rena fönster i ' + minne.ort + ' snart! ✨' : valjFran(K_SKAMT.outro)) +
-      DELA + 'Vill du ha svar snabbast? Skicka kalkylen till Tommy som SMS – priset står redan med, så kan han gå direkt på tiden. 📱';
+      DELA + 'Vill du ha svar snabbast? Jag kan ta dina uppgifter och skicka allt direkt till Tommy – tryck "Skicka förfrågan till Tommy". 📨';
     k.steg = 'klar';
-    var o = kalkSvarObj(text, ['Föreslå en tid', 'Lägg till mer', 'Räkna om från början']);
+    k.sammanfattning = rader;
+    var o = kalkSvarObj(text, ['Skicka förfrågan till Tommy', 'Föreslå en tid', 'Lägg till mer', 'Räkna om från början']);
     o.knapp = ['Boka med det här priset', k.bostad === 'lgh' ? '/boka#lagenhet' : '/boka#fonster'];
     // SMS till Tommy med kalkylen och priset ifyllt – kunden skickar från sin egen telefon (Tommy 2026-11-19)
     var sms = 'Hej Tommy! Jag räknade ut mitt pris i chatten på fputs.se:\n' + rader.join('\n') +
@@ -1347,7 +1473,7 @@
         if (/ nej | nä | nope | inte /.test(s)) { k.karm = false; return kalkResultat(k); }
         return null;
       case 'klar':
-        if (/lägg till|mer|fler/.test(s)) { k.steg = k.bostad === 'lgh' ? 'lghBalk' : 'typ'; return kalkFraga(k, 'Mer glas, mer kärlek! 💙'); }
+        if (/lägg till|fler fönster|mer glas/.test(s)) { k.steg = k.bostad === 'lgh' ? 'lghBalk' : 'typ'; return kalkFraga(k, 'Mer glas, mer kärlek! 💙'); }
         return null;
     }
     return null;
@@ -1446,9 +1572,10 @@
       return tidForslag({}, 0, (prefix ? prefix + ' ' : '') + varfor + ' Men här är det närmaste jag har:');
     }
     var rader = visa.map(function (t) { return '• ' + tDagText(t) + ', ' + t.pass.namn + ' (' + t.pass.text + ')'; });
+    minne.tid.senaste = visa.map(function (t) { return tDagText(t) + ', ' + t.pass.namn; });
     var text = (prefix ? prefix + DELA : '') + valjFran(T_SKAMT.intro) + ' ' + (hoppa ? 'Här är fler lediga tider:' : 'De här tiderna är lediga just nu:') + '\n\n' + rader.join('\n') + DELA +
       'Den slutliga tiden bestämmer Tommy – han hör av sig och bekräftar. ' + valjFran(T_SKAMT.outro);
-    return { special: true, stilla: true, avsikt: 'tid', vantar: '', text: text, val: (unika.length > hoppa + 3 ? ['Visa fler tider'] : []).concat(['Bara vardag', 'Bara helg', 'Eftermiddag']), knapp: bokLank };
+    return { special: true, stilla: true, avsikt: 'tid', vantar: '', text: text, val: ['Skicka förfrågan till Tommy'].concat(unika.length > hoppa + 3 ? ['Visa fler tider'] : []).concat(['Bara vardag', 'Bara helg']), knapp: bokLank };
   }
   function tidHantera(tt) {
     var s = ' ' + tt.trim() + ' ';
@@ -1502,7 +1629,8 @@
       k.paus = true;
       return null;
     }
-    if (k && k.steg === 'klar') { var s2 = kalkSvar(tt); if (s2) return s2; minne.kalk = null; }
+    // Färdig kalkyl sparas resten av samtalet (förfrågan till Tommy behöver priset)
+    if (k && k.steg === 'klar') { var s2 = kalkSvar(tt); if (s2) return s2; }
     if ((KALK_START.some(function (o) { return tt.indexOf(o) >= 0; }) || prisStavfel(tt)) && !KALK_INTE.test(tt)) return kalkStart(' ' + tt + ' ');
     return null;
   }
@@ -1516,6 +1644,7 @@
     }
     if (minne.quiz) { var q = quizSvar(tt); if (q) return q; minne.quiz = null; }
     if (QUIZ_START.indexOf(tt) >= 0) return startaQuiz();
+    if (FORM_START.test(' ' + tt.trim() + ' ')) return formStart();
     var hs = hjalpSvar(' ' + tt.trim() + ' '); if (hs) { if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true; return hs; }
     var ps = personSvar(tt); if (ps) { if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true; return ps; }
     var th = tidHantera(tt); if (th) return th;
@@ -1578,7 +1707,7 @@
     var t = rensa(fraga), niva = f ? 0 : kopNiva(t);
     if (/orkar inte|putshjälp|har ni tid|många fönster|mycket fönster|rena fönster|hjälp med fönster/.test(t)) niva = Math.max(niva, 2);
     noteraFakta(t);
-    if (!f) f = specialSvar(t) || kontext(fraga) || hitta(fraga, niva);
+    if (!f) f = (minne.form && formSvar(fraga)) || specialSvar(t) || kontext(fraga) || hitta(fraga, niva);
     uppdateraResa(t, f, niva, kortTyp(t));
     skriver(function () {
       var fore = logg.childNodes.length, text, b, valen = f && f.val;
@@ -1641,6 +1770,7 @@
       if (f) minne.forvirrad = 0;
       // Kunden frågade något annat mitt i prisräkningen: erbjud att fortsätta
       if (minne.kalk && minne.kalk.paus && !(f && (f.kalk || f.val))) visaVal(['Fortsätt prisräkningen']);
+      if (minne.form && !(f && f.avsikt === 'forfragan')) visaVal(['Fortsätt med uppgifterna']);
       delaUpp(fore); // flera korta bubblor i stället för en lång
       // Vad väntar boten på nu?
       if (minne.fragaAntal) { minne.vantarPa = 'antal'; minne.fragaAntal = false; }

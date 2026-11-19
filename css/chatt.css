@@ -57,7 +57,10 @@ html body section.fc-panel form.fc-skriv-rad input.fc-input[type=text] { backgro
 .fc-skriver i:nth-child(3) { animation-delay: .3s; }
 @keyframes fcPrick { 0%, 60%, 100% { opacity: .3; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
 /* Tommys chattrobot – bara huvudet ur images/chatt-robot.webp (Tommy 2026-11-19) */
-.fc-robot { flex: none; width: 42px; height: 42px; border-radius: 50%; background: #fff url("/images/chatt-ikon.gif") no-repeat 50% 50% / 104% auto; box-shadow: 0 0 0 2px rgba(255, 255, 255, .9); }
+.fc-robot { flex: none; width: 42px; height: 42px; border-radius: 50%; background: #fff url("/images/chatt-maskot-sprite.png") no-repeat 0 0 / 400% 100%; box-shadow: none; animation: fc-vinka 0.72s steps(4) infinite; }
+/* Vinkande maskot: Tommys GIF (Animerad vinkande maskotfigur) uppdelad i 4 skarpa bilder (180 ms var), spelas med CSS */
+@keyframes fc-vinka { to { background-position: 133.333% 0; } }
+@media (prefers-reduced-motion: reduce) { .fc-robot { animation: none; } }
 .fc-robot-liten { width: 30px; height: 30px; box-shadow: none; align-self: flex-end; }
 .fc-rad { display: flex; align-items: flex-end; gap: 8px; max-width: 92%; }
 .fc-rad .fc-bubbla { max-width: none; }
