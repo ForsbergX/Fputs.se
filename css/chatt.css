@@ -61,3 +61,5 @@ html body section.fc-panel form.fc-skriv-rad input.fc-input[type=text] { backgro
 .fc-robot-liten { width: 30px; height: 30px; box-shadow: none; align-self: flex-end; }
 .fc-rad { display: flex; align-items: flex-end; gap: 8px; max-width: 92%; }
 .fc-rad .fc-bubbla { max-width: none; }
+/* Svarsknappar inne i chatten (detektiven och quizet) */
+.fc-logg .fc-val-logg { margin: 2px 0 4px 38px; }
