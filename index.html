@@ -1620,8 +1620,8 @@
   <img class="ns-hero-bild hero-photo hero-loop" src="images/hero-villa-sjo.webp" alt="Vit villa med stora fönster och utsikt över Vättern" width="1672" height="941" fetchpriority="high" />
   <!-- TEST (Tommy 2026-11-19): Tommys cinematic bilvideo som hero. Villabilden ovan ligger kvar under som reserv. -->
   <!-- Bara mobil: Tommys bilvideo. På dator syns villabilden ovan och videon laddas aldrig ner. -->
-  <video class="ns-hero-bild hero-video-bil" data-src="images/hero-bil-loop.mp4" data-poster="images/hero-bil-loop-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
-  <script>(function () { var v = document.currentScript.previousElementSibling; if (!window.matchMedia('(max-width: 899px)').matches) { v.remove(); return; } v.poster = v.getAttribute('data-poster'); v.src = v.getAttribute('data-src'); v.preload = 'auto'; v.autoplay = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); })();</script>
+  <video class="ns-hero-bild hero-video-bil" data-src="images/hero-bil-loop.mp4?v=2" data-poster="images/hero-bil-loop-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <script>(function () { var v = document.currentScript.previousElementSibling; if (!window.matchMedia('(max-width: 899px)').matches) { v.remove(); return; } v.poster = v.getAttribute('data-poster'); v.muted = true; v.defaultMuted = true; v.playsInline = true; v.setAttribute('webkit-playsinline', ''); v.addEventListener('error', function () { v.remove(); }, true); v.src = v.getAttribute('data-src'); v.preload = 'auto'; v.autoplay = true; var spela = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); }; spela(); v.addEventListener('loadeddata', spela); document.addEventListener('touchstart', spela, { once: true, passive: true }); })();</script>
   <div class="ns-hero-text">
     <h1 class="h1-namn osynlig-rubrik"><span>Forsbergs Fönsterputs</span> <span>Jönköping</span></h1>
     <div class="ns-hero-knappar">
