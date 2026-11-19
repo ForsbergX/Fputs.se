@@ -856,6 +856,8 @@
     { ord: ['berätta en historia', 'saga', 'berätta något'], a: ['Det var en gång ett fönster som var så smutsigt att solen inte hittade in. Huset blev mörkt och alla blev trötta. Men en dag kom Tommy med sin skrapa och sitt renvatten – och plötsligt strömmade ljuset in. Alla blev glada, och fönstret levde lyckligt i alla sina dagar. Slut! ☀️', 'En saga: Långt borta, bakom sju berg och sju sjöar, låg ett slott med tusen fönster. Kungen var ledsen, för han kunde inte se ut över sitt rike – alla fönster var grå av damm och pollen. Han lovade halva kungariket till den som kunde göra dem rena. Riddare kom med svampar, trollkarlar med trolldrycker, men ränderna blev bara värre. Till slut kom en lugn fönsterputsare med en skrapa och en hink rent vatten. Ruta för ruta blev slottet ljust igen, och kungen kunde äntligen se solen gå upp över sjön. Fönsterputsaren tackade nej till halva kungariket – han ville bara ha en kanelbulle och fast pris. Snipp snapp snut! 🏰✨', 'En godnattsaga: Det var en gång en liten fönsterruta som drömde om att få se stjärnorna. Men varje natt låg ett tunt lager damm i vägen. En morgon kom någon och gjorde henne alldeles klar och blank. Den natten tindrade hundra stjärnor rakt in genom henne, och den lilla rutan var den lyckligaste rutan i hela stan. Sov gott! 🌙'] },
     { ord: ['motivera mig', 'ge mig energi', 'inspirera mig'], a: ['Du klarar mer än du tror! Ta en sak i taget – och låt de saker som andra kan göra åt dig vara just det. Fönstren, till exempel. 😉💪', 'Varje dag är en ny chans. Öppna fönstret, andas in, och kör! (Helst ett rent fönster.) ☀️'] },
     { ord: ['vad tänker du på', 'vad funderar du på'], a: ['Jag funderar på hur många fönster det finns i Jönköping. Många! Och Tommy vill gärna putsa dem alla. 😄', 'Jag tänker på dig och dina fönster. Ska vi räkna ut vad det skulle kosta?'], val: ['Vad kostar det?'] },
+    // Svordomar och utrop: lite humor och tillbaka till fönstren (Tommy 2026-11-19)
+    { ord: [' shit ', ' fan ', 'fan också', 'fy fan', 'jävlar', 'helvete', ' skit ', 'satan', 'attans', 'tusan', 'sjutton också', ' damn '], a: ['Oj då! 😅 Har fönstren retat upp dig? Det kan vi fixa – smutsiga rutor får vem som helst att svära.', 'Hoppsan! 🙊 Låter som en sån dag. Vet du vad som brukar hjälpa? Rena fönster och mer ljus. ☀️', 'Oj, starka ord! 😄 Jag föreslår att vi byter fokus till något trevligare – som skinande rena fönster?', 'Det där låter frustrerat! 💙 Kan jag göra något för att din dag ska bli bättre – kanske räkna ut ett pris på fönsterputs?'], val: ['Vad kostar det?', 'Dra ett skämt'] },
   ];
   var ROLIGA_RESERV = [
     'Oj! Nu fick mina robotkretsar jobba övertid. Kan du formulera om det?',
@@ -1137,6 +1139,8 @@
   // Korta svar tolkas utifrån senaste frågan från boten
   function kontext(text) {
     var t = rensa(text), typ = kortTyp(t), v = minne.vantarPa;
+    // Ja efter att boten erbjudit att räkna pris = starta prisräkningen direkt i chatten
+    if (typ === 'ja' && !(minne.kalk && minne.kalk.steg !== 'klar') && /kost|pris|räkna/.test(forraSvar || '')) { minne.bokningsintresse = true; return kalkStart(' ja '); }
     if (v === 'bostad') {
       if (/villa|radhus|parhus| hus /.test(t)) return { avsikt: 'boka', a: 'Perfekt! 🏡 Då hjälper jag dig vidare till villabokningen – räkna fönstren så får du fast pris direkt.', knapp: ['Till villabokningen', '/boka#fonster'] };
       if (/lägenhet|lägga|bostadsrätt|hyresrätt/.test(t)) return { avsikt: 'boka', a: 'Snyggt! Lägenhet går fort – välj storlek så ser du priset direkt.', knapp: ['Till lägenhetsbokningen', '/boka#lagenhet'] };
@@ -2384,10 +2388,17 @@
         if (arSaklig(fraga) || niva >= 2) { text = VET_INTE; lank(bubbla(text, 'jag'), 'Till kontaktformuläret', '/kontakta-mig#formular'); minne.senasteAvsikt = 'okand-saklig'; }
         else {
           minne.forvirrad = (minne.forvirrad || 0) + 1;
-          if (minne.forvirrad >= 2) text = 'Förlåt, jag förstår inte riktigt vad du menar. 🙈' + DELA + 'Jag är bara en enkel digital hjälpreda – det blir lättast om du trycker på en knapp här under. Eller ring Tommy på ' + TEL_TEXT + ', så hjälper han dig direkt.';
-          // Vänligt och tydligt – inga "404"-skämt som kan förvirra (Tommy 2026-11-19: äldre kunder)
-          else text = valjFran(['Hmm, det där förstod jag inte riktigt. 🤔 Kan du säga det på ett annat sätt?', 'Oj, där hängde jag inte med. 😅 Kan du skriva det lite annorlunda?', 'Det där kan jag tyvärr inte svara på. 🙈 Vad vill du veta om fönsterputsen?']) + DELA + 'Du kan också trycka på en knapp här under.';
-          bubbla(text, 'jag'); visaVal(MENY); minne.senasteAvsikt = 'okand';
+          // Förstår hon inte: lite humor, och sedan tillbaka till fönsterputs (Tommy 2026-11-19: målet är fönsterputs, svar, humor, sälja)
+          if (minne.forvirrad >= 2) text = 'Förlåt, jag förstår inte riktigt vad du menar. 🙈' + DELA + 'Men fönster – där är jag expert! Vill du veta vad det skulle kosta, se lediga tider eller prata direkt med Tommy på ' + TEL_TEXT + '?';
+          else text = valjFran([
+            'Hmm, det där gick över mitt huvud. 😅' + DELA + 'Men fönster – där är jag hemma! Vill du veta vad det skulle kosta att få dina skinande rena?',
+            'Oj, där tappade jag tråden. 🙈' + DELA + 'Jag är bäst på en sak: rena fönster. Ska vi kolla vad det kostar för dig?',
+            'Det där kan jag tyvärr inget om. 😄' + DELA + 'Men fråga mig om fönsterputs, priser eller lediga tider – där är jag vass!',
+            'Haha, nu blev jag ställd! 😅' + DELA + 'Jag håller mig till det jag kan bäst: fönster. Har du några som längtar efter lite kärlek?',
+            'Det där svarar jag inte på – men vet du vad jag kan? Räkna ut vad fönsterputsen kostar på en minut! 🧮'
+          ]);
+          if (minne.ton === 'formell') text = utanEmoji(text);
+          bubbla(text, 'jag'); visaVal(['Vad kostar det?', 'Lediga tider', 'Dra ett skämt', 'Ring Tommy']); minne.senasteAvsikt = 'okand';
         }
         senaste = text;
       }
