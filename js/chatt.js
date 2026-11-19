@@ -981,6 +981,8 @@
       a: 'Inga problem! För höga fönster använder Tommy renvattensystem med teleskopstång.' + '§§' + 'Den når upp till 13 meter – ungefär 4 våningar – och han står tryggt på marken hela tiden. Ingen stege mot din fasad.', val: ['Vad är renvatten?', 'Vad kostar det?'], knapp: HUR },
     { id: 'kemikalier', ord: /kemikal|miljövänlig|giftig|allergi|(hund|katt|husdjur|barn|växter|blommor).{0,25}(säker|farlig|tål|skadl|okej)|(säker|farlig|skadl).{0,25}(hund|katt|husdjur|barn|växter|blommor)/,
       a: 'Renvattensystemet använder inga kemikalier alls – bara rent vatten.' + '§§' + 'Det är skonsamt för både växter och djur. 🌿', val: ['Vad är renvatten?', 'Vad kostar det?'], knapp: HUR },
+    { id: 'insida', ord: /insida|insidan|invändig|innerruta|båda sidor|bägge sidor|in och ut|in- och ut|bara utsida|bara utsidan|endast utsida|utvändig|bara ute|inne och ute/,
+      a: 'Ja, absolut! Utsidan syns från gatan – insidan syns från soffan. Tommy putsar alltid båda. 😊' + '§§' + 'Har du fönster med mellanglas, alltså bågar som går att öppna isär, tar han dem också. Då väljer du 4 sidor när du räknar ut priset.', val: ['Vad kostar det?'], knapp: HUR },
     { id: 'metod', ord: /vilken metod|hur putsar (du|ni|han)|teknik|vilken utrustning|vad använder (du|ni|han)|skrapa|fönsterskrapa|hur gör (du|ni|han) rent/,
       a: 'Tommy kombinerar två metoder och väljer alltid det som ger bäst resultat för just dina fönster:' + '§§' + '• Renvattensystem för höga och svåra fönster – ingen stege, inga kemikalier.\n• Klassisk skrapteknik för vanliga rutor – precision och randfritt resultat.', val: ['Vad är renvatten?', 'Vad kostar det?'], knapp: HUR },
     { id: 'ranter', ord: /ränder|randigt|randfritt|fläckar|märken på|strimmor/,
@@ -1006,9 +1008,11 @@
       if (!k.ord.test(s)) continue;
       // "Recensioner" stämmer bara om det inte är en prisfråga – annars får kalkylatorn ta den
       if (k.id === 'fastpris' && /vad kostar|räkna/.test(s)) continue;
+      // 'Tar ni bara utsidan?' ska få ett nej, inte ett ja
+      var aText = k.id === 'insida' && /bara utsida|bara utsidan|endast utsida|bara ute|bara utvändig/.test(s) ? 'Nej, inte alls! Utsidan syns från gatan – insidan syns från soffan. Tommy putsar alltid båda. 😊§§Har du fönster med mellanglas, alltså bågar som går att öppna isär, tar han dem också. Då väljer du 4 sidor när du räknar ut priset.' : k.a;
       var val = (k.val || []).slice();
       if (minne.kalk && minne.kalk.steg !== 'klar') { minne.kalk.paus = true; val = ['Fortsätt prisräkningen'].concat(val.filter(function (v) { return v !== 'Vad kostar det?'; })); }
-      return { special: true, stilla: true, allvar: !!k.allvar, avsikt: 'fakta-' + k.id, vantar: '', text: k.a.split('§§').join(DELA), val: val.length ? val : null, knapp: k.knapp, knapp2: k.knapp2 };
+      return { special: true, stilla: true, allvar: !!k.allvar, avsikt: 'fakta-' + k.id, vantar: '', text: aText.split('§§').join(DELA), val: val.length ? val : null, knapp: k.knapp, knapp2: k.knapp2 };
     }
     return null;
   }
