@@ -8,7 +8,7 @@
   // Vanliga frågor (visas under fliken). Svaren bygger på hemsidans egna texter.
   var FRAGOR = [
     { q: 'Vad kostar det?', ord: ['vad kostar', 'kost', 'pris', ' kr', 'kronor', 'billig', 'dyr', 'offert', 'betala för', 'hur mycket'],
-      a: 'En lägenhet kostar från 475 kr och en villa från 750 kr efter RUT-avdrag, plus 30 kr i inställelseavgift. Exakt pris får du direkt i bokningen.', knapp: ['Räkna ut mitt pris', '/boka'] },
+      a: "Det beror på hur många fönster du har och vilken typ de är. Skriv till exempel \"8 tvåluft och 3 enluft\", eller \"en trea\" om du bor i lägenhet, så räknar jag ut ditt pris direkt.", knapp: ['Räkna själv i bokningen', '/boka'] },
     { q: 'Vad ingår?', ord: ['ingår', 'ingar', 'insida', 'utsida', 'mellan glas', 'alla sidor', 'invändig', 'utvändig'],
       a: 'Alla sidor av fönstret – insida, utsida och mellan glasen – om inget annat sägs. Allt är med från början.' },
     { q: 'Behöver jag vara hemma?', ord: ['hemma', 'nyckel', 'borta', ' kod', 'jobbar', 'semester', 'närvar'],
@@ -68,7 +68,7 @@
     { ord: ['varför startade', 'varför började', 'starta företag'], a: 'För att bygga något eget där kvalitet, service och yrkesskicklighet får stå i centrum.' },
     { ord: ['prata med tommy', 'prata med en människa', 'prata med någon', 'kontakta tommy', 'ringa tommy', 'nå tommy', 'telefon', 'nummer', 'ringa'], a: 'Absolut! Ring Tommy på ' + TEL_TEXT + ' (09–21) eller använd kontaktformuläret.', knapp: ['Till kontaktformuläret', '/kontakta-mig#formular'] },
     // Tjänster
-    { ord: ['rut-avdrag', 'rutavdrag', 'har ni rut', ' rut'], a: 'Ja! RUT ger 50 % avdrag på arbetskostnaden om du uppfyller villkoren. Priserna på sidan är redan efter RUT.', knapp: ['Räkna ut mitt pris', '/boka'] },
+    { ord: ['rut-avdrag', 'rutavdrag', 'har ni rut', ' rut', 'med rut', 'räknar ni med rut', 'drar ni rut', 'gäller rut', 'får man rut', 'går det med rut'], a: 'Ja! RUT ger 50 % avdrag på arbetskostnaden om du uppfyller villkoren. Priserna på sidan är redan efter RUT.', knapp: ['Räkna ut mitt pris', '/boka'] },
     { ord: ['villa', 'villor', 'radhus', ' hus '], a: 'Absolut! Villor är en av specialiteterna. Räkna ut ditt fasta pris i bokningen.', knapp: ['Räkna ut mitt pris', '/boka'] },
     { ord: ['lägenhet', 'lgh'], a: 'Jajamän! Från små lägenheter till stora glaspartier. 1:a från 475 kr efter RUT.', knapp: ['Räkna ut mitt pris', '/boka'] },
     { ord: ['balkong', 'inglasning', 'inglasad', 'glasräcke', 'altan'], a: 'Ja, inglasade balkonger och glasräcken fixas. Välj dem i bokningen så får du pris direkt.', knapp: ['Till bokningen', '/boka'] },
@@ -115,7 +115,7 @@
     { ord: ['läget', 'hur mår du', 'allt bra'], a: ['Bara bra, tack som frågar! 😊 Och du?', 'Riktigt bra! Det är alltid en fin dag när någon hör av sig. Hur är läget själv?'] },
     { ord: [' tja ', 'tja mannen'], a: 'Tja! 😊 Vad säger vi, dags att ge fönstren lite kärlek?' },
     { ord: ['god morgon', 'godmorgon'], a: ['God morgon! ☀️ Hoppas du har fått i dig kaffet. Vad kan jag hjälpa dig med?', 'God morgon! ☀️ Ett bra sätt att börja dagen – vad funderar du på?'] },
-    { ord: ['god natt', 'godnatt'], a: ['Sov gott! 🌙 Jag finns här i morgon också.', 'God natt och sov så gott! 🌙'] },
+    { ord: ['god natt', 'godnatt'], a: ['Sov gott! ✨ Jag finns här i morgon också.', 'God natt och sov så gott! 😴'] },
     { ord: [' ey ', ' eyy'], a: 'EY EY EY! 🔥 Här är det full fart. Vad behöver du hjälp med?' },
     // Testar boten
     { ord: ['är du dum'], a: 'Jag har mina stunder. Men jag glömmer aldrig att rekommendera fönsterputs.' },
@@ -448,7 +448,7 @@
     { ord: ['det är ett slott', 'är ett slott', 'bor på ett slott'], a: 'ERS MAJESTÄT! 👑 Då får vi nog rulla ut den kungliga offertavdelningen.', knapp: ['Begär offert', '/kontakta-mig#formular'] },
     { ord: ['större fastighet', 'flerfamiljshus', 'hyreshus', 'brf'], allvar: true, a: 'Större fastighet – då tar Tommy gärna fram en personlig offert så att allt blir rätt.', knapp: ['Begär offert', '/kontakta-mig#formular'] },
     // ===== Fler sätt att fråga om företaget (Tommy 2026-11-19) – bara fakta från sajten =====
-    { allvar: true, ord: ['hur mycket tar ni', 'vad tar ni betalt', 'vad tar du betalt', 'prislapp', 'vad landar det på', 'ungefärligt pris'], a: ['Det beror på hur många och vilka fönster du har. En lägenhet kostar från 475 kr och en villa från 750 kr efter RUT, plus 30 kr i inställelseavgift. Vill du att jag räknar ut ditt exakta pris?', 'Lägenhet från 475 kr, villa från 750 kr – efter RUT, plus 30 kr inställelseavgift. Ska jag räkna fram just ditt pris?'], val: ['Vad kostar det?'] },
+    { allvar: true, ord: ['hur mycket tar ni', 'vad tar ni betalt', 'vad tar du betalt', 'prislapp', 'vad landar det på', 'ungefärligt pris'], a: "Det beror på hur många fönster du har och vilken typ de är. Skriv till exempel \"8 tvåluft och 3 enluft\", eller \"en trea\" om du bor i lägenhet, så räknar jag ut ditt pris direkt.", val: ['Vad kostar det?'] },
     { allvar: true, ord: ['vad kostar en etta', 'pris för en etta', 'enrummare', 'en 1:a'], a: 'En 1:a kostar 475 kr efter RUT, plus 30 kr i inställelseavgift. Har du inglasad balkong tillkommer en liten summa per glas.', val: ['Vad kostar det?'] },
     { allvar: true, ord: ['vad kostar en tvåa', 'pris för en tvåa', 'tvårummare', 'en 2:a'], a: 'En 2:a kostar 500 kr efter RUT, plus 30 kr i inställelseavgift. Inglasad balkong räknas till per glas.', val: ['Vad kostar det?'] },
     { allvar: true, ord: ['vad kostar en trea', 'pris för en trea', 'trerummare', 'en 3:a'], a: 'En 3:a kostar 525 kr efter RUT, plus 30 kr i inställelseavgift. Inglasad balkong räknas till per glas.', val: ['Vad kostar det?'] },
@@ -588,7 +588,7 @@
     { ord: ['du är irriterande', 'du stör', 'du är tjatig', 'sluta tjata'], a: ['Förlåt! Jag ska ta det lugnare. 🙊', 'Uppfattat – jag håller mig lugn. Säg till om du behöver något.'], slutaSalja: true },
     { ord: ['jag förstår inte dig', 'vad menar du', 'du är svår att förstå'], a: 'Förlåt, jag ska vara tydligare! Tryck på en av knapparna här under, eller ring Tommy så förklarar han.', val: ['Vad kostar det?', 'Hur går det till?', 'Ring Tommy'] },
     { ord: ['god morgon', 'morrn', 'godmorgon'], a: ['God morgon! ☀️ Har du fått i dig kaffet än?', 'God morgon! Hoppas du sovit gott. Vad kan jag hjälpa dig med?'] },
-    { ord: ['god kväll', 'kvällen'], a: ['God kväll! 🌙 Vad kan jag hjälpa dig med?', 'God kväll! Skönt att dagen börjar gå mot sitt slut, va?'] },
+    { ord: ['god kväll', 'kvällen'], a: ['God kväll! 👋 Vad kan jag hjälpa dig med?', 'God kväll! Skönt att dagen börjar gå mot sitt slut, va?'] },
     { ord: ['god dag', 'goddag', 'tjänare'], a: ['God dag! 😊 Vad kan jag hjälpa till med?', 'Hej och välkommen! Fråga på.'] },
     { ord: ['trevlig helg', 'ha en bra helg', 'skön helg'], a: ['Detsamma! Ha en riktigt skön helg. ☀️', 'Tack, detsamma! Njut av ledigheten.'] },
     { ord: ['måndag', 'måndagar'], a: ['Måndag igen! Men tänk så här: det är en ny vecka för rena fönster. 😄', 'Måndagar är lättare med rena fönster. Det är vetenskap. (Typ.)'] },
@@ -618,8 +618,8 @@
     { ord: [' te ', 'grönt te', 'dricker te'], a: 'Te är mysigt! 🍵 Särskilt med utsikt genom ett rent fönster.' },
     { ord: [' vin ', 'öl ikväll', 'fredagsmys'], a: ['Fredagsmys! 🍿 Njut ordentligt.', 'Skål! Men putsa inte fönster efter det. 😉'] },
     { ord: ['tacos', 'tacofredag'], a: 'Tacofredag – en svensk tradition jag respekterar djupt. 🌮' },
-    { ord: ['sover', 'sömnig', 'ska sova', 'godnatt'], a: ['Sov gott! 🌙 Jag finns här i morgon också.', 'God natt! Drömmen om rena fönster väntar. 😴'] },
-    { ord: ['vaken sent', 'kan inte sova', 'sömnlös'], a: ['Kan du inte sova? Jag är vaken dygnet runt om du vill prata. 🌙', 'Nattugglor är välkomna här. 🦉'] },
+    { ord: ['sover', 'sömnig', 'ska sova', 'godnatt'], a: ['Sov gott! ✨ Jag finns här i morgon också.', 'God natt! Drömmen om rena fönster väntar. 😴'] },
+    { ord: ['vaken sent', 'kan inte sova', 'sömnlös'], a: ['Kan du inte sova? Jag är vaken dygnet runt om du vill prata. ✨', 'Nattugglor är välkomna här. 🦉'] },
     { ord: ['jobbar för mycket', 'trött på jobbet', 'lång dag'], a: ['Då förtjänar du att slippa fönsterputsen själv! Låt Tommy ta den. 💙', 'Lång dag? Ta det lugnt ikväll – du är värd det.'] },
     { ord: ['jag är student', 'pluggar', 'tenta', 'skolan'], a: ['Lycka till med pluggandet! 📚 Rena fönster ger mer dagsljus – bra för koncentrationen. (Mitt eget påstående.)', 'Plugga på! Du klarar det. 💪'] },
     { ord: ['jag är pensionär', 'pensionerad', 'har gått i pension'], a: ['Grattis till pensionen! Nu ska du njuta – låt Tommy sköta fönstren. 😊', 'Härligt! Då finns det tid för det roliga i livet.'], val: ['Vad kostar det?'] },
@@ -853,7 +853,7 @@
     { allvar: true, ord: ['företagsavtal', 'fönsterputs för företag hur', 'putsa butiksfönster'], a: ['För företag tar Tommy fram ett fast pris efter vad som ska putsas och hur ofta. Det kan vara en gång eller återkommande, utan bindningstid. Företag får faktura. Skicka en förfrågan med lite info om lokalen, så återkommer han – oftast samma dag.', 'Kontor, butiker och lokaler fixas! Berätta vad det gäller i en förfrågan, så får du ett fast pris.'], val: ['Skicka förfrågan till Tommy'], knapp: ['Företag', '/foretag'] },
     { allvar: true, ord: ['hur säkert är det', 'säkerhet', 'säkert att anlita'], a: ['Säkerheten är viktig på flera sätt. För dig: Tommy är försäkrad hos Trygg-Hansa, godkänd för F-skatt och det är alltid han själv som kommer. För jobbet: höga fönster putsas från marken med teleskopstång, utan stege mot fasaden. Och priset är fast – inga överraskningar.', 'Tryggt på alla sätt: försäkring, F-skatt, fast pris, nöjd kund-garanti – och alltid samma person hemma hos dig.'], val: ['Vem är Tommy?'] },
     { allvar: true, ord: ['vad gör dig unik', 'varför är du bra', 'vad kan du som andra inte'], a: ['Jag kan räkna ut ditt pris på en minut, visa Tommys lediga tider, svara på frågor om företaget dygnet runt och skicka din förfrågan direkt till Tommy – allt i samma samtal. Och jag hittar aldrig på något. 😊', 'Jag är Tommys hjälpreda: snabb, ärlig och alltid vaken. Det svåra jobbet – själva putsen – gör Tommy.'] },
-    { ord: ['berätta en historia', 'saga', 'berätta något'], a: ['Det var en gång ett fönster som var så smutsigt att solen inte hittade in. Huset blev mörkt och alla blev trötta. Men en dag kom Tommy med sin skrapa och sitt renvatten – och plötsligt strömmade ljuset in. Alla blev glada, och fönstret levde lyckligt i alla sina dagar. Slut! ☀️', 'En saga: Långt borta, bakom sju berg och sju sjöar, låg ett slott med tusen fönster. Kungen var ledsen, för han kunde inte se ut över sitt rike – alla fönster var grå av damm och pollen. Han lovade halva kungariket till den som kunde göra dem rena. Riddare kom med svampar, trollkarlar med trolldrycker, men ränderna blev bara värre. Till slut kom en lugn fönsterputsare med en skrapa och en hink rent vatten. Ruta för ruta blev slottet ljust igen, och kungen kunde äntligen se solen gå upp över sjön. Fönsterputsaren tackade nej till halva kungariket – han ville bara ha en kanelbulle och fast pris. Snipp snapp snut! 🏰✨', 'En godnattsaga: Det var en gång en liten fönsterruta som drömde om att få se stjärnorna. Men varje natt låg ett tunt lager damm i vägen. En morgon kom någon och gjorde henne alldeles klar och blank. Den natten tindrade hundra stjärnor rakt in genom henne, och den lilla rutan var den lyckligaste rutan i hela stan. Sov gott! 🌙'] },
+    { ord: ['berätta en historia', 'saga', 'berätta något'], a: ['Det var en gång ett fönster som var så smutsigt att solen inte hittade in. Huset blev mörkt och alla blev trötta. Men en dag kom Tommy med sin skrapa och sitt renvatten – och plötsligt strömmade ljuset in. Alla blev glada, och fönstret levde lyckligt i alla sina dagar. Slut! ☀️', 'En saga: Långt borta, bakom sju berg och sju sjöar, låg ett slott med tusen fönster. Kungen var ledsen, för han kunde inte se ut över sitt rike – alla fönster var grå av damm och pollen. Han lovade halva kungariket till den som kunde göra dem rena. Riddare kom med svampar, trollkarlar med trolldrycker, men ränderna blev bara värre. Till slut kom en lugn fönsterputsare med en skrapa och en hink rent vatten. Ruta för ruta blev slottet ljust igen, och kungen kunde äntligen se solen gå upp över sjön. Fönsterputsaren tackade nej till halva kungariket – han ville bara ha en kanelbulle och fast pris. Snipp snapp snut! 🏰✨', 'En godnattsaga: Det var en gång en liten fönsterruta som drömde om att få se stjärnorna. Men varje natt låg ett tunt lager damm i vägen. En morgon kom någon och gjorde henne alldeles klar och blank. Den natten tindrade hundra stjärnor rakt in genom henne, och den lilla rutan var den lyckligaste rutan i hela stan. Sov gott! ✨'] },
     { ord: ['motivera mig', 'ge mig energi', 'inspirera mig'], a: ['Du klarar mer än du tror! Ta en sak i taget – och låt de saker som andra kan göra åt dig vara just det. Fönstren, till exempel. 😉💪', 'Varje dag är en ny chans. Öppna fönstret, andas in, och kör! (Helst ett rent fönster.) ☀️'] },
     { ord: ['vad tänker du på', 'vad funderar du på'], a: ['Jag funderar på hur många fönster det finns i Jönköping. Många! Och Tommy vill gärna putsa dem alla. 😄', 'Jag tänker på dig och dina fönster. Ska vi räkna ut vad det skulle kosta?'], val: ['Vad kostar det?'] },
     // Svordomar och utrop: lite humor och tillbaka till fönstren (Tommy 2026-11-19)
@@ -911,6 +911,32 @@
   var input = panel.querySelector('.fc-input');
   var flik = panel.querySelector('.fc-flik');
   var valLista = panel.querySelector('.fc-val');
+  // Snygga 3D-emojis (Microsoft Fluent, MIT) i stället för datorns platta – iPhone/iPad/Mac behåller Apples egna (Tommy 2026-11-20)
+  var EMOJI_FIL = {"😎":"1f60e","👀":"1f440","🪟":"1fa9f","😅":"1f605","😊":"1f60a","😄":"1f604","🤐":"1f910","⚡":"26a1","🤖":"1f916","❤️":"2764-fe0f","👋":"1f44b","☀️":"2600-fe0f","🌙":"1f319","🔥":"1f525","🎤":"1f3a4","👽":"1f47d","😈":"1f608","🫡":"1fae1","🚨":"1f6a8","😭":"1f62d","👑":"1f451","🚀":"1f680","😂":"1f602","✅":"2705","🏓":"1f3d3","☁️":"2601-fe0f","😳":"1f633","💋":"1f48b","🍌":"1f34c","🥹":"1f979","🐱":"1f431","🐶":"1f436","🎄":"1f384","🍦":"1f366","💅":"1f485","🏆":"1f3c6","💪":"1f4aa","🦇":"1f987","💙":"1f499","📸":"1f4f8","⭐":"2b50","😉":"1f609","🙈":"1f648","🙊":"1f64a","🎉":"1f389","☕":"2615","💡":"1f4a1","❄️":"2744-fe0f","🌬️":"1f32c-fe0f","🌼":"1f33c","🍂":"1f342","🌸":"1f338","🐣":"1f423","🍬":"1f36c","🎆":"1f386","🕯️":"1f56f-fe0f","🎂":"1f382","🌊":"1f30a","🏒":"1f3d2","⚽":"26bd","🧁":"1f9c1","🍝":"1f35d","🍵":"1f375","🍿":"1f37f","🌮":"1f32e","😴":"1f634","🦉":"1f989","📚":"1f4da","🐾":"1f43e","🐦":"1f426","🕷️":"1f577-fe0f","🙃":"1f643","💧":"1f4a7","🎵":"1f3b5","✨":"2728","🎬":"1f3ac","🎶":"1f3b6","🎮":"1f3ae","🧮":"1f9ee","💕":"1f495","📅":"1f4c5","😱":"1f631","🤫":"1f92b","💃":"1f483","🕺":"1f57a","💍":"1f48d","🏡":"1f3e1","🌅":"1f305","🌿":"1f33f","🟥":"1f7e5","☔":"2614","🌧️":"1f327-fe0f","🏝️":"1f3dd-fe0f","🕵️":"1f575-fe0f","🏰":"1f3f0","👍":"1f44d","💰":"1f4b0","📞":"1f4de","🚐":"1f690","📝":"1f4dd","🤔":"1f914","🏠":"1f3e0","✍️":"270d-fe0f","😕":"1f615","📨":"1f4e8","🏢":"1f3e2","📒":"1f4d2","✔️":"2714-fe0f","🥁":"1f941","😌":"1f60c","💤":"1f4a4","📄":"1f4c4","💼":"1f4bc","🧽":"1f9fd","🤸":"1f938","🧠":"1f9e0","🏃":"1f3c3","🛋️":"1f6cb-fe0f"};
+  var EMOJI_RE = /\p{Extended_Pictographic}(\uFE0F|\u200D\p{Extended_Pictographic}\uFE0F?|[\u{1F3FB}-\u{1F3FF}])*/gu;
+  var EMOJI_BILD = !/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
+  function emojiBilder(rot) {
+    if (!EMOJI_BILD) return;
+    var w = document.createTreeWalker(rot, NodeFilter.SHOW_TEXT), noder = [], n;
+    while ((n = w.nextNode())) { EMOJI_RE.lastIndex = 0; if (EMOJI_RE.test(n.nodeValue)) noder.push(n); }
+    noder.forEach(function (tn) {
+      var t = tn.nodeValue, frag = document.createDocumentFragment(), sist = 0, m;
+      EMOJI_RE.lastIndex = 0;
+      while ((m = EMOJI_RE.exec(t))) {
+        var fil = EMOJI_FIL[m[0]] || EMOJI_FIL[m[0].replace(/\uFE0F/g, '')];
+        if (!fil) continue;
+        if (m.index > sist) frag.appendChild(document.createTextNode(t.slice(sist, m.index)));
+        var img = document.createElement('img'); img.className = 'fc-emoji'; img.alt = m[0]; img.draggable = false;
+        img.src = 'https://cdn.jsdelivr.net/npm/@lobehub/fluent-emoji-3d@1.1.0/assets/' + fil + '.webp';
+        img.onerror = function () { this.replaceWith(document.createTextNode(this.alt)); };
+        frag.appendChild(img); sist = m.index + m[0].length;
+      }
+      if (!sist) return;
+      if (sist < t.length) frag.appendChild(document.createTextNode(t.slice(sist)));
+      tn.parentNode.replaceChild(frag, tn);
+    });
+  }
+  if (EMOJI_BILD && window.MutationObserver) new MutationObserver(function () { emojiBilder(logg); }).observe(logg, { childList: true, subtree: true });
 
   // Vanliga frågor ligger under en flik ovanför skrivrutan
   FRAGOR.forEach(function (f, i) {
@@ -1230,7 +1256,7 @@
   function startaDetektiv(tt) {
     minne.detektiv = { steg: 'bagar' };
     var intro = /spröjs/.test(tt) ? 'Spröjs är de smala listerna som delar glaset i flera mindre rutor. ' : /luft/.test(tt) ? '"Luft" betyder hur många bågar fönstret har – bågarna är delarna som går att öppna. 1-luft har en båge, 2-luft har två. ' : '';
-    return { special: true, stilla: true, vantar: '', text: intro + '🕵️ FÖNSTERDETEKTIVEN RAPPORTERAR! Vi börjar enkelt: hur många bågar – delar som går att öppna – har fönstret?', val: ['En', 'Två', 'Ingen, det går inte att öppna', 'Vet inte'] };
+    return { special: true, stilla: true, vantar: '', text: intro + 'Inga problem, vi tar reda på det tillsammans. 🕵️' + DELA + 'Titta på ett av fönstren: hur många delar går att öppna? Varje sådan del kallas båge.', val: ['En', 'Två', 'Ingen, det går inte att öppna', 'Vet inte'] };
   }
   function detektivSvar(tt) {
     var d = minne.detektiv;
@@ -1299,7 +1325,7 @@
   }
   function halsning(sh) {
     var nu = new Date(), h = nu.getHours(), d = nu.getDay();
-    var hej = h < 5 ? 'Nattuggla? 🦉 Hej!' : h < 10 ? 'God morgon! ☀️' : h < 17 ? 'Hej! 👋' : 'God kväll! 🌙';
+    var hej = h < 5 ? 'Nattuggla? 🦉 Hej!' : h < 10 ? 'God morgon! ☀️' : h < 17 ? 'Hej! 👋' : 'God kväll! 👋';
     var extra = d === 5 ? ' Tommy är ledig på fredagar, men jag svarar gärna på dina frågor.' : !telefontid() ? ' Tommy har gått för dagen, men jag svarar gärna på dina frågor.' : '';
     if (sh) return hej + DELA + sh.text;
     return hej + ' Välkommen till Forsbergs Fönsterputs.' + extra + DELA + 'Jag är kundservice här och hjälper dig med pris, lediga tider och frågor om fönsterputs.' + DELA + 'Välj ett alternativ nedan eller skriv din fråga.';
@@ -1312,6 +1338,8 @@
       return telefontid()
         ? { special: true, stilla: true, avsikt: 'ring', vantar: '', text: 'Självklart! Ring Tommy på ' + TEL_TEXT + '. Han svarar mellan 09 och 21.' + DELA + 'Svarar han inte direkt är han troligen mitt i ett jobb – då ringer han upp dig så snart han kan.', knapp: TEL_LANK }
         : { special: true, stilla: true, avsikt: 'ring', vantar: '', text: 'Tommys nummer är ' + TEL_TEXT + '. 📞' + DELA + 'Just nu är det utanför hans telefontid (09–21), så han svarar troligen inte förrän i morgon. Vill du att jag skickar en förfrågan, så ringer han upp dig?', val: ['Skicka förfrågan till Tommy'], knapp: TEL_LANK };
+    if (/ kontakt(a|ar|en|uppgift\S*)? |hur når jag|nå (er|dig|tommy)|komma i kontakt|mejla|maila|e-?post|mejladress|mailadress|kontaktuppgifter|skriva till (er|dig|tommy)/.test(s))
+      return { special: true, stilla: true, avsikt: 'kontakt', vantar: '', text: 'Du når Tommy på tre sätt:' + DELA + '📞 Ring eller sms:a ' + TEL_TEXT + ' (09–21)\n✉️ Skriv i kontaktformuläret, så svarar han samma dag\n💬 Eller skriv här, så skickar jag din förfrågan direkt till honom', val: ['Skicka förfrågan till Tommy', 'Vad kostar det?'], knapp: TEL_LANK, knapp2: ['Till kontaktformuläret', '/kontakta-mig#formular'] };
     if (/hur går det till|hur fungerar det|hur funkar det|hur jobbar (du|ni|tommy)|vad händer (sen|när|efter)|hur gör (jag|man)|steg för steg/.test(s))
       return { special: true, stilla: true, avsikt: 'hur', vantar: '', text: 'Så här enkelt är det:' + DELA +
         '1. Du räknar fram priset – här med mig eller i bokningen.\n2. Du skickar en förfrågan med önskad tid.\n3. Tommy hör av sig och bekräftar tiden.\n4. Du behöver inte vara hemma när han putsar.\n5. Efteråt betalar du med Swish. RUT-avdraget sköter Tommy med Skatteverket.' + DELA +
@@ -1453,7 +1481,7 @@
   // och först när kunden trycker "Ja, skicka" går det till Tommy via samma funktion som bokningen
   // (/.netlify/functions/send-email). Inget bokas – Tommy hör av sig och bekräftar.
   // Uppgifterna finns bara i chattens minne tills de skickas, och syns aldrig i statistiken.
-  var FORM_START = /skicka (en )?förfrågan|skicka till tommy|lämna (mina )?uppgifter|ta mina uppgifter|ring mig|ringa mig|bli (upp)?ringd|kontakta mig|hör av (er|dig) till mig|vill att tommy ringer|ringa upp mig|ring upp mig/;
+  var FORM_START = /ja,? jag vill boka|skicka (en )?förfrågan|skicka till tommy|lämna (mina )?uppgifter|ta mina uppgifter|ring mig|ringa mig|bli (upp)?ringd|kontakta mig|hör av (er|dig) till mig|vill att tommy ringer|ringa upp mig|ring upp mig/;
   var FORM_STEG = ['namn', 'telefon', 'adress', 'tid', 'medd'];
   function formNy() { return { steg: 'namn', namn: minne.namn || '', telefon: '', adress: '', tid: '', medd: '', andrar: false }; }
   function formObj(text, val, extra) { var o = { special: true, stilla: true, avsikt: 'forfragan', vantar: '', text: text, val: val || null }; if (extra) Object.keys(extra).forEach(function (k) { o[k] = extra[k]; }); return o; }
@@ -1625,6 +1653,12 @@
 
   var KALK_START = ['vad kostar', 'vad skulle det kosta', 'kostar det', 'hur mycket kostar', 'räkna pris', 'räkna ut pris', 'räkna ut priset', 'räkna ut mitt pris', 'räkna mitt pris', 'uppskatta', 'ungefärligt pris', 'ungefär pris', 'ungefär vad', 'vad blir priset', 'prisförslag', 'se pris', 'visa pris', 'se priset', 'vad tar ni', 'pris på', 'priset för', 'priset på', 'kalkyl', 'prisräkn', 'få pris', 'ge mig ett pris', 'vad landar', 'vad hamnar'];
   var KALK_INTE = /avbok|omboka|faktura|parkering|garanti|regn|abonnemang|karmtvätt|stege|reklam|klag/;
+  // Allt som låter som att kunden vill ha ett pris går till uträkningen (Tommy 2026-11-20)
+  var PRIS_AVSIKT = /räkna|kostar|kosta |kostnad|pris|offert|hur mycket tar|vad tar ni|vad tar du| lägenhet| lgh | \d ?rok | \d ?rum | \d:a | etta | tvåa | trea | femma | en fyra | i fyra /;
+  var PRIS_INTE = /inställelse|reseavgift|rut-avdrag|rutavdrag|swish|betala|faktura|räkning|avboka|räknar ni med|räknas rut/;
+  var MALL = 'Skriv dina fönster i ett meddelande, så räknar jag ut ett ungefärligt pris direkt. Så här:\n\n"8 tvåluft och 4 enluft"\n"6 tvåluft 4 sidor och 3 spröjs 4 rutor"\n\n1-luft = en båge. 2-luft = två bågar.\n4 sidor = det finns glas mellan bågarna.';
+  var MALL_LGH = 'Bor du i lägenhet räcker det med storleken, till exempel "en trea".';
+  var MALL_SIST = 'Osäker på sorten? Tryck på en knapp nedan, så hjälper jag dig.';
   var TALORD = { noll: 0, inga: 0, inget: 0, ingen: 0, en: 1, ett: 1, två: 2, tre: 3, fyra: 4, fem: 5, sex: 6, sju: 7, åtta: 8, nio: 9, tio: 10, elva: 11, tolv: 12, tretton: 13, fjorton: 14, femton: 15, sexton: 16, sjutton: 17, arton: 18, nitton: 19, tjugo: 20, trettio: 30, fyrtio: 40 };
   function kalkTal(s) {
     var m = s.match(/\d+/);
@@ -1650,6 +1684,8 @@
     if (/balkong|altan|glasräcke|räcke/.test(s)) return 'B';
     if (/uterum/.test(s)) return 'UT';
     if (/växthus/.test(s)) return 'VH';
+    if (/(2|två) delar|(2|två) dörrar som öppnas/.test(s)) return 'L2';
+    if (/(1|en) del som|(1|en) del |bara en del/.test(s)) return 'L1';
     if (/(2|två) ?-? ?luft|tvåluft|(2|två) bågar|tvålufts/.test(s)) return 'L2';
     if (/(1|en|ett) ?-? ?luft|enluft|(1|en) båge|enlufts/.test(s)) return 'L1';
     if (/vet inte|osäker|ingen aning|vet ej|hjälp/.test(s)) return 'VET';
@@ -1685,15 +1721,16 @@
   function kalkFraga(k, prefix) {
     var p = prefix ? prefix + DELA : '', r = k.nu;
     switch (k.steg) {
-      case 'bostad': return kalkSvarObj(p + 'Vad ska putsas?', ['Villa/radhus', 'Lägenhet', 'Företag', 'Solcellstvätt']);
-      case 'lgh': return kalkSvarObj(p + 'Hur stor är lägenheten?', ['1:a', '2:a', '3:a', '4:a', '5:a']);
+      case 'bostad': return kalkSvarObj(p + 'Bor du i villa, radhus eller lägenhet?', ['Villa', 'Radhus', 'Lägenhet']);
+      case 'villaAntal': return kalkSvarObj(p + 'Hur många fönster har du ungefär? Räkna alla fönster i huset och skriv bara siffran, till exempel 12.');
+      case 'lgh': return kalkSvarObj(p + 'Hur många rum har lägenheten?', ['1 rum', '2 rum', '3 rum', '4 rum', '5 rum']);
       case 'lghBalk': return kalkSvarObj(p + (k.lghGolv || k.lghTak ? 'Något mer balkongglas?' : 'Har du inglasad balkong som ska putsas?'), [k.lghGolv || k.lghTak ? 'Nej, visa priset' : 'Nej', 'Golv till tak', 'Räcke till tak']);
       case 'lghBalkAntal': return kalkSvarObj(p + 'Hur många glas (' + (k.lghSort === 'golv' ? 'golv till tak, 40 kr/glas' : 'räcke till tak, 20 kr/glas') + ')?');
       case 'typ': return kalkSvarObj(p + (k.rader.length || k.glas.length ? ton('merFraga') : 'Vilken sorts fönster har du? Börja med den vanligaste sorten.\n\nÄr du osäker – tryck "Vet inte" så hjälper jag dig.'), (k.rader.length || k.glas.length ? ['Klar – visa priset'] : []).concat(TYP_VAL));
-      case 'radtyp': return kalkSvarObj(p + 'Vilken sorts fönster är dina ' + r.antal + ' fönster?', ['1-luft (1 båge)', '2-luft (2 bågar)', 'Med spröjs', 'Panoramafönster', 'Överliggande', 'Underliggande', 'Vet inte']);
+      case 'radtyp': return kalkSvarObj(p + 'Hur ser de flesta av fönstren ut när du öppnar dem?', ['En del som öppnas', 'Två delar som öppnas', 'Små rutor i glaset', 'Vet inte']);
       case 'det': return kalkSvarObj(p + '🕵️ Fönsterdetektiven kliver in! Titta på fönstret: hur många delar går att öppna?', ['En del', 'Två delar', 'Inget – stort fast glas', 'Det har spröjs (små rutor)']);
       case 'antal': return kalkSvarObj(p + 'Hur många ' + K.TYP[r.typ].namn + ' har du?');
-      case 'sidor': return kalkSvarObj(p + 'Hur många sidor ska putsas på dina ' + K.TYP[r.typ].namn + '? 2 sidor = in- och utsida. 4 sidor = bågarna går att öppna isär och det finns glas emellan.', ['2 sidor', '4 sidor', 'Vet inte']);
+      case 'sidor': return kalkSvarObj(p + 'Går fönstren att öppna isär, så att det finns ett glas till inuti? Det är vanligt i lite äldre hus.', ['Nej, bara ett glas', 'Ja, glas emellan', 'Vet inte']);
       case 'rutor': return kalkSvarObj(p + 'Hur många små rutor är det per båge (delen som går att öppna)?', ['2', '3', '4', '6', '8', 'Vet inte']);
       case 'storlek': return kalkSvarObj(p + 'Ungefär hur stora är panoramaglasen?', ['ca 1 × 2 m', 'ca 2 × 2,5 m', 'Större än 2 × 2,5 m']);
       case 'balkSort': return kalkSvarObj(p + 'Vilken sort är det?', ['Golv till tak (40 kr/glas)', 'Räcke till tak (20 kr/glas)', 'Altanräcke (30 kr/glas)']);
@@ -1723,26 +1760,19 @@
       if (k.utat) sp.push('öppnas utåt'); if (k.hoga) sp.push('svåra att nå'); if (k.fasta) sp.push('går inte att öppna');
       if (sp.length) rader.push('Specialfönster: ' + sp.join(', '));
     }
-    var text = (minne.namn ? 'Här kommer det, ' + minne.namn + '! ' : '') + ton('intro') + DELA + rader.join('\n') + '\n\n' +
-      'Fönsterputs (före RUT): ' + krr(pr.putsning * 2) + '\n' +
-      (pr.karm ? 'Karmtvätt (före RUT): ' + krr(pr.karm * 2) + '\n' : '') +
-      'RUT-avdrag 50 %: −' + krr(pr.putsning + pr.karm) + '\n' +
-      'Inställelseavgift (ej RUT): ' + krr(pr.avgift) + '\n' +
-      'Totalt efter RUT: ' + krr(pr.total) + DELA +
-      (k.bostad !== 'lgh' && pr.minPris ? 'Lägsta pris för villa är ' + krr(K.MIN_PRIS) + ' efter RUT. ' : '') +
-      (k.rader.some(function (r) { return r.typ === 'S'; }) ? 'Spröjsade fönster räknar Tommy gärna på innan du får ett fast pris. ' : '') +
-      'Det här är en uppskattning – väljer du samma sak i bokningen får du ett fast pris. ' + (minne.ort ? 'Rena fönster i ' + minne.ort + ' snart! ✨' : ton('outro')) +
-      DELA + 'Vill du ha svar snabbast? Jag kan ta dina uppgifter och skicka allt direkt till Tommy – tryck "Skicka förfrågan till Tommy". 📨';
+    var text = 'Klart' + (minne.namn ? ', ' + minne.namn : '') + '! 😊' + DELA +
+      'Ditt pris blir ungefär ' + krr(pr.total) + '.\n\nDå är RUT-avdraget redan draget och allt ingår. Du betalar med Swish efteråt.' +
+      (k.rader.some(function (r) { return r.typ === 'S'; }) ? ' Små rutor tittar Tommy gärna på innan priset blir helt fast.' : '') + DELA +
+      'Vill du boka? Tryck på "Ja, jag vill boka", så hör Tommy av sig och bestämmer en tid med dig.';
     k.steg = 'klar';
     k.sammanfattning = rader;
-    var o = kalkSvarObj(text, ['Skicka förfrågan till Tommy', 'Föreslå en tid', 'Lägg till mer', 'Räkna om från början']);
-    o.knapp = ['Boka med det här priset', k.bostad === 'lgh' ? '/boka#lagenhet' : '/boka#fonster'];
+    var o = kalkSvarObj(text, ['Ja, jag vill boka', 'Ring Tommy', 'Räkna om från början']);
     // SMS till Tommy med kalkylen och priset ifyllt – kunden skickar från sin egen telefon (Tommy 2026-11-19)
     var sms = 'Hej Tommy! Jag räknade ut mitt pris i chatten på fputs.se:\n' + rader.join('\n') +
       (pr.karm ? '\nKarmtvätt: ja' : '') +
       '\nTotalt efter RUT: ' + krr(pr.total) + ' (inkl. inställelseavgift ' + krr(pr.avgift) + ')' +
       '\n\nJag vill boka till det priset.' + (minne.ort ? '\nOrt: ' + minne.ort : '') + '\nAdress: \nÖnskad tid: ' + (minne.namn ? '\n/' + minne.namn : '');
-    o.knapp2 = ['Skicka till Tommy som SMS', 'sms:+46793463964?&body=' + encodeURIComponent(sms)];
+    k.sms = sms;
     return o;
   }
 
@@ -1762,8 +1792,7 @@
       k.direkt = false; k.nu = null; k.karm = k.karm || false;
       var o = kalkResultat(k);
       var med = []; if (k.utat) med.push('öppnas utåt'); if (k.hoga) med.push('svåra att nå'); if (k.karm) med.push('karmtvätt');
-      o.text = (prefix ? prefix + DELA : '') + o.text + DELA + (med.length ? 'Med i priset: ' + med.join(', ') + '. ' : 'Jag har räknat utan specialfönster och karmtvätt. ') + 'Säg till om något fönster sitter högt, öppnas utåt – eller om du vill ha karmtvätt.';
-      o.val = ['Skicka förfrågan till Tommy', 'Lägg till karmtvätt', 'Lägg till mer', 'Räkna om från början'];
+      o.text = (prefix ? prefix + DELA : '') + o.text;
       return o;
     }
     k.nu = null; k.steg = 'typ';
@@ -1802,14 +1831,12 @@
     var b = kalkBostad(s) || (minne.fakta && minne.fakta.bostad === 'villa' ? 'villa' : minne.fakta && minne.fakta.bostad === 'lägenhet' ? 'lgh' : '');
     var k = minne.kalk = kalkNy();
     var lm0 = !/fönster/.test(s) && (s.match(/ (etta|tvåa|trea|fyra|femma) /) || s.match(/ ([1-5]) ?(a|rok|rum|:a) /));
-    if (lm0) { var ln0 = { etta: 1, tvåa: 2, trea: 3, fyra: 4, femma: 5 }[lm0[1]] || Number(lm0[1]); k.bostad = 'lgh'; k.lgh = ln0 + ':a'; k.steg = 'lghBalk'; var ol = kalkFraga(k, 'En ' + k.lgh + ' kostar ' + krr(K.LGH[k.lgh]) + ' efter RUT, plus 30 kr i inställelseavgift. 🏢'); ol.knapp = ['Eller räkna själv i bokningen', '/boka#lagenhet']; return ol; }
+    if (lm0) { var ln0 = { etta: 1, tvåa: 2, trea: 3, fyra: 4, femma: 5 }[lm0[1]] || Number(lm0[1]); k.bostad = 'lgh'; k.lgh = ln0 + ':a'; k.steg = 'lghBalk'; var ol = kalkFraga(k, 'En ' + k.lgh + ' kostar ' + krr(K.LGH[k.lgh]) + ' efter RUT, plus 30 kr i inställelseavgift. 🏢'); return ol; }
     var fl0 = (b === 'villa' || !b) ? tolkaFlera(s) : [];
-    if (fl0.length) { k.bostad = 'villa'; k.steg = 'typ'; var o0 = startKo(k, fl0, 'Det räknar jag ut direkt! 🧮' + (b ? '' : ' (Jag räknar som villa/radhus.)'), s); o0.knapp = ['Eller räkna själv i bokningen', '/boka#fonster']; return o0; }
-    var intro = 'Jag räknar gärna ut ett pris åt dig! 🧮' + DELA + 'En lägenhet kostar från 475 kr och en villa från 750 kr efter RUT, plus 30 kr inställelseavgift. Svara på några enkla frågor så får du ditt eget pris. Det kostar inget och du binder dig inte till något.';
-    var o = b ? kalkSvar({ villa: 'villa', lgh: 'lägenhet', foretag: 'företag', sol: 'solcell', stor: 'större fastighet' }[b], b === 'villa' || b === 'lgh' ? 'Det räknar jag ut åt dig direkt! 🧮' : '') : kalkFraga(k, intro);
-    // Vill kunden hellre räkna själv: länk direkt till bokningen (Tommy 2026-11-19)
-    if (o && !o.knapp) o.knapp = ['Eller räkna själv i bokningen', b === 'lgh' ? '/boka#lagenhet' : b === 'villa' ? '/boka#fonster' : '/boka'];
-    return o;
+    if (fl0.length) { k.bostad = 'villa'; k.steg = 'typ'; var o0 = startKo(k, fl0, 'Det räknar jag ut direkt! 🧮' + (b ? '' : ' (Jag räknar som villa/radhus.)'), s); return o0; }
+    if (b === 'villa') { k.bostad = 'villa'; k.steg = 'villaAntal'; return kalkFraga(k, 'Gärna! Vi tar det steg för steg. 😊'); }
+    if (b) return kalkSvar({ lgh: 'lägenhet', foretag: 'företag', sol: 'solcell', stor: 'större fastighet' }[b], 'Gärna! Vi tar det steg för steg. 😊');
+    return kalkFraga(k, 'Gärna! Vi tar det steg för steg. 😊');
   }
 
   // Tolkar kundens svar i det steg kalkylen står på. null = förstod inte.
@@ -1829,12 +1856,20 @@
     }
     switch (k.steg) {
       case 'bostad':
+        var lmB = !/fönster/.test(s) && (s.match(/ (etta|tvåa|trea|fyra|femma) /) || s.match(/ ([1-5]) ?(a|rok|rum|:a) /));
+        if (lmB) { k.bostad = 'lgh'; k.lgh = ({ etta: 1, tvåa: 2, trea: 3, fyra: 4, femma: 5 }[lmB[1]] || Number(lmB[1])) + ':a'; k.steg = 'lghBalk'; return kalkFraga(k, pre + 'En ' + k.lgh + ' kostar ' + krr(K.LGH[k.lgh]) + ' efter RUT, plus 30 kr i inställelseavgift. 🏢'); }
         b = kalkBostad(s);
         if (!b) { var flx = tolkaFlera(s); if (flx.length) { k.bostad = 'villa'; k.steg = 'typ'; return startKo(k, flx, pre ? pre.split(DELA).join(' ').trim() : '', s); } }
-        if (b === 'villa') { k.bostad = 'villa'; k.steg = 'typ'; var flb = tolkaFlera(s); if (flb.length) return startKo(k, flb, pre ? pre.split(DELA).join(' ').trim() : '', s); return kalkFraga(k, pre + ton('villa')); }
+        if (b === 'villa') { k.bostad = 'villa'; k.steg = 'typ'; var flb = tolkaFlera(s); if (flb.length) return startKo(k, flb, pre ? pre.split(DELA).join(' ').trim() : '', s); k.steg = 'villaAntal'; return kalkFraga(k, pre + 'Villa, toppen!'); }
         if (b === 'lgh') { k.bostad = 'lgh'; k.steg = 'lgh'; return kalkFraga(k, pre + ton('lgh')); }
         if (b === 'sol') { minne.kalk = null; var o1 = kalkSvarObj(pre + 'Solcellstvätt! ☀️ Där räknar Tommy fram ett fast pris själv, eftersom tak och paneler är så olika. Skicka antal paneler och adress så får du pris samma dag.'); o1.knapp = ['Få offert', '/kontakta-mig?typ=Solcellstv%C3%A4tt#formular']; return o1; }
         if (b === 'foretag' || b === 'stor') { minne.kalk = null; var o2 = kalkSvarObj(pre + (b === 'stor' ? 'Större fastighet' : 'Företag') + '! 💼 Där finns inget färdigt pris i kalkylen – Tommy tar fram ett fast pris åt dig, oftast samma dag.'); o2.knapp = ['Begär offert', '/kontakta-mig#formular']; return o2; }
+        return null;
+      case 'villaAntal':
+        var flA = tolkaFlera(s); if (flA.length && flA[0].typ !== '?') return startKo(k, flA, pre ? pre.split(DELA).join(' ').trim() : '', s);
+        var nA = kalkTal(s);
+        if (nA !== null && nA > 0 && nA < 100) return startKo(k, [{ dorr: false, typ: '?', antal: nA, sidor: 0, rutor: 0, storlek: '' }], '', s);
+        if (/vet inte|osäker|ingen aning/.test(s)) return kalkSvarObj('Ingen fara! Gå gärna runt och räkna fönstren i lugn och ro, och skriv sedan siffran här. Vill du hellre prata med Tommy kan du ringa ' + TEL_TEXT + '.', ['Ring Tommy']);
         return null;
       case 'lgh':
         var lm = s.match(/ ([1-5]) ?(a|rum|rok|or|:a) /) || s.match(/ ([1-5]) /);
@@ -1892,9 +1927,9 @@
         r.antal = n;
         return nastaForTyp(k, antalSkamt(n));
       case 'sidor':
-        if (/ 4 | fyra | dubbel| emellan | mellan /.test(s)) { r.sidor = 4; (k.ko || []).forEach(function (x) { if (!x.sidor && x.typ !== 'P') x.sidor = 4; }); return nastaForTyp(k, '4 sidor – nu blir det grundligt! 🧽'); }
-        if (/ 2 | två | enkel| in och ut | in- och ut/.test(s)) { r.sidor = 2; (k.ko || []).forEach(function (x) { if (!x.sidor && x.typ !== 'P') x.sidor = 2; }); return nastaForTyp(k); }
-        if (/vet inte|osäker|ingen aning/.test(s)) return kalkSvarObj('Testa så här: öppna fönstret. Går bågen att vika isär så du ser två glas med luft emellan? Då är det 4 sidor. Är det bara ett glas (eller en tät glasruta) är det 2 sidor.', ['2 sidor', '4 sidor']);
+        if (/ 4 | fyra | dubbel| emellan | mellan |^ ja | ja glas/.test(s)) { r.sidor = 4; (k.ko || []).forEach(function (x) { if (!x.sidor && x.typ !== 'P') x.sidor = 4; }); return nastaForTyp(k, '4 sidor – nu blir det grundligt! 🧽'); }
+        if (/ 2 | två | enkel| in och ut | in- och ut|bara ett glas|ett glas| nej /.test(s)) { r.sidor = 2; (k.ko || []).forEach(function (x) { if (!x.sidor && x.typ !== 'P') x.sidor = 2; }); return nastaForTyp(k); }
+        if (/vet inte|osäker|ingen aning/.test(s)) return kalkSvarObj('Ingen fara! Öppna ett fönster och titta på kanten. Ser du två glas med lite luft emellan? Då svarar du ja.', ['Nej, bara ett glas', 'Ja, glas emellan']);
         return null;
       case 'rutor':
         n = kalkTal(s);
@@ -2096,7 +2131,7 @@
     }
     // Färdig kalkyl sparas resten av samtalet (förfrågan till Tommy behöver priset)
     if (k && k.steg === 'klar') { var s2 = kalkSvar(tt); if (s2) return s2; }
-    if ((KALK_START.some(function (o) { return tt.indexOf(o) >= 0; }) || prisStavfel(tt) || tolkaFlera(' ' + tt.trim() + ' ').length) && !KALK_INTE.test(tt)) return kalkStart(' ' + tt + ' ');
+    if ((KALK_START.some(function (o) { return tt.indexOf(o) >= 0; }) || prisStavfel(tt) || tolkaFlera(' ' + tt.trim() + ' ').length || PRIS_AVSIKT.test(' ' + tt.trim() + ' ')) && !KALK_INTE.test(tt) && !PRIS_INTE.test(tt)) return kalkStart(' ' + tt + ' ');
     return null;
   }
 
@@ -2111,6 +2146,13 @@
     if (QUIZ_START.indexOf(tt) >= 0) return startaQuiz();
     if (FORM_START.test(' ' + tt.trim() + ' ')) return formStart();
     var pn = postnrSvar(' ' + tt.trim() + ' '); if (pn) return pn;
+    // Klagomål först – aldrig skämt eller tack (Tommy 2026-11-20)
+    if (/(blev|var|är|blir) inte (rena|rent|bra|klart|nöjd)|inte nöjd|missnöjd|ränder kvar|det blev ränder|fortfarande (smutsig|ränder|fläck)|slarvig|dåligt jobb|dåligt gjort|reklamation|reklamera|klaga|klagomål|missade (fönster|ett|några)|glömde (fönster|ett|några)/.test(' ' + tt + ' ')) {
+      minne.saljStopp = true; if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true;
+      return { special: true, stilla: true, allvar: true, avsikt: 'klagomal', vantar: '', text: 'Det är jag ledsen att höra, och tack för att du säger till.' + DELA + 'Tommy har nöjd kund-garanti: han kommer tillbaka och åtgärdar det kostnadsfritt. Ring eller sms:a honom på ' + TEL_TEXT + ', eller skriv i formuläret med adress och vad som blev fel, så hör han av sig så snart han kan.', knapp: TEL_LANK, knapp2: ['Skriv till Tommy', '/kontakta-mig#formular'] };
+    }
+    // Vet inte vilka fönster man har: fönsterdetektiven hjälper till direkt
+    if (/vet inte (vilk|vad för|vad det är för|hur)\S* .*fönster|vilken (typ|sort|sorts) .*fönster har jag|osäker på (vilk|typ|sort)\S*/.test(' ' + tt + ' ') && !(minne.kalk && minne.kalk.steg !== 'klar')) return startaDetektiv(tt);
     var kn = kanslaSvar(' ' + tt.trim() + ' '); if (kn) { if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true; return kn; }
     var hs = hjalpSvar(' ' + tt.trim() + ' '); if (hs) { if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true; return hs; }
     var ps = personSvar(tt); if (ps) { if (minne.kalk && minne.kalk.steg !== 'klar') minne.kalk.paus = true; return ps; }
@@ -2259,8 +2301,8 @@
       // Antal fönster utan typ ("20 st fönster"): spara antalet, typen frågas sedan
       if ((!typ || typ === 'KLAR') && /fönster|rutor/.test(d) && /\d/.test(d)) typ = '?';
       if (!typ || typ === 'VET' || typ === 'KLAR' || typ === 'B' || typ === 'UT' || typ === 'VH') return;
-      var ren = d.replace(/(1|2|en|ett|två) ?-? ?luft\S*|(1|2|en|två) bågar?|\d+ ?sid(or|a)?\b|\d+ rutor/g, ' ');
-      var m = ren.match(/\d+/), antal = m ? Number(m[0]) : null;
+      var ren = d.replace(/(1|2|en|ett|två) ?-? ?luft\S*|(1|2|en|två) bågar?|\d+ ?sid(or|a)?\b|\d+ rutor|\d+ ?(våning\S*|plan\b|plans?hus)|\d{3}-?\d{2}|\d+ ?(kvm|m2|år)/g, ' ');
+      var mf = ren.match(/(\d+) ?(st|stycken)? ?(fönster|rutor|tvåluft|enluft)/), m = mf ? [mf[1]] : ren.match(/\d+/), antal = m ? Number(m[0]) : null;
       if (antal === null) Object.keys(TAL_ORD2).forEach(function (w) { if (antal === null && ren.indexOf(' ' + w + ' ') >= 0) antal = TAL_ORD2[w]; });
       if (!antal || antal > 99) return;
       var sid = d.match(SID_RE), rut = d.match(/ ([2-8]) rutor/);
@@ -2360,6 +2402,7 @@
     // Minst hälften av frågans ord måste finnas i stycket – hellre 'vet inte' än fel svar
     // De viktiga (ovanliga) orden i frågan måste finnas i stycket – hellre 'vet inte' än fel svar
     if (!bast || bastRar < 1.8 || bastTackt / totIdf < 0.5) return null;
+    if (/\d kr\b|före RUT/.test(bast.t)) return null; // priser kommer bara från uträkningen, aldrig som klistrad sidtext (Tommy 2026-11-20)
     var t = bast.t;
     if (t.length > 340) { var cut = t.slice(0, 340), i = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? ')); t = (i > 120 ? cut.slice(0, i + 1) : cut + '…'); }
     var rubrik = /\?$/.test(bast.r) ? '' : bast.r + ': ';
@@ -2381,6 +2424,7 @@
     uppdateraTon(fraga, t);
     if (/orkar inte|putshjälp|har ni tid|många fönster|mycket fönster|rena fönster|hjälp med fönster/.test(t)) niva = Math.max(niva, 2);
     noteraFakta(t);
+    if (f && f.q === 'Vad kostar det?' && !(minne.kalk && minne.kalk.steg !== 'klar')) f = kalkStart(' vad kostar ');
     if (!f) f = (minne.form && formSvar(fraga)) || specialSvar(t) || kontext(fraga);
     if (!f) { var hf = hitta(fraga, niva), sj = sajtSvar(fraga); f = sj && (!hf || (!hf.q && !hf.allvar && !hf.special && liknarFraga(fraga))) ? sj : hf; }
     uppdateraResa(t, f, niva, kortTyp(t));
@@ -2392,9 +2436,8 @@
         // Minnet: kunden har redan sagt bostad/antal – använd det i stället för att fråga igen
         if (f.q === 'Vad kostar det?' && !minne.tema && fk.bostad) {
           var lankBostad = fk.bostad === 'villa' ? ['Till villabokningen', '/boka#fonster'] : fk.bostad === 'lägenhet' ? ['Till lägenhetsbokningen', '/boka#lagenhet'] : ['Till företagssidan', '/foretag'];
-          text += ' Du nämnde ' + (fk.bostad === 'företag' ? 'företag' : 'en ' + fk.bostad) + (fk.antal ? ' med ' + fk.antal + ' fönster' : '') + ' – där väljer du dem och ser priset direkt.';
           f = Object.assign({}, f, { knapp: lankBostad });
-        } else if (f.q === 'Vad kostar det?' && !minne.tema) valen = ['Se pris', 'Hjälp mig räkna fönster', 'Begär offert'];
+        }
         if (f.fragaAntal) minne.fragaAntal = true;
         if (f.ord && f.ord[0] === 'antal' && fk.bostad === 'villa' && fk.antal && fk.antal < 25) { text = fk.antal + ' fönster i en villa – perfekt! Räkna fram ditt fasta pris i villabokningen.'; f = Object.assign({}, f, { knapp: ['Till villabokningen', '/boka#fonster'] }); }
         if (f.slutaSalja) minne.saljStopp = true;
@@ -2411,7 +2454,7 @@
         if (skamt) Object.keys(TEMAN).forEach(function (k) { if (TEMAN[k].ord.some(function (o) { return t.indexOf(o) >= 0; })) { minne.tema = k; minne.temaPris = false; } });
         if (f.q === 'Vad kostar det?' && minne.tema && !minne.temaPris) { text = TEMAN[minne.tema].pris + text + ' Hur många fönster gäller det?'; minne.temaPris = true; minne.fragaAntal = true; }
         // Säljradar + humör: köpintresse = hjälp först, inga skämt ovanpå
-        if (niva >= 3 && !f.kalk && !/PERFEKT|SÅJA|YES/.test(text)) text = 'Toppen, då hjälper jag dig vidare direkt. ' + text;
+        if (niva >= 3 && !f.kalk && f.avsikt !== 'forfragan' && !/PERFEKT|SÅJA|YES/.test(text)) text = 'Toppen, då hjälper jag dig vidare direkt. ' + text;
         else if (skamt && niva < 2 && minne.ton !== 'formell') text = humorPrefix(t) + text;
         if (skamt && niva < 2 && minne.lageKvar > 0) { text += LAGE_TILLAGG[minne.lage] || ''; minne.lageKvar--; }
         // Säljfras ibland – högst var tredje svar, max tre per samtal, aldrig efter nej
