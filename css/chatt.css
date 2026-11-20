@@ -74,3 +74,45 @@ html body section.fc-panel form.fc-skriv-rad input.fc-input[type=text] { backgro
 .fc-puff-stang { flex: none; width: 32px; height: 32px; border: 0; border-radius: 50%; background: #EEF1F4; color: #0F1E2E; font-size: 20px; line-height: 1; cursor: pointer; }
 @keyframes fc-puff-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .fc-puff { animation: none; } }
+
+/* Renare chatt (Tommy 2026-11-20, IKEA-chatten som förebild): vit yta, tunna ramar, inga små ikoner vid varje bubbla */
+html body .fc-panel .fc-logg { background: #fff; padding: 18px 16px 12px; gap: 8px; }
+html body .fc-panel .fc-bubbla { font-size: 15.5px; line-height: 1.5; padding: 11px 14px; border-radius: 16px; }
+html body .fc-panel .fc-jag { background: #fff; color: #0F1E2E; border: 1px solid #E1E6EC; border-bottom-left-radius: 16px; box-shadow: none; }
+html body .fc-panel .fc-du { background: #EEF1F5; color: #0F1E2E; border-bottom-right-radius: 16px; }
+html body .fc-panel .fc-robot-liten { display: none; }
+html body .fc-panel .fc-rad { max-width: 88%; }
+html body .fc-panel .fc-logg .fc-val-logg { margin: 4px 0 6px; }
+html body .fc-panel .fc-chip { min-height: 40px; padding: 9px 15px; border: 1px solid #C9D1DA; font-size: 14.5px; font-weight: 600; }
+html body .fc-panel .fc-chip:hover { border-color: #0F1E2E; background: #0F1E2E; color: #fff; }
+html body .fc-panel .fc-lank { display: inline-block; margin: 10px 8px 0 0; padding: 8px 14px; border-radius: 99px; background: #0F1E2E; color: #fff !important; font-size: 14px; font-weight: 700; text-decoration: none; }
+html body .fc-panel .fc-lank ~ .fc-lank { background: #fff; color: #0F1E2E !important; border: 1px solid #C9D1DA; }
+
+/* Topp och skrivruta som IKEA-chatten, med Tommys logga och chattbubbla (Tommy 2026-11-20) */
+html body .fc-panel .fc-topp-ikea { gap: 10px; padding: 14px 10px 14px 18px; background: #0F1E2E; }
+.fc-topp-ikon { flex: none; width: 24px; height: 24px; color: #fff; }
+html body .fc-panel .fc-topp-ikon svg { width: 24px; height: 24px; fill: none; stroke: #fff !important; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+html body .fc-panel .fc-topp-logga { width: auto; height: 24px; border-radius: 0; background: none; }
+html body .fc-panel .fc-topp-namn { flex: 1; display: block; font-size: 16px; font-weight: 800; color: #fff; }
+.fc-ner { flex: none; width: 36px; height: 36px; border: 0; background: none; color: #fff; display: grid; place-items: center; cursor: pointer; }
+html body .fc-panel .fc-ner svg { width: 22px; height: 22px; fill: none; stroke: #fff !important; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+html body .fc-panel .fc-topp-ikea .fc-stang { background: none; }
+html body .fc-panel .fc-topp-ikea .fc-stang svg { width: 20px; height: 20px; }
+html body .fc-panel .fc-status { margin: 0 0 4px; font-size: 15px; color: #6B7785; }
+html body .fc-panel .fc-skriv-rad { position: relative; padding: 10px 16px calc(14px + env(safe-area-inset-bottom)); }
+html body .fc-panel .fc-input { height: 54px; padding: 0 60px 0 18px; border: 1px solid #C9D1DA; border-radius: 28px; font-size: 16px; }
+html body .fc-panel .fc-skicka { position: absolute; right: 24px; top: 50%; transform: translateY(calc(-50% - 2px)); width: 40px; height: 40px; }
+
+/* Skarpare text i chatten (Tommy 2026-11-20): telefonens eget typsnitt som IKEA, i stället för breda Montserrat */
+html body .fc-panel, html body .fc-panel :is(.fc-bubbla, .fc-chip, .fc-input, .fc-flik, .fc-status, .fc-lank, .fc-topp-namn), html body .fc-puff, html body .fc-puff-text {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  letter-spacing: 0 !important;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;
+}
+html body .fc-panel .fc-bubbla { font-size: 16px; line-height: 1.45; font-weight: 400; color: #111 !important; }
+html body .fc-panel .fc-du { color: #111 !important; }
+html body .fc-panel .fc-chip { font-size: 15px; font-weight: 600; color: #111; }
+html body .fc-panel .fc-status { font-size: 15px; color: #767676; }
+html body .fc-panel .fc-input { color: #111 !important; }
+html body .fc-panel .fc-input::placeholder { color: #767676; }
+html body .fc-panel .fc-topp-namn { font-size: 17px; font-weight: 700; }

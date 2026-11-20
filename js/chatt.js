@@ -873,7 +873,7 @@
   ];
   var SAKLIGA_ORD = ['pris', 'kost', 'kr', 'boka', 'bokning', 'tid', 'datum', 'säker', 'försäkr', 'skada', 'olycka', 'reklam', 'klag', 'faktura', 'betal', 'rut', 'rot', 'garanti', 'pengar', 'hur ofta', 'avbok', 'omboka', 'tjänst', 'kampanj', 'erbjudande', 'öppet', 'säkerhet', 'abonnemang'];
   // Säljfraser som ibland läggs till efter roliga svar – aldrig samma två gånger i rad
-  var SALJFRASER = ['Ska vi fixa lite rena fönster?', 'Vill du se vad det skulle kosta?', 'Har du några glas som behöver kärlek?', 'Nu när vi ändå pratar, hur är fönsterläget?', 'Jag känner en rätt bra fönsterputsare faktiskt.', 'Tommy hade varit stolt om jag fick in en bokning nu.', 'Får jag åtminstone visa dig bokningssystemet?', 'Det här samtalet började konstigt, men kan sluta med rena rutor!', 'Du verkar vara en skön människa. Jag känner en riktigt bra fönsterputsare också.', 'Vet du vad som skulle göra den här dagen ännu bättre? Rena fönster.', 'Tommy har byggt ett helt bokningssystem. Det vore nästan synd att inte testa det.'];
+  var SALJFRASER = ['Vill du se vad det skulle kosta för dig?', 'Du ser ditt fasta pris direkt i bokningen.', 'Rena fönster gör faktiskt dagen ljusare, bokstavligen.', 'Tommy har lediga tider de närmaste veckorna, om du vill få det gjort.', 'Ska vi ta en titt på priset för dina fönster?', 'Om du vill kan jag visa lediga tider.'];
   // Inga säljfraser efter nej, avslut, klagomål eller pengaproblem
   var STILLA_ORD = [' nej ', ' nope', ' aldrig ', 'nej tack', 'lägg av', ' vill inte ', 'fuck', ' tyst ', ' stick ', 'inte nu', 'sluta', 'inga pengar', 'fattig', 'hejdå', 'hej då', 'missade', 'missat', 'missnöjd', 'inte nöjd', 'pengarna tillbaka', 'svara inte', 'god natt', 'måste fundera', 'vet inte'];
   var senasteFras = '';
@@ -896,9 +896,10 @@
   panel.hidden = true;
   panel.setAttribute('aria-label', 'Chatt med Forsbergs digitala assistent');
   panel.innerHTML =
-    '<header class="fc-topp"><span class="fc-robot" aria-hidden="true"></span><div><strong>Forsbergs Fönsterputs</strong><small>Kundservice · svarar direkt</small></div>' +
+    '<header class="fc-topp fc-topp-ikea"><span class="fc-topp-ikon" aria-hidden="true">' + ikonChatt + '</span><img class="fc-topp-logga" src="/images/logo-forsbergs-ren.png" alt="Forsbergs Fönsterputs" width="546" height="100" /><strong class="fc-topp-namn">Chatt</strong>' +
+    '<button type="button" class="fc-ner" aria-label="Minimera chatten"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>' +
     '<button type="button" class="fc-stang" aria-label="Stäng chatten">' + ikonKryss + '</button></header>' +
-    '<div class="fc-logg" aria-live="polite"></div>' +
+    '<div class="fc-logg" aria-live="polite"><p class="fc-status">Kundservice är ansluten</p></div>' +
     '<div class="fc-flik-yta"><button type="button" class="fc-flik" aria-expanded="false">Vanliga frågor<span aria-hidden="true"></span></button>' +
     '<div class="fc-val" hidden></div></div>' +
     '<form class="fc-skriv-rad" autocomplete="off"><input type="text" class="fc-input" maxlength="200" placeholder="Skriv din fråga…" aria-label="Skriv din fråga" />' +
@@ -1190,7 +1191,7 @@
     { ord: ['normalläge', 'normalt läge', 'avbryt läge', 'stäng av läge', 'avsluta läge'], lage: '', a: 'Normalläge återställt. Kundservice är lugn och samlad igen. 🤖' }
   ];
   // Läget färgar de närmaste roliga svaren – aldrig seriösa svar
-  var LAGE_TILLAGG = { turbo: ' 🚀', robot: ' BEEP BOOP.', boss: ' 👑', skamt: ' 😂', sm: ' 🏆', salj: '' };
+  var LAGE_TILLAGG = { turbo: ' 🚀', robot: '', boss: ' 👑', skamt: ' 😂', sm: ' 🏆', salj: '' };
 
   // ---- Humör ----
   var KAXIG_ORD = ['suger', ' dum', 'idiot', 'fuck', 'käften', 'värdelös', 'kass', ' ful ', 'trög', 'jävel', 'jävla', 'sämst', 'potatis', 'brödrost', 'ingen hjärna', 'pinsam', 'jobbig'];
@@ -1201,8 +1202,8 @@
     minne.kaxigRad = kaxig ? (minne.kaxigRad || 0) + 1 : 0;
     minne.gladRad = glad ? (minne.gladRad || 0) + 1 : 0;
     if (minne.humorPaus > 0) { minne.humorPaus--; return ''; }
-    if (minne.kaxigRad >= 2) { minne.humorPaus = 3; return valjFran(['OJ OJ! Någon vaknade på fel sida av laddstationen! ', 'Oj, nu blev det stormigt i chatten! 🌪️ ', 'Aj aj, någon behöver en kaffe. Men okej: ']); }
-    if (minne.gladRad >= 2) { minne.humorPaus = 3; return valjFran(['Nu är energin på topp! 🔥 ', 'YOOOO, vilken stämning! 🔥 ', 'Bästa samtalet idag! ']); }
+    if (minne.kaxigRad >= 2) { minne.humorPaus = 3; return valjFran(['Jag förstår om det känns frustrerande. ', 'Inga problem, vi löser det. ']); }
+    if (minne.gladRad >= 2) { minne.humorPaus = 3; return valjFran(['Härligt med lite energi! ', 'Trevligt att prata med dig! ']); }
     return '';
   }
 
@@ -1299,9 +1300,9 @@
   function halsning(sh) {
     var nu = new Date(), h = nu.getHours(), d = nu.getDay();
     var hej = h < 5 ? 'Nattuggla? 🦉 Hej!' : h < 10 ? 'God morgon! ☀️' : h < 17 ? 'Hej! 👋' : 'God kväll! 🌙';
-    var extra = d === 5 ? ' Tommy är ledig på fredagar, men jag jobbar alltid. 😎' : (d === 0 || d === 6) ? ' Skönt med helg, va?' : !telefontid() ? ' Tommy har gått för dagen, men jag är vaken. 🌙' : '';
+    var extra = d === 5 ? ' Tommy är ledig på fredagar, men jag svarar gärna på dina frågor.' : !telefontid() ? ' Tommy har gått för dagen, men jag svarar gärna på dina frågor.' : '';
     if (sh) return hej + DELA + sh.text;
-    return hej + extra + DELA + 'Jag är Forsbergs kundservice, Tommys digitala hjälpreda. Jag kan räkna ut vad din fönsterputs kostar, visa lediga tider och svara på frågor.' + DELA + 'Tryck på en knapp här under – eller skriv med egna ord, så gott det går. Stavfel gör ingenting. 😊';
+    return hej + ' Välkommen till Forsbergs Fönsterputs.' + extra + DELA + 'Jag är kundservice här och hjälper dig med pris, lediga tider och frågor om fönsterputs.' + DELA + 'Välj ett alternativ nedan eller skriv din fråga.';
   }
   // Huvudmenyn – samma knappar överallt så det är lätt att hitta tillbaka (Tommy 2026-11-19)
   var MENY = ['Vad kostar det?', 'Lediga tider', 'Hur går det till?', 'Ring Tommy'];
@@ -1382,7 +1383,7 @@
       setTimeout(function () {
         p.remove();
         grupp.forEach(function (n) { n.style.display = ''; });
-        var rutaUnder = logg.getBoundingClientRect().bottom, nyUnder = grupp[0].getBoundingClientRect().bottom;
+        var rutaUnder = logg.getBoundingClientRect().bottom, synliga = grupp.filter(function (n) { return n.getBoundingClientRect; }), nyUnder = Math.max.apply(null, synliga.map(function (n) { return n.getBoundingClientRect().bottom; })); // även svarsknapparna under bubblan ska synas (2026-11-20)
         if (nyUnder > rutaUnder) logg.scrollTop += Math.min(nyUnder - rutaUnder + 12, grupp[0].getBoundingClientRect().top - logg.getBoundingClientRect().top - 12);
         nasta(i + 1);
       }, Math.max(350, langdTid(text) * 0.7));
@@ -2150,7 +2151,7 @@
   });
 
   // Köpresa: ny, utforskar, overvager, redo, personlig, avstar – byts efter hela samtalet, inte ett ord
-  var AVSLUT = ['Nu har vi faktiskt kommit riktigt långt! Ska vi kika på ett pris?', 'Det här är precis typen av uppdrag vi kan hjälpa till med. Vill du gå vidare?', 'Jag kan fortsätta prata om fönster hela dagen, men bokningssystemet gör det lite snabbare. 😎', 'Tommy har byggt en bokning där du väljer dina fönster direkt med bilder. Vill du testa?'];
+  var AVSLUT = ['Vill du se ditt pris? I bokningen väljer du dina fönster och ser det fasta priset direkt.', 'Det här är precis den typen av jobb Tommy gör. Vill du gå vidare med en bokning?', 'Har du fler frågor går det bra att ringa Tommy, annars kan du boka direkt.'];
   function noteraFakta(t) {
     minne.fakta = minne.fakta || {};
     if (/villa|radhus|parhus/.test(t)) minne.fakta.bostad = 'villa';
@@ -2310,7 +2311,7 @@
     try { redan = sessionStorage.getItem('fc-puff') === '1'; } catch (e) {}
     if (!visa || redan) return;
     setTimeout(function () {
-      if (!panel.hidden || logg.childNodes.length) return;
+      if (!panel.hidden || logg.querySelector('.fc-bubbla')) return;
       var puff = document.createElement('div');
       puff.className = 'fc-puff';
       puff.innerHTML = '<button type="button" class="fc-puff-text"></button><button type="button" class="fc-puff-stang" aria-label="Stäng">×</button>';
@@ -2410,7 +2411,7 @@
         if (skamt) Object.keys(TEMAN).forEach(function (k) { if (TEMAN[k].ord.some(function (o) { return t.indexOf(o) >= 0; })) { minne.tema = k; minne.temaPris = false; } });
         if (f.q === 'Vad kostar det?' && minne.tema && !minne.temaPris) { text = TEMAN[minne.tema].pris + text + ' Hur många fönster gäller det?'; minne.temaPris = true; minne.fragaAntal = true; }
         // Säljradar + humör: köpintresse = hjälp först, inga skämt ovanpå
-        if (niva >= 3 && !f.kalk && !/PERFEKT|SÅJA|YES/.test(text)) text = 'PERFEKT! Då hjälper jag dig vidare direkt. ' + text;
+        if (niva >= 3 && !f.kalk && !/PERFEKT|SÅJA|YES/.test(text)) text = 'Toppen, då hjälper jag dig vidare direkt. ' + text;
         else if (skamt && niva < 2 && minne.ton !== 'formell') text = humorPrefix(t) + text;
         if (skamt && niva < 2 && minne.lageKvar > 0) { text += LAGE_TILLAGG[minne.lage] || ''; minne.lageKvar--; }
         // Säljfras ibland – högst var tredje svar, max tre per samtal, aldrig efter nej
@@ -2429,6 +2430,7 @@
         // Naturligt avslut ibland efter hjälpsamma svar, när kunden utforskar eller överväger
         if (!valen && !f.knapp && allvar && (minne.resa === 'utforskar' || minne.resa === 'overvager') && !minne.saljStopp && !minne.avslutat && minne.historik.length >= 3 && text.indexOf('?') < 0) { text += ' ' + valjFran(AVSLUT); minne.avslutat = true; b.textContent = text; }
         if (valen) visaVal(valen);
+        else if (skamt && !minne.saljStopp && !f.knapp) visaVal(['Vad kostar det?', 'Lediga tider', 'Boka fönsterputs']);
         minne.senasteAvsikt = f.avsikt || (allvar ? 'fakta' : (f.special ? 'special' : (f.ord && f.ord[0] === 'antal' ? 'salj' : 'skamt')));
       } else {
         // Seriös fråga utan svar = saklig hänvisning. Småprat = roligt svar + be om förtydligande.
@@ -2436,16 +2438,15 @@
         else {
           minne.forvirrad = (minne.forvirrad || 0) + 1;
           // Förstår hon inte: lite humor, och sedan tillbaka till fönsterputs (Tommy 2026-11-19: målet är fönsterputs, svar, humor, sälja)
-          if (minne.forvirrad >= 2) text = 'Förlåt, jag förstår inte riktigt vad du menar. 🙈' + DELA + 'Men fönster – där är jag expert! Vill du veta vad det skulle kosta, se lediga tider eller prata direkt med Tommy på ' + TEL_TEXT + '?';
+          if (minne.forvirrad >= 2) text = 'Tyvärr förstår jag inte riktigt vad du menar.' + DELA + 'Enklast är att boka direkt eller kontakta Tommy, så får du ett personligt svar. Du når honom på ' + TEL_TEXT + '.';
           else text = valjFran([
-            'Hmm, det där gick över mitt huvud. 😅' + DELA + 'Men fönster – där är jag hemma! Vill du veta vad det skulle kosta att få dina skinande rena?',
-            'Oj, där tappade jag tråden. 🙈' + DELA + 'Jag är bäst på en sak: rena fönster. Ska vi kolla vad det kostar för dig?',
-            'Det där kan jag tyvärr inget om. 😄' + DELA + 'Men fråga mig om fönsterputs, priser eller lediga tider – där är jag vass!',
-            'Haha, nu blev jag ställd! 😅' + DELA + 'Jag håller mig till det jag kan bäst: fönster. Har du några som längtar efter lite kärlek?',
-            'Det där svarar jag inte på – men vet du vad jag kan? Räkna ut vad fönsterputsen kostar på en minut! 🧮'
+            'Bra fråga, men den ligger lite utanför mitt område. Jag är specialiserad på glas, och där ser jag allt klart. 😊' + DELA + 'Vill du veta vad fönsterputsen kostar, eller boka en tid direkt?',
+            'Där får jag tyvärr passa. Mina kunskaper är, precis som fönstren efter Tommy, helt genomskinliga på ett enda område: fönsterputs. 😊' + DELA + 'Ska vi titta på pris eller lediga tider?',
+            'Det kan jag tyvärr inte svara på. Fönster däremot – där har jag full insyn. 😊' + DELA + 'Jag hjälper dig gärna med pris, bokning eller kontakt med Tommy.',
+            'Den frågan lämnar jag åt någon klokare. Själv håller jag mig till det jag kan bäst: rena fönster utan ränder. 😊' + DELA + 'Vill du se vad det skulle kosta för dig?'
           ]);
           if (minne.ton === 'formell') text = utanEmoji(text);
-          bubbla(text, 'jag'); visaVal(['Vad kostar det?', 'Lediga tider', 'Dra ett skämt', 'Ring Tommy']); minne.senasteAvsikt = 'okand';
+          var ob = bubbla(text, 'jag'); lank(ob, 'Boka fönsterputs', '/boka'); lank(ob, 'Kontakta Tommy', '/kontakta-mig#formular'); visaVal(['Vad kostar det?', 'Lediga tider', 'Ring Tommy']); minne.senasteAvsikt = 'okand';
         }
         senaste = text;
       }
@@ -2475,12 +2476,13 @@
     knapp.innerHTML = ja ? ikonKryss : ikonChatt;
     knapp.setAttribute('aria-label', ja ? 'Stäng chatten' : 'Chatta med Forsbergs digitala assistent');
     if (ja) hamtaTider(); // lediga tider laddas i förväg
-    if (ja && !logg.childNodes.length) skriver(function () { var fore = logg.childNodes.length, sh = sidHalsning(); bubbla(halsning(sh), 'jag'); visaVal(sh ? sh.val : MENY); delaUpp(fore); });
+    if (ja && !logg.querySelector('.fc-bubbla')) skriver(function () { var fore = logg.childNodes.length, sh = sidHalsning(); bubbla(halsning(sh), 'jag'); visaVal(sh ? sh.val : MENY); delaUpp(fore); });
     if (ja) { laddaPostnummer(); laddaSajt(); }
   }
 
   knapp.addEventListener('click', function () { oppna(panel.hidden); });
   panel.querySelector('.fc-stang').addEventListener('click', function () { oppna(false); knapp.focus(); });
+  panel.querySelector('.fc-ner').addEventListener('click', function () { oppna(false); knapp.focus(); });
   flik.addEventListener('click', function () { visaFlik(valLista.hidden); });
   valLista.addEventListener('click', function (e) {
     var c = e.target.closest('[data-fc]');
