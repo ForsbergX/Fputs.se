@@ -2581,7 +2581,30 @@
     if (ja) hamtaTider(); // lediga tider laddas i förväg
     if (ja && !logg.querySelector('.fc-bubbla')) skriver(function () { var fore = logg.childNodes.length, sh = sidHalsning(); bubbla(halsning(sh), 'jag'); delaUpp(fore); });
     if (ja) { laddaPostnummer(); laddaSajt(); }
+    passaTangentbord();
   }
+
+  // iPhone: när tangentbordet är uppe ska chatten ligga exakt i den synliga delen av skärmen,
+  // annars knuffas den uppåt och rubriken försvinner (Tommy 2026-11-22)
+  function passaTangentbord() {
+    var vv = window.visualViewport;
+    var tangent = vv && !panel.hidden && window.innerWidth <= 520 && vv.height < window.innerHeight - 80;
+    if (tangent) {
+      panel.style.top = vv.offsetTop + 'px';
+      panel.style.bottom = 'auto';
+      panel.style.height = vv.height + 'px';
+      panel.style.borderRadius = '0';
+      logg.scrollTop = logg.scrollHeight;
+    } else {
+      panel.style.top = panel.style.bottom = panel.style.height = panel.style.borderRadius = '';
+    }
+  }
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', passaTangentbord);
+    window.visualViewport.addEventListener('scroll', passaTangentbord);
+  }
+  input.addEventListener('focus', function () { setTimeout(passaTangentbord, 50); setTimeout(passaTangentbord, 350); });
+  input.addEventListener('blur', function () { setTimeout(passaTangentbord, 50); });
 
   knapp.addEventListener('click', function () { oppna(panel.hidden); });
   panel.querySelector('.fc-stang').addEventListener('click', function () { oppna(false); knapp.focus(); });
@@ -2598,6 +2621,7 @@
     if (!text) { input.focus(); return; }
     input.value = '';
     svara(text);
+    input.focus();
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { oppna(false); knapp.focus(); } });
 })();
