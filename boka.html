@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/kalender.css?v=3" />
+  <link rel="stylesheet" href="css/kalender.css?v=5" />
   <link rel="stylesheet" href="css/boka-ny.css?v=23" />
 </head>
 <body>
@@ -109,8 +109,8 @@
     <section class="nf-skarm" data-skarm="tid" hidden>
       <p class="nf-steg">Steg 5 av 6</p>
       <h1>När passar det?</h1>
-      <p class="nf-under">Välj när det skulle passa dig. Det är en önskad tid – jag hör av mig och bestämmer den slutliga tiden.</p>
-      <div class="fpk" data-fp-kalender>
+      <p class="nf-under">Det är en önskad tid – jag hör av mig via SMS och bestämmer den slutliga tiden.</p>
+      <div class="fpk" data-fp-kalender="snabb">
         <div class="fpk-kal"></div>
         <div class="fpk-tider"></div>
         <p class="fpk-fel" hidden>Välj dag och tid.</p>
@@ -159,7 +159,7 @@
 </form>
 
 <script src="js/postnummer.js"></script>
-<script src="js/kalender.js"></script>
+<script src="js/kalender.js?v=3"></script>
 <script src="js/boka-ny.js?v=24"></script>
 </body>
 </html>

@@ -81,6 +81,53 @@
     var visadManad = new Date(forsta.getFullYear(), forsta.getMonth(), 1);
     var valdDag = null, valdTid = null;
 
+    // Snabbval (Tommy 2026-11-22): data-fp-kalender="snabb" → två tryck i stället för kalender.
+    // "Välj datum" visar den vanliga kalendern. Plus ett frivilligt fält för önskemål.
+    var snabb = wrap.getAttribute('data-fp-kalender') === 'snabb';
+    var valdNar = null, valdDel = null, onskemal = null;
+    var NAR = [
+      { id: 'snart', titel: 'Så snart som möjligt' },
+      { id: 'nasta', titel: 'Nästa vecka' },
+      { id: 'senare', titel: 'Om 2–3 veckor' },
+      { id: 'datum', titel: 'Välj datum' }
+    ];
+    var DEL = [
+      { id: 'fm', titel: 'Förmiddag' },
+      { id: 'mitt', titel: 'Mitt på dagen' },
+      { id: 'egal', titel: 'Spelar ingen roll' }
+    ];
+    var snabbEl = null, delEl = null;
+    if (snabb) {
+      snabbEl = document.createElement('div');
+      snabbEl.className = 'fpk-snabb';
+      snabbEl.innerHTML = '<div class="fpk-val" data-grupp="nar">' +
+        NAR.map(function (n) { return '<button type="button" class="fpk-tid" data-nar="' + n.id + '"><strong>' + n.titel + '</strong></button>'; }).join('') + '</div>' +
+        '<div class="fpk-del" hidden><p class="fpk-tider-titel">Tid på dagen</p><div class="fpk-val" data-grupp="del">' +
+        DEL.map(function (n) { return '<button type="button" class="fpk-tid" data-del="' + n.id + '"><strong>' + n.titel + '</strong></button>'; }).join('') + '</div></div>';
+      wrap.insertBefore(snabbEl, rot);
+      delEl = snabbEl.querySelector('.fpk-del');
+      var onskWrap = document.createElement('label');
+      onskWrap.className = 'nf-falt fpk-onskemal';
+      onskWrap.innerHTML = '<span>Något speciellt? <em>(valfritt)</em></span><input type="text" maxlength="120" placeholder="T.ex. inte måndagar" />';
+      wrap.insertBefore(onskWrap, felEl || null);
+      onskemal = onskWrap.querySelector('input');
+      rot.hidden = true; tiderEl.hidden = true;
+    }
+    function rensa(t) { return String(t || '').replace(/[<>]/g, '').trim(); }
+    function medOnskemal(t) { var o = onskemal ? rensa(onskemal.value) : ''; return t && o ? t + ' · Önskemål: ' + o : t; }
+    function sparaSnabb() {
+      if (valdNar === 'datum') { spara(); return; }
+      var n = NAR.filter(function (x) { return x.id === valdNar; })[0];
+      var d = DEL.filter(function (x) { return x.id === valdDel; })[0];
+      datumFalt.value = '';
+      tidFalt.value = n && d ? medOnskemal(n.titel + ' – ' + d.titel) : '';
+      if (tidFalt.value && felEl) felEl.hidden = true;
+      datumFalt.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    function markera(grupp, attr, id) {
+      [].forEach.call(snabbEl.querySelectorAll('[' + attr + ']'), function (b) { b.classList.toggle('fpk-vald', b.getAttribute(attr) === id); });
+    }
+
     function rita() {
       var ar = visadManad.getFullYear(), man = visadManad.getMonth();
       var forstaManad = new Date(forsta.getFullYear(), forsta.getMonth(), 1);
@@ -117,7 +164,7 @@
       var t = (d ? dagInfo(d).tider : []).filter(function (x) { return x.id === valdTid; })[0];
       if (!t) valdTid = null;
       datumFalt.value = t ? valdDag : '';
-      tidFalt.value = t ? VECKODAGAR[d.getDay()] + ' ' + d.getDate() + ' ' + MANADER[d.getMonth()] + ' – ' + t.titel + ' (' + t.text + ')' : '';
+      tidFalt.value = t ? medOnskemal(VECKODAGAR[d.getDay()] + ' ' + d.getDate() + ' ' + MANADER[d.getMonth()] + ' – ' + t.titel + ' (' + t.text + ')') : '';
       if (t && felEl) felEl.hidden = true;
       datumFalt.dispatchEvent(new Event('change', { bubbles: true }));
     }
@@ -133,13 +180,34 @@
       if (t) { valdTid = t.getAttribute('data-tid'); spara(); ritaTider(); }
     });
 
+    if (snabb) {
+      snabbEl.addEventListener('click', function (e) {
+        var n = e.target.closest('[data-nar]'), d = e.target.closest('[data-del]');
+        if (n) {
+          valdNar = n.getAttribute('data-nar'); markera('nar', 'data-nar', valdNar);
+          var datum = valdNar === 'datum';
+          rot.hidden = !datum; tiderEl.hidden = !datum; delEl.hidden = datum;
+          if (datum) { valdDag = null; valdTid = null; rita(); }
+          sparaSnabb();
+        }
+        if (d) { valdDel = d.getAttribute('data-del'); markera('del', 'data-del', valdDel); sparaSnabb(); }
+      });
+      onskemal.addEventListener('input', sparaSnabb);
+    }
+
     wrap.fpkKlar = function () {
+      if (snabb && valdNar !== 'datum') {
+        if (tidFalt.value) return true;
+        if (felEl) { felEl.textContent = valdNar ? 'Välj tid på dagen.' : 'Välj när det passar.'; felEl.hidden = false; }
+        snabbEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return false;
+      }
       if (datumFalt.value && tidFalt.value) return true;
       if (felEl) felEl.hidden = false;
       rot.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return false;
     };
-    wrap.fpkUppdatera = function () { rita(); spara(); };
+    wrap.fpkUppdatera = function () { rita(); if (!snabb || valdNar === 'datum') spara(); };
     rita();
   }
 
