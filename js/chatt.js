@@ -1934,13 +1934,15 @@
         k.lgh = ln + ':a'; k.steg = 'lghBalk';
         return kalkFraga(k, pre + valjFran(['En ' + k.lgh + '! Fint.', k.lgh + ', noterat! ✅', 'En ' + k.lgh + ' – mysigt!']));
       case 'lghBalk':
-        if (/räcke/.test(s)) { k.lghSort = 'tak'; k.steg = 'lghBalkAntal'; return kalkFraga(k); }
-        if (/golv|helt|inglasad/.test(s)) { k.lghSort = 'golv'; k.steg = 'lghBalkAntal'; return kalkFraga(k); }
-        if (/ ja | japp | jo | yes /.test(s)) return kalkSvarObj('Toppen! Går glasen hela vägen från golvet till taket, eller sitter de ovanpå ett räcke?', ['Golv till tak', 'Räcke till tak']);
+        if (/räcke|ovanpå|halva|halvvägs|från midjan|mitten/.test(s)) { k.lghSort = 'tak'; k.steg = 'lghBalkAntal'; return kalkFraga(k); }
+        if (/golv|helt|hela|ända|inglasad|full|tak till/.test(s)) { k.lghSort = 'golv'; k.steg = 'lghBalkAntal'; return kalkFraga(k); }
+        if (/ ja | japp | jo | yes | jajjemen | absolut /.test(s)) return kalkSvarObj('Toppen! Går glasen hela vägen från golvet till taket, eller sitter de ovanpå ett räcke?', ['Golv till tak', 'Räcke till tak']);
         if (/ nej | nä | ingen | inga | nope | visa | klar | det var allt /.test(s)) return kalkResultat(k);
-        return null;
+        n = kalkTal(s); if (n !== null && n > 0 && n <= 80 && k.lghSort) { if (k.lghSort === 'golv') k.lghGolv += n; else k.lghTak += n; return kalkFraga(k, ton('nasta')); }
+        /* svävar inte iväg: fråga igen (Tommy 2026-11-22) */
+        return kalkSvarObj('Jag hängde inte riktigt med. 🙂 Har du inglasad balkong som ska putsas? Tryck på det som stämmer.', ['Nej', 'Golv till tak', 'Räcke till tak']);
       case 'lghBalkAntal':
-        n = kalkTal(s); if (n === null || n > 80) return null;
+        n = kalkTal(s); if (n === null || n > 80) return kalkSvarObj('Hur många glas är det? Skriv bara siffran, till exempel 6.');
         if (k.lghSort === 'golv') k.lghGolv += n; else k.lghTak += n;
         k.steg = 'lghBalk';
         return kalkFraga(k, n ? ton('nasta') : 'Inga glas, inga problem.');
