@@ -1873,7 +1873,7 @@
     var b = kalkBostad(s) || (minne.fakta && minne.fakta.bostad === 'lägenhet' ? 'lgh' : '');
     var k = minne.kalk = kalkNy();
     var lm0 = !/fönster/.test(s) && (s.match(/ (etta|tvåa|trea|fyra|femma) /) || s.match(/ ([1-5]) ?(a|rok|rum|:a) /));
-    if (lm0) { var ln0 = { etta: 1, tvåa: 2, trea: 3, fyra: 4, femma: 5 }[lm0[1]] || Number(lm0[1]); k.bostad = 'lgh'; k.lgh = ln0 + ':a'; if (/balkong|inglasad/.test(s)) { k.steg = 'lghBalk'; return kalkFraga(k); } return kalkResultat(k); }
+    if (lm0) { var ln0 = { etta: 1, tvåa: 2, trea: 3, fyra: 4, femma: 5 }[lm0[1]] || Number(lm0[1]); k.bostad = 'lgh'; k.lgh = ln0 + ':a'; k.steg = 'lghBalk'; return kalkFraga(k, 'En ' + k.lgh + ' kostar ' + krr(K.LGH[k.lgh]) + ' efter RUT, plus 30 kr i inställelseavgift. 🏢'); } /* fråga alltid om balkong (Tommy 2026-11-22) */
     if (b === 'lgh') return kalkSvar('lägenhet', '');
     if (b === 'sol' || b === 'foretag' || b === 'stor') return kalkSvar({ foretag: 'företag', sol: 'solcell', stor: 'större fastighet' }[b], '');
     var rader = frittTolka(s);
@@ -1910,7 +1910,7 @@
         return null;
       case 'fritt':
         var lmF = !/fönster/.test(s) && (s.match(/ (etta|tvåa|trea|fyra|femma) /) || s.match(/ ([1-5]) ?(a|rok|rum|:a) /));
-        if (lmF || / lägenhet /.test(s)) { if (lmF) { k.bostad = 'lgh'; k.lgh = ({ etta: 1, tvåa: 2, trea: 3, fyra: 4, femma: 5 }[lmF[1]] || Number(lmF[1])) + ':a'; if (/balkong|inglasad/.test(s)) { k.steg = 'lghBalk'; return kalkFraga(k); } return kalkResultat(k); } return kalkSvar('lägenhet', ''); }
+        if (lmF || / lägenhet /.test(s)) { if (lmF) { k.bostad = 'lgh'; k.lgh = ({ etta: 1, tvåa: 2, trea: 3, fyra: 4, femma: 5 }[lmF[1]] || Number(lmF[1])) + ':a'; k.steg = 'lghBalk'; return kalkFraga(k, 'En ' + k.lgh + ' kostar ' + krr(K.LGH[k.lgh]) + ' efter RUT, plus 30 kr i inställelseavgift. 🏢'); } /* fråga alltid om balkong (Tommy 2026-11-22) */ return kalkSvar('lägenhet', ''); }
         var rF = frittTolka(s); if (rF.length) return frittRakna(k, rF, s);
         if (/vet inte|osäker|ingen aning/.test(s)) return kalkSvarObj('Ingen fara! Har glaset smala lister som delar det i flera små rutor kallas det spröjs. Annars är det ett vanligt fönster. Skriv till exempel "10 vanliga".');
         return null;
