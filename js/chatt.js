@@ -1339,7 +1339,7 @@
     var hej = h < 5 ? 'Nattuggla? 🦉 Hej!' : h < 10 ? 'God morgon! ☀️' : h < 17 ? 'Hej! 👋' : 'God kväll! 👋';
     var extra = d === 5 ? ' Tommy är ledig på fredagar, men jag svarar gärna på dina frågor.' : !telefontid() ? ' Tommy har gått för dagen, men jag svarar gärna på dina frågor.' : '';
     if (sh) return 'Hej! ' + sh.text;
-    return 'Hej! 👋 Skriv dina fönster så räknar jag ut priset direkt. Till exempel:\n• "12 vanliga fönster och 4 med spröjs"\n• "8 tvåluft och 3 enluft"\n• "en trea" om du bor i lägenhet'; // starttext (Tommy 2026-11-22)
+    return 'Hej! 👋 Skriv dina fönster så räknar jag ut priset direkt. Till exempel:\n• "12 vanliga fönster och 4 med spröjs"\n• "8 tvåluft och 3 enluft"\n• "en trea" om du bor i lägenhet\n\nEller fråga mig vad du vill 🙂'; // starttext (Tommy 2026-11-22)
   }
   // Huvudmenyn – samma knappar överallt så det är lätt att hitta tillbaka (Tommy 2026-11-19)
   var MENY = ['Vad kostar det?', 'Lediga tider', 'Hur går det till?', 'Ring Tommy'];
