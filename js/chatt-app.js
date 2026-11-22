@@ -1,4 +1,4 @@
-/* TEST (Tommy 2026-11-22): chatten som en app på mobilen – laddas BARA på /chatt-test.
+/* Chatten som en app på mobilen (Tommy 2026-11-22).
  * Rör inte chatt.js. Låser chatten till den synliga skärmen varje bildruta,
  * så att iPhone inte kan knuffa den när tangentbordet kommer upp. */
 (function () {
