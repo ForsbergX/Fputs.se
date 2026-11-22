@@ -1596,7 +1596,7 @@
   </style>
 <link rel="stylesheet" href="css/tema.css" />
 <link rel="stylesheet" href="css/ny-start.css?v=20261114" />
-<link rel="stylesheet" href="css/glas-tema.css?v=20261122g" />
+<link rel="stylesheet" href="css/glas-tema.css?v=20261122h" />
 <link rel="stylesheet" href="css/recensioner.css" />
 <link rel="stylesheet" href="/css/chatt.css?v=25" />
 </head>
@@ -1619,12 +1619,8 @@
   <picture><source media="(max-width: 759px)" srcset="images/hero-bil-villa-mobil.webp" width="1086" height="1448" /><img class="ns-hero-bild hero-photo hero-loop" src="images/hero-bil-villa.webp" alt="Forsbergs Fönsterputs bil framför en vit villa med utsikt över Vättern" width="1672" height="941" fetchpriority="high" /></picture>
   <div class="ns-hero-text">
     <h1 class="h1-namn osynlig-rubrik"><span>Forsbergs Fönsterputs</span> <span>Jönköping</span></h1>
-    <div class="ns-hero-kort">
-    <p class="ns-hero-titel">Fönsterputs på elitnivå i Jönköping</p>
-    <p class="ns-hero-p">Professionell fönsterputsning för villa, lägenhet och företag. Personlig service, fasta priser och skinande rena fönster.</p>
     <div class="ns-hero-knappar">
       <a class="ns-knapp ns-knapp-rod" href="/boka" data-offert-val>Få offert <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
     </div>
   </div>
 </section>
@@ -2281,14 +2277,6 @@
 </script>
 <!-- Få offert: välj först vad det gäller, sen rätt sida (Tommy 2026-10-31) -->
 <a class="flyt-offert" href="/boka" data-offert-val>Få offert <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-<script>
-  // Flytande Få offert nere till vänster – syns när hero-knappen är utanför skärmen (Tommy 2026-11-22)
-  (function () {
-    var f = document.querySelector('.flyt-offert'), h = document.querySelector('#hero [data-offert-val]');
-    if (!f || !h || !('IntersectionObserver' in window)) { if (f) f.classList.add('syns'); return; }
-    new IntersectionObserver(function (e) { f.classList.toggle('syns', !e[0].isIntersecting); }).observe(h);
-  })();
-</script>
 <dialog class="ov" id="offertVal" aria-labelledby="ovRubrik">
   <div class="ov-ruta">
     <button type="button" class="ov-stang" aria-label="Stäng">×</button>
