@@ -91,6 +91,10 @@ html body .nav-toggle span { background: #fff !important; }
 /* ---------- Hero ---------- */
 #hero.ns-hero { background: transparent !important; align-items: flex-end; }
 #hero .ns-hero-bild { object-position: 72% 50%; } /* nya villabilden med Vättern (2026-11-18): huset står till höger */
+#hero .ns-hero-bild[src*="hero-bil-villa"] { object-position: 50% 50%; } /* bilbilden (2026-11-22): stående mobilbild via <picture>, bilen i mitten */
+#hero .ns-hero-bild[src*="hero-bil-villa"] { animation: none; transform: none; will-change: auto; } /* ingen zoom på bilbilden: den gjorde bilden suddig och klippte bilen (2026-11-22) */
+@media (min-width: 760px) { section#hero.ns-hero:has(img[src*="hero-bil-villa"]) { align-items: flex-end; } } /* dator: Få offert nere till vänster, inte över loggan på dörren */
+section#hero.ns-hero:has(img[src*="hero-bil-villa"])::after { background: none; } /* ingen mörk hinna över bilbilden, den ska vara skarp och klar (2026-11-22) */
 /* Tommys bilvideo som hero på mobil (2026-11-19, stående video, bilen i mitten) */
 #hero .hero-video-bil { object-position: 50% 58%; animation: none !important; transform: none !important; background: #0F1E2E; }
 /* Dator: villabilden (videon tas bort av skriptet i index.html) */
