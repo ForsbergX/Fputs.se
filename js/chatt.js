@@ -2581,7 +2581,23 @@
     if (ja) hamtaTider(); // lediga tider laddas i förväg
     if (ja && !logg.querySelector('.fc-bubbla')) skriver(function () { var fore = logg.childNodes.length, sh = sidHalsning(); bubbla(halsning(sh), 'jag'); delaUpp(fore); });
     if (ja) { laddaPostnummer(); laddaSajt(); }
+    lasSida(ja);
     passaTangentbord();
+  }
+  // Mobil: chatten i helskärm som en app – sidan bakom står still (Tommy 2026-11-22)
+  var sparadY = 0, last = false;
+  function lasSida(ja) {
+    var mobil = window.innerWidth <= 520;
+    if (ja && mobil && !last) {
+      sparadY = window.scrollY; last = true;
+      document.documentElement.classList.add('fc-helskarm');
+      document.body.style.position = 'fixed'; document.body.style.top = -sparadY + 'px'; document.body.style.left = '0'; document.body.style.right = '0';
+    } else if (!ja && last) {
+      last = false;
+      document.documentElement.classList.remove('fc-helskarm');
+      document.body.style.position = document.body.style.top = document.body.style.left = document.body.style.right = '';
+      var h = document.documentElement, sb = h.style.scrollBehavior; h.style.scrollBehavior = 'auto'; window.scrollTo(0, sparadY); h.style.scrollBehavior = sb;
+    }
   }
 
   // iPhone: när tangentbordet är uppe ska chatten ligga exakt i den synliga delen av skärmen,
