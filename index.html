@@ -1596,7 +1596,7 @@
   </style>
 <link rel="stylesheet" href="css/tema.css" />
 <link rel="stylesheet" href="css/ny-start.css?v=20261114" />
-<link rel="stylesheet" href="css/glas-tema.css?v=20261122d" />
+<link rel="stylesheet" href="css/glas-tema.css?v=20261122e" />
 <link rel="stylesheet" href="css/recensioner.css" />
 <link rel="stylesheet" href="/css/chatt.css?v=25" />
 </head>
@@ -2283,15 +2283,24 @@
 <dialog class="ov" id="offertVal" aria-labelledby="ovRubrik">
   <div class="ov-ruta">
     <button type="button" class="ov-stang" aria-label="Stäng">×</button>
+    <div class="ov-sida" data-sida="1">
     <div class="ov-steg"><span>Steg 1 av 3</span><i><b style="width:33.33%"></b></i></div>
-    <h2 id="ovRubrik">Vad gäller det?</h2>
+    <h2 id="ovRubrik">Hur vill du få ditt pris?</h2>
+    <a class="ov-val" href="/kontakta-mig#formular"><span class="ov-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9z"/><path d="M9 12h6M9 16h4"/></svg></span><span class="ov-text"><strong>Fyll i formulär</strong><span>Beskriv dina fönster – jag återkommer med en offert.</span></span></a>
+    <a class="ov-val" href="#" data-till-sida="2"><span class="ov-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01M8.5 14.5h.01M12 14.5h.01M15.5 14.5h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></svg></span><span class="ov-text"><strong>Räkna ut priset själv</strong><span>Se ditt pris direkt och boka en tid.</span></span></a>
+    </div>
+    <div class="ov-sida" data-sida="2" hidden>
+    <button type="button" class="ov-tillbaka" data-till-sida="1">‹ Tillbaka</button>
+    <div class="ov-steg"><span>Steg 2 av 3</span><i><b style="width:66.66%"></b></i></div>
+    <h2>Vad gäller det?</h2>
     <a class="ov-val" href="/boka#fonster"><img src="images/val-villa.jpg" alt="" width="120" height="120" /><span class="ov-text"><strong>Villa &amp; radhus</strong><span>Fast pris direkt – boka här</span></span></a>
     <a class="ov-val" href="/boka#lagenhet"><img src="images/val-lagenhet-hus.webp" alt="" width="120" height="120" /><span class="ov-text"><strong>Lägenhet</strong><span>Fast pris direkt – boka här</span></span></a>
     <a class="ov-val" href="/foretag"><img src="images/val-foretag-lokal.webp" alt="" width="120" height="120" /><span class="ov-text"><strong>Företag</strong><span>Kontor, butik och lokaler</span></span></a>
     <a class="ov-val" href="/kontakta-mig?typ=Solcellstv%C3%A4tt#formular"><img src="images/val-solceller.jpg" alt="" width="120" height="120" /><span class="ov-text"><strong>Solcellstvätt</strong><span>Rena paneler med renvatten</span></span></a>
+    </div>
   </div>
 </dialog>
-<script src="js/offert-val.js?v=20261031"></script>
+<script src="js/offert-val.js?v=20261122"></script>
 <script src="/js/chatt.js?v=110"></script>
 <script src="js/glid.js"></script>
 <script src="js/recensioner.js"></script>

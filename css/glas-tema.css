@@ -311,3 +311,9 @@ section#hero .ns-hero-kort .ns-knapp-rod { width: 100%; }
   html body section#hero .ns-hero-text { padding: 0 14px !important; margin-top: -28px; }
   html body section#hero .ns-hero-kort { max-width: none; }
 }
+
+/* Få offert – steg 1: två vägar till priset (Tommy 2026-11-22) */
+.ov-ikon { flex: none; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 14px; background: #F1F4F7; }
+.ov-ikon svg { width: 28px; height: 28px; fill: none; stroke: #0F1E2E; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.ov-sida[hidden] { display: none !important; }
+.ov-tillbaka { display: inline-block; margin: 0 0 10px; padding: 4px 0; border: 0; background: none; font: inherit; font-size: 14px; font-weight: 600; color: #5B6B7C; cursor: pointer; }
