@@ -298,8 +298,9 @@ section#hero.ns-hero:has(img[src*="hero-bil-villa"])::after { background: none; 
 
 /* Mobil: bilen och villan som hero direkt under menyn, hela bilden syns (Tommy 2026-11-22) */
 @media (max-width: 759px) {
-  html body section#hero.ns-hero { display: block !important; min-height: 0 !important; padding: 0 0 8px !important; }
-  html body section#hero .ns-hero-bild { position: relative !important; inset: auto !important; display: block; width: 100% !important; height: auto !important; aspect-ratio: 1086 / 1448; object-fit: cover; }
+  html body section#hero.ns-hero { display: block !important; height: 100svh; min-height: 0 !important; padding: 0 !important; overflow: hidden; }
+  html body section#hero .ns-hero-bild { position: absolute !important; inset: 0 !important; display: block; width: 100% !important; height: 100% !important; object-fit: cover; object-position: 40% 100% !important; }
+  html body section#hero::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 52%; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(9,18,30,.78) 0%, rgba(9,18,30,.45) 55%, rgba(9,18,30,0) 100%); }
   html body section#hero .ns-hero-text { padding: 0 !important; }
   html body section#hero .ns-hero-knappar { display: none !important; } /* ingen offertknapp i heron på mobil – den flytande nere till vänster räcker */
 }
@@ -337,6 +338,6 @@ section#hero.ns-hero:has(img[src*="hero-bil-villa"])::after { background: none; 
   html body section#hero.ns-hero { position: relative; }
   html body section#hero .ns-hero-text { position: absolute !important; top: 0; left: 0; right: 0; z-index: 3; padding: calc(96px + env(safe-area-inset-top)) 20px 0 !important; }
   .hero-pa-bild { display: block; }
-  .hero-pa-titel { margin: 0 0 8px; font-size: 27px; font-weight: 800; line-height: 1.12; letter-spacing: -0.02em; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,.55), 0 2px 18px rgba(0,0,0,.5); }
-  .hero-pa-text { margin: 0; max-width: 340px; font-size: 15px; font-weight: 600; line-height: 1.45; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.7), 0 2px 14px rgba(0,0,0,.55); }
+  .hero-pa-titel { margin: 0 0 10px; font-size: 30px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: #fff; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+  .hero-pa-text { margin: 0; max-width: 330px; font-size: 16px; font-weight: 500; line-height: 1.5; color: rgba(255,255,255,.95); text-shadow: 0 1px 10px rgba(0,0,0,.35); }
 }
