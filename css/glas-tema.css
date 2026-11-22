@@ -281,3 +281,25 @@ section#hero.ns-hero:has(img[src*="hero-bil-villa"])::after { background: none; 
 #fyra-bra .bockrad { max-width: 560px; margin: 0 auto; }
 @media (min-width: 900px) { #fyra-bra .bockrad { max-width: 920px; grid-template-columns: repeat(4, auto); justify-content: center; gap: 28px; } }
 #fyra-bra + #tjanster { padding-top: 32px !important; }
+
+/* Hero: rubrik + text i mörkt glaskort under bilen (Tommy 2026-11-22) */
+section#hero .ns-hero-kort { max-width: 560px; padding: 22px 20px 20px; border-radius: 22px; background: rgba(15, 30, 46, 0.82); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 20px 50px -20px rgba(0, 0, 0, .6); }
+section#hero .ns-hero-titel { margin: 0 0 10px; font-size: clamp(26px, 7.4vw, 44px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: #fff; }
+section#hero .ns-hero-kort .ns-hero-p { margin: 0 0 18px; max-width: none; font-size: 16.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.88) !important; text-shadow: none; font-weight: 400; }
+section#hero .ns-hero-kort .ns-hero-knappar { margin-top: 0; max-width: none; display: block; }
+section#hero .ns-hero-kort .ns-knapp-rod { width: 100%; }
+@media (min-width: 760px) { section#hero .ns-hero-kort { padding: 30px 30px 28px; } section#hero .ns-hero-kort .ns-hero-p { font-size: 18px; } }
+
+/* Fyra fördelar som snygg text med ikon, i stället för bockar (Tommy 2026-11-22) */
+#fyra-bra .fb-lista { display: grid; max-width: 560px; margin: 0 auto; }
+#fyra-bra .fb-punkt { display: grid; grid-template-columns: 52px 1fr; column-gap: 16px; padding: 22px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+#fyra-bra .fb-punkt:last-child { border-bottom: 0; }
+#fyra-bra .fb-ikon { grid-row: 1 / span 2; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: rgba(255, 255, 255, 0.1); }
+#fyra-bra .fb-ikon svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+#fyra-bra .fb-punkt h3 { margin: 2px 0 6px; font-size: 19px; font-weight: 800; line-height: 1.25; color: #fff; }
+#fyra-bra .fb-punkt p { margin: 0; font-size: 15.5px; line-height: 1.55; color: rgba(255, 255, 255, 0.78); }
+@media (min-width: 900px) {
+  #fyra-bra .fb-lista { max-width: 1080px; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  #fyra-bra .fb-punkt { grid-template-columns: 1fr; border-bottom: 0; padding: 0; }
+  #fyra-bra .fb-ikon { grid-row: auto; margin-bottom: 14px; }
+}
