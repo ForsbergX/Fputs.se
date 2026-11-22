@@ -303,3 +303,11 @@ section#hero .ns-hero-kort .ns-knapp-rod { width: 100%; }
   #fyra-bra .fb-punkt { grid-template-columns: 1fr; border-bottom: 0; padding: 0; }
   #fyra-bra .fb-ikon { grid-row: auto; margin-bottom: 14px; }
 }
+
+/* Mobil: bilen ska synas helt – bilden överst, textkortet under bilden (Tommy 2026-11-22) */
+@media (max-width: 759px) {
+  html body section#hero.ns-hero { display: block !important; min-height: 0 !important; padding: 0 0 8px !important; }
+  html body section#hero .ns-hero-bild { position: relative !important; inset: auto !important; display: block; width: 100% !important; height: auto !important; aspect-ratio: 1086 / 1448; object-fit: cover; }
+  html body section#hero .ns-hero-text { padding: 0 14px !important; margin-top: -28px; }
+  html body section#hero .ns-hero-kort { max-width: none; }
+}
