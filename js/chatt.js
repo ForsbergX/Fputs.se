@@ -2582,6 +2582,7 @@
     if (ja && !logg.querySelector('.fc-bubbla')) skriver(function () { var fore = logg.childNodes.length, sh = sidHalsning(); bubbla(halsning(sh), 'jag'); delaUpp(fore); });
     if (ja) { laddaPostnummer(); laddaSajt(); }
     lasSida(ja);
+    if (ja) input.focus(); /* direkt redo att skriva – tangentbordet kommer upp (Tommy 2026-11-22) */
     passaTangentbord();
   }
   // Mobil: chatten i helskärm som en app – sidan bakom står still (Tommy 2026-11-22)
