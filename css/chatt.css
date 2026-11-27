@@ -118,3 +118,6 @@ html body .fc-panel .fc-input::placeholder { color: #767676; }
 html body .fc-panel .fc-topp-namn { font-size: 17px; font-weight: 700; }
 /* 3D-emojis i bubblorna (Tommy 2026-11-20) */
 html body .fc-panel img.fc-emoji { display: inline-block; width: 1.25em; height: 1.25em; margin: 0 .05em; vertical-align: -0.25em; border: 0; background: none; box-shadow: none; }
+
+/* Chattknappen dold på mobilen på alla sidor – den blockade (Tommy 2026-11-27) */
+@media (max-width: 768px) { html body .fc-knapp { display: none !important; } }
