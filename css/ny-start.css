@@ -215,3 +215,8 @@ nav:not(.breadcrumb-nav) {
 
 /* SM i fönsterputs 2026 – stående video (Tommy 2026-11-14) */
 .ns-sm-video { display: block; width: 100%; max-width: 340px; aspect-ratio: 608 / 1080; margin: 0 auto; border-radius: 22px; object-fit: cover; background: #111; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3); }
+
+/* Mobil: menyn scrollar bort med sidan – mer yta för innehållet (Tommy 2026-11-27) */
+@media (max-width: 768px) {
+  html body nav:not(.breadcrumb-nav) { position: relative !important; top: auto !important; }
+}

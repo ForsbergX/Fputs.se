@@ -2406,25 +2406,7 @@
     return { special: true, stilla: true, avsikt: 'omrade', vantar: '', text: 'Tyvärr – ' + o.postnr + ' ligger utanför området Tommy åker till just nu. 😕' + DELA + 'Ring honom gärna på ' + TEL_TEXT + ' så kan ni prata om det.', knapp: ['Ring ' + TEL_TEXT, 'tel:+46793463964'] };
   }
 
-  // ---- 7. Lugn påminnelse vid chattknappen (en gång per besök) ----
-  (function () {
-    var visa = SIDA.namn === 'priser' || SIDA.namn === 'start' || /^fonsterputs/.test(SIDA.namn);
-    var redan = false;
-    try { redan = sessionStorage.getItem('fc-puff') === '1'; } catch (e) {}
-    if (!visa || redan) return;
-    setTimeout(function () {
-      if (!panel.hidden || logg.querySelector('.fc-bubbla')) return;
-      var puff = document.createElement('div');
-      puff.className = 'fc-puff';
-      puff.innerHTML = '<button type="button" class="fc-puff-text"></button><button type="button" class="fc-puff-stang" aria-label="Stäng">×</button>';
-      puff.querySelector('.fc-puff-text').textContent = SIDA.ort ? 'Vill du veta vad fönsterputs kostar i ' + minne.ort + '? 😊' : 'Vill du ha hjälp att räkna ut priset? 😊';
-      document.body.appendChild(puff);
-      try { sessionStorage.setItem('fc-puff', '1'); } catch (e) {}
-      puff.querySelector('.fc-puff-text').addEventListener('click', function () { puff.remove(); oppna(true); });
-      puff.querySelector('.fc-puff-stang').addEventListener('click', function () { puff.remove(); });
-      knapp.addEventListener('click', function () { puff.remove(); }, { once: true });
-    }, 40000);
-  })();
+  // ---- 7. Påminnelse-popupen borttagen (Tommy 2026-11-27) ----
 
   // ================= Svarar på allt som står på sajten (Tommy 2026-11-19) =================
   // js/chatt-sajt.json byggs från sajtens sidor med .claude/sajtkunskap.js (kör igen när texten ändras).

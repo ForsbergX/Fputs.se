@@ -227,3 +227,8 @@ html body .breadcrumb-nav [aria-current="page"] { color: #fff !important; font-w
 html body .nav-dropdown-menu a:hover { color: #A9D4F5 !important; }
 /* Röda knappar utan klass (inline-stil) behåller vit text */
 html body section a:not([class])[style*="background"] { color: #fff !important; text-decoration: none !important; }
+
+/* Mobil: menyn scrollar bort med sidan – mer yta för innehållet (Tommy 2026-11-27) */
+@media (max-width: 768px) {
+  html body nav:not(.breadcrumb-nav) { position: relative !important; top: auto !important; }
+}

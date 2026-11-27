@@ -1596,7 +1596,7 @@
 }
   </style>
 <link rel="stylesheet" href="css/tema.css" />
-<link rel="stylesheet" href="css/ny-start.css?v=20261114" />
+<link rel="stylesheet" href="css/ny-start.css?v=20261127" />
 <link rel="stylesheet" href="css/glas-tema.css?v=20261126a" />
 <link rel="stylesheet" href="css/recensioner.css?v=20261126" />
 <link rel="stylesheet" href="/css/chatt.css?v=28" />
@@ -1622,6 +1622,11 @@ html body .fh p{margin:20px 0 0;max-width:328px;font-family:Inter,system-ui,sans
 .fh-knapp:hover{background:#b00d1a}
 .fh-knapp svg{width:16px;height:16px}
 .flyt-offert.gomd{display:none!important}
+@media (max-width:759px){
+  html body .flyt-offert{left:50%;right:auto;transform:translateX(-50%);justify-content:center;height:54px;padding:0 30px;border-radius:99px;font-family:"Inter Tight",Inter,sans-serif;font-size:13px;font-weight:600;letter-spacing:.14em;white-space:nowrap;transition:opacity .2s ease}
+  body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+  body.cookie-modal-open .flyt-offert{display:none!important}
+} /* fast Begär offert-knapp på mobil (Tommy 2026-11-27) */
 @media (min-width:768px){
   .fh{min-height:max(720px,100svh);padding:128px 0 28px;margin-top:-66px}
   .fh-bild{left:46%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%);mask-image:linear-gradient(90deg,transparent 0,#000 22%)}
@@ -2373,6 +2378,18 @@ html body #se-mig-jobba .case-kort p{font-size:14px;color:rgba(0,0,0,.55)!import
     visa();
   })();
 </script>
+<!-- Fast Begär offert-knapp på mobil, döljs när toppens knapp syns eller offertrutan är öppen (Tommy 2026-11-27) -->
+<a class="flyt-offert gomd" id="flytOffert" href="/offert" data-offert-val>BEGÄR OFFERT <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<script>
+(function(){
+  var k=document.getElementById('flytOffert'),topp=document.querySelector('.fh-knapp'),ruta=document.getElementById('offertVal');
+  if(!k)return;
+  var toppSyns=true;
+  function uppdatera(){k.classList.toggle('gomd',toppSyns||(ruta&&ruta.open));}
+  if(topp&&'IntersectionObserver' in window){new IntersectionObserver(function(e){toppSyns=e[0].isIntersecting;uppdatera();}).observe(topp);}else{toppSyns=false;uppdatera();}
+  if(ruta){new MutationObserver(uppdatera).observe(ruta,{attributes:true,attributeFilter:['open']});}
+})();
+</script>
 <!-- Få offert: välj först vad det gäller, sen rätt sida (Tommy 2026-10-31) -->
 <dialog class="ov" id="offertVal" aria-labelledby="ovRubrik">
   <div class="ov-ruta">
@@ -2395,7 +2412,7 @@ html body #se-mig-jobba .case-kort p{font-size:14px;color:rgba(0,0,0,.55)!import
   </div>
 </dialog>
 <script src="js/offert-val.js?v=20261122"></script>
-<script src="/js/chatt.js?v=118"></script>
+<script src="/js/chatt.js?v=119"></script>
 <script src="/js/chatt-app.js?v=2"></script>
 <script src="js/glid.js"></script>
 <script src="js/recensioner.js"></script>
