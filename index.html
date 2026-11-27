@@ -1622,6 +1622,8 @@ html body .fh p{margin:20px 0 0;max-width:328px;font-family:Inter,system-ui,sans
 .fh-knapp:hover{background:#b00d1a}
 .fh-knapp svg{width:16px;height:16px}
 .flyt-offert.gomd{display:none!important}
+/* Chattknappen dold på mobilen på startsidan – den blockade (Tommy 2026-11-27) */
+@media (max-width:768px){.fc-knapp{display:none!important}}
 @media (min-width:768px){
   .fh{min-height:max(720px,100svh);padding:128px 0 28px;margin-top:-66px}
   .fh-bild{left:46%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%);mask-image:linear-gradient(90deg,transparent 0,#000 22%)}
@@ -2375,7 +2377,6 @@ html body #se-mig-jobba .case-kort p{font-size:14px;color:rgba(0,0,0,.55)!import
   })();
 </script>
 <!-- Få offert: välj först vad det gäller, sen rätt sida (Tommy 2026-10-31) -->
-<a class="flyt-offert" href="/offert" data-offert-val>BEGÄR OFFERT <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 <dialog class="ov" id="offertVal" aria-labelledby="ovRubrik">
   <div class="ov-ruta">
     <button type="button" class="ov-stang" aria-label="Stäng">×</button>
@@ -2401,9 +2402,5 @@ html body #se-mig-jobba .case-kort p{font-size:14px;color:rgba(0,0,0,.55)!import
 <script src="/js/chatt-app.js?v=2"></script>
 <script src="js/glid.js"></script>
 <script src="js/recensioner.js"></script>
-<script>
-(function(){var k=document.querySelector('.fh-knapp'),f=document.querySelector('.flyt-offert');if(!k||!f||!('IntersectionObserver' in window))return;
-new IntersectionObserver(function(e){f.classList.toggle('gomd',e[0].isIntersecting)}).observe(k);})();
-</script>
 </body>
 </html>
