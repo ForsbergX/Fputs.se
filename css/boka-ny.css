@@ -253,6 +253,19 @@ html body .nf .fpk-tider-titel { color: #fff; }
 #nfTyper .nf-typ-topp:has(img[src*="altan"]) .nf-typ-namn { padding-left: 0; }
 .nf-balkval img { object-position: 50% 85%; }
 .nf-balkval img[src*="altan"] { object-fit: contain; object-position: 50% 50%; padding: 4px; }
+/* Altan/balkong: plus och minus direkt på varje sort (Tommy 2026-11-26) */
+.nf-balkong { padding-bottom: 12px; }
+.nf-balkong .nf-balkval { margin-top: 10px; }
+.nf-bsort { cursor: default; padding-bottom: 8px; }
+.nf-bsort > span { padding: 0 4px; }
+.nf-bsort .nf-raknare { justify-content: space-between; margin-top: 2px; background: #fff; }
+.nf-bsort .nf-raknare button { width: 38px; height: 38px; }
+.nf-bsort .nf-raknare button[data-bsteg="1"] { background: var(--valt); color: #fff; }
+.nf-bsort .nf-raknare button[data-bsteg="1"]:hover { background: var(--navy); }
+.nf-bsort.vald .nf-raknare { background: #F1F5F9; }
+.nf-bsort-text { padding-top: 12px; }
+.nf-bsort-text > span { font-size: 17px; font-weight: 800; }
+.nf-bsort-text > span small { font-size: 13px; }
 .nf-rutval small { display: block; margin-top: 1px; font-size: 12px; font-weight: 500; color: var(--m); }
 /* Uterum: bild med siffror + tre rader med räknare (Tommy 2026-11-19) */
 .nf-uterum { padding: 10px 10px 8px; }

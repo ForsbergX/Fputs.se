@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18225187055"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-18225187055');
+    gtag('config', 'G-DX43GW5J1M');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Begär offert – Forsbergs Fönsterputs Jönköping</title>
+  <meta name="description" content="Begär offert på fönsterputs i Jönköping och Huskvarna. Fyll i några uppgifter så ringer Tommy upp dig." />
+  <link rel="canonical" href="https://fputs.se/offert" />
+  <link rel="icon" href="favicon.ico?v=6" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=6" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/sidfot.css" />
+  <link rel="stylesheet" href="css/tema.css" />
+  <link rel="stylesheet" href="css/glas-sidor.css" />
+  <style>
+    /* Enkelt offertformulär, stort och tydligt – anpassat för äldre (Tommy 2026-11-26) */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: #F4F4F2; color: #111; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 19px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    .topp { background: #fff; border-bottom: 1px solid #DDD; }
+    .topp-in { max-width: 640px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .topp img { height: 34px; width: auto; display: block; }
+    .topp-hem { font-size: 17px; font-weight: 600; text-decoration: none; color: #333; padding: 10px 0; }
+    .topp-hem:hover { text-decoration: underline; }
+    main { max-width: 640px; margin: 0 auto; padding: 28px 20px 48px; }
+    h1 { margin: 0 0 8px; font-size: 32px; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
+    .ingress { margin: 0 0 26px; font-size: 19px; color: #333; }
+    .kort { background: #fff; border: 1px solid #DDD; border-radius: 14px; padding: 24px 20px; }
+    .falt { display: block; margin: 0 0 22px; }
+    .falt > span, fieldset legend { display: block; margin: 0 0 8px; font-size: 19px; font-weight: 700; color: #111; }
+    .falt em { font-style: normal; font-weight: 400; color: #555; }
+    .falt input, .falt textarea { width: 100%; height: 60px; padding: 0 16px; border: 2px solid #8A8A8A; border-radius: 10px; background: #fff; font: inherit; font-size: 20px; color: #111; }
+    .falt textarea { height: auto; min-height: 120px; padding: 14px 16px; resize: vertical; }
+    .falt input:focus, .falt textarea:focus { outline: 3px solid #111; outline-offset: 2px; border-color: #111; }
+    .falt input::placeholder, .falt textarea::placeholder { color: #8A8A8A; }
+    fieldset { border: 0; padding: 0; margin: 0 0 22px; }
+    .val { display: grid; gap: 10px; }
+    .val label { position: relative; display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 12px 16px; border: 2px solid #8A8A8A; border-radius: 10px; background: #fff; font-size: 20px; cursor: pointer; }
+    .val input { width: 26px; height: 26px; margin: 0; flex: none; accent-color: #D1101F; }
+    .val label:has(input:checked) { border-color: #D1101F; background: #FFF4F4; font-weight: 700; }
+    .val input:focus-visible { outline: 3px solid #111; outline-offset: 3px; }
+    .skicka { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 64px; margin-top: 6px; border: 0; border-radius: 12px; background: #D1101F; color: #fff; font: inherit; font-size: 22px; font-weight: 700; cursor: pointer; }
+    .skicka:hover { background: #B00D1A; }
+    .skicka:focus-visible { outline: 3px solid #111; outline-offset: 3px; }
+    .skicka:disabled { opacity: .6; cursor: default; }
+    .not { margin: 16px 0 0; font-size: 16px; color: #444; }
+    .not a { font-weight: 600; }
+    .tom-fel { margin: 0 0 16px; padding: 14px 16px; border-radius: 10px; background: #FDECEC; color: #8A0D16; font-size: 18px; font-weight: 600; }
+    .ns-fel { margin: 16px 0 0; padding: 14px 16px; border-radius: 10px; background: #FDECEC; color: #8A0D16; font-size: 18px; }
+    .ns-fel a { font-weight: 700; }
+    .ns-tack { text-align: center; padding: 20px 6px; }
+    .ns-tack strong { display: block; font-size: 28px; margin-bottom: 8px; }
+    .ns-tack p { margin: 0; font-size: 20px; }
+    .ns-tack a { font-weight: 700; }
+    .ring { margin: 26px 0 0; text-align: center; font-size: 19px; }
+    .ring a { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 14px 24px; border: 2px solid #111; border-radius: 12px; font-size: 24px; font-weight: 700; text-decoration: none; }
+    .ring a:hover { background: #111; color: #fff; }
+    .ring svg { width: 24px; height: 24px; }
+    .ring small { display: block; margin-top: 8px; font-size: 16px; color: #555; }
+    footer { text-align: center; padding: 0 20px 36px; font-size: 15px; color: #666; }
+    @media (min-width: 640px) { h1 { font-size: 38px; } .kort { padding: 32px; } }
+
+    /* Samma menyrad som övriga sidor (Tommy 2026-11-27). Sidans egna ljusa färger låses här. */
+    html:root { background: #F4F4F2 !important; }
+    html:root body { background: #F4F4F2 !important; color: #111 !important; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 19px; line-height: 1.5; }
+    html:root body::before, html:root body::after { display: none !important; }
+    html:root body main h1 { color: #111 !important; font-family: Inter, system-ui, sans-serif; }
+    html:root body main .ingress { color: #333 !important; }
+    html:root body main .falt :is(input, textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]) { background: #fff !important; border-color: #8A8A8A !important; }
+    html:root body main .falt :is(input, textarea):not([type="checkbox"]):not([type="radio"]):focus { border-color: #111 !important; }
+    html:root body main .ns-form-kort { background: #fff !important; }
+    html:root body main .ns-form-kort .ns-skicka { border-radius: 12px !important; }
+    html:root body nav:not(.breadcrumb-nav)::before { background: linear-gradient(160deg, #13233a 0%, #0b1523 100%); }
+    html:root body nav:not(.breadcrumb-nav), html:root body nav:not(.breadcrumb-nav) a { font-family: "Montserrat", sans-serif; }
+    html:root body > footer { background: transparent !important; color: #666 !important; border: 0 !important; padding: 0 20px 36px !important; margin: 0 !important; text-align: center; font-size: 15px; }
+    @media (max-width: 768px) { html:root body .nav-links { background: linear-gradient(160deg, #13233a 0%, #0b1523 100%) !important; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo nav-logo-text" href="/" aria-label="Forsbergs Fönsterputs"><img src="images/logo-forsbergs-ren.png" alt="Forsbergs Fönsterputs" width="546" height="100" /></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Hem</a></li><li class="nav-dropdown"><a href="/#tjanster">Tjänster</a><ul class="nav-dropdown-menu"><li><a href="/#fonsterputs">Fönsterputs</a></li><li><a href="/solcellspaneltvatt">Solcellstvätt</a></li></ul></li><li class="nav-dropdown"><a href="/om-oss">Om mig</a><ul class="nav-dropdown-menu"><li><a href="/om-oss">Om mig</a></li><li><a href="/hur-jag-jobbar">Arbetssätt</a></li><li><a href="/referenser">Referenser</a></li><li><a href="/recensioner">Recensioner</a></li></ul></li><li><a href="/omraden">Områden</a></li><li><a href="/priser">Priser</a></li><li><a href="/faq">FAQ</a></li><li><a href="/kontakta-mig">Kontakta mig</a></li>
+    <li><a href="/boka" class="nav-cta nav-cta-desk">Få prisförslag</a></li>
+  </ul>
+  <a class="nav-tel" href="tel:+46793463964"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>079-346 39 64</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Meny" type="button" onclick="toggleMobileMenu(this)">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<main>
+  <h1>Begär offert</h1>
+  <p class="ingress">Fyll i dina uppgifter så ringer jag upp dig. Det är kostnadsfritt och inte bindande.</p>
+
+  <div class="kort ns-form-kort">
+    <form data-enkel-form="Offertsidan" action="/.netlify/functions/send-email" method="POST" novalidate>
+      <input type="hidden" name="kalla" value="Offertsidan – enkelt formulär" />
+
+      <label class="falt"><span>Namn</span>
+        <input type="text" name="namn" autocomplete="name" required />
+      </label>
+
+      <label class="falt"><span>Telefon</span>
+        <input type="tel" name="telefon" autocomplete="tel" inputmode="tel" required />
+      </label>
+
+      <label class="falt"><span>Adress</span>
+        <input type="text" name="adress" autocomplete="street-address" placeholder="Gata och ort" required />
+      </label>
+
+      <fieldset>
+        <legend>Vad gäller det?</legend>
+        <div class="val">
+          <label><input type="radio" name="bostadstyp" value="Villa / radhus" checked /> Villa eller radhus</label>
+          <label><input type="radio" name="bostadstyp" value="Lägenhet" /> Lägenhet</label>
+          <label><input type="radio" name="bostadstyp" value="Företag" /> Företag eller butik</label>
+          <label><input type="radio" name="bostadstyp" value="Annat" /> Annat</label>
+        </div>
+      </fieldset>
+
+      <label class="falt"><span>Något mer? <em>(valfritt)</em></span>
+        <textarea name="meddelande" rows="4" placeholder="T.ex. ungefär hur många fönster"></textarea>
+      </label>
+
+      <p class="tom-fel" hidden role="alert"></p>
+      <button type="submit" class="skicka ns-skicka">Skicka</button>
+      <p class="not">När du skickar sparar jag dina uppgifter för att kunna kontakta dig. Läs mer i min <a href="/integritetspolicy">integritetspolicy</a>.</p>
+      <p class="ns-fel natfel" hidden>Något gick fel. Försök igen, eller ring mig på <a href="tel:+46793463964">079-346 39 64</a>.</p>
+    </form>
+    <div class="ns-tack" hidden role="status">
+      <strong>Tack!</strong>
+      <p>Jag ringer upp dig så snart jag kan.<br />Bråttom? Ring <a href="tel:+46793463964">079-346 39 64</a>.</p>
+    </div>
+  </div>
+
+  <p class="ring">Hellre ringa?<br />
+    <a href="tel:+46793463964"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>079-346 39 64</a>
+    <small>Alla dagar 09–21</small>
+  </p>
+</main>
+
+<footer>© <span class="ar">2026</span> Forsbergs Fönsterputs · Jönköping och Huskvarna</footer>
+
+<script>
+  document.querySelector('.ar').textContent = new Date().getFullYear();
+  // Tydliga felmeddelanden på svenska om något saknas
+  (function () {
+    var form = document.querySelector('form[data-enkel-form]');
+    var namn = { namn: 'Skriv ditt namn.', telefon: 'Skriv ditt telefonnummer.', adress: 'Skriv din adress.' };
+    form.addEventListener('submit', function (e) {
+      var tom = ['namn', 'telefon', 'adress'].filter(function (n) { return !form.querySelector('[name="' + n + '"]').value.trim(); });
+      var fel = form.querySelector('.tom-fel');
+      fel.hidden = true;
+      if (tom.length) {
+        e.preventDefault(); e.stopImmediatePropagation();
+        fel.textContent = namn[tom[0]];
+        fel.hidden = false;
+        form.querySelector('[name="' + tom[0] + '"]').focus();
+      }
+    }, true);
+  })();
+</script>
+<script>
+  const navLinks = document.querySelectorAll('.nav-links a');
+  // Mobile hamburger menu
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navLinks');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function closeMenu() {
+    navToggle.classList.remove('open');
+    navMenu.classList.remove('open');
+    navOverlay.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-open');
+    document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+  }
+
+  function toggleMobileMenu(btn) {
+    const isOpen = navMenu.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    navOverlay.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('nav-open', isOpen);
+  }
+  navOverlay.addEventListener('click', closeMenu);
+  const dropdownToggles = Array.from(document.querySelectorAll('.nav-dropdown:not(.nav-dropdown-split) > a'));
+  navLinks.forEach(a => {
+    if (dropdownToggles.includes(a)) {
+      a.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          a.parentElement.classList.toggle('open');
+        } else {
+          closeMenu();
+        }
+      });
+    } else {
+      a.addEventListener('click', closeMenu);
+    }
+  });
+  document.querySelectorAll('.nav-dropdown-caret').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const parent = btn.closest('.nav-dropdown');
+      const isOpen = parent.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+  window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); });
+</script>
+<script src="js/enkel-form.js"></script>
+</body>
+</html>

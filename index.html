@@ -1523,7 +1523,8 @@
     /* SM-sektionen: text + video, tydligt att det är Tommy */
     .sm-grid { display: grid; gap: 26px; align-items: center; }
     .sm-text { text-align: left; }
-    #sm-2026 .gk { margin: 0 0 26px; } /* Google-kortet flyttat från heron hit (2026-11-18) */
+    #google-kort .gk { margin: 0 auto; }
+    #om-mig .om-sm { margin: 0 auto; max-width: 300px; } /* SM-debuten i Om mig (Tommy 2026-11-26) */ /* Google-kortet kvar i toppen, SM flyttat till Om mig-sidan (2026-11-26) */
     .sm-kicker { display: inline-block; margin-bottom: 10px; padding: 6px 12px; border-radius: 999px; background: rgba(209,16,31,0.18); border: 1px solid rgba(209,16,31,0.5); color: #fff; font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
     #sm-2026 .sm-text .ns-rubrik { text-align: left; margin-bottom: 14px; }
     .sm-p { margin: 0 0 12px; font-size: 16.5px; line-height: 1.6; color: rgba(255,255,255,0.88); }
@@ -1596,10 +1597,100 @@
   </style>
 <link rel="stylesheet" href="css/tema.css" />
 <link rel="stylesheet" href="css/ny-start.css?v=20261114" />
-<link rel="stylesheet" href="css/glas-tema.css?v=20261122j" />
-<link rel="stylesheet" href="css/recensioner.css" />
+<link rel="stylesheet" href="css/glas-tema.css?v=20261126a" />
+<link rel="stylesheet" href="css/recensioner.css?v=20261126" />
 <link rel="stylesheet" href="/css/chatt.css?v=27" />
 <link rel="stylesheet" href="/css/chatt-app.css?v=1" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Inter+Tight:wght@600&family=Inter:wght@400&display=swap" rel="stylesheet" />
+<style>
+/* TOPPEN som bgbygger.se (uppmätt 2026-11-26), med Tommys bild */
+.fh{position:relative;isolation:isolate;display:flex;flex-direction:column;overflow:hidden;background:#080706;padding:128px 0 28px;margin-top:-80px;min-height:100svh} /* hela skärmen, bilden går upp bakom menyn */
+.fh-bild{position:absolute;inset:0;z-index:-2}
+@media (max-width:767px){.fh-bild{bottom:auto;height:100%}.fh-bild img{object-position:58% 0%!important}} /* mobil: hela höjden, utsnittet åt höger så skrapan och blötläggaren syns (Tommy 2026-11-26) */
+.fh-bild img{display:block;width:100%;height:100%;object-fit:cover;object-position:14% 30%;filter:brightness(1.35) contrast(1.05) saturate(1.02)} /* AMO-bilden är mörkare än bgbyggers, därför ljusare här */
+.fh-lager{position:absolute;z-index:-1;pointer-events:none}
+.fh-lager-topp{left:0;right:0;top:0;height:96px;background:linear-gradient(rgba(8,7,6,.8) 0%,rgba(8,7,6,.25) 50%,rgba(8,7,6,0) 100%)}
+.fh-lager-sida{inset:0;background:linear-gradient(104deg,rgba(8,7,6,.72) 0%,rgba(8,7,6,.45) 38%,rgba(8,7,6,.08) 62%,rgba(8,7,6,0) 100%)}
+.fh-lager-glod{display:none}
+.fh-lager-botten{left:0;right:0;bottom:0;height:144px;background:linear-gradient(to top,#080706 0%,rgba(8,7,6,.55) 50%,rgba(8,7,6,0) 100%)}
+.fh-text{position:relative;width:100%;max-width:1240px;margin:0 auto;padding:0 16px}
+html body .fh h1{margin:0;font-family:Outfit,"Inter Tight",sans-serif;font-weight:700;font-size:30.72px;line-height:1.11;letter-spacing:-.015em;text-transform:uppercase;color:rgba(255,255,255,.94);text-shadow:none;text-align:left}
+.fh-rad{display:block;background:linear-gradient(#fff 0%,#faf8f4 58%,#ded6c8 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.fh-rad.fh-accent{background:linear-gradient(#ff7a83 0%,#e8283a 54%,#b30e1c 100%);-webkit-background-clip:text;background-clip:text}
+html body .fh p{margin:20px 0 0;max-width:328px;font-family:Inter,system-ui,sans-serif;font-size:15.68px;line-height:1.6;font-weight:400;color:#DFD8CC;text-shadow:none}
+.fh-knapp{display:inline-flex;align-items:center;gap:12px;margin-top:28px;height:58px;padding:0 26px;border-radius:8px;background:#d1101f;color:#fff;font-family:"Inter Tight",Inter,sans-serif;font-size:12.48px;font-weight:600;letter-spacing:.14em;text-decoration:none;box-shadow:0 10px 30px -10px rgba(209,16,31,.65)}
+.fh-knapp:hover{background:#b00d1a}
+.fh-knapp svg{width:16px;height:16px}
+.flyt-offert.gomd{display:none!important}
+@media (min-width:768px){
+  .fh{min-height:max(720px,100svh);padding:128px 0 28px;margin-top:-66px}
+  .fh-bild{left:46%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%);mask-image:linear-gradient(90deg,transparent 0,#000 22%)}
+  html body .fh h1{max-width:704px}
+  .fh-bild img{object-position:50% 0%;filter:brightness(1.3) contrast(1.05) saturate(1)}
+  .fh-lager-topp{height:128px;background:linear-gradient(rgba(8,7,6,.85) 0%,rgba(8,7,6,.3) 50%,rgba(8,7,6,0) 100%)}
+  .fh-lager-sida{background:linear-gradient(84deg,#080706 32%,rgba(10,8,6,.92) 41%,rgba(10,8,6,.42) 51%,rgba(8,7,6,.12) 64%,rgba(8,7,6,.08) 100%)}
+  .fh-lager-glod{display:block;inset:0;background:radial-gradient(46% 52% at 24% 48%,rgba(209,16,31,.10) 0%,rgba(0,0,0,0) 72%)}
+  .fh-lager-botten{height:160px;background:linear-gradient(to top,rgba(8,7,6,.9) 0%,rgba(8,7,6,.45) 50%,rgba(8,7,6,0) 100%)}
+  .fh-text{padding:0 32px}
+  html body .fh h1{font-size:clamp(30.72px,4.15vw,60px)}
+  html body .fh p{margin-top:24px;max-width:528px;font-size:18.56px;line-height:1.65}
+}
+/* Google-rad och kundrad i toppen, som bgbygger (2026-11-26) */
+.fh-text{flex:none}
+.fh-google{margin-top:20px;display:inline-flex;align-items:center;gap:10px;font-family:Inter,system-ui,sans-serif;font-size:14.4px;line-height:1.5;color:rgba(255,255,255,.85);text-decoration:none;filter:drop-shadow(0 1px 8px rgba(0,0,0,.85))}
+.fh-google:hover{color:#fff}
+.fh-google svg{flex:none}
+.fh-google b{font-weight:700;color:#fff}
+.fh-stj{display:inline-flex;align-items:center;gap:3px}
+.fh-text .fh-knapp{display:flex;width:max-content}
+.fh-kunder{position:relative;width:100%;max-width:1240px;margin:auto auto 0;padding:20px 16px 0;display:flex;flex-direction:column;gap:14px}
+.fh-kunder::before{content:"";position:absolute;top:0;left:16px;right:16px;height:1px;background:rgba(255,255,255,.12)}
+.fh-kunder-etikett{display:flex;align-items:center;gap:8px;flex:none}
+.fh-kunder-tal{font-family:Outfit,"Inter Tight",sans-serif;font-size:18px;font-weight:700;letter-spacing:-.015em;color:#ff5a64}
+html body .fh .fh-kunder-etikett p{margin:0;max-width:none;font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.4;font-weight:500;color:rgba(255,255,255,.9)}
+.fh-logga img[alt="AMO Hair Salon"],.fh-logga img[alt="AZ Bil"],.fh-logga img[alt="Alex Barbershop"]{max-height:40px}
+.fh-kunder-streck{display:none;width:1px;height:20px;background:rgba(255,255,255,.15);flex:none}
+.fh-marquee{position:relative;min-width:0;width:100%;flex:1;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
+.fh-marquee-spar{display:flex;width:max-content;align-items:center;gap:40px;padding:4px 0;animation:fhMarquee 32s linear infinite}
+.fh-logga{display:flex;height:40px;width:128px;flex:none;align-items:center;justify-content:center;opacity:.85}
+.fh-logga img{max-height:36px;max-width:124px;width:auto;height:auto;object-fit:contain}
+@keyframes fhMarquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 20px))}}
+@media (prefers-reduced-motion:reduce){.fh-marquee-spar{animation:none}}
+@media (min-width:640px){.fh-kunder-tal{font-size:20px}.fh-marquee-spar{gap:48px}.fh-logga{height:44px;width:144px}@keyframes fhMarquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 24px))}}}
+@media (min-width:768px){
+  .fh{justify-content:space-between}
+  .fh-google{margin-top:24px;font-size:14.72px;filter:none}
+  .fh-kunder{flex-direction:row;align-items:center;gap:28px;padding:20px 32px 0}
+  .fh-kunder::before{left:32px;right:32px}
+  .fh-kunder-streck{display:block}
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+/* Se mig jobba – exakt som på testsidan exempel-svart.html (Tommy 2026-11-26) */
+html body #se-mig-jobba{background:#fff!important;color:#0B0B0B;padding:80px 0;font-family:Inter,system-ui,sans-serif;font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased;position:relative}
+#se-mig-jobba .smj-wrap{max-width:1160px;margin:0 auto;padding:0 16px}
+html body #se-mig-jobba .etikett{display:flex;align-items:center;gap:12px;font-family:"Inter Tight",Inter,sans-serif;font-size:11.52px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin:0 0 18px;color:#5C5C5C!important;text-shadow:none!important}
+#se-mig-jobba .etikett::before{content:"";width:22px;height:1.5px;background:#D1101F}
+html body #se-mig-jobba h2{font-family:"Inter Tight",Inter,sans-serif!important;font-weight:600!important;font-size:35.2px!important;letter-spacing:-.04em!important;line-height:1.04!important;color:#0B0B0B!important;margin:0!important;text-align:left!important;text-shadow:none!important;text-transform:none!important}
+html body #se-mig-jobba h2 .kursiv{font-family:"Instrument Serif",serif!important;font-style:italic;font-weight:400!important;letter-spacing:-.01em!important;color:rgba(18,16,14,.42)!important}
+#se-mig-jobba .case-topp{display:flex;flex-direction:column;gap:24px}
+#se-mig-jobba .case-styr{display:flex;align-items:center;gap:16px}
+#se-mig-jobba .case-rakn{font-family:"Inter Tight",Inter,sans-serif;font-size:14px;font-weight:600;letter-spacing:.14em;color:rgba(18,16,14,.5);min-width:62px}
+#se-mig-jobba .case-pil{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.85);border:1px solid rgba(18,16,14,.09);box-shadow:0 8px 24px -12px rgba(0,0,0,.25);color:#12100E;display:grid;place-items:center;cursor:pointer;padding:0}
+#se-mig-jobba .case-pil svg{width:20px;height:20px}#se-mig-jobba .case-pil:active{transform:scale(.95)}
+#se-mig-jobba .case-spar{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:40px 5% 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#se-mig-jobba .case-spar::-webkit-scrollbar{display:none}
+#se-mig-jobba .case-kort{flex:0 0 90%;scroll-snap-align:center;margin:0;transition:transform .4s,opacity .4s;opacity:.45;transform:scale(.93)}
+#se-mig-jobba .case-kort.pa{opacity:1;transform:none}
+#se-mig-jobba .case-media{aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:#0E0C0A;border:1px solid rgba(0,0,0,.1)}
+#se-mig-jobba .case-media video{width:100%;height:100%;object-fit:cover;display:block}
+#se-mig-jobba .case-kort figcaption{display:flex;gap:14px;align-items:baseline;margin-top:20px;padding:0 4px;position:static;background:none}
+#se-mig-jobba .case-nr{font-family:"Inter Tight",Inter,sans-serif;font-size:12px;font-weight:600;letter-spacing:.14em;color:rgba(0,0,0,.4)}
+html body #se-mig-jobba .case-kort h3{font-family:"Inter Tight",Inter,sans-serif!important;font-size:18.4px!important;font-weight:600!important;letter-spacing:-.02em;color:#0A0A0B!important;margin:0;text-shadow:none!important}
+html body #se-mig-jobba .case-kort p{font-size:14px;color:rgba(0,0,0,.55)!important;margin:2px 0 0;text-shadow:none!important}
+@media(min-width:820px){html body #se-mig-jobba{font-size:17px}#se-mig-jobba .smj-wrap{padding:0 32px}#se-mig-jobba .case-topp{flex-direction:row;justify-content:space-between;align-items:flex-end}#se-mig-jobba .case-kort{flex-basis:min(420px,32%)}#se-mig-jobba .case-spar{padding-left:max(16px,calc((100% - 1200px)/2))}}
+</style>
 </head>
 <body>
 <!-- NAV -->
@@ -1616,72 +1707,81 @@
 </nav>
 <div class="page-wrap">
 <div class="nav-overlay" id="navOverlay"></div>
-<section class="ns-hero" id="hero">
-  <picture><source media="(max-width: 759px)" srcset="images/hero-bil-villa-mobil.webp" width="1086" height="1448" /><img class="ns-hero-bild hero-photo hero-loop" src="images/hero-bil-villa.webp" alt="Forsbergs Fönsterputs bil framför en vit villa med utsikt över Vättern" width="1672" height="941" fetchpriority="high" /></picture>
-  <div class="ns-hero-text">
-    <h1 class="h1-namn osynlig-rubrik"><span>Forsbergs Fönsterputs</span> <span>Jönköping</span></h1>
-    <div class="hero-pa-bild"><p class="hero-pa-titel">Fönsterputs på elitnivå i Jönköping</p><p class="hero-pa-text">Professionell fönsterputsning för villa, lägenhet och företag. Personlig service, fasta priser och skinande rena fönster.</p></div>
-    <div class="ns-hero-knappar">
-      <a class="ns-knapp ns-knapp-rod" href="/boka" data-offert-val>Få offert <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
+<!-- TOPPEN: som bgbygger.se, med Tommys bild (2026-11-26) -->
+<section class="fh" id="topp">
+  <div class="fh-bild"><img src="images/tommy-putsar-fonster.jpg" alt="Tommy Forsberg putsar skyltfönstret hos AMO Hair salon i Jönköping" width="1024" height="915" fetchpriority="high" /></div>
+  <div class="fh-lager fh-lager-topp"></div>
+  <div class="fh-lager fh-lager-sida"></div>
+  <div class="fh-lager fh-lager-glod"></div>
+  <div class="fh-lager fh-lager-botten"></div>
+  <div class="fh-text">
+    <h1><span class="fh-rad fh-accent">Fönsterputs att se fram emot.</span><span class="fh-rad">Från bokning till resultat.</span></h1>
+    <p>Hos Forsbergs Fönsterputs kommer alltid samma putsare. Noggrant arbete på in- och utsida för hem och företag i Jönköping och Huskvarna. Begär offert idag.</p>
+    <a class="fh-knapp" href="/offert" data-offert-val>BEGÄR OFFERT <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="fh-google" href="https://maps.google.com/?cid=6612101212141612760" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="fh-stj" aria-label="5 av 5 stjärnor"><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path fill="#FBBC04" d="M10 1.4l2.52 5.1 5.63.82-4.08 3.97.96 5.61L10 14.25 4.97 16.9l.96-5.61L1.85 7.32l5.63-.82L10 1.4z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path fill="#FBBC04" d="M10 1.4l2.52 5.1 5.63.82-4.08 3.97.96 5.61L10 14.25 4.97 16.9l.96-5.61L1.85 7.32l5.63-.82L10 1.4z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path fill="#FBBC04" d="M10 1.4l2.52 5.1 5.63.82-4.08 3.97.96 5.61L10 14.25 4.97 16.9l.96-5.61L1.85 7.32l5.63-.82L10 1.4z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path fill="#FBBC04" d="M10 1.4l2.52 5.1 5.63.82-4.08 3.97.96 5.61L10 14.25 4.97 16.9l.96-5.61L1.85 7.32l5.63-.82L10 1.4z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" aria-hidden="true"><path fill="#FBBC04" d="M10 1.4l2.52 5.1 5.63.82-4.08 3.97.96 5.61L10 14.25 4.97 16.9l.96-5.61L1.85 7.32l5.63-.82L10 1.4z"/></svg></span><span><b>5,0</b> från 52 omdömen på Google</span></a>
+  </div>
+  <div class="fh-kunder">
+    <div class="fh-kunder-etikett"><span class="fh-kunder-tal">100+</span><p>nöjda kunder</p></div>
+    <span class="fh-kunder-streck" aria-hidden="true"></span>
+    <div class="fh-marquee" aria-label="Företag jag putsar åt"><div class="fh-marquee-spar"><div class="fh-logga"><img src="images/kunder/xprints-vit.png" alt="XPRINTS" loading="lazy" /></div><div class="fh-logga"><img src="images/kunder/grafitgra-vit.png" alt="Grafitgrå" loading="lazy" /></div><div class="fh-logga"><img src="images/kunder/amo-vit.png" alt="AMO Hair Salon" loading="lazy" /></div><div class="fh-logga"><img src="images/kunder/korkortsproffs-vit.png" alt="Körkortsproffs" loading="lazy" /></div><div class="fh-logga"><img src="images/kunder/azbil-vit.png" alt="AZ Bil" loading="lazy" /></div><div class="fh-logga"><img src="images/kunder/alex-vit.png" alt="Alex Barbershop" loading="lazy" /></div><div class="fh-logga" aria-hidden="true"><img src="images/kunder/xprints-vit.png" alt="" loading="lazy" /></div><div class="fh-logga" aria-hidden="true"><img src="images/kunder/grafitgra-vit.png" alt="" loading="lazy" /></div><div class="fh-logga" aria-hidden="true"><img src="images/kunder/amo-vit.png" alt="" loading="lazy" /></div><div class="fh-logga" aria-hidden="true"><img src="images/kunder/korkortsproffs-vit.png" alt="" loading="lazy" /></div><div class="fh-logga" aria-hidden="true"><img src="images/kunder/azbil-vit.png" alt="" loading="lazy" /></div><div class="fh-logga" aria-hidden="true"><img src="images/kunder/alex-vit.png" alt="" loading="lazy" /></div></div></div>
   </div>
 </section>
-<section class="ns-sektion" id="sm-2026">
-  <div class="ns-inner sm-grid">
-    <div class="sm-text">
-      <a class="gk" href="https://maps.google.com/?cid=6612101212141612760" target="_blank" rel="noopener" aria-label="Forsbergs Fönsterputs Jönköping på Google: 5,0 av 5 i betyg, 51 recensioner. Öppna profilen.">
-        <span class="gk-topp">
-          <span class="gk-logo"><img src="images/logo-nav-badge.png" alt="" width="44" height="44" /><svg class="gk-g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></span>
-          <span class="gk-namn"><strong>Forsbergs Fönsterputs Jönköping</strong><span class="gk-verif"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4C8DF6" d="M12 1l2.6 2.1 3.3-.3.9 3.2 2.9 1.6-1.1 3.1 1.1 3.1-2.9 1.6-.9 3.2-3.3-.3L12 23l-2.6-2.1-3.3.3-.9-3.2-2.9-1.6L3.4 13.3 2.3 10.2l2.9-1.6.9-3.2 3.3.3z"/><path d="M8 12.2l2.6 2.6L16.2 9" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verifierad på Google</span></span>
-        </span>
-        <span class="gk-betyg">
-          <span class="gk-tal">5,0</span>
-          <span class="gk-mitt"><span class="gk-stj">★★★★★</span><span class="gk-antal">51 recensioner</span></span>
-          <span class="gk-kunder" aria-hidden="true"><i>E</i><i>C</i><i>J</i><i>M</i><i>+47</i></span>
-        </span>
-        <span class="gk-cta">Se min profil på Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <h2 class="ns-rubrik">SM i fönsterputs 2026</h2>
-      <p class="sm-p">Jag heter <strong>Tommy Forsberg</strong> och driver Forsbergs Fönsterputs Jönköping. I videon tävlar jag i SM i fönsterputs 2026 – mot några av Sveriges snabbaste fönsterputsare.</p>
-      <p class="sm-p">Hemma hos dig är det ingen tävling – där är det hantverk. Jag tar det lugnt och noggrant, fönster för fönster, tills allt är randfritt. Fast pris och inga överraskningar.</p>
-      <ul class="sm-punkter">
-        <li>Tävlande i SM i fönsterputs 2026</li>
-        <li>Det är jag som kommer hem till dig</li>
-        <li>5,0 i betyg på Google</li>
-      </ul>
+<script>/* toppen börjar exakt i överkant, bakom menyn, oavsett menyns höjd */
+(function(){var f=document.getElementById('topp');function satt(){f.style.marginTop='0px';var t=f.getBoundingClientRect().top+window.scrollY;f.style.marginTop=(-t)+'px';}satt();addEventListener('resize',satt);addEventListener('load',satt);})();
+</script>
+
+
+<!-- SE MIG JOBBA (exakt som testsidan, Tommy 2026-11-26) -->
+<section id="se-mig-jobba">
+  <div class="smj-wrap">
+    <div class="case-topp">
+      <div><p class="etikett">Se mig jobba · 2026</p>
+      <h2>Så här ser det ut<br><span class="kursiv">när jag är på plats.</span></h2></div>
+      <div class="case-styr"><span class="case-rakn" id="caseRakn">01 / 11</span>
+        <button class="case-pil" id="caseV" type="button" aria-label="Föregående"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <button class="case-pil" id="caseH" type="button" aria-label="Nästa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
     </div>
-    <figure class="sm-video-wrap">
-      <video class="ns-sm-video" id="smVideo" src="images/sm-2026.mp4" poster="images/sm-2026-poster.jpg" muted loop playsinline preload="none" aria-label="Tommy Forsberg tävlar i SM i fönsterputs 2026"></video>
-      <figcaption class="sm-skylt"><span class="sm-prick"></span><span>Tommy Forsberg · SM i fönsterputs 2026<small>Kistamässan, Stockholm</small></span></figcaption>
-    </figure>
+  </div>
+  <div class="case-spar" id="caseSpar">
+    <figure class="case-kort"><div class="case-media"><video muted loop playsinline preload="none" poster="images/loop-vaxthus.jpg"><source src="images/loop-vaxthus.mp4" type="video/mp4"></video></div><figcaption><span class="case-nr">01</span><div><h3>Växthus</h3><p>Växthus och uterum – varje ruta.</p></div></figcaption></figure>
+    
+    
+    <figure class="case-kort"><div class="case-media"><video muted loop playsinline preload="none" poster="images/loop-skrapa.jpg"><source src="images/loop-skrapa.mp4" type="video/mp4"></video></div><figcaption><span class="case-nr">02</span><div><h3>Skrapa · altandörr</h3><p>Altandörr i glas, randfri på båda sidor.</p></div></figcaption></figure>
+    <figure class="case-kort"><div class="case-media"><video muted loop playsinline preload="none" poster="images/loop-villa-glas.jpg"><source src="images/loop-villa-glas.mp4" type="video/mp4"></video></div><figcaption><span class="case-nr">03</span><div><h3>Renvatten · villa</h3><p>Höga glaspartier från marken med renvatten.</p></div></figcaption></figure>
+    <figure class="case-kort"><div class="case-media"><video muted loop playsinline preload="none" poster="images/loop-glasracke.jpg"><source src="images/loop-glasracke.mp4" type="video/mp4"></video></div><figcaption><span class="case-nr">04</span><div><h3>Glasräcke</h3><p>Glasräcken på balkong och altan.</p></div></figcaption></figure>
+    <figure class="case-kort"><div class="case-media"><video muted loop playsinline preload="none" poster="images/loop-runda-fonstret.jpg"><source src="images/loop-runda-fonstret.mp4" type="video/mp4"></video></div><figcaption><span class="case-nr">05</span><div><h3>Höga fönster</h3><p>Även de svåra fönstren.</p></div></figcaption></figure>
+    <figure class="case-kort"><div class="case-media"><video muted loop playsinline preload="none" poster="images/loop-slangvinda.jpg"><source src="images/loop-slangvinda.mp4" type="video/mp4"></video></div><figcaption><span class="case-nr">06</span><div><h3>Renvattensystem</h3><p>Renvatten – rent glas utan kemikalier.</p></div></figcaption></figure>
+    <figure class="case-kort"><div class="case-media"><video muted loop playsinline preload="none" poster="images/loop-balkong.jpg"><source src="images/loop-balkong.mp4" type="video/mp4"></video></div><figcaption><span class="case-nr">07</span><div><h3>Balkonger</h3><p>Balkongglas, in och ut.</p></div></figcaption></figure>
+    <figure class="case-kort"><div class="case-media"><video muted loop playsinline preload="none" poster="images/loop-solnedgang.jpg"><source src="images/loop-solnedgang.mp4" type="video/mp4"></video></div><figcaption><span class="case-nr">08</span><div><h3>Resultatet</h3><p>Så ser det ut när jag är klar.</p></div></figcaption></figure>
+    <figure class="case-kort"><div class="case-media"><video muted loop playsinline preload="none" poster="images/loop-kopplade-bagar.jpg"><source src="images/loop-kopplade-bagar.mp4" type="video/mp4"></video></div><figcaption><span class="case-nr">09</span><div><h3>Kopplade bågar · inomhus</h3><p>Mellan glasen ingår alltid.</p></div></figcaption></figure>
+    <figure class="case-kort"><div class="case-media"><video muted loop playsinline preload="none" poster="images/loop-vinter-skrapa.jpg"><source src="images/loop-vinter-skrapa.mp4" type="video/mp4"></video></div><figcaption><span class="case-nr">10</span><div><h3>Vinterputs · skrapa</h3><p>Skrapan tar allt – inga ränder kvar.</p></div></figcaption></figure><figure class="case-kort"><div class="case-media"><video muted loop playsinline preload="none" poster="images/loop-vinter-sapa.jpg"><source src="images/loop-vinter-sapa.mp4" type="video/mp4"></video></div><figcaption><span class="case-nr">11</span><div><h3>Vinterputs · såpa</h3><p>Stålull av finaste kvalité för att få bort beläggning.</p></div></figcaption></figure>
   </div>
 </section>
 <script>
-  // SM-videon: laddas efter hero-videon och startar så fort den närmar sig skärmen
-  (function () {
-    var v = document.getElementById("smVideo");
-    if (!v) return;
-    v.muted = true;
-    function spela() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-    function starta() {
-      if ("IntersectionObserver" in window) {
-        new IntersectionObserver(function (e) { e.forEach(function (x) { if (x.isIntersecting) spela(); }); }, { rootMargin: "400px 0px" }).observe(v);
-      } else { spela(); }
-    }
-    // Mobil: låt hero-bilvideon få all bandbredd först, så den flyter direkt
-    var hero = document.querySelector(".hero-video-bil");
-    if (hero) {
-      var klar = false; var kor = function () { if (!klar) { klar = true; starta(); } };
-      hero.addEventListener("playing", kor, { once: true }); setTimeout(kor, 3000);
-    } else { starta(); }
-  })();
+// Se mig jobba – samma karusell och uppspelning som på testsidan (Tommy 2026-11-26)
+(function(){
+  var spar=document.getElementById('caseSpar'); if(!spar) return;
+  var kort=[].slice.call(spar.children), rakn=document.getElementById('caseRakn'), tot=String(kort.length).padStart(2,'0'), akt=0;
+  function satt(i){akt=i;kort.forEach(function(k,j){k.classList.toggle('pa',j===i)});rakn.textContent=String(i+1).padStart(2,'0')+' / '+tot;}
+  function till(i){i=(i+kort.length)%kort.length;var k=kort[i];spar.scrollTo({left:k.offsetLeft-(spar.clientWidth-k.offsetWidth)/2,behavior:'smooth'});satt(i);}
+  document.getElementById('caseV').onclick=function(){till(akt-1)};
+  document.getElementById('caseH').onclick=function(){till(akt+1)};
+  var t;spar.addEventListener('scroll',function(){clearTimeout(t);t=setTimeout(function(){var mitt=spar.scrollLeft+spar.clientWidth/2,b=0,bd=1e9;kort.forEach(function(k,j){var d=Math.abs(k.offsetLeft+k.offsetWidth/2-mitt);if(d<bd){bd=d;b=j}});satt(b)},80)},{passive:true});
+  satt(0);
+  var filmer=spar.querySelectorAll('video');
+  if('IntersectionObserver' in window){
+    var vo=new IntersectionObserver(function(e){e.forEach(function(x){var v=x.target;if(x.isIntersecting){v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})},{threshold:.25});
+    filmer.forEach(function(v){vo.observe(v)});
+  } else filmer.forEach(function(v){v.autoplay=true;v.preload='auto'});
+})();
 </script>
 
 <!-- Tjänsterna direkt efter SM-videon (Tommy 2026-11-19) -->
 <!-- Fyra bra saker precis innan tjänsterna (Tommy 2026-11-19) -->
 <section class="ns-sektion" id="fyra-bra">
   <div class="ns-inner">
-    <div class="fb-lista"><div class="fb-punkt"><span class="fb-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span><h3>Personlig service</h3><p>Det är alltid jag, Tommy, som kommer. Du har direktkontakt med mig från första förfrågan till färdigt resultat – du vet alltid vem du släpper in.</p></div><div class="fb-punkt"><span class="fb-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.6-7 10-4-1.4-7-5.4-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>Fast pris utan överraskningar</h3><p>Du får veta vad fönsterputsningen kostar innan jag börjar. Det priset gäller – inga dolda avgifter, oavsett väder.</p></div><div class="fb-punkt"><span class="fb-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.6-7 10-4-1.4-7-5.4-7-10V6l7-3z"/></svg></span><h3>Försäkrad hos Trygg-Hansa</h3><p>Jag har ansvarsförsäkring som täcker skador på din egendom i samband med arbetet. Du kan känna dig helt trygg.</p></div><div class="fb-punkt"><span class="fb-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v11"/><path d="M15 5.9 14 10h5.8a2 2 0 0 1 1.9 2.6l-2.3 7A2 2 0 0 1 17.5 21H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h2.8a2 2 0 0 0 1.8-1.1L12 2a3.1 3.1 0 0 1 3 3.9z"/></svg></span><h3>Nöjd kund-garanti</h3><p>Inte nöjd med resultatet? Hör av dig så kommer jag tillbaka och åtgärdar det kostnadsfritt – tills du är nöjd.</p></div></div>
+    <div class="fb-lista"><div class="fb-punkt"><span class="fb-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span><h3>Personlig service</h3><p>Det är alltid jag, Tommy, som kommer. Du har direktkontakt med mig från första förfrågan till färdigt resultat – du vet alltid vem du släpper in.</p></div><div class="fb-punkt"><span class="fb-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.6-7 10-4-1.4-7-5.4-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>Fast pris utan överraskningar</h3><p>Du får veta vad fönsterputsningen kostar innan jag börjar. Det priset gäller – inga dolda avgifter, oavsett väder.</p></div><div class="fb-punkt"><span class="fb-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.6-7 10-4-1.4-7-5.4-7-10V6l7-3z"/></svg></span><h3>Försäkrad hos Trygg-Hansa</h3><p>Jag har ansvarsförsäkring som täcker skador på din egendom i samband med arbetet. Du kan känna dig helt trygg.</p></div><div class="fb-punkt"><span class="fb-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v11"/><path d="M15 5.9 14 10h5.8a2 2 0 0 1 1.9 2.6l-2.3 7A2 2 0 0 1 17.5 21H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h2.8a2 2 0 0 0 1.8-1.1L12 2a3.1 3.1 0 0 1 3 3.9z"/></svg></span><h3>Nöjd kund-garanti</h3><p>Inte nöjd med resultatet? Hör av dig så kommer jag tillbaka och åtgärdar det kostnadsfritt – tills du är nöjd. Betala sedan enkelt med Swish efter avslutat arbete.</p></div></div>
   </div>
 </section>
 <section class="ns-sektion" id="tjanster">
@@ -1701,9 +1801,7 @@
 
 <!-- Sex fördelskort borttagna (Tommy 2026-11-22) -->
 
-<section id="trygg" style="padding:56px 20px 30px;">
-<!-- Bilvideon i stället för Trygg att anlita-korten (Tommy 2026-11-20) -->  <div style="max-width:420px;margin:0 auto;border-radius:20px;overflow:hidden;background:#0F1E2E;box-shadow:0 20px 50px -20px rgba(0,0,0,.6);">    <video src="images/hero-bil-loop.mp4?v=3" poster="images/hero-bil-loop-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Forsbergs Fönsterputs bil" style="display:block;width:100%;height:auto;"></video>  </div>
-</section>
+
 
 
 
@@ -1720,7 +1818,7 @@
         </figure>
         <figure class="ns-ref">
           <video src="images/referens-1.mp4" muted loop playsinline preload="metadata" aria-label="Video: Tommy putsar ett takfönster med skrapa"></video>
-          <figcaption>Takfönster – glasklart resultat</figcaption>
+          <figcaption>Takfönster – randfritt resultat</figcaption>
         </figure>
         <figure class="ns-ref">
           <img src="images/referens-bild-07.webp" alt="Skrapa drar bort såpa från en glasruta" loading="lazy" decoding="async" />
@@ -1728,7 +1826,7 @@
         </figure>
         <figure class="ns-ref">
           <img src="images/referens-bild-05.webp" alt="Vit villa med balkong efter fönsterputs" loading="lazy" decoding="async" />
-          <figcaption>Villa – glasklara fönster</figcaption>
+          <figcaption>Villa – efter putsning</figcaption>
         </figure>
         <figure class="ns-ref">
           <video src="images/referens-2.mp4" muted loop playsinline preload="metadata" aria-label="Video: fönsterputs på hög höjd med renvattenstång"></video>
@@ -1812,7 +1910,7 @@
       <p>Forsbergs Fönsterputs grundades av Tommy Forsberg i Jönköping. Jag jobbar noggrant, håller tider och ger alltid ett fast pris innan jobbet.</p>
       <a class="ns-knapp" href="/om-oss">Läs mer om mig</a>
     </div>
-    <img src="images/om-oss-tommy-bil.jpg" alt="Tommy Forsberg vid firmabilen med Forsbergs Fönsterputs Jönköping på dörren" width="1848" height="1480" loading="lazy" decoding="async" />
+    <figure class="sm-video-wrap om-sm"><video class="ns-sm-video" src="images/sm-2026.mp4" poster="images/sm-2026-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Tommy Forsberg tävlar i SM i fönsterputs 2026"></video><figcaption class="sm-skylt"><span class="sm-prick"></span><span>Tommy Forsberg · SM i fönsterputs 2026<small>Kistamässan, Stockholm</small></span></figcaption></figure><script>(function(){var v=document.querySelector("#om-mig video");if(!v)return;v.muted=true;function s(){var p=v.play();if(p&&p.catch)p.catch(function(){})}if("IntersectionObserver" in window){new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)s();else v.pause()})},{threshold:.2}).observe(v)}else s();["pointerdown","touchstart","scroll"].forEach(function(ev){addEventListener(ev,function(){var r=v.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)s()},{passive:true,once:true})})})();</script>
   </div>
 </section>
 
@@ -2277,14 +2375,14 @@
   })();
 </script>
 <!-- Få offert: välj först vad det gäller, sen rätt sida (Tommy 2026-10-31) -->
-<a class="flyt-offert" href="/boka" data-offert-val>Få offert <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<a class="flyt-offert" href="/offert" data-offert-val>BEGÄR OFFERT <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 <dialog class="ov" id="offertVal" aria-labelledby="ovRubrik">
   <div class="ov-ruta">
     <button type="button" class="ov-stang" aria-label="Stäng">×</button>
     <div class="ov-sida" data-sida="1">
     <div class="ov-steg"><span>Steg 1 av 3</span><i><b style="width:33.33%"></b></i></div>
     <h2 id="ovRubrik">Hur vill du få ditt pris?</h2>
-    <a class="ov-val" href="/kontakta-mig#formular"><span class="ov-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9z"/><path d="M9 12h6M9 16h4"/></svg></span><span class="ov-text"><strong>Fyll i formulär</strong><span>Beskriv dina fönster – jag återkommer med en offert.</span></span></a>
+    <a class="ov-val" href="/offert"><span class="ov-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9z"/><path d="M9 12h6M9 16h4"/></svg></span><span class="ov-text"><strong>Fyll i formulär</strong><span>Beskriv dina fönster – jag återkommer med en offert.</span></span></a>
     <a class="ov-val" href="#" data-till-sida="2"><span class="ov-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01M8.5 14.5h.01M12 14.5h.01M15.5 14.5h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></svg></span><span class="ov-text"><strong>Räkna ut priset själv</strong><span>Se ditt pris direkt och boka en tid.</span></span></a>
     </div>
     <div class="ov-sida" data-sida="2" hidden>
@@ -2303,5 +2401,9 @@
 <script src="/js/chatt-app.js?v=2"></script>
 <script src="js/glid.js"></script>
 <script src="js/recensioner.js"></script>
+<script>
+(function(){var k=document.querySelector('.fh-knapp'),f=document.querySelector('.flyt-offert');if(!k||!f||!('IntersectionObserver' in window))return;
+new IntersectionObserver(function(e){f.classList.toggle('gomd',e[0].isIntersecting)}).observe(k);})();
+</script>
 </body>
 </html>

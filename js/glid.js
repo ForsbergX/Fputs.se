@@ -18,7 +18,7 @@
       '.footer-col'
     ].join(',');
     var el = Array.prototype.slice.call(document.querySelectorAll(valjare)).filter(function (e) {
-      return !e.closest('#hero, .ns-hero, .hero-content, nav');
+      return !e.closest('#hero, .ns-hero, .fh, .hero-content, nav');
     });
     if (!el.length) return;
     document.documentElement.classList.add('glid-pa');

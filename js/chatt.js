@@ -419,7 +419,7 @@
     { ord: [' ong ', 'on god'], a: 'ONG. Rena fönster eller ingenting.' },
     { ord: ['slay'], a: 'SLAY! 💅 Precis som dina fönster efter en Forsbergs-putsning.' },
     { ord: [' goat'], a: 'GOAT = Greatest Of All Tvättare. Det är Tommy.' },
-    { ord: ['vibe', 'vibes'], a: 'Vibben här är 100 % glasklar.' },
+    { ord: ['vibe', 'vibes'], a: 'Vibben här är 100 % på topp.' },
     { ord: [' w ', ' dub '], a: 'Stor W! 🏆' },
     { ord: ['nice', 'najs', 'coolt', 'sjukt', 'grymt', 'wow'], a: ['Visst?! 😎', 'Jag vet. Jag överraskar mig själv ibland.', 'NICE är mitt mellannamn. Kundservice Nice.', 'Grymt är bara förnamnet. Efternamnet är Forsbergs.'] },
     // Robotliv
