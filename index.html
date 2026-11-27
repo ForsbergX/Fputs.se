@@ -1623,9 +1623,16 @@ html body .fh p{margin:20px 0 0;max-width:328px;font-family:Inter,system-ui,sans
 /* Vit rubrik + mer av bilden (Tommy 2026-11-27) */
 .fh-rad,.fh-rad.fh-accent{background:none!important;-webkit-text-fill-color:#fff;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.5)}
 html body .fh p{color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.7)}
+/* Mobil: bilden överst där du syns, texten under på mörk botten – alltid läsbar (Tommy 2026-11-27) */
 @media (max-width:767px){
-  .fh-lager-sida{background:linear-gradient(104deg,rgba(8,7,6,.5) 0%,rgba(8,7,6,.22) 45%,rgba(8,7,6,0) 70%)}
-  .fh-bild img{filter:brightness(1.45) contrast(1.05) saturate(1.05)}
+  .fh{min-height:0;padding-top:0}
+  html body .fh-bild{position:relative;inset:auto;height:62svh;min-height:400px;z-index:0}
+  html body .fh-bild img{height:100%;object-position:42% 30%!important;filter:brightness(1.25) contrast(1.05) saturate(1.05)}
+  .fh-bild::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(to top,#080706 0%,rgba(8,7,6,.7) 45%,rgba(8,7,6,0) 100%)}
+  .fh-lager-sida,.fh-lager-botten{display:none}
+  .fh-text{margin-top:-64px;z-index:1}
+  html body .fh p{color:#e9e4dc;text-shadow:none}
+  .fh-kunder{margin-top:28px}
 }
 .flyt-offert.gomd{display:none!important}
 @media (max-width:759px){
