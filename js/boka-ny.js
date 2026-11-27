@@ -26,6 +26,8 @@
     { k: 'golv', namn: 'Golv till tak', kr: 50, x: 38, y: 62 },
     { k: 'tri', namn: 'Små fönster och trianglar', kr: 30, x: 79, y: 20 }
   ];
+  // Takfönster och balkongdörr: fast pris per st efter RUT, 2 eller 4 sidor (Tommy 2026-11-27)
+  var FASTPRIS = { T: { s2: 60, s4: 80 }, D: { s2: 40, s4: 60 } };
   var PANORAMA = { liten: { text: 'ca 1 × 2 m', min: 4 }, mellan: { text: 'ca 2 × 2,5 m', min: 8 }, stor: { text: 'Större än 2 × 2,5 m', min: 12 } }; // 12 min: Tommy 2026-11-19
   var FOTO = { L1: "fonster-1-luft.jpg", L2: "fonster-2-luft.jpg", P: "panorama-helt.webp", O: "fonster-overliggande.webp", B: "altan-racke.webp", U: "fonster-underliggande.webp", S: "sprojs-4.webp" }; // riktiga bilder i korten (ikoner tills bild finns)
   var TYPER = [
@@ -35,6 +37,8 @@
     { id: 'S', namn: 'Med spröjs', sprojs: true },
     { id: 'O', namn: 'Överliggande fönster', visa: 'Över­liggande fönster', min: [4.5, 10] },
     { id: 'U', namn: 'Underliggande fönster', visa: 'Under­liggande fönster', min: [3, 10] }, // tider från TIDER.md (Tommy 2026-11-19: bild)
+    { id: 'T', namn: 'Takfönster', fast: true },
+    { id: 'D', namn: 'Balkongdörr', fast: true },
     { id: 'B', namn: 'Altanräcke eller balkong', balkong: true },
     { id: 'UT', namn: 'Uterum', uterum: true, rum: UTERUM, bild: 'uterum.webp', alt: 'Uterum med takglas, glas från golv till tak och små trianglar', w: 724, h: 543 },
     { id: 'VH', namn: 'Växthus', uterum: true, rum: VAXTHUS, bild: 'vaxthus.webp', alt: 'Växthus i glas med takglas, väggar och gavlar', w: 768, h: 512 }
@@ -48,7 +52,7 @@
   };
   // Vanliga fönster: plus direkt på "2 sidor" eller "4 sidor" (Tommy 2026-11-26)
   var SIDVAL = [{ k: 's2', text: '2 sidor', under: 'enkelsidiga' }, { k: 's4', text: '4 sidor', under: 'dubbelsidiga' }];
-  ['L1', 'L2', 'O', 'U'].forEach(function (id) { VAR[id] = SIDVAL; });
+  ['L1', 'L2', 'O', 'U', 'T', 'D'].forEach(function (id) { VAR[id] = SIDVAL; });
   TYPER.forEach(function (t) {
     var v = { antal: 0, sidor: 2, rutor: 4, balkong: 'helt', storlek: 'mellan', tak: 0, golv: 0, tri: 0 };
     Object.keys(VAR).forEach(function (id) { VAR[id].forEach(function (x) { v[x.k] = 0; }); });
@@ -90,7 +94,7 @@
     var antal = 0, minuter = 0;
     var utat = st.special === 'Ja' && st.utat;
     TYPER.forEach(function (t) {
-      if (t.balkong || t.uterum) return;
+      if (t.balkong || t.uterum || t.fast) return;
       var v = val[t.id];
       if (VAR[t.id]) {
         // samma minuter som förut, men per sort (rutor/storlek)
@@ -117,12 +121,15 @@
     var b = val.B;
     b.antal = bSum(b);
     var utGlas = 0, balkong = Object.keys(BALKONG).reduce(function (s, k) { return s + b[k] * BALKONG[k].kr; }, 0);
+    var fast = 0;
+    TYPER.forEach(function (t) { if (!t.fast) return; var v = val[t.id]; v.antal = vSum(t.id, v); fast += v.antal; VAR[t.id].forEach(function (x) { balkong += v[x.k] * FASTPRIS[t.id][x.k]; }); });
     TYPER.forEach(function (t) { if (!t.uterum) return; var u = val[t.id]; t.rum.forEach(function (r) { utGlas += u[r.k]; balkong += u[r.k] * r.kr; }); });
     var putsning = hus + balkong > 0 ? Math.max(hus + balkong, MIN_PRIS) : 0;
     var karm = st.karm ? Math.round(putsning * KARM_ANDEL) : 0;
     var avgift = putsning ? FRAMKORNING : 0;
-    return { antal: antal, balkong: b.antal + utGlas, putsning: putsning, karm: karm, avgift: avgift, total: putsning + karm + avgift };
+    return { antal: antal, balkong: b.antal + utGlas, fast: fast, putsning: putsning, karm: karm, avgift: avgift, total: putsning + karm + avgift };
   }
+  function harValt() { var p = rakna(); return p.antal + p.balkong + p.fast > 0; }
   function beskrivning(p) {
     var delar = ['En gång'];
     TYPER.forEach(function (t) {
@@ -146,7 +153,7 @@
   }
 
   // ---- Fönstertyperna ----
-  var IKON = {"L2":"<rect x=\"8\" y=\"5\" width=\"32\" height=\"38\" rx=\"2\"/><path d=\"M24 5v38\"/>","S":"<rect x=\"8\" y=\"5\" width=\"32\" height=\"38\" rx=\"2\"/><path d=\"M24 5v38M8 18h32M8 30h32\"/>","O":"<rect x=\"8\" y=\"5\" width=\"32\" height=\"18\" rx=\"2\"/><path d=\"M8 23l5 18h22l5-18\"/>","B":"<rect x=\"10\" y=\"4\" width=\"28\" height=\"16\" rx=\"2\"/><path d=\"M4 24h40M8 24v18M18 24v18M28 24v18M38 24v18M4 42h40\"/>"};
+  var IKON = {"L2":"<rect x=\"8\" y=\"5\" width=\"32\" height=\"38\" rx=\"2\"/><path d=\"M24 5v38\"/>","S":"<rect x=\"8\" y=\"5\" width=\"32\" height=\"38\" rx=\"2\"/><path d=\"M24 5v38M8 18h32M8 30h32\"/>","O":"<rect x=\"8\" y=\"5\" width=\"32\" height=\"18\" rx=\"2\"/><path d=\"M8 23l5 18h22l5-18\"/>","T":"<path d=\"M4 40L24 8l20 32\"/><rect x=\"17\" y=\"20\" width=\"14\" height=\"12\" rx=\"1\"/>","D":"<rect x=\"13\" y=\"4\" width=\"22\" height=\"40\" rx=\"2\"/><rect x=\"17\" y=\"8\" width=\"14\" height=\"22\" rx=\"1\"/><path d=\"M30 36h2\"/>","B":"<rect x=\"10\" y=\"4\" width=\"28\" height=\"16\" rx=\"2\"/><path d=\"M4 24h40M8 24v18M18 24v18M28 24v18M38 24v18M4 42h40\"/>"};
   var typerEl = document.getElementById('nfTyper');
   function chip(grupp, varde, text, vald) {
     return '<button type="button" class="nf-chip' + (vald ? ' vald' : '') + '" data-grupp="' + grupp + '" data-varde="' + varde + '">' + text + '</button>';
@@ -171,7 +178,7 @@
     var sidval = VAR[t.id] === SIDVAL;
     var stangdText = t.sprojs ? 'Tryck för att välja antal rutor' : t.storlekar ? 'Tryck för att välja storlek' : sidval ? 'Tryck för att välja 2 eller 4 sidor' : 'Tryck för att välja sort';
     var topp = function (oppna, text, pil) {
-      return '<button type="button" class="nf-typ-topp nf-ut-oppna" data-utoppna="' + oppna + '" aria-expanded="' + (oppna === '0') + '"><span class="nf-kortbild foto nf-ut-tumme" aria-hidden="true"><img src="images/' + FOTO[t.id] + '" alt="" width="144" height="144" /></span><span class="nf-typ-namn">' + (t.visa || t.namn) + '<small>' + text + '</small></span>' + (pil ? '<span class="nf-ut-pil' + (oppna === '0' ? ' upp' : '') + '" aria-hidden="true"></span>' : '') + '</button>';
+      return '<button type="button" class="nf-typ-topp nf-ut-oppna" data-utoppna="' + oppna + '" aria-expanded="' + (oppna === '0') + '">' + (FOTO[t.id] ? '<span class="nf-kortbild foto nf-ut-tumme" aria-hidden="true"><img src="images/' + FOTO[t.id] + '" alt="" width="144" height="144" /></span>' : '<span class="nf-kortbild nf-ut-tumme" aria-hidden="true"><svg viewBox="0 0 48 48">' + IKON[t.id] + '</svg></span>') + '<span class="nf-typ-namn">' + (t.visa || t.namn) + '<small>' + text + '</small></span>' + (pil ? '<span class="nf-ut-pil' + (oppna === '0' ? ' upp' : '') + '" aria-hidden="true"></span>' : '') + '</button>';
     };
     if (!v.oppen && !n) return '<div class="nf-typ nf-uterum-stangd" data-typ="' + t.id + '">' + topp('1', stangdText, true) + '</div>';
     var extra = '';
@@ -217,9 +224,9 @@
     var tid = rad.getAttribute('data-typ');
     if (op) { var n0 = VAR[tid] ? vSum(tid, v) : v.tak + v.golv + v.tri; if (op.getAttribute('data-utoppna') === '1') v.oppen = true; else if (!n0) v.oppen = false; ritaTyper(); return; }
     var bs = e.target.closest('[data-bsteg]');
-    if (bs) { var bk = bs.getAttribute('data-bk'); v[bk] = Math.max(0, Math.min(99, v[bk] + Number(bs.getAttribute('data-bsteg')))); v.antal = vSum(tid, v); ritaTyper(); uppdatera(); if (rakna().antal + rakna().balkong > 0) document.getElementById('nfFelFonster').hidden = true; return; }
+    if (bs) { var bk = bs.getAttribute('data-bk'); v[bk] = Math.max(0, Math.min(99, v[bk] + Number(bs.getAttribute('data-bsteg')))); v.antal = vSum(tid, v); ritaTyper(); uppdatera(); if (harValt()) document.getElementById('nfFelFonster').hidden = true; return; }
     var us = e.target.closest('[data-utsteg]');
-    if (us) { var k = us.getAttribute('data-ut'); v[k] = Math.max(0, Math.min(99, v[k] + Number(us.getAttribute('data-utsteg')))); ritaTyper(); uppdatera(); if (rakna().antal + rakna().balkong > 0) document.getElementById('nfFelFonster').hidden = true; return; }
+    if (us) { var k = us.getAttribute('data-ut'); v[k] = Math.max(0, Math.min(99, v[k] + Number(us.getAttribute('data-utsteg')))); ritaTyper(); uppdatera(); if (harValt()) document.getElementById('nfFelFonster').hidden = true; return; }
     var steg = e.target.closest('[data-steg]');
     var c = e.target.closest('[data-grupp]');
     if (steg) v.antal = Math.max(0, Math.min(99, v.antal + Number(steg.getAttribute('data-steg'))));
@@ -228,7 +235,7 @@
       if (g === 'balkong' || g === 'storlek') v[g] = x; else v[g] = Number(x);
     } else return;
     ritaTyper(); uppdatera();
-    if (rakna().antal + rakna().balkong > 0) document.getElementById('nfFelFonster').hidden = true;
+    if (harValt()) document.getElementById('nfFelFonster').hidden = true;
   });
 
   // ---- Specialfönster och tillval ----
@@ -271,6 +278,7 @@
         if (t.uterum) { t.rum.forEach(function (r) { if (v[r.k]) html += drad(t.namn + ': ' + r.namn.toLowerCase() + ', ' + v[r.k] + ' glas', kr(v[r.k] * r.kr)); }); return; }
         if (!v.antal) return;
         if (t.balkong) { Object.keys(BALKONG).forEach(function (k) { if (v[k]) html += drad(BALKONG[k].text + ', ' + v[k] + ' glas', kr(v[k] * BALKONG[k].kr)); }); return; }
+        if (t.fast) { VAR[t.id].forEach(function (x) { if (v[x.k]) html += drad(t.namn + ', ' + x.text + ', ' + v[x.k] + ' st', kr(v[x.k] * FASTPRIS[t.id][x.k])); }); return; }
         if (VAR[t.id]) { VAR[t.id].forEach(function (x) { if (v[x.k]) html += drad(t.namn + (t.sprojs ? ' (' + x.text + '), ' + v.sidor + ' sidor' : x.under ? ', ' + x.text : ' (' + x.text + ')'), v[x.k] + ' st'); }); return; }
         html += drad(t.namn + (t.tvaSidor ? '' : ', ' + v.sidor + ' sidor'), v.antal + ' st');
       });
@@ -408,7 +416,7 @@
       if (!lgh.apt) { document.getElementById('nfFelLgh').hidden = false; return; }
       ga('extra');
     } else if (nu === 'fonster') {
-      if (p.antal + p.balkong === 0) { document.getElementById('nfFelFonster').hidden = false; document.getElementById('nfFelFonster').scrollIntoView({ block: 'center' }); return; }
+      if (p.antal + p.balkong + (p.fast || 0) === 0) { document.getElementById('nfFelFonster').hidden = false; document.getElementById('nfFelFonster').scrollIntoView({ block: 'center' }); return; }
       var fel = !st.special || (st.special === 'Ja' && !st.utat && !st.hoga && !st.fasta);
       var felEl = document.getElementById('nfFelSpecial');
       felEl.textContent = st.special === 'Ja' ? 'Välj vilka specialfönster du har.' : 'Välj Ja eller Nej.';
